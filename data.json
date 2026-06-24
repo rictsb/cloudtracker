@@ -37,47 +37,64 @@
       "tk": "CRWV",
       "name": "CoreWeave",
       "model": "owner",
-      "contractedPct": 85,
-      "termYrs": 4,
-      "renewalProb": 0.85,
-      "mtm": 0.95,
-      "leaseQ": 4.5,
-      "netDebt": 12000,
-      "shares": 480,
-      "price": 50,
+      "contractedPct": 95,
+      "termYrs": 5,
+      "renewalProb": 0.95,
+      "mtm": 1.0,
+      "leaseQ": 4.3,
+      "netDebt": 22900,
+      "shares": 545,
+      "price": 102,
       "legacyEV": 0,
-      "costOfDebt": 8.5,
-      "finMix": "High-yield / ABS",
-      "narrative": "A GPU owner-operator whose value rests on a heavily contracted, hyperscaler-anchored book. Near-term capacity is largely pre-sold, so the investable question is less whether it earns and more what the back half of the pipeline re-signs at when today’s contracts roll. For a compute bull, this is durable demand with less rate volatility — at the cost of less torque if spot rates spike.",
+      "costOfDebt": 9.0,
+      "finMix": "Asset-backed DDTL (GPU-collateralized)",
+      "narrative": "A GPU owner-operator running an essentially fully-contracted (~98% take-or-pay), hyperscaler-anchored book — Microsoft ~67% of revenue, plus Meta (~$21B), OpenAI (~$22B) and Anthropic, against a ~$99B backlog at ~5-yr weighted term. Near-term capacity is pre-sold and capacity-constrained, so the investable question isn’t whether it earns but what the back-half pipeline re-signs at, how fast it diversifies off Microsoft, and whether ~$23B of debt and $31–35B of FY26 capex can be carried while margins are still near breakeven. The target leans meaningfully on the path to 8 GW by 2030 — roughly a fifth of it rests on rumored capacity.",
       "bull": [
-        "Contracted book de-risks near-term cash flows",
-        "Hyperscaler anchor signals demand durability",
-        "Bulk of value is disclosed and near-term"
+        "~98% take-or-pay book and ~$99B backlog de-risk near-term cash flows",
+        "Hyperscaler anchors (Microsoft, Meta, Anthropic) plus capacity-constrained demand",
+        "Cost of debt falling — first IG-rated GPU-backed DDTL (~6%) vs ~9% legacy",
+        "Diversifying off Microsoft as the backlog lengthens toward 7 years"
       ],
       "bear": [
-        "Little upside capture if spot rates re-rate higher",
-        "Leased sites carry rent drag on margin",
-        "Back-end pipeline still estimated / rumored"
+        "~$23B net debt plus $31–35B FY26 capex — refinancing and execution risk",
+        "Microsoft 67% concentration and large weak-credit OpenAI exposure (~$22B)",
+        "Adjusted operating margin ~1% — profitability unproven at scale",
+        "Leased-heavy rent drag; Denton construction delays already drew litigation"
       ],
       "catalysts": [
-        "New anchor contract or term extension",
-        "Energization pulling far sites nearer",
-        "Shift toward owned vs leased capacity"
+        "New anchor signings and the 8 GW-by-2030 pipeline converting to contracts",
+        "Self-builds (Kenilworth, Lancaster, Hammond) coming online — owned economics",
+        "Further IG-rated, lower-cost financings cutting the blended debt rate",
+        "Energization pulling Helios and Ellendale capacity active"
       ],
       "risks": [
-        "Counterparty concentration",
-        "Refinancing of buildout debt",
-        "Power-cost inflation on leased sites"
+        "Counterparty concentration (Microsoft) and OpenAI credit quality",
+        "Refinancing and rate risk on ~$23B of debt; capex outrunning cash",
+        "Power-cost inflation in PJM (Lancaster, Chicago) and constrained NJ",
+        "AI-demand or GPU-rate softening hitting re-contracting"
       ],
       "sites": [
-        { "n": "Site A", "mw": 300, "owned": true, "region": "cheap", "yr": 2026, "mo": 9, "prov": "disclosed" },
-        { "n": "Site B", "mw": 400, "owned": false, "region": "mid", "yr": 2027, "mo": 3, "prov": "disclosed" },
-        { "n": "Site C", "mw": 600, "owned": false, "region": "mid", "yr": 2028, "mo": 6, "prov": "estimated" },
-        { "n": "Site D", "mw": 500, "owned": false, "region": "exp", "yr": 2030, "mo": 1, "prov": "rumored" }
+        { "n": "Helios Ph1 (Dickens Co, TX)", "mw": 200, "owned": false, "region": "cheap", "yr": 2026, "mo": 6, "prov": "disclosed" },
+        { "n": "Helios expansion (TX)", "mw": 600, "owned": false, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
+        { "n": "Ellendale / Polaris Forge 1 (ND)", "mw": 250, "owned": false, "region": "cheap", "yr": 2026, "mo": 6, "prov": "disclosed" },
+        { "n": "Ellendale expansion (ND)", "mw": 150, "owned": false, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
+        { "n": "Core Scientific colo (TX/GA/OK)", "mw": 590, "owned": false, "region": "cheap", "yr": 2026, "mo": 9, "prov": "disclosed" },
+        { "n": "Kenilworth NEST (NJ)", "mw": 250, "owned": true, "region": "exp", "yr": 2027, "mo": 1, "prov": "disclosed" },
+        { "n": "Lancaster PA (self-build)", "mw": 300, "owned": true, "region": "mid", "yr": 2028, "mo": 6, "prov": "estimated" },
+        { "n": "Chicago / Elk Grove (IL)", "mw": 150, "owned": false, "region": "mid", "yr": 2027, "mo": 9, "prov": "estimated" },
+        { "n": "Hammond IN (self-build)", "mw": 180, "owned": true, "region": "cheap", "yr": 2028, "mo": 12, "prov": "rumored" },
+        { "n": "Other contracted DCs", "mw": 830, "owned": false, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
+        { "n": "Pipeline 2028", "mw": 800, "owned": false, "region": "cheap", "yr": 2028, "mo": 6, "prov": "estimated" },
+        { "n": "Pipeline 2029", "mw": 1200, "owned": false, "region": "cheap", "yr": 2029, "mo": 6, "prov": "rumored" },
+        { "n": "Pipeline 2030", "mw": 1400, "owned": false, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" },
+        { "n": "Pipeline 2031", "mw": 1100, "owned": false, "region": "cheap", "yr": 2031, "mo": 6, "prov": "rumored" }
       ],
       "log": [
-        { "d": "2026-06-12", "t": "lease", "s": "Co. release", "x": "New multi-year capacity agreement at Site B." },
-        { "d": "2026-05-30", "t": "energization", "s": "Operator update", "x": "Site A halls brought live on schedule." }
+        { "d": "2026-06-05", "t": "lease", "s": "DCD", "x": "Chicago-area lease at Applied Digital (Polaris Forge Bldg 3), 15-yr ~$2.2B." },
+        { "d": "2026-05-18", "t": "capital", "s": "Co. release", "x": "Closed $3.1B DDTL 5.0 — first syndicated HPC-backed financing." },
+        { "d": "2026-05-07", "t": "earnings", "s": "Co. release", "x": "Q1'26 revenue $2.08B (+112% YoY); backlog $99.4B; FY26 capex guide raised to $31–35B." },
+        { "d": "2026-04-09", "t": "lease", "s": "Co. release", "x": "Meta agreement expanded to ~$21B through 2032." },
+        { "d": "2026-03-31", "t": "capital", "s": "Co. release", "x": "Closed $8.5B DDTL 4.0 — first investment-grade GPU-backed facility." }
       ]
     },
     {
