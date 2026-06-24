@@ -1,0 +1,414 @@
+<!-- AI Infrastructure Relative-Value Tracker — Phase 0 prototype v3 (disposable) -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compute / Value — relative-value tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#EFEDE7; --card:#FBFAF7; --ink:#2A2722; --ink-soft:#736C61;
+    --line:#E3DED4; --indigo:#37495B; --indigo-soft:#7D90A0; --far:#BCBAB0;
+    --pine:#5B7A5C; --clay:#AA6B4F; --gold:#B9A06A;
+    --serif:'Spectral',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 28px 64px}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px}
+  .mark{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:.2px;line-height:1}
+  .mark .slash{color:var(--indigo-soft);font-weight:400;margin:0 .12em}
+  .sub{font-size:12.5px;color:var(--ink-soft);margin-top:7px;letter-spacing:.2px}
+  .notice{font-family:var(--mono);font-size:11px;color:var(--clay);border:1px solid #E7D8CF;background:#FBF3EE;padding:7px 11px;border-radius:3px;max-width:330px}
+  .notice b{font-weight:500}
+
+  .grid{display:grid;grid-template-columns:248px 1fr;gap:34px;margin-top:30px}
+  @media(max-width:780px){.grid{grid-template-columns:1fr;gap:26px}}
+  .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+
+  .ctrl{margin-bottom:19px}
+  .ctrl .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .ctrl label{font-size:13px;color:var(--ink)} .ctrl .val{font-family:var(--mono);font-size:12.5px;color:var(--indigo);font-weight:500}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--line);border-radius:2px;outline:none;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--indigo);cursor:pointer;transition:transform .12s}
+  input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--indigo);cursor:pointer}
+  input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(55,73,91,.22)}
+  input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
+  .reset{margin-top:4px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:none;border:none;border-bottom:1px solid var(--line);padding:4px 0;cursor:pointer}
+  .reset:hover{color:var(--indigo);border-color:var(--indigo-soft)}
+  .derived{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .derived div{display:flex;justify-content:space-between;margin-bottom:7px} .derived b{font-family:var(--mono);font-weight:500;color:var(--ink)}
+
+  /* tabs */
+  .tabs{display:flex;gap:4px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+  .tab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:none;border:none;padding:8px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tab.on{color:var(--indigo);border-color:var(--indigo)}
+  .tab:hover{color:var(--ink)}
+
+  /* comparison */
+  .thead,.rowline{display:grid;grid-template-columns:26px 1.1fr 1.6fr 96px 76px;gap:14px;align-items:center}
+  @media(max-width:560px){.thead,.rowline{grid-template-columns:22px 1fr 72px 60px}.col-stack{display:none}}
+  .thead{padding:0 14px 10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .thead .sortable{cursor:pointer;user-select:none} .thead .sortable:hover{color:var(--indigo)} .thead .arr{color:var(--indigo);font-size:9px}
+  .num{text-align:right;font-variant-numeric:tabular-nums}
+  #rows{position:relative}
+  .rowline{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:15px 14px;margin-bottom:10px;cursor:pointer;transition:transform .42s cubic-bezier(.2,.7,.2,1),border-color .18s,box-shadow .18s}
+  .rowline:hover{border-color:var(--indigo-soft);box-shadow:0 2px 14px rgba(42,39,34,.05)}
+  .rank{font-family:var(--serif);font-size:18px;color:var(--ink-soft)}
+  .tk{font-family:var(--serif);font-size:19px;font-weight:500;line-height:1}
+  .pill{display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--ink-soft)}
+  .pill.owner{color:var(--indigo);border-color:#CBD6DE;background:#EEF3F6}
+  .pill.landlord{color:#7A6A3E;border-color:#E4DBC2;background:#F6F1E3}
+  .pill.hybrid{color:#5e6657;border-color:#D9DECF;background:#EFF1EA}
+  .ct{font-family:var(--mono);font-size:9.5px;color:var(--ink-soft);margin-top:6px;display:block}
+  .stack{height:22px;border-radius:3px;overflow:hidden;display:flex;background:var(--line)}
+  .seg{height:100%;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .stacklabel{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--ink-soft);margin-top:4px;letter-spacing:.02em}
+  .target{font-family:var(--mono);font-size:15px;font-weight:500}
+  .up{font-family:var(--mono);font-size:12.5px;margin-top:3px} .up.pos{color:var(--pine)} .up.neg{color:var(--clay)}
+  .score-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+  .score-n{font-family:var(--mono);font-size:13px;font-weight:500}
+  .score-bar{width:54px;height:3px;background:var(--line);border-radius:3px;overflow:hidden} .score-bar span{display:block;height:100%;background:var(--gold);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 14px 8px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  .legend2{margin:0 14px 22px;font-family:var(--mono);font-size:10px;color:var(--ink-soft)} .legend2 b{font-weight:500;color:var(--ink)}
+
+  /* sites table */
+  .stab{width:100%;border-collapse:collapse;font-size:12.5px}
+  .stab th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;white-space:nowrap}
+  .stab th.r{text-align:right} .stab th:hover{color:var(--indigo)}
+  .stab td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .stab tr:hover td{background:var(--card)}
+  .stab .co{font-family:var(--serif);font-size:15px}
+  .stab .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .stab .r{text-align:right}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;vertical-align:middle}
+  .prov{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:99px;border:1px solid var(--line)}
+  .prov.disclosed{color:var(--indigo);border-color:#CBD6DE} .prov.estimated{color:#7A6A3E;border-color:#E4DBC2} .prov.rumored{color:var(--clay);border-color:#E7D8CF}
+  .ssummary{display:flex;gap:26px;flex-wrap:wrap;margin:18px 4px 4px;font-size:12px;color:var(--ink-soft)}
+  .ssummary b{font-family:var(--mono);color:var(--ink);font-weight:500}
+  .mwbar{height:6px;border-radius:3px;overflow:hidden;display:flex;width:100%;margin:14px 0 4px;background:var(--line)}
+  .mwbar i{height:100%}
+
+  /* panel / one-pager */
+  .scrim{position:fixed;inset:0;background:rgba(42,39,34,.32);opacity:0;pointer-events:none;transition:opacity .25s;z-index:5}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .panel{position:fixed;top:0;right:0;height:100%;width:min(560px,96vw);background:var(--card);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.7,.2,1);z-index:6;overflow-y:auto;padding:30px 32px 50px}
+  .panel.on{transform:translateX(0)}
+  .panel .x{position:absolute;top:22px;right:24px;border:none;background:none;font-size:20px;color:var(--ink-soft);cursor:pointer;line-height:1}.panel .x:hover{color:var(--ink)}
+  .p-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line);padding-bottom:18px}
+  .p-tk{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1}
+  .p-model{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:8px;letter-spacing:.04em}
+  .p-tgt{text-align:right;white-space:nowrap}
+  .p-tgt .t{font-family:var(--mono);font-size:22px;font-weight:500} .p-tgt .u{font-family:var(--mono);font-size:13px;margin-top:2px}
+  .p-tgt .sc{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:6px}
+  .narr{margin-top:20px;font-size:14px;line-height:1.6;font-family:var(--serif)}
+  .qual{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px;margin-top:24px}
+  @media(max-width:480px){.qual{grid-template-columns:1fr}}
+  .qcol h5{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 9px;color:var(--ink-soft)}
+  .qcol.bull h5{color:var(--pine)} .qcol.bear h5{color:var(--clay)}
+  .qcol ul{margin:0;padding-left:16px} .qcol li{font-size:12.5px;margin-bottom:6px;line-height:1.4}
+  h4.sec{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:28px 0 10px}
+  .site{display:grid;grid-template-columns:1fr auto;gap:6px;padding:11px 0;border-top:1px solid var(--line);font-size:12.5px}
+  .site .s1{font-family:var(--mono);font-weight:500} .site .s2{font-size:11px;color:var(--ink-soft);margin-top:2px}
+  .site .sv{font-family:var(--mono);text-align:right}
+  .facts .f{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:13px}
+  .facts .f span:first-child{color:var(--ink-soft)} .facts .f span:last-child{font-family:var(--mono);font-weight:500}
+  .breakdown .b{display:flex;justify-content:space-between;padding:7px 0;font-size:12.5px;color:var(--ink-soft)} .breakdown .b b{font-family:var(--mono);color:var(--ink);font-weight:500}
+  .breakdown .tot{border-top:1px solid var(--line);padding-top:9px;color:var(--ink)}
+  .ev{padding:11px 0;border-top:1px solid var(--line);font-size:13px}
+  .ev .meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-bottom:4px} .ev .etype{text-transform:uppercase;letter-spacing:.06em}
+  .lognote{margin-top:16px;font-size:11.5px;color:var(--ink-soft);font-style:italic;line-height:1.5}
+  .fpbtn{display:block;width:100%;margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);background:#EEF3F6;border:1px solid #CBD6DE;border-radius:5px;padding:11px;cursor:pointer}
+  .fpbtn:hover{background:#E4EDF2}
+  .fullpage{display:none;margin-top:28px} .fullpage.on{display:block}
+  .back{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:none;border:none;cursor:pointer;padding:6px 0;margin-bottom:6px} .back:hover{color:var(--indigo)}
+  .fp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px}
+  .fp-tk{font-family:var(--serif);font-size:38px;font-weight:500;line-height:1}
+  .fp-model{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:8px;letter-spacing:.04em}
+  .fp-nums{display:flex;gap:26px}
+  .fp-num{text-align:right} .fp-num span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px} .fp-num b{font-family:var(--mono);font-size:20px;font-weight:500}
+  .fp-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;margin-top:24px}
+  @media(max-width:780px){.fp-grid{grid-template-columns:1fr;gap:28px}}
+  .fp-side .qual{grid-template-columns:1fr;gap:16px}
+  .evchart{margin:4px 0 16px}
+  .evrow{display:grid;grid-template-columns:150px 1fr 72px;gap:12px;align-items:center;padding:7px 0}
+  @media(max-width:480px){.evrow{grid-template-columns:1fr 60px}.evbarwrap{display:none}}
+  .evlbl{font-size:12px} .evlbl .evmeta{display:block;font-family:var(--mono);font-size:9.5px;color:var(--ink-soft);margin-top:2px}
+  .evbarwrap{background:var(--line);border-radius:3px;height:20px;overflow:hidden}
+  .evbar{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .evval{font-family:var(--mono);font-size:12px;text-align:right}
+  .exp{margin:8px 0;border-top:1px solid var(--line);padding-top:10px}
+  .exp summary{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);cursor:pointer}
+  .module{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-top:16px;position:relative}
+  .module.planned{opacity:.8;border-style:dashed}
+  .module .mtag{position:absolute;top:14px;right:16px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:99px;padding:1px 7px}
+  .module h5{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px;color:var(--ink)}
+  .module p{font-size:12px;color:var(--ink-soft);margin:0;line-height:1.5}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="mark">Compute<span class="slash">/</span>Value</div>
+      <div class="sub">First-principles relative value — value rolls up from sites</div>
+    </div>
+    <div class="notice"><b>Illustrative placeholder data</b> — sites, MW, dates, debt and narrative are invented to test the layout, not researched.</div>
+  </header>
+
+  <div class="grid">
+    <aside>
+      <div class="eyebrow">Global dials</div>
+      <div id="controls"></div>
+      <button class="reset" id="reset">Reset to base case</button>
+      <div class="derived">
+        <div><span>Owner-op value / MW</span><b id="d-owner">—</b></div>
+        <div><span>Landlord value / MW</span><b id="d-land">—</b></div>
+        <div style="margin-top:4px;font-style:italic">at base site (mid power, leased)</div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="tabs">
+        <button class="tab on" data-view="cmp">Comparison</button>
+        <button class="tab" data-view="sites">All sites</button>
+      </div>
+
+      <section id="view-cmp">
+        <div class="eyebrow">Ranked by <span id="sortlabel">upside</span></div>
+        <div class="thead">
+          <div></div><div>Company</div>
+          <div class="col-stack">Value composition · by site</div>
+          <div class="num sortable" data-sort="upside">Target&nbsp;<span class="arr" id="ar-upside">▾</span></div>
+          <div class="num sortable" data-sort="score">Score&nbsp;<span class="arr" id="ar-score"></span></div>
+        </div>
+        <div id="rows"></div>
+        <div class="legend col-stack">
+          <span><i style="background:var(--indigo)"></i>Near-term (≤2027)</span>
+          <span><i style="background:var(--indigo-soft)"></i>Mid (2028–29)</span>
+          <span><i style="background:var(--far)"></i>Far (2030+)</span>
+        </div>
+        <div class="legend2 col-stack">Segment <b>width</b> = discounted, execution-haircut value · <b>opacity</b> = provenance. A target leaning on faint far segments rests on capacity that isn't real yet.</div>
+      </section>
+
+      <section id="view-sites" style="display:none">
+        <div class="eyebrow">Every site in the universe — the inventory the roll-up is built from</div>
+        <div style="overflow-x:auto">
+          <table class="stab">
+            <thead><tr>
+              <th data-s="co">Company</th><th data-s="name">Site</th>
+              <th class="r" data-s="mw">MW</th><th data-s="tenure">Tenure</th>
+              <th data-s="region">Power</th><th class="r" data-s="yr">Live</th>
+              <th data-s="prov">Provenance</th><th class="r" data-s="val">Value</th>
+            </tr></thead>
+            <tbody id="sites-body"></tbody>
+          </table>
+        </div>
+        <div class="mwbar" id="mwbar"></div>
+        <div class="ssummary" id="ssummary"></div>
+      </section>
+    </main>
+  </div>
+  <div class="fullpage" id="fullpage"></div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="panel" id="panel"></div>
+
+<script>
+const YEAR=2026;
+const NOW=2026+5/12; // June 2026 reference for time discounting
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const BASE={rate:8.0,margin:55,multiple:7.0,capRate:9.0,disc:10}; const A={...BASE};
+const SLIDERS=[
+  {k:'rate',label:'Prevailing GPU rate / MW·yr',min:3,max:16,step:.5,fmt:v=>'$'+v.toFixed(1)+'M'},
+  {k:'margin',label:'Owner-op base margin',min:30,max:75,step:1,fmt:v=>v+'%'},
+  {k:'multiple',label:'Compute-value multiple',min:3,max:12,step:.5,fmt:v=>v.toFixed(1)+'×'},
+  {k:'capRate',label:'Landlord cap rate',min:6,max:14,step:.5,fmt:v=>v.toFixed(1)+'%'},
+  {k:'disc',label:'Discount rate (time)',min:6,max:20,step:1,fmt:v=>v+'%'},
+];
+const PROV={disclosed:0.95,estimated:0.55,rumored:0.25};
+const PROV_OP={disclosed:1,estimated:0.6,rumored:0.32};
+const REGION={cheap:{name:'Cheap',cMargin:+5,lNOI:1.10},mid:{name:'Mid',cMargin:0,lNOI:1.00},exp:{name:'Costly',cMargin:-5,lNOI:0.90}};
+const CONTRACT_RATE=8.0,MULT_PREMIUM=0.40,LANDLORD_NOI=1.10,CAP_COMPRESS=0.30,OWNED_CMARGIN=+5,LEASED_CMARGIN=-3,OWNED_LNOI=1.0,LEASED_LNOI=0.90;
+
+const COMPANIES=[
+  {tk:'CRWV',name:'CoreWeave',model:'owner',contractedPct:85,termYrs:4,renewalProb:0.85,mtm:0.95,leaseQ:4.5,netDebt:12000,shares:480,price:50,legacyEV:0,costOfDebt:8.5,finMix:'High-yield / ABS',
+   narrative:'A GPU owner-operator whose value rests on a heavily contracted, hyperscaler-anchored book. Near-term capacity is largely pre-sold, so the investable question is less whether it earns and more what the back half of the pipeline re-signs at when today\u2019s contracts roll. For a compute bull, this is durable demand with less rate volatility \u2014 at the cost of less torque if spot rates spike.',
+   bull:['Contracted book de-risks near-term cash flows','Hyperscaler anchor signals demand durability','Bulk of value is disclosed and near-term'],
+   bear:['Little upside capture if spot rates re-rate higher','Leased sites carry rent drag on margin','Back-end pipeline still estimated / rumored'],
+   catalysts:['New anchor contract or term extension','Energization pulling far sites nearer','Shift toward owned vs leased capacity'],
+   risks:['Counterparty concentration','Refinancing of buildout debt','Power-cost inflation on leased sites'],
+   sites:[{n:'Site A',mw:300,owned:true,region:'cheap',yr:2026,mo:9,prov:'disclosed'},{n:'Site B',mw:400,owned:false,region:'mid',yr:2027,mo:3,prov:'disclosed'},{n:'Site C',mw:600,owned:false,region:'mid',yr:2028,mo:6,prov:'estimated'},{n:'Site D',mw:500,owned:false,region:'exp',yr:2030,mo:1,prov:'rumored'}],
+   log:[{d:'2026-06-12',t:'lease',s:'Co. release',x:'New multi-year capacity agreement at Site B.'},{d:'2026-05-30',t:'energization',s:'Operator update',x:'Site A halls brought live on schedule.'}]},
+
+  {tk:'NBIS',name:'Nebius',model:'owner',contractedPct:40,termYrs:2,renewalProb:0.75,mtm:1.00,leaseQ:3.8,netDebt:1000,shares:240,price:45,legacyEV:0,costOfDebt:7.0,finMix:'Equity-heavy',
+   narrative:'A spot-tilted owner-operator \u2014 the thesis is leverage to compute scarcity. A short remaining term and low contracted share mean most of the book re-prices to prevailing market quickly, so if you believe GPU rates stay scarce, NBIS captures the re-rate more than its contracted peers. The same exposure cuts the other way if rates soften.',
+   bull:['High operating leverage to GPU-rate upside','Short term = fast mark-to-market on a scarcity view','Cheap-power owned anchor site'],
+   bear:['Earnings volatility if rates compress','Thinner contracted visibility','Mid/far pipeline reliant on estimated dates'],
+   catalysts:['GPU spot-rate inflection','Re-signing spot exposure higher','Site C energizing on schedule'],
+   risks:['Spot-rate drawdown','Capital intensity / dilution','Execution on leased mid-region sites'],
+   sites:[{n:'Site A',mw:150,owned:true,region:'cheap',yr:2026,mo:11,prov:'disclosed'},{n:'Site B',mw:350,owned:false,region:'mid',yr:2027,mo:9,prov:'estimated'},{n:'Site C',mw:500,owned:false,region:'mid',yr:2029,mo:3,prov:'estimated'},{n:'Site D',mw:400,owned:false,region:'cheap',yr:2030,mo:6,prov:'rumored'}],
+   log:[{d:'2026-06-18',t:'interview',s:'CEO fireside',x:'Majority of new capacity going to short-term/spot pricing.'},{d:'2026-05-11',t:'capital',s:'8-K',x:'Equity raise to fund Site C buildout.'}]},
+
+  {tk:'RIOT',name:'Riot Platforms',model:'landlord',contractedPct:30,termYrs:5,renewalProb:0.70,mtm:0.95,leaseQ:3.5,netDebt:1500,shares:320,price:13,legacyEV:0,costOfDebt:10.5,finMix:'Convertible / equity',
+   narrative:'A Bitcoin miner pivoting to AI/HPC hosting as a landlord on owned Texas land \u2014 cheap power, no ground rent, and a large but mostly unbuilt power pipeline. Value is real-estate-like where contracted, but the bulk of the target rests on estimated and rumored future capacity. The core question is execution: can the pipeline be permitted, energized and let to credible tenants on the implied timeline.',
+   bull:['Owned cheap-power land is a structural edge','Large pipeline = optionality on AI demand','Real-estate-like economics on contracted phases'],
+   bear:['Most value is unbuilt and far-dated','Single early tenant; thin contracted base','Interconnection / execution risk on expansion'],
+   catalysts:['Anchor signings on later phases','Permitting / interconnect milestones','Rumored expansion converting to disclosed dates'],
+   risks:['Pipeline slips or fails to energize','Legacy mining capital allocation','Tenant credit at far-out sites'],
+   sites:[{n:'Corsicana ph.1',mw:100,owned:true,region:'cheap',yr:2027,mo:6,prov:'disclosed'},{n:'Corsicana ph.2',mw:600,owned:true,region:'cheap',yr:2028,mo:9,prov:'estimated'},{n:'Expansion',mw:1000,owned:true,region:'cheap',yr:2030,mo:1,prov:'rumored'}],
+   log:[{d:'2026-06-05',t:'lease',s:'Conference call',x:'First AI-hosting phase contracted with a single tenant.'},{d:'2026-04-20',t:'opinion',s:'SemiAnalysis',x:'Notes large unbuilt power pipeline; execution unproven.'}]},
+];
+
+/* engine */
+function ownerRate(c){const lock=Math.min(c.termYrs/3,1);const ls=lock*(c.contractedPct/100);const realize=c.renewalProb*c.mtm;return ls*CONTRACT_RATE+(1-ls)*A.rate*realize;}
+function siteValue(c,s){const r=REGION[s.region];let ppm;
+  if(c.model==='landlord'){const noi=LANDLORD_NOI*r.lNOI*(s.owned?OWNED_LNOI:LEASED_LNOI)*(0.9+0.1*c.mtm);const cap=(A.capRate/100)*(1-CAP_COMPRESS*(c.contractedPct/100));ppm=noi/cap;}
+  else{const eff=ownerRate(c);const m=A.margin+r.cMargin+(s.owned?OWNED_CMARGIN:LEASED_CMARGIN);const mult=A.multiple*(1+MULT_PREMIUM*(c.contractedPct/100));ppm=eff*(m/100)*mult;}
+  const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t-NOW),dfac=1/Math.pow(1+dr/100,yrs);
+  return{gross,ev:gross*hair*dfac,hair,yrs,dfac,ppm};}
+function value(c){let ev=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt;return{ev,equity,target:equity/c.shares,upside:equity/c.shares/c.price-1,segs};}
+function scores(rows){const max=f=>Math.max(...rows.map(f),1e-9);const nearMW=r=>r.c.sites.filter(s=>s.yr<=YEAR+1).reduce((a,s)=>a+s.mw,0);const totMW=r=>r.c.sites.reduce((a,s)=>a+s.mw,0);
+  const mN=max(nearMW),mT=max(totMW),mLQ=max(r=>r.c.leaseQ),mC=max(r=>r.v.ev>0?Math.max(r.v.equity/r.v.ev,0):0);
+  rows.forEach(r=>{const cap=r.v.ev>0?Math.max(r.v.equity/r.v.ev,0):0;r.score=100*(.34*(nearMW(r)/mN)+.18*(totMW(r)/mT)+.26*(r.c.leaseQ/mLQ)+.22*(cap/mC));});}
+
+let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function fmtM(x){return Math.abs(x)>=1000?'$'+(x/1000).toFixed(1)+'B':'$'+x.toFixed(0)+'M';}
+function horizon(yr){return yr<=2027?'var(--indigo)':yr<=2029?'var(--indigo-soft)':'var(--far)';}
+
+function buildControls(){const w=document.getElementById('controls');w.innerHTML='';SLIDERS.forEach(s=>{const d=document.createElement('div');d.className='ctrl';
+  d.innerHTML=`<div class="row"><label for="s-${s.k}">${s.label}</label><span class="val" id="v-${s.k}">${s.fmt(A[s.k])}</span></div><input type="range" id="s-${s.k}" min="${s.min}" max="${s.max}" step="${s.step}" value="${A[s.k]}" aria-label="${s.label}">`;
+  w.appendChild(d);d.querySelector('input').addEventListener('input',e=>{A[s.k]=parseFloat(e.target.value);document.getElementById('v-'+s.k).textContent=s.fmt(A[s.k]);render();});});}
+function syncControls(){SLIDERS.forEach(s=>{const i=document.getElementById('s-'+s.k);if(i){i.value=A[s.k];document.getElementById('v-'+s.k).textContent=s.fmt(A[s.k]);}});}
+
+function render(){
+  const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
+  document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin-LEASED_CMARGIN*0+LEASED_CMARGIN)/100)*(A.multiple*(1+MULT_PREMIUM*0.6)))+' / MW';
+  document.getElementById('d-land').textContent=fmtM((LANDLORD_NOI*LEASED_LNOI)/((A.capRate/100)*(1-CAP_COMPRESS*0.4)))+' / MW';
+  if(view==='cmp')renderCmp(); else renderSites();
+}
+function renderCmp(){
+  let rows=COMPANIES.map(c=>({c,v:value(c)}));scores(rows);
+  rows.sort((a,b)=>sortDir*((sortKey==='score'?a.score-b.score:a.v.upside-b.v.upside)));
+  const cont=document.getElementById('rows');const old={};if(!reduce)[...cont.children].forEach(ch=>old[ch.dataset.tk]=ch.getBoundingClientRect().top);
+  cont.innerHTML='';
+  rows.forEach((r,i)=>{const v=r.v,c=r.c,tot=v.ev>0?v.ev:1;
+    const segHTML=v.segs.map(sg=>{const w=Math.max(0,sg.ev/tot*100).toFixed(2);return `<div class="seg" title="${sg.s.n}: ${fmtM(sg.ev)} (${MONTHS[(sg.s.mo||1)-1]} ${sg.s.yr}, ${sg.s.prov})" style="width:${w}%;background:${horizon(sg.s.yr)};opacity:${PROV_OP[sg.s.prov]}"></div>`;}).join('');
+    const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(0)+'%',totMW=c.sites.reduce((a,s)=>a+s.mw,0);
+    const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
+    row.innerHTML=`<div class="rank">${i+1}</div>
+      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span><span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
+      <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div></div>
+      <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
+      <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
+    row.addEventListener('click',()=>openPanel(c));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(c);}});
+    cont.appendChild(row);});
+  if(!reduce)[...cont.children].forEach(ch=>{const p=old[ch.dataset.tk];if(p==null)return;const dy=p-ch.getBoundingClientRect().top;if(dy){ch.style.transition='none';ch.style.transform=`translateY(${dy}px)`;requestAnimationFrame(()=>{ch.style.transition='';ch.style.transform='';});}});
+  document.getElementById('sortlabel').textContent=sortKey==='score'?'relative-strength score':'upside to target';
+  document.getElementById('ar-upside').textContent=sortKey==='upside'?(sortDir<0?'▾':'▴'):'';
+  document.getElementById('ar-score').textContent=sortKey==='score'?(sortDir<0?'▾':'▴'):'';
+}
+function renderSites(){
+  let all=[];
+  COMPANIES.forEach(c=>{
+    const v=value(c);
+    v.segs.forEach(sg=>{
+      all.push({co:c.tk,coName:c.name,model:c.model,company:c,name:sg.s.n,mw:sg.s.mw,tenure:sg.s.owned?'owned':'leased',region:REGION[sg.s.region].name,yr:sg.s.yr,mo:sg.s.mo,prov:sg.s.prov,val:sg.ev,hair:sg.hair,dfac:sg.dfac});
+    });
+  });
+  const cmp={co:(a,b)=>a.co.localeCompare(b.co),name:(a,b)=>a.name.localeCompare(b.name),mw:(a,b)=>a.mw-b.mw,tenure:(a,b)=>a.tenure.localeCompare(b.tenure),region:(a,b)=>a.region.localeCompare(b.region),yr:(a,b)=>(a.yr*12+(a.mo||1))-(b.yr*12+(b.mo||1)),prov:(a,b)=>a.prov.localeCompare(b.prov),val:(a,b)=>a.val-b.val};
+  all.sort((a,b)=>siteDir*cmp[siteSort](a,b));
+  document.getElementById('sites-body').innerHTML=all.map(s=>`<tr style="cursor:pointer" onclick="openPanelTk('${s.co}')">
+    <td class="co">${s.co}</td><td>${s.name}</td><td class="r mono">${s.mw.toLocaleString()}</td>
+    <td>${s.tenure}</td><td><span class="dot" style="background:${horizon(s.yr)}"></span>${s.region}</td>
+    <td class="r mono">${MONTHS[(s.mo||1)-1]} ${s.yr}</td><td><span class="prov ${s.prov}">${s.prov}</span></td>
+    <td class="r mono">${fmtM(s.val)}</td></tr>`).join('');
+  // MW-by-provenance summary
+  const byP={disclosed:0,estimated:0,rumored:0};let totMW=0;all.forEach(s=>{byP[s.prov]+=s.mw;totMW+=s.mw;});
+  const col={disclosed:'var(--indigo)',estimated:'#C9A86A',rumored:'var(--clay)'};
+  document.getElementById('mwbar').innerHTML=['disclosed','estimated','rumored'].map(k=>`<i style="width:${(byP[k]/totMW*100).toFixed(1)}%;background:${col[k]}"></i>`).join('');
+  document.getElementById('ssummary').innerHTML=`<span>Total <b>${totMW.toLocaleString()} MW</b> across ${all.length} sites</span>`+['disclosed','estimated','rumored'].map(k=>`<span>${k} <b>${(byP[k]/totMW*100).toFixed(0)}%</b></span>`).join('')+`<span style="font-style:italic">— ${((byP.rumored)/totMW*100).toFixed(0)}% of universe MW is rumored</span>`;
+}
+window.openPanelTk=tk=>openPanel(COMPANIES.find(c=>c.tk===tk));
+
+/* ---- shared one-pager pieces (used by both the quick panel and the full page) ---- */
+function modelLabel(c){return c.model==='owner'?'GPU owner-operator':c.model==='landlord'?'colo / data-center landlord':'hybrid';}
+function scoreOf(c){let rs=COMPANIES.map(x=>({c:x,v:value(x)}));scores(rs);return rs.find(x=>x.c.tk===c.tk).score;}
+function liHTML(a){return a.map(x=>`<li>${x}</li>`).join('');}
+function qualHTML(c){return `<div class="qual">
+  <div class="qcol bull"><h5>Bull case</h5><ul>${liHTML(c.bull)}</ul></div>
+  <div class="qcol bear"><h5>Bear case</h5><ul>${liHTML(c.bear)}</ul></div>
+  <div class="qcol"><h5>Catalysts</h5><ul>${liHTML(c.catalysts)}</ul></div>
+  <div class="qcol"><h5>Key risks</h5><ul>${liHTML(c.risks)}</ul></div></div>`;}
+function sitesRowsHTML(v){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<div class="site"><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></div>`;}).join('');}
+function evChartHTML(v){const max=Math.max(...v.segs.map(s=>s.ev),1e-9);return v.segs.map(sg=>{const s=sg.s,w=(sg.ev/max*100).toFixed(1);return `<div class="evrow"><div class="evlbl">${s.n}<span class="evmeta">${MONTHS[(s.mo||1)-1]} ${s.yr} · ${s.prov}</span></div><div class="evbarwrap"><div class="evbar" style="width:${w}%;background:${horizon(s.yr)};opacity:${PROV_OP[s.prov]}"></div></div><div class="evval">${fmtM(sg.ev)}</div></div>`;}).join('');}
+function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;return `<div class="facts">${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
+function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
+function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
+
+/* ---- quick panel: a summary surface of the full page ---- */
+function openPanel(c){const v=value(c),p=document.getElementById('panel');const score=scoreOf(c);
+  const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
+  p.innerHTML=`<button class="x" id="closex" aria-label="Close">✕</button>
+    <div class="p-head"><div><div class="p-tk">${c.tk}</div><div class="p-model">${c.name} · ${modelLabel(c)} · $${c.price} now</div></div>
+      <div class="p-tgt"><div class="t">$${v.target.toFixed(0)}</div><div class="u up ${upCls}">${upTxt}</div><div class="sc">score ${score.toFixed(0)}/100</div></div></div>
+    <div class="narr">${c.narrative}</div>
+    ${qualHTML(c)}
+    <h4 class="sec">Sites — value rolls up from here</h4>${sitesRowsHTML(v)}
+    <h4 class="sec">Commercial &amp; capital</h4>${commercialHTML(c)}
+    <h4 class="sec">Valuation</h4>${valBuildHTML(c,v)}
+    <h4 class="sec">Developments</h4>${devsHTML(c)}
+    <button class="fpbtn" id="fullbtn">Open full page ↗</button>
+    <div class="lognote">In the real app, logging a development attaches to a site and updates the facts above; the valuation and ranking move automatically.</div>`;
+  p.classList.add('on');document.getElementById('scrim').classList.add('on');
+  document.getElementById('closex').onclick=closePanel;
+  document.getElementById('fullbtn').onclick=()=>{closePanel();openFull(c);};
+  document.getElementById('closex').focus();}
+
+/* ---- full page: the extensible home (graphical, with planned-module slots) ---- */
+function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementById('fullpage');
+  const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
+  fp.innerHTML=`<button class="back" id="fpback">← Back to comparison</button>
+    <div class="fp-head">
+      <div><div class="fp-tk">${c.tk}</div><div class="fp-model">${c.name} · ${modelLabel(c)}</div></div>
+      <div class="fp-nums">
+        <div class="fp-num"><span>Price</span><b>$${c.price}</b></div>
+        <div class="fp-num"><span>Target</span><b>$${v.target.toFixed(0)}</b></div>
+        <div class="fp-num"><span>Upside</span><b class="up ${upCls}">${upTxt}</b></div>
+        <div class="fp-num"><span>Score</span><b>${score.toFixed(0)}</b></div>
+      </div>
+    </div>
+    <div class="fp-grid">
+      <div class="fp-main">
+        <div class="narr">${c.narrative}</div>
+        <h4 class="sec">Valuation — where the value comes from</h4>
+        <div class="evchart">${evChartHTML(v)}</div>
+        ${valBuildHTML(c,v)}
+        <details class="exp"><summary>Site-level breakdown</summary><div style="margin-top:8px">${sitesRowsHTML(v)}</div></details>
+        <h4 class="sec">Developments</h4>${devsHTML(c)}
+      </div>
+      <div class="fp-side">
+        ${qualHTML(c)}
+        <h4 class="sec">Commercial &amp; capital</h4>${commercialHTML(c)}
+        <div class="module planned"><div class="mtag">Planned</div><h5>Management commentary</h5><p>Quotes and read-throughs from earnings calls, fireside chats and interviews.</p></div>
+        <div class="module planned"><div class="mtag">Planned</div><h5>Investor &amp; conference calendar</h5><p>Upcoming earnings dates, growth conferences and investor days.</p></div>
+      </div>
+    </div>`;
+  document.querySelector('.grid').style.display='none';
+  fp.classList.add('on');document.getElementById('fpback').onclick=closeFull;
+  window.scrollTo(0,0);document.getElementById('fpback').focus();}
+function closeFull(){document.getElementById('fullpage').classList.remove('on');document.querySelector('.grid').style.display='';}
+function closePanel(){document.getElementById('panel').classList.remove('on');document.getElementById('scrim').classList.remove('on');}
+document.getElementById('scrim').addEventListener('click',closePanel);
+addEventListener('keydown',e=>{if(e.key==='Escape'){closePanel();if(document.getElementById('fullpage').classList.contains('on'))closeFull();}});
+
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{view=t.dataset.view;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));document.getElementById('view-cmp').style.display=view==='cmp'?'':'none';document.getElementById('view-sites').style.display=view==='sites'?'':'none';render();}));
+document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
+document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
+document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
+buildControls();render();
+</script>
