@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compute / Value — relative-value tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="mark">Compute<span class="slash">/</span>Value</div>
+      <div class="sub">First-principles relative value — value rolls up from sites</div>
+    </div>
+    <div class="notice"><b>Illustrative placeholder data</b> — sites, MW, dates, debt and narrative are invented to test the layout, not researched.</div>
+  </header>
+
+  <div class="grid">
+    <aside>
+      <div class="eyebrow">Global dials</div>
+      <div id="controls"></div>
+      <button class="reset" id="reset">Reset to base case</button>
+      <div class="derived">
+        <div><span>Owner-op value / MW</span><b id="d-owner">—</b></div>
+        <div><span>Landlord value / MW</span><b id="d-land">—</b></div>
+        <div style="margin-top:4px;font-style:italic">at base site (mid power, leased)</div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="tabs">
+        <button class="tab on" data-view="cmp">Comparison</button>
+        <button class="tab" data-view="sites">All sites</button>
+      </div>
+
+      <section id="view-cmp">
+        <div class="eyebrow">Ranked by <span id="sortlabel">upside</span></div>
+        <div class="thead">
+          <div></div><div>Company</div>
+          <div class="col-stack">Value composition · by site</div>
+          <div class="num sortable" data-sort="upside">Target&nbsp;<span class="arr" id="ar-upside">▾</span></div>
+          <div class="num sortable" data-sort="score">Score&nbsp;<span class="arr" id="ar-score"></span></div>
+        </div>
+        <div id="rows"></div>
+        <div class="legend col-stack">
+          <span><i style="background:var(--indigo)"></i>Near-term (≤2027)</span>
+          <span><i style="background:var(--indigo-soft)"></i>Mid (2028–29)</span>
+          <span><i style="background:var(--far)"></i>Far (2030+)</span>
+        </div>
+        <div class="legend2 col-stack">Segment <b>width</b> = discounted, execution-haircut value · <b>opacity</b> = provenance. A target leaning on faint far segments rests on capacity that isn't real yet.</div>
+      </section>
+
+      <section id="view-sites" style="display:none">
+        <div class="eyebrow">Every site in the universe — the inventory the roll-up is built from</div>
+        <div style="overflow-x:auto">
+          <table class="stab">
+            <thead><tr>
+              <th data-s="co">Company</th><th data-s="name">Site</th>
+              <th class="r" data-s="mw">MW</th><th data-s="tenure">Tenure</th>
+              <th data-s="region">Power</th><th class="r" data-s="yr">Live</th>
+              <th data-s="prov">Provenance</th><th class="r" data-s="val">Value</th>
+            </tr></thead>
+            <tbody id="sites-body"></tbody>
+          </table>
+        </div>
+        <div class="mwbar" id="mwbar"></div>
+        <div class="ssummary" id="ssummary"></div>
+      </section>
+    </main>
+  </div>
+  <div class="fullpage" id="fullpage"></div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="panel" id="panel"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

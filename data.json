@@ -1,0 +1,177 @@
+{
+  "config": {
+    "referenceYear": 2026,
+    "referenceMonth": 6,
+    "horizon": { "near": 2027, "mid": 2029 },
+    "dials": { "rate": 8.0, "margin": 55, "multiple": 7.0, "capRate": 9.0, "disc": 10 },
+    "sliders": [
+      { "k": "rate", "label": "Prevailing GPU rate / MW·yr", "min": 3, "max": 16, "step": 0.5, "fmt": "money1M" },
+      { "k": "margin", "label": "Owner-op base margin", "min": 30, "max": 75, "step": 1, "fmt": "pctInt" },
+      { "k": "multiple", "label": "Compute-value multiple", "min": 3, "max": 12, "step": 0.5, "fmt": "mult" },
+      { "k": "capRate", "label": "Landlord cap rate", "min": 6, "max": 14, "step": 0.5, "fmt": "pct1" },
+      { "k": "disc", "label": "Discount rate (time)", "min": 6, "max": 20, "step": 1, "fmt": "pctInt" }
+    ],
+    "provenance": {
+      "disclosed": { "haircut": 0.95, "opacity": 1 },
+      "estimated": { "haircut": 0.55, "opacity": 0.6 },
+      "rumored": { "haircut": 0.25, "opacity": 0.32 }
+    },
+    "regions": {
+      "cheap": { "name": "Cheap", "cMargin": 5, "lNOI": 1.10 },
+      "mid": { "name": "Mid", "cMargin": 0, "lNOI": 1.00 },
+      "exp": { "name": "Costly", "cMargin": -5, "lNOI": 0.90 }
+    },
+    "constants": {
+      "contractRate": 8.0,
+      "multPremium": 0.40,
+      "landlordNOI": 1.10,
+      "capCompress": 0.30,
+      "ownedCMargin": 5,
+      "leasedCMargin": -3,
+      "ownedLNOI": 1.0,
+      "leasedLNOI": 0.90
+    }
+  },
+  "companies": [
+    {
+      "tk": "CRWV",
+      "name": "CoreWeave",
+      "model": "owner",
+      "contractedPct": 85,
+      "termYrs": 4,
+      "renewalProb": 0.85,
+      "mtm": 0.95,
+      "leaseQ": 4.5,
+      "netDebt": 12000,
+      "shares": 480,
+      "price": 50,
+      "legacyEV": 0,
+      "costOfDebt": 8.5,
+      "finMix": "High-yield / ABS",
+      "narrative": "A GPU owner-operator whose value rests on a heavily contracted, hyperscaler-anchored book. Near-term capacity is largely pre-sold, so the investable question is less whether it earns and more what the back half of the pipeline re-signs at when today’s contracts roll. For a compute bull, this is durable demand with less rate volatility — at the cost of less torque if spot rates spike.",
+      "bull": [
+        "Contracted book de-risks near-term cash flows",
+        "Hyperscaler anchor signals demand durability",
+        "Bulk of value is disclosed and near-term"
+      ],
+      "bear": [
+        "Little upside capture if spot rates re-rate higher",
+        "Leased sites carry rent drag on margin",
+        "Back-end pipeline still estimated / rumored"
+      ],
+      "catalysts": [
+        "New anchor contract or term extension",
+        "Energization pulling far sites nearer",
+        "Shift toward owned vs leased capacity"
+      ],
+      "risks": [
+        "Counterparty concentration",
+        "Refinancing of buildout debt",
+        "Power-cost inflation on leased sites"
+      ],
+      "sites": [
+        { "n": "Site A", "mw": 300, "owned": true, "region": "cheap", "yr": 2026, "mo": 9, "prov": "disclosed" },
+        { "n": "Site B", "mw": 400, "owned": false, "region": "mid", "yr": 2027, "mo": 3, "prov": "disclosed" },
+        { "n": "Site C", "mw": 600, "owned": false, "region": "mid", "yr": 2028, "mo": 6, "prov": "estimated" },
+        { "n": "Site D", "mw": 500, "owned": false, "region": "exp", "yr": 2030, "mo": 1, "prov": "rumored" }
+      ],
+      "log": [
+        { "d": "2026-06-12", "t": "lease", "s": "Co. release", "x": "New multi-year capacity agreement at Site B." },
+        { "d": "2026-05-30", "t": "energization", "s": "Operator update", "x": "Site A halls brought live on schedule." }
+      ]
+    },
+    {
+      "tk": "NBIS",
+      "name": "Nebius",
+      "model": "owner",
+      "contractedPct": 40,
+      "termYrs": 2,
+      "renewalProb": 0.75,
+      "mtm": 1.00,
+      "leaseQ": 3.8,
+      "netDebt": 1000,
+      "shares": 240,
+      "price": 45,
+      "legacyEV": 0,
+      "costOfDebt": 7.0,
+      "finMix": "Equity-heavy",
+      "narrative": "A spot-tilted owner-operator — the thesis is leverage to compute scarcity. A short remaining term and low contracted share mean most of the book re-prices to prevailing market quickly, so if you believe GPU rates stay scarce, NBIS captures the re-rate more than its contracted peers. The same exposure cuts the other way if rates soften.",
+      "bull": [
+        "High operating leverage to GPU-rate upside",
+        "Short term = fast mark-to-market on a scarcity view",
+        "Cheap-power owned anchor site"
+      ],
+      "bear": [
+        "Earnings volatility if rates compress",
+        "Thinner contracted visibility",
+        "Mid/far pipeline reliant on estimated dates"
+      ],
+      "catalysts": [
+        "GPU spot-rate inflection",
+        "Re-signing spot exposure higher",
+        "Site C energizing on schedule"
+      ],
+      "risks": [
+        "Spot-rate drawdown",
+        "Capital intensity / dilution",
+        "Execution on leased mid-region sites"
+      ],
+      "sites": [
+        { "n": "Site A", "mw": 150, "owned": true, "region": "cheap", "yr": 2026, "mo": 11, "prov": "disclosed" },
+        { "n": "Site B", "mw": 350, "owned": false, "region": "mid", "yr": 2027, "mo": 9, "prov": "estimated" },
+        { "n": "Site C", "mw": 500, "owned": false, "region": "mid", "yr": 2029, "mo": 3, "prov": "estimated" },
+        { "n": "Site D", "mw": 400, "owned": false, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" }
+      ],
+      "log": [
+        { "d": "2026-06-18", "t": "interview", "s": "CEO fireside", "x": "Majority of new capacity going to short-term/spot pricing." },
+        { "d": "2026-05-11", "t": "capital", "s": "8-K", "x": "Equity raise to fund Site C buildout." }
+      ]
+    },
+    {
+      "tk": "RIOT",
+      "name": "Riot Platforms",
+      "model": "landlord",
+      "contractedPct": 30,
+      "termYrs": 5,
+      "renewalProb": 0.70,
+      "mtm": 0.95,
+      "leaseQ": 3.5,
+      "netDebt": 1500,
+      "shares": 320,
+      "price": 13,
+      "legacyEV": 0,
+      "costOfDebt": 10.5,
+      "finMix": "Convertible / equity",
+      "narrative": "A Bitcoin miner pivoting to AI/HPC hosting as a landlord on owned Texas land — cheap power, no ground rent, and a large but mostly unbuilt power pipeline. Value is real-estate-like where contracted, but the bulk of the target rests on estimated and rumored future capacity. The core question is execution: can the pipeline be permitted, energized and let to credible tenants on the implied timeline.",
+      "bull": [
+        "Owned cheap-power land is a structural edge",
+        "Large pipeline = optionality on AI demand",
+        "Real-estate-like economics on contracted phases"
+      ],
+      "bear": [
+        "Most value is unbuilt and far-dated",
+        "Single early tenant; thin contracted base",
+        "Interconnection / execution risk on expansion"
+      ],
+      "catalysts": [
+        "Anchor signings on later phases",
+        "Permitting / interconnect milestones",
+        "Rumored expansion converting to disclosed dates"
+      ],
+      "risks": [
+        "Pipeline slips or fails to energize",
+        "Legacy mining capital allocation",
+        "Tenant credit at far-out sites"
+      ],
+      "sites": [
+        { "n": "Corsicana ph.1", "mw": 100, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "disclosed" },
+        { "n": "Corsicana ph.2", "mw": 600, "owned": true, "region": "cheap", "yr": 2028, "mo": 9, "prov": "estimated" },
+        { "n": "Expansion", "mw": 1000, "owned": true, "region": "cheap", "yr": 2030, "mo": 1, "prov": "rumored" }
+      ],
+      "log": [
+        { "d": "2026-06-05", "t": "lease", "s": "Conference call", "x": "First AI-hosting phase contracted with a single tenant." },
+        { "d": "2026-04-20", "t": "opinion", "s": "SemiAnalysis", "x": "Notes large unbuilt power pipeline; execution unproven." }
+      ]
+    }
+  ]
+}
