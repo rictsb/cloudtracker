@@ -22,12 +22,29 @@ function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'va
 
 /* ---- engine ---- */
 function ownerRate(c){const lock=Math.min(c.termYrs/3,1);const ls=lock*(c.contractedPct/100);const realize=c.renewalProb*c.mtm;return ls*CONST.contractRate+(1-ls)*A.rate*realize;}
-function siteValue(c,s){const r=REGION[s.region];let ppm;
-  if(c.model==='landlord'){const noi=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cap=(A.capRate/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;}
-  else{const eff=ownerRate(c);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*(1+CONST.multPremium*(c.contractedPct/100));ppm=eff*(m/100)*mult;}
+// Site-aware contracted/spot split (spec §4): rumored (uncontracted pipeline) earns pure spot and
+// moves with the GPU-rate dial; disclosed/estimated capacity carries the company contracted book,
+// which stays insulated from the dial. `contracted %` remains the company number — no per-site tag.
+function siteRates(c,s){
+  const lock=Math.min(c.termYrs/3,1);
+  const cf=(s.prov==='rumored')?0:(c.contractedPct/100);
+  const ls=lock*cf;
+  const spot=A.rate*(c.renewalProb*c.mtm);
+  const contractedRate=ls*CONST.contractRate, spotRate=(1-ls)*spot;
+  return{eff:contractedRate+spotRate,contractedRate,spotRate};
+}
+function siteValue(c,s){const r=REGION[s.region];let ppm,contractedShare;
+  if(c.model==='landlord'){const noi=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cap=(A.capRate/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
+    contractedShare=(s.prov==='rumored')?0:(c.contractedPct/100);}
+  else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
+    contractedShare=R.eff>0?R.contractedRate/R.eff:0;}
   const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t-NOW),dfac=1/Math.pow(1+dr/100,yrs);
-  return{gross,ev:gross*hair*dfac,hair,yrs,dfac,ppm};}
-function value(c){let ev=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt;return{ev,equity,target:equity/c.shares,upside:equity/c.shares/c.price-1,segs};}
+  const ev=gross*hair*dfac;
+  return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare};}
+function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt;
+  return{ev,equity,contractedEV:cEV,expectedEV:eEV,target:equity/c.shares,upside:equity/c.shares/c.price-1,segs};}
+function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
+function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
 function scores(rows){const max=f=>Math.max(...rows.map(f),1e-9);const nearMW=r=>r.c.sites.filter(s=>s.yr<=YEAR+1).reduce((a,s)=>a+s.mw,0);const totMW=r=>r.c.sites.reduce((a,s)=>a+s.mw,0);
   const mN=max(nearMW),mT=max(totMW),mLQ=max(r=>r.c.leaseQ),mC=max(r=>r.v.ev>0?Math.max(r.v.equity/r.v.ev,0):0);
   rows.forEach(r=>{const cap=r.v.ev>0?Math.max(r.v.equity/r.v.ev,0):0;r.score=100*(.34*(nearMW(r)/mN)+.18*(totMW(r)/mT)+.26*(r.c.leaseQ/mLQ)+.22*(cap/mC));});}
@@ -56,7 +73,7 @@ function renderCmp(){
     const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
     row.innerHTML=`<div class="rank">${i+1}</div>
       <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span><span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
-      <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div></div>
+      <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div>${splitBarHTML(v)}<div class="stacklabel"><span>Contracted ${splitParts(v).cf.toFixed(0)}%</span><span>Expected ${splitParts(v).eu.toFixed(0)}%</span></div></div>
       <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
       <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
     row.addEventListener('click',()=>openPanel(c));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(c);}});
@@ -101,7 +118,7 @@ function qualHTML(c){return `<div class="qual">
 function sitesRowsHTML(v){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<div class="site"><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></div>`;}).join('');}
 function evChartHTML(v){const max=Math.max(...v.segs.map(s=>s.ev),1e-9);return v.segs.map(sg=>{const s=sg.s,w=(sg.ev/max*100).toFixed(1);return `<div class="evrow"><div class="evlbl">${s.n}<span class="evmeta">${MONTHS[(s.mo||1)-1]} ${s.yr} · ${s.prov}</span></div><div class="evbarwrap"><div class="evbar" style="width:${w}%;background:${horizon(s.yr)};opacity:${PROV_OP[s.prov]}"></div></div><div class="evval">${fmtM(sg.ev)}</div></div>`;}).join('');}
 function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;return `<div class="facts">${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
-function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
+function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';const p=splitParts(v);return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div>${splitBarHTML(v)}<div class="b"><span>— Contracted floor (dial-insulated)</span><b>${fmtM(v.contractedEV)} · ${p.cf.toFixed(0)}%</b></div><div class="b"><span>— Expected upside (spot &amp; pipeline)</span><b>${fmtM(v.expectedEV)} · ${p.eu.toFixed(0)}%</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
 function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
 
 /* ---- quick panel: a summary surface of the full page ---- */
