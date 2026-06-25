@@ -33,14 +33,14 @@ function siteRates(c,s){
   const contractedRate=ls*CONST.contractRate, spotRate=(1-ls)*spot;
   return{eff:contractedRate+spotRate,contractedRate,spotRate};
 }
-function siteValue(c,s){const r=REGION[s.region];let ppm,contractedShare;
+function siteValue(c,s){const r=REGION[s.region];let ppm,contractedShare,calc;
   if(c.model==='landlord'){const noi=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cap=(A.capRate/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
-    contractedShare=(s.prov==='rumored')?0:(c.contractedPct/100);}
+    contractedShare=(s.prov==='rumored')?0:(c.contractedPct/100);calc={noi,cap};}
   else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
-    contractedShare=R.eff>0?R.contractedRate/R.eff:0;}
+    contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult};}
   const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t-NOW),dfac=1/Math.pow(1+dr/100,yrs);
   const ev=gross*hair*dfac;
-  return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare};}
+  return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
 function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt;
   return{ev,equity,contractedEV:cEV,expectedEV:eEV,target:equity/c.shares,upside:equity/c.shares/c.price-1,segs};}
 function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
@@ -115,7 +115,27 @@ function qualHTML(c){return `<div class="qual">
   <div class="qcol bear"><h5>Bear case</h5><ul>${liHTML(c.bear)}</ul></div>
   <div class="qcol"><h5>Catalysts</h5><ul>${liHTML(c.catalysts)}</ul></div>
   <div class="qcol"><h5>Key risks</h5><ul>${liHTML(c.risks)}</ul></div></div>`;}
-function sitesRowsHTML(v){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<div class="site"><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></div>`;}).join('');}
+function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region];
+  const row=(a,b,note)=>`<div class="cstep"><span>${a}</span><span class="cval">${b}</span><span class="cnote">${note||''}</span></div>`;
+  let steps='';
+  if(c.model==='landlord'){
+    steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`$${CONST.landlordNOI}M base · ${r.name.toLowerCase()} · ${s.owned?'owned':'leased'} · MTM`);
+    steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial − ${(CONST.capCompress*c.contractedPct).toFixed(0)}% contracted`);
+    steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
+  }else{
+    steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% @ $${CONST.contractRate}M contract · rest spot`);
+    steps+=row('Margin',k.m+'%',`${A.margin} ${r.cMargin>=0?'+':'−'}${Math.abs(r.cMargin)} ${r.name.toLowerCase()} ${s.owned?'+'+CONST.ownedCMargin+' owned':CONST.leasedCMargin+' leased'}`);
+    steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× · (1 + ${(CONST.multPremium*c.contractedPct/100).toFixed(2)} contracted)`);
+    steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','rate × margin × multiple');
+  }
+  steps+=row('Gross value',fmtM(sg.gross),`$${sg.ppm.toFixed(1)}M × ${s.mw} MW`);
+  steps+=row('× Execution haircut','×'+sg.hair.toFixed(2),s.prov);
+  steps+=row('× Time discount','×'+sg.dfac.toFixed(2),sg.yrs<=0?'live now':`${sg.yrs.toFixed(1)} yrs @ ${sg.dr%1===0?sg.dr:sg.dr.toFixed(1)}%`);
+  steps+=`<div class="cstep tot"><span>Site value</span><span class="cval">${fmtM(sg.ev)}</span><span class="cnote"></span></div>`;
+  steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
+  steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
+  return `<div class="sitecalc">${steps}</div>`;}
+function sitesRowsHTML(v,c){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<details class="siteexp"><summary><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></summary>${siteCalcHTML(c,sg)}</details>`;}).join('');}
 function evChartHTML(v){const max=Math.max(...v.segs.map(s=>s.ev),1e-9);return v.segs.map(sg=>{const s=sg.s,w=(sg.ev/max*100).toFixed(1);return `<div class="evrow"><div class="evlbl">${s.n}<span class="evmeta">${MONTHS[(s.mo||1)-1]} ${s.yr} · ${s.prov}</span></div><div class="evbarwrap"><div class="evbar" style="width:${w}%;background:${horizon(s.yr)};opacity:${PROV_OP[s.prov]}"></div></div><div class="evval">${fmtM(sg.ev)}</div></div>`;}).join('');}
 function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;return `<div class="facts">${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
 function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';const p=splitParts(v);return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div>${splitBarHTML(v)}<div class="b"><span>— Contracted floor (dial-insulated)</span><b>${fmtM(v.contractedEV)} · ${p.cf.toFixed(0)}%</b></div><div class="b"><span>— Expected upside (spot &amp; pipeline)</span><b>${fmtM(v.expectedEV)} · ${p.eu.toFixed(0)}%</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
@@ -129,7 +149,7 @@ function openPanel(c){const v=value(c),p=document.getElementById('panel');const 
       <div class="p-tgt"><div class="t">$${v.target.toFixed(0)}</div><div class="u up ${upCls}">${upTxt}</div><div class="sc">score ${score.toFixed(0)}/100</div></div></div>
     <div class="narr">${c.narrative}</div>
     ${qualHTML(c)}
-    <h4 class="sec">Sites — value rolls up from here</h4>${sitesRowsHTML(v)}
+    <h4 class="sec">Sites — value rolls up from here <span class="hint">tap a site for the math</span></h4>${sitesRowsHTML(v,c)}
     <h4 class="sec">Commercial &amp; capital</h4>${commercialHTML(c)}
     <h4 class="sec">Valuation</h4>${valBuildHTML(c,v)}
     <h4 class="sec">Developments</h4>${devsHTML(c)}
@@ -159,7 +179,7 @@ function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementByI
         <h4 class="sec">Valuation — where the value comes from</h4>
         <div class="evchart">${evChartHTML(v)}</div>
         ${valBuildHTML(c,v)}
-        <details class="exp"><summary>Site-level breakdown</summary><div style="margin-top:8px">${sitesRowsHTML(v)}</div></details>
+        <details class="exp"><summary>Site-level breakdown</summary><div style="margin-top:8px">${sitesRowsHTML(v,c)}</div></details>
         <h4 class="sec">Developments</h4>${devsHTML(c)}
       </div>
       <div class="fp-side">
