@@ -135,8 +135,8 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region];
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
   return `<div class="sitecalc">${steps}</div>`;}
-function sitesRowsHTML(v,c){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<details class="siteexp"><summary><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></summary>${siteCalcHTML(c,sg)}</details>`;}).join('');}
-function evChartHTML(v){const max=Math.max(...v.segs.map(s=>s.ev),1e-9);return v.segs.map(sg=>{const s=sg.s,w=(sg.ev/max*100).toFixed(1);return `<div class="evrow"><div class="evlbl">${s.n}<span class="evmeta">${MONTHS[(s.mo||1)-1]} ${s.yr} · ${s.prov}</span></div><div class="evbarwrap"><div class="evbar" style="width:${w}%;background:${horizon(s.yr)};opacity:${PROV_OP[s.prov]}"></div></div><div class="evval">${fmtM(sg.ev)}</div></div>`;}).join('');}
+function sitesRowsHTML(v){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<div class="site"><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></div>`;}).join('');}
+function evChartHTML(v,c){const max=Math.max(...v.segs.map(s=>s.ev),1e-9);return v.segs.map(sg=>{const s=sg.s,w=(sg.ev/max*100).toFixed(1);return `<details class="evexp"><summary class="evrow"><div class="evlbl">${s.n}<span class="evmeta">${MONTHS[(s.mo||1)-1]} ${s.yr} · ${s.prov}</span></div><div class="evbarwrap"><div class="evbar" style="width:${w}%;background:${horizon(s.yr)};opacity:${PROV_OP[s.prov]}"></div></div><div class="evval">${fmtM(sg.ev)}</div></summary>${siteCalcHTML(c,sg)}</details>`;}).join('');}
 function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;return `<div class="facts">${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
 function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';const p=splitParts(v);return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div>${splitBarHTML(v)}<div class="b"><span>— Contracted floor (dial-insulated)</span><b>${fmtM(v.contractedEV)} · ${p.cf.toFixed(0)}%</b></div><div class="b"><span>— Expected upside (spot &amp; pipeline)</span><b>${fmtM(v.expectedEV)} · ${p.eu.toFixed(0)}%</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
 function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
@@ -149,7 +149,7 @@ function openPanel(c){const v=value(c),p=document.getElementById('panel');const 
       <div class="p-tgt"><div class="t">$${v.target.toFixed(0)}</div><div class="u up ${upCls}">${upTxt}</div><div class="sc">score ${score.toFixed(0)}/100</div></div></div>
     <div class="narr">${c.narrative}</div>
     ${qualHTML(c)}
-    <h4 class="sec">Sites — value rolls up from here <span class="hint">tap a site for the math</span></h4>${sitesRowsHTML(v,c)}
+    <h4 class="sec">Sites — value rolls up from here</h4>${sitesRowsHTML(v)}
     <h4 class="sec">Commercial &amp; capital</h4>${commercialHTML(c)}
     <h4 class="sec">Valuation</h4>${valBuildHTML(c,v)}
     <h4 class="sec">Developments</h4>${devsHTML(c)}
@@ -176,10 +176,9 @@ function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementByI
     <div class="fp-grid">
       <div class="fp-main">
         <div class="narr">${c.narrative}</div>
-        <h4 class="sec">Valuation — where the value comes from</h4>
-        <div class="evchart">${evChartHTML(v)}</div>
+        <h4 class="sec">Valuation — where the value comes from <span class="hint">tap a bar for the math</span></h4>
+        <div class="evchart">${evChartHTML(v,c)}</div>
         ${valBuildHTML(c,v)}
-        <details class="exp"><summary>Site-level breakdown</summary><div style="margin-top:8px">${sitesRowsHTML(v,c)}</div></details>
         <h4 class="sec">Developments</h4>${devsHTML(c)}
       </div>
       <div class="fp-side">
