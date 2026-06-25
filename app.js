@@ -7,6 +7,7 @@ const FMT={
   pctInt:v=>v+'%',
   mult:v=>v.toFixed(1)+'×',
   pct1:v=>v.toFixed(1)+'%',
+  months:v=>v+' mo',
 };
 
 /* runtime state, populated once data.json loads */
@@ -38,7 +39,7 @@ function siteValue(c,s){const r=REGION[s.region];let ppm,contractedShare,calc;
     contractedShare=(s.prov==='rumored')?0:(c.contractedPct/100);calc={noi,cap};}
   else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
     contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult};}
-  const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t-NOW),dfac=1/Math.pow(1+dr/100,yrs);
+  const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
   const ev=gross*hair*dfac;
   return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
 function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt;
@@ -130,7 +131,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region];
   }
   steps+=row('Gross value',fmtM(sg.gross),`$${sg.ppm.toFixed(1)}M × ${s.mw} MW`);
   steps+=row('× Execution haircut','×'+sg.hair.toFixed(2),s.prov);
-  steps+=row('× Time discount','×'+sg.dfac.toFixed(2),sg.yrs<=0?'live now':`${sg.yrs.toFixed(1)} yrs @ ${sg.dr%1===0?sg.dr:sg.dr.toFixed(1)}%`);
+  steps+=row('× Time discount','×'+sg.dfac.toFixed(2),sg.yrs<=0?'live now':`${sg.yrs.toFixed(1)} yrs @ ${sg.dr%1===0?sg.dr:sg.dr.toFixed(1)}%${A.ramp>0?` · incl ${A.ramp}mo ramp`:''}`);
   steps+=`<div class="cstep tot"><span>Site value</span><span class="cval">${fmtM(sg.ev)}</span><span class="cnote"></span></div>`;
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
