@@ -53,6 +53,7 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
 .pill.owner{color:var(--indigo);border-color:#CBD6DE;background:#EEF3F6}
 .pill.landlord{color:#7A6A3E;border-color:#E4DBC2;background:#F6F1E3}
 .pill.hybrid{color:#5e6657;border-color:#D9DECF;background:#EFF1EA}
+.pill.tier{color:#7A6A3E;border-color:#E4DBC2;background:#F6F1E3;margin-left:5px}
 .ct{font-family:var(--mono);font-size:9.5px;color:var(--ink-soft);margin-top:6px;display:block}
 .stack{height:22px;border-radius:3px;overflow:hidden;display:flex;background:var(--line)}
 .seg{height:100%;transition:width .5s cubic-bezier(.2,.7,.2,1)}

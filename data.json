@@ -22,6 +22,12 @@
       "mid": { "name": "Mid", "cMargin": 0, "lNOI": 1.00 },
       "exp": { "name": "Costly", "cMargin": -5, "lNOI": 0.90 }
     },
+    "tiers": {
+      "speculative": { "name": "Speculative", "capSpread": 4.0, "multFactor": 0.60 },
+      "emerging": { "name": "Emerging", "capSpread": 2.0, "multFactor": 0.78 },
+      "proven": { "name": "Proven", "capSpread": 0.0, "multFactor": 1.00 },
+      "ig-reit": { "name": "IG / REIT", "capSpread": -2.5, "multFactor": 1.25 }
+    },
     "constants": {
       "contractRate": 8.0,
       "multPremium": 0.40,
@@ -38,6 +44,7 @@
       "tk": "CRWV",
       "name": "CoreWeave",
       "model": "owner",
+      "tier": "proven",
       "contractedPct": 95,
       "termYrs": 5,
       "renewalProb": 0.95,
@@ -108,6 +115,7 @@
       "tk": "NBIS",
       "name": "Nebius",
       "model": "owner",
+      "tier": "proven",
       "contractedPct": 80,
       "termYrs": 4,
       "renewalProb": 0.85,
@@ -177,6 +185,7 @@
       "tk": "RIOT",
       "name": "Riot Platforms",
       "model": "landlord",
+      "tier": "emerging",
       "contractedPct": 30,
       "termYrs": 5,
       "renewalProb": 0.70,
@@ -223,6 +232,7 @@
       "tk": "BTDR",
       "name": "Bitdeer",
       "model": "landlord",
+      "tier": "emerging",
       "contractedPct": 5,
       "termYrs": 10,
       "renewalProb": 0.65,

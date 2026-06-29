@@ -12,7 +12,7 @@ const FMT={
 
 /* runtime state, populated once data.json loads */
 let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
-let REGION, CONST, PROV, PROV_OP;
+let REGION, CONST, PROV, PROV_OP, TIERS;
 
 let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -34,10 +34,11 @@ function siteRates(c,s){
   const contractedRate=ls*CONST.contractRate, spotRate=(1-ls)*spot;
   return{eff:contractedRate+spotRate,contractedRate,spotRate};
 }
-function siteValue(c,s){const r=REGION[s.region];let ppm,contractedShare,calc;
-  if(c.model==='landlord'){const noi=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cap=(A.capRate/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
+function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
+function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,contractedShare,calc;
+  if(c.model==='landlord'){const noi=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cap=((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
     contractedShare=(s.prov==='rumored')?0:(c.contractedPct/100);calc={noi,cap};}
-  else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
+  else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
     contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult};}
   const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
   const ev=gross*hair*dfac;
@@ -73,7 +74,7 @@ function renderCmp(){
     const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(0)+'%',totMW=c.sites.reduce((a,s)=>a+s.mw,0);
     const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
     row.innerHTML=`<div class="rank">${i+1}</div>
-      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span><span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
+      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span><span class="pill tier">${tierOf(c).name}</span><span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
       <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div>${splitBarHTML(v)}<div class="stacklabel"><span>Contracted ${splitParts(v).cf.toFixed(0)}%</span><span>Expected ${splitParts(v).eu.toFixed(0)}%</span></div></div>
       <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
       <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
@@ -116,17 +117,17 @@ function qualHTML(c){return `<div class="qual">
   <div class="qcol bear"><h5>Bear case</h5><ul>${liHTML(c.bear)}</ul></div>
   <div class="qcol"><h5>Catalysts</h5><ul>${liHTML(c.catalysts)}</ul></div>
   <div class="qcol"><h5>Key risks</h5><ul>${liHTML(c.risks)}</ul></div></div>`;}
-function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region];
+function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierOf(c);
   const row=(a,b,note)=>`<div class="cstep"><span>${a}</span><span class="cval">${b}</span><span class="cnote">${note||''}</span></div>`;
   let steps='';
   if(c.model==='landlord'){
     steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`$${CONST.landlordNOI}M base · ${r.name.toLowerCase()} · ${s.owned?'owned':'leased'} · MTM`);
-    steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial − ${(CONST.capCompress*c.contractedPct).toFixed(0)}% contracted`);
+    steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − ${(CONST.capCompress*c.contractedPct).toFixed(0)}% contracted`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
   }else{
     steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% @ $${CONST.contractRate}M contract · rest spot`);
     steps+=row('Margin',k.m+'%',`${A.margin} ${r.cMargin>=0?'+':'−'}${Math.abs(r.cMargin)} ${r.name.toLowerCase()} ${s.owned?'+'+CONST.ownedCMargin+' owned':CONST.leasedCMargin+' leased'}`);
-    steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× · (1 + ${(CONST.multPremium*c.contractedPct/100).toFixed(2)} contracted)`);
+    steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× × ${tier.multFactor} ${tier.name} · (1 + ${(CONST.multPremium*c.contractedPct/100).toFixed(2)} contracted)`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','rate × margin × multiple');
   }
   steps+=row('Gross value',fmtM(sg.gross),`$${sg.ppm.toFixed(1)}M × ${s.mw} MW`);
@@ -138,7 +139,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region];
   return `<div class="sitecalc">${steps}</div>`;}
 function sitesRowsHTML(v){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<div class="site"><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></div>`;}).join('');}
 function evChartHTML(v,c){const max=Math.max(...v.segs.map(s=>s.ev),1e-9);return v.segs.map(sg=>{const s=sg.s,w=(sg.ev/max*100).toFixed(1);return `<details class="evexp"><summary class="evrow"><div class="evlbl">${s.n}<span class="evmeta">${MONTHS[(s.mo||1)-1]} ${s.yr} · ${s.prov}</span></div><div class="evbarwrap"><div class="evbar" style="width:${w}%;background:${horizon(s.yr)};opacity:${PROV_OP[s.prov]}"></div></div><div class="evval">${fmtM(sg.ev)}</div></summary>${siteCalcHTML(c,sg)}</details>`;}).join('');}
-function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;return `<div class="facts">${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
+function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);return `<div class="facts">${f('Investability tier',tier.name)}${c.model==='landlord'?f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'):f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×')}${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
 function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';const p=splitParts(v);return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div>${splitBarHTML(v)}<div class="b"><span>— Contracted floor (dial-insulated)</span><b>${fmtM(v.contractedEV)} · ${p.cf.toFixed(0)}%</b></div><div class="b"><span>— Expected upside (spot &amp; pipeline)</span><b>${fmtM(v.expectedEV)} · ${p.eu.toFixed(0)}%</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
 function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
 
@@ -146,7 +147,7 @@ function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><spa
 function openPanel(c){const v=value(c),p=document.getElementById('panel');const score=scoreOf(c);
   const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
   p.innerHTML=`<button class="x" id="closex" aria-label="Close">✕</button>
-    <div class="p-head"><div><div class="p-tk">${c.tk}</div><div class="p-model">${c.name} · ${modelLabel(c)} · $${c.price} now</div></div>
+    <div class="p-head"><div><div class="p-tk">${c.tk}</div><div class="p-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name} · $${c.price} now</div></div>
       <div class="p-tgt"><div class="t">$${v.target.toFixed(0)}</div><div class="u up ${upCls}">${upTxt}</div><div class="sc">score ${score.toFixed(0)}/100</div></div></div>
     <div class="narr">${c.narrative}</div>
     ${qualHTML(c)}
@@ -166,7 +167,7 @@ function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementByI
   const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
   fp.innerHTML=`<button class="back" id="fpback">← Back to comparison</button>
     <div class="fp-head">
-      <div><div class="fp-tk">${c.tk}</div><div class="fp-model">${c.name} · ${modelLabel(c)}</div></div>
+      <div><div class="fp-tk">${c.tk}</div><div class="fp-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name}</div></div>
       <div class="fp-nums">
         <div class="fp-num"><span>Price</span><b>$${c.price}</b></div>
         <div class="fp-num"><span>Target</span><b>$${v.target.toFixed(0)}</b></div>
@@ -215,6 +216,7 @@ function applyConfig(cfg){
   SLIDERS=cfg.sliders;
   REGION=cfg.regions;
   CONST=cfg.constants;
+  TIERS=cfg.tiers||{};
   PROV={};PROV_OP={};
   Object.entries(cfg.provenance).forEach(([k,v])=>{PROV[k]=v.haircut;PROV_OP[k]=v.opacity;});
 }
