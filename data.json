@@ -2,40 +2,125 @@
   "config": {
     "referenceYear": 2026,
     "referenceMonth": 6,
-    "horizon": { "near": 2027, "mid": 2029 },
-    "dials": { "rate": 8.0, "margin": 55, "multiple": 7.0, "capRate": 9.0, "disc": 10, "ramp": 12 },
+    "horizon": {
+      "near": 2027,
+      "mid": 2029
+    },
+    "dials": {
+      "rate": 8.0,
+      "margin": 55,
+      "multiple": 7.0,
+      "capRate": 9.0,
+      "disc": 10,
+      "ramp": 12
+    },
     "sliders": [
-      { "k": "rate", "label": "Prevailing GPU rate / MW·yr", "min": 3, "max": 16, "step": 0.5, "fmt": "money1M" },
-      { "k": "margin", "label": "Owner-op base margin", "min": 30, "max": 75, "step": 1, "fmt": "pctInt" },
-      { "k": "multiple", "label": "Compute-value multiple", "min": 3, "max": 12, "step": 0.5, "fmt": "mult" },
-      { "k": "capRate", "label": "Landlord cap rate", "min": 6, "max": 14, "step": 0.5, "fmt": "pct1" },
-      { "k": "disc", "label": "Discount rate (time)", "min": 6, "max": 20, "step": 1, "fmt": "pctInt" },
-      { "k": "ramp", "label": "Revenue ramp to steady-state", "min": 0, "max": 24, "step": 3, "fmt": "months" }
+      {
+        "k": "rate",
+        "label": "Prevailing GPU rate / MW·yr",
+        "min": 3,
+        "max": 16,
+        "step": 0.5,
+        "fmt": "money1M"
+      },
+      {
+        "k": "margin",
+        "label": "Owner-op base margin",
+        "min": 30,
+        "max": 75,
+        "step": 1,
+        "fmt": "pctInt"
+      },
+      {
+        "k": "multiple",
+        "label": "Compute-value multiple",
+        "min": 3,
+        "max": 12,
+        "step": 0.5,
+        "fmt": "mult"
+      },
+      {
+        "k": "capRate",
+        "label": "Landlord cap rate",
+        "min": 6,
+        "max": 14,
+        "step": 0.5,
+        "fmt": "pct1"
+      },
+      {
+        "k": "disc",
+        "label": "Discount rate (time)",
+        "min": 6,
+        "max": 20,
+        "step": 1,
+        "fmt": "pctInt"
+      },
+      {
+        "k": "ramp",
+        "label": "Revenue ramp to steady-state",
+        "min": 0,
+        "max": 24,
+        "step": 3,
+        "fmt": "months"
+      }
     ],
     "provenance": {
-      "disclosed": { "haircut": 0.95, "opacity": 1 },
-      "estimated": { "haircut": 0.55, "opacity": 0.6 },
-      "rumored": { "haircut": 0.25, "opacity": 0.32 }
+      "disclosed": {
+        "haircut": 0.95,
+        "opacity": 1
+      },
+      "estimated": {
+        "haircut": 0.55,
+        "opacity": 0.6
+      },
+      "rumored": {
+        "haircut": 0.25,
+        "opacity": 0.32
+      }
     },
     "regions": {
-      "cheap": { "name": "Cheap", "cMargin": 5, "lNOI": 1.10 },
-      "mid": { "name": "Mid", "cMargin": 0, "lNOI": 1.00 },
-      "exp": { "name": "Costly", "cMargin": -5, "lNOI": 0.90 }
+      "cheap": {
+        "name": "Cheap",
+        "cMargin": 5,
+        "lNOI": 1.1
+      },
+      "mid": {
+        "name": "Mid",
+        "cMargin": 0,
+        "lNOI": 1.0
+      },
+      "exp": {
+        "name": "Costly",
+        "cMargin": -5,
+        "lNOI": 0.9
+      }
     },
     "tiers": {
-      "proven": { "name": "Proven", "capSpread": 0.0, "multFactor": 1.00 },
-      "ig": { "name": "IG", "capSpread": -1.25, "multFactor": 1.12 },
-      "ig-reit": { "name": "IG / REIT", "capSpread": -2.5, "multFactor": 1.25 }
+      "proven": {
+        "name": "Proven",
+        "capSpread": 0.0,
+        "multFactor": 1.0
+      },
+      "ig": {
+        "name": "IG",
+        "capSpread": -1.25,
+        "multFactor": 1.12
+      },
+      "ig-reit": {
+        "name": "IG / REIT",
+        "capSpread": -2.5,
+        "multFactor": 1.25
+      }
     },
     "constants": {
       "contractRate": 8.0,
-      "multPremium": 0.40,
-      "landlordNOI": 1.10,
-      "capCompress": 0.30,
+      "multPremium": 0.4,
+      "landlordNOI": 1.1,
+      "capCompress": 0.3,
       "ownedCMargin": 5,
       "leasedCMargin": -3,
       "ownedLNOI": 1.0,
-      "leasedLNOI": 0.90
+      "leasedLNOI": 0.9
     }
   },
   "companies": [
@@ -81,33 +166,218 @@
         "AI-demand or GPU-rate softening hitting re-contracting"
       ],
       "sites": [
-        { "n": "Helios Ph1 (Dickens Co, TX)", "mw": 200, "owned": false, "region": "cheap", "yr": 2026, "mo": 6, "prov": "disclosed" },
-        { "n": "Helios Ph2 (TX)", "mw": 300, "owned": false, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
-        { "n": "Helios Ph3 (TX)", "mw": 300, "owned": false, "region": "cheap", "yr": 2028, "mo": 6, "prov": "estimated" },
-        { "n": "Ellendale 1 / Polaris Forge (ND)", "mw": 250, "owned": false, "region": "cheap", "yr": 2026, "mo": 6, "prov": "disclosed" },
-        { "n": "Ellendale 2 (ND)", "mw": 150, "owned": false, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
-        { "n": "Core Scientific — Denton (TX)", "mw": 260, "owned": false, "region": "cheap", "yr": 2026, "mo": 6, "prov": "disclosed" },
-        { "n": "Core Scientific — Muskogee/Austin", "mw": 90, "owned": false, "region": "cheap", "yr": 2026, "mo": 9, "prov": "disclosed" },
-        { "n": "Core Scientific — Dalton/Marble (GA/NC)", "mw": 240, "owned": false, "region": "mid", "yr": 2027, "mo": 3, "prov": "estimated" },
-        { "n": "Kenilworth NEST (NJ)", "mw": 250, "owned": true, "region": "exp", "yr": 2027, "mo": 1, "prov": "disclosed" },
-        { "n": "Lancaster A (PA, self-build)", "mw": 150, "owned": true, "region": "mid", "yr": 2028, "mo": 6, "prov": "estimated" },
-        { "n": "Lancaster B (PA, self-build)", "mw": 150, "owned": true, "region": "mid", "yr": 2029, "mo": 6, "prov": "estimated" },
-        { "n": "Chicago / Elk Grove (IL)", "mw": 150, "owned": false, "region": "mid", "yr": 2027, "mo": 9, "prov": "estimated" },
-        { "n": "Hammond IN (self-build)", "mw": 180, "owned": true, "region": "cheap", "yr": 2028, "mo": 12, "prov": "rumored" },
-        { "n": "Other contracted DCs — 2026", "mw": 500, "owned": false, "region": "cheap", "yr": 2026, "mo": 9, "prov": "estimated" },
-        { "n": "Other contracted DCs — 2027", "mw": 230, "owned": false, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
-        { "n": "Other contracted DCs — 2028", "mw": 100, "owned": false, "region": "cheap", "yr": 2028, "mo": 6, "prov": "estimated" },
-        { "n": "Pipeline 2028", "mw": 700, "owned": false, "region": "cheap", "yr": 2028, "mo": 6, "prov": "estimated" },
-        { "n": "Pipeline 2029", "mw": 1200, "owned": false, "region": "cheap", "yr": 2029, "mo": 6, "prov": "rumored" },
-        { "n": "Pipeline 2030", "mw": 1300, "owned": false, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" },
-        { "n": "Pipeline 2031", "mw": 1300, "owned": false, "region": "cheap", "yr": 2031, "mo": 6, "prov": "rumored" }
+        {
+          "n": "Helios Ph1 (Dickens Co, TX)",
+          "mw": 200,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Helios Ph2 (TX)",
+          "mw": 300,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Helios Ph3 (TX)",
+          "mw": 300,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Ellendale 1 / Polaris Forge (ND)",
+          "mw": 250,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Ellendale 2 (ND)",
+          "mw": 150,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Core Scientific — Denton (TX)",
+          "mw": 260,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Core Scientific — Muskogee/Austin",
+          "mw": 90,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Core Scientific — Dalton/Marble (GA/NC)",
+          "mw": 240,
+          "owned": false,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 3,
+          "prov": "estimated"
+        },
+        {
+          "n": "Kenilworth NEST (NJ)",
+          "mw": 250,
+          "owned": true,
+          "region": "exp",
+          "yr": 2027,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Lancaster A (PA, self-build)",
+          "mw": 150,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Lancaster B (PA, self-build)",
+          "mw": 150,
+          "owned": true,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Chicago / Elk Grove (IL)",
+          "mw": 150,
+          "owned": false,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Hammond IN (self-build)",
+          "mw": 180,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Other contracted DCs — 2026",
+          "mw": 500,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Other contracted DCs — 2027",
+          "mw": 230,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Other contracted DCs — 2028",
+          "mw": 100,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Pipeline 2028",
+          "mw": 700,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Pipeline 2029",
+          "mw": 1200,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Pipeline 2030",
+          "mw": 1300,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Pipeline 2031",
+          "mw": 1300,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2031,
+          "mo": 6,
+          "prov": "rumored"
+        }
       ],
       "log": [
-        { "d": "2026-06-05", "t": "lease", "s": "DCD", "x": "Chicago-area lease at Applied Digital (Polaris Forge Bldg 3), 15-yr ~$2.2B." },
-        { "d": "2026-05-18", "t": "capital", "s": "Co. release", "x": "Closed $3.1B DDTL 5.0 — first syndicated HPC-backed financing." },
-        { "d": "2026-05-07", "t": "earnings", "s": "Co. release", "x": "Q1'26 revenue $2.08B (+112% YoY); backlog $99.4B; FY26 capex guide raised to $31–35B." },
-        { "d": "2026-04-09", "t": "lease", "s": "Co. release", "x": "Meta agreement expanded to ~$21B through 2032." },
-        { "d": "2026-03-31", "t": "capital", "s": "Co. release", "x": "Closed $8.5B DDTL 4.0 — first investment-grade GPU-backed facility." }
+        {
+          "d": "2026-06-05",
+          "t": "lease",
+          "s": "DCD",
+          "x": "Chicago-area lease at Applied Digital (Polaris Forge Bldg 3), 15-yr ~$2.2B."
+        },
+        {
+          "d": "2026-05-18",
+          "t": "capital",
+          "s": "Co. release",
+          "x": "Closed $3.1B DDTL 5.0 — first syndicated HPC-backed financing."
+        },
+        {
+          "d": "2026-05-07",
+          "t": "earnings",
+          "s": "Co. release",
+          "x": "Q1'26 revenue $2.08B (+112% YoY); backlog $99.4B; FY26 capex guide raised to $31–35B."
+        },
+        {
+          "d": "2026-04-09",
+          "t": "lease",
+          "s": "Co. release",
+          "x": "Meta agreement expanded to ~$21B through 2032."
+        },
+        {
+          "d": "2026-03-31",
+          "t": "capital",
+          "s": "Co. release",
+          "x": "Closed $8.5B DDTL 4.0 — first investment-grade GPU-backed facility."
+        }
       ]
     },
     {
@@ -118,7 +388,7 @@
       "contractedPct": 80,
       "termYrs": 4,
       "renewalProb": 0.85,
-      "mtm": 1.00,
+      "mtm": 1.0,
       "leaseQ": 4.4,
       "netDebt": -848,
       "shares": 275,
@@ -152,32 +422,209 @@
         "Stake marks are mostly undisclosed private valuations (only ClickHouse is primary-sourced)"
       ],
       "sites": [
-        { "n": "Mäntsälä, Finland", "mw": 75, "owned": true, "region": "cheap", "yr": 2024, "mo": 1, "prov": "disclosed" },
-        { "n": "Legacy colos (KC/Iceland/UK/Paris/Minneapolis/Israel)", "mw": 95, "owned": false, "region": "mid", "yr": 2025, "mo": 1, "prov": "disclosed" },
-        { "n": "Israel Masmiyya (Mega Or)", "mw": 22, "owned": false, "region": "mid", "yr": 2026, "mo": 9, "prov": "disclosed" },
-        { "n": "Vineland NJ Ph1 (Microsoft)", "mw": 100, "owned": true, "region": "exp", "yr": 2026, "mo": 11, "prov": "estimated" },
-        { "n": "Israel Beit Shemesh (Mega Or)", "mw": 58, "owned": false, "region": "mid", "yr": 2027, "mo": 1, "prov": "disclosed" },
-        { "n": "Vineland NJ Ph2", "mw": 200, "owned": true, "region": "exp", "yr": 2027, "mo": 6, "prov": "estimated" },
-        { "n": "Lappeenranta Ph1 (FI)", "mw": 150, "owned": true, "region": "cheap", "yr": 2027, "mo": 9, "prov": "disclosed" },
-        { "n": "Independence MO Ph1", "mw": 250, "owned": true, "region": "cheap", "yr": 2027, "mo": 10, "prov": "disclosed" },
-        { "n": "Pennsylvania Ph1", "mw": 300, "owned": true, "region": "mid", "yr": 2027, "mo": 12, "prov": "estimated" },
-        { "n": "Alabama (Birmingham)", "mw": 300, "owned": true, "region": "mid", "yr": 2027, "mo": 6, "prov": "rumored" },
-        { "n": "Lappeenranta Ph2 (FI)", "mw": 160, "owned": true, "region": "cheap", "yr": 2028, "mo": 6, "prov": "estimated" },
-        { "n": "Independence MO Ph2", "mw": 300, "owned": true, "region": "cheap", "yr": 2028, "mo": 12, "prov": "estimated" },
-        { "n": "Pennsylvania Ph2", "mw": 300, "owned": true, "region": "mid", "yr": 2028, "mo": 12, "prov": "estimated" },
-        { "n": "Independence MO Ph3", "mw": 300, "owned": true, "region": "cheap", "yr": 2029, "mo": 12, "prov": "estimated" },
-        { "n": "Pennsylvania Ph3", "mw": 300, "owned": true, "region": "mid", "yr": 2029, "mo": 12, "prov": "rumored" },
-        { "n": "Independence MO Ph4", "mw": 250, "owned": true, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" },
-        { "n": "Pennsylvania Ph4", "mw": 300, "owned": true, "region": "mid", "yr": 2030, "mo": 6, "prov": "rumored" },
-        { "n": "Pipeline 2030 (growth)", "mw": 1200, "owned": true, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" },
-        { "n": "Pipeline 2031 (growth)", "mw": 1800, "owned": true, "region": "mid", "yr": 2031, "mo": 6, "prov": "rumored" }
+        {
+          "n": "Mäntsälä, Finland",
+          "mw": 75,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2024,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Legacy colos (KC/Iceland/UK/Paris/Minneapolis/Israel)",
+          "mw": 95,
+          "owned": false,
+          "region": "mid",
+          "yr": 2025,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Israel Masmiyya (Mega Or)",
+          "mw": 22,
+          "owned": false,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Vineland NJ Ph1 (Microsoft)",
+          "mw": 100,
+          "owned": true,
+          "region": "exp",
+          "yr": 2026,
+          "mo": 11,
+          "prov": "estimated"
+        },
+        {
+          "n": "Israel Beit Shemesh (Mega Or)",
+          "mw": 58,
+          "owned": false,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Vineland NJ Ph2",
+          "mw": 200,
+          "owned": true,
+          "region": "exp",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Lappeenranta Ph1 (FI)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Independence MO Ph1",
+          "mw": 250,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 10,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Pennsylvania Ph1",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Alabama (Birmingham)",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Lappeenranta Ph2 (FI)",
+          "mw": 160,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Independence MO Ph2",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Pennsylvania Ph2",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Independence MO Ph3",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Pennsylvania Ph3",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Independence MO Ph4",
+          "mw": 250,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Pennsylvania Ph4",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Pipeline 2030 (growth)",
+          "mw": 1200,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Pipeline 2031 (growth)",
+          "mw": 1800,
+          "owned": true,
+          "region": "mid",
+          "yr": 2031,
+          "mo": 6,
+          "prov": "rumored"
+        }
       ],
       "log": [
-        { "d": "2026-05-13", "t": "earnings", "s": "Q1 2026 6-K / call", "x": "Revenue $399M (+684% YoY); AI-cloud ARR $1.92B; FY26 revenue guide $3.0-3.4B; contracted power raised to >3.5GW, targeting >4GW by YE26; FY26 capex $20-25B." },
-        { "d": "2026-05-13", "t": "expansion", "s": "Q1 letter / DCD", "x": "Announced second US gigawatt-scale owned campus in Pennsylvania (up to 1.2GW, first power ~end-2027)." },
-        { "d": "2026-05-12", "t": "expansion", "s": "Nebius / DCD", "x": "Broke ground on 400-acre Independence MO campus (up to ~1.1GW, self-powered gas; Phase 1 ~250MW ~Oct 2027)." },
-        { "d": "2026-03-11", "t": "capital", "s": "6-K", "x": "Nvidia $2.0B prefunded-warrant placement (~8% stake); $4.34B convertible notes priced (1.25% / 2.625%)." },
-        { "d": "2026-01-16", "t": "stake", "s": "Bloomberg / TechCrunch", "x": "ClickHouse raised $400M Series D at $15B post-money; Nebius's ~28% stake marked to ~$4.2B ($781M Q1 revaluation gain)." }
+        {
+          "d": "2026-05-13",
+          "t": "earnings",
+          "s": "Q1 2026 6-K / call",
+          "x": "Revenue $399M (+684% YoY); AI-cloud ARR $1.92B; FY26 revenue guide $3.0-3.4B; contracted power raised to >3.5GW, targeting >4GW by YE26; FY26 capex $20-25B."
+        },
+        {
+          "d": "2026-05-13",
+          "t": "expansion",
+          "s": "Q1 letter / DCD",
+          "x": "Announced second US gigawatt-scale owned campus in Pennsylvania (up to 1.2GW, first power ~end-2027)."
+        },
+        {
+          "d": "2026-05-12",
+          "t": "expansion",
+          "s": "Nebius / DCD",
+          "x": "Broke ground on 400-acre Independence MO campus (up to ~1.1GW, self-powered gas; Phase 1 ~250MW ~Oct 2027)."
+        },
+        {
+          "d": "2026-03-11",
+          "t": "capital",
+          "s": "6-K",
+          "x": "Nvidia $2.0B prefunded-warrant placement (~8% stake); $4.34B convertible notes priced (1.25% / 2.625%)."
+        },
+        {
+          "d": "2026-01-16",
+          "t": "stake",
+          "s": "Bloomberg / TechCrunch",
+          "x": "ClickHouse raised $400M Series D at $15B post-money; Nebius's ~28% stake marked to ~$4.2B ($781M Q1 revaluation gain)."
+        }
       ]
     },
     {
@@ -192,7 +639,7 @@
       "leaseQ": 3.8,
       "netDebt": 636,
       "shares": 379,
-      "price": 28.50,
+      "price": 28.5,
       "legacyEV": 1360,
       "costOfDebt": 6.0,
       "finMix": "0.75% converts + BTC-backed Coinbase loan + ATM/BTC recycling; net debt (net cash on BTC look-through)",
@@ -222,20 +669,101 @@
         "Financing / dilution: continued ATM issuance and BTC recycling to fund the build"
       ],
       "sites": [
-        { "n": "Rockdale — AMD (Bldg G) Ph1-2", "mw": 25, "owned": true, "region": "cheap", "yr": 2026, "mo": 5, "prov": "disclosed" },
-        { "n": "Rockdale — AMD Ph3", "mw": 10, "owned": true, "region": "cheap", "yr": 2026, "mo": 11, "prov": "disclosed" },
-        { "n": "Rockdale — AMD Ph4 (completes 50 MW)", "mw": 15, "owned": true, "region": "cheap", "yr": 2027, "mo": 5, "prov": "disclosed" },
-        { "n": "Corsicana — Building 1 core-and-shell (spec, no tenant)", "mw": 168, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
-        { "n": "Rockdale — AMD options + open capacity", "mw": 150, "owned": true, "region": "cheap", "yr": 2028, "mo": 6, "prov": "rumored" },
-        { "n": "Corsicana — Buildings 2-3", "mw": 336, "owned": true, "region": "cheap", "yr": 2029, "mo": 6, "prov": "rumored" },
-        { "n": "Corsicana — Buildings 4-4.5 + Rockdale balance", "mw": 340, "owned": true, "region": "cheap", "yr": 2031, "mo": 6, "prov": "rumored" }
+        {
+          "n": "Rockdale — AMD (Bldg G) Ph1-2",
+          "mw": 25,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 5,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Rockdale — AMD Ph3",
+          "mw": 10,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 11,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Rockdale — AMD Ph4 (completes 50 MW)",
+          "mw": 15,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 5,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Corsicana — Building 1 core-and-shell (spec, no tenant)",
+          "mw": 168,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Rockdale — AMD options + open capacity",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Corsicana — Buildings 2-3",
+          "mw": 336,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Corsicana — Buildings 4-4.5 + Rockdale balance",
+          "mw": 340,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2031,
+          "mo": 6,
+          "prov": "disclosed"
+        }
       ],
       "log": [
-        { "d": "2026-05-30", "t": "expansion", "s": "Building permit", "x": "$400M permit filed for a new ~168 MW Corsicana core-and-shell (Project Ditto) — speculative build, no tenant." },
-        { "d": "2026-04-30", "t": "earnings", "s": "Q1'26 results", "x": "AMD exercised +25 MW (to 50 MW); Data Center rev $33.2M (~97% one-time fit-out); recurring lease rent only ~$0.9M." },
-        { "d": "2026-04-21", "t": "capital", "s": "8-K", "x": "$200M Coinbase BTC-backed term loan refixed to a fixed rate, maturity extended." },
-        { "d": "2026-02-18", "t": "opinion", "s": "Starboard Value", "x": "Activist (~3.1%) urges faster AI dealmaking, citing AMD as proof-of-concept." },
-        { "d": "2026-01-16", "t": "lease", "s": "Co. release", "x": "Signs AMD anchor lease (25→50 MW) at Rockdale; acquires 200 acres fee-simple for $96M (funded by BTC sale)." }
+        {
+          "d": "2026-05-30",
+          "t": "expansion",
+          "s": "Building permit",
+          "x": "$400M permit filed for a new ~168 MW Corsicana core-and-shell (Project Ditto) — speculative build, no tenant."
+        },
+        {
+          "d": "2026-04-30",
+          "t": "earnings",
+          "s": "Q1'26 results",
+          "x": "AMD exercised +25 MW (to 50 MW); Data Center rev $33.2M (~97% one-time fit-out); recurring lease rent only ~$0.9M."
+        },
+        {
+          "d": "2026-04-21",
+          "t": "capital",
+          "s": "8-K",
+          "x": "$200M Coinbase BTC-backed term loan refixed to a fixed rate, maturity extended."
+        },
+        {
+          "d": "2026-02-18",
+          "t": "opinion",
+          "s": "Starboard Value",
+          "x": "Activist (~3.1%) urges faster AI dealmaking, citing AMD as proof-of-concept."
+        },
+        {
+          "d": "2026-01-16",
+          "t": "lease",
+          "s": "Co. release",
+          "x": "Signs AMD anchor lease (25→50 MW) at Rockdale; acquires 200 acres fee-simple for $96M (funded by BTC sale)."
+        }
       ]
     },
     {
@@ -254,7 +782,7 @@
       "legacyEV": 1340,
       "costOfDebt": 6.0,
       "finMix": "Convertibles + ATM equity + BTC-collateralized loans; net debt",
-      "narrative": "A Bitcoin miner and ASIC designer pivoting into AI/HPC by converting power-rich crypto campuses to colocation, leasing capacity to AI tenants on landlord economics, alongside a small high-margin owner-operated GPU-cloud sleeve. The structural edge is owned cheap-to-mid power (Nordic hydro at Tydal, Columbia hydro at Wenatchee, ERCOT at Rockdale, TVA at Knoxville) and an unusually low ~6% blended cost of debt from a ~$1.4B cheap-convertible stack. Its flagship Tydal (Norway) campus has a signed colocation lease that is not yet effective — tenant unnamed, terms withheld. Beyond ~$69M of AI-cloud ARR, essentially nothing is firmly contracted: the GW-scale value drivers (Tydal, Clarington, Niles, Rockdale) are signed-but-conditional or in negotiation, so most modeled MW is estimated-to-rumored. The question is execution — energizing the pipeline, clearing the Clarington litigation, and signing credible AI tenants while financing-funded cash burn and dilution continue.",
+      "narrative": "A Bitcoin miner and ASIC designer pivoting into AI/HPC by converting power-rich crypto campuses to colocation, leasing capacity to AI tenants on landlord economics, alongside a small high-margin owner-operated GPU-cloud sleeve. The structural edge is owned cheap-to-mid power (Nordic hydro at Tydal, Columbia hydro at Wenatchee, ERCOT at Rockdale, TVA at Knoxville) and an unusually low ~6% blended cost of debt from a ~$1.4B cheap-convertible stack. Its flagship Tydal (Norway) campus has a signed colocation lease that is not yet effective — tenant unnamed, terms withheld. Beyond ~$69M of AI-cloud ARR, essentially nothing is firmly contracted: the GW-scale value drivers (Tydal, Clarington, Niles, Rockdale) are signed-but-conditional or in negotiation, so most modeled MW is owned and scheduled (high existence) but not yet leased. The question is execution — energizing the pipeline, clearing the Clarington litigation, and signing credible AI tenants while financing-funded cash burn and dilution continue.",
       "bull": [
         "Owned cheap-to-mid-power campuses convertible to AI colocation — an RIOT-style structural edge",
         "Unusually low ~6% cost of debt from a ~$1.4B cheap-convertible stack (vs miner peers at 9-11%)",
@@ -280,23 +808,131 @@
         "BTC downcycle further impairs self-mining cash flow — the funding source for the AI pivot"
       ],
       "sites": [
-        { "n": "Cyberjaya MY (online)", "mw": 2, "owned": false, "region": "mid", "yr": 2025, "mo": 1, "prov": "disclosed" },
-        { "n": "Wenatchee WA", "mw": 13, "owned": true, "region": "cheap", "yr": 2026, "mo": 10, "prov": "estimated" },
-        { "n": "Cyberjaya MY ph.2", "mw": 9.5, "owned": false, "region": "mid", "yr": 2026, "mo": 12, "prov": "estimated" },
-        { "n": "Knoxville TN ph.1", "mw": 37, "owned": true, "region": "mid", "yr": 2026, "mo": 12, "prov": "estimated" },
-        { "n": "Tydal NO ph.1", "mw": 50, "owned": true, "region": "cheap", "yr": 2026, "mo": 12, "prov": "estimated" },
-        { "n": "Knoxville TN ph.2", "mw": 49, "owned": true, "region": "mid", "yr": 2027, "mo": 3, "prov": "estimated" },
-        { "n": "Tydal NO ph.2", "mw": 175, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
-        { "n": "Rockdale TX (AI)", "mw": 179, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "rumored" },
-        { "n": "Clarington OH blk.1", "mw": 300, "owned": false, "region": "mid", "yr": 2028, "mo": 6, "prov": "rumored" },
-        { "n": "Niles OH", "mw": 300, "owned": true, "region": "mid", "yr": 2028, "mo": 12, "prov": "estimated" },
-        { "n": "Clarington OH blk.2", "mw": 270, "owned": false, "region": "mid", "yr": 2029, "mo": 6, "prov": "rumored" }
+        {
+          "n": "Cyberjaya MY (online)",
+          "mw": 2,
+          "owned": false,
+          "region": "mid",
+          "yr": 2025,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Wenatchee WA",
+          "mw": 13,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 10,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Cyberjaya MY ph.2",
+          "mw": 9.5,
+          "owned": false,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Knoxville TN ph.1",
+          "mw": 37,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Tydal NO ph.1",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Knoxville TN ph.2",
+          "mw": 49,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 3,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Tydal NO ph.2",
+          "mw": 175,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Rockdale TX (AI)",
+          "mw": 179,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Clarington OH blk.1",
+          "mw": 300,
+          "owned": false,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Niles OH",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Clarington OH blk.2",
+          "mw": 270,
+          "owned": false,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        }
       ],
       "log": [
-        { "d": "2026-06-29", "t": "lease", "s": "Co. 6-K / press release", "x": "Tydal Data Center AS executes Tydal, Norway colocation lease; not yet effective, tenant/terms undisclosed, contingent on conditions precedent." },
-        { "d": "2026-06-18", "t": "earnings", "s": "May production update (6-K)", "x": "AI-cloud ARR ~$69M; 4,248 GPUs deployed (~90% utilization); 171 BTC held (near-zero treasury)." },
-        { "d": "2026-06-01", "t": "opinion", "s": "Blockspace", "x": "Neighbor lawsuit stalls Clarington 570 MW; timeline to be updated." },
-        { "d": "2026-05-14", "t": "earnings", "s": "Q1'26 results (6-K)", "x": "Borrowings ~$1.92B (mostly convertibles); cash $261M; self-mining gross income −$34.4M; net debt ~$1.66B." }
+        {
+          "d": "2026-06-29",
+          "t": "lease",
+          "s": "Co. 6-K / press release",
+          "x": "Tydal Data Center AS executes Tydal, Norway colocation lease; not yet effective, tenant/terms undisclosed, contingent on conditions precedent."
+        },
+        {
+          "d": "2026-06-18",
+          "t": "earnings",
+          "s": "May production update (6-K)",
+          "x": "AI-cloud ARR ~$69M; 4,248 GPUs deployed (~90% utilization); 171 BTC held (near-zero treasury)."
+        },
+        {
+          "d": "2026-06-01",
+          "t": "opinion",
+          "s": "Blockspace",
+          "x": "Neighbor lawsuit stalls Clarington 570 MW; timeline to be updated."
+        },
+        {
+          "d": "2026-05-14",
+          "t": "earnings",
+          "s": "Q1'26 results (6-K)",
+          "x": "Borrowings ~$1.92B (mostly convertibles); cash $261M; self-mining gross income −$34.4M; net debt ~$1.66B."
+        }
       ]
     }
   ]
