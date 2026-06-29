@@ -14,7 +14,7 @@ const FMT={
 let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
 let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null;
-let FP_COMPANY=null, BUILDOUT_METRIC='mw';
+let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
 let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -83,7 +83,7 @@ function renderCmp(){
       <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
       <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
       <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
-    row.addEventListener('click',()=>openPanel(c));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(c);}});
+    row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});
     cont.appendChild(row);});
   if(!reduce)[...cont.children].forEach(ch=>{const p=old[ch.dataset.tk];if(p==null)return;const dy=p-ch.getBoundingClientRect().top;if(dy){ch.style.transition='none';ch.style.transform=`translateY(${dy}px)`;requestAnimationFrame(()=>{ch.style.transition='';ch.style.transform='';});}});
   document.getElementById('sortlabel').textContent=sortKey==='score'?'relative-strength score':'upside to target';
@@ -93,25 +93,28 @@ function renderCmp(){
 function renderSites(){
   let all=[];
   COMPANIES.forEach(c=>{
+    if(SITE_FILTER&&c.tk!==SITE_FILTER)return;
     const v=value(c);
     v.segs.forEach(sg=>{
-      all.push({co:c.tk,coName:c.name,model:c.model,company:c,name:sg.s.n,mw:sg.s.mw,tenure:sg.s.owned?'owned':'leased',region:REGION[sg.s.region].name,yr:sg.s.yr,mo:sg.s.mo,prov:sg.s.prov,val:sg.ev,hair:sg.hair,dfac:sg.dfac});
+      all.push({c,sg,co:c.tk,coName:c.name,model:c.model,name:sg.s.n,mw:sg.s.mw,tenure:sg.s.owned?'owned':'leased',region:REGION[sg.s.region].name,yr:sg.s.yr,mo:sg.s.mo,prov:sg.s.prov,val:sg.ev});
     });
   });
   const cmp={co:(a,b)=>a.co.localeCompare(b.co),name:(a,b)=>a.name.localeCompare(b.name),mw:(a,b)=>a.mw-b.mw,tenure:(a,b)=>a.tenure.localeCompare(b.tenure),region:(a,b)=>a.region.localeCompare(b.region),yr:(a,b)=>(a.yr*12+(a.mo||1))-(b.yr*12+(b.mo||1)),prov:(a,b)=>a.prov.localeCompare(b.prov),val:(a,b)=>a.val-b.val};
   all.sort((a,b)=>siteDir*cmp[siteSort](a,b));
-  document.getElementById('sites-body').innerHTML=all.map(s=>`<tr style="cursor:pointer" onclick="openPanelTk('${s.co}')">
+  document.getElementById('sites-body').innerHTML=all.map((s,i)=>`<tr class="srow" onclick="toggleSiteRow(${i})">
     <td class="co">${s.co}</td><td>${s.name}</td><td class="r mono">${s.mw.toLocaleString()}</td>
     <td>${s.tenure}</td><td><span class="dot" style="background:${horizon(s.yr)}"></span>${s.region}</td>
     <td class="r mono">${MONTHS[(s.mo||1)-1]} ${s.yr}</td><td><span class="prov ${s.prov}">${s.prov}</span></td>
-    <td class="r mono">${fmtM(s.val)}</td></tr>`).join('');
+    <td class="r mono">${fmtM(s.val)}</td></tr><tr class="sdetail" id="sd-${i}"><td colspan="8">${siteCalcHTML(s.c,s.sg)}</td></tr>`).join('');
+  const eb=document.getElementById('sites-eyebrow');
+  if(eb)eb.innerHTML=SITE_FILTER?`${SITE_FILTER} sites — <a href="#sites" class="clearfilter">show all ✕</a>`:'Every site in the universe — the inventory the roll-up is built from · <span style="font-style:italic">tap a row for the math</span>';
   // MW-by-provenance summary
   const byP={disclosed:0,estimated:0,rumored:0};let totMW=0;all.forEach(s=>{byP[s.prov]+=s.mw;totMW+=s.mw;});
   const col={disclosed:'var(--indigo)',estimated:'#C9A86A',rumored:'var(--clay)'};
-  document.getElementById('mwbar').innerHTML=['disclosed','estimated','rumored'].map(k=>`<i style="width:${(byP[k]/totMW*100).toFixed(1)}%;background:${col[k]}"></i>`).join('');
-  document.getElementById('ssummary').innerHTML=`<span>Total <b>${totMW.toLocaleString()} MW</b> across ${all.length} sites</span>`+['disclosed','estimated','rumored'].map(k=>`<span>${k} <b>${(byP[k]/totMW*100).toFixed(0)}%</b></span>`).join('')+`<span style="font-style:italic">— ${((byP.rumored)/totMW*100).toFixed(0)}% of universe MW is rumored</span>`;
+  document.getElementById('mwbar').innerHTML=['disclosed','estimated','rumored'].map(k=>`<i style="width:${(byP[k]/(totMW||1)*100).toFixed(1)}%;background:${col[k]}"></i>`).join('');
+  document.getElementById('ssummary').innerHTML=`<span>${SITE_FILTER||'Total'} <b>${totMW.toLocaleString()} MW</b> across ${all.length} sites</span>`+['disclosed','estimated','rumored'].map(k=>`<span>${k} <b>${(byP[k]/(totMW||1)*100).toFixed(0)}%</b></span>`).join('')+`<span style="font-style:italic">— ${((byP.rumored)/(totMW||1)*100).toFixed(0)}% rumored</span>`;
 }
-window.openPanelTk=tk=>openPanel(COMPANIES.find(c=>c.tk===tk));
+function toggleSiteRow(i){const d=document.getElementById('sd-'+i);if(d)d.classList.toggle('open');}
 
 /* ---- shared one-pager pieces (used by both the quick panel and the full page) ---- */
 function modelLabel(c){return c.model==='owner'?'GPU owner-operator':c.model==='landlord'?'colo / data-center landlord':'hybrid';}
@@ -142,8 +145,6 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
   return `<div class="sitecalc">${steps}</div>`;}
-function sitesRowsHTML(v){return v.segs.map(sg=>{const s=sg.s,r=REGION[s.region];return `<div class="site"><div><div class="s1">${s.n} · ${s.mw} MW</div><div class="s2">${s.owned?'owned':'leased'} · ${r.name} power · live ${MONTHS[(s.mo||1)-1]} ${s.yr} <span class="prov ${s.prov}">${s.prov}</span></div></div><div class="sv">${fmtM(sg.ev)}<div class="s2" style="text-align:right">×${(sg.hair*100).toFixed(0)}% × ${sg.dfac.toFixed(2)}df</div></div></div>`;}).join('');}
-function evChartHTML(v,c){const max=Math.max(...v.segs.map(s=>s.ev),1e-9);return v.segs.map(sg=>{const s=sg.s,w=(sg.ev/max*100).toFixed(1);return `<details class="evexp"><summary class="evrow"><div class="evlbl">${s.n}<span class="evmeta">${MONTHS[(s.mo||1)-1]} ${s.yr} · ${s.prov}</span></div><div class="evbarwrap"><div class="evbar" style="width:${w}%;background:${horizon(s.yr)};opacity:${PROV_OP[s.prov]}"></div></div><div class="evval">${fmtM(sg.ev)}</div></summary>${siteCalcHTML(c,sg)}</details>`;}).join('');}
 function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);return `<div class="facts">${f('Investability tier',tier.name)}${c.model==='landlord'?f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'):f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×')}${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
 /* ---- build-out over time (cumulative capacity or value, stacked by provenance) ---- */
 function buildoutData(c,v){
@@ -173,13 +174,29 @@ function buildoutChartHTML(c,v){
     s+=`<text x="${cx.toFixed(1)}" y="${(mt+ph+18).toFixed(1)}" text-anchor="middle" ${tx}>${yr}</text>`;
     if(tot>0)s+=`<text x="${cx.toFixed(1)}" y="${(yOf(tot)-5).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9px;fill:var(--ink)">${fmtAxis(metric,tot)}</text>`;
   });
+  years.forEach((yr,i)=>{s+=`<rect x="${(ml+step*i).toFixed(1)}" y="${mt}" width="${step.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="boTip(event,${yr})" onmouseleave="boTipHide()"></rect>`;});
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Cumulative ${metric==='mw'?'capacity':'value'} build-out by energization year">${s}</svg>`;
 }
+function boTipFor(year){
+  const c=FP_COMPANY;if(!c)return'';
+  const g={disclosed:[],estimated:[],rumored:[]};
+  c.sites.forEach(s=>{if(s.yr<=year&&g[s.prov])g[s.prov].push(s);});
+  const COL={disclosed:'var(--indigo)',estimated:'var(--indigo-soft)',rumored:'var(--far)'},LBL={disclosed:'Disclosed',estimated:'Estimated',rumored:'Rumored'};
+  let h=`<div class="bo-tip-yr">Online by ${year}</div>`;
+  ['disclosed','estimated','rumored'].forEach(p=>{if(!g[p].length)return;
+    h+=`<div class="bo-tip-grp"><span class="bo-tip-h" style="color:${COL[p]}">${LBL[p]}</span>`+g[p].map(s=>`<div class="bo-tip-row"><span>${s.n}</span><span>${s.mw.toLocaleString()} MW</span></div>`).join('')+`</div>`;});
+  return h;
+}
+function boTip(e,year){const t=document.getElementById('botip');if(!t)return;t.innerHTML=boTipFor(year);t.style.display='block';
+  const w=t.parentElement.getBoundingClientRect();let x=e.clientX-w.left+14,y=e.clientY-w.top+14;
+  if(x+t.offsetWidth>w.width-6)x=w.width-t.offsetWidth-6;if(x<2)x=2;
+  t.style.left=x+'px';t.style.top=y+'px';}
+function boTipHide(){const t=document.getElementById('botip');if(t)t.style.display='none';}
 function buildoutHTML(c,v){
   const m=BUILDOUT_METRIC;
   const tg=(id,lbl)=>`<button class="bo-tog${m===id?' on':''}" onclick="toggleBuildout('${id}')">${lbl}</button>`;
   const legend=[['Disclosed','indigo'],['Estimated','indigo-soft'],['Rumored','far']].map(p=>`<span class="bo-leg"><i style="background:var(--${p[1]})"></i>${p[0]}</span>`).join('');
-  return `<div class="bo-head"><div class="bo-toggle">${tg('mw','MW')}${tg('val','$ value')}</div><div class="bo-legend">${legend}</div></div>${buildoutChartHTML(c,v)}`;
+  return `<div class="bo-head"><div class="bo-toggle">${tg('mw','MW')}${tg('val','$ value')}</div><div class="bo-legend">${legend}</div></div><div class="bo-wrap">${buildoutChartHTML(c,v)}<div class="bo-tip" id="botip"></div></div>`;
 }
 function toggleBuildout(m){BUILDOUT_METRIC=m;if(FP_COMPANY){const el=document.getElementById('buildout');if(el)el.innerHTML=buildoutHTML(FP_COMPANY,value(FP_COMPANY));}}
 /* ---- value bridge waterfall ---- */
@@ -208,25 +225,6 @@ function waterfallHTML(c,v){
 function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';const p=splitParts(v);return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div>${splitBarHTML(v)}<div class="b"><span>— Contracted floor (dial-insulated)</span><b>${fmtM(v.contractedEV)} · ${p.cf.toFixed(0)}%</b></div><div class="b"><span>— Expected upside (spot &amp; pipeline)</span><b>${fmtM(v.expectedEV)} · ${p.eu.toFixed(0)}%</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
 function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
 
-/* ---- quick panel: a summary surface of the full page ---- */
-function openPanel(c){const v=value(c),p=document.getElementById('panel');const score=scoreOf(c);
-  const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
-  p.innerHTML=`<button class="x" id="closex" aria-label="Close">✕</button>
-    <div class="p-head"><div><div class="p-tk">${c.tk}</div><div class="p-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name} · ${fmtPrice(priceOf(c))} now</div></div>
-      <div class="p-tgt"><div class="t">$${v.target.toFixed(0)}</div><div class="u up ${upCls}">${upTxt}</div><div class="sc">score ${score.toFixed(0)}/100</div></div></div>
-    <div class="narr">${c.narrative}</div>
-    ${qualHTML(c)}
-    <h4 class="sec">Sites — value rolls up from here</h4>${sitesRowsHTML(v)}
-    <h4 class="sec">Commercial &amp; capital</h4>${commercialHTML(c)}
-    <h4 class="sec">Valuation</h4>${valBuildHTML(c,v)}
-    <h4 class="sec">Developments</h4>${devsHTML(c)}
-    <button class="fpbtn" id="fullbtn">Open full page ↗</button>
-    <div class="lognote">In the real app, logging a development attaches to a site and updates the facts above; the valuation and ranking move automatically.</div>`;
-  p.classList.add('on');document.getElementById('scrim').classList.add('on');
-  document.getElementById('closex').onclick=closePanel;
-  document.getElementById('fullbtn').onclick=()=>{closePanel();openFull(c);};
-  document.getElementById('closex').focus();}
-
 /* ---- full page: the extensible home (graphical, with planned-module slots) ---- */
 function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementById('fullpage');FP_COMPANY=c;
   const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
@@ -248,8 +246,7 @@ function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementByI
         <h4 class="sec">Value bridge</h4>
         ${waterfallHTML(c,v)}
         ${valBuildHTML(c,v)}
-        <h4 class="sec">Where the value comes from <span class="hint">tap a bar for the math</span></h4>
-        <div class="evchart">${evChartHTML(v,c)}</div>
+        <a class="siteslink" href="#sites=${c.tk}">Where the value comes from — all ${c.tk} sites, with the math per site →</a>
         <h4 class="sec">Developments</h4>${devsHTML(c)}
       </div>
       <div class="fp-side">
@@ -262,18 +259,40 @@ function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementByI
   document.querySelector('.grid').style.display='none';
   fp.classList.add('on');document.getElementById('fpback').onclick=closeFull;
   window.scrollTo(0,0);document.getElementById('fpback').focus();}
-function closeFull(){document.getElementById('fullpage').classList.remove('on');document.querySelector('.grid').style.display='';}
-function closePanel(){document.getElementById('panel').classList.remove('on');document.getElementById('scrim').classList.remove('on');}
+function closeFull(){setHash('');}
+
+/* ---- hash routing: #TICKER → full page, #sites[=TK] → sites tab, # → comparison ---- */
+function setHash(h){const cur=location.hash.replace(/^#/,'');if(cur===h){route();}else{location.hash=h;}}
+function route(){
+  if(!COMPANIES)return;
+  const raw=decodeURIComponent((location.hash||'').replace(/^#\/?/,''));
+  const c=COMPANIES.find(x=>x.tk===raw.toUpperCase());
+  if(c){openFull(c);return;}
+  if(raw==='sites'||raw.indexOf('sites=')===0){
+    const tk=raw.indexOf('sites=')===0?raw.slice(6).toUpperCase():null;
+    showDashboard('sites',(tk&&COMPANIES.find(x=>x.tk===tk))?tk:null);return;
+  }
+  showDashboard('cmp',null);
+}
+function showDashboard(v,filter){
+  SITE_FILTER=filter||null;view=v;
+  document.getElementById('fullpage').classList.remove('on');
+  document.querySelector('.grid').style.display='';
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.view===v));
+  document.getElementById('view-cmp').style.display=v==='cmp'?'':'none';
+  document.getElementById('view-sites').style.display=v==='sites'?'':'none';
+  render();window.scrollTo(0,0);
+}
 
 /* ---- wiring (after data loads) ---- */
 function wireEvents(){
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{view=t.dataset.view;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));document.getElementById('view-cmp').style.display=view==='cmp'?'':'none';document.getElementById('view-sites').style.display=view==='sites'?'':'none';render();}));
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':'')));
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
   const rb=document.getElementById('refreshprices');if(rb)rb.addEventListener('click',fetchPrices);
-  document.getElementById('scrim').addEventListener('click',closePanel);
-  addEventListener('keydown',e=>{if(e.key==='Escape'){closePanel();if(document.getElementById('fullpage').classList.contains('on'))closeFull();}});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('fullpage').classList.contains('on'))setHash('');});
+  addEventListener('hashchange',route);
 }
 
 /* ---- live prices (Finnhub, hourly) ---- */
@@ -317,7 +336,7 @@ async function boot(){
     COMPANIES=data.companies;
     buildControls();
     wireEvents();
-    render();
+    route();
     fetchPrices();
     setInterval(fetchPrices,3600000);
   }catch(err){

@@ -2,6 +2,9 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Navigation: hash routing — each company's full valuation is its own URL (#TICKER, deep-linkable/shareable); #sites and #sites=TICKER for the sites tab. Removed the slide-out panel — clicking a dashboard row goes straight to the full page. Back button / Esc return to the dashboard.
+- All-sites page: filterable by ticker (the full page's "where the value comes from" links to #sites=TICKER); each row is expandable to its per-site math (moved off the full page). Removed dead panel/per-site-bar code.
+- Build-out chart: hover any column for a tooltip listing the sites online by that year, grouped under disclosed / estimated / rumored with MW each.
 - Full-page valuation redesign: a build-out-over-time chart (cumulative capacity/value by energization year, stacked by provenance, MW ↔ $ toggle) as the headline, plus a value-bridge waterfall (Sites → Legacy → Net debt → Equity → target); per-site expandable bars kept as the drill-down. Hand-rolled SVG, dependency-free.
 - Live prices: Price column added left of Target on the comparison dashboard, fed from Finnhub (`config.js` holds the token), refreshed hourly plus a manual "↻ refresh" button. Live price drives the upside calc (target ÷ live price − 1) and the panel/full-page price; falls back to the manual `data.json` price if no token or the feed is unavailable. A status note shows the last refresh time.
 - Header notice updated from "Illustrative placeholder data" to a present-tense, first-principles disclaimer (all four names now researched).
