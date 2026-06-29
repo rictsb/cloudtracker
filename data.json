@@ -218,6 +218,67 @@
         { "d": "2026-06-05", "t": "lease", "s": "Conference call", "x": "First AI-hosting phase contracted with a single tenant." },
         { "d": "2026-04-20", "t": "opinion", "s": "SemiAnalysis", "x": "Notes large unbuilt power pipeline; execution unproven." }
       ]
+    },
+    {
+      "tk": "BTDR",
+      "name": "Bitdeer",
+      "model": "landlord",
+      "contractedPct": 5,
+      "termYrs": 10,
+      "renewalProb": 0.65,
+      "mtm": 0.95,
+      "leaseQ": 3,
+      "netDebt": 1659,
+      "shares": 245,
+      "price": 17.88,
+      "legacyEV": 1340,
+      "costOfDebt": 6.0,
+      "finMix": "Convertibles + ATM equity + BTC-collateralized loans; net debt",
+      "narrative": "A Bitcoin miner and ASIC designer pivoting into AI/HPC by converting power-rich crypto campuses to colocation, leasing capacity to AI tenants on landlord economics, alongside a small high-margin owner-operated GPU-cloud sleeve. The structural edge is owned cheap-to-mid power (Nordic hydro at Tydal, Columbia hydro at Wenatchee, ERCOT at Rockdale, TVA at Knoxville) and an unusually low ~6% blended cost of debt from a ~$1.4B cheap-convertible stack. Its flagship Tydal (Norway) campus has a signed colocation lease that is not yet effective — tenant unnamed, terms withheld. Beyond ~$69M of AI-cloud ARR, essentially nothing is firmly contracted: the GW-scale value drivers (Tydal, Clarington, Niles, Rockdale) are signed-but-conditional or in negotiation, so most modeled MW is estimated-to-rumored. The question is execution — energizing the pipeline, clearing the Clarington litigation, and signing credible AI tenants while financing-funded cash burn and dilution continue.",
+      "bull": [
+        "Owned cheap-to-mid-power campuses convertible to AI colocation — an RIOT-style structural edge",
+        "Unusually low ~6% cost of debt from a ~$1.4B cheap-convertible stack (vs miner peers at 9-11%)",
+        "Tydal colocation lease signed (flagship proof point); AI-cloud ARR scaling ~6x in four months to ~$69M",
+        "Vertically integrated SEALMINER ASIC business (A4 at 9.45 J/TH, US Reno assembly) as a real legacy asset"
+      ],
+      "bear": [
+        "Near-zero firmly contracted AI demand — the GW-scale colocation pipeline is uncontracted",
+        "Tydal lease signed but not yet effective; tenant, term and value undisclosed, contingent on the counterparty",
+        "Financing-funded build (~$347M cash used in ops in Q1'26) and shares up ~38% YoY — ongoing dilution",
+        "Self-mining gross income negative (−$34.4M Q1'26); legacyEV is BTC-cycle-levered and SEALMINER sales throttled"
+      ],
+      "catalysts": [
+        "Tydal colocation lease becoming effective with disclosed tenant, term and pricing (~July 2026)",
+        "Anchor hyperscaler / neocloud signings at Clarington or Niles converting rumored MW to disclosed",
+        "Clarington litigation resolved, unlocking the 570 MW block's timeline",
+        "First-power energization milestones across the H2'26 sites (Tydal ph1, Knoxville, Wenatchee)"
+      ],
+      "risks": [
+        "AI colocation leases fail to materialize and pipeline MW never gets contracted",
+        "Clarington litigation drags, indefinitely stalling the largest single block",
+        "Continued cash burn forces further dilutive equity or pricier related-party debt",
+        "BTC downcycle further impairs self-mining cash flow — the funding source for the AI pivot"
+      ],
+      "sites": [
+        { "n": "Cyberjaya MY (online)", "mw": 2, "owned": false, "region": "mid", "yr": 2025, "mo": 1, "prov": "disclosed" },
+        { "n": "Wenatchee WA", "mw": 13, "owned": true, "region": "cheap", "yr": 2026, "mo": 10, "prov": "estimated" },
+        { "n": "Cyberjaya MY ph.2", "mw": 9.5, "owned": false, "region": "mid", "yr": 2026, "mo": 12, "prov": "estimated" },
+        { "n": "Knoxville TN ph.1", "mw": 37, "owned": true, "region": "mid", "yr": 2026, "mo": 12, "prov": "estimated" },
+        { "n": "Tydal NO ph.1", "mw": 50, "owned": true, "region": "cheap", "yr": 2026, "mo": 12, "prov": "estimated" },
+        { "n": "Knoxville TN ph.2", "mw": 49, "owned": true, "region": "mid", "yr": 2027, "mo": 3, "prov": "estimated" },
+        { "n": "Tydal NO ph.2", "mw": 175, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
+        { "n": "Rockdale TX (AI)", "mw": 179, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "rumored" },
+        { "n": "Clarington OH blk.1", "mw": 300, "owned": false, "region": "mid", "yr": 2028, "mo": 6, "prov": "rumored" },
+        { "n": "Niles OH", "mw": 300, "owned": true, "region": "mid", "yr": 2028, "mo": 12, "prov": "estimated" },
+        { "n": "Clarington OH blk.2", "mw": 270, "owned": false, "region": "mid", "yr": 2029, "mo": 6, "prov": "rumored" }
+      ],
+      "log": [
+        { "d": "2026-06-29", "t": "lease", "s": "Co. 6-K / press release", "x": "Tydal Data Center AS executes Tydal, Norway colocation lease; not yet effective, tenant/terms undisclosed, contingent on conditions precedent." },
+        { "d": "2026-06-18", "t": "earnings", "s": "May production update (6-K)", "x": "AI-cloud ARR ~$69M; 4,248 GPUs deployed (~90% utilization); 171 BTC held (near-zero treasury)." },
+        { "d": "2026-06-01", "t": "opinion", "s": "Blockspace", "x": "Neighbor lawsuit stalls Clarington 570 MW; timeline to be updated." },
+        { "d": "2026-05-14", "t": "earnings", "s": "Q1'26 results (6-K)", "x": "Borrowings ~$1.92B (mostly convertibles); cash $261M; self-mining gross income −$34.4M; net debt ~$1.66B." },
+        { "d": "2026-05-01", "t": "opinion", "s": "KBW", "x": "Market Perform, $11.50 PT; SOTP ~6.7% cap rate on Tydal colo + ~7x EBITDA on ~$1.44B rest-of-business." }
+      ]
     }
   ]
 }
