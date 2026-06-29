@@ -185,46 +185,57 @@
       "name": "Riot Platforms",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 30,
-      "termYrs": 5,
-      "renewalProb": 0.70,
-      "mtm": 0.95,
-      "leaseQ": 3.5,
-      "netDebt": 1500,
-      "shares": 320,
-      "price": 13,
-      "legacyEV": 0,
-      "costOfDebt": 10.5,
-      "finMix": "Convertible / equity",
-      "narrative": "A Bitcoin miner pivoting to AI/HPC hosting as a landlord on owned Texas land — cheap power, no ground rent, and a large but mostly unbuilt power pipeline. Value is real-estate-like where contracted, but the bulk of the target rests on estimated and rumored future capacity. The core question is execution: can the pipeline be permitted, energized and let to credible tenants on the implied timeline.",
+      "contractedPct": 5,
+      "termYrs": 10,
+      "renewalProb": 0.68,
+      "mtm": 0.97,
+      "leaseQ": 3.8,
+      "netDebt": 636,
+      "shares": 379,
+      "price": 28.50,
+      "legacyEV": 1360,
+      "costOfDebt": 6.0,
+      "finMix": "0.75% converts + BTC-backed Coinbase loan + ATM/BTC recycling; net debt (net cash on BTC look-through)",
+      "narrative": "A Bitcoin miner mid-pivot into AI/HPC colocation landlording on ~2.0 GW of owned, approved, cheap-ERCOT power (Corsicana ~1.0 GW + Rockdale ~0.7 GW in Texas; Kentucky mining-only). The pivot is real but early-stage: one signed AI lease — AMD, 50 MW critical IT at Rockdale, a 10-yr deal (~$510M NOI over the initial term) with options for up to ~150 MW more. Everything else is pipeline — Corsicana's first 168 MW core-and-shell is under construction with no signed tenant, inside a ~1 GW envelope that is otherwise uncontracted. Value is dominated by two non-core legacy assets (~$1.4B in legacyEV): a ~15,700 BTC treasury (highly BTC-price-sensitive) and an FCF-negative 42.5 EH/s mining fleet whose underlying power and land are the very assets being converted to AI. Activist Starboard is pushing the pivot harder. The core question is execution: can Corsicana sign credible tenants and lease up on the implied timeline, or is the AI optionality already more than priced in?",
       "bull": [
-        "Owned cheap-power land is a structural edge",
-        "Large pipeline = optionality on AI demand",
-        "Real-estate-like economics on contracted phases"
+        "Massive owned, approved, low-cost ERCOT power runway (~1.7 GW Texas) — the scarce input for AI colo, years to replicate",
+        "AMD (investment-grade) proof-of-concept lease: 50 MW, 10-yr, ~$510M NOI, ~$1M+ NOI/MW — plus options for ~150 MW more",
+        "Optionality-rich balance sheet: ~$0.9B BTC treasury plus mining power/land being recycled into higher-value AI colo",
+        "Starboard Value activist pressure pushing faster dealmaking and consolidation/takeover optionality"
       ],
       "bear": [
-        "Most value is unbuilt and far-dated",
-        "Single early tenant; thin contracted base",
-        "Interconnection / execution risk on expansion"
+        "AI book is one tenant, one site, one building — ~50 MW firm; Corsicana (the bigger prize) has zero signed tenants",
+        "Heavy BTC reliance: ~$0.9B treasury and most debt BTC-collateralized; a drawdown hits asset value, collateral and mining cash at once",
+        "Legacy mining deeply FCF-negative at spot (cost to mine ~127% of production) — a multi-year J-curve before AI offsets the drag",
+        "Speculative core-and-shell capex committed ahead of demand; if Corsicana doesn't convert, large MW sits empty"
       ],
       "catalysts": [
-        "Anchor signings on later phases",
-        "Permitting / interconnect milestones",
-        "Rumored expansion converting to disclosed dates"
+        "First Corsicana tenant / LOI — currently zero; the single biggest re-rating event (mgmt in talks for the full site)",
+        "Corsicana Building 1 (168 MW) core-and-shell completion (~Q2 2027) and AMD Rockdale phases energizing",
+        "AMD exercising its ~150 MW expansion options (would roughly quadruple contracted AI MW)",
+        "Starboard-driven strategic action — accelerated leasing, a capital partner/JV, or M&A"
       ],
       "risks": [
-        "Pipeline slips or fails to energize",
-        "Legacy mining capital allocation",
-        "Tenant credit at far-out sites"
+        "BTC price — the dominant swing factor on legacyEV, Coinbase collateral coverage, and mining cash flow",
+        "Single-tenant concentration: 100% of the contracted AI book is AMD",
+        "Speculative-build lease-up risk — large Corsicana capex with no signed demand",
+        "Financing / dilution: continued ATM issuance and BTC recycling to fund the build"
       ],
       "sites": [
-        { "n": "Corsicana ph.1", "mw": 100, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "disclosed" },
-        { "n": "Corsicana ph.2", "mw": 600, "owned": true, "region": "cheap", "yr": 2028, "mo": 9, "prov": "estimated" },
-        { "n": "Expansion", "mw": 1000, "owned": true, "region": "cheap", "yr": 2030, "mo": 1, "prov": "rumored" }
+        { "n": "Rockdale — AMD (Bldg G) Ph1-2", "mw": 25, "owned": true, "region": "cheap", "yr": 2026, "mo": 5, "prov": "disclosed" },
+        { "n": "Rockdale — AMD Ph3", "mw": 10, "owned": true, "region": "cheap", "yr": 2026, "mo": 11, "prov": "disclosed" },
+        { "n": "Rockdale — AMD Ph4 (completes 50 MW)", "mw": 15, "owned": true, "region": "cheap", "yr": 2027, "mo": 5, "prov": "disclosed" },
+        { "n": "Corsicana — Building 1 core-and-shell (spec, no tenant)", "mw": 168, "owned": true, "region": "cheap", "yr": 2027, "mo": 6, "prov": "estimated" },
+        { "n": "Rockdale — AMD options + open capacity", "mw": 150, "owned": true, "region": "cheap", "yr": 2028, "mo": 6, "prov": "rumored" },
+        { "n": "Corsicana — Buildings 2-3", "mw": 336, "owned": true, "region": "cheap", "yr": 2029, "mo": 6, "prov": "rumored" },
+        { "n": "Corsicana — Buildings 4-4.5 + Rockdale balance", "mw": 340, "owned": true, "region": "cheap", "yr": 2031, "mo": 6, "prov": "rumored" }
       ],
       "log": [
-        { "d": "2026-06-05", "t": "lease", "s": "Conference call", "x": "First AI-hosting phase contracted with a single tenant." },
-        { "d": "2026-04-20", "t": "opinion", "s": "SemiAnalysis", "x": "Notes large unbuilt power pipeline; execution unproven." }
+        { "d": "2026-05-30", "t": "expansion", "s": "Building permit", "x": "$400M permit filed for a new ~168 MW Corsicana core-and-shell (Project Ditto) — speculative build, no tenant." },
+        { "d": "2026-04-30", "t": "earnings", "s": "Q1'26 results", "x": "AMD exercised +25 MW (to 50 MW); Data Center rev $33.2M (~97% one-time fit-out); recurring lease rent only ~$0.9M." },
+        { "d": "2026-04-21", "t": "capital", "s": "8-K", "x": "$200M Coinbase BTC-backed term loan refixed to a fixed rate, maturity extended." },
+        { "d": "2026-02-18", "t": "opinion", "s": "Starboard Value", "x": "Activist (~3.1%) urges faster AI dealmaking, citing AMD as proof-of-concept." },
+        { "d": "2026-01-16", "t": "lease", "s": "Co. release", "x": "Signs AMD anchor lease (25→50 MW) at Rockdale; acquires 200 acres fee-simple for $96M (funded by BTC sale)." }
       ]
     },
     {
