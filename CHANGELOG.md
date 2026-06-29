@@ -2,6 +2,7 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Full-page valuation redesign: a build-out-over-time chart (cumulative capacity/value by energization year, stacked by provenance, MW ↔ $ toggle) as the headline, plus a value-bridge waterfall (Sites → Legacy → Net debt → Equity → target); per-site expandable bars kept as the drill-down. Hand-rolled SVG, dependency-free.
 - Live prices: Price column added left of Target on the comparison dashboard, fed from Finnhub (`config.js` holds the token), refreshed hourly plus a manual "↻ refresh" button. Live price drives the upside calc (target ÷ live price − 1) and the panel/full-page price; falls back to the manual `data.json` price if no token or the feed is unavailable. A status note shows the last refresh time.
 - Header notice updated from "Illustrative placeholder data" to a present-tense, first-principles disclaimer (all four names now researched).
 - Provenance discipline fix (landlords): provenance = existence (land/power/permitting/construction), NOT leasing. Owned/approved/scheduled capacity is `disclosed` even when unleased; leasing risk lives in `contracted %`. Re-tagged RIOT (all owned/approved → disclosed) and BTDR (owned → disclosed; Clarington stays rumored, litigation-stalled). RIOT $10.95 → $26.37 (−7%); BTDR $19.76 → $35.89 (+101%, cheapest per owned-MW of the landlord pair).

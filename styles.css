@@ -148,6 +148,15 @@ h4.sec{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transf
 .fp-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;margin-top:24px}
 @media(max-width:780px){.fp-grid{grid-template-columns:1fr;gap:28px}}
 .fp-side .qual{grid-template-columns:1fr;gap:16px}
+.bo-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
+.bo-toggle{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.bo-tog{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-soft);background:none;border:none;padding:4px 13px;cursor:pointer}
+.bo-tog.on{background:var(--indigo);color:#fff}
+.bo-legend{display:flex;gap:13px;font-family:var(--mono);font-size:10px;color:var(--ink-soft)}
+.bo-leg{display:inline-flex;align-items:center;gap:5px}
+.bo-leg i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.bo-cap{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:6px 0 8px;text-align:right}
+.bo-cap b{color:var(--ink);font-weight:500}
 .evchart{margin:4px 0 16px}
 .evrow{display:grid;grid-template-columns:150px 1fr 72px;gap:12px;align-items:center;padding:7px 0}
 @media(max-width:480px){.evrow{grid-template-columns:1fr 60px}.evbarwrap{display:none}}
