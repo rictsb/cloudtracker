@@ -13,12 +13,15 @@ const FMT={
 /* runtime state, populated once data.json loads */
 let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
 let REGION, CONST, PROV, PROV_OP, TIERS;
+let LIVE_PRICES={}, PRICES_AT=null;
 
 let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
 function fmtM(x){return Math.abs(x)>=1000?'$'+(x/1000).toFixed(1)+'B':'$'+x.toFixed(0)+'M';}
+function priceOf(c){const p=LIVE_PRICES[c.tk];return (typeof p==='number'&&p>0)?p:c.price;}
+function fmtPrice(p){return p>=100?'$'+p.toFixed(0):'$'+p.toFixed(2);}
 function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
 
 /* ---- engine ---- */
@@ -43,8 +46,8 @@ function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,co
   const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
   const ev=gross*hair*dfac;
   return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
-function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt;
-  return{ev,equity,contractedEV:cEV,expectedEV:eEV,target:equity/c.shares,upside:equity/c.shares/c.price-1,segs};}
+function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt,px=priceOf(c),target=equity/c.shares;
+  return{ev,equity,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs};}
 function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
 function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
 function scores(rows){const max=f=>Math.max(...rows.map(f),1e-9);const nearMW=r=>r.c.sites.filter(s=>s.yr<=YEAR+1).reduce((a,s)=>a+s.mw,0);const totMW=r=>r.c.sites.reduce((a,s)=>a+s.mw,0);
@@ -76,6 +79,7 @@ function renderCmp(){
     row.innerHTML=`<div class="rank">${i+1}</div>
       <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span><span class="pill tier">${tierOf(c).name}</span><span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
       <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div>${splitBarHTML(v)}<div class="stacklabel"><span>Contracted ${splitParts(v).cf.toFixed(0)}%</span><span>Expected ${splitParts(v).eu.toFixed(0)}%</span></div></div>
+      <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
       <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
       <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
     row.addEventListener('click',()=>openPanel(c));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(c);}});
@@ -147,7 +151,7 @@ function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><spa
 function openPanel(c){const v=value(c),p=document.getElementById('panel');const score=scoreOf(c);
   const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
   p.innerHTML=`<button class="x" id="closex" aria-label="Close">✕</button>
-    <div class="p-head"><div><div class="p-tk">${c.tk}</div><div class="p-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name} · $${c.price} now</div></div>
+    <div class="p-head"><div><div class="p-tk">${c.tk}</div><div class="p-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name} · ${fmtPrice(priceOf(c))} now</div></div>
       <div class="p-tgt"><div class="t">$${v.target.toFixed(0)}</div><div class="u up ${upCls}">${upTxt}</div><div class="sc">score ${score.toFixed(0)}/100</div></div></div>
     <div class="narr">${c.narrative}</div>
     ${qualHTML(c)}
@@ -169,7 +173,7 @@ function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementByI
     <div class="fp-head">
       <div><div class="fp-tk">${c.tk}</div><div class="fp-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name}</div></div>
       <div class="fp-nums">
-        <div class="fp-num"><span>Price</span><b>$${c.price}</b></div>
+        <div class="fp-num"><span>Price</span><b>${fmtPrice(priceOf(c))}</b></div>
         <div class="fp-num"><span>Target</span><b>$${v.target.toFixed(0)}</b></div>
         <div class="fp-num"><span>Upside</span><b class="up ${upCls}">${upTxt}</b></div>
         <div class="fp-num"><span>Score</span><b>${score.toFixed(0)}</b></div>
@@ -206,6 +210,20 @@ function wireEvents(){
   addEventListener('keydown',e=>{if(e.key==='Escape'){closePanel();if(document.getElementById('fullpage').classList.contains('on'))closeFull();}});
 }
 
+/* ---- live prices (Finnhub, hourly) ---- */
+function updatePriceNote(live){const el=document.getElementById('pricenote');if(!el)return;
+  el.textContent=live&&PRICES_AT?`· prices: Finnhub · updated ${PRICES_AT.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`:'· prices: manual';}
+async function fetchPrices(){
+  const token=(typeof window!=='undefined'&&window.FINNHUB_TOKEN)||'';
+  if(!token){updatePriceNote(false);return;}
+  await Promise.all(COMPANIES.map(async c=>{
+    try{const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(c.tk)}&token=${token}`);
+      if(!r.ok)return;const j=await r.json();
+      if(j&&typeof j.c==='number'&&j.c>0)LIVE_PRICES[c.tk]=j.c;}catch(e){}
+  }));
+  PRICES_AT=new Date();updatePriceNote(true);render();
+}
+
 /* ---- boot: load data, then build ---- */
 function applyConfig(cfg){
   CFG=cfg;
@@ -230,6 +248,8 @@ async function boot(){
     buildControls();
     wireEvents();
     render();
+    fetchPrices();
+    setInterval(fetchPrices,3600000);
   }catch(err){
     document.getElementById('rows').innerHTML=`<div class="appmsg err">Could not load data.json — ${err.message}. Serve this folder over HTTP (not file://).</div>`;
   }
