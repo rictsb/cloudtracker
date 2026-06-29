@@ -45,11 +45,14 @@ A site is deliberately just a few fields, never a mini-model:
 - Owner-operator base margin, compute-value multiple
 - Landlord cap rate
 - Discount rate (time)
+- Revenue ramp to steady-state (months) — delays each site's value after first power, modeling commissioning, GPU fill and contract ramp
 - (Fixed tables: provenance → execution probability; region → power-cost adjustment)
 
 ## 4. Key mechanics that emerged
 
 **Spot vs contracted is a company number, not a site tag.** It's a property of the revenue book, not the concrete — one number per name (e.g. CRWV ~85% contracted, NBIS ~40%). The contracted book is insulated from the GPU-rate dial; the spot book moves with it. Crank the dial and spot-heavy names fan away from contracted ones — that fan-out is the tradeable signal. The model never says "contracted is good"; the rate dial and your directional view decide. For a scarce-compute bull, spot exposure is upside leverage.
+
+The company contracted % stays the one number, but it applies *site-aware*: uncontracted pipeline (rumored provenance) earns the pure spot rate and moves with the dial, while disclosed/estimated capacity carries the contracted book. Each company's value then splits into a **contracted floor** (dial-insulated) and an **expected upside** (spot + uncontracted pipeline, which moves with the dial) — shown on the comparison bar and in the valuation build.
 
 **Renewals are company/industry-level, and the denominator is model-aware.**
 - Compute renews at % of *prevailing market* (it re-rates with your dial) — so the bull thesis flows through the re-signings instead of being capped at a stale vintage.
@@ -58,7 +61,7 @@ Term remaining sets how fast today's contracted book rolls toward those long-run
 
 **Two separate time axes — do not collapse them.**
 - *Re-contracting* (tenant to tenant) is a rate question → valued at long-run, no phasing.
-- *Energization* (when the MW first switches on) is an arrival question → discounted by year. A 2030 site is the same steady-state dollars as a 2027 site, just discounted three more years.
+- *Energization* (when the MW first switches on) is an arrival question → discounted by year. A 2030 site is the same steady-state dollars as a 2027 site, just discounted three more years. Energization dates are first-power; the global ramp dial then delays the value to steady state. Large or multi-phase campuses are decomposed into per-block site rows on their rollout schedule — a gigawatt does not energize in one shot, so it is entered as the blocks that actually come online year by year.
 
 **Probability and timing stay separate.** Provenance answers *how sure* (execution haircut). Energization year answers *when* (time discount). A permitted-but-slow site and a fast-but-contested site are different bets; one rising discount would blur them.
 
@@ -88,7 +91,7 @@ Core sections (both surfaces):
 - **Header** — ticker, model, price, target, upside, relative-strength score.
 - **Narrative / thesis** — a few sentences in your words: what this company is, why it's mispriced, what you're underwriting. The freeform view the numbers can't hold.
 - **Qualitative blocks** — bull case, bear case, catalysts to watch, key risks. Short bullets, your judgement.
-- **Valuation** — graphical and expandable: a per-site value chart, the EV → equity → target build, and a drill-down to site detail.
+- **Valuation** — graphical and expandable: a per-site value chart where each bar expands to its live step-by-step build (rate → margin/NOI → multiple/cap → value/MW → MW → provenance haircut → time discount → site value, with the contracted-floor / expected-upside split), plus the EV → equity → target build.
 - **Sites** — the physical roll-up, each with its execution haircut and time discount shown.
 - **Commercial & capital** — contracted %, term, renewal, mark-to-market, counterparty quality, cost of debt, financing mix, capital stack.
 - **Developments log** — the dated event stream; logging here attaches to a site and updates the facts above.
