@@ -108,47 +108,69 @@
       "tk": "NBIS",
       "name": "Nebius",
       "model": "owner",
-      "contractedPct": 40,
-      "termYrs": 2,
-      "renewalProb": 0.75,
+      "contractedPct": 80,
+      "termYrs": 4,
+      "renewalProb": 0.85,
       "mtm": 1.00,
-      "leaseQ": 3.8,
-      "netDebt": 1000,
-      "shares": 240,
-      "price": 45,
-      "legacyEV": 0,
-      "costOfDebt": 7.0,
-      "finMix": "Equity-heavy",
-      "narrative": "A spot-tilted owner-operator — the thesis is leverage to compute scarcity. A short remaining term and low contracted share mean most of the book re-prices to prevailing market quickly, so if you believe GPU rates stay scarce, NBIS captures the re-rate more than its contracted peers. The same exposure cuts the other way if rates soften.",
+      "leaseQ": 4.4,
+      "netDebt": -848,
+      "shares": 275,
+      "price": 240,
+      "legacyEV": 5800,
+      "costOfDebt": 2.0,
+      "finMix": "Prepayment + equity; convertibles; net cash",
+      "narrative": "A net-cash, prepayment-funded owner-operator that has flipped from spot-tilted scaler into a high-contracted, hyperscaler-anchored buildout. A ~$50B backlog (~92% Microsoft + Meta on ~5-year take-or-pay terms) sits over a smaller, fast-repricing enterprise tail — so ~half of realized revenue is enterprise (high revenue per MW, sub-1-yr), while ~80% of the contracted MW is locked to hyperscalers. Capital is structurally lighter than debt-heavy peers: ~$9.3B cash, low-coupon convertibles, ~$4.8B of customer prepayments funding ~90% of capex, plus a stake portfolio (ClickHouse ~$4.2B, Avride, Toloka, TripleTen) worth value outside the compute sites. The story is execution: only ~170 MW connected today against GW-scale owned campuses (Independence MO, Pennsylvania) that don't energize until late 2027+. Scale is modeled on its growth trajectory, not its (quieter) headline ambitions.",
       "bull": [
-        "High operating leverage to GPU-rate upside",
-        "Short term = fast mark-to-market on a scarcity view",
-        "Cheap-power owned anchor site"
+        "Net cash plus ~$4.8B customer prepayments fund ~90% of capex — far less dilution/leverage risk than debt-heavy peers",
+        "~$50B backlog (~92% Microsoft + Meta, ~5yr take-or-pay) gives top-tier-credit, multi-year visibility",
+        ">75% of contracted power is owned (cheap Nordic / self-powered gas) — a structural cost-of-power edge",
+        "Hidden optionality in the stake portfolio (~$4.2B ClickHouse alone; IPO eyed ~2027) on top of compute"
       ],
       "bear": [
-        "Earnings volatility if rates compress",
-        "Thinner contracted visibility",
-        "Mid/far pipeline reliant on estimated dates"
+        "Overwhelmingly a future-MW story: ~170 MW connected vs GW-scale targets — heavy back-end execution risk",
+        "Vineland NJ (the Microsoft site) has an NJDEP permit on hold and is barely live — key near-term risk",
+        "Thin net-cash cushion (~$848M) flips to net debt as the ~$20-25B 2026 capex deploys",
+        "Convertibles defer cash interest but carry equity dilution; Nvidia warrants + converts lift the share count"
       ],
       "catalysts": [
-        "GPU spot-rate inflection",
-        "Re-signing spot exposure higher",
-        "Site C energizing on schedule"
+        "Connected-power step-up through H2 2026 toward the 800MW-1GW year-end target",
+        "Microsoft (Vineland) ramping H2 2026; Meta firm compute from early 2027",
+        "Independence MO and Pennsylvania campus first-power (late 2027) proving the owned-GW model",
+        "ClickHouse IPO / stake monetization (Avride, Toloka) crystallizing the legacy value"
       ],
       "risks": [
-        "Spot-rate drawdown",
-        "Capital intensity / dilution",
-        "Execution on leased mid-region sites"
+        "Permitting / interconnect slippage at owned campuses (Vineland NJDEP hold; gigawatt power timelines)",
+        "Capital intensity: the net-cash buffer erodes into a ~$20-25B capex plan, raising future financing needs",
+        "GPU-rate compression hits the fast-repricing enterprise tail and the discretionary $15B slice of the Meta deal",
+        "Stake marks are mostly undisclosed private valuations (only ClickHouse is primary-sourced)"
       ],
       "sites": [
-        { "n": "Site A", "mw": 150, "owned": true, "region": "cheap", "yr": 2026, "mo": 11, "prov": "disclosed" },
-        { "n": "Site B", "mw": 350, "owned": false, "region": "mid", "yr": 2027, "mo": 9, "prov": "estimated" },
-        { "n": "Site C", "mw": 500, "owned": false, "region": "mid", "yr": 2029, "mo": 3, "prov": "estimated" },
-        { "n": "Site D", "mw": 400, "owned": false, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" }
+        { "n": "Mäntsälä, Finland", "mw": 75, "owned": true, "region": "cheap", "yr": 2024, "mo": 1, "prov": "disclosed" },
+        { "n": "Legacy colos (KC/Iceland/UK/Paris/Minneapolis/Israel)", "mw": 95, "owned": false, "region": "mid", "yr": 2025, "mo": 1, "prov": "disclosed" },
+        { "n": "Israel Masmiyya (Mega Or)", "mw": 22, "owned": false, "region": "mid", "yr": 2026, "mo": 9, "prov": "disclosed" },
+        { "n": "Vineland NJ Ph1 (Microsoft)", "mw": 100, "owned": true, "region": "exp", "yr": 2026, "mo": 11, "prov": "estimated" },
+        { "n": "Israel Beit Shemesh (Mega Or)", "mw": 58, "owned": false, "region": "mid", "yr": 2027, "mo": 1, "prov": "disclosed" },
+        { "n": "Vineland NJ Ph2", "mw": 200, "owned": true, "region": "exp", "yr": 2027, "mo": 6, "prov": "estimated" },
+        { "n": "Lappeenranta Ph1 (FI)", "mw": 150, "owned": true, "region": "cheap", "yr": 2027, "mo": 9, "prov": "disclosed" },
+        { "n": "Independence MO Ph1", "mw": 250, "owned": true, "region": "cheap", "yr": 2027, "mo": 10, "prov": "disclosed" },
+        { "n": "Pennsylvania Ph1", "mw": 300, "owned": true, "region": "mid", "yr": 2027, "mo": 12, "prov": "estimated" },
+        { "n": "Alabama (Birmingham)", "mw": 300, "owned": true, "region": "mid", "yr": 2027, "mo": 6, "prov": "rumored" },
+        { "n": "Lappeenranta Ph2 (FI)", "mw": 160, "owned": true, "region": "cheap", "yr": 2028, "mo": 6, "prov": "estimated" },
+        { "n": "Independence MO Ph2", "mw": 300, "owned": true, "region": "cheap", "yr": 2028, "mo": 12, "prov": "estimated" },
+        { "n": "Pennsylvania Ph2", "mw": 300, "owned": true, "region": "mid", "yr": 2028, "mo": 12, "prov": "estimated" },
+        { "n": "Independence MO Ph3", "mw": 300, "owned": true, "region": "cheap", "yr": 2029, "mo": 12, "prov": "estimated" },
+        { "n": "Pennsylvania Ph3", "mw": 300, "owned": true, "region": "mid", "yr": 2029, "mo": 12, "prov": "rumored" },
+        { "n": "Independence MO Ph4", "mw": 250, "owned": true, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" },
+        { "n": "Pennsylvania Ph4", "mw": 300, "owned": true, "region": "mid", "yr": 2030, "mo": 6, "prov": "rumored" },
+        { "n": "Pipeline 2030 (growth)", "mw": 1200, "owned": true, "region": "cheap", "yr": 2030, "mo": 6, "prov": "rumored" },
+        { "n": "Pipeline 2031 (growth)", "mw": 1800, "owned": true, "region": "mid", "yr": 2031, "mo": 6, "prov": "rumored" }
       ],
       "log": [
-        { "d": "2026-06-18", "t": "interview", "s": "CEO fireside", "x": "Majority of new capacity going to short-term/spot pricing." },
-        { "d": "2026-05-11", "t": "capital", "s": "8-K", "x": "Equity raise to fund Site C buildout." }
+        { "d": "2026-05-13", "t": "earnings", "s": "Q1 2026 6-K / call", "x": "Revenue $399M (+684% YoY); AI-cloud ARR $1.92B; FY26 revenue guide $3.0-3.4B; contracted power raised to >3.5GW, targeting >4GW by YE26; FY26 capex $20-25B." },
+        { "d": "2026-05-13", "t": "expansion", "s": "Q1 letter / DCD", "x": "Announced second US gigawatt-scale owned campus in Pennsylvania (up to 1.2GW, first power ~end-2027)." },
+        { "d": "2026-05-12", "t": "expansion", "s": "Nebius / DCD", "x": "Broke ground on 400-acre Independence MO campus (up to ~1.1GW, self-powered gas; Phase 1 ~250MW ~Oct 2027)." },
+        { "d": "2026-03-11", "t": "capital", "s": "6-K", "x": "Nvidia $2.0B prefunded-warrant placement (~8% stake); $4.34B convertible notes priced (1.25% / 2.625%)." },
+        { "d": "2026-01-16", "t": "stake", "s": "Bloomberg / TechCrunch", "x": "ClickHouse raised $400M Series D at $15B post-money; Nebius's ~28% stake marked to ~$4.2B ($781M Q1 revaluation gain)." }
       ]
     },
     {
