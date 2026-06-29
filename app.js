@@ -206,6 +206,7 @@ function wireEvents(){
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
+  const rb=document.getElementById('refreshprices');if(rb)rb.addEventListener('click',fetchPrices);
   document.getElementById('scrim').addEventListener('click',closePanel);
   addEventListener('keydown',e=>{if(e.key==='Escape'){closePanel();if(document.getElementById('fullpage').classList.contains('on'))closeFull();}});
 }
@@ -213,15 +214,19 @@ function wireEvents(){
 /* ---- live prices (Finnhub, hourly) ---- */
 function updatePriceNote(live){const el=document.getElementById('pricenote');if(!el)return;
   el.textContent=live&&PRICES_AT?`· prices: Finnhub · updated ${PRICES_AT.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`:'· prices: manual';}
+let FETCHING=false;
 async function fetchPrices(){
   const token=(typeof window!=='undefined'&&window.FINNHUB_TOKEN)||'';
   if(!token){updatePriceNote(false);return;}
+  if(FETCHING)return;FETCHING=true;
+  const btn=document.getElementById('refreshprices');if(btn)btn.disabled=true;
+  const note=document.getElementById('pricenote');if(note)note.textContent='· prices: refreshing…';
   await Promise.all(COMPANIES.map(async c=>{
     try{const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(c.tk)}&token=${token}`);
       if(!r.ok)return;const j=await r.json();
       if(j&&typeof j.c==='number'&&j.c>0)LIVE_PRICES[c.tk]=j.c;}catch(e){}
   }));
-  PRICES_AT=new Date();updatePriceNote(true);render();
+  PRICES_AT=new Date();FETCHING=false;if(btn)btn.disabled=false;updatePriceNote(true);render();
 }
 
 /* ---- boot: load data, then build ---- */

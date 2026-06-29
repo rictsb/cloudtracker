@@ -65,6 +65,9 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
 .breakdown .splitbar{margin:4px 0 10px}
 .price{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
 .pricenote{font-family:var(--mono);font-size:10px;color:var(--ink-soft);text-transform:none;letter-spacing:0}
+.refreshbtn{font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:none;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:99px;padding:2px 9px;cursor:pointer}
+.refreshbtn:hover{color:var(--indigo);border-color:var(--indigo-soft)}
+.refreshbtn:disabled{opacity:.5;cursor:default}
 .target{font-family:var(--mono);font-size:15px;font-weight:500}
 .up{font-family:var(--mono);font-size:12.5px;margin-top:3px} .up.pos{color:var(--pine)} .up.neg{color:var(--clay)}
 .score-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
