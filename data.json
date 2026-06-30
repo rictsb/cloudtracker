@@ -1219,6 +1219,1316 @@
       "basis": {
         "plannedRaise": "~$4.9B undrawn of $6B ATM + future programs; MSFT prepay + $3.65B GPU debt + converts carry ~90%"
       }
+    },
+    {
+      "tk": "SLNH",
+      "name": "Soluna Holdings",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 5,
+      "termYrs": 5,
+      "mtm": 1,
+      "netDebt": -58,
+      "shares": 158,
+      "price": 1.4,
+      "legacyEV": 80,
+      "plannedRaise": 750,
+      "equityDiscount": 0.1,
+      "sites": [
+        {
+          "n": "Kati 2 Ph1 (TX, Metrobloks JV)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Dorothy 3 Ph1 (TX)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 9,
+          "prov": "rumored"
+        },
+        {
+          "n": "Kati 2 / Dorothy AI expansion",
+          "mw": 80,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 9,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "$500M ATM (H.C. Wainwright) + warrants; sub-$2 micro-cap funds buildout ~entirely by dilution → share count 3-4x"
+      },
+      "narrative": "Soluna is a renewable-powered colocation landlord, not a GPU cloud: it builds wind/solar-co-located data-center shells in Texas (plus a Kentucky site), hosts third-party Bitcoin miners who bring their own ASICs, and is pivoting the same powered-land model to AI/HPC. Today ~123 MW is operating (all Bitcoin hosting/prop-mining) and 83 MW (Kati 1) is energizing/under construction; the AI story rests on Project Kati 2 (Metrobloks JV, 350+ MW roadmap where Soluna contributes site/power/electrical and Metrobloks leads leasing to neocloud tenants) and Project Dorothy 3 (300+ MW, now backstopped by the April 2026 $53M Briscoe Wind Farm purchase giving owned generation and a power cost edge). The whole AI book is pre-tenant — a vertically integrated, cheap-power optionality bet on a tiny (~$220M), heavily diluting, going-concern-flagged balance sheet.",
+      "bull": [
+        "Vertically integrated cheap renewable power — owns the 150 MW Briscoe Wind Farm behind Dorothy, eliminating PPA reliance and creating a durable sub-4c/kWh cost edge for AI/HPC leasing",
+        "Real, scarce powered land in ERCOT with a 4.3 GW interconnection pipeline; Kati 2 (Metrobloks JV, 350+ MW) and Dorothy 3 (300+ MW) have site/power secured and the AI pivot is genuinely underway",
+        "Operating Bitcoin hosting book growing fast (data-hosting revenue +178% YoY in Q1'26) funds the platform while the AI campuses are built",
+        "Near net-cash today (~$41M net cash post-Briscoe) on a ~$220M market cap — large MW pipeline relative to enterprise value if even one AI campus leases up"
+      ],
+      "bear": [
+        "Zero signed AI/HPC tenants — the entire AI thesis is pre-lease; Kati 2 leasing is outsourced to JV partner Metrobloks and only ‘formal negotiations with at least one potential tenant’ have started",
+        "Severe dilution: shares +627% YoY to ~158M, a $500M ATM shelf open, warrants to Generate/YA — the model values the buildout on today’s shares but the equity to fund it isn’t subtracted",
+        "Going-concern stress: ~$79M LTM net loss, negative FCF, Altman Z ~-2.57, and ~$34M of 9% Series A preferred dividend arrears ahead of the common",
+        "Sub-scale and capital-starved versus AI-colo peers (Applied Digital, Crusoe, the larger miners) — needs huge third-party project capital that may price punitively or not arrive"
+      ],
+      "catalysts": [
+        "First signed AI/HPC anchor lease at Kati 2 or Dorothy 3 — the single biggest re-rating event; currently zero tenants",
+        "Kati 2 project-level financing close (top-tier AI-infra bank engaged) that funds the build without crushing common dilution",
+        "Kati 1 full energization + Dorothy 1B prop-mining consolidation lifting hosting EBITDA and proving execution",
+        "Dorothy 3 interconnection / power milestones converting the Briscoe-owned generation into shovel-ready AI capacity"
+      ],
+      "risks": [
+        "AI leasing never materializes and the spec shells stay Bitcoin-only at far lower revenue-per-MW",
+        "Equity/warrant dilution and a punitive ATM draw at sub-$2 swamp any per-share upside; Nasdaq listing/compliance risk",
+        "Preferred dividend arrears (~$34M) and project-level minority partners (Spring Lane, Navitas, Generate, Galaxy) siphon value before the common",
+        "Bitcoin price/difficulty downturn dries up the hosting cash flow that currently funds the platform mid-pivot"
+      ],
+      "finMix": "Near net-cash (~$41M post-Briscoe): ~$28M project/equipment debt (Generate, Galaxy, Green Cloud, equipment) + ~$2M finance leases vs ~$69M cash; funded chiefly by equity ($500M ATM, registered directs, warrants) and project-level capital from Spring Lane/Generate; no BTC treasury.",
+      "leaseQ": 2.2,
+      "log": []
+    },
+    {
+      "tk": "GLXY",
+      "name": "Galaxy Digital",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 40,
+      "termYrs": 15,
+      "mtm": 1,
+      "netDebt": 2150,
+      "shares": 390,
+      "price": 29.66,
+      "legacyEV": 2600,
+      "btc": 6894,
+      "plannedRaise": 1500,
+      "equityDiscount": 0.1,
+      "sites": [
+        {
+          "n": "Helios Ph I (CoreWeave)",
+          "mw": 133,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 4,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Helios Ph II (CoreWeave)",
+          "mw": 260,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Helios Ph III (CoreWeave)",
+          "mw": 133,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Helios approved expansion A",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Helios approved expansion B",
+          "mw": 400,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Helios approved expansion C",
+          "mw": 400,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Helios pipeline (toward ~2.5GW+)",
+          "mw": 500,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2031,
+          "mo": 12,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "Helios is debt-led: $1.4B project financing facility at 80% loan-to-cost + $2.6B corporate cash/stablecoins + financial-services cash flow; Galaxy repurchased $65M of Class A stock in Q1 2026 rather than issuing. ~$1.5B is a realistic incremental equity contribution to fund the uncontracted multi-GW expansion phases beyond project-debt capacity.",
+        "equityDiscount": "Dual-class structure (191.8M Class A vs 198.4M supervoting Class B), founder/Novogratz control, controlled-company governance -> 0.10."
+      },
+      "narrative": "Galaxy is a crypto financial-services franchise (trading, asset management ~$5B AUM + $3.2B staked, lending, ~$650M venture book) being repriced as an AI-infrastructure landlord on the strength of its Helios campus in Dickens County, west Texas. Helios is a converted Bitcoin-mining site leased to CoreWeave: 526 MW of critical IT load contracted across three phases (Phase I 133 MW delivered Apr 2026; Phase II 260 MW H1 2027; Phase III 133 MW) on a 15-year take-or-pay lease expected to generate >$1B average annual revenue at ~90% lease-level EBITDA margin. ERCOT has approved 1.6+ GW total (potential to ~2.5-3.5 GW), so most of the campus is approved-but-uncontracted optionality on top of the signed CoreWeave book.",
+      "bull": [
+        "526 MW critical IT load contracted to CoreWeave on a 15-year take-or-pay lease, >$1B avg annual revenue at ~90% lease-level EBITDA margin -- a long-duration, high-margin annuity.",
+        "1.6+ GW ERCOT-approved (campus potential ~2.5-3.5 GW) on owned freehold land in a cheap-power ERCOT/west-Texas basin -- scarce, energizable expansion optionality beyond the contracted book.",
+        "Funded with $1.4B project debt at 80% LTC plus $2.6B corporate cash/stablecoins and a cash-generative financial-services arm -- limited equity dilution; company is buying back stock.",
+        "Optionality of a second anchor or expanded CoreWeave deal across the ~1.1 GW of approved-but-uncontracted capacity could re-rate the campus."
+      ],
+      "bear": [
+        "Single-tenant concentration: nearly the entire AI book is CoreWeave, itself a levered, unrated AI-cloud whose own demand/financing is the key dependency.",
+        "Most of the 1.6+ GW is approved but uncontracted -- value beyond 526 MW depends on leasing capacity that has no tenant yet.",
+        "Legacy crypto financial-services and treasury earnings are volatile and BTC/market-sensitive (Q1 2026 net loss $216M); segment value can swing materially.",
+        "Dual-class founder control and heavy notes-payable load ($3.1B) add governance and leverage risk during a multi-GW capex cycle."
+      ],
+      "catalysts": [
+        "Phase I rent commencement and full 133 MW handover to CoreWeave (Q2 2026), then Phase II deliveries H1 2027.",
+        "A second anchor tenant or expanded CoreWeave lease across the ~1.1 GW approved-but-uncontracted capacity.",
+        "Energization milestones on the 830 MW ERCOT-approved expansion and progress toward the ~2.5-3.5 GW campus potential.",
+        "Investability re-rating as contracted lease cash flows season (potential tier lift toward IG/REIT)."
+      ],
+      "risks": [
+        "CoreWeave counterparty/financing stress would hit the entire contracted book given single-tenant concentration.",
+        "Construction, transformer/interconnection delays push out Phase II/III energization and the uncontracted expansion.",
+        "Crypto-market drawdown depresses the financial-services/treasury legacy value and overall liquidity.",
+        "Funding gap on the multi-GW buildout forces more debt or equity than modeled, increasing leverage/dilution."
+      ],
+      "finMix": "Debt-led: $1.4B Helios project facility (80% LTC, 36mo) + $3.1B total notes payable (incl. ~$2.1B exchangeable notes) + $2.6B corporate cash/stablecoins + financial-services cash flow; buying back stock, minimal equity issuance.",
+      "leaseQ": 3,
+      "log": []
+    },
+    {
+      "tk": "HUT",
+      "name": "Hut 8 Corp.",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 68,
+      "termYrs": 15,
+      "mtm": 1,
+      "netDebt": 7500,
+      "shares": 113,
+      "price": 118.27,
+      "legacyEV": 600,
+      "btc": 5600,
+      "plannedRaise": 500,
+      "equityDiscount": 0.05,
+      "sites": [
+        {
+          "n": "River Bend Ph1 (West Feliciana, LA)",
+          "mw": 245,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Beacon Point Ph1 (Nueces Co, TX)",
+          "mw": 352,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 3,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Beacon Point Ph2 (TX)",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "River Bend expansion (ROFO to 1GW)",
+          "mw": 245,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Vega (TX) AI/HPC conversion",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 1,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "parent recourse net debt ~$0 (Coatue convert nets w/ cash); $7.5B is nonrecourse SPV project debt netted against the campuses"
+      },
+      "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
+      "bull": [
+        "Two signed 15-yr triple-net leases (~597 MW, ~$16.8B base-term value, ~$1.1B stabilized NOI) anchored by a Google payment backstop and an IG tenant — durable, contracted, infrastructure-like cash flow",
+        "Non-recourse IG project financing ($3.25B River Bend + $4.25B Beacon Point at ~95% LTC) funds the buildout with minimal parent recourse and little equity dilution — capital-efficient growth",
+        "8.4 GW development pipeline plus ROFO on +1 GW at River Bend gives a long runway to compound contracted MW; Anthropic relationship can scale to ~2.3 GW",
+        "Owned freehold land with secured utility interconnects (AEP Texas 1 GW, Entergy Louisiana) in cheap-power regions — the scarce input (power) is locked"
+      ],
+      "bear": [
+        "Tenant concentration and credit: River Bend rests on Fluidstack (a thin-balance-sheet neocloud) with reliance on the Google backstop; Beacon Point's IG tenant is undisclosed — counterparty quality is partly a leap of faith",
+        "Heavy project leverage (~$7.5B notes) front-loads risk before any cash flow; first energization is not until Q1–Q2 2027, so execution/construction risk is live",
+        "Equity already prices a huge re-rating — ~$13B market cap on assets that are mostly pre-revenue shells; multiple compression if the AI-lease land grab cools",
+        "Complex entity structure (~80% ABTC sub, BTC treasury, JV notes) obscures the clean landlord story and invites a sum-of-parts discount"
+      ],
+      "catalysts": [
+        "Initial energization / first data-hall delivery at Beacon Point (Q1 2027) and River Bend (Q2 2027) converting backlog to cash NOI",
+        "Commercialization of Beacon Point Phase 2 (700 MW utility available Q1 2027) and additional pipeline leases signed with named IG/hyperscaler tenants",
+        "Coatue $150M convertible mandatory redemption/conversion (Q2 2026) removing the last parent-recourse debt",
+        "Conversion of any pipeline GW (e.g. River Bend ROFO to 1 GW, Anthropic scaling toward 2.3 GW) into signed take-or-pay leases"
+      ],
+      "risks": [
+        "Construction delays, cost overruns, or interconnect slippage pushing energization past 2027 and straining project-bond covenants",
+        "Fluidstack default with a contested or capped Google backstop, or the undisclosed Beacon Point tenant proving weaker than 'high-IG' framing",
+        "AI-capacity overbuild / GPU-rate deflation softening renewal economics and pipeline lease pricing beyond the signed base terms",
+        "BTC price collapse impairing the ~5,600-BTC treasury and the ABTC stake, hitting parent liquidity and the legacy value"
+      ],
+      "finMix": "Funded mainly by IG non-recourse project bonds (~$7.5B, 6.1–6.2% coupons, 95% LTC, fully amortizing) plus capital recycling; parent recourse limited to a $200M BTC-backed FalconX facility and the in-the-money Coatue $150M convert; ~5,600 BTC + ~$700M cash and an ~80% ABTC stake provide a liquidity cushion.",
+      "leaseQ": 2,
+      "log": []
+    },
+    {
+      "tk": "CIFR",
+      "name": "Cipher Digital",
+      "model": "landlord",
+      "tier": "ig",
+      "contractedPct": 35,
+      "termYrs": 13,
+      "mtm": 1,
+      "netDebt": 960,
+      "shares": 409,
+      "price": 25.88,
+      "legacyEV": 300,
+      "btc": 1500,
+      "plannedRaise": 1200,
+      "equityDiscount": 0,
+      "sites": [
+        {
+          "n": "Barber Lake Ph1 (Fluidstack/Google, TX)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 10,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Black Pearl Ph1 (AWS, TX)",
+          "mw": 108,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 8,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Barber Lake Ph2 (Fluidstack/Google, TX)",
+          "mw": 107,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Black Pearl Ph2 (AWS, completes 216MW IT)",
+          "mw": 108,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Reveille (TX)",
+          "mw": 70,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Third campus (IG hyperscaler, TX)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Ulysses (Ohio, PJM, interconnect-approved)",
+          "mw": 200,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "McLennan (TX)",
+          "mw": 350,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Mikeska (TX)",
+          "mw": 350,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Colchis Ph1 (TX)",
+          "mw": 500,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Colchis Ph2 (TX)",
+          "mw": 500,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Pipeline 2031 (TX/OH)",
+          "mw": 600,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2031,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "~$600M ATM registered + per-project equity slices (~$118M Fluidstack expansion; mgmt says it can fund the equity component of the 3rd campus); buildout is ~85% nonrecourse project-bond + convertible funded, so equity is a thin top-up — modeled ~$1.2B cumulative",
+        "tier": "IG — direct AWS 15-yr 300MW lease (~$5.5B) plus Google-backstopped Fluidstack book; ~$11.4B contracted revenue anchored by investment-grade counterparties",
+        "equityDiscount": ""
+      },
+      "narrative": "A former Bitcoin miner (Cipher Mining, rebranded Cipher Digital in early 2026) executing one of the cleaner BTC-to-AI landlord pivots: it builds powered data-center shells on owned, cheap-ERCOT Texas land and leases them to hyperscale tenants who bring their own compute. Unlike most peers it has already signed a genuinely investment-grade book — AWS direct (300 MW gross / 216 MW critical IT, 15-yr, ~$5.5B at Black Pearl) and Fluidstack at Barber Lake (207 MW critical IT, 10-yr, Google backstopping ~$333M of obligations), plus a third undisclosed IG-hyperscaler campus — totaling ~$11.4B contracted revenue and ~$787M average annualized NOI. The capital stack is mostly nonrecourse project debt (a $2.0B Black Pearl bond at 6.125%, a $1.7B Cipher Compute/Barber Lake note at 7.125%) plus low-coupon converts, leaving only ~$960M net debt and ~$4.2B cash. The story is execution and lease-up: ~700 MW of HPC is contracted and energizing through late 2026, but the GW-scale prize (McLennan, Mikeska, Colchis, Ulysses) — toward a ~4.2 GW 2030+ ambition — is owned and scheduled but largely uncontracted.",
+      "bull": [
+        "Genuinely investment-grade contracted book already signed — AWS direct (15-yr, ~$5.5B) plus Google-backstopped Fluidstack — ~$11.4B contracted revenue, ~$787M avg NOI, rare among BTC-to-AI landlords",
+        "Owned, low-cost ERCOT power and land across multiple Texas campuses (Barber Lake, Black Pearl, McLennan, Mikeska, Colchis) — the scarce AI input, mostly freehold and years to replicate",
+        "Capital-light per-share story: ~$960M net debt on ~$4.2B cash; buildout funded mostly by nonrecourse project bonds + low-coupon converts, with thin equity top-ups",
+        "AWS de-risked construction (covers overruns above $9.5M/IT-MW) and is winding down the BTC treasury (1,116 BTC, full divestment targeted by YE2026), cutting crypto beta"
+      ],
+      "bear": [
+        "Most of the ~4.2 GW ambition is uncontracted: only ~700 MW of HPC is leased; McLennan/Mikeska/Colchis/Ulysses are owned and scheduled but tenantless spec build",
+        "Concentration: the signed book is effectively AWS + Fluidstack/Google across two Texas sites — a tenant delay or renegotiation hits a large slice",
+        "Legacy mining (Odessa 207 MW, 11.6 EH/s) is being wound down with negligible going-concern value, and the pivot still consumes cash (Q1'26 adj. EBITDA ~-$48M, net loss $114M)",
+        "Heavy nonrecourse project leverage ($5.2B total debt) ahead of full lease-up; pipeline capex committed before demand is signed"
+      ],
+      "catalysts": [
+        "Barber Lake (Fluidstack/Google) and Black Pearl (AWS) energizing and rent commencing through H2 2026 — converting contracted revenue into live NOI",
+        "First anchor tenant at McLennan / Mikeska / Colchis — the single biggest re-rating event for the uncontracted GW pipeline",
+        "Disclosure of the third IG-hyperscaler campus (tenant, MW, term) and any 1 GW JV crystallizing",
+        "Ulysses (Ohio/PJM, interconnect-approved) energizing in 2027 and AWS/Fluidstack expansion options being exercised"
+      ],
+      "risks": [
+        "Lease-up risk on the uncontracted GW pipeline — large spec capex with demand TBD",
+        "Tenant concentration (AWS + Fluidstack/Google) and counterparty/renegotiation risk on the signed book",
+        "Execution/energization slippage and construction cost inflation across multiple simultaneous TX builds",
+        "Refinancing and dilution risk on $5.2B nonrecourse project debt plus converts ahead of full lease-up"
+      ],
+      "finMix": "Nonrecourse project bonds (Black Pearl $2.0B @6.125%, Barber Lake $1.7B @7.125%) + converts ($1.3B 0% + $173M 1.75%) + $200M revolver + ATM equity; ~$960M net debt",
+      "leaseQ": 4.2,
+      "log": []
+    },
+    {
+      "tk": "MARA",
+      "name": "MARA Holdings",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 0,
+      "termYrs": 10,
+      "mtm": 1,
+      "netDebt": 1990,
+      "shares": 381,
+      "price": 14.03,
+      "legacyEV": 1400,
+      "btc": 36303,
+      "plannedRaise": 1500,
+      "equityDiscount": 0,
+      "sites": [
+        {
+          "n": "Hannibal/Long Ridge OH — Phase 1 DC",
+          "mw": 200,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Hannibal/Long Ridge OH — expansion",
+          "mw": 400,
+          "owned": true,
+          "region": "mid",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "West Texas (MPLX) — Phase 1",
+          "mw": 400,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "West Texas (MPLX) — scale-up",
+          "mw": 600,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Starwood JV — existing portfolio retrofit",
+          "mw": 400,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Starwood JV — pathway expansion",
+          "mw": 500,
+          "owned": true,
+          "region": "mid",
+          "yr": 2030,
+          "mo": 12,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "~$1.5B: $2B ATM facility established Mar 2026, ~$2.5B equity raised across 2024-25; BTC sales + Barclays bridge + ~$785M assumed Long Ridge debt carry most buildout capex, but a spec-heavy multi-GW pivot with no signed AI leases will lean on the ATM at the margin."
+      },
+      "narrative": "MARA Holdings is a top-tier Bitcoin miner (~72 EH/s, ~1.9 GW of power across 19 sites, 35,303 BTC) repositioning its power-rich, largely-owned portfolio into an AI/HPC landlord — building powered data-center shells (Long Ridge OH 505MW gas plant + up to 600MW DC; MPLX West Texas 400MW→1.5GW; a Starwood JV targeting ~1GW near-term to >2.5GW) to lease to investment-grade AI/IT tenants while flexing workloads back to mining when economics favor it. The investable question is execution and contracting: the AI book has zero signed leases today (only \"inbound interest\"), buildout starts in 2027 with first power around mid-2028, and most of the multi-GW pipeline is announced rather than secured. Capital structure is heavy — ~$2.3B converts post-Q1 buyback plus the ~$1.5B Long Ridge bridge — partly offset by a still-large but shrinking BTC treasury that management is now selling to cut debt.",
+      "bull": [
+        "Owns ~1.9 GW of power and large freehold land/fuel/interconnect — scarce, ownable optionality for AI shells",
+        "Long Ridge (505MW gas, 600MW DC) and MPLX West Texas (to 1.5GW) give a credible multi-GW owned trajectory in cheap power regions",
+        "Starwood JV brings a real-estate developer's tenant-sourcing, design and capital to de-risk the landlord pivot",
+        "Flex design lets sites toggle mining↔AI, putting a mining floor under otherwise-uncontracted MW"
+      ],
+      "bear": [
+        "Zero signed AI/HPC leases — only inbound interest; the entire landlord thesis is still un-contracted",
+        "~$2.3B converts + ~$1.5B Long Ridge bridge against a shrinking BTC treasury and thin operating cash",
+        "Most of the multi-GW pipeline is announced/LOI, not secured — heavy rumored provenance and 2028+ energization",
+        "First-mover-late: a BTC miner with no data-center-leasing track record competing against proven neoclouds/landlords"
+      ],
+      "catalysts": [
+        "First signed IG AI/HPC anchor lease at Long Ridge or a Starwood site",
+        "Long Ridge acquisition close (H2 2026) and FID/groundbreaking on the 200MW DC (1H 2027)",
+        "MPLX West Texas definitive agreements and FID converting the LOI to construction",
+        "Further BTC-funded debt paydown lowering the convert balance and net debt"
+      ],
+      "risks": [
+        "Execution risk on building/leasing data centers — a new competency vs. its mining core",
+        "BTC price drop simultaneously hits treasury value, mining cash flow, and the financing plan",
+        "Refinancing/dilution risk if ATM is leaned on harder than telegraphed to fund the buildout",
+        "AI demand or GPU-rate softening leaving owned MW stranded on mining-only economics"
+      ],
+      "finMix": "BTC-treasury sales + zero/low-coupon converts (~$2.3B) + Barclays bridge & assumed debt on Long Ridge (~$1.5B) + $2B ATM at the margin; Starwood JV co-finances projects.",
+      "leaseQ": 2.5,
+      "log": []
+    },
+    {
+      "tk": "CORZ",
+      "name": "Core Scientific",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 45,
+      "termYrs": 12,
+      "mtm": 1,
+      "netDebt": 1050,
+      "shares": 317,
+      "price": 27,
+      "legacyEV": 150,
+      "plannedRaise": 600,
+      "equityDiscount": 0.05,
+      "sites": [
+        {
+          "n": "Denton, TX (CoreWeave) ph1",
+          "mw": 130,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 3,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Denton, TX (CoreWeave) ph2",
+          "mw": 130,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Dalton, GA (CoreWeave) ph1",
+          "mw": 110,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Dalton, GA (CoreWeave) ph2",
+          "mw": 65,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Muskogee, OK (CoreWeave)",
+          "mw": 70,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Marble, NC (CoreWeave)",
+          "mw": 65,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Austin, TX (CoreWeave)",
+          "mw": 20,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Pecos, TX (legacy + ph1)",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Hunt County (Dallas), TX",
+          "mw": 285,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Other secured uncontracted leasable",
+          "mw": 200,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Muskogee, OK expansion to ~1.5GW",
+          "mw": 450,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 1,
+          "prov": "rumored"
+        },
+        {
+          "n": "Pecos, TX expansion to ~1.5GW",
+          "mw": 450,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "~$600M: buildout is overwhelmingly debt- and tenant-funded. Closed a $3.3B 7.75% senior secured notes offering (May 2026), used partly to repay the $1.0B 364-day term loan; CoreWeave prepaid ~$750M of fit-out (~$1.5M/MW); ~$2B FY26 capex covered by notes proceeds + BTC liquidation. Equity issuance is therefore modest (top-up ATM for expansion land/power), not a primary funding lever.",
+        "equityDiscount": "0.05: 10-Q/A restatement disclosed a material weakness in ICFR (assets-for-demolition impairment), disclosure controls deemed ineffective for 2024-2025; small governance/reporting-quality discount. No founder supervoting (clean one-share-one-vote, which is why the CoreWeave merger could be voted down).",
+        "tier": "proven: single-tenant (CoreWeave ~100% of HPC colocation revenue) take-or-pay book; not yet diversified IG income despite long term and strong anchor."
+      },
+      "narrative": "Core Scientific is a landlord: it builds powered data-center shells and leases them to CoreWeave, which brings its own GPUs (colocation), under a 12-year, $10B+ take-or-pay book (~$850M average annual rent, ~590 MW across Denton, Dalton, Muskogee, Marble and Austin, ~80-85% facility margin). The CoreWeave all-stock acquisition collapsed in October 2025 when shareholders rejected it as undervalued, so CORZ stays independent and is racing to convert a ~1.9 GW gross / 1.3 GW leasable footprint plus Pecos and Muskogee 1.5 GW expansions into a multi-GW colocation platform. Legacy self-mining is in deliberate runoff (mining assets written down ~$266M, substantially all BTC being sold in 2026 to fund the AI build), so the investable question is how fast it signs a second anchor tenant beyond CoreWeave and energizes the pipeline against a ~$4.4B debt stack.",
+      "bull": [
+        "12-yr, $10B+ CoreWeave take-or-pay book (~$850M/yr, ~590 MW) energizing to full delivery by early 2027 with ~80-85% facility margins",
+        "Owned freehold campuses on cheap ERCOT/stranded power with secured interconnects; CoreWeave prepaid ~$750M of fit-out, de-risking capex",
+        "Large secured power runway (Pecos and Muskogee toward ~1.5 GW each, Hunt County ~285 MW) gives years of build optionality if a second tenant signs",
+        "Independent again after the rejected CoreWeave bid; $3.3B notes and BTC liquidation fund the near-term build without heavy equity dilution"
+      ],
+      "bear": [
+        "Single-tenant concentration: CoreWeave is ~100% of HPC colocation revenue and no second anchor has signed since emergence",
+        "~$4.4B gross debt ($3.3B 7.75% notes + ~$1.1B converts) against a still loss-making P&L; expansion capacity beyond CoreWeave is uncontracted",
+        "Material weakness in internal controls (10-Q/A restatement) and large warrant/convert overhang dilute equity (~505M fully diluted vs ~318M basic)",
+        "Mining wind-down destroys legacy cash flow before colocation fully ramps; execution and energization timing risk on a multi-GW pipeline"
+      ],
+      "catalysts": [
+        "Signing a second anchor/hyperscaler colocation tenant for the ~700+ MW of uncontracted secured leasable capacity",
+        "Full CoreWeave 590 MW delivery by early 2027 and Dalton/Muskogee commissioning completing through 2026",
+        "Muskogee 330 MW acquisition regulatory clearance (expected Q3 2026) and Pecos 1.5 GW power-procurement milestones",
+        "Investment-grade-style financing or REIT-conversion path if the contracted book diversifies; completion of BTC monetization"
+      ],
+      "risks": [
+        "CoreWeave counterparty/credit risk and reliance on its capacity-constrained demand; any CoreWeave stress hits ~100% of HPC revenue",
+        "Refinancing/rate risk on $3.3B 7.75% notes and converts; capex outrunning cash if a second tenant is slow to sign",
+        "Speculative pipeline (Pecos/Muskogee 1.5 GW) may not energize on schedule or at assumed power cost; ERCOT congestion",
+        "Governance/controls remediation and warrant-driven dilution; AI-demand or GPU-rate softening pressuring re-leasing economics"
+      ],
+      "finMix": "$3.3B 7.75% senior secured notes due 2031 + ~$1.1B convertibles (2029/2031) + finance leases; CoreWeave fit-out prepayment (~$750M) and BTC liquidation fund capex; minimal equity reliance.",
+      "leaseQ": 4,
+      "log": [],
+      "btc": 547
+    },
+    {
+      "tk": "WULF",
+      "name": "TeraWulf",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 38,
+      "termYrs": 13,
+      "mtm": 1,
+      "netDebt": 2000,
+      "shares": 495,
+      "price": 25.8,
+      "legacyEV": 150,
+      "plannedRaise": 600,
+      "equityDiscount": 0,
+      "sites": [
+        {
+          "n": "Lake Mariner CB-1/CB-2 (Core42)",
+          "mw": 60,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Lake Mariner CB-3 (Fluidstack)",
+          "mw": 70,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 5,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Lake Mariner CB-4 (Fluidstack)",
+          "mw": 70,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Lake Mariner CB-5 (Fluidstack)",
+          "mw": 160,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Abernathy TX JV (Fluidstack, 25yr)",
+          "mw": 168,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Muskie Kentucky Phase I",
+          "mw": 500,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Muskie Kentucky Phase II",
+          "mw": 500,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 9,
+          "prov": "rumored"
+        },
+        {
+          "n": "Lake Hawkeye NY (Phase I/II)",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Chesapeake MD (ex-coal site)",
+          "mw": 210,
+          "owned": true,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "Buildout is overwhelmingly debt/Google-backstopped (~$3.2B Google backstop, $3.2B WULF Compute senior secured notes, $2.5B converts); equity issuance is incremental ATM + acquisition stock (KY/MD deals) plus Google warrants for 32.5M shares, so realistic cumulative equity raise is modest vs ~$13.8B cap — est. ~$600M through 2028."
+      },
+      "narrative": "TeraWulf is a Bitcoin miner that has pivoted decisively into AI/HPC colocation landlord — it builds powered data-center shells at Lake Mariner (NY) and Abernathy (TX) and leases them to tenants (Core42, Fluidstack) who bring their own GPUs, with Google backstopping ~$3.2B of Fluidstack's lease obligations and holding ~14% pro forma. In Q1 2026 HPC lease revenue ($21M) surpassed mining for the first time, and the company carries a large contracted book (~$12.8B incl. extensions) plus a ~2.2 GW owned, mostly-uncontracted pipeline (Muskie KY 1GW+, Lake Hawkeye, Chesapeake). The thesis is a re-rate from miner to long-duration power/colocation landlord, financed by debt rather than dilution.",
+      "bull": [
+        "Hyperscaler-grade validation: Google ~$3.2B backstop + ~14% equity stake de-risks Fluidstack lease credit and lowers project financing cost",
+        "Large signed, long-dated book — Lake Mariner ~360MW (Core42 + Fluidstack 10yr) plus Abernathy 168MW (25yr) = ~$12.8B contracted incl. extensions",
+        "Owned freehold land + secured power across ~2.8 GW portfolio (incl. 1GW+ Muskie KY in cheap-power region) gives durable optionality at low implied $/MW",
+        "Financing carried by debt/backstops, not equity — limited dilution relative to scale; HPC revenue already exceeds mining"
+      ],
+      "bear": [
+        "~$2.7B net debt and a capital-intensive buildout; revenue ramp is back-end-loaded (most contracted MW energize H2-2026, Muskie not until 2028-2030)",
+        "Heavy customer concentration in Fluidstack — a thinly-capitalized neocloud whose lease credit leans on Google's backstop rather than its own balance sheet",
+        "~2.2 GW of pipeline (Muskie Ph II, Lake Hawkeye, Chesapeake) is uncontracted and partly speculative; leasing risk on the back half of the stack",
+        "Legacy Bitcoin mining is being wound down/impaired; BTC treasury (13,099 BTC) injects price volatility and quarterly mark-to-market noise"
+      ],
+      "catalysts": [
+        "CB-3/CB-4/CB-5 energization and rent commencement through H2-2026 (Fluidstack ~300MW going live)",
+        "Abernathy TX JV delivery in Q4-2026 (168MW, 25-yr lease)",
+        "New anchor lease(s) for the Muskie Kentucky 1GW+ campus or Lake Hawkeye/Chesapeake pipeline",
+        "Project-debt financings closing under Google backstop; potential further Fluidstack/Google capacity expansions"
+      ],
+      "risks": [
+        "Fluidstack counterparty/credit risk if AI-cloud demand softens or Google support is not extended to new buildings",
+        "Construction/energization delays or cost overruns pushing back the back-end-loaded ramp",
+        "Rising rates or tighter debt markets raising the cost of the debt-heavy financing model",
+        "Power/interconnection or permitting delays at Kentucky, Lake Hawkeye and Chesapeake pipeline sites"
+      ],
+      "finMix": "Debt-led: ~$2.5B converts + $3.2B WULF Compute senior secured notes + $0.1B KY bridge, ~$3.1B cash; Google ~$3.2B backstop; minimal ATM/equity reliance.",
+      "leaseQ": 3,
+      "log": []
+    },
+    {
+      "tk": "FRMI",
+      "name": "Fermi Inc (Fermi America)",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 0,
+      "termYrs": 20,
+      "mtm": 1,
+      "netDebt": 178,
+      "shares": 638,
+      "price": 9.5,
+      "legacyEV": 0,
+      "plannedRaise": 3500,
+      "equityDiscount": 0.15,
+      "sites": [
+        {
+          "n": "Project Matador Ph.1 (first powered shell, Amarillo TX)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Project Matador Ph.2",
+          "mw": 250,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 1,
+          "prov": "rumored"
+        },
+        {
+          "n": "Project Matador Ph.3",
+          "mw": 350,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 1,
+          "prov": "rumored"
+        },
+        {
+          "n": "Project Matador Ph.4",
+          "mw": 500,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 1,
+          "prov": "rumored"
+        },
+        {
+          "n": "Project Matador Ph.5 (expansion toward 11GW permit)",
+          "mw": 600,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2031,
+          "mo": 1,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "Dev-stage, pre-revenue, no binding tenant; ~$243M cash (Q1'26) vs a multi-billion capex gap and no contracted cash flow to carry much debt — equity/ATM-heavy funding, ~$3.5B cumulative implied to fund even a partial multi-GW shell buildout against a ~$6B cap.",
+        "equityDiscount": "0.15: board entrenchment (70% supermajority to expand the board), Perry/Neugebauer founder control, active governance litigation / proxy fight, dual-listing (Nasdaq + LSE)."
+      },
+      "narrative": "Fermi is a development-stage behind-the-meter power + data-center landlord building \"Project Matador,\" an aspirational 11-17 GW gas/solar/(eventual)nuclear AI campus on a 99-year Texas Tech land lease near Amarillo, TX. It is a landlord (powered shells leased to tenants who bring their own GPUs), not a GPU owner-operator — but as of mid-2026 it has zero operating capacity, no binding tenant (its ~$150M anchor, reportedly Amazon, terminated late-2025/early-2026), a CEO departure, and an active Perry-vs-Neugebauer governance war. ~2 GW of gas generation is secured/under-LOI and a 6 GW air permit is granted, yet satellite imagery shows negligible vertical construction, so realistic powered-shell delivery is a small fraction of the headline and lags the 2026 promise — first meaningful capacity is more credibly mid-2027 at earliest.",
+      "bull": [
+        "Crown-jewel land/power position: 99-yr Texas Tech lease on 5,263 acres, 6 GW air permit granted (path to 11-17 GW), ~2 GW gas generation secured/under-LOI and 300K MMBtu/day gas — genuinely scarce powered land in cheap-power ERCOT/Panhandle.",
+        "Behind-the-meter, self-generated power sidesteps grid-interconnection queues that constrain peers — a structural speed advantage IF executed.",
+        "Optionality on a single hyperscaler 20-year anchor lease: one binding deal would re-rate the contracted book from zero and validate the model.",
+        "Backed by high-profile sponsors (Rick Perry) and a balance sheet that is still near net-cash relative to its market cap."
+      ],
+      "bear": [
+        "Zero operating capacity and zero binding tenants — the $150M anchor (reportedly Amazon) terminated; the entire revenue book is speculative.",
+        "Execution badly behind: IPO promised 1M sq ft / 1 GW by end-2026; satellite imagery shows negligible vertical construction, implying first capacity ~mid-2027+.",
+        "Governance crisis: CEO departed, active Perry-vs-Neugebauer proxy/litigation fight, 70% board-entrenchment supermajority — distraction and control overhang.",
+        "Funding gap is enormous vs ~$243M cash; multi-GW build needs billions of equity into a pre-revenue, no-contract story — heavy dilution risk."
+      ],
+      "catalysts": [
+        "First binding long-term (20-yr) anchor lease with an investment-grade hyperscaler (stated 90-day priority).",
+        "First commercial power delivery / first energized shell (targeted 2026, realistically 2027).",
+        "Resolution of the Perry/Neugebauer governance dispute, new permanent CEO, possible change-of-control / strategic transaction.",
+        "5 GW incremental air-permit approval and NRC progress on the Westinghouse reactor (long-dated nuclear optionality)."
+      ],
+      "risks": [
+        "No tenant ever materializes → stranded power assets, forced surrender of turbine collateral, liquidity squeeze.",
+        "Construction/permitting slips push first revenue to 2028+, compounding cash burn and dilution.",
+        "Governance war destroys value / triggers a distressed sale; founder entrenchment blocks shareholder remedies.",
+        "Capital-markets access tightens for a pre-revenue dev-stage name, forcing dilutive raises at depressed prices or asset sales."
+      ],
+      "finMix": "Near net-cash today (~$421M debt incl. equipment finance vs ~$243M cash → ~$178M net debt, op-leases excluded); funded so far by IPO (~$746M), converts/preferred, and non-recourse equipment financing (MUFG $500M, Yorkville $156M) — but the multi-GW buildout will be overwhelmingly equity/ATM-dependent given no contracted cash flow.",
+      "leaseQ": 2,
+      "log": []
+    },
+    {
+      "tk": "WYFI",
+      "name": "WhiteFiber, Inc.",
+      "model": "hybrid",
+      "tier": "proven",
+      "contractedPct": 55,
+      "termYrs": 9,
+      "mtm": 1,
+      "netDebt": 185,
+      "shares": 38.6,
+      "price": 36,
+      "legacyEV": 30,
+      "plannedRaise": 150,
+      "equityDiscount": 0.1,
+      "sites": [
+        {
+          "n": "MTL-1 (Montreal, leased colo, fully let)",
+          "mw": 4,
+          "owned": false,
+          "region": "mid",
+          "yr": 2024,
+          "mo": 10,
+          "prov": "disclosed"
+        },
+        {
+          "n": "MTL-3 (Saint-Jerome, Cerebras 5MW)",
+          "mw": 7,
+          "owned": true,
+          "region": "mid",
+          "yr": 2025,
+          "mo": 11,
+          "prov": "disclosed"
+        },
+        {
+          "n": "NC-1 Phase 1 (Madison, Nscale 20MW)",
+          "mw": 20,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 5,
+          "prov": "disclosed"
+        },
+        {
+          "n": "NC-1 Phase 2 (Madison, Nscale 20MW)",
+          "mw": 20,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Iceland (Blonduos, 5.5MW IT contracted)",
+          "mw": 6,
+          "owned": false,
+          "region": "eu",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "MTL-2 (Pointe-Claire, owned, build deferred)",
+          "mw": 5,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "NC-1 Phase 3 (Nscale 2x expansion / fill to 99MW)",
+          "mw": 35,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "NC-1 buildout to ~99MW + Atlanta lease",
+          "mw": 24,
+          "owned": true,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "NC-1 long-term expansion toward 200MW",
+          "mw": 60,
+          "owned": true,
+          "region": "mid",
+          "yr": 2030,
+          "mo": 12,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "Buildout is debt/convert-led, not equity-led: $230M 4.5% convertible notes (Jan 2026, $25.91 strike), a $100M (expandable to $150M) Bit Digital delayed-draw term loan ring-fenced for NC-1 Phase 1, a CAD60M RBC facility, and a $20M Iceland term loan carry most capex. ~$150M assumes only a modest post-IPO ATM to top up equity given the controlled-company structure.",
+        "tier": "Proven, not IG: anchor tenants Nscale and Cerebras are venture-backed neoclouds, not investment-grade rated; no REIT structure.",
+        "equityDiscount": "0.10 controlled-company discount: Bit Digital (BTBT) owns ~71.5% post-IPO and is also a related-party lender, limiting minority-shareholder control."
+      },
+      "narrative": "WhiteFiber is Bit Digital's carved-out AI-infrastructure arm (IPO Aug 2025, BTBT still ~71.5%), running a hybrid model: an owner-operated GPU cloud (~1,200 H100/H200/B200/GB200 GPUs) plus a fast-growing colocation/landlord business that leases powered shells to tenants who bring their own GPUs. The landlord side now dominates the growth story — NC-1 in Madison NC anchors a 10-year, ~$865M, 40MW Nscale colocation deal (billing Q2-Q3 2026) and MTL-3 hosts a 5MW Cerebras contract. The cloud book is shakier: the initial customer (~71% of 2025 revenue) paused pending renegotiation and DNA Fund terminated, leaving WhiteFiber leaning on colo take-or-pay and a large unbuilt NC-1/Montreal pipeline funded mostly with convert and related-party debt.",
+      "bull": [
+        "NC-1 Nscale deal is a marquee anchor: 10yr, ~$865M, 40MW with 3% escalators and a path to double by end-2027 — durable colo cash flow on owned, low-cost Duke Energy power (54MW already delivered)",
+        "Vertically integrated and capital-efficient: management cites $8-10M/MW retrofit cost vs ~$13M industry, ~6-month build timelines, and owns NC-1, MTL-2, MTL-3 freehold",
+        "Buildout largely pre-funded with non-dilutive capital ($230M convert, $100-150M Bit Digital DDTL, RBC + Iceland TLs), limiting near-term equity dilution",
+        "Optionality on NC-1 to 99MW (4yr) and potentially 200MW, plus a ~1.5GW pipeline under review and Boosteroid 50k-server ROFR"
+      ],
+      "bear": [
+        "GPU cloud book is fragile: largest customer (~71% of 2025 rev) paused pending renegotiation; DNA Fund terminated with $7.3M receivables outstanding — owner-side revenue quality is poor",
+        "Counterparties are sub-IG neoclouds (Nscale, Cerebras, Boosteroid), not hyperscalers — concentration and credit risk on the contracted book",
+        "Controlled company: Bit Digital owns ~71.5% and is a related-party lender, so minorities ride along on BTBT's decisions and capital allocation",
+        "Loss-making and capital-hungry: Q1 2026 net loss $(12)M on $21.9M revenue, only $3M adj. EBITDA, $169M Q1 capex against $75.8M cash — heavily reliant on continued financing access"
+      ],
+      "catalysts": [
+        "NC-1 Nscale Phase 1/2 (40MW) energization and billing ramp through Q2-Q3 2026",
+        "Resolution of the paused initial cloud customer renegotiation (re-start or replacement)",
+        "Nscale expansion to ~80MW (double by end-2027) and incremental NC-1 fill toward 99MW",
+        "Draw-down/upsize of the Bit Digital DDTL and any further colo signings from the ~1.5GW pipeline"
+      ],
+      "risks": [
+        "Anchor tenant (Nscale) financing/credit wobble would impair the headline $865M book",
+        "Power-delivery or construction delays at NC-1 beyond the 99MW/4yr schedule",
+        "Refinancing/dilution risk if the 2031 convert moves toward its $25.91 strike or debt markets tighten",
+        "Related-party governance: Bit Digital control could subordinate WYFI minority interests in financing or strategic decisions"
+      ],
+      "finMix": "$230M 4.5% convert due 2031 (+$120M zero-strike call), $100-150M Bit Digital delayed-draw TL, CAD60M RBC facility, $20M Iceland TL; $75.8M cash; ~38.6M shares; no BTC treasury (stayed with BTBT).",
+      "leaseQ": 2,
+      "log": []
+    },
+    {
+      "tk": "HIVE",
+      "name": "HIVE Digital Technologies",
+      "model": "owner",
+      "tier": "proven",
+      "contractedPct": 35,
+      "termYrs": 2,
+      "mtm": 1,
+      "netDebt": 100,
+      "shares": 267,
+      "price": 3.8,
+      "legacyEV": 320,
+      "btc": 150,
+      "plannedRaise": 250,
+      "equityDiscount": 0.1,
+      "sites": [
+        {
+          "n": "BUZZ current GPU fleet (H200/A-series + 504 B200; Manitoba/Quebec leased DCs)",
+          "mw": 7,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Bell Merritt, BC — 2,304 GB200 (Cohere/Bell sovereign AI)",
+          "mw": 7,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 1,
+          "prov": "estimated"
+        },
+        {
+          "n": "Grand Falls / New Brunswick Tier III+ upgrade (25k+ GPUs)",
+          "mw": 35,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Toronto, Ontario AI/HPC site",
+          "mw": 5,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Yguazú, Paraguay Tier III GPU cloud (hydro, future)",
+          "mw": 30,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "HIVE funds the AI buildout heavily off ATM equity — in FY26 it issued 53.5M shares for $119.2M (Amended Oct-2024 ATM) plus ~$56.9M (Nov-2025 ATM), ~76% share growth YoY, on top of a $115M 0% exchangeable note (Apr-2026) for the GB200 procurement; cumulative forward ATM ~$250M is realistic for a spec-heavy small-cap with active distribution agreements (KBW/Stifel/Canaccord).",
+        "equityDiscount": "0.1: chair/CEO Frank Holmes influence, foreign private issuer (Canada/Bermuda note structure), serial ATM dilution and very high beta (~3.7).",
+        "tier": "proven: AI book is early-stage neocloud ARR with 6–24 month terms and a not-yet-investment-grade anchor (Cohere); no IG-rated contracted income."
+      },
+      "narrative": "HIVE is a Bitcoin miner (~24.5 EH/s across ~464 MW of mostly-owned hydro capacity in Paraguay, Canada and Sweden) pivoting into AI through subsidiary BUZZ HPC — an owner-operator \"sovereign\" GPU cloud that procures and runs NVIDIA GPUs and sells compute, not a colocation landlord. The AI book is still small (~$35M realized ARR on ~5,500 GPUs, $19.5M FY26 HPC revenue) but ramping fast: a $220M / 3-yr GB200 deal with Bell and Cohere (2,304 Grace-Blackwell GPUs at Merritt, BC, live late-2026 / early-2027) adds ~$70M ARR, and a Tier III+ upgrade of the owned 70 MW New Brunswick site is pitched to hold 25,000+ GPUs. The investable question is execution and funding: BUZZ is a sub-scale neocloud competing with far larger owner-operators, contracts are short (6–24 months) against a non-IG anchor, and the buildout leans on serial ATM dilution plus a 0% convert while the legacy mining business runs a thin BTC treasury (just ~150 coins after spending 2,139 BTC on equipment).",
+      "bull": [
+        "Owner-operator GPU cloud with real, fast-growing ARR ($35M realized, $100M+ contracted, $200M+ targeted by end-2026)",
+        "Sovereign-AI positioning + Bell national fiber/DC partnership and Cohere anchor give Canadian distribution moat",
+        "Cheap hydro power (Itaipú/Paraguay, Quebec, Sweden) — low-cost, renewable energization for both mining and AI",
+        "$115M 0% exchangeable note funds GB200 capex with minimal cash interest and capped-call dilution protection (cap $4.92)"
+      ],
+      "bear": [
+        "Sub-scale neocloud (~5,500 GPUs) competing against CoreWeave/IREN-class operators with far deeper hyperscaler relationships",
+        "Short AI contract terms (6–24 mo) against a non-IG anchor (Cohere) — low revenue durability vs take-or-pay peers",
+        "Heavy serial ATM dilution (~76% share growth YoY) and high beta (~3.7); equity is the primary funding source",
+        "Most disclosed MW is still BTC mining; AI footprint is small and much of the GPU-cloud pipeline is rumored/early"
+      ],
+      "catalysts": [
+        "GB200 cluster at Bell Merritt energizing late-2026/early-2027 and the +$70M ARR converting to billed revenue",
+        "GPU fleet doubling to ~11,000 and AI Cloud ARR crossing the $200M target",
+        "Grand Falls / New Brunswick Tier III+ conversion securing a hyperscaler or large enterprise tenant",
+        "TSX uplisting (May 2026) plus any move toward longer-term / higher-credit AI contracts"
+      ],
+      "risks": [
+        "AI execution/ramp risk — delays or under-utilization on GB200/Tier III+ buildouts",
+        "Funding risk: reliance on ATM equity and converts; further dilution if AI ARR lags capex",
+        "GPU-rate and AI-demand softening hitting short-term, on-demand and re-contracting revenue",
+        "Bitcoin price / mining economics drag on cash flow and the thin (~150 BTC) treasury; counterparty concentration on Bell/Cohere"
+      ],
+      "finMix": "$115M 0% exchangeable notes (2031) + serial ATM equity + Dell finance lease (504 B200s) + mortgage/term loans; AI capex funded mainly by equity and the convert, not contracted prepayments.",
+      "leaseQ": 2.5,
+      "log": []
+    },
+    {
+      "tk": "APLD",
+      "name": "Applied Digital",
+      "model": "landlord",
+      "tier": "ig",
+      "contractedPct": 85,
+      "termYrs": 15,
+      "mtm": 1,
+      "netDebt": 1034,
+      "shares": 286,
+      "price": 38,
+      "legacyEV": 400,
+      "plannedRaise": 1000,
+      "equityDiscount": 0,
+      "sites": [
+        {
+          "n": "Polaris Forge 1 ELN-01 (Ellendale ND, CoreWeave)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2025,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Polaris Forge 1 ELN-02 (Ellendale ND, CoreWeave)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Polaris Forge 2 Bldg 1 (Harwood ND, IG hyperscaler)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Polaris Forge 1 ELN-03 (Ellendale ND, CoreWeave; completes 400 MW)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Polaris Forge 2 Bldg 2 (Harwood ND; completes 200 MW)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 3,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Delta Forge 1 Ph1 (Rapides Parish LA, IG hyperscaler)",
+          "mw": 150,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Polaris Forge 3 Ph1 (northern US, IG hyperscaler)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 8,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Delta Forge 1 Ph2 (LA; completes 300 MW lease)",
+          "mw": 150,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Polaris Forge 3 Ph2 (completes 300 MW lease)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 3,
+          "prov": "estimated"
+        },
+        {
+          "n": "Delta Forge 1 expansion (430 MW campus balance, uncontracted)",
+          "mw": 130,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Polaris Forge 2 expansion toward 1 GW (uncontracted)",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Polaris Forge 1 expansion toward 1 GW (uncontracted)",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "~$1B judgmental: APLD funds buildout via $2.15B PF2 senior secured notes (6.75% '31), Macquarie $5B perpetual preferred ($2.25M/MW, 12.75%) + ~$900M NCI + converts; telegraphs minimal common-equity/ATM issuance",
+        "tier": "IG — ~1.2 GW under 15-yr take-or-pay, ~65% of revenue backed by U.S. investment-grade hyperscalers (Polaris Forge 2/3, Delta Forge 1); CoreWeave book de-risked to A3 via springing guarantee"
+      },
+      "narrative": "A pure-play AI data-center landlord that exited its own GPU cloud (spun into ChronoScale, ~97%-owned) precisely so hyperscalers would stop seeing it as a competitor — now leasing purpose-built powered shells under ~15-year take-or-pay leases. It has crossed ~1.2 GW of contracted capacity across four campuses (~$31B base / up to ~$73B with renewals): Ellendale/Polaris Forge 1 (400 MW, CoreWeave, now A3-guaranteed) plus Polaris Forge 2, Polaris Forge 3 and Delta Forge 1 leased to U.S. investment-grade hyperscalers (~65% of revenue IG). The investable question is execution and energization on a ~$3B-per-campus buildout funded largely by project debt, Macquarie's perpetual preferred and NCI rather than common equity — plus whether the planned REIT conversion lands.",
+      "bull": [
+        "~1.2 GW fully contracted under 15-yr take-or-pay; ~$31B base backlog, ~65% IG-hyperscaler-backed",
+        "Cloud-business exit removes the channel conflict that blocked colo leasing — pure landlord/REIT story",
+        "Financing model leans on project debt + Macquarie's $5B perpetual preferred + NCI, sparing common dilution",
+        "CoreWeave book de-risked to A3 via springing guarantee; new tenants are direct IG hyperscalers (Oracle-class)"
+      ],
+      "bear": [
+        "Heavy execution/energization risk delivering ~$3B-per-campus shells across four sites by 2027",
+        "12.75% Macquarie preferred and 6.75% notes are expensive capital that sits ahead of common",
+        "Single-tenant-per-campus concentration; one IG hyperscaler anchors both Polaris Forge 3 and Delta Forge 1",
+        "Still loss-making at the corp level; REIT conversion not yet achieved and carries structuring risk"
+      ],
+      "catalysts": [
+        "Energization milestones: ELN-02/03, Polaris Forge 2, then Delta Forge 1 / Polaris Forge 3 (2027)",
+        "Formal REIT election / conversion timeline and first dividend",
+        "New leases filling Delta Forge 1 balance and the ~1 GW expansion options at PF1/PF2",
+        "ChronoScale (EKSO) deal close monetizing/deconsolidating the cloud unit"
+      ],
+      "risks": [
+        "Construction delays or power-interconnect slippage pushing energization and rent commencement",
+        "Refinancing/rate risk on project notes; preferred dividend drag if ramp lags",
+        "Tenant concentration — adverse credit event at the shared IG hyperscaler or at CoreWeave",
+        "AI-demand or colo-rate softening hitting the uncontracted ~1 GW expansion pipeline"
+      ],
+      "finMix": "Project-level senior secured notes (6.75% '31) + Macquarie $5B perpetual preferred (12.75%, 15% common in HPC JV) + NCI contributions + converts; modest corporate equity",
+      "leaseQ": 4.2,
+      "log": []
     }
   ]
 }
