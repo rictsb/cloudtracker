@@ -105,7 +105,8 @@ function renderCmp(){
       <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
       <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
     row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});
-    cont.appendChild(row);});
+    cont.appendChild(row);
+    if(c.thesis){const th=document.createElement('div');th.className='thesisline';th.innerHTML=`<b>${c.tk}</b> — ${c.thesis}`;cont.appendChild(th);}});
   if(!reduce)[...cont.children].forEach(ch=>{const p=old[ch.dataset.tk];if(p==null)return;const dy=p-ch.getBoundingClientRect().top;if(dy){ch.style.transition='none';ch.style.transform=`translateY(${dy}px)`;requestAnimationFrame(()=>{ch.style.transition='';ch.style.transform='';});}});
   document.getElementById('sortlabel').textContent=sortKey==='score'?'relative-strength score':'upside to target';
   document.getElementById('ar-upside').textContent=sortKey==='upside'?(sortDir<0?'▾':'▴'):'';
