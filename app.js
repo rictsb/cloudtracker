@@ -8,6 +8,7 @@ const FMT={
   mult:v=>v.toFixed(1)+'×',
   pct1:v=>v.toFixed(1)+'%',
   months:v=>v+' mo',
+  trend:v=>(v>=0?'+':'')+v+'%/yr',
 };
 
 /* runtime state, populated once data.json loads */
@@ -26,24 +27,28 @@ function fmtPrice(p){return p>=100?'$'+p.toFixed(0):'$'+p.toFixed(2);}
 function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
 
 /* ---- engine ---- */
-function ownerRate(c){const lock=Math.min(c.termYrs/3,1);const ls=lock*(c.contractedPct/100);const realize=c.renewalProb*c.mtm;return ls*CONST.contractRate+(1-ls)*A.rate*realize;}
-// Site-aware contracted/spot split (spec §4): rumored (uncontracted pipeline) earns pure spot and
-// moves with the GPU-rate dial; disclosed/estimated capacity carries the company contracted book,
-// which stays insulated from the dial. `contracted %` remains the company number — no per-site tag.
+function prevailingRate(yrs){return A.rate*Math.pow(1+(A.rateTrend||0)/100,Math.max(0,yrs));}
+function ownerRate(c){return A.rate;}
+// Vintage-rate model (spec §4): $/MW·yr is priced at the rate prevailing when capacity is
+// contracted/energized, and that rate trends over time (the "GPU rate trend" dial). The CONTRACTED
+// share is locked at today's rate; the UNCONTRACTED share floats to the future prevailing rate at
+// its energization vintage — so in a rising-rate world unsold capacity is the upside, not a spot
+// haircut. `contracted %` remains the company number; rumored sites are 100% uncontracted (no lock).
 function siteRates(c,s){
   const lock=Math.min(c.termYrs/3,1);
   const cf=(s.prov==='rumored')?0:(c.contractedPct/100);
   const ls=lock*cf;
-  const spot=A.rate*(c.renewalProb*c.mtm);
-  const contractedRate=ls*CONST.contractRate, spotRate=(1-ls)*spot;
-  return{eff:contractedRate+spotRate,contractedRate,spotRate};
+  const yrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);
+  const prevailing=prevailingRate(yrs);
+  const contractedRate=ls*A.rate, spotRate=(1-ls)*prevailing;
+  return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs};
 }
 function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
 function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,contractedShare,calc;
   if(c.model==='landlord'){const noi=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cap=((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
     contractedShare=(s.prov==='rumored')?0:(c.contractedPct/100);calc={noi,cap};}
   else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
-    contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult};}
+    contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult,prevailing:R.prevailing};}
   const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
   const ev=gross*hair*dfac;
   return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
@@ -133,7 +138,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
     steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − ${(CONST.capCompress*c.contractedPct).toFixed(0)}% contracted`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
   }else{
-    steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% @ $${CONST.contractRate}M contract · rest spot`);
+    steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% locked @ $${A.rate.toFixed(1)}M · rest @ $${(k.prevailing||A.rate).toFixed(1)}M (${s.yr} prevailing, ${(A.rateTrend>=0?'+':'')+(A.rateTrend||0)}%/yr)`);
     steps+=row('Margin',k.m+'%',`${A.margin} ${r.cMargin>=0?'+':'−'}${Math.abs(r.cMargin)} ${r.name.toLowerCase()} ${s.owned?'+'+CONST.ownedCMargin+' owned':CONST.leasedCMargin+' leased'}`);
     steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× × ${tier.multFactor} ${tier.name} · (1 + ${(CONST.multPremium*c.contractedPct/100).toFixed(2)} contracted)`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','rate × margin × multiple');
@@ -145,7 +150,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
   return `<div class="sitecalc">${steps}</div>`;}
-function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);return `<div class="facts">${f('Investability tier',tier.name)}${c.model==='landlord'?f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'):f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×')}${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('Effective realized rate','$'+ownerRate(c).toFixed(1)+'M / MW·yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
+function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);return `<div class="facts">${f('Investability tier',tier.name)}${c.model==='landlord'?f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'):f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×')}${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
 /* ---- build-out over time (cumulative capacity or value, stacked by provenance) ---- */
 function buildoutData(c,v){
   const metric=BUILDOUT_METRIC;

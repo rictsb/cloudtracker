@@ -12,7 +12,8 @@
       "multiple": 7.0,
       "capRate": 9.0,
       "disc": 10,
-      "ramp": 12
+      "ramp": 12,
+      "rateTrend": 6
     },
     "sliders": [
       {
@@ -62,6 +63,14 @@
         "max": 24,
         "step": 3,
         "fmt": "months"
+      },
+      {
+        "k": "rateTrend",
+        "label": "GPU rate trend / yr",
+        "min": -10,
+        "max": 20,
+        "step": 1,
+        "fmt": "trend"
       }
     ],
     "provenance": {
