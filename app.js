@@ -14,7 +14,7 @@ const FMT={
 /* runtime state, populated once data.json loads */
 let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
 let REGION, CONST, PROV, PROV_OP, TIERS;
-let LIVE_PRICES={}, PRICES_AT=null;
+let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
 let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1;
@@ -24,6 +24,10 @@ function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
 function fmtM(x){return Math.abs(x)>=1000?'$'+(x/1000).toFixed(1)+'B':'$'+x.toFixed(0)+'M';}
 function priceOf(c){const p=LIVE_PRICES[c.tk];return (typeof p==='number'&&p>0)?p:c.price;}
 function fmtPrice(p){return p>=100?'$'+p.toFixed(0):'$'+p.toFixed(2);}
+function btcPrice(){return BTC_PRICE||(CFG&&CFG.btcFallback)||60000;}
+// Legacy/non-core EV: BTC treasury marked to a live BTC price + a BTC-independent residual
+// (mining fleet, ASIC business, stakes). Names with no `btc` field just use legacyEV as before.
+function legacyOf(c){const ex=(c.legacyExBtc!=null)?c.legacyExBtc:(c.legacyEV||0);return (c.btc||0)*btcPrice()/1e6+ex;}
 function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
 
 /* ---- engine ---- */
@@ -52,7 +56,7 @@ function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,co
   const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
   const ev=gross*hair*dfac;
   return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
-function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=(c.legacyEV||0);const equity=ev-c.netDebt,px=priceOf(c),target=equity/c.shares;
+function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=legacyOf(c);const equity=(ev-c.netDebt)*(1-(c.equityDiscount||0)),px=priceOf(c),target=equity/c.shares;
   return{ev,equity,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs};}
 function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
 function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
@@ -150,7 +154,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
   return `<div class="sitecalc">${steps}</div>`;}
-function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);return `<div class="facts">${f('Investability tier',tier.name)}${c.model==='landlord'?f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'):f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×')}${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
+function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);return `<div class="facts">${f('Investability tier',tier.name)}${c.model==='landlord'?f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'):f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×')}${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${c.btc?f('BTC treasury',`${c.btc.toLocaleString()} ₿ × $${Math.round(btcPrice()).toLocaleString()} = ${fmtM(c.btc*btcPrice()/1e6)}`):''}${c.equityDiscount?f('Governance / control discount',(c.equityDiscount*100).toFixed(0)+'% off equity'):''}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
 /* ---- build-out over time (cumulative capacity or value, stacked by provenance) ---- */
 function buildoutData(c,v){
   const metric=BUILDOUT_METRIC;
@@ -206,11 +210,12 @@ function buildoutHTML(c,v){
 function toggleBuildout(m){BUILDOUT_METRIC=m;if(FP_COMPANY){const el=document.getElementById('buildout');if(el)el.innerHTML=buildoutHTML(FP_COMPANY,value(FP_COMPANY));}}
 /* ---- value bridge waterfall ---- */
 function waterfallHTML(c,v){
-  const legacy=c.legacyEV||0,computeEV=v.ev-legacy,totalEV=v.ev,nd=c.netDebt,equity=v.equity;
+  const legacy=legacyOf(c),computeEV=v.ev-legacy,totalEV=v.ev,nd=c.netDebt,equity=v.equity;
   const steps=[{label:'Sites',val:computeEV,from:0,to:computeEV,k:'pos'}];
   let run=computeEV;
   if(legacy){steps.push({label:'Legacy',val:legacy,from:run,to:run+legacy,k:'pos'});run+=legacy;}
   steps.push({label:nd>=0?'Net debt':'Net cash',val:-nd,from:run,to:run-nd,k:nd>=0?'neg':'pos'});run-=nd;
+  if(c.equityDiscount){const gd=run*c.equityDiscount;steps.push({label:'Gov. disc',val:-gd,from:run,to:run-gd,k:'neg'});run-=gd;}
   steps.push({label:'Equity',val:equity,from:0,to:equity,k:'tot'});
   const max=Math.max(computeEV,totalEV,equity,1e-9);
   const W=640,H=230,ml=54,mr=14,mt=14,mb=28,pw=W-ml-mr,ph=H-mt-mb;
@@ -295,14 +300,15 @@ function wireEvents(){
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
-  const rb=document.getElementById('refreshprices');if(rb)rb.addEventListener('click',fetchPrices);
+  const rb=document.getElementById('refreshprices');if(rb)rb.addEventListener('click',()=>{fetchPrices();fetchBtc();});
   addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('fullpage').classList.contains('on'))setHash('');});
   addEventListener('hashchange',route);
 }
 
 /* ---- live prices (Finnhub, hourly) ---- */
 function updatePriceNote(live){const el=document.getElementById('pricenote');if(!el)return;
-  el.textContent=live&&PRICES_AT?`· prices: Finnhub · updated ${PRICES_AT.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`:'· prices: manual';}
+  const base=live&&PRICES_AT?`· prices: Finnhub · updated ${PRICES_AT.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`:'· prices: manual';
+  el.textContent=base+(BTC_PRICE?` · BTC $${Math.round(BTC_PRICE).toLocaleString()}`:'');}
 let FETCHING=false;
 async function fetchPrices(){
   const token=(typeof window!=='undefined'&&window.FINNHUB_TOKEN)||'';
@@ -316,6 +322,11 @@ async function fetchPrices(){
       if(j&&typeof j.c==='number'&&j.c>0)LIVE_PRICES[c.tk]=j.c;}catch(e){}
   }));
   PRICES_AT=new Date();FETCHING=false;if(btn)btn.disabled=false;updatePriceNote(true);render();
+}
+async function fetchBtc(){
+  try{const r=await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
+    if(!r.ok)return;const j=await r.json();const p=parseFloat(j&&j.data&&j.data.amount);
+    if(p>0){BTC_PRICE=p;BTC_AT=new Date();updatePriceNote(!!PRICES_AT);render();}}catch(e){}
 }
 
 /* ---- boot: load data, then build ---- */
@@ -342,8 +353,8 @@ async function boot(){
     buildControls();
     wireEvents();
     route();
-    fetchPrices();
-    setInterval(fetchPrices,3600000);
+    fetchPrices();fetchBtc();
+    setInterval(()=>{fetchPrices();fetchBtc();},3600000);
   }catch(err){
     document.getElementById('rows').innerHTML=`<div class="appmsg err">Could not load data.json — ${err.message}. Serve this folder over HTTP (not file://).</div>`;
   }

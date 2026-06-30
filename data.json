@@ -130,7 +130,8 @@
       "leasedCMargin": -3,
       "ownedLNOI": 1.0,
       "leasedLNOI": 0.9
-    }
+    },
+    "btcFallback": 60000
   },
   "companies": [
     {
@@ -640,7 +641,7 @@
       "tk": "RIOT",
       "name": "Riot Platforms",
       "model": "landlord",
-      "tier": "proven",
+      "tier": "ig",
       "contractedPct": 5,
       "termYrs": 10,
       "renewalProb": 0.68,
@@ -652,7 +653,7 @@
       "legacyEV": 1360,
       "costOfDebt": 6.0,
       "finMix": "0.75% converts + BTC-backed Coinbase loan + ATM/BTC recycling; net debt (net cash on BTC look-through)",
-      "narrative": "A Bitcoin miner mid-pivot into AI/HPC colocation landlording on ~2.0 GW of owned, approved, cheap-ERCOT power (Corsicana ~1.0 GW + Rockdale ~0.7 GW in Texas; Kentucky mining-only). The pivot is real but early-stage: one signed AI lease — AMD, 50 MW critical IT at Rockdale, a 10-yr deal (~$510M NOI over the initial term) with options for up to ~150 MW more. Everything else is pipeline — Corsicana's first 168 MW core-and-shell is under construction with no signed tenant, inside a ~1 GW envelope that is otherwise uncontracted. Value is dominated by two non-core legacy assets (~$1.4B in legacyEV): a ~15,700 BTC treasury (highly BTC-price-sensitive) and an FCF-negative 42.5 EH/s mining fleet whose underlying power and land are the very assets being converted to AI. Activist Starboard is pushing the pivot harder. The core question is execution: can Corsicana sign credible tenants and lease up on the implied timeline, or is the AI optionality already more than priced in?",
+      "narrative": "A Bitcoin miner mid-pivot into AI/HPC colocation landlording on ~2.0 GW of owned, approved, cheap-ERCOT power (Corsicana ~1.0 GW + Rockdale ~0.7 GW in Texas; Kentucky mining-only). The pivot is real but early-stage: one signed AI lease — AMD, 50 MW critical IT at Rockdale, a 10-yr deal (~$510M NOI over the initial term) with options for up to ~150 MW more. Everything else is pipeline — Corsicana's first 168 MW core-and-shell is under construction with no signed tenant, inside a ~1 GW envelope that is otherwise uncontracted. Value is dominated by two non-core legacy assets (legacyEV): a 15,680 BTC treasury marked to the live BTC price (so the target moves ~$0.4/sh per ±$10K of BTC) and an FCF-negative 42.5 EH/s mining fleet whose underlying power and land are the very assets being converted to AI. Activist Starboard is pushing the pivot harder. The core question is execution: can Corsicana sign credible tenants and lease up on the implied timeline, or is the AI optionality already more than priced in?",
       "bull": [
         "Massive owned, approved, low-cost ERCOT power runway (~1.7 GW Texas) — the scarce input for AI colo, years to replicate",
         "AMD (investment-grade) proof-of-concept lease: 50 MW, 10-yr, ~$510M NOI, ~$1M+ NOI/MW — plus options for ~150 MW more",
@@ -773,7 +774,9 @@
           "s": "Co. release",
           "x": "Signs AMD anchor lease (25→50 MW) at Rockdale; acquires 200 acres fee-simple for $96M (funded by BTC sale)."
         }
-      ]
+      ],
+      "btc": 15680,
+      "legacyExBtc": 250
     },
     {
       "tk": "BTDR",
@@ -942,7 +945,9 @@
           "s": "Q1'26 results (6-K)",
           "x": "Borrowings ~$1.92B (mostly convertibles); cash $261M; self-mining gross income −$34.4M; net debt ~$1.66B."
         }
-      ]
+      ],
+      "btc": 0,
+      "equityDiscount": 0.15
     },
     {
       "tk": "IREN",
