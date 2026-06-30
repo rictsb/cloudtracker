@@ -2074,79 +2074,61 @@
       "equityDiscount": 0.15,
       "sites": [
         {
-          "n": "Project Matador Ph.1 (first powered shell, Amarillo TX)",
-          "mw": 150,
+          "n": "Matador — grid (SPS 200MW ESA, energizing)",
+          "mw": 200,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Matador — gas Phase 1 (turbines ordered, 6GW air permit)",
+          "mw": 1000,
           "owned": true,
           "region": "cheap",
           "yr": 2027,
-          "mo": 6,
-          "prov": "rumored"
+          "mo": 12,
+          "prov": "estimated"
         },
         {
-          "n": "Project Matador Ph.2",
-          "mw": 250,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2028,
-          "mo": 1,
-          "prov": "rumored"
-        },
-        {
-          "n": "Project Matador Ph.3",
-          "mw": 350,
+          "n": "Matador — gas Phase 2 (permitted headroom)",
+          "mw": 800,
           "owned": true,
           "region": "cheap",
           "yr": 2029,
-          "mo": 1,
-          "prov": "rumored"
-        },
-        {
-          "n": "Project Matador Ph.4",
-          "mw": 500,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2030,
-          "mo": 1,
-          "prov": "rumored"
-        },
-        {
-          "n": "Project Matador Ph.5 (expansion toward 11GW permit)",
-          "mw": 600,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2031,
-          "mo": 1,
+          "mo": 6,
           "prov": "rumored"
         }
       ],
       "basis": {
-        "plannedRaise": "Dev-stage, pre-revenue, no binding tenant; ~$243M cash (Q1'26) vs a multi-billion capex gap and no contracted cash flow to carry much debt — equity/ATM-heavy funding, ~$3.5B cumulative implied to fund even a partial multi-GW shell buildout against a ~$6B cap.",
-        "equityDiscount": "0.15: board entrenchment (70% supermajority to expand the board), Perry/Neugebauer founder control, active governance litigation / proxy fight, dual-listing (Nasdaq + LSE)."
+        "plannedRaise": "~$3.5B: pre-revenue, multi-GW gas+shell capex vs ~$243M cash; ~$785M non-recourse equipment finance funds turbines, equity/ATM funds the rest",
+        "tier": "proven — no contracted income; re-rates only on a signed hyperscaler/OpenAI anchor"
       },
-      "narrative": "Fermi is a development-stage behind-the-meter power + data-center landlord building \"Project Matador,\" an aspirational 11-17 GW gas/solar/(eventual)nuclear AI campus on a 99-year Texas Tech land lease near Amarillo, TX. It is a landlord (powered shells leased to tenants who bring their own GPUs), not a GPU owner-operator — but as of mid-2026 it has zero operating capacity, no binding tenant (its ~$150M anchor, reportedly Amazon, terminated late-2025/early-2026), a CEO departure, and an active Perry-vs-Neugebauer governance war. ~2 GW of gas generation is secured/under-LOI and a 6 GW air permit is granted, yet satellite imagery shows negligible vertical construction, so realistic powered-shell delivery is a small fraction of the headline and lags the 2026 promise — first meaningful capacity is more credibly mid-2027 at earliest.",
+      "narrative": "Fermi Inc / Fermi America (NASDAQ:FRMI) — 'Project Matador,' a 5,236-acre powered-land play in Amarillo TX (99-yr Texas Tech lease, next to DOE Pantex). The case is OPTIONALITY ON A SCARCE, MASSIVE POWER SITE: a ~6 GW TCEQ air permit APPROVED (the binding scarce asset), a 10-yr Energy Transfer firm gas supply (~2 GW), ~1.5-2.2 GW of gas turbines ordered/LOI, and a 200 MW grid ESA — a credible ~2 GW firm secured-power base, with an 11-17 GW permitting ambition (nuclear AP1000 / SMR / solar) as a deep out-of-the-money option. But it is PRE-TENANT and in governance reset: the first anchor (Amazon-linked) collapsed Dec 2025, the CEO and CFO departed into a 'Fermi 2.0' restructuring, and talks (including OpenAI) are unsigned. Value here credits the ~2 GW firm secured power as graded RAW-power optionality (estimated/rumored, pre-tenant), not built or contracted capacity — a signed hyperscaler/OpenAI anchor is the binary re-rating event.",
       "bull": [
-        "Crown-jewel land/power position: 99-yr Texas Tech lease on 5,263 acres, 6 GW air permit granted (path to 11-17 GW), ~2 GW gas generation secured/under-LOI and 300K MMBtu/day gas — genuinely scarce powered land in cheap-power ERCOT/Panhandle.",
-        "Behind-the-meter, self-generated power sidesteps grid-interconnection queues that constrain peers — a structural speed advantage IF executed.",
-        "Optionality on a single hyperscaler 20-year anchor lease: one binding deal would re-rate the contracted book from zero and validate the model.",
-        "Backed by high-profile sponsors (Rick Perry) and a balance sheet that is still near net-cash relative to its market cap."
+        "~6 GW TCEQ air permit APPROVED + firm Energy Transfer gas (~2GW) + 1.5-2.2GW turbines ordered — a scarce, near-irreplaceable powered-land position",
+        "Behind-the-meter gas self-generation bypasses the multi-year ERCOT/SPP interconnection queue",
+        "Free option on the 11-17 GW ambition (AP1000 nuclear COLA accepted) if it ever develops",
+        "A signed hyperscaler / OpenAI anchor would re-rate the entire site overnight"
       ],
       "bear": [
-        "Zero operating capacity and zero binding tenants — the $150M anchor (reportedly Amazon) terminated; the entire revenue book is speculative.",
-        "Execution badly behind: IPO promised 1M sq ft / 1 GW by end-2026; satellite imagery shows negligible vertical construction, implying first capacity ~mid-2027+.",
-        "Governance crisis: CEO departed, active Perry-vs-Neugebauer proxy/litigation fight, 70% board-entrenchment supermajority — distraction and control overhang.",
-        "Funding gap is enormous vs ~$243M cash; multi-GW build needs billions of equity into a pre-revenue, no-contract story — heavy dilution risk."
+        "ZERO binding tenants — first anchor collapsed Dec 2025; OpenAI/hyperscaler talks unsigned",
+        "Governance/execution reset: CEO + CFO departed, 'Fermi 2.0', securities class action",
+        "Multi-billion capex vs ~$243M cash → heavy dilution to build anything beyond the firm ~2GW",
+        "11-17 GW headline is permitting ambition, not secured capacity; nuclear is 2032+ and likely slips"
       ],
       "catalysts": [
-        "First binding long-term (20-yr) anchor lease with an investment-grade hyperscaler (stated 90-day priority).",
-        "First commercial power delivery / first energized shell (targeted 2026, realistically 2027).",
-        "Resolution of the Perry/Neugebauer governance dispute, new permanent CEO, possible change-of-control / strategic transaction.",
-        "5 GW incremental air-permit approval and NRC progress on the Westinghouse reactor (long-dated nuclear optionality)."
+        "First binding hyperscaler / OpenAI anchor lease — the single re-rating event",
+        "Gas turbines energizing (~2 GW gas+grid targeted end-2027)",
+        "New permanent CEO / 'Fermi 2.0' execution",
+        "2nd ~5 GW air-permit approval (toward the 17 GW envelope)"
       ],
       "risks": [
-        "No tenant ever materializes → stranded power assets, forced surrender of turbine collateral, liquidity squeeze.",
-        "Construction/permitting slips push first revenue to 2028+, compounding cash burn and dilution.",
-        "Governance war destroys value / triggers a distressed sale; founder entrenchment blocks shareholder remedies.",
-        "Capital-markets access tightens for a pre-revenue dev-stage name, forcing dilutive raises at depressed prices or asset sales."
+        "No tenant ever signs — the site stays raw, unleased power",
+        "Heavy dilution to fund the multi-GW build",
+        "Nuclear/SMR timeline slips or never funds",
+        "Governance + litigation overhang"
       ],
       "finMix": "Near net-cash today (~$421M debt incl. equipment finance vs ~$243M cash → ~$178M net debt, op-leases excluded); funded so far by IPO (~$746M), converts/preferred, and non-recourse equipment financing (MUFG $500M, Yorkville $156M) — but the multi-GW buildout will be overwhelmingly equity/ATM-dependent given no contracted cash flow.",
       "leaseQ": 2,
