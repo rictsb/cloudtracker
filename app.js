@@ -45,8 +45,8 @@ function siteRates(c,s){
 }
 function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
 function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,contractedShare,calc;
-  if(c.model==='landlord'){const noi=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cap=((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
-    contractedShare=(s.prov==='rumored')?0:(c.contractedPct/100);calc={noi,cap};}
+  if(c.model==='landlord'){const vyrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);const escal=Math.pow(1+(A.rateTrend||0)/100,vyrs);const baseNOI=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cs0=(s.prov==='rumored')?0:(c.contractedPct/100);const trendMult=cs0+(1-cs0)*escal;const noi=baseNOI*trendMult;const cap=((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
+    contractedShare=trendMult>0?cs0/trendMult:0;calc={noi,cap,baseNOI,prevailingNOI:baseNOI*escal};}
   else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
     contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult,prevailing:R.prevailing};}
   const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
@@ -134,7 +134,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   const row=(a,b,note)=>`<div class="cstep"><span>${a}</span><span class="cval">${b}</span><span class="cnote">${note||''}</span></div>`;
   let steps='';
   if(c.model==='landlord'){
-    steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`$${CONST.landlordNOI}M base · ${r.name.toLowerCase()} · ${s.owned?'owned':'leased'} · MTM`);
+    steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`${Math.round(sg.contractedShare*100)}% locked @ $${(k.baseNOI||k.noi).toFixed(2)}M · rest @ $${(k.prevailingNOI||k.baseNOI||k.noi).toFixed(2)}M (${s.yr} prevailing, ${(A.rateTrend>=0?'+':'')+(A.rateTrend||0)}%/yr)`);
     steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − ${(CONST.capCompress*c.contractedPct).toFixed(0)}% contracted`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
   }else{
