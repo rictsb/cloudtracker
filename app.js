@@ -14,7 +14,7 @@ const FMT={
 /* runtime state, populated once data.json loads */
 let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
 let REGION, CONST, PROV, PROV_OP, TIERS;
-let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null;
+let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
 let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1;
@@ -25,9 +25,12 @@ function fmtM(x){return Math.abs(x)>=1000?'$'+(x/1000).toFixed(1)+'B':'$'+x.toFi
 function priceOf(c){const p=LIVE_PRICES[c.tk];return (typeof p==='number'&&p>0)?p:c.price;}
 function fmtPrice(p){return p>=100?'$'+p.toFixed(0):'$'+p.toFixed(2);}
 function btcPrice(){return BTC_PRICE||(CFG&&CFG.btcFallback)||60000;}
-// Legacy/non-core EV: BTC treasury marked to a live BTC price + a BTC-independent residual
-// (mining fleet, ASIC business, stakes). Names with no `btc` field just use legacyEV as before.
-function legacyOf(c){return (c.btc||0)*btcPrice()/1e6+(c.legacyEV||0);}  // legacyEV = non-BTC residual; btc marked live
+function ethPrice(){return ETH_PRICE||(CFG&&CFG.ethFallback)||3000;}
+// Look-through value of a controlling stake in another tracked name (SOTP holdcos, e.g. BTBT → WhiteFiber).
+// pct × that company's modeled equity; auto-updates as the held company's inputs/price move (the "routine").
+function stakeValue(c){if(!c.stake)return 0;const t=COMPANIES&&COMPANIES.find(x=>x.tk===c.stake.tk);return t?(c.stake.pct||0)*value(t).equity:0;}
+// Legacy/non-core EV = BTC + ETH treasuries (marked live) + look-through stakes + a non-crypto residual (mining/software).
+function legacyOf(c){return (c.btc||0)*btcPrice()/1e6+(c.eth||0)*ethPrice()/1e6+stakeValue(c)+(c.legacyEV||0);}
 function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
 
 /* ---- engine ---- */
@@ -96,7 +99,7 @@ function renderCmp(){
     const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(0)+'%',totMW=c.sites.reduce((a,s)=>a+s.mw,0);
     const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
     row.innerHTML=`<div class="rank">${i+1}</div>
-      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
+      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':c.model==='holdco'?'holdco / SOTP':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.model==='holdco'?'sum-of-the-parts':c.contractedPct+'% contracted · '+c.termYrs+'y term'}</span></div>
       <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div>${splitBarHTML(v)}<div class="stacklabel"><span>Contracted ${splitParts(v).cf.toFixed(0)}%</span><span>Expected ${splitParts(v).eu.toFixed(0)}%</span></div></div>
       <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
       <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
@@ -163,18 +166,26 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
   return `<div class="sitecalc">${steps}</div>`;}
-function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);const v=value(c);const bz=c.basis||{};const owner=c.model!=='landlord';return `<div class="facts">`+
-  f('Investability tier',tier.name+(bz.tier?` · ${bz.tier}`:''))+
-  (owner?f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×'):f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'))+
-  f('Contracted today',c.contractedPct+'%')+
-  (owner?f('Avg term remaining',c.termYrs+' yrs'):'')+
-  (!owner?f('Mark-to-market (% original)',(c.mtm*100).toFixed(0)+'%'):'')+
-  (owner?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):'')+
+function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);const v=value(c);const bz=c.basis||{};const owner=c.model!=='landlord';const holdco=c.model==='holdco';
+  let stakeRow='';
+  if(c.stake){const t=COMPANIES.find(x=>x.tk===c.stake.tk);const mkt=t?(c.stake.pct*t.shares*priceOf(t)):0;const cap=c.shares*priceOf(c);
+    stakeRow=f(`Stake: ${(c.stake.pct*100).toFixed(0)}% of ${c.stake.tk}`,`${fmtM(stakeValue(c))} (modeled value)`)+
+      f(`↳ ${c.stake.tk} stake at market`,`${fmtM(mkt)} vs ${c.tk} mkt cap ${fmtM(cap)}${mkt>cap?' — stake alone > whole company':''}`);}
+  const ethRow=c.eth?f('ETH treasury',`${c.eth.toLocaleString()} Ξ × $${Math.round(ethPrice()).toLocaleString()} = ${fmtM(c.eth*ethPrice()/1e6)}`):'';
+  const btcRow=c.btc?f('BTC treasury',`${c.btc.toLocaleString()} ₿ × $${Math.round(btcPrice()).toLocaleString()} = ${fmtM(c.btc*btcPrice()/1e6)}`):'';
+  return `<div class="facts">`+
+  (holdco?'':f('Investability tier',tier.name+(bz.tier?` · ${bz.tier}`:'')))+
+  (holdco?'':(owner?f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×'):f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%')))+
+  (holdco?'':f('Contracted today',c.contractedPct+'%'))+
+  (holdco?'':(owner?f('Avg term remaining',c.termYrs+' yrs'):''))+
+  (holdco?'':(!owner?f('Mark-to-market (% original)',(c.mtm*100).toFixed(0)+'%'):''))+
+  (holdco?'':(owner?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):''))+
+  stakeRow+ethRow+btcRow+
+  (c.legacyEV?f(holdco?'Legacy mining':'Legacy / other',fmtM(c.legacyEV)):'')+
   f('Net debt',fmtM(c.netDebt))+
-  (c.btc?f('BTC treasury',`${c.btc.toLocaleString()} ₿ × $${Math.round(btcPrice()).toLocaleString()} = ${fmtM(c.btc*btcPrice()/1e6)}`):'')+
   (c.equityDiscount?f('Governance / control discount',(c.equityDiscount*100).toFixed(0)+'% off equity'+(bz.equityDiscount?` · ${bz.equityDiscount}`:'')):'')+
-  f('Financing mix',c.finMix||'—')+
-  f('Discount rate (time)',A.disc.toFixed(0)+'%')+
+  (holdco?'':f('Financing mix',c.finMix||'—'))+
+  (holdco?'':f('Discount rate (time)',A.disc.toFixed(0)+'%'))+
   f('Shares out',c.shares+'M')+
   (v.equityRaise>0?f('Planned equity raise',fmtM(v.equityRaise)+' @ '+fmtPrice(v.price)+(bz.plannedRaise?` · ${bz.plannedRaise}`:'')):'')+
   (v.newShares>0?f('Funded shares (incl. dilution)',Math.round(v.fundedShares)+'M ('+(v.newShares/c.shares*100).toFixed(0)+'% dilution)'):'')+
@@ -325,7 +336,7 @@ function wireEvents(){
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
-  const rb=document.getElementById('refreshprices');if(rb)rb.addEventListener('click',()=>{fetchPrices();fetchBtc();});
+  const rb=document.getElementById('refreshprices');if(rb)rb.addEventListener('click',()=>{fetchPrices();fetchBtc();fetchEth();});
   addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('fullpage').classList.contains('on'))setHash('');});
   addEventListener('hashchange',route);
 }
@@ -333,7 +344,7 @@ function wireEvents(){
 /* ---- live prices (Finnhub, hourly) ---- */
 function updatePriceNote(live){const el=document.getElementById('pricenote');if(!el)return;
   const base=live&&PRICES_AT?`· prices: Finnhub · updated ${PRICES_AT.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`:'· prices: manual';
-  el.textContent=base+(BTC_PRICE?` · BTC $${Math.round(BTC_PRICE).toLocaleString()}`:'');}
+  el.textContent=base+(BTC_PRICE?` · BTC $${Math.round(BTC_PRICE).toLocaleString()}`:'')+(ETH_PRICE?` · ETH $${Math.round(ETH_PRICE).toLocaleString()}`:'');}
 let FETCHING=false;
 async function fetchPrices(){
   const token=(typeof window!=='undefined'&&window.FINNHUB_TOKEN)||'';
@@ -352,6 +363,11 @@ async function fetchBtc(){
   try{const r=await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
     if(!r.ok)return;const j=await r.json();const p=parseFloat(j&&j.data&&j.data.amount);
     if(p>0){BTC_PRICE=p;BTC_AT=new Date();updatePriceNote(!!PRICES_AT);render();}}catch(e){}
+}
+async function fetchEth(){
+  try{const r=await fetch('https://api.coinbase.com/v2/prices/ETH-USD/spot');
+    if(!r.ok)return;const j=await r.json();const p=parseFloat(j&&j.data&&j.data.amount);
+    if(p>0){ETH_PRICE=p;updatePriceNote(!!PRICES_AT);render();}}catch(e){}
 }
 
 /* ---- boot: load data, then build ---- */
@@ -378,8 +394,8 @@ async function boot(){
     buildControls();
     wireEvents();
     route();
-    fetchPrices();fetchBtc();
-    setInterval(()=>{fetchPrices();fetchBtc();},3600000);
+    fetchPrices();fetchBtc();fetchEth();
+    setInterval(()=>{fetchPrices();fetchBtc();fetchEth();},3600000);
   }catch(err){
     document.getElementById('rows').innerHTML=`<div class="appmsg err">Could not load data.json — ${err.message}. Serve this folder over HTTP (not file://).</div>`;
   }

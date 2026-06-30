@@ -154,7 +154,8 @@
       "ownedLNOI": 1.0,
       "leasedLNOI": 0.9
     },
-    "btcFallback": 60000
+    "btcFallback": 60000,
+    "ethFallback": 3000
   },
   "companies": [
     {
@@ -1419,7 +1420,7 @@
       "netDebt": 7500,
       "shares": 113,
       "price": 118.27,
-      "legacyEV": 600,
+      "legacyEV": 0,
       "btc": 5600,
       "plannedRaise": 500,
       "equityDiscount": 0.05,
@@ -1471,7 +1472,8 @@
         }
       ],
       "basis": {
-        "plannedRaise": "parent recourse net debt ~$0 (Coatue convert nets w/ cash); $7.5B is nonrecourse SPV project debt netted against the campuses"
+        "plannedRaise": "parent recourse net debt ~$0 (Coatue convert nets w/ cash); $7.5B is nonrecourse SPV project debt netted against the campuses",
+        "stake": "55.3% economic of American Bitcoin (ABTC), marked live; replaces the old generic legacy residual (HUT folded ~all mining into ABTC)"
       },
       "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
       "bull": [
@@ -1500,7 +1502,11 @@
       ],
       "finMix": "Funded mainly by IG non-recourse project bonds (~$7.5B, 6.1–6.2% coupons, 95% LTC, fully amortizing) plus capital recycling; parent recourse limited to a $200M BTC-backed FalconX facility and the in-the-money Coatue $150M convert; ~5,600 BTC + ~$700M cash and an ~80% ABTC stake provide a liquidity cushion.",
       "leaseQ": 2,
-      "log": []
+      "log": [],
+      "stake": {
+        "tk": "ABTC",
+        "pct": 0.553
+      }
     },
     {
       "tk": "CIFR",
@@ -2528,6 +2534,192 @@
       ],
       "finMix": "Project-level senior secured notes (6.75% '31) + Macquarie $5B perpetual preferred (12.75%, 15% common in HPC JV) + NCI contributions + converts; modest corporate equity",
       "leaseQ": 4.2,
+      "log": []
+    },
+    {
+      "tk": "ABTC",
+      "name": "American Bitcoin",
+      "model": "holdco",
+      "tier": "proven",
+      "contractedPct": 0,
+      "termYrs": 0,
+      "mtm": 1,
+      "netDebt": -50,
+      "shares": 1060,
+      "price": 0.68,
+      "legacyEV": 150,
+      "btc": 7200,
+      "plannedRaise": 0,
+      "equityDiscount": 0,
+      "sites": [],
+      "basis": {
+        "plannedRaise": "BTC treasury + ~89k-rig self-mining; funds via BTC cash flow + capital markets"
+      },
+      "narrative": "American Bitcoin (NASDAQ:ABTC) — a Bitcoin treasury + self-mining vehicle majority-owned by Hut 8 (55.3% economic / ~80% vote). Value is ~7,200 BTC marked live plus a self-mining fleet; tracked here mainly so HUT's stake marks to a live look-through. Not an AI-infra name. (Figures pre the 1-for-15 reverse split approved Jun 2026.)",
+      "bull": [
+        "Direct BTC-price leverage via treasury + mining",
+        "Hut 8 operational backing + scale"
+      ],
+      "bear": [
+        "No AI/HPC exposure — pure crypto",
+        "Trades around BTC NAV; ATM dilution",
+        "Reverse split pending"
+      ],
+      "catalysts": [
+        "BTC price",
+        "Treasury accumulation / capital raises"
+      ],
+      "risks": [
+        "BTC drawdown",
+        "Dilution",
+        "Concentrated Hut 8 / affiliated control"
+      ],
+      "finMix": "BTC treasury + mining cash flow + capital markets",
+      "leaseQ": 1.0,
+      "log": []
+    },
+    {
+      "tk": "CLSK",
+      "name": "CleanSpark, Inc.",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 0,
+      "termYrs": 12,
+      "mtm": 1,
+      "netDebt": 1559,
+      "shares": 257,
+      "price": 15.37,
+      "legacyEV": 450,
+      "btc": 13470,
+      "plannedRaise": 300,
+      "equityDiscount": 0,
+      "sites": [
+        {
+          "n": "Sandersville, GA — AI conversion (Meta frontrunner; basis-of-design)",
+          "mw": 250,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "rumored"
+        },
+        {
+          "n": "Sealy / Austin County, TX — Phase 1 (energization H1'27)",
+          "mw": 207,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 3,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Sealy / Austin County, TX — Phase 2-3 (+40 MW each)",
+          "mw": 78,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Brazoria County, TX — campus (300 MW load secured)",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 3,
+          "prov": "estimated"
+        },
+        {
+          "n": "Brazoria County, TX — expansion (to 600 MW)",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "~$300M: mgmt is explicitly anti-dilution (\"dilution is not a strategy, discipline is\"), $0 ATM in 15 months, and bought back $463M of stock. But ~900 MW of TX AI campuses at $9-11M/MW implies ~$8-9B of capex vs ~$0.8B liquidity — once leases sign, some equity at the margin alongside heavy project debt is realistic.",
+        "tier": "proven: zero signed AI/HPC leases or LOIs — only basis-of-design talks (Meta frontrunner at Sandersville). No IG-rated contracted income yet, so base case stays Proven; re-rating to IG is upside if an anchor lease lands."
+      },
+      "narrative": "CleanSpark is a top-tier U.S. Bitcoin miner (~50 EH/s, ~13,470 BTC treasury, 1.8 GW of contracted power across Georgia/Tennessee/Mississippi/Wyoming) executing a deliberate, capital-disciplined pivot into AI/HPC as a powered-shell LANDLORD — not a GPU owner-operator. Management is explicit: it will \"build the shell, slot in the reference architecture\" per tenant and sign long-term leases with \"Grade A credit quality\" tenants, owning the real estate and power, not the compute. The pivot is real but entirely pre-contract: the AI book has ZERO signed leases or LOIs as of mid-2026 — only basis-of-design negotiations, with Meta cited as the \"clear frontrunner\" for the 250 MW Sandersville, GA campus and advanced talks with an investment-grade hyperscaler. The land grab is genuine: two greenfield ERCOT campuses near Houston (Sealy/Austin County 285 MW, energizing ~207 MW H1 2027; Brazoria County 300 MW, expandable to 600 MW, ~late-2027/early-2028), both fee-simple land with secured/approved power, plus the existing energized Sandersville site being converted from mining to AI. Capital structure is now convert-heavy ($1.84B of 0% notes, ~$1.56B net debt excl. BTC) but un-diluted — mgmt repaid all BTC-backed lines and bought back $463M of stock, and intends to fund the ~$9-11M/MW buildout via project/high-yield debt against future IG leases rather than equity. The investable question is pure execution: can CLSK convert \"frontrunner\" talks into a signed IG anchor lease (the single re-rating event) before the speculative TX capex commits, and is the AI optionality already priced into a stock that has run on Meta headlines?",
+      "bull": [
+        "Owns/controls 1.8 GW of power, fee-simple land and energized infrastructure — the scarce input for AI colo; ~900 MW of greenfield ERCOT (cheap-power) campuses already secured near Houston",
+        "Meta is the named \"clear frontrunner\" for the 250 MW Sandersville site plus advanced talks with an IG hyperscaler — a single signed anchor would re-rate the whole book from mining to IG colo",
+        "Genuinely capital-disciplined: $0 ATM in 15 months, $463M buyback (~20% fewer shares), all BTC-backed debt repaid — pivot funded by 0% converts + BTC cash flow, not dilution",
+        "Asymmetric optionality: ~13,470 BTC treasury (live-marked) plus 50 EH/s mining cash flow underwrite the buildout while the landlord pivot is free-optioned on top"
+      ],
+      "bear": [
+        "AI book is 100% pre-contract — zero signed leases or even LOIs; the entire landlord thesis rests on basis-of-design talks that may slip or fall through",
+        "Late mover with no data-center-leasing track record, competing against proven landlords (CORZ, APLD, Fermi) for the same hyperscaler demand",
+        "Big speculative ERCOT capex looming (~$9-11M/MW × ~900 MW ≈ $8-9B) against ~$0.8B liquidity — a financing gap that could force dilution if leases lag the build",
+        "BTC-heavy: treasury, mining cash flow and 100% of current revenue ride Bitcoin; a drawdown hits asset value and the self-funding plan at once (Q2 net loss $378M on BTC mark)"
+      ],
+      "catalysts": [
+        "First signed AI/HPC anchor lease (Meta at Sandersville the frontrunner) — mgmt guides announcements \"within less than a year\"; the single biggest re-rating event",
+        "Sealy (Austin County) TX energizing ~207 MW in H1 2027 and Brazoria County closing/energizing into late-2027",
+        "Conversion of Sandersville from BTC mining to AI tenant occupancy (basis-of-design → definitive lease)",
+        "Project/high-yield debt financing secured against an IG lease, validating the no-equity funding model"
+      ],
+      "risks": [
+        "Contracting risk — no signed AI demand; talks may not convert, leaving large MW on mining-only economics",
+        "BTC price — drives treasury value, mining cash flow and the self-funding buildout plan simultaneously",
+        "Speculative-build / financing risk — multi-GW TX capex committed ahead of demand; dilution if project debt requires a signed lease that slips",
+        "Execution / competency risk — first-time data-center landlord vs. established colo operators chasing the same hyperscalers"
+      ],
+      "finMix": "$1.84B of 0% convertible notes (2030 $692M + 2032 $1.15B); all BTC-backed credit lines repaid with convert proceeds; net debt ~$1.56B excl. BTC. Buildout to be financed primarily by project/high-yield debt against future IG anchor leases (mgmt cites Cipher-style 6-8% hyperscaler-backed debt) plus monthly BTC production and ~$0.8B liquidity; equity (ATM) deliberately a last resort — zero issuance in 15 months, ~20% share count REDUCED via $463M buyback.",
+      "leaseQ": 2.5,
+      "log": []
+    },
+    {
+      "tk": "BTBT",
+      "name": "Bit Digital",
+      "model": "holdco",
+      "tier": "proven",
+      "contractedPct": 0,
+      "termYrs": 0,
+      "mtm": 1,
+      "netDebt": 255,
+      "shares": 349,
+      "price": 1.8,
+      "legacyEV": 30,
+      "eth": 158461,
+      "plannedRaise": 0,
+      "equityDiscount": 0,
+      "sites": [],
+      "stake": {
+        "tk": "WYFI",
+        "pct": 0.7
+      },
+      "basis": {
+        "plannedRaise": "holdco — buildout funded at the WhiteFiber (WYFI) level; minimal BTBT-level equity"
+      },
+      "narrative": "Bit Digital (NASDAQ:BTBT) — a holdco whose dominant asset is a ~70% stake in separately-listed WhiteFiber (WYFI: AI cloud + colo), plus a ~158k-ETH treasury and a small legacy BTC-mining fleet. It trades at a deep sum-of-the-parts discount — the WhiteFiber stake alone is worth ~1.5x BTBT's entire market cap. Valued here as SOTP: live look-through to WhiteFiber + ETH marked live − net debt, not as a developer.",
+      "bull": [
+        "WhiteFiber (WYFI) stake alone ~1.5x BTBT's market cap — deep holdco discount",
+        "Live look-through to WhiteFiber AI-cloud/colo growth",
+        "Large ETH treasury (live-marked) on a clean balance sheet"
+      ],
+      "bear": [
+        "Holdco/SOTP discount may persist with no catalyst to close it",
+        "Value rides WhiteFiber execution + ETH price",
+        "BTBT's 70% could fall as WhiteFiber raises equity"
+      ],
+      "catalysts": [
+        "WhiteFiber re-rating / value crystallization",
+        "ETH price",
+        "Stake monetization or distribution"
+      ],
+      "risks": [
+        "Persistent SOTP discount",
+        "WhiteFiber execution",
+        "ETH drawdown",
+        "BTBT-level dilution"
+      ],
+      "finMix": "~70% WhiteFiber stake + ~158k ETH treasury + small mining; low net debt",
+      "leaseQ": 1.0,
       "log": []
     }
   ]
