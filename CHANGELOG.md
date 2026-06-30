@@ -2,6 +2,7 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Dashboard: hide the tier pill when a name is at the base "Proven" tier (only show it once re-rated to IG/IG-REIT) — removes redundant "PROVEN" labels; full page still shows the tier.
 - IREN (IREN Ltd / Iris Energy): added as 5th name (multi-agent workflow + adversarial verification). Owner / GPU cloud (owns the GPUs; Microsoft ~$9.7B + NVIDIA ~$3.4B are cloud contracts, not leases). Contracted 20% (Microsoft a non-representative anchor per mgmt → spot-tilted); net debt ~$3.85B current (incl. Jun-1 $3.65B IG GPU financing); legacyEV $500M (mining fleet; BTC treasury = $0, sells daily); 13 phased AI sites / 2.2 GW owned cheap power (existence-credited). Target ~$85 (+85%) — but PRE-funding-dilution: a ~$20B+ buildout funded largely by the $6B ATM + converts will dilute the per-share number heavily (the dominant caveat).
 - Navigation: hash routing — each company's full valuation is its own URL (#TICKER, deep-linkable/shareable); #sites and #sites=TICKER for the sites tab. Removed the slide-out panel — clicking a dashboard row goes straight to the full page. Back button / Esc return to the dashboard.
 - All-sites page: filterable by ticker (the full page's "where the value comes from" links to #sites=TICKER); each row is expandable to its per-site math (moved off the full page). Removed dead panel/per-site-bar code.

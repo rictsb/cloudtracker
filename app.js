@@ -78,7 +78,7 @@ function renderCmp(){
     const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(0)+'%',totMW=c.sites.reduce((a,s)=>a+s.mw,0);
     const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
     row.innerHTML=`<div class="rank">${i+1}</div>
-      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span><span class="pill tier">${tierOf(c).name}</span><span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
+      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.contractedPct}% contracted · ${c.termYrs}y term</span></div>
       <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div>${splitBarHTML(v)}<div class="stacklabel"><span>Contracted ${splitParts(v).cf.toFixed(0)}%</span><span>Expected ${splitParts(v).eu.toFixed(0)}%</span></div></div>
       <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
       <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
