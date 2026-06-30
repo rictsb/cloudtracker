@@ -42,19 +42,20 @@
         <div class="eyebrow">Ranked by <span id="sortlabel">upside</span> <button id="refreshprices" class="refreshbtn" title="Refresh live prices">↻ refresh</button> <span id="pricenote" class="pricenote"></span></div>
         <div class="thead">
           <div></div><div>Company</div>
-          <div class="col-stack">Value composition · by site</div>
+          <div class="col-stack">Market price → our value</div>
           <div class="num">Price</div>
           <div class="num sortable" data-sort="upside">Target&nbsp;<span class="arr" id="ar-upside">▾</span></div>
-          <div class="num sortable" data-sort="score">Score&nbsp;<span class="arr" id="ar-score"></span></div>
         </div>
         <div id="rows"></div>
         <div class="legend col-stack">
-          <span><i style="background:var(--indigo)"></i>Near-term (≤2027)</span>
-          <span><i style="background:var(--indigo-soft)"></i>Mid (2028–29)</span>
-          <span><i style="background:var(--far)"></i>Far (2030+)</span>
+          <span><i style="background:var(--indigo)"></i>Contracted floor</span>
+          <span><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 3px,transparent 3px 6px);border:1px solid var(--line)"></i>Expected / pipeline</span>
+          <span><i style="background:var(--gold)"></i>Legacy / treasury</span>
+          <span><i style="width:2px;height:13px;border-radius:0;background:var(--ink)"></i>Market price</span>
+          <span><i style="background:rgba(91,122,92,.22);border:1px dashed var(--pine)"></i>Upside</span>
+          <span><i style="background:rgba(170,107,79,.30);border:1px dashed var(--clay)"></i>Overvalued</span>
         </div>
-        <div class="legend2 col-stack">Segment <b>width</b> = discounted, execution-haircut value · <b>opacity</b> = provenance. A target leaning on faint far segments rests on capacity that isn't real yet.</div>
-        <div class="legend2 col-stack">Lower bar: <b>contracted floor</b> (signed, insulated from the GPU-rate dial) vs <b>expected upside</b> (spot &amp; uncontracted pipeline, which moves with the dial).</div>
+        <div class="legend2 col-stack">Bar = our value (the target), split by what backs it; the dark line is today's market price. The space between is <b>upside</b> (green) or <b>overvalued</b> (red). The more <b>hatched</b> the bar, the more value rests on uncontracted pipeline vs signed contracts.</div>
       </section>
 
       <section id="view-sites" style="display:none">

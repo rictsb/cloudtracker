@@ -39,8 +39,8 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
 .tab:hover{color:var(--ink)}
 
 /* comparison */
-.thead,.rowline{display:grid;grid-template-columns:26px 1.1fr 1.6fr 78px 96px 76px;gap:14px;align-items:center}
-@media(max-width:560px){.thead,.rowline{grid-template-columns:22px 1fr 60px 66px 52px}.col-stack{display:none}}
+.thead,.rowline{display:grid;grid-template-columns:26px 1.05fr 1.9fr 82px 104px;gap:14px;align-items:center}
+@media(max-width:560px){.thead,.rowline{grid-template-columns:22px 1fr 66px 80px}.col-stack{display:none}}
 .thead{padding:0 14px 10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 .thead .sortable{cursor:pointer;user-select:none} .thead .sortable:hover{color:var(--indigo)} .thead .arr{color:var(--indigo);font-size:9px}
 .num{text-align:right;font-variant-numeric:tabular-nums}
@@ -199,3 +199,15 @@ h4.sec{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transf
 .thesisline{display:none;font-size:12.5px;line-height:1.55;color:var(--ink-soft);padding:0 16px 14px 16px;margin:-2px 0 6px;max-width:80ch}
 .thesisline.open{display:block}
 .thesisline b{color:var(--ink);font-weight:600}
+
+/* dashboard value gauge (market price → our value) */
+.vg-track{position:relative;height:26px}
+.vg-bar{position:absolute;top:5px;height:16px;display:flex;border-radius:3px;overflow:hidden;background:var(--line)}
+.vg-seg{height:100%}
+.vg-seg.cf{background:var(--indigo)}
+.vg-seg.eu{background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 4px,transparent 4px 8px)}
+.vg-seg.lg{background:var(--gold)}
+.vg-gap{position:absolute;top:5px;height:16px;border-radius:3px;pointer-events:none}
+.vg-gap.up{background:rgba(91,122,92,.18);border:1px dashed var(--pine)}
+.vg-gap.dn{background:repeating-linear-gradient(45deg,rgba(170,107,79,.30) 0 4px,transparent 4px 8px);border:1px dashed var(--clay)}
+.vg-price{position:absolute;top:0;height:26px;width:2px;background:var(--ink);transform:translateX(-1px)}

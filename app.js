@@ -89,21 +89,33 @@ function render(){
   document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
   if(view==='cmp')renderCmp(); else renderSites();
 }
+// Value gauge: bar = our target value (split contracted-floor / expected / legacy), line = market price,
+// shaded gap = upside (green) or overvalued (red). Bar scaled per-row to max(price,target).
+function gaugeHTML(c,v){
+  const px=v.price,tgt=v.target,scale=Math.max(px,tgt,1e-9);
+  const barW=Math.min(100,tgt/scale*100),pPos=Math.min(100,px/scale*100),under=tgt>=px;
+  let cf=Math.max(0,v.contractedEV),eu=Math.max(0,v.expectedEV),lg=Math.max(0,legacyOf(c));
+  const s=cf+eu+lg||1;cf=cf/s*100;eu=eu/s*100;lg=lg/s*100;
+  const gap=under
+    ? `<div class="vg-gap up" style="left:${pPos.toFixed(2)}%;width:${Math.max(0,100-pPos).toFixed(2)}%"></div>`
+    : `<div class="vg-gap dn" style="left:${barW.toFixed(2)}%;width:${Math.max(0,100-barW).toFixed(2)}%"></div>`;
+  return `<div class="vg-track" title="Market ${fmtPrice(px)} vs our value $${tgt.toFixed(tgt<60?2:0)} — ${cf.toFixed(0)}% contracted floor · ${eu.toFixed(0)}% expected · ${lg.toFixed(0)}% legacy">
+    <div class="vg-bar" style="width:${barW.toFixed(2)}%"><i class="vg-seg cf" style="width:${cf.toFixed(2)}%"></i><i class="vg-seg eu" style="width:${eu.toFixed(2)}%"></i><i class="vg-seg lg" style="width:${lg.toFixed(2)}%"></i></div>
+    ${gap}<div class="vg-price" style="left:${pPos.toFixed(2)}%"></div></div>`;
+}
 function renderCmp(){
-  let rows=COMPANIES.map(c=>({c,v:value(c)}));scores(rows);
-  rows.sort((a,b)=>sortDir*((sortKey==='score'?a.score-b.score:a.v.upside-b.v.upside)));
+  let rows=COMPANIES.map(c=>({c,v:value(c)}));
+  rows.sort((a,b)=>sortDir*(a.v.upside-b.v.upside));
   const cont=document.getElementById('rows');const old={};if(!reduce)[...cont.children].forEach(ch=>old[ch.dataset.tk]=ch.getBoundingClientRect().top);
   cont.innerHTML='';
-  rows.forEach((r,i)=>{const v=r.v,c=r.c,tot=v.ev>0?v.ev:1;
-    const segHTML=v.segs.map(sg=>{const w=Math.max(0,sg.ev/tot*100).toFixed(2);return `<div class="seg" title="${sg.s.n}: ${fmtM(sg.ev)} (${MONTHS[(sg.s.mo||1)-1]} ${sg.s.yr}, ${sg.s.prov})" style="width:${w}%;background:${horizon(sg.s.yr)};opacity:${PROV_OP[sg.s.prov]}"></div>`;}).join('');
-    const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(0)+'%',totMW=c.sites.reduce((a,s)=>a+s.mw,0);
+  rows.forEach((r,i)=>{const v=r.v,c=r.c;
+    const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(0)+'%';
     const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
     row.innerHTML=`<div class="rank">${i+1}</div>
       <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':c.model==='holdco'?'holdco / SOTP':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.model==='holdco'?'sum-of-the-parts':c.contractedPct+'% contracted · '+c.termYrs+'y term'}</span></div>
-      <div class="col-stack"><div class="stack">${segHTML}</div><div class="stacklabel"><span>EV ${fmtM(v.ev)}</span><span>${totMW.toLocaleString()} MW · ${c.sites.length} sites</span></div>${splitBarHTML(v)}<div class="stacklabel"><span>Contracted ${splitParts(v).cf.toFixed(0)}%</span><span>Expected ${splitParts(v).eu.toFixed(0)}%</span></div></div>
+      <div class="col-stack">${gaugeHTML(c,v)}</div>
       <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
-      <div class="num"><div class="target">$${v.target.toFixed(0)}</div><div class="up ${upCls}">${upTxt}</div></div>
-      <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
+      <div class="num"><div class="target">$${v.target.toFixed(v.target<60?2:0)}</div><div class="up ${upCls}">${upTxt}</div></div>`;
     row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});
     cont.appendChild(row);
     if(c.thesis){
@@ -113,9 +125,8 @@ function renderCmp(){
       cont.appendChild(tog);cont.appendChild(th);
     }});
   if(!reduce)[...cont.children].forEach(ch=>{const p=old[ch.dataset.tk];if(p==null)return;const dy=p-ch.getBoundingClientRect().top;if(dy){ch.style.transition='none';ch.style.transform=`translateY(${dy}px)`;requestAnimationFrame(()=>{ch.style.transition='';ch.style.transform='';});}});
-  document.getElementById('sortlabel').textContent=sortKey==='score'?'relative-strength score':'upside to target';
-  document.getElementById('ar-upside').textContent=sortKey==='upside'?(sortDir<0?'▾':'▴'):'';
-  document.getElementById('ar-score').textContent=sortKey==='score'?(sortDir<0?'▾':'▴'):'';
+  document.getElementById('sortlabel').textContent='upside to target';
+  document.getElementById('ar-upside').textContent=sortDir<0?'▾':'▴';
 }
 function renderSites(){
   let all=[];
@@ -278,16 +289,15 @@ function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=
 function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
 
 /* ---- full page: the extensible home (graphical, with planned-module slots) ---- */
-function openFull(c){const v=value(c),score=scoreOf(c),fp=document.getElementById('fullpage');FP_COMPANY=c;
+function openFull(c){const v=value(c),fp=document.getElementById('fullpage');FP_COMPANY=c;
   const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
   fp.innerHTML=`<button class="back" id="fpback">← Back to comparison</button>
     <div class="fp-head">
       <div><div class="fp-tk">${c.tk}</div><div class="fp-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name}</div></div>
       <div class="fp-nums">
         <div class="fp-num"><span>Price</span><b>${fmtPrice(priceOf(c))}</b></div>
-        <div class="fp-num"><span>Target</span><b>$${v.target.toFixed(0)}</b></div>
+        <div class="fp-num"><span>Target</span><b>$${v.target.toFixed(v.target<60?2:0)}</b></div>
         <div class="fp-num"><span>Upside</span><b class="up ${upCls}">${upTxt}</b></div>
-        <div class="fp-num"><span>Score</span><b>${score.toFixed(0)}</b></div>
       </div>
     </div>
     <div class="fp-grid">
