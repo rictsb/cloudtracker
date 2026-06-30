@@ -106,7 +106,12 @@ function renderCmp(){
       <div class="num"><div class="score-wrap"><div class="score-n">${r.score.toFixed(0)}</div><div class="score-bar"><span style="width:${r.score.toFixed(0)}%"></span></div></div></div>`;
     row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});
     cont.appendChild(row);
-    if(c.thesis){const th=document.createElement('div');th.className='thesisline';th.innerHTML=`<b>${c.tk}</b> — ${c.thesis}`;cont.appendChild(th);}});
+    if(c.thesis){
+      const tog=document.createElement('button');tog.type='button';tog.className='thtoggle';tog.innerHTML='<span class="cv">▸</span> why under / over-valued';tog.setAttribute('aria-expanded','false');
+      const th=document.createElement('div');th.className='thesisline';th.innerHTML=`<b>${c.tk}</b> — ${c.thesis}`;
+      tog.addEventListener('click',e=>{e.stopPropagation();const open=th.classList.toggle('open');tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',open?'true':'false');});
+      cont.appendChild(tog);cont.appendChild(th);
+    }});
   if(!reduce)[...cont.children].forEach(ch=>{const p=old[ch.dataset.tk];if(p==null)return;const dy=p-ch.getBoundingClientRect().top;if(dy){ch.style.transition='none';ch.style.transform=`translateY(${dy}px)`;requestAnimationFrame(()=>{ch.style.transition='';ch.style.transform='';});}});
   document.getElementById('sortlabel').textContent=sortKey==='score'?'relative-strength score':'upside to target';
   document.getElementById('ar-upside').textContent=sortKey==='upside'?(sortDir<0?'▾':'▴'):'';

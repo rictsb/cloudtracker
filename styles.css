@@ -191,6 +191,11 @@ h4.sec{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transf
 .appmsg{font-family:var(--mono);font-size:12px;color:var(--ink-soft);padding:40px 4px}
 .appmsg.err{color:var(--clay)}
 
-/* dashboard per-ticker thesis line (why under/over-valued) */
-.thesisline{font-size:12.5px;line-height:1.5;color:var(--muted);padding:0 16px 14px 16px;margin:-8px 0 4px;max-width:78ch;}
-.thesisline b{color:var(--ink);font-weight:600;}
+/* dashboard per-ticker thesis (collapsed; expand on click) */
+.thtoggle{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--ink-soft);font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;cursor:pointer;padding:0 16px 12px;margin-top:-4px}
+.thtoggle:hover{color:var(--indigo)}
+.thtoggle .cv{display:inline-block;transition:transform .15s}
+.thtoggle.open .cv{transform:rotate(90deg)}
+.thesisline{display:none;font-size:12.5px;line-height:1.55;color:var(--ink-soft);padding:0 16px 14px 16px;margin:-2px 0 6px;max-width:80ch}
+.thesisline.open{display:block}
+.thesisline b{color:var(--ink);font-weight:600}
