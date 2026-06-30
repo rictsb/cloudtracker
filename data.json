@@ -934,6 +934,199 @@
           "x": "Borrowings ~$1.92B (mostly convertibles); cash $261M; self-mining gross income −$34.4M; net debt ~$1.66B."
         }
       ]
+    },
+    {
+      "tk": "IREN",
+      "name": "IREN",
+      "model": "owner",
+      "tier": "proven",
+      "contractedPct": 20,
+      "termYrs": 5,
+      "renewalProb": 0.7,
+      "mtm": 1.0,
+      "leaseQ": 4.8,
+      "netDebt": 3850,
+      "shares": 357,
+      "price": 45.91,
+      "legacyEV": 500,
+      "costOfDebt": 3.5,
+      "finMix": "ATM equity ($6B program) + low-coupon converts + $3.65B IG GPU financing + Microsoft prepayment",
+      "narrative": "A former Bitcoin miner (Iris Energy) that has made a genuine owner-operator pivot into AI cloud — the rare name here that OWNS and runs its own GPUs (NVIDIA GB300/B300, ~$5.8B Dell buy, ~150k GPUs installed or on order) rather than leasing space to tenants. It sells GPU-as-a-service from data centers it owns on cheap power: Childress TX (750MW campus, ~3c/kWh ERCOT) and 100% hydro British Columbia. The book is anchored by two top-tier 5-year managed-cloud contracts — Microsoft (~$9.7B, 200MW across Childress Horizon 1-4, 20% prepaid) and NVIDIA (~$3.4B, plus a $2.1B equity right) — ~$3.1B ARR contracted against a ~$3.7-4.4B target, though live AI revenue is still small and the backlog is overwhelmingly future. The swing factor is Sweetwater TX (a ~2GW hub): power is secured (high existence) but cloud demand for that GW-scale capacity is largely uncontracted, so the book reads spot-tilted. Legacy is small and unusual — a cash-positive but shrinking mining fleet and a ZERO Bitcoin treasury (mined coins sold daily), so no BTC-price bet. The crux: net debt and ATM/convert dilution are rising fast to fund a ~$20B+ buildout, so the headline upside is large but pre-funding-dilution — the real question is whether IREN can commission its backlog and lease up Sweetwater before the dilution outruns the ARR ramp.",
+      "bull": [
+        "Rare owner-operator AI cloud with two blue-chip 5yr contracts (Microsoft ~$9.7B + NVIDIA ~$3.4B) — ~$3.1B ARR contracted, near-zero counterparty risk, 20% Microsoft prepayment",
+        "Massive owned, cheap, secured power (Childress 750MW + Sweetwater ~2GW + BC 160MW hydro) — the scarce AI input, mostly freehold",
+        "NVIDIA is a strategic partner and equity holder (right to 30M sh @ $70), aligning the GPU supplier to IREN's ramp",
+        "Low legacy/BTC risk: zero Bitcoin treasury (sells as mined) and a cash-positive mining fleet — value is core AI, not a BTC bet"
+      ],
+      "bear": [
+        "Backlog is overwhelmingly future: live AI-cloud revenue only ~$34M/qtr; even the ~$3.1B contracted ARR isn't revenue until GPUs commission",
+        "The GW-scale prize (Sweetwater ~2GW) is largely uncontracted — power secured, but tenants/utilization are not; big spec capex ahead of demand",
+        "Heavy dilution to fund a ~$20B+ buildout: $6B ATM headroom + ~$6.7B converts + rising GPU debt — the headline target is pre-dilution",
+        "Neocloud GPU rental rates down 60-75% from peak; uncontracted GPUs exposed to spot pricing and obsolescence"
+      ],
+      "catalysts": [
+        "Childress Horizon 1-4 (200MW, Microsoft) commissioning through YE2026 — converting contracted ARR into live revenue",
+        "First large Sweetwater anchor contract — the biggest re-rating event for the uncontracted GW pipeline",
+        "NVIDIA Blackwell commissioning (early 2027, ARR target to $4.4B) and NVIDIA exercising its $2.1B equity right",
+        "Hitting the ~$3.7B YE2026 ARR / 150k-GPU milestone (vs ~74k deployed)"
+      ],
+      "risks": [
+        "Lease-up risk on the uncontracted Sweetwater GW — large spec capex with cloud demand TBD",
+        "GPU economics & obsolescence — spot rate decline, utilization, depreciation on owned GPUs (an owner risk colos don't carry)",
+        "Financing / dilution — continued ATM issuance and convert dilution to fund the buildout",
+        "Customer concentration — contracted ARR dominated by Microsoft + NVIDIA; a delay or renegotiation at one hits the book"
+      ],
+      "sites": [
+        {
+          "n": "Childress Horizon 1 (Microsoft, GB300)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2025,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Prince George BC (B300, hydro)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 3,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Childress Horizon 2 (Microsoft)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 4,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Childress Horizon 3 (Microsoft)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 8,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Childress Horizon 4 (Microsoft)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Mackenzie BC (Blackwell, hydro)",
+          "mw": 80,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Canal Flats BC (hydro)",
+          "mw": 30,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Childress Blackwell (NVIDIA)",
+          "mw": 60,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 1,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Childress Horizon 5-6 (expansion)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Sweetwater 1 initial (TX)",
+          "mw": 400,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Sweetwater 2 (TX)",
+          "mw": 400,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Sweetwater 1 build-out (TX)",
+          "mw": 600,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Sweetwater hub balance (TX)",
+          "mw": 300,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2031,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "log": [
+        {
+          "d": "2026-06-01",
+          "t": "capital",
+          "s": "Co. release",
+          "x": "Closed $3.65B investment-grade GPU financing (Fitch A, ~6%), secured on GPUs + Microsoft cash flows; funds ~96% of the $5.8B Dell GPU purchase with the prepayment."
+        },
+        {
+          "d": "2026-05-26",
+          "t": "lease",
+          "s": "8-K",
+          "x": "Signed ~$3.4B 5yr NVIDIA managed-services AI-cloud contract (60MW Childress, ramp early 2027); lifts ARR target to ~$4.4B."
+        },
+        {
+          "d": "2026-05-14",
+          "t": "capital",
+          "s": "Co. release",
+          "x": "Closed upsized ~$3.0B convertible notes (1.0% due 2033); total convertible principal ~$6.7B."
+        },
+        {
+          "d": "2026-05-07",
+          "t": "earnings",
+          "s": "Q3 FY26",
+          "x": "AI-cloud revenue $33.6M (+94% q/q); ~$3.1B ARR contracted, ~$3.7B YE26 target; Sweetwater 1 substation energized; cash $2.6B."
+        },
+        {
+          "d": "2025-11-03",
+          "t": "lease",
+          "s": "Co. release",
+          "x": "Secured ~$9.7B 5yr Microsoft GPU-cloud contract (GB300, 200MW across Childress Horizon 1-4, 20% prepay ~$1.9B); paired with the ~$5.8B Dell GPU buy."
+        }
+      ]
     }
   ]
 }
