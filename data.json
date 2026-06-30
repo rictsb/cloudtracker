@@ -13,7 +13,8 @@
       "capRate": 9.0,
       "disc": 10,
       "ramp": 12,
-      "rateTrend": 3
+      "rateTrend": 3,
+      "dilutionStress": 1.0
     },
     "sliders": [
       {
@@ -71,6 +72,14 @@
         "max": 20,
         "step": 1,
         "fmt": "trend"
+      },
+      {
+        "k": "dilutionStress",
+        "label": "Dilution stress (× planned raise)",
+        "min": 0,
+        "max": 2,
+        "step": 0.25,
+        "fmt": "mult"
       }
     ],
     "provenance": {
@@ -91,17 +100,32 @@
       "cheap": {
         "name": "Cheap",
         "cMargin": 5,
-        "lNOI": 1.1
+        "lNOI": 1.1,
+        "rateMul": 1.0
       },
       "mid": {
         "name": "Mid",
         "cMargin": 0,
-        "lNOI": 1.0
+        "lNOI": 1.0,
+        "rateMul": 1.0
       },
       "exp": {
         "name": "Costly",
         "cMargin": -5,
-        "lNOI": 0.9
+        "lNOI": 0.9,
+        "rateMul": 1.0
+      },
+      "eu": {
+        "name": "Europe",
+        "cMargin": 0,
+        "lNOI": 1.0,
+        "rateMul": 0.7
+      },
+      "au": {
+        "name": "Australia",
+        "cMargin": 0,
+        "lNOI": 1.0,
+        "rateMul": 0.7
       }
     },
     "tiers": {
@@ -122,7 +146,6 @@
       }
     },
     "constants": {
-      "contractRate": 8.0,
       "multPremium": 0.4,
       "landlordNOI": 1.1,
       "capCompress": 0.3,
@@ -141,14 +164,12 @@
       "tier": "proven",
       "contractedPct": 95,
       "termYrs": 5,
-      "renewalProb": 0.95,
       "mtm": 1.0,
       "leaseQ": 4.3,
       "netDebt": 22900,
       "shares": 545,
       "price": 102,
       "legacyEV": 0,
-      "costOfDebt": 9.0,
       "finMix": "Asset-backed DDTL (GPU-collateralized)",
       "narrative": "A GPU owner-operator running an essentially fully-contracted (~98% take-or-pay), hyperscaler-anchored book — Microsoft ~67% of revenue, plus Meta (~$21B), OpenAI (~$22B) and Anthropic, against a ~$99B backlog at ~5-yr weighted term. Near-term capacity is pre-sold and capacity-constrained, so the investable question isn’t whether it earns but what the back-half pipeline re-signs at, how fast it diversifies off Microsoft, and whether ~$23B of debt and $31–35B of FY26 capex can be carried while margins are still near breakeven. The target leans meaningfully on the path to 8 GW by 2030 — roughly a fifth of it rests on rumored capacity.",
       "bull": [
@@ -388,7 +409,11 @@
           "s": "Co. release",
           "x": "Closed $8.5B DDTL 4.0 — first investment-grade GPU-backed facility."
         }
-      ]
+      ],
+      "plannedRaise": 15000,
+      "basis": {
+        "plannedRaise": "~10-12% equity slice of $31-35B/yr FY26 capex; ~84% DDTL-debt funded, equity opportunistic (NVIDIA/Jane Street)"
+      }
     },
     {
       "tk": "NBIS",
@@ -397,14 +422,12 @@
       "tier": "proven",
       "contractedPct": 80,
       "termYrs": 4,
-      "renewalProb": 0.85,
       "mtm": 1.0,
       "leaseQ": 4.4,
       "netDebt": -848,
       "shares": 275,
       "price": 240,
       "legacyEV": 5800,
-      "costOfDebt": 2.0,
       "finMix": "Prepayment + equity; convertibles; net cash",
       "narrative": "A net-cash, prepayment-funded owner-operator that has flipped from spot-tilted scaler into a high-contracted, hyperscaler-anchored buildout. A ~$50B backlog (~92% Microsoft + Meta on ~5-year take-or-pay terms) sits over a smaller, fast-repricing enterprise tail — so ~half of realized revenue is enterprise (high revenue per MW, sub-1-yr), while ~80% of the contracted MW is locked to hyperscalers. Capital is structurally lighter than debt-heavy peers: ~$9.3B cash, low-coupon convertibles, ~$4.8B of customer prepayments funding ~90% of capex, plus a stake portfolio (ClickHouse ~$4.2B, Avride, Toloka, TripleTen) worth value outside the compute sites. The story is execution: only ~170 MW connected today against GW-scale owned campuses (Independence MO, Pennsylvania) that don't energize until late 2027+. Scale is modeled on its growth trajectory, not its (quieter) headline ambitions.",
       "bull": [
@@ -635,7 +658,11 @@
           "s": "Bloomberg / TechCrunch",
           "x": "ClickHouse raised $400M Series D at $15B post-money; Nebius's ~28% stake marked to ~$4.2B ($781M Q1 revaluation gain)."
         }
-      ]
+      ],
+      "plannedRaise": 10000,
+      "basis": {
+        "plannedRaise": "NVIDIA $2B + ~$2.5B ATM + 1-2 follow-ons; prepayments fund ~60% of capex"
+      }
     },
     {
       "tk": "RIOT",
@@ -644,14 +671,12 @@
       "tier": "ig",
       "contractedPct": 5,
       "termYrs": 10,
-      "renewalProb": 0.68,
       "mtm": 0.97,
       "leaseQ": 3.8,
       "netDebt": 636,
       "shares": 379,
       "price": 28.5,
-      "legacyEV": 1360,
-      "costOfDebt": 6.0,
+      "legacyEV": 250,
       "finMix": "0.75% converts + BTC-backed Coinbase loan + ATM/BTC recycling; net debt (net cash on BTC look-through)",
       "narrative": "A Bitcoin miner mid-pivot into AI/HPC colocation landlording on ~2.0 GW of owned, approved, cheap-ERCOT power (Corsicana ~1.0 GW + Rockdale ~0.7 GW in Texas; Kentucky mining-only). The pivot is real but early-stage: one signed AI lease — AMD, 50 MW critical IT at Rockdale, a 10-yr deal (~$510M NOI over the initial term) with options for up to ~150 MW more. Everything else is pipeline — Corsicana's first 168 MW core-and-shell is under construction with no signed tenant, inside a ~1 GW envelope that is otherwise uncontracted. Value is dominated by two non-core legacy assets (legacyEV): a 15,680 BTC treasury marked to the live BTC price (so the target moves ~$0.4/sh per ±$10K of BTC) and an FCF-negative 42.5 EH/s mining fleet whose underlying power and land are the very assets being converted to AI. Activist Starboard is pushing the pivot harder. The core question is execution: can Corsicana sign credible tenants and lease up on the implied timeline, or is the AI optionality already more than priced in?",
       "bull": [
@@ -776,7 +801,11 @@
         }
       ],
       "btc": 15680,
-      "legacyExBtc": 250
+      "plannedRaise": 250,
+      "basis": {
+        "plannedRaise": "$0 ATM draws Q1'26; funds via BTC treasury + cash flow + nonrecourse project debt (Starboard anti-dilution)",
+        "tier": "IG — investment-grade AMD 50MW 10yr lease anchors the colo book"
+      }
     },
     {
       "tk": "BTDR",
@@ -785,14 +814,12 @@
       "tier": "proven",
       "contractedPct": 5,
       "termYrs": 10,
-      "renewalProb": 0.65,
       "mtm": 0.95,
       "leaseQ": 3,
       "netDebt": 1659,
       "shares": 245,
       "price": 17.88,
       "legacyEV": 1340,
-      "costOfDebt": 6.0,
       "finMix": "Convertibles + ATM equity + BTC-collateralized loans; net debt",
       "narrative": "A Bitcoin miner and ASIC designer pivoting into AI/HPC by converting power-rich crypto campuses to colocation, leasing capacity to AI tenants on landlord economics, alongside a small high-margin owner-operated GPU-cloud sleeve. The structural edge is owned cheap-to-mid power (Nordic hydro at Tydal, Columbia hydro at Wenatchee, ERCOT at Rockdale, TVA at Knoxville) and an unusually low ~6% blended cost of debt from a ~$1.4B cheap-convertible stack. Its flagship Tydal (Norway) campus has a signed colocation lease that is not yet effective — tenant unnamed, terms withheld. Beyond ~$69M of AI-cloud ARR, essentially nothing is firmly contracted: the GW-scale value drivers (Tydal, Clarington, Niles, Rockdale) are signed-but-conditional or in negotiation, so most modeled MW is owned and scheduled (high existence) but not yet leased. The question is execution — energizing the pipeline, clearing the Clarington litigation, and signing credible AI tenants while financing-funded cash burn and dilution continue.",
       "bull": [
@@ -946,8 +973,12 @@
           "x": "Borrowings ~$1.92B (mostly convertibles); cash $261M; self-mining gross income −$34.4M; net debt ~$1.66B."
         }
       ],
-      "btc": 0,
-      "equityDiscount": 0.15
+      "equityDiscount": 0.15,
+      "plannedRaise": 575,
+      "basis": {
+        "plannedRaise": "ATM cut to $700M, converts preferred; Tydal lease → project debt",
+        "equityDiscount": "Jihan Wu ~75% voting control + foreign-private-issuer + controlled-company + index exclusion"
+      }
     },
     {
       "tk": "IREN",
@@ -956,16 +987,14 @@
       "tier": "proven",
       "contractedPct": 20,
       "termYrs": 5,
-      "renewalProb": 0.7,
       "mtm": 1.0,
       "leaseQ": 4.8,
       "netDebt": 3850,
-      "shares": 357,
+      "shares": 373,
       "price": 45.91,
-      "legacyEV": 500,
-      "costOfDebt": 3.5,
+      "legacyEV": 1000,
       "finMix": "ATM equity ($6B program) + low-coupon converts + $3.65B IG GPU financing + Microsoft prepayment",
-      "narrative": "A former Bitcoin miner (Iris Energy) that has made a genuine owner-operator pivot into AI cloud — the rare name here that OWNS and runs its own GPUs (NVIDIA GB300/B300, ~$5.8B Dell buy, ~150k GPUs installed or on order) rather than leasing space to tenants. It sells GPU-as-a-service from data centers it owns on cheap power: Childress TX (750MW campus, ~3c/kWh ERCOT) and 100% hydro British Columbia. The book is anchored by two top-tier 5-year managed-cloud contracts — Microsoft (~$9.7B, 200MW across Childress Horizon 1-4, 20% prepaid) and NVIDIA (~$3.4B, plus a $2.1B equity right) — ~$3.1B ARR contracted against a ~$3.7-4.4B target, though live AI revenue is still small and the backlog is overwhelmingly future. The swing factor is Sweetwater TX (a ~2GW hub): power is secured (high existence) but cloud demand for that GW-scale capacity is largely uncontracted, so the book reads spot-tilted. Legacy is small and unusual — a cash-positive but shrinking mining fleet and a ZERO Bitcoin treasury (mined coins sold daily), so no BTC-price bet. The crux: net debt and ATM/convert dilution are rising fast to fund a ~$20B+ buildout, so the headline upside is large but pre-funding-dilution — the real question is whether IREN can commission its backlog and lease up Sweetwater before the dilution outruns the ARR ramp.",
+      "narrative": "A former Bitcoin miner (Iris Energy) that has made a genuine owner-operator pivot into AI cloud — the rare name here that OWNS and runs its own GPUs (NVIDIA GB300/B300, ~$5.8B Dell buy, ~150k GPUs installed or on order) rather than leasing space to tenants. It sells GPU-as-a-service from data centers it owns on cheap power: Childress TX (750MW campus, ~3c/kWh ERCOT) and 100% hydro British Columbia. The book is anchored by two top-tier 5-year managed-cloud contracts — Microsoft (~$9.7B, 200MW across Childress Horizon 1-4, 20% prepaid) and NVIDIA (~$3.4B, plus a $2.1B equity right) — ~$3.1B ARR contracted against a ~$3.7-4.4B target, though live AI revenue is still small and the backlog is overwhelmingly future. The swing factor is a ~5.8 GW secured-power pipeline that dwarfs today's live base — Sweetwater TX (~2 GW) and Kiowa OK (1.6 GW), plus first international sites in Spain (Nostrum) and Australia (Bundey) — almost all uncontracted, so the book reads spot-tilted and the value hinges on lease-up. Most capacity operating today is still legacy Bitcoin mining being converted to AI. Legacy/non-core is small — a cash-positive but shrinking mining fleet, the Mirantis AI-cloud software stack (acquired in stock), and a ZERO Bitcoin treasury (mined coins sold daily), so no BTC-price bet. The crux: funding the ~5.8 GW build needs tens of billions on a small share base, so the model now charges that dilution explicitly (uncontracted capacity is raised as equity) — the per-share target is POST-dilution. The real question is whether IREN can contract and commission its pipeline faster than the equity raises dilute it.",
       "bull": [
         "Rare owner-operator AI cloud with two blue-chip 5yr contracts (Microsoft ~$9.7B + NVIDIA ~$3.4B) — ~$3.1B ARR contracted, near-zero counterparty risk, 20% Microsoft prepayment",
         "Massive owned, cheap, secured power (Childress 750MW + Sweetwater ~2GW + BC 160MW hydro) — the scarce AI input, mostly freehold",
@@ -992,7 +1021,7 @@
       ],
       "sites": [
         {
-          "n": "Childress Horizon 1 (Microsoft, GB300)",
+          "n": "Childress Horizon 1 (Microsoft GB300)",
           "mw": 50,
           "owned": true,
           "region": "cheap",
@@ -1001,21 +1030,12 @@
           "prov": "disclosed"
         },
         {
-          "n": "Prince George BC (B300, hydro)",
-          "mw": 50,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2026,
-          "mo": 3,
-          "prov": "disclosed"
-        },
-        {
           "n": "Childress Horizon 2 (Microsoft)",
           "mw": 50,
           "owned": true,
           "region": "cheap",
           "yr": 2026,
-          "mo": 4,
+          "mo": 6,
           "prov": "disclosed"
         },
         {
@@ -1024,7 +1044,7 @@
           "owned": true,
           "region": "cheap",
           "yr": 2026,
-          "mo": 8,
+          "mo": 9,
           "prov": "disclosed"
         },
         {
@@ -1037,24 +1057,6 @@
           "prov": "disclosed"
         },
         {
-          "n": "Mackenzie BC (Blackwell, hydro)",
-          "mw": 80,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2026,
-          "mo": 12,
-          "prov": "disclosed"
-        },
-        {
-          "n": "Canal Flats BC (hydro)",
-          "mw": 30,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2026,
-          "mo": 12,
-          "prov": "estimated"
-        },
-        {
           "n": "Childress Blackwell (NVIDIA)",
           "mw": 60,
           "owned": true,
@@ -1064,8 +1066,8 @@
           "prov": "disclosed"
         },
         {
-          "n": "Childress Horizon 5-6 (expansion)",
-          "mw": 100,
+          "n": "Childress mining→AI conversion A",
+          "mw": 240,
           "owned": true,
           "region": "cheap",
           "yr": 2027,
@@ -1073,17 +1075,44 @@
           "prov": "estimated"
         },
         {
-          "n": "Sweetwater 1 initial (TX)",
-          "mw": 400,
+          "n": "Childress mining→AI conversion B",
+          "mw": 250,
           "owned": true,
           "region": "cheap",
-          "yr": 2027,
+          "yr": 2028,
           "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Prince George BC (H200 / Blackwell)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 3,
           "prov": "disclosed"
         },
         {
-          "n": "Sweetwater 2 (TX)",
-          "mw": 400,
+          "n": "Mackenzie BC (mining→AI)",
+          "mw": 80,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Sweetwater 1 initial (TX)",
+          "mw": 200,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Sweetwater 1 build-out A (TX)",
+          "mw": 600,
           "owned": true,
           "region": "cheap",
           "yr": 2028,
@@ -1091,7 +1120,7 @@
           "prov": "estimated"
         },
         {
-          "n": "Sweetwater 1 build-out (TX)",
+          "n": "Sweetwater 1 build-out B (TX)",
           "mw": 600,
           "owned": true,
           "region": "cheap",
@@ -1100,11 +1129,56 @@
           "prov": "estimated"
         },
         {
-          "n": "Sweetwater hub balance (TX)",
-          "mw": 300,
+          "n": "Sweetwater 2 (TX)",
+          "mw": 600,
           "owned": true,
           "region": "cheap",
-          "yr": 2031,
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Kiowa, Oklahoma ph.1",
+          "mw": 800,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Kiowa, Oklahoma ph.2",
+          "mw": 800,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Nostrum, Spain (EU)",
+          "mw": 490,
+          "owned": true,
+          "region": "eu",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Bundey, S. Australia ph.1",
+          "mw": 400,
+          "owned": true,
+          "region": "au",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Bundey, S. Australia ph.2",
+          "mw": 400,
+          "owned": true,
+          "region": "au",
+          "yr": 2030,
           "mo": 6,
           "prov": "rumored"
         }
@@ -1140,7 +1214,11 @@
           "s": "Co. release",
           "x": "Secured ~$9.7B 5yr Microsoft GPU-cloud contract (GB300, 200MW across Childress Horizon 1-4, 20% prepay ~$1.9B); paired with the ~$5.8B Dell GPU buy."
         }
-      ]
+      ],
+      "plannedRaise": 8000,
+      "basis": {
+        "plannedRaise": "~$4.9B undrawn of $6B ATM + future programs; MSFT prepay + $3.65B GPU debt + converts carry ~90%"
+      }
     }
   ]
 }

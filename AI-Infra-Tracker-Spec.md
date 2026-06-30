@@ -75,10 +75,36 @@ Term remaining sets how fast today's contracted book rolls toward those long-run
 
 ## 5. How value flows (facts + dials → output)
 
-For each **site**: steady-state $/MW (model-aware) × MW, adjusted for region + owned/leased, then **haircut by provenance probability**, then **discounted by energization year**.
-For each **company**: sum its sites; overlay the commercial layer (the contracted/spot rate blend and renewal economics set the rate the compute sites earn; cap-rate compression for landlords); add legacy business; subtract net debt; divide by shares → price target and upside.
+**One engine, every name. Only the per-MW step branches by model.** This is binding — a new name must fit it with no new code path.
 
-**Value-per-MW and long-run margin are outputs, not inputs** — they're the MW-weighted blend of the site mix. Two identical-MW clouds with different owned/contracted/region mixes show materially different blended margin and $/MW, and that gap is the thing you trade.
+Per **site** → value/MW:
+- **Owner (cloud):** `value/MW = effective rate × margin% × multiple`
+  - effective rate = contracted slice (locked at today's GPU rate) + uncontracted slice (today's rate grown at the GPU-rate **trend** to the site's energization year) × region rate-factor (US 1.0; EU/AU < 1). Lock = `min(term/3, 1) × contracted%` (rumored sites = 0% locked).
+  - margin% = base-margin dial + region (cheap +5 / mid 0 / costly −5) + (owned +5 / leased −3)
+  - multiple = multiple dial × tier factor (Proven 1.0 / IG 1.12 / IG-REIT 1.25) × (1 + 0.40 × contracted%)
+- **Landlord (colo):** `value/MW = NOI ÷ cap rate`
+  - NOI = base-NOI × region × (owned/leased) × (0.9 + 0.1 × mtm); uncontracted slice grown at the trend to vintage
+  - cap rate = (cap dial + tier spread) × (1 − 0.30 × contracted%)
+
+Then, **identical for both**: `site value = value/MW × MW × provenance haircut (disclosed 0.95 / estimated 0.55 / rumored 0.25) × time-discount [1/(1+disc)^years, years = energization − now + ramp]`
+
+Roll-up to **target**:
+- `EV = Σ site values + legacy`  (legacy = `btc × live BTC price + legacyEV` residual)
+- `equity = (EV − net debt) × (1 − governance discount)`
+- `funded shares = shares + planned equity raise ÷ live price`  (dilution = realistic ATM/issuance, **not** full build capex — the multiple already embeds capital intensity)
+- `TARGET = equity ÷ funded shares;  upside = target ÷ live price − 1`
+
+**Value-per-MW and blended margin are outputs, not inputs** — the MW-weighted blend of the site mix is the thing you trade.
+
+## 5a. Adding a name (the only recipe)
+
+Pure data entry into `data.json` `companies[]` — **never touch the engine** (no per-ticker code exists).
+
+- **Valuation inputs** (move the target): `model`, `tier`, `sites[]` (`{n, mw, owned, region, yr, mo, prov}`), `contractedPct`, `termYrs` (owner lock), `mtm` (landlord), `netDebt`, `shares`, `legacyEV` (non-BTC residual), `btc` (count, if any), `plannedRaise`, `equityDiscount` (default 0).
+- **Judgement inputs need a one-line `basis`** (shown in the panel): `plannedRaise`, `equityDiscount`, any non-Proven `tier`.
+- **Reference facts** (do NOT move the target): `narrative`, `bull`, `bear`, `catalysts`, `risks`, `finMix`, `leaseQ` (ranking score only), `log`.
+
+First-principles per name: sites + MW · energization schedule + certainty (→ provenance) · data-center tier/quality (size, power source, owned/leased → region & $/MW) · anchor/hyperscaler tenants (→ contracted% + tier) · capital structure (net debt, shares, converts, BTC, planned equity raise → dilution).
 
 ## 6. The screens (four)
 

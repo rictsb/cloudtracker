@@ -27,7 +27,7 @@ function fmtPrice(p){return p>=100?'$'+p.toFixed(0):'$'+p.toFixed(2);}
 function btcPrice(){return BTC_PRICE||(CFG&&CFG.btcFallback)||60000;}
 // Legacy/non-core EV: BTC treasury marked to a live BTC price + a BTC-independent residual
 // (mining fleet, ASIC business, stakes). Names with no `btc` field just use legacyEV as before.
-function legacyOf(c){const ex=(c.legacyExBtc!=null)?c.legacyExBtc:(c.legacyEV||0);return (c.btc||0)*btcPrice()/1e6+ex;}
+function legacyOf(c){return (c.btc||0)*btcPrice()/1e6+(c.legacyEV||0);}  // legacyEV = non-BTC residual; btc marked live
 function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
 
 /* ---- engine ---- */
@@ -42,9 +42,11 @@ function siteRates(c,s){
   const lock=Math.min(c.termYrs/3,1);
   const cf=(s.prov==='rumored')?0:(c.contractedPct/100);
   const ls=lock*cf;
+  const rm=(REGION[s.region]&&REGION[s.region].rateMul)||1;   // geography rate factor (US 1.0, EU/AU < 1)
+  const base=A.rate*rm;
   const yrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);
-  const prevailing=prevailingRate(yrs);
-  const contractedRate=ls*A.rate, spotRate=(1-ls)*prevailing;
+  const prevailing=base*Math.pow(1+(A.rateTrend||0)/100,yrs);
+  const contractedRate=ls*base, spotRate=(1-ls)*prevailing;
   return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs};
 }
 function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
@@ -53,11 +55,18 @@ function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,co
     contractedShare=trendMult>0?cs0/trendMult:0;calc={noi,cap,baseNOI,prevailingNOI:baseNOI*escal};}
   else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
     contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult,prevailing:R.prevailing};}
-  const dr=Math.max(A.disc,c.costOfDebt||0),gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
+  const dr=A.disc,gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
   const ev=gross*hair*dfac;
   return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
-function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=legacyOf(c);const equity=(ev-c.netDebt)*(1-(c.equityDiscount||0)),px=priceOf(c),target=equity/c.shares;
-  return{ev,equity,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs};}
+function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=legacyOf(c);const equity=(ev-c.netDebt)*(1-(c.equityDiscount||0)),px=priceOf(c);
+  // Funding dilution: charge only the REALISTIC equity each name actually issues (its ATM / telegraphed
+  // raises, `plannedRaise`), NOT full build capex — the rest is debt / prepayments / project finance, and a
+  // revenue multiple already embeds capital intensity. New shares raised at the live price; a global
+  // `dilutionStress` dial scales every planned raise. Built-out equity is spread over the funded share count.
+  const equityRaise=(c.plannedRaise||0)*(A.dilutionStress!=null?A.dilutionStress:1);
+  const newShares=px>0?equityRaise/px:0, fundedShares=c.shares+newShares;
+  const target=equity/fundedShares;
+  return{ev,equity,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs,equityRaise,newShares,fundedShares};}
 function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
 function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
 function scores(rows){const max=f=>Math.max(...rows.map(f),1e-9);const nearMW=r=>r.c.sites.filter(s=>s.yr<=YEAR+1).reduce((a,s)=>a+s.mw,0);const totMW=r=>r.c.sites.reduce((a,s)=>a+s.mw,0);
@@ -154,7 +163,23 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
   return `<div class="sitecalc">${steps}</div>`;}
-function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);return `<div class="facts">${f('Investability tier',tier.name)}${c.model==='landlord'?f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'):f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×')}${f('Contracted today',c.contractedPct+'%')}${f('Avg term remaining',c.termYrs+' yrs')}${f('Renewal probability',(c.renewalProb*100).toFixed(0)+'%')}${f(c.model==='landlord'?'Mark-to-market (% original)':'Mark-to-market (% prevailing)',(c.mtm*100).toFixed(0)+'%')}${c.model!=='landlord'?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):''}${f('Counterparty quality',c.leaseQ.toFixed(1)+' / 5')}${f('Net debt',fmtM(c.netDebt))}${c.btc?f('BTC treasury',`${c.btc.toLocaleString()} ₿ × $${Math.round(btcPrice()).toLocaleString()} = ${fmtM(c.btc*btcPrice()/1e6)}`):''}${c.equityDiscount?f('Governance / control discount',(c.equityDiscount*100).toFixed(0)+'% off equity'):''}${f('Cost of debt',(c.costOfDebt||0).toFixed(1)+'%')}${f('Financing mix',c.finMix||'—')}${f('Discount used',Math.max(A.disc,c.costOfDebt||0).toFixed(0)+'% (floor = cost of debt)')}${f('Shares out',c.shares+'M')}</div>`;}
+function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);const v=value(c);const bz=c.basis||{};const owner=c.model!=='landlord';return `<div class="facts">`+
+  f('Investability tier',tier.name+(bz.tier?` · ${bz.tier}`:''))+
+  (owner?f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×'):f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%'))+
+  f('Contracted today',c.contractedPct+'%')+
+  (owner?f('Avg term remaining',c.termYrs+' yrs'):'')+
+  (!owner?f('Mark-to-market (% original)',(c.mtm*100).toFixed(0)+'%'):'')+
+  (owner?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):'')+
+  f('Net debt',fmtM(c.netDebt))+
+  (c.btc?f('BTC treasury',`${c.btc.toLocaleString()} ₿ × $${Math.round(btcPrice()).toLocaleString()} = ${fmtM(c.btc*btcPrice()/1e6)}`):'')+
+  (c.equityDiscount?f('Governance / control discount',(c.equityDiscount*100).toFixed(0)+'% off equity'+(bz.equityDiscount?` · ${bz.equityDiscount}`:'')):'')+
+  f('Financing mix',c.finMix||'—')+
+  f('Discount rate (time)',A.disc.toFixed(0)+'%')+
+  f('Shares out',c.shares+'M')+
+  (v.equityRaise>0?f('Planned equity raise',fmtM(v.equityRaise)+' @ '+fmtPrice(v.price)+(bz.plannedRaise?` · ${bz.plannedRaise}`:'')):'')+
+  (v.newShares>0?f('Funded shares (incl. dilution)',Math.round(v.fundedShares)+'M ('+(v.newShares/c.shares*100).toFixed(0)+'% dilution)'):'')+
+  (c.leaseQ!=null?f('Counterparty quality (ranking only)',c.leaseQ.toFixed(1)+' / 5'):'')+
+  `</div>`;}
 /* ---- build-out over time (cumulative capacity or value, stacked by provenance) ---- */
 function buildoutData(c,v){
   const metric=BUILDOUT_METRIC;
@@ -230,7 +255,7 @@ function waterfallHTML(c,v){
     s+=`<text x="${cx.toFixed(1)}" y="${(mt+ph+17).toFixed(1)}" text-anchor="middle" ${tx}>${st.label}</text>`;
     s+=`<text x="${cx.toFixed(1)}" y="${(yT-5).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">${st.val<0?'−'+fmtM(-st.val):fmtM(st.val)}</text>`;
   });
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Value bridge: sites plus legacy minus net debt equals equity">${s}</svg><div class="bo-cap">Equity ${fmtM(equity)} ÷ ${c.shares}M shares = <b>$${v.target.toFixed(0)}</b> target</div>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Value bridge: sites plus legacy minus net debt equals equity">${s}</svg><div class="bo-cap">Equity ${fmtM(equity)} ÷ ${Math.round(v.fundedShares)}M funded shares${v.newShares>0?` (${c.shares}M + ${Math.round(v.newShares)}M raise)`:''} = <b>$${v.target.toFixed(v.target<60?2:0)}</b> target</div>`;
 }
 function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';const p=splitParts(v);return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div>${splitBarHTML(v)}<div class="b"><span>— Contracted floor (dial-insulated)</span><b>${fmtM(v.contractedEV)} · ${p.cf.toFixed(0)}%</b></div><div class="b"><span>— Expected upside (spot &amp; pipeline)</span><b>${fmtM(v.expectedEV)} · ${p.eu.toFixed(0)}%</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
 function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
