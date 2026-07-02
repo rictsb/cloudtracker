@@ -33,12 +33,11 @@ A site is deliberately just a few fields, never a mini-model:
 
 **Company tier — the commercial and capital layer that does not decompose into concrete.**
 - Contracted % (share of the book contracted today — the t=0 snapshot)
-- Average term remaining (years — the decay rate on that contracted book)
-- Renewal probability (chance a rolled MW stays occupied — re-contracting/occupancy, demand + location)
-- Mark-to-market factor (renewal rate; model-aware denominator — see below)
-- Counterparty quality (does the current tenant pay)
-- Cost of debt (blended average rate) and financing-mix tag (investment-grade / high-yield / ABS-or-project / equity-heavy)
-- Capital stack (net debt, shares), legacy business value (hybrids), edge note
+- Average term remaining (years — sets the lock on the contracted rate, owners)
+- Mark-to-market factor (landlord NOI nudge)
+- Counterparty quality (reference fact) and financing-mix tag
+- Capital stack: net debt, fully-diluted shares, planned equity raise (+ basis), governance discount (+ basis)
+- Legacy/non-core: BTC/ETH treasuries (marked live), look-through stakes in tracked names, non-crypto residual
 
 **Global dials — interpret the tags across all names at once.**
 - Prevailing GPU rate ($/MW·yr) — the market rate; moves the spot-exposed book
@@ -69,7 +68,7 @@ Term remaining sets how fast today's contracted book rolls toward those long-run
 
 **Investability tier carries re-rating — a third axis, distinct from provenance and contracted %.** Provenance is *will it get built*, contracted % is *will it get leased* (both already haircut the speculative pipeline), and the tier is *what the market pays per dollar of stabilized income* as a name becomes more investable. The **base case for every name is Proven** — the global cap-rate / multiple dials. Re-rating is the **upside option to take a name up to IG or IG/REIT** grade (cap-rate compression for landlords, multiple expansion for owners) as it earns investability. A name is never marked *below* Proven — provenance and contracted % already carry the execution and lease-up risk, so discounting the tier too would double-count it. The tier is baked into the headline target (not a separate band).
 
-**Cost of debt is a floor on the discount rate, not a cash-flow model.** The global discount dial sets a baseline; a company is never discounted below its own cost of debt. A name borrowing at 11% shouldn't have its far-dated MW discounted at 8%. This differentiates leveraged names and compounds with the time fade — expensive debt plus far-dated capacity is discounted twice over — without any debt machinery. The line to hold: capital cost as an *input to the discount and a qualitative tag* — yes. A debt-maturity wall, refinancing schedule, or interest-coverage projection — no, and probably never in this tool; that is the DCF in disguise. Wanting to know *when* debt comes due is the signal you've crossed the line.
+**One global discount rate.** Time value is a single global dial for every name (a per-name cost-of-debt floor was retired as inert — every name sat below the dial). Name-level risk differences live in provenance, contracted %, the tier, and the governance discount — not in bespoke discount rates. The line to hold: no debt-maturity walls, refinancing schedules, or interest-coverage projections — that is the DCF in disguise.
 
 **Disclosure precision correlates with certainty** — near-term dates get disclosed because they're real; far dates stay vague. So provenance is signal, not noise, and it drives both the haircut and a visual fade. Provenance replaced the old "stage" field: the explicit year is the truer "when," provenance the truer "how sure."
 
@@ -109,17 +108,17 @@ First-principles per name: sites + MW · energization schedule + certainty (→ 
 
 ## 6. The screens (four)
 
-1. **Comparison dashboard** — all names, sortable by upside or relative-strength score, with a value-composition bar per company.
-2. **Company one-pager** — a full research page per ticker (see §6a): the quantitative roll-up plus qualitative narrative and judgement. Presented two ways: a **slide-out panel** for a quick look from the comparison or sites views, and a **full page** that is the panel's superset — the same content with room to grow.
+1. **Comparison dashboard** — all names ranked by upside; each row carries a **value gauge** (bar = our target value split contracted-floor / expected / legacy; dark line = market price; shaded gap = upside or overvalued) and a collapsed **valuation narrative** toggle.
+2. **Company one-pager** — a full research page per ticker (see §6a): the quantitative roll-up plus qualitative narrative and judgement. Hash-routed (`#TICKER`), deep-linkable; clicking a dashboard row goes straight to it.
 3. **Sites table** — every site across the whole universe in one list: company, MW, owned/leased, region, energization date, provenance, and discounted value contribution. Sortable and filterable. The master inventory the roll-up is built from, and the fastest way to see how much of the universe's MW is disclosed vs rumored, or concentrated in one region or one delivery year.
 4. **Assumptions panel** — the global dials; change one and everything recomputes live.
 
 ### 6a. The company one-pager
 
-The full page and the quick panel draw from one content model — the panel is a summary surface, the full page is the extensible home, so they never diverge. The full page is laid out more graphically and is built to be extended; the panel shows the core of it.
+The full page is the extensible home — laid out graphically (build-out chart, value-bridge waterfall, per-site math) and built to be extended.
 
 Core sections (both surfaces):
-- **Header** — ticker, model, price, target, upside, relative-strength score.
+- **Header** — ticker, model, tier, price, target, upside.
 - **Narrative / thesis** — a few sentences in your words: what this company is, why it's mispriced, what you're underwriting. The freeform view the numbers can't hold.
 - **Qualitative blocks** — bull case, bear case, catalysts to watch, key risks. Short bullets, your judgement.
 - **Valuation** — graphical and expandable: a per-site value chart where each bar expands to its live step-by-step build (rate → margin/NOI → multiple/cap → value/MW → MW → provenance haircut → time discount → site value, with the contracted-floor / expected-upside split), plus the EV → equity → target build.

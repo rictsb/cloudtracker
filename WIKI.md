@@ -59,6 +59,7 @@ Intuition: the real discount on future compute = discount − trend.
 Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-rate sanity: DLR/Blackstone (Jun 2026) ≈ $17M/MW equity, ~6.5% cap, ~15× NOI for fully-leased IG hyperscale.
 
 ## Keeping it current
+- **`node checks.js`** — the data test suite (run before every push; the weekly sweep runs it too). Deterministic checks: schema, site schedules & phasing, provenance consistency, capital-structure sanity, basis notes on judgement inputs, stake integrity, freshness. Research checks (FD shares vs filings, new debt/equity issuance, contract announcements, GPU spot pricing vs the rate/trend dials) run in the weekly sweep.
 - Weekly scheduled refresh re-checks each name and proposes thesis/input changes for review.
 - **Update a name**: edit its fields (new lease → raise `contractedPct` / upgrade site `prov`; new debt or raise → `netDebt` / `shares`).
 - **Add a name**: data entry into `companies[]` only — never touch the engine (spec §5a).

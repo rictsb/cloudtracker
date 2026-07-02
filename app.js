@@ -72,10 +72,6 @@ function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const s
   return{ev,equity,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs,equityRaise,newShares,fundedShares};}
 function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
 function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
-function scores(rows){const max=f=>Math.max(...rows.map(f),1e-9);const nearMW=r=>r.c.sites.filter(s=>s.yr<=YEAR+1).reduce((a,s)=>a+s.mw,0);const totMW=r=>r.c.sites.reduce((a,s)=>a+s.mw,0);
-  const mN=max(nearMW),mT=max(totMW),mLQ=max(r=>r.c.leaseQ),mC=max(r=>r.v.ev>0?Math.max(r.v.equity/r.v.ev,0):0);
-  rows.forEach(r=>{const cap=r.v.ev>0?Math.max(r.v.equity/r.v.ev,0):0;r.score=100*(.34*(nearMW(r)/mN)+.18*(totMW(r)/mT)+.26*(r.c.leaseQ/mLQ)+.22*(cap/mC));});}
-
 /* ---- controls ---- */
 function buildControls(){const w=document.getElementById('controls');w.innerHTML='';SLIDERS.forEach(s=>{const d=document.createElement('div');d.className='ctrl';
   d.innerHTML=`<div class="row"><label for="s-${s.k}">${s.label}</label><span class="val" id="v-${s.k}">${fmtSlider(s,A[s.k])}</span></div><input type="range" id="s-${s.k}" min="${s.min}" max="${s.max}" step="${s.step}" value="${A[s.k]}" aria-label="${s.label}">`;
@@ -156,7 +152,6 @@ function toggleSiteRow(i){const d=document.getElementById('sd-'+i);if(d)d.classL
 
 /* ---- shared one-pager pieces (used by both the quick panel and the full page) ---- */
 function modelLabel(c){return c.model==='owner'?'GPU owner-operator':c.model==='landlord'?'colo / data-center landlord':'hybrid';}
-function scoreOf(c){let rs=COMPANIES.map(x=>({c:x,v:value(x)}));scores(rs);return rs.find(x=>x.c.tk===c.tk).score;}
 function liHTML(a){return a.map(x=>`<li>${x}</li>`).join('');}
 function qualHTML(c){return `<div class="qual">
   <div class="qcol bull"><h5>Bull case</h5><ul>${liHTML(c.bull)}</ul></div>
@@ -206,7 +201,7 @@ function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span
   f('Shares out',c.shares+'M')+
   (v.equityRaise>0?f('Planned equity raise',fmtM(v.equityRaise)+' @ '+fmtPrice(v.price)+(bz.plannedRaise?` · ${bz.plannedRaise}`:'')):'')+
   (v.newShares>0?f('Funded shares (incl. dilution)',Math.round(v.fundedShares)+'M ('+(v.newShares/c.shares*100).toFixed(0)+'% dilution)'):'')+
-  (c.leaseQ!=null?f('Counterparty quality (ranking only)',c.leaseQ.toFixed(1)+' / 5'):'')+
+  (c.leaseQ!=null?f('Counterparty quality (reference)',c.leaseQ.toFixed(1)+' / 5'):'')+
   `</div>`;}
 /* ---- build-out over time (cumulative capacity or value, stacked by provenance) ---- */
 function buildoutData(c,v){
