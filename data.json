@@ -1503,7 +1503,8 @@
       "basis": {
         "plannedRaise": "parent recourse net debt ~$0 (Coatue convert nets w/ cash); $7.5B is nonrecourse SPV project debt netted against the campuses",
         "stake": "55.3% economic of American Bitcoin (ABTC), marked live; replaces the old generic legacy residual (HUT folded ~all mining into ABTC)",
-        "equityDiscount": "entity complexity — 55% consolidated ABTC (related-party, big minority interest) + SPV structures"
+        "equityDiscount": "entity complexity — 55% consolidated ABTC (related-party, big minority interest) + SPV structures",
+        "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses"
       },
       "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
       "bull": [
@@ -1537,7 +1538,8 @@
         "tk": "ABTC",
         "pct": 0.553
       },
-      "thesis": "Overvalued on the math: campuses credited at full value but funded ~95% by $7.5B of nonrecourse project debt, leaving thin equity, plus a live ~55% ABTC stake. The market pays for developer optionality the leverage doesn't support."
+      "thesis": "Overvalued on the math: campuses credited at full value but funded ~95% by $7.5B of nonrecourse project debt, leaving thin equity, plus a live ~55% ABTC stake. The market pays for developer optionality the leverage doesn't support.",
+      "committedDebt": 7500
     },
     {
       "tk": "CIFR",
@@ -1667,7 +1669,9 @@
       "basis": {
         "plannedRaise": "~$600M ATM registered + per-project equity slices (~$118M Fluidstack expansion; mgmt says it can fund the equity component of the 3rd campus); buildout is ~85% nonrecourse project-bond + convertible funded, so equity is a thin top-up — modeled ~$1.2B cumulative",
         "tier": "IG — direct AWS 15-yr 300MW lease (~$5.5B) plus Google-backstopped Fluidstack book; ~$11.4B contracted revenue anchored by investment-grade counterparties",
-        "equityDiscount": ""
+        "equityDiscount": "",
+        "committedDebt": "$3,531M escrowed construction proceeds (Barber Lake/Black Pearl SSNs, 10-Q 3/31/26) + $810M Stingray SSN (closed 6/15/26, AWS Andrews TX) — fund credited sites, absent from netDebt",
+        "seniorClaims": "~24% Colchis LLC minority (redeemable NCI, 10-Q)"
       },
       "narrative": "A former Bitcoin miner (Cipher Mining, rebranded Cipher Digital in early 2026) executing one of the cleaner BTC-to-AI landlord pivots: it builds powered data-center shells on owned, cheap-ERCOT Texas land and leases them to hyperscale tenants who bring their own compute. Unlike most peers it has already signed a genuinely investment-grade book — AWS direct (300 MW gross / 216 MW critical IT, 15-yr, ~$5.5B at Black Pearl) and Fluidstack at Barber Lake (207 MW critical IT, 10-yr, Google backstopping ~$333M of obligations), plus a third undisclosed IG-hyperscaler campus — totaling ~$11.4B contracted revenue and ~$787M average annualized NOI. The capital stack is mostly nonrecourse project debt (a $2.0B Black Pearl bond at 6.125%, a $1.7B Cipher Compute/Barber Lake note at 7.125%) plus low-coupon converts, leaving only ~$960M net debt and ~$4.2B cash. The story is execution and lease-up: ~700 MW of HPC is contracted and energizing through late 2026, but the GW-scale prize (McLennan, Mikeska, Colchis, Ulysses) — toward a ~4.2 GW 2030+ ambition — is owned and scheduled but largely uncontracted.",
       "bull": [
@@ -1697,7 +1701,9 @@
       "finMix": "Nonrecourse project bonds (Black Pearl $2.0B @6.125%, Barber Lake $1.7B @7.125%) + converts ($1.3B 0% + $173M 1.75%) + $200M revolver + ATM equity; ~$960M net debt",
       "leaseQ": 4.2,
       "log": [],
-      "thesis": "Undervalued — 700 MW of signed hyperscaler colo plus a ~2 GW queued pipeline credited near-full while the market still treats it as a miner. Re-rates as Barber Lake energizes and the pipeline contracts."
+      "thesis": "Undervalued — 700 MW of signed hyperscaler colo plus a ~2 GW queued pipeline credited near-full while the market still treats it as a miner. Re-rates as Barber Lake energizes and the pipeline contracts.",
+      "committedDebt": 4341,
+      "seniorClaims": 26
     },
     {
       "tk": "MARA",
@@ -2061,7 +2067,8 @@
         }
       ],
       "basis": {
-        "plannedRaise": "Buildout is overwhelmingly debt/Google-backstopped (~$3.2B Google backstop, $3.2B WULF Compute senior secured notes, $2.5B converts); equity issuance is incremental ATM + acquisition stock (KY/MD deals) plus Google warrants for 32.5M shares, so realistic cumulative equity raise is modest vs ~$13.8B cap — est. ~$600M through 2028."
+        "plannedRaise": "Buildout is overwhelmingly debt/Google-backstopped (~$3.2B Google backstop, $3.2B WULF Compute senior secured notes, $2.5B converts); equity issuance is incremental ATM + acquisition stock (KY/MD deals) plus Google warrants for 32.5M shares, so realistic cumulative equity raise is modest vs ~$13.8B cap — est. ~$600M through 2028.",
+        "seniorClaims": "Hawesville Developer 6.8% NCI fixed-put ~$101M acquisition-date FV. NOTE: $3.2B Lake Mariner bond ALREADY in netDebt; Abernathy $1.3B JV notes off-BS (50.1% equity-method) — model credits 100% of Abernathy, a flagged over-credit"
       },
       "narrative": "TeraWulf is a Bitcoin miner that has pivoted decisively into AI/HPC colocation landlord — it builds powered data-center shells at Lake Mariner (NY) and Abernathy (TX) and leases them to tenants (Core42, Fluidstack) who bring their own GPUs, with Google backstopping ~$3.2B of Fluidstack's lease obligations and holding ~14% pro forma. In Q1 2026 HPC lease revenue ($21M) surpassed mining for the first time, and the company carries a large contracted book (~$12.8B incl. extensions) plus a ~2.2 GW owned, mostly-uncontracted pipeline (Muskie KY 1GW+, Lake Hawkeye, Chesapeake). The thesis is a re-rate from miner to long-duration power/colocation landlord, financed by debt rather than dilution.",
       "bull": [
@@ -2091,7 +2098,8 @@
       "finMix": "Debt-led: ~$2.5B converts + $3.2B WULF Compute senior secured notes + $0.1B KY bridge, ~$3.1B cash; Google ~$3.2B backstop; minimal ATM/equity reliance.",
       "leaseQ": 3,
       "log": [],
-      "thesis": "Slightly rich — Lake Mariner/Abernathy AI leases (Fluidstack/Google-backstopped) are credited, but you're paying for brownfield that's mostly 2028-30 and uncontracted. Near-term contracted MW set the floor."
+      "thesis": "Slightly rich — Lake Mariner/Abernathy AI leases (Fluidstack/Google-backstopped) are credited, but you're paying for brownfield that's mostly 2028-30 and uncontracted. Near-term contracted MW set the floor.",
+      "seniorClaims": 101
     },
     {
       "tk": "FRMI",
@@ -2527,7 +2535,9 @@
       ],
       "basis": {
         "plannedRaise": "~$1B judgmental: APLD funds buildout via $2.15B PF2 senior secured notes (6.75% '31), Macquarie $5B perpetual preferred ($2.25M/MW, 12.75%) + ~$900M NCI + converts; telegraphs minimal common-equity/ATM issuance",
-        "tier": "IG — ~1.2 GW under 15-yr take-or-pay, ~65% of revenue backed by U.S. investment-grade hyperscalers (Polaris Forge 2/3, Delta Forge 1); CoreWeave book de-risked to A3 via springing guarantee"
+        "tier": "IG — ~1.2 GW under 15-yr take-or-pay, ~65% of revenue backed by U.S. investment-grade hyperscalers (Polaris Forge 2/3, Delta Forge 1); CoreWeave book de-risked to A3 via springing guarantee",
+        "committedDebt": "ComputeCo-2 $2.15B (closed 3/10/26, PF2 200MW; escrow released 6/17/26) + ComputeCo-3 $1.59B (closed 6/16/26, ELN-04) — funded paper only, $430M FNBO revolver capacity excluded",
+        "seniorClaims": "Macquarie preferred $900M drawn face → ~$970M accreted (12.75% PIK) + ~$130M Polaris JV common NCI (10% TopCo 2)"
       },
       "narrative": "A pure-play AI data-center landlord that exited its own GPU cloud (spun into ChronoScale, ~97%-owned) precisely so hyperscalers would stop seeing it as a competitor — now leasing purpose-built powered shells under ~15-year take-or-pay leases. It has crossed ~1.2 GW of contracted capacity across four campuses (~$31B base / up to ~$73B with renewals): Ellendale/Polaris Forge 1 (400 MW, CoreWeave, now A3-guaranteed) plus Polaris Forge 2, Polaris Forge 3 and Delta Forge 1 leased to U.S. investment-grade hyperscalers (~65% of revenue IG). The investable question is execution and energization on a ~$3B-per-campus buildout funded largely by project debt, Macquarie's perpetual preferred and NCI rather than common equity — plus whether the planned REIT conversion lands.",
       "bull": [
@@ -2557,7 +2567,9 @@
       "finMix": "Project-level senior secured notes (6.75% '31) + Macquarie $5B perpetual preferred (12.75%, 15% common in HPC JV) + NCI contributions + converts; modest corporate equity",
       "leaseQ": 4.2,
       "log": [],
-      "thesis": "Undervalued — ~1.4 GW of 15-yr triple-net leases to CoreWeave/Oracle (~$36B lease value) credited near-full while the market discounts execution and debt. One of the cleanest contracted-landlord books here."
+      "thesis": "Undervalued — ~1.4 GW of 15-yr triple-net leases to CoreWeave/Oracle (~$36B lease value) credited near-full while the market discounts execution and debt. One of the cleanest contracted-landlord books here.",
+      "committedDebt": 3740,
+      "seniorClaims": 1100
     },
     {
       "tk": "ABTC",
