@@ -14,7 +14,9 @@
       "disc": 10,
       "ramp": 12,
       "rateTrend": 3,
-      "dilutionStress": 1.0
+      "dilutionStress": 1.0,
+      "leaseUp": 1.0,
+      "pipelineCredit": 1.0
     },
     "sliders": [
       {
@@ -79,6 +81,22 @@
         "min": 0,
         "max": 2,
         "step": 0.25,
+        "fmt": "mult"
+      },
+      {
+        "k": "leaseUp",
+        "label": "Lease-up / spot realization",
+        "min": 0.4,
+        "max": 1.0,
+        "step": 0.05,
+        "fmt": "mult"
+      },
+      {
+        "k": "pipelineCredit",
+        "label": "Rumored-pipeline credit",
+        "min": 0,
+        "max": 1.0,
+        "step": 0.1,
         "fmt": "mult"
       }
     ],
@@ -152,7 +170,10 @@
       "ownedCMargin": 5,
       "leasedCMargin": -3,
       "ownedLNOI": 1.0,
-      "leasedLNOI": 0.9
+      "leasedLNOI": 0.9,
+      "capFloor": 6.5,
+      "capexOwnerMW": 25,
+      "capexLandlordMW": 10
     },
     "btcFallback": 60000,
     "ethFallback": 3000
@@ -2153,15 +2174,15 @@
     {
       "tk": "WYFI",
       "name": "WhiteFiber, Inc.",
-      "model": "hybrid",
+      "model": "landlord",
       "tier": "proven",
       "contractedPct": 55,
       "termYrs": 9,
-      "mtm": 1,
-      "netDebt": 167,
-      "shares": 41.6,
+      "mtm": 1.0,
+      "netDebt": -63,
+      "shares": 50.5,
       "price": 36,
-      "legacyEV": 30,
+      "legacyEV": 230,
       "plannedRaise": 150,
       "equityDiscount": 0.1,
       "sites": [
@@ -2250,7 +2271,8 @@
       "basis": {
         "plannedRaise": "Buildout is debt/convert-led, not equity-led: $230M 4.5% convertible notes (Jan 2026, $25.91 strike), a $100M (expandable to $150M) Bit Digital delayed-draw term loan ring-fenced for NC-1 Phase 1, a CAD60M RBC facility, and a $20M Iceland term loan carry most capex. ~$150M assumes only a modest post-IPO ATM to top up equity given the controlled-company structure.",
         "tier": "Proven, not IG: anchor tenants Nscale and Cerebras are venture-backed neoclouds, not investment-grade rated; no REIT structure.",
-        "equityDiscount": "0.10 controlled-company discount: Bit Digital (BTBT) owns ~71.5% post-IPO and is also a related-party lender, limiting minority-shareholder control."
+        "equityDiscount": "0.10 controlled-company discount: Bit Digital (BTBT) owns ~71.5% post-IPO and is also a related-party lender, limiting minority-shareholder control.",
+        "model": "landlord — colo economics dominate (NC-1/Nscale, Iceland shells); GPU cloud in legacyEV"
       },
       "narrative": "WhiteFiber is Bit Digital's carved-out AI-infrastructure arm (IPO Aug 2025, BTBT still ~71.5%), running a hybrid model: an owner-operated GPU cloud (~1,200 H100/H200/B200/GB200 GPUs) plus a fast-growing colocation/landlord business that leases powered shells to tenants who bring their own GPUs. The landlord side now dominates the growth story — NC-1 in Madison NC anchors a 10-year, ~$865M, 40MW Nscale colocation deal (billing Q2-Q3 2026) and MTL-3 hosts a 5MW Cerebras contract. The cloud book is shakier: the initial customer (~71% of 2025 revenue) paused pending renegotiation and DNA Fund terminated, leaving WhiteFiber leaning on colo take-or-pay and a large unbuilt NC-1/Montreal pipeline funded mostly with convert and related-party debt.",
       "bull": [
@@ -2694,10 +2716,11 @@
       "sites": [],
       "stake": {
         "tk": "WYFI",
-        "pct": 0.7
+        "pct": 0.577
       },
       "basis": {
-        "plannedRaise": "holdco — buildout funded at the WhiteFiber (WYFI) level; minimal BTBT-level equity"
+        "plannedRaise": "holdco — buildout funded at the WhiteFiber (WYFI) level; minimal BTBT-level equity",
+        "stake": "~29.1M WYFI shares ÷ 50.5M FD (diluted-through per census); verify held count in weekly sweep"
       },
       "narrative": "Bit Digital (NASDAQ:BTBT) — a holdco whose dominant asset is a ~70% stake in separately-listed WhiteFiber (WYFI: AI cloud + colo), plus a ~158k-ETH treasury and a small legacy BTC-mining fleet. It trades at a deep sum-of-the-parts discount — the WhiteFiber stake alone is worth ~1.5x BTBT's entire market cap. Valued here as SOTP: live look-through to WhiteFiber + ETH marked live − net debt, not as a developer.",
       "bull": [

@@ -52,6 +52,9 @@ for (const c of cos) {
   if ((c.plannedRaise || 0) > 0 && !bz.plannedRaise) FAIL(`${id}: plannedRaise without basis`);
   if (c.tier !== 'proven' && !bz.tier) FAIL(`${id}: non-Proven tier without basis`);
   if ((c.equityDiscount || 0) > 0 && !bz.equityDiscount) FAIL(`${id}: equityDiscount without basis`);
+  if ((c.committedDebt || 0) > 0 && !bz.committedDebt) FAIL(`${id}: committedDebt without basis`);
+  if ((c.seniorClaims || 0) > 0 && !bz.seniorClaims) FAIL(`${id}: seniorClaims without basis`);
+  if ((c.committedDebt || 0) < 0 || (c.seniorClaims || 0) < 0) FAIL(`${id}: negative committedDebt/seniorClaims`);
   // -- narrative layer
   if (!c.thesis) WARN(`${id}: no thesis`);
   else { const n = (c.thesis.match(/[.!?](\s|$)/g) || []).length; if (n > 3) WARN(`${id}: thesis ${n} sentences (max 3)`); }
@@ -73,8 +76,12 @@ for (const c of cos) {
     if (!tks.includes(c.stake.tk)) FAIL(`${id}: stake target ${c.stake.tk} not tracked`);
     if (c.stake.tk === c.tk) FAIL(`${id}: self-stake`);
     if (!(c.stake.pct > 0 && c.stake.pct <= 1)) FAIL(`${id}: stake pct ${c.stake.pct} out of (0,1]`);
-    const t = cos.find(x => x.tk === c.stake.tk);
-    if (t && t.stake && t.stake.tk === c.tk) FAIL(`${id}: circular stake with ${c.stake.tk}`);
+    // walk the stake chain — any cycle (depth ≥2) would crash the engine's recursion
+    let cur = cos.find(x => x.tk === c.stake.tk), seen = new Set([c.tk]), depth = 0;
+    while (cur && cur.stake && depth++ < 25) {
+      if (seen.has(cur.tk)) { FAIL(`${id}: stake cycle via ${cur.tk}`); break; }
+      seen.add(cur.tk); cur = cos.find(x => x.tk === cur.stake.tk);
+    }
   }
   // -- sites: schedule, phasing, provenance
   const names = new Set();

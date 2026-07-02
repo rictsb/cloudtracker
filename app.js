@@ -28,7 +28,10 @@ function btcPrice(){return BTC_PRICE||(CFG&&CFG.btcFallback)||60000;}
 function ethPrice(){return ETH_PRICE||(CFG&&CFG.ethFallback)||3000;}
 // Look-through value of a controlling stake in another tracked name (SOTP holdcos, e.g. BTBT → WhiteFiber).
 // pct × that company's modeled equity; auto-updates as the held company's inputs/price move (the "routine").
-function stakeValue(c){if(!c.stake)return 0;const t=COMPANIES&&COMPANIES.find(x=>x.tk===c.stake.tk);return t?(c.stake.pct||0)*value(t).equity:0;}
+function stakeValue(c){if(!c.stake)return 0;const t=COMPANIES&&COMPANIES.find(x=>x.tk===c.stake.tk);if(!t)return 0;const v=value(t);
+  const dil=v.fundedShares>0?t.shares/v.fundedShares:1;                      // ownership dilutes through the held company's planned raise
+  const eq=(c.stake.pct>0.5&&v.equityPre!=null)?v.equityPre:v.equity;       // a CONTROLLING stake doesn't inherit the minority discount its own control created
+  return (c.stake.pct||0)*dil*eq;}
 // Legacy/non-core EV = BTC + ETH treasuries (marked live) + look-through stakes + a non-crypto residual (mining/software).
 function legacyOf(c){return (c.btc||0)*btcPrice()/1e6+(c.eth||0)*ethPrice()/1e6+stakeValue(c)+(c.legacyEV||0);}
 function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
@@ -41,6 +44,8 @@ function ownerRate(c){return A.rate;}
 // share is locked at today's rate; the UNCONTRACTED share floats to the future prevailing rate at
 // its energization vintage — so in a rising-rate world unsold capacity is the upside, not a spot
 // haircut. `contracted %` remains the company number; rumored sites are 100% uncontracted (no lock).
+function effTrend(){return Math.min(A.rateTrend||0,(A.disc||10)-2);}  // guardrail: uncontracted real discount ≥2%/yr (time axis can't invert at bull settings)
+function leaseUp(){return A.leaseUp!=null?A.leaseUp:1;}               // lease-up / spot realization on the uncontracted slice (base 1.0 = scarcity view: energized capacity gets rented; 0.42 = consensus spread)
 function siteRates(c,s){
   const lock=Math.min(c.termYrs/3,1);
   const cf=(s.prov==='rumored')?0:(c.contractedPct/100);
@@ -48,20 +53,31 @@ function siteRates(c,s){
   const rm=(REGION[s.region]&&REGION[s.region].rateMul)||1;   // geography rate factor (US 1.0, EU/AU < 1)
   const base=A.rate*rm;
   const yrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);
-  const prevailing=base*Math.pow(1+(A.rateTrend||0)/100,yrs);
-  const contractedRate=ls*base, spotRate=(1-ls)*prevailing;
+  const prevailing=base*Math.pow(1+effTrend()/100,yrs);
+  const contractedRate=ls*base, spotRate=(1-ls)*prevailing*leaseUp();
   return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs};
 }
 function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
 function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,contractedShare,calc;
-  if(c.model==='landlord'){const vyrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);const escal=Math.pow(1+(A.rateTrend||0)/100,vyrs);const baseNOI=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const cs0=(s.prov==='rumored')?0:(c.contractedPct/100);const trendMult=cs0+(1-cs0)*escal;const noi=baseNOI*trendMult;const cap=((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*(c.contractedPct/100));ppm=noi/cap;
+  // site-aware contracted share: rumored capacity has no contracts, so it earns NO contract premium / cap compression
+  const cs0=(s.prov==='rumored')?0:(c.contractedPct/100);
+  if(c.model==='landlord'){const vyrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);const escal=Math.pow(1+effTrend()/100,vyrs);const baseNOI=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const trendMult=cs0+(1-cs0)*leaseUp()*escal;const noi=baseNOI*trendMult;
+    const cap=Math.max(((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*cs0),(CONST.capFloor||6.5)/100);ppm=noi/cap;   // floored at the DLR fully-leased-IG print
     contractedShare=trendMult>0?cs0/trendMult:0;calc={noi,cap,baseNOI,prevailingNOI:baseNOI*escal};}
-  else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*(c.contractedPct/100));ppm=R.eff*(m/100)*mult;
+  else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*cs0);ppm=R.eff*(m/100)*mult;
     contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult,prevailing:R.prevailing};}
-  const dr=A.disc,gross=ppm*s.mw,hair=PROV[s.prov],t=s.yr+((s.mo||1)-1)/12,yrs=Math.max(0,t+(A.ramp||0)/12-NOW),dfac=1/Math.pow(1+dr/100,yrs);
+  const dr=A.disc,gross=ppm*s.mw;
+  let hair=PROV[s.prov];if(s.prov==='rumored')hair*=(A.pipelineCredit!=null?A.pipelineCredit:1);  // rumored-pipeline credit dial
+  const t=s.yr+((s.mo||1)-1)/12;
+  // ramp (commissioning/fill) applies only to the UNCONTRACTED share — take-or-pay leases bill from commencement
+  const yrsC=Math.max(0,t-NOW),yrsU=Math.max(0,t+(A.ramp||0)/12-NOW),yrs=yrsU;
+  const dfac=contractedShare/Math.pow(1+dr/100,yrsC)+(1-contractedShare)/Math.pow(1+dr/100,yrsU);
   const ev=gross*hair*dfac;
   return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
-function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=legacyOf(c);const equity=(ev-c.netDebt)*(1-(c.equityDiscount||0)),px=priceOf(c);
+function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=legacyOf(c);
+  // claims senior to common: net debt + ISSUED project bonds funding credited sites (committedDebt, even if escrowed) + drawn preferred/NCI (seniorClaims)
+  const claims=c.netDebt+(c.committedDebt||0)+(c.seniorClaims||0);
+  const equityPre=ev-claims,equity=equityPre*(1-(c.equityDiscount||0)),px=priceOf(c);
   // Funding dilution: charge only the REALISTIC equity each name actually issues (its ATM / telegraphed
   // raises, `plannedRaise`), NOT full build capex — the rest is debt / prepayments / project finance, and a
   // revenue multiple already embeds capital intensity. New shares raised at the live price; a global
@@ -69,7 +85,7 @@ function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const s
   const equityRaise=(c.plannedRaise||0)*(A.dilutionStress!=null?A.dilutionStress:1);
   const newShares=px>0?equityRaise/px:0, fundedShares=c.shares+newShares;
   const target=equity/fundedShares;
-  return{ev,equity,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs,equityRaise,newShares,fundedShares};}
+  return{ev,equity,equityPre,claims,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs,equityRaise,newShares,fundedShares};}
 function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
 function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
 /* ---- controls ---- */
@@ -163,17 +179,17 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   let steps='';
   if(c.model==='landlord'){
     steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`${Math.round(sg.contractedShare*100)}% locked @ $${(k.baseNOI||k.noi).toFixed(2)}M · rest @ $${(k.prevailingNOI||k.baseNOI||k.noi).toFixed(2)}M (${s.yr} prevailing, ${(A.rateTrend>=0?'+':'')+(A.rateTrend||0)}%/yr)`);
-    steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − ${(CONST.capCompress*c.contractedPct).toFixed(0)}% contracted`);
+    steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − ${(CONST.capCompress*(s.prov==='rumored'?0:c.contractedPct)).toFixed(0)}% contracted (site-aware) · floor ${(CONST.capFloor||6.5)}%`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
   }else{
     steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% locked @ $${A.rate.toFixed(1)}M · rest @ $${(k.prevailing||A.rate).toFixed(1)}M (${s.yr} prevailing, ${(A.rateTrend>=0?'+':'')+(A.rateTrend||0)}%/yr)`);
     steps+=row('Margin',k.m+'%',`${A.margin} ${r.cMargin>=0?'+':'−'}${Math.abs(r.cMargin)} ${r.name.toLowerCase()} ${s.owned?'+'+CONST.ownedCMargin+' owned':CONST.leasedCMargin+' leased'}`);
-    steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× × ${tier.multFactor} ${tier.name} · (1 + ${(CONST.multPremium*c.contractedPct/100).toFixed(2)} contracted)`);
+    steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× × ${tier.multFactor} ${tier.name} · (1 + ${(CONST.multPremium*(s.prov==='rumored'?0:c.contractedPct)/100).toFixed(2)} contracted, site-aware)`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','rate × margin × multiple');
   }
   steps+=row('Gross value',fmtM(sg.gross),`$${sg.ppm.toFixed(1)}M × ${s.mw} MW`);
   steps+=row('× Execution haircut','×'+sg.hair.toFixed(2),s.prov);
-  steps+=row('× Time discount','×'+sg.dfac.toFixed(2),sg.yrs<=0?'live now':`${sg.yrs.toFixed(1)} yrs @ ${sg.dr%1===0?sg.dr:sg.dr.toFixed(1)}%${A.ramp>0?` · incl ${A.ramp}mo ramp`:''}`);
+  steps+=row('× Time discount','×'+sg.dfac.toFixed(2),sg.yrs<=0?'live now':`${sg.yrs.toFixed(1)} yrs @ ${sg.dr%1===0?sg.dr:sg.dr.toFixed(1)}%${A.ramp>0?` · ${A.ramp}mo ramp on uncontracted share`:''}`);
   steps+=`<div class="cstep tot"><span>Site value</span><span class="cval">${fmtM(sg.ev)}</span><span class="cnote"></span></div>`;
   steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
   steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
@@ -195,6 +211,9 @@ function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span
   stakeRow+ethRow+btcRow+
   (c.legacyEV?f(holdco?'Legacy mining':'Legacy / other',fmtM(c.legacyEV)):'')+
   f('Net debt',fmtM(c.netDebt))+
+  (c.committedDebt?f('Committed project debt',fmtM(c.committedDebt)+(bz.committedDebt?` · ${bz.committedDebt}`:'')):'')+
+  (c.seniorClaims?f('Preferred / minority claims',fmtM(c.seniorClaims)+(bz.seniorClaims?` · ${bz.seniorClaims}`:'')):'')+
+  (()=>{const fmw=(c.sites||[]).filter(s=>s.yr>YEAR).reduce((a,s)=>a+s.mw,0);const cpx=c.model==='landlord'?(CONST.capexLandlordMW||10):(CONST.capexOwnerMW||25);const gap=Math.max(0,fmw*cpx-(c.committedDebt||0)-(c.plannedRaise||0));return fmw>0&&!holdco?f('Funding gap (est., uncharged)',fmtM(gap)+` · ${fmw.toLocaleString()}MW × $${cpx}M − committed − raise`):'';})()+
   (c.equityDiscount?f('Governance / control discount',(c.equityDiscount*100).toFixed(0)+'% off equity'+(bz.equityDiscount?` · ${bz.equityDiscount}`:'')):'')+
   (holdco?'':f('Financing mix',c.finMix||'—'))+
   (holdco?'':f('Discount rate (time)',A.disc.toFixed(0)+'%'))+

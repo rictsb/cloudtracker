@@ -44,7 +44,9 @@ A site is deliberately just a few fields, never a mini-model:
 - Owner-operator base margin, compute-value multiple
 - Landlord cap rate
 - Discount rate (time)
-- Revenue ramp to steady-state (months) — delays each site's value after first power, modeling commissioning, GPU fill and contract ramp
+- Revenue ramp to steady-state (months) — delays the UNCONTRACTED share of each site's value after first power (take-or-pay leases bill from commencement)
+- Lease-up / spot realization (× the uncontracted slice, both paths; base 1.0 = the scarcity conviction that energized capacity gets rented; 0.42 = the consensus uncontracted spread)
+- Rumored-pipeline credit (× the rumored provenance haircut; stress the far pipeline to zero without editing data)
 - (Fixed tables: provenance → execution probability; region → power-cost adjustment)
 
 ## 4. Key mechanics that emerged
@@ -80,16 +82,16 @@ Per **site** → value/MW:
 - **Owner (cloud):** `value/MW = effective rate × margin% × multiple`
   - effective rate = contracted slice (locked at today's GPU rate) + uncontracted slice (today's rate grown at the GPU-rate **trend** to the site's energization year) × region rate-factor (US 1.0; EU/AU < 1). Lock = `min(term/3, 1) × contracted%` (rumored sites = 0% locked).
   - margin% = base-margin dial + region (cheap +5 / mid 0 / costly −5) + (owned +5 / leased −3)
-  - multiple = multiple dial × tier factor (Proven 1.0 / IG 1.12 / IG-REIT 1.25) × (1 + 0.40 × contracted%)
+  - multiple = multiple dial × tier factor (Proven 1.0 / IG 1.12 / IG-REIT 1.25) × (1 + 0.40 × contracted%) — **site-aware**: rumored sites earn no contract premium
 - **Landlord (colo):** `value/MW = NOI ÷ cap rate`
   - NOI = base-NOI × region × (owned/leased) × (0.9 + 0.1 × mtm); uncontracted slice grown at the trend to vintage
-  - cap rate = (cap dial + tier spread) × (1 − 0.30 × contracted%)
+  - cap rate = (cap dial + tier spread) × (1 − 0.30 × site-aware contracted%), **floored at 6.5%** (the DLR fully-leased-IG print)
 
 Then, **identical for both**: `site value = value/MW × MW × provenance haircut (disclosed 0.95 / estimated 0.55 / rumored 0.25) × time-discount [1/(1+disc)^years, years = energization − now + ramp]`
 
 Roll-up to **target**:
 - `EV = Σ site values + legacy`  (legacy = `btc × live BTC price + legacyEV` residual)
-- `equity = (EV − net debt) × (1 − governance discount)`
+- `equity = (EV − net debt − committed project debt − preferred/NCI claims) × (1 − governance discount)` — financing is charged symmetrically with the credit: issued project bonds funding credited sites count (`committedDebt`, even while escrowed); drawn preferred + NCI count (`seniorClaims`)
 - `funded shares = shares + planned equity raise ÷ live price`  (dilution = realistic ATM/issuance, **not** full build capex — the multiple already embeds capital intensity)
 - `TARGET = equity ÷ funded shares;  upside = target ÷ live price − 1`
 
@@ -99,8 +101,8 @@ Roll-up to **target**:
 
 Pure data entry into `data.json` `companies[]` — **never touch the engine** (no per-ticker code exists).
 
-- **Valuation inputs** (move the target): `model`, `tier`, `sites[]` (`{n, mw, owned, region, yr, mo, prov}`), `contractedPct`, `termYrs` (owner lock), `mtm` (landlord), `netDebt`, `shares`, `legacyEV` (non-BTC residual), `btc` (count, if any), `plannedRaise`, `equityDiscount` (default 0).
-- **Judgement inputs need a one-line `basis`** (shown in the panel): `plannedRaise`, `equityDiscount`, any non-Proven `tier`.
+- **Valuation inputs** (move the target): `model`, `tier`, `sites[]` (`{n, mw, owned, region, yr, mo, prov}`), `contractedPct`, `termYrs` (owner lock), `mtm` (landlord), `netDebt`, `committedDebt`, `seniorClaims`, `shares`, `legacyEV` (non-BTC residual), `btc`/`eth` (counts, if any), `stake` ({tk,pct}, holdcos), `plannedRaise`, `equityDiscount` (default 0).
+- **Judgement inputs need a one-line `basis`** (shown in the panel): `plannedRaise`, `equityDiscount`, `committedDebt`, `seniorClaims`, any non-Proven `tier`.
 - **Reference facts** (do NOT move the target): `narrative`, `bull`, `bear`, `catalysts`, `risks`, `finMix`, `leaseQ` (ranking score only), `log`.
 - **Capital-structure discipline (the most error-prone inputs):** `shares` = **fully-diluted** via if-converted/treasury — add deep-in-the-money convertibles (and remove their principal from `netDebt` when you count them), RSUs, and penny/ITM warrants; out-of-the-money converts stay in `netDebt` and add **no** shares. `netDebt` = borrowings + finance leases − cash − escrowed construction proceeds, EXCLUDING operating leases and crypto treasuries; **project/SPV debt is netted only to the extent drawn** — forward/undrawn facilities are not parent net debt. Hold shares, cash, and debt to ONE as-of date. (Audited to filings 2026-06-30 across the universe.)
 
