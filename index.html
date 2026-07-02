@@ -36,6 +36,7 @@
       <div class="tabs">
         <button class="tab on" data-view="cmp">Comparison</button>
         <button class="tab" data-view="sites">All sites</button>
+        <button class="tab" data-view="checks">Checks <span id="tabbadge"></span></button>
       </div>
 
       <section id="view-cmp">
@@ -56,6 +57,11 @@
           <span><i style="background:rgba(170,107,79,.30);border:1px dashed var(--clay)"></i>Overvalued</span>
         </div>
         <div class="legend2 col-stack">Bar = our value (the target), split by what backs it; the dark line is today's market price. The space between is <b>upside</b> (green) or <b>overvalued</b> (red). The more <b>hatched</b> the bar, the more value rests on uncontracted pipeline vs signed contracts.</div>
+      </section>
+
+      <section id="view-checks" style="display:none">
+        <div class="eyebrow">Data unit tests — run live in this browser against the deployed data, on every load</div>
+        <div id="checks-body"></div>
       </section>
 
       <section id="view-sites" style="display:none">
@@ -80,6 +86,7 @@
 </div>
 
 <script src="config.js"></script>
+<script src="checks-core.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

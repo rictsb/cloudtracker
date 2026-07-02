@@ -3,7 +3,7 @@
 The terse, always-current reference. Plain-English companion to `AI-Infra-Tracker-Spec.md` (binding). Present-tense only — no history (that's `CHANGELOG.md`).
 
 ## What it is
-First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Company full-page** · **Global dials**.
+First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser).
 
 ## The formula
 One engine; only the per-MW step branches by model.
@@ -62,8 +62,8 @@ Intuition: the real discount on future compute = discount − trend.
 Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-rate sanity: DLR/Blackstone (Jun 2026) ≈ $17M/MW equity, ~6.5% cap, ~15× NOI for fully-leased IG hyperscale.
 
 ## Keeping it current
-- **`node checks.js`** — the data test suite (run before every push; the weekly sweep runs it too). Deterministic checks: schema, site schedules & phasing, provenance consistency, capital-structure sanity, basis notes on judgement inputs, stake integrity, freshness. Research checks (FD shares vs filings, new debt/equity issuance, contract announcements, GPU spot pricing vs the rate/trend dials) run in the weekly sweep.
-- Weekly scheduled refresh re-checks each name and proposes thesis/input changes for review.
+- **Checks tab / `node checks.js`** — the same test suite runs live in the browser on every load AND as the pre-push CLI (shared `checks-core.js`). Deterministic checks: schema, site schedules & phasing, provenance consistency, capital-structure sanity, basis notes on judgement inputs, stake integrity, freshness. Research checks (FD shares vs filings, new debt/equity issuance, contract announcements, GPU spot pricing vs the rate/trend dials) run in the weekly sweep.
+- Weekly scheduled refresh re-checks each name, proposes thesis/input changes for review, and stamps `verified` dates (capital / contracts, + `config.verifiedPricing`) on approval — the Checks tab colors them by age.
 - **Update a name**: edit its fields (new lease → raise `contractedPct` / upgrade site `prov`; new debt or raise → `netDebt` / `shares`).
 - **Add a name**: data entry into `companies[]` only — never touch the engine (spec §5a).
 

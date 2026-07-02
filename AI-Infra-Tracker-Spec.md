@@ -108,12 +108,13 @@ Pure data entry into `data.json` `companies[]` — **never touch the engine** (n
 
 First-principles per name: sites + MW · energization schedule + certainty (→ provenance) · data-center tier/quality (size, power source, owned/leased → region & $/MW) · anchor/hyperscaler tenants (→ contracted% + tier) · capital structure (net debt, shares, converts, BTC, planned equity raise → dilution).
 
-## 6. The screens (four)
+## 6. The screens (five)
 
 1. **Comparison dashboard** — all names ranked by upside; each row carries a **value gauge** (bar = our target value split contracted-floor / expected / legacy; dark line = market price; shaded gap = upside or overvalued) and a collapsed **valuation narrative** toggle.
 2. **Company one-pager** — a full research page per ticker (see §6a): the quantitative roll-up plus qualitative narrative and judgement. Hash-routed (`#TICKER`), deep-linkable; clicking a dashboard row goes straight to it.
 3. **Sites table** — every site across the whole universe in one list: company, MW, owned/leased, region, energization date, provenance, and discounted value contribution. Sortable and filterable. The master inventory the roll-up is built from, and the fastest way to see how much of the universe's MW is disclosed vs rumored, or concentrated in one region or one delivery year.
 4. **Assumptions panel** — the global dials; change one and everything recomputes live.
+5. **Checks** — the data test suite, run live in the browser against the deployed data on every load (same code as `node checks.js`): group verdicts, findings, a per-company matrix, filing-verification ages (stamped by the weekly sweep via per-company `verified` dates + `config.verifiedPricing`), and the open watch-items registry (`watchItems`). A pass/warn/fail badge sits on the tab.
 
 ### 6a. The company one-pager
 

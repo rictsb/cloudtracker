@@ -99,7 +99,42 @@ function render(){
   const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
   document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin+CONST.leasedCMargin)/100)*(A.multiple*(1+CONST.multPremium*0.6)))+' / MW';
   document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
-  if(view==='cmp')renderCmp(); else renderSites();
+  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else renderSites();
+}
+/* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
+let RAW_DATA=null;
+function checkAge(iso){if(!iso)return {t:'never',cls:'bad'};const d=Math.round((Date.now()-new Date(iso))/86400000);return {t:d+'d ago',cls:d>60?'bad':d>30?'mid':'ok'};}
+function updateChecksBadge(r){const el=document.getElementById('tabbadge');if(!el)return;
+  el.className='cbadge '+(r.summary.fail?'bad':r.summary.warn?'mid':'ok');
+  el.textContent=r.summary.fail?r.summary.fail+' fail':r.summary.warn?r.summary.warn+' warn':'✓';}
+function renderChecks(){
+  const body=document.getElementById('checks-body');if(!body||!RAW_DATA||typeof ChecksCore==='undefined')return;
+  const r=ChecksCore.runChecks(RAW_DATA);updateChecksBadge(r);
+  const esc=t=>String(t).replace(/</g,'&lt;');
+  let h=`<div class="ck-verdict ${r.summary.fail?'bad':'ok'}">${r.summary.fail?'✗':'✓'} ${r.summary.checksRun.toLocaleString()} checks · ${r.summary.companies} companies · ${r.summary.sites} sites — <b>${r.summary.fail} FAIL</b> · ${r.summary.warn} warn · checked just now, in this browser, against the deployed data</div>`;
+  // group cards
+  h+=`<h4 class="sec">What is checked</h4><div class="ck-groups">`;
+  r.groupOrder.forEach(k=>{const g=r.groups[k];const st=g.fail?'bad':g.warn?'mid':'ok';
+    h+=`<div class="ck-g"><div class="ck-g-head"><span class="ck-dot ${st}"></span><b>${g.name}</b><span class="ck-n">${g.pass}/${g.total} pass${g.warn?` · ${g.warn} warn`:''}${g.fail?` · ${g.fail} FAIL`:''}</span></div><div class="ck-guard">${g.guards}</div></div>`;});
+  h+=`</div>`;
+  // findings
+  if(r.msgs.length){h+=`<h4 class="sec">Findings (${r.msgs.length})</h4><div class="ck-msgs">`;
+    r.msgs.forEach(m=>{h+=`<div class="ck-m ${m.level}"><span class="ck-lv">${m.level==='fail'?'FAIL':'warn'}</span><b>${m.tk}</b> ${esc(m.msg)}</div>`;});h+=`</div>`;}
+  // per-company matrix
+  const cols=r.groupOrder.filter(k=>k!=='config');
+  h+=`<h4 class="sec">Per company</h4><div style="overflow-x:auto"><table class="stab ck-mx"><thead><tr><th>Company</th>${cols.map(k=>`<th>${r.groups[k].name.split(' ')[0]}</th>`).join('')}<th class="r">Capital verified</th><th class="r">Contracts verified</th></tr></thead><tbody>`;
+  COMPANIES.forEach(c=>{const pc=r.perCo[c.tk]||{};const v=c.verified||{};const a1=checkAge(v.capital),a2=checkAge(v.contracts);
+    const cells=cols.map(k=>{const x=pc[k];if(!x||!(x.pass+x.warn+x.fail))return '<td class="ck-c">·</td>';
+      const st=x.fail?'bad':x.warn?'mid':'ok';const sym=x.fail?'✗':x.warn?'⚠':'✓';
+      const tip=x.msgs.length?` title="${esc(x.msgs.map(m=>m.msg).join(' · '))}"`:'';
+      return `<td class="ck-c ${st}"${tip}>${sym}${x.fail||x.warn?'<span class="ck-cn">'+(x.fail+x.warn)+'</span>':''}</td>`;}).join('');
+    h+=`<tr><td class="co">${c.tk}</td>${cells}<td class="r"><span class="ck-age ${a1.cls}">${a1.t}</span></td><td class="r"><span class="ck-age ${a2.cls}">${a2.t}</span></td></tr>`;});
+  h+=`</tbody></table></div><div class="legend2">✓ all assertions pass · ⚠ warnings (hover for detail) · ✗ failures. Verification ages: filings/contracts re-checked by the weekly sweep — <span class="ck-age ok">≤30d</span> <span class="ck-age mid">31–60d</span> <span class="ck-age bad">&gt;60d / never</span>. GPU pricing dials last checked vs market: <b>${RAW_DATA.config.verifiedPricing||'never'}</b>.</div>`;
+  // watch items
+  const wi=RAW_DATA.watchItems||[];
+  if(wi.length){h+=`<h4 class="sec">Open watch-items (${wi.length})</h4>`;wi.forEach(w=>{h+=`<div class="ck-m mid"><span class="ck-lv">watch</span><b>${w.tk}</b> ${esc(w.note)} <span class="ck-when">· ${w.added}</span></div>`;});}
+  h+=`<div class="legend2" style="margin-top:14px">Deterministic checks run in this browser via <b>checks-core.js</b> — the identical code <b>node checks.js</b> runs before every push. Research checks (fully-diluted shares vs filings, new issuance, contract announcements, GPU spot pricing) run in the weekly sweep, which updates the verification stamps above on approval.</div>`;
+  body.innerHTML=h;
 }
 // Value gauge: bar = our target value (split contracted-floor / expected / legacy), line = market price,
 // shaded gap = upside (green) or overvalued (red). Bar scaled per-row to max(price,target).
@@ -348,6 +383,7 @@ function route(){
     const tk=raw.indexOf('sites=')===0?raw.slice(6).toUpperCase():null;
     showDashboard('sites',(tk&&COMPANIES.find(x=>x.tk===tk))?tk:null);return;
   }
+  if(raw==='checks'){showDashboard('checks',null);return;}
   showDashboard('cmp',null);
 }
 function showDashboard(v,filter){
@@ -357,12 +393,13 @@ function showDashboard(v,filter){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.view===v));
   document.getElementById('view-cmp').style.display=v==='cmp'?'':'none';
   document.getElementById('view-sites').style.display=v==='sites'?'':'none';
+  const vc=document.getElementById('view-checks');if(vc)vc.style.display=v==='checks'?'':'none';
   render();window.scrollTo(0,0);
 }
 
 /* ---- wiring (after data loads) ---- */
 function wireEvents(){
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':'')));
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':'')));
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
@@ -419,11 +456,13 @@ async function boot(){
     const res=await fetch('data.json',{cache:'no-store'});
     if(!res.ok)throw new Error('HTTP '+res.status);
     const data=await res.json();
+    RAW_DATA=data;
     applyConfig(data.config);
     COMPANIES=data.companies;
     buildControls();
     wireEvents();
     route();
+    try{if(typeof ChecksCore!=='undefined')updateChecksBadge(ChecksCore.runChecks(RAW_DATA));}catch(e){}
     fetchPrices();fetchBtc();fetchEth();
     setInterval(()=>{fetchPrices();fetchBtc();fetchEth();},3600000);
   }catch(err){

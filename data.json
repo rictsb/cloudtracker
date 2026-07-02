@@ -176,7 +176,8 @@
       "capexLandlordMW": 10
     },
     "btcFallback": 60000,
-    "ethFallback": 3000
+    "ethFallback": 3000,
+    "verifiedPricing": "2026-07-02"
   },
   "companies": [
     {
@@ -436,7 +437,11 @@
       "basis": {
         "plannedRaise": "~10-12% equity slice of $31-35B/yr FY26 capex; ~84% DDTL-debt funded, equity opportunistic (NVIDIA/Jane Street)"
       },
-      "thesis": "Model credits the full 8 GW pipeline at owner economics while the market mainly prices the contracted ~$99B backlog — the gap closes as back-half capacity re-signs. Brakes: ~$23B debt and ~67% Microsoft concentration."
+      "thesis": "Model credits the full 8 GW pipeline at owner economics while the market mainly prices the contracted ~$99B backlog — the gap closes as back-half capacity re-signs. Brakes: ~$23B debt and ~67% Microsoft concentration.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-27"
+      }
     },
     {
       "tk": "NBIS",
@@ -686,7 +691,11 @@
       "basis": {
         "plannedRaise": "NVIDIA $2B + ~$2.5B ATM + 1-2 follow-ons; prepayments fund ~60% of capex"
       },
-      "thesis": "Roughly fair — the 80%-contracted hyperscaler book and $5.8B of non-core stakes are largely priced in, leaving modest upside from the 6.5 GW ramp. Net-cash balance sheet is the cushion."
+      "thesis": "Roughly fair — the 80%-contracted hyperscaler book and $5.8B of non-core stakes are largely priced in, leaving modest upside from the 6.5 GW ramp. Net-cash balance sheet is the cushion.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-28"
+      }
     },
     {
       "tk": "RIOT",
@@ -830,7 +839,11 @@
         "plannedRaise": "$0 ATM draws Q1'26; funds via BTC treasury + cash flow + nonrecourse project debt (Starboard anti-dilution)",
         "tier": "IG — investment-grade AMD 50MW 10yr lease anchors the colo book"
       },
-      "thesis": "Owned, powered ~1 GW Corsicana (IG-re-rated on the AMD lease) is credited, but it's ~95% unleased so the market discounts the lease-up. Re-rates as Corsicana signs tenants."
+      "thesis": "Owned, powered ~1 GW Corsicana (IG-re-rated on the AMD lease) is credited, but it's ~95% unleased so the market discounts the lease-up. Re-rates as Corsicana signs tenants.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-28"
+      }
     },
     {
       "tk": "BTDR",
@@ -1004,7 +1017,11 @@
         "plannedRaise": "ATM cut to $700M, converts preferred; Tydal lease → project debt",
         "equityDiscount": "Jihan Wu ~75% voting control + foreign-private-issuer + controlled-company + index exclusion"
       },
-      "thesis": "Cheap against its ~1.4 GW spec pipeline, but upside is gated by a 15% governance discount (Jihan Wu control) and a near-zero contracted book. Tydal becoming an effective lease is the catalyst."
+      "thesis": "Cheap against its ~1.4 GW spec pipeline, but upside is gated by a 15% governance discount (Jihan Wu control) and a near-zero contracted book. Tydal becoming an effective lease is the catalyst.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-29"
+      }
     },
     {
       "tk": "IREN",
@@ -1245,7 +1262,11 @@
       "basis": {
         "plannedRaise": "~$4.9B undrawn of $6B ATM + future programs; MSFT prepay + $3.65B GPU debt + converts carry ~90%"
       },
-      "thesis": "Most undervalued and most speculative — the model credits a ~5.8 GW mostly-uncontracted global pipeline riding the rising-rate trend, while the market prices today's small live AI book. Post-realistic-dilution but pre-execution: it must build, fill and fund the pipeline."
+      "thesis": "Most undervalued and most speculative — the model credits a ~5.8 GW mostly-uncontracted global pipeline riding the rising-rate trend, while the market prices today's small live AI book. Post-realistic-dilution but pre-execution: it must build, fill and fund the pipeline.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "SLNH",
@@ -1322,7 +1343,11 @@
       "finMix": "Near net-cash (~$41M post-Briscoe): ~$28M project/equipment debt (Generate, Galaxy, Green Cloud, equipment) + ~$2M finance leases vs ~$69M cash; funded chiefly by equity ($500M ATM, registered directs, warrants) and project-level capital from Spring Lane/Generate; no BTC treasury.",
       "leaseQ": 2.2,
       "log": [],
-      "thesis": "A distressed micro-cap option: ~280 MW of mostly pre-tenant AI capacity on cheap renewable power, nearly offset by the ~3-4x dilution needed to fund it. Binary on landing a JV/anchor before the going-concern clock."
+      "thesis": "A distressed micro-cap option: ~280 MW of mostly pre-tenant AI capacity on cheap renewable power, nearly offset by the ~3-4x dilution needed to fund it. Binary on landing a JV/anchor before the going-concern clock.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "GLXY",
@@ -1436,7 +1461,11 @@
       "finMix": "Debt-led: $1.4B Helios project facility (80% LTC, 36mo) + $3.1B total notes payable (incl. ~$2.1B exchangeable notes) + $2.6B corporate cash/stablecoins + financial-services cash flow; buying back stock, minimal equity issuance.",
       "leaseQ": 3,
       "log": [],
-      "thesis": "Fair — the 15-yr CoreWeave Helios lease (526 MW) is priced in; the ~1.6 GW unleased ERCOT pipeline is the option you're buying. Upside needs the next anchor; the financial-services arm is ballast."
+      "thesis": "Fair — the 15-yr CoreWeave Helios lease (526 MW) is priced in; the ~1.6 GW unleased ERCOT pipeline is the option you're buying. Upside needs the next anchor; the financial-services arm is ballast.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "HUT",
@@ -1539,7 +1568,11 @@
         "pct": 0.553
       },
       "thesis": "Overvalued on the math: campuses credited at full value but funded ~95% by $7.5B of nonrecourse project debt, leaving thin equity, plus a live ~55% ABTC stake. The market pays for developer optionality the leverage doesn't support.",
-      "committedDebt": 7500
+      "committedDebt": 7500,
+      "verified": {
+        "capital": "2026-07-02",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "CIFR",
@@ -1703,7 +1736,11 @@
       "log": [],
       "thesis": "Undervalued — 700 MW of signed hyperscaler colo plus a ~2 GW queued pipeline credited near-full while the market still treats it as a miner. Re-rates as Barber Lake energizes and the pipeline contracts.",
       "committedDebt": 4341,
-      "seniorClaims": 26
+      "seniorClaims": 26,
+      "verified": {
+        "capital": "2026-07-02",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "MARA",
@@ -1807,7 +1844,11 @@
       "finMix": "BTC-treasury sales + zero/low-coupon converts (~$2.3B) + Barclays bridge & assumed debt on Long Ridge (~$1.5B) + $2B ATM at the margin; Starwood JV co-finances projects.",
       "leaseQ": 2.5,
       "log": [],
-      "thesis": "Looks cheap because the model credits ~2.5 GW of owned power, but nearly all is mining/spec with zero signed AI leases (real AI-leasable ~200 MW). Needs an actual AI conversion, not just owned megawatts."
+      "thesis": "Looks cheap because the model credits ~2.5 GW of owned power, but nearly all is mining/spec with zero signed AI leases (real AI-leasable ~200 MW). Needs an actual AI conversion, not just owned megawatts.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "CORZ",
@@ -1967,7 +2008,11 @@
       "leaseQ": 4,
       "log": [],
       "btc": 547,
-      "thesis": "Undervalued vs its CoreWeave colo book (~590 MW, 12-yr) plus ~1.3 GW of pipeline; the market discounts the single-tenant concentration. The CoreWeave relationship is both the value and the risk."
+      "thesis": "Undervalued vs its CoreWeave colo book (~590 MW, 12-yr) plus ~1.3 GW of pipeline; the market discounts the single-tenant concentration. The CoreWeave relationship is both the value and the risk.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "WULF",
@@ -2099,7 +2144,11 @@
       "leaseQ": 3,
       "log": [],
       "thesis": "Slightly rich — Lake Mariner/Abernathy AI leases (Fluidstack/Google-backstopped) are credited, but you're paying for brownfield that's mostly 2028-30 and uncontracted. Near-term contracted MW set the floor.",
-      "seniorClaims": 101
+      "seniorClaims": 101,
+      "verified": {
+        "capital": "2026-07-02",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "FRMI",
@@ -2177,7 +2226,11 @@
       "finMix": "Near net-cash today (~$421M debt incl. equipment finance vs ~$243M cash → ~$178M net debt, op-leases excluded); funded so far by IPO (~$746M), converts/preferred, and non-recourse equipment financing (MUFG $500M, Yorkville $156M) — but the multi-GW buildout will be overwhelmingly equity/ATM-dependent given no contracted cash flow.",
       "leaseQ": 2,
       "log": [],
-      "thesis": "The firm ~2 GW of secured gas power (approved 6 GW air permit, turbines ordered) roughly supports the price; the premium is the 11-17 GW ambition + OpenAI-anchor optionality, credited at ~zero. A signed anchor is the binary re-rate — no tenant yet."
+      "thesis": "The firm ~2 GW of secured gas power (approved 6 GW air permit, turbines ordered) roughly supports the price; the premium is the 11-17 GW ambition + OpenAI-anchor optionality, credited at ~zero. A signed anchor is the binary re-rate — no tenant yet.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "WYFI",
@@ -2310,7 +2363,11 @@
       "finMix": "$230M 4.5% convert due 2031 (+$120M zero-strike call), $100-150M Bit Digital delayed-draw TL, CAD60M RBC facility, $20M Iceland TL; $75.8M cash; ~38.6M shares; no BTC treasury (stayed with BTBT).",
       "leaseQ": 2,
       "log": [],
-      "thesis": "Undervalued AI hybrid (GPU cloud + colo to Nscale/Cerebras), but a single-tenant, single-site, thin-float bet — concentration is the thesis. Its value also drives BTBT's look-through."
+      "thesis": "Undervalued AI hybrid (GPU cloud + colo to Nscale/Cerebras), but a single-tenant, single-site, thin-float bet — concentration is the thesis. Its value also drives BTBT's look-through.",
+      "verified": {
+        "capital": "2026-07-02",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "HIVE",
@@ -2407,7 +2464,11 @@
       "finMix": "$115M 0% exchangeable notes (2031) + serial ATM equity + Dell finance lease (504 B200s) + mortgage/term loans; AI capex funded mainly by equity and the convert, not contracted prepayments.",
       "leaseQ": 2.5,
       "log": [],
-      "thesis": "Modest upside — a small live GPU-cloud (~9 MW) plus a 320 MW GTA pipeline on owned green power, still mostly a BTC miner. Cheap optionality on the buildout."
+      "thesis": "Modest upside — a small live GPU-cloud (~9 MW) plus a 320 MW GTA pipeline on owned green power, still mostly a BTC miner. Cheap optionality on the buildout.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "APLD",
@@ -2569,7 +2630,11 @@
       "log": [],
       "thesis": "Undervalued — ~1.4 GW of 15-yr triple-net leases to CoreWeave/Oracle (~$36B lease value) credited near-full while the market discounts execution and debt. One of the cleanest contracted-landlord books here.",
       "committedDebt": 3740,
-      "seniorClaims": 1100
+      "seniorClaims": 1100,
+      "verified": {
+        "capital": "2026-07-02",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "ABTC",
@@ -2612,7 +2677,11 @@
       "finMix": "BTC treasury + mining cash flow + capital markets",
       "leaseQ": 1.0,
       "log": [],
-      "thesis": "A BTC treasury/miner (Hut 8-controlled), tracked mainly so HUT marks its stake live; screens near BTC NAV. Not an AI bet — pure Bitcoin and dilution exposure."
+      "thesis": "A BTC treasury/miner (Hut 8-controlled), tracked mainly so HUT marks its stake live; screens near BTC NAV. Not an AI bet — pure Bitcoin and dilution exposure.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "CLSK",
@@ -2708,7 +2777,11 @@
       "finMix": "$1.84B of 0% convertible notes (2030 $692M + 2032 $1.15B); all BTC-backed credit lines repaid with convert proceeds; net debt ~$1.56B excl. BTC. Buildout to be financed primarily by project/high-yield debt against future IG anchor leases (mgmt cites Cipher-style 6-8% hyperscaler-backed debt) plus monthly BTC production and ~$0.8B liquidity; equity (ATM) deliberately a last resort — zero issuance in 15 months, ~20% share count REDUCED via $463M buyback.",
       "leaseQ": 2.5,
       "log": [],
-      "thesis": "Cheap vs ~1.1 GW of owned, powered TX/GA land plus a 13.5k-BTC treasury, but the AI-landlord thesis is entirely pre-contract (Meta only a 'frontrunner'). A first signed anchor re-rates it from miner to colo."
+      "thesis": "Cheap vs ~1.1 GW of owned, powered TX/GA land plus a 13.5k-BTC treasury, but the AI-landlord thesis is entirely pre-contract (Meta only a 'frontrunner'). A first signed anchor re-rates it from miner to colo.",
+      "verified": {
+        "capital": "2026-06-30",
+        "contracts": "2026-06-30"
+      }
     },
     {
       "tk": "BTBT",
@@ -2759,7 +2832,38 @@
       "finMix": "~70% WhiteFiber stake + ~158k ETH treasury + small mining; low net debt",
       "leaseQ": 1.0,
       "log": [],
-      "thesis": "Deep holdco discount — its 70% WhiteFiber stake alone is ~1.5x the whole company's market cap, plus a 158k-ETH treasury. Upside is the SOTP closing and WhiteFiber re-rating; risk is the discount persisting."
+      "thesis": "Deep holdco discount — its 70% WhiteFiber stake alone is ~1.5x the whole company's market cap, plus a 158k-ETH treasury. Upside is the SOTP closing and WhiteFiber re-rating; risk is the discount persisting.",
+      "verified": {
+        "capital": "2026-07-02",
+        "contracts": "2026-06-30"
+      }
+    }
+  ],
+  "watchItems": [
+    {
+      "tk": "WULF",
+      "note": "Model credits 100% of Abernathy (168MW) but WULF owns 50.1% via an off-BS JV carrying $1.3B nonrecourse notes — over-credit; halve the MW or charge look-through claims",
+      "added": "2026-07-02"
+    },
+    {
+      "tk": "CIFR",
+      "note": "Third campus modeled at 150MW; Stingray/AWS Andrews facility is actually 70 IT MW (100 gross) — trim the site row",
+      "added": "2026-07-02"
+    },
+    {
+      "tk": "APLD",
+      "note": "Macquarie preferred: $900M face drawn of a $5B program (12.75% PIK, 1.8x MOIC floor) — seniorClaims grows as it draws; re-mark quarterly",
+      "added": "2026-07-02"
+    },
+    {
+      "tk": "MARA",
+      "note": "~2,500MW credited but AI-leasable critical IT is ~200MW (Hannibal, ~2028); rest is mining/spec — Richard reviewing before any change",
+      "added": "2026-06-30"
+    },
+    {
+      "tk": "CRWV",
+      "note": "Meta Compute + xAI/Anthropic Colossus = new AIaaS supply entrants; H100 spot −7% off June peak — the trend-dial tripwire",
+      "added": "2026-07-02"
     }
   ]
 }
