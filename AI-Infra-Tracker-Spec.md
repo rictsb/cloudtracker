@@ -34,7 +34,6 @@ A site is deliberately just a few fields, never a mini-model:
 **Company tier — the commercial and capital layer that does not decompose into concrete.**
 - Contracted % (share of the book contracted today — the t=0 snapshot)
 - Average term remaining (years — sets the lock on the contracted rate, owners)
-- Mark-to-market factor (landlord NOI nudge)
 - Counterparty quality (reference fact) and financing-mix tag
 - Capital stack: net debt, fully-diluted shares, planned equity raise (+ basis), governance discount (+ basis)
 - Legacy/non-core: BTC/ETH treasuries (marked live), look-through stakes in tracked names, non-crypto residual
