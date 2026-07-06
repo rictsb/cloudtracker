@@ -22,9 +22,15 @@ jobs:
         with:
           node-version: 20
       - name: Run daily portfolio step
+        id: run
         env:
           FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN }}
-        run: node portfolio-run.js
+        run: |
+          set -o pipefail
+          node portfolio-run.js | tee run.log
+          if grep -q "^PORTFOLIO_ALERT:" run.log; then
+            echo "alert=$(grep -m1 '^PORTFOLIO_ALERT:' run.log | cut -c18-)" >> "$GITHUB_OUTPUT"
+          fi
       - name: Commit ledger update
         run: |
           if ! git diff --quiet -- portfolio.json portfolio-history.json; then
@@ -41,16 +47,18 @@ jobs:
           else
             echo "no ledger change (closed day) — nothing to commit"
           fi
-      - name: Alert on failure
-        if: failure()
+      - name: Alert on failure or quarantine escalation
+        if: failure() || steps.run.outputs.alert != ''
         env:
           GH_TOKEN: ${{ github.token }}
+          ALERT: ${{ steps.run.outputs.alert }}
         run: |
-          TITLE="portfolio-daily failed — needs a look"
-          BODY="Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} ($(date -u +%F)). The paper-portfolio ledger did not update. Common causes: a suspect price print held for 3 days (possible split/delisting needing manual reconciliation), a dead quote feed, or a push conflict."
+          TITLE="portfolio-daily needs a look"
+          BODY="Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} ($(date -u +%F)). ${ALERT:-The daily step failed before writing a ledger record — common causes: dead quote feed, push conflict, script error.}"
           EXISTING=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' || true)
           if [ -n "$EXISTING" ]; then
             gh issue comment "$EXISTING" --body "$BODY" || true
           else
             gh issue create --title "$TITLE" --body "$BODY" || true
           fi
+          if [ -n "$ALERT" ]; then exit 1; fi   # record is committed; still mark the run red

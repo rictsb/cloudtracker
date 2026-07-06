@@ -96,7 +96,9 @@
   /* Trade to target when drift breaches the band; returns {holdings, trades, drift} (new objects).
      tradable (Set|null): names allowed to trade — null means all. Frozen names (stale quote,
      removed from universe, suspect print) keep their shares; their value is carved out of the
-     investable base so the tradable book still sums correctly. Cost-aware sizing keeps cash ≥ 0. */
+     investable base AND their target weight is renormalized away over the tradable sleeve —
+     otherwise a one-day freeze of a large name would force-sell every healthy position into
+     phantom cash. Cost-aware sizing keeps cash ≥ 0; an impossible balance aborts untraded. */
   function applyRebalance(holdings, tw, px, params, tradable) {
     const nav = markNav(holdings, px);
     if (nav <= 0) return { holdings, trades: [], drift: 0 };
@@ -106,8 +108,12 @@
     const inv = Math.max(0, nav - frozenVal);          // investable base
     const cur = currentWeights(holdings, px);
     const names = [...new Set([...Object.keys(cur), ...Object.keys(tw.weights)])].filter(isT);
-    let drift = Math.abs((holdings.cash / nav) - tw.cash * inv / nav);
-    names.forEach(tk => { drift = Math.max(drift, Math.abs((cur[tk] || 0) - (tw.weights[tk] || 0) * inv / nav)); });
+    // renormalize targets over the tradable sleeve: frozen names' weights must not become cash
+    const denom = tw.cash + names.reduce((a, tk) => a + (tw.weights[tk] || 0), 0);
+    const eff = tk => denom > 0 ? (tw.weights[tk] || 0) / denom : 0;
+    const effCash = denom > 0 ? tw.cash / denom : 1;
+    let drift = Math.abs((holdings.cash / nav) - effCash * inv / nav);
+    names.forEach(tk => { drift = Math.max(drift, Math.abs((cur[tk] || 0) - eff(tk) * inv / nav)); });
     if (drift <= params.band) return { holdings, trades: [], drift };
 
     // two-pass cost-aware sizing: size positions to (investable − cost) so cash never goes negative
@@ -115,7 +121,7 @@
     for (let pass = 0; pass < 2; pass++) {
       cost = 0;
       names.forEach(tk => {
-        const dv = (tw.weights[tk] || 0) * navEff - (holdings.positions[tk] || 0) * px[tk];
+        const dv = eff(tk) * navEff - (holdings.positions[tk] || 0) * px[tk];
         if (Math.abs(dv) > nav * 1e-6) cost += Math.abs(dv) * params.tcBps / 1e4;
       });
       navEff = inv - cost;
@@ -124,13 +130,15 @@
     for (const tk in holdings.positions) if (!isT(tk) && holdings.positions[tk] > 0) positions[tk] = holdings.positions[tk]; // frozen carry
     names.forEach(tk => {
       const curVal = (holdings.positions[tk] || 0) * px[tk];
-      const tgtVal = (tw.weights[tk] || 0) * navEff;
+      const tgtVal = eff(tk) * navEff;
       const dv = tgtVal - curVal;
-      if (Math.abs(dv) > nav * 1e-6) trades.push({ tk, usd: r2(dv), px: rPx(px[tk]), to: r4(tw.weights[tk] || 0) });
+      if (Math.abs(dv) > nav * 1e-6) trades.push({ tk, usd: r2(dv), px: rPx(px[tk]), to: r4(eff(tk) * inv / nav) });
       if (tgtVal > 0) positions[tk] = tgtVal / px[tk];
     });
     let held = 0; for (const tk in positions) held += positions[tk] * (px[tk] || 0);
-    return { holdings: { cash: Math.max(0, nav - held - cost), positions }, trades, drift };
+    const rawCash = nav - held - cost;
+    if (rawCash < -nav * 1e-9) return { holdings, trades: [], drift, corrupt: true };  // accounting hole (frozenVal > nav?) — never clamp it away silently
+    return { holdings: { cash: Math.max(0, rawCash), positions }, trades, drift };
   }
 
   /* Spearman with average ranks for ties (equal ν values are common — equal confidence tiers) */
@@ -165,7 +173,7 @@
     const t = ledger.length - 1, t0 = t - params.lookback;
     if (t0 < 0) return null;
     const a = ledger[t0], b = ledger[t];
-    if (eraStart && a.d <= eraStart) return null;
+    if (eraStart && a.d <= eraStart) return { gated: true };
     const pairs = [];
     for (const tk in (a.nu || {})) {
       if (a.nu[tk] != null && a.px[tk] > 0 && b.px[tk] > 0)
@@ -191,6 +199,10 @@
       }
       if (ns.m < 0.995 || ns.opp > 0) diag.push({ tk: p.tk, m: r4(ns.m), opp: ns.opp || 0, excess: r4(excess) });
     });
+    // a name absent from this window (delisted/frozen/new) must not carry a months-old
+    // opposition count into its next appearance — "consecutive" means consecutive
+    const inWindow = new Set(pairs.map(p => p.tk));
+    Object.entries(state.names).forEach(([tk, ns]) => { if (!inWindow.has(tk)) ns.opp = 0; });
     return { ic: r4(ic), lambda: r4(state.lambda), diag };
   }
 
@@ -200,24 +212,41 @@
      px prices every ticker seen so far (forward-filled); rows only names investable today. */
   function step(ctx) {
     const { params, state } = ctx;
+    ctx.notes = ctx.notes || [];
 
-    // learn BEFORE forming today's views, on the recorded history (era-gated)
+    // learn BEFORE forming today's views. Cadence anchors to the last successful learn
+    // (not a length modulo) so the first CLEAN post-era window fires as soon as it exists;
+    // era-gated attempts are surfaced as a note, never silent.
     let learn = null;
-    if (ctx.ledger.length >= params.lookback && ctx.ledger.length % params.learnEvery === 0)
-      learn = updateLearning(state, ctx.ledger, params, ctx.eraStart || null);
+    if (ctx.ledger.length >= params.lookback && ctx.ledger.length - (state.lastLearnLen || 0) >= params.learnEvery) {
+      const u = updateLearning(state, ctx.ledger, params, ctx.eraStart || null);
+      if (u && u.gated) {
+        if (!state.lastGateNote || ctx.ledger.length - state.lastGateNote >= params.learnEvery) {
+          ctx.notes.push('learning paused — lookback window still contains simulated-genesis records');
+          state.lastGateNote = ctx.ledger.length;
+        }
+      } else if (u) { learn = u; state.lastLearnLen = ctx.ledger.length; }
+    }
 
     const views = computeViews(ctx.rows, state, params);
     const tw = targetWeights(views, params);
     const reb = applyRebalance(ctx.holdings, tw, ctx.px, params, ctx.tradable || null);
+    if (reb.corrupt) ctx.notes.push('REBALANCE ABORTED — holdings do not reconcile with NAV (possible data corruption); book left untouched');
     ctx.holdings = reb.holdings;
     const nav = markNav(ctx.holdings, ctx.px);
 
-    // benchmark: equal-weight every investable name, rebalanced monthly (new listings enter then)
+    // benchmark: equal-weight every investable name, rebalanced monthly (new listings enter then).
+    // Frozen names (in the bench but not investable today) carry their shares — never liquidated
+    // at a forward-filled phantom price; suspended days (empty tradable set) defer the rebuild.
     const investable = ctx.rows.filter(r => r.price > 0).map(r => r.tk);
-    if (investable.length && (ctx.bench.lastReb == null || ctx.dayIdx - ctx.bench.lastReb >= params.benchEvery)) {
-      const bnav = markNav(ctx.bench, ctx.px);
-      const positions = {};
-      investable.forEach(tk => { positions[tk] = (bnav / investable.length) / ctx.px[tk]; });
+    const suspended = !!(ctx.tradable && ctx.tradable.size === 0);
+    if (investable.length && !suspended && (ctx.bench.lastReb == null || ctx.dayIdx - ctx.bench.lastReb >= params.benchEvery)) {
+      const positions = {}; let frozenVal = 0;
+      for (const tk in ctx.bench.positions) if (!investable.includes(tk)) {
+        positions[tk] = ctx.bench.positions[tk]; frozenVal += ctx.bench.positions[tk] * (ctx.px[tk] || 0);
+      }
+      const investVal = Math.max(0, markNav(ctx.bench, ctx.px) - frozenVal);
+      investable.forEach(tk => { positions[tk] = (investVal / investable.length) / ctx.px[tk]; });
       ctx.bench = { cash: 0, positions, lastReb: ctx.dayIdx };
     }
     const benchNav = markNav(ctx.bench, ctx.px);

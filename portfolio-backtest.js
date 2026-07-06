@@ -131,8 +131,8 @@ async function main() {
     const lastClose = hist[tk][dts[dts.length - 1]];
     let ref = null;
     try { const q = await getJSON(`https://finnhub.io/api/v1/quote?symbol=${tk}&token=${QUOTE_TOKEN}`); if (q && q.c > 0) ref = q.c; } catch (e) {}
-    if (ref == null) { const c = data.companies.find(x => x.tk === tk); ref = c && c.price; }
-    if (!(ref > 0) || !(lastClose > 0)) continue;
+    if (!(ref > 0)) { console.error(`BASIS UNVERIFIED ${tk}: no live quote — series accepted as-is (never rescale off a stale manual price)`); continue; }
+    if (!(lastClose > 0)) continue;
     const ratio = ref / lastClose;
     if (Math.abs(Math.log(ratio)) > Math.log(1.25)) {
       dts.forEach(d => { hist[tk][d] *= ratio; });
@@ -194,8 +194,9 @@ async function main() {
     // (today's data.json "knew" the year) — the ledger keeps them for inspection only
     state: { lambda: params.lambda0, names: {} },
     suspect: {},
-    // seed freshness at go-live: every name that priced on the final simulated day counts as fresh then
-    lastFresh: Object.fromEntries(tickers.filter(tk => px[tk] > 0).map(tk => [tk, last.d])),
+    // seed freshness at go-live from ACTUAL final-day prints — a name that stopped printing
+    // months ago must enter live operation already counted stale, not masked by forward-fill
+    lastFresh: Object.fromEntries(tickers.filter(tk => hist[tk][last.d] != null).map(tk => [tk, last.d])),
     holdings: { cash: holdings.cash, positions: Object.fromEntries(Object.entries(holdings.positions).map(([k, v]) => [k, +v.toFixed(6)])) },
     bench: { cash: bench.cash, positions: Object.fromEntries(Object.entries(bench.positions).map(([k, v]) => [k, +v.toFixed(6)])), lastReb: bench.lastReb },
     dayIdx: ledger.length - 1,

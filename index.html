@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -91,11 +91,12 @@
   <div class="fullpage" id="fullpage"></div>
 </div>
 
-<script src="config.js"></script>
-<script src="checks-core.js"></script>
-<script src="engine.js"></script>
-<script src="portfolio-core.js"></script>
-<script src="app.js"></script>
-<script src="portfolio-ui.js"></script>
+<!-- bump ?v= together with meaningful JS/CSS changes — browsers cache these heuristically -->
+<script src="config.js?v=3"></script>
+<script src="checks-core.js?v=3"></script>
+<script src="engine.js?v=3"></script>
+<script src="portfolio-core.js?v=3"></script>
+<script src="app.js?v=3"></script>
+<script src="portfolio-ui.js?v=3"></script>
 </body>
 </html>

@@ -41,17 +41,21 @@ function writeAtomic(file, content) {
   fs.renameSync(file + '.tmp', file);
 }
 
-/* Yahoo cross-check for a suspicious move: recent splits + the live quote */
-async function yahooCheck(tk) {
+/* Yahoo cross-check for a suspicious move: splits over the whole ledger gap + the live quote.
+   Returns null on network failure — the caller must treat "second source unavailable"
+   differently from "second source disagrees". */
+async function yahooCheck(tk, gapDays) {
+  const range = gapDays <= 22 ? '1mo' : gapDays <= 80 ? '3mo' : '1y';
   try {
     const j = await getJSON(
-      `https://query1.finance.yahoo.com/v8/finance/chart/${tk}?range=1mo&interval=1d&events=splits`,
+      `https://query1.finance.yahoo.com/v8/finance/chart/${tk}?range=${range}&interval=1d&events=splits`,
       { 'User-Agent': 'Mozilla/5.0' });
     const res = j.chart && j.chart.result && j.chart.result[0];
-    const splits = Object.values((res && res.events && res.events.splits) || {})
+    if (!res) return null;
+    const splits = Object.values((res.events && res.events.splits) || {})
       .map(s => ({ d: etDate(s.date * 1000), num: s.numerator, den: s.denominator }));
-    return { splits, live: res && res.meta && res.meta.regularMarketPrice };
-  } catch (e) { return { splits: [], live: null }; }
+    return { splits, live: res.meta && res.meta.regularMarketPrice };
+  } catch (e) { return null; }
 }
 
 async function main() {
@@ -70,53 +74,67 @@ async function main() {
   if (dow === 0 || dow === 6) { console.log(`${today} is a weekend — nothing to do`); return; }
   if (last && last.d >= today) { console.log(`${today} already recorded — nothing to do`); return; }
   if (etTime() < '16:05:00' && !process.env.FORCE_MARK) {
-    console.log(`market still open (${etTime()} ET) — refusing an intraday mark (set FORCE_MARK=1 to override)`);
+    console.log(`${etTime()} ET is before today's 4pm close — refusing a premature mark (set FORCE_MARK=1 to override)`);
     return;
   }
 
   // quotes: Finnhub `c` = latest close, `t` = time of last print (stale on holidays/halts)
-  const quotes = {}, freshToday = new Set();
+  const quotes = {}, freshCandidates = new Set();
   for (const c of data.companies) {
     try {
       const q = await getJSON(`https://finnhub.io/api/v1/quote?symbol=${c.tk}&token=${TOKEN}`);
       if (q && q.c > 0) {
         quotes[c.tk] = q.c;
-        if (q.t && etDate(q.t * 1000) === today) { freshToday.add(c.tk); pf.lastFresh[c.tk] = today; }
+        if (q.t && etDate(q.t * 1000) === today) freshCandidates.add(c.tk);
       }
     } catch (e) { console.error(`WARN quote ${c.tk}: ${e.message}`); }
   }
-  if (freshToday.size < 5) {
+  if (freshCandidates.size < 5) {
     const gap = last ? daysBetween(last.d, today) : 0;
-    if (gap > 5) { console.error(`FEED DEAD: only ${freshToday.size} fresh prints and the ledger is ${gap} days stale — failing loudly.`); process.exit(1); }
-    console.log(`${today}: only ${freshToday.size} fresh prints — market holiday? Skipping.`); return;
+    if (gap > 5) { console.error(`FEED DEAD: only ${freshCandidates.size} fresh prints and the ledger is ${gap} days stale — failing loudly.`); process.exit(1); }
+    console.log(`${today}: only ${freshCandidates.size} fresh prints — market holiday? Skipping.`); return;
   }
 
-  // forward-fill from the last ledger record, then screen each fresh quote for corporate actions
+  // forward-fill from the last ledger record, then screen every quote for corporate actions.
+  // The accept band is DELIBERATELY narrow (±12%): splits as small as 6:5 must hit the check;
+  // a real move outside it costs one Yahoo call and passes on source agreement.
   const px = { ...(last ? last.px : {}) };
   let holdings = pf.holdings, bench = pf.bench;
+  let alert = null;
+  const gapDays = last ? daysBetween(last.d, today) : 5;
   for (const tk of Object.keys(quotes)) {
     const prev = px[tk];
-    if (!(prev > 0)) { px[tk] = quotes[tk]; continue; }        // new listing — no baseline to compare
+    if (!(prev > 0)) { px[tk] = quotes[tk]; pf.lastFresh[tk] = today; continue; }   // new listing — no baseline
     const move = quotes[tk] / prev;
-    if (move > 0.6 && move < 1.67) { px[tk] = quotes[tk]; pf.suspect[tk] = 0; continue; }
-    const chk = await yahooCheck(tk);
-    const split = chk.splits.find(s => last ? s.d > last.d : false);
+    if (move > 0.88 && move < 1.13) { px[tk] = quotes[tk]; pf.suspect[tk] = 0; continue; }
+    const chk = await yahooCheck(tk, gapDays);
+    const split = chk && chk.splits.find(s => last ? s.d > last.d : false);
     if (split && split.num > 0 && split.den > 0) {
       const f = split.num / split.den;                          // 10:1 forward → shares ×10, price ÷10
       if (holdings.positions[tk]) holdings.positions[tk] *= f;
       if (bench.positions[tk]) bench.positions[tk] *= f;
+      // back-adjust the ledger's price history so returns stay continuous across the split —
+      // learning, attribution and the chart all read px ratios (standard adjusted-series practice)
+      ledger.forEach(rec => { if (rec.px && rec.px[tk] != null) { const v = rec.px[tk] / f; rec.px[tk] = v < 10 ? Math.round(v * 10000) / 10000 : Math.round(v * 100) / 100; } });
       px[tk] = quotes[tk]; pf.suspect[tk] = 0;
-      notes.push(`${tk}: ${split.num}:${split.den} split — share counts adjusted ×${f}`);
+      notes.push(`${tk}: ${split.num}:${split.den} split — share counts adjusted ×${f}, ledger price history back-adjusted`);
+    } else if (chk === null) {
+      // second source UNAVAILABLE ≠ second source disagrees: freeze without quarantine count
+      freshCandidates.delete(tk);
+      notes.push(`${tk}: ${((move - 1) * 100).toFixed(0)}% move but second source unreachable — frozen today, not counted toward quarantine`);
     } else if (chk.live > 0 && Math.abs(chk.live / quotes[tk] - 1) < 0.10) {
       px[tk] = quotes[tk]; pf.suspect[tk] = 0;                  // two sources agree — a real (violent) move
-      notes.push(`${tk}: real ${((move - 1) * 100).toFixed(0)}% move confirmed by second source`);
+      if (move <= 0.6 || move >= 1.67) notes.push(`${tk}: real ${((move - 1) * 100).toFixed(0)}% move confirmed by second source`);
     } else {
       pf.suspect[tk] = (pf.suspect[tk] || 0) + 1;               // sources conflict — freeze at prior price
-      freshToday.delete(tk);
+      freshCandidates.delete(tk);
       notes.push(`${tk}: SUSPECT print ${quotes[tk]} vs prior ${prev} (yahoo ${chk.live}) — frozen, day ${pf.suspect[tk]}/3`);
-      if (pf.suspect[tk] >= 3) { console.error(`SUSPECT PRINT ${tk} for 3 runs (${quotes[tk]} vs ${prev}) — failing loudly for human review.`); process.exit(1); }
+      if (pf.suspect[tk] >= 3) alert = `${tk} suspect print 3 days running (${quotes[tk]} vs ${prev}) — needs manual reconciliation (split? basis? delisting?)`;
     }
   }
+  // freshness is stamped only for SCREENED, accepted prints — quarantined names age toward stale
+  const freshToday = freshCandidates;
+  freshToday.forEach(tk => { pf.lastFresh[tk] = today; });
 
   // stale names (halted/delisted/renamed): >10 days without a fresh print → uninvestable + frozen
   const stale = new Set();
@@ -150,7 +168,7 @@ async function main() {
   const watch = {};
   (data.watchItems || []).forEach(w => { watch[w.tk] = (watch[w.tk] || 0) + 1; });
 
-  const rows = data.companies.filter(c => px[c.tk] > 0 && !stale.has(c.tk)).map(c => {
+  const rows = data.companies.filter(c => px[c.tk] > 0 && !stale.has(c.tk) && !(pf.suspect[c.tk] > 0)).map(c => {
     const v = E.value(c);
     return { tk: c.tk, price: px[c.tk], target: v.target, ev: v.ev,
              contractedEV: v.contractedEV, legacy: E.legacyOf(c), watch: watch[c.tk] || 0 };
@@ -173,6 +191,8 @@ async function main() {
 
   console.log(`${today}: NAV ${rec.nav} vs bench ${rec.bench} · gross ${(rec.gross * 100).toFixed(0)}% · λ ${rec.lambda} · ${rec.trades.length} trades${rec.learn ? ` · learn IC ${rec.learn.ic}` : ''}`);
   if (notes.length) notes.forEach(n => console.log('  note: ' + n));
+  // the day's record is written and committed first; the workflow turns this into a red run + issue
+  if (alert) console.log('PORTFOLIO_ALERT: ' + alert);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

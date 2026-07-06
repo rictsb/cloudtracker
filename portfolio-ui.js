@@ -74,9 +74,10 @@ function pfChartHTML(days,meta){
 
 function renderPortfolio(){
   const body=document.getElementById('port-body');if(!body)return;
-  if(PF_ERR){body.innerHTML=`<div class="appmsg err">Could not load portfolio files — ${PF_ERR} <button class="refreshbtn" onclick="retryPortfolio()">retry</button></div>`;return;}
-  if(!PF||!PFH){body.innerHTML='<div class="legend2">loading portfolio…</div>';loadPortfolio();return;}
-  if(Date.now()-PF_AT>1800000)loadPortfolio();   // stale open tab: refetch every 30min (daily Action commits new marks)
+  // error screen ONLY when there is nothing to show — a failed background refresh must not wipe a healthy tab
+  if(PF_ERR&&(!PF||!PFH)){body.innerHTML=`<div class="appmsg err">Could not load portfolio files — ${PF_ERR} <button class="refreshbtn" onclick="retryPortfolio()">retry</button></div>`;return;}
+  if(!PF||!PFH){body.innerHTML='<div class="legend2">loading portfolio…</div>';if(!PF_LOADING)loadPortfolio();return;}
+  if(!PF_ERR&&Date.now()-PF_AT>1800000)loadPortfolio();   // stale open tab: refetch every 30min (daily Action commits new marks)
   const days=PFH.days,meta=PFH.meta,last=days[days.length-1];
   const liveDays=days.filter(d=>d.d>PF.backtestThrough);
   let peak=0,mdd=0;days.forEach(d=>{peak=Math.max(peak,d.nav);mdd=Math.max(mdd,1-d.nav/peak);});
@@ -97,6 +98,7 @@ function renderPortfolio(){
   h+=`<h4 class="sec">NAV vs equal-weight universe (log scale)</h4><div class="pf-chart">${pfChartHTML(days,meta)}</div>
   <div class="legend2"><b>solid</b> portfolio · <b>dashed</b> equal-weight benchmark · shaded = simulated genesis (today's data.json against last year's prices — machinery validation, <b>not evidence of alpha</b>); the live record starts at the clay line.</div>`;
 
+  if(PF_ERR)h+=`<div class="ck-m mid"><span class="ck-lv">note</span>background refresh failed (${PF_ERR}) — showing the last loaded state. <button class="refreshbtn" onclick="retryPortfolio()">retry now</button></div>`;
   if(dialsMoved)h+=`<div class="ck-m mid"><span class="ck-lv">note</span><b>dials moved</b> "Target now" below reflects your sandbox dial settings, not the base case the daily job trades — hit "Reset to base case" to see the job's view.</div>`;
 
   // holdings: current book (ledger) vs where today's views want it
@@ -121,9 +123,9 @@ function renderPortfolio(){
     .sort((a,b)=>(b.live+b.sim)-(a.live+a.sim));
   if(attNames.length){
     h+=`<h4 class="sec">Attribution — NAV points by name</h4><div style="overflow-x:auto"><table class="stab"><thead><tr><th>Name</th><th class="r">Simulated</th><th class="r">Live</th></tr></thead><tbody>`;
-    attNames.slice(0,12).forEach(a=>{const f=x=>x?`<span style="color:${x>=0?'var(--pine)':'var(--clay)'}">${x>=0?'+':''}${x.toFixed(1)}</span>`:'—';
+    attNames.forEach(a=>{const f=x=>x?`<span style="color:${x>=0?'var(--pine)':'var(--clay)'}">${x>=0?'+':''}${x.toFixed(1)}</span>`:'—';
       h+=`<tr><td class="co">${a.tk}</td><td class="r mono">${f(a.sim)}</td><td class="r mono">${f(a.live)}</td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2">Yesterday's weight × today's return, in points of a base-100 NAV. The simulated column is hindsight (see chart label); the live column is the real scoreboard and starts empty.</div>`;
+    h+=`</tbody></table></div><div class="legend2">Every name that ever held weight — winners AND losers (yesterday's weight × today's return, in points of a base-100 NAV). The simulated column is hindsight (see chart label); the live column is the real scoreboard and starts empty.</div>`;
   }
 
   // learning state
@@ -138,6 +140,7 @@ function renderPortfolio(){
   // operational flags + notes: quarantines, stale names, corporate actions — surfaced, never silent
   const flags=[];
   Object.entries(PF.suspect||{}).forEach(([tk,n])=>{if(n>0)flags.push(`${tk}: suspect print quarantined (day ${n}/3)`);});
+  Object.entries((PFH.meta||{}).rescaled||{}).forEach(([tk,r])=>{flags.push(`${tk}: genesis price series basis-rescaled ×${r} (chart source served a different share basis than the live listing)`);});
   const noteDays=days.filter(d=>d.notes&&d.notes.length).slice(-5);
   if(flags.length||noteDays.length){
     h+=`<h4 class="sec">Operational notes</h4>`;

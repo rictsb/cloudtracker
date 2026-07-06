@@ -166,7 +166,7 @@
           warnIf('port', c ? tk : null, !c, `${tk}: held but no longer in data.json — frozen, dispose via the proposal path`);
           if (c && last.px[tk] > 0 && c.price > 0) {
             const ratio = last.px[tk] / c.price;
-            warnIf('port', tk, ratio > 2.5 || ratio < 0.4, `${tk}: ledger price ${last.px[tk]} vs data.json price ${c.price} (${ratio.toFixed(1)}×) — split/basis break or stale manual price`);
+            warnIf('port', tk, ratio > 1.35 || ratio < 0.75, `${tk}: ledger price ${last.px[tk]} vs data.json price ${c.price} (${ratio.toFixed(2)}×) — split/basis break, or the manual fallback price needs the weekly-sweep refresh`);
           }
         }
         for (const tk in (P.suspect || {})) warnIf('port', cos.find(x => x.tk === tk) ? tk : null, P.suspect[tk] > 0, `${tk}: suspect print quarantined ${P.suspect[tk]} day(s) — 3 fails the Action`);
