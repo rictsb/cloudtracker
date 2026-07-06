@@ -2019,16 +2019,34 @@
       "name": "TeraWulf",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 38,
-      "termYrs": 13,
+      "contractedPct": 45,
+      "termYrs": 16,
       "mtm": 1,
       "netDebt": 110,
       "shares": 744,
-      "price": 25.8,
-      "legacyEV": 150,
+      "price": 31.0,
+      "legacyEV": 650,
       "plannedRaise": 600,
       "equityDiscount": 0,
       "sites": [
+        {
+          "n": "Hawesville KY 'Justified' Ph A (Anthropic, 20yr)",
+          "mw": 200,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 10,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Hawesville KY 'Justified' Ph B (Anthropic, 20yr)",
+          "mw": 201,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 2,
+          "prov": "disclosed"
+        },
         {
           "n": "Lake Mariner CB-1/CB-2 (Core42)",
           "mw": 60,
@@ -2061,15 +2079,6 @@
           "mw": 160,
           "owned": true,
           "region": "mid",
-          "yr": 2026,
-          "mo": 12,
-          "prov": "disclosed"
-        },
-        {
-          "n": "Abernathy TX JV (Fluidstack, 25yr)",
-          "mw": 168,
-          "owned": true,
-          "region": "cheap",
           "yr": 2026,
           "mo": 12,
           "prov": "disclosed"
@@ -2113,7 +2122,8 @@
       ],
       "basis": {
         "plannedRaise": "Buildout is overwhelmingly debt/Google-backstopped (~$3.2B Google backstop, $3.2B WULF Compute senior secured notes, $2.5B converts); equity issuance is incremental ATM + acquisition stock (KY/MD deals) plus Google warrants for 32.5M shares, so realistic cumulative equity raise is modest vs ~$13.8B cap — est. ~$600M through 2028.",
-        "seniorClaims": "Hawesville Developer 6.8% NCI fixed-put ~$101M acquisition-date FV. NOTE: $3.2B Lake Mariner bond ALREADY in netDebt; Abernathy $1.3B JV notes off-BS (50.1% equity-method) — model credits 100% of Abernathy, a flagged over-credit"
+        "seniorClaims": "Hawesville Developer 6.8% NCI fixed-put ~$101M acquisition-date FV. NOTE: $3.2B Lake Mariner bond ALREADY in netDebt; Abernathy $1.3B JV notes off-BS (50.1% equity-method) — model credits 100% of Abernathy, a flagged over-credit",
+        "legacy": "$530M Abernathy JV exit receivable ($250M ~immediate, $150M by 12/31/26, ~$130M by 4/30/27) booked ~$500M; 1.18x invested capital"
       },
       "narrative": "TeraWulf is a Bitcoin miner that has pivoted decisively into AI/HPC colocation landlord — it builds powered data-center shells at Lake Mariner (NY) and Abernathy (TX) and leases them to tenants (Core42, Fluidstack) who bring their own GPUs, with Google backstopping ~$3.2B of Fluidstack's lease obligations and holding ~14% pro forma. In Q1 2026 HPC lease revenue ($21M) surpassed mining for the first time, and the company carries a large contracted book (~$12.8B incl. extensions) plus a ~2.2 GW owned, mostly-uncontracted pipeline (Muskie KY 1GW+, Lake Hawkeye, Chesapeake). The thesis is a re-rate from miner to long-duration power/colocation landlord, financed by debt rather than dilution.",
       "bull": [
@@ -2142,12 +2152,19 @@
       ],
       "finMix": "Debt-led: ~$2.5B converts + $3.2B WULF Compute senior secured notes + $0.1B KY bridge, ~$3.1B cash; Google ~$3.2B backstop; minimal ATM/equity reliance.",
       "leaseQ": 3,
-      "log": [],
-      "thesis": "Slightly rich — Lake Mariner/Abernathy AI leases (Fluidstack/Google-backstopped) are credited, but you're paying for brownfield that's mostly 2028-30 and uncontracted. Near-term contracted MW set the floor.",
+      "log": [
+        {
+          "d": "2026-07-06",
+          "t": "lease",
+          "s": "8-K",
+          "x": "Anthropic DIRECT 20-yr lease (2x 5-yr renewals): ~$19B total, ~401MW critical IT at Hawesville KY 'Justified Data' (phased 2H27→early 2028); IG credit support (reportedly Google). Simultaneously SOLD the 50.1% Abernathy JV stake to Fluidstack for ~$530M (~1.18x invested) — exits TX JV to fund wholly-owned KY. Implied year-1 NOI ~$1.5-1.6M/MW (top of market), term-avg ~$2.0M/MW."
+        }
+      ],
+      "thesis": "The Anthropic anchor changes the story: a direct 20-year, ~$19B lease on 401MW at Hawesville (IG-wrapped, reportedly by Google) prints at the top of the market — and the Abernathy JV was monetized at 1.18x to fund the wholly-owned build. Still capital-hungry (bridge to be termed out; Muskie's 1GW uncontracted), but the book is now anchored by the strongest counterparty print in the group.",
       "seniorClaims": 101,
       "verified": {
         "capital": "2026-07-02",
-        "contracts": "2026-06-30"
+        "contracts": "2026-07-06"
       }
     },
     {
@@ -3023,11 +3040,6 @@
   ],
   "watchItems": [
     {
-      "tk": "WULF",
-      "note": "Model credits 100% of Abernathy (168MW) but WULF owns 50.1% via an off-BS JV carrying $1.3B nonrecourse notes — over-credit; halve the MW or charge look-through claims",
-      "added": "2026-07-02"
-    },
-    {
       "tk": "CIFR",
       "note": "Third campus modeled at 150MW; Stingray/AWS Andrews facility is actually 70 IT MW (100 gross) — trim the site row",
       "added": "2026-07-02"
@@ -3046,6 +3058,11 @@
       "tk": "CRWV",
       "note": "Meta Compute + xAI/Anthropic Colossus = new AIaaS supply entrants; H100 spot −7% off June peak — the trend-dial tripwire",
       "added": "2026-07-02"
+    },
+    {
+      "tk": "WULF",
+      "note": "KY permanent project financing to term out the $500M Morgan Stanley bridge — becomes committedDebt when issued (watch size/coupon); Century Aluminum 6.8% Raylan minority already in seniorClaims",
+      "added": "2026-07-06"
     }
   ]
 }
