@@ -1556,13 +1556,13 @@
           "prov": "estimated"
         },
         {
-          "n": "River Bend expansion (ROFO to 1GW)",
+          "n": "River Bend ROFO tranche 1 (Fluidstack — exercise assumed)",
           "mw": 400,
           "owned": true,
           "region": "cheap",
           "yr": 2029,
           "mo": 6,
-          "prov": "rumored"
+          "prov": "estimated"
         },
         {
           "n": "Vega (TX) AI/HPC conversion",
@@ -1572,6 +1572,15 @@
           "yr": 2028,
           "mo": 1,
           "prov": "rumored"
+        },
+        {
+          "n": "River Bend ROFO balance (to 1,000MW IT)",
+          "mw": 600,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
         }
       ],
       "basis": {
@@ -1579,7 +1588,7 @@
         "stake": "55.3% economic of American Bitcoin (ABTC), marked live; replaces the old generic legacy residual (HUT folded ~all mining into ABTC)",
         "equityDiscount": "entity complexity — 55% consolidated ABTC (related-party, big minority interest) + SPV structures",
         "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses",
-        "sites": "BP ph2 350 IT (1GW AEP interconnect executed); RB ROFO 400 of 1,000MW rumored (no interconnect; HUT excludes from own pipeline count); exclusivity/diligence buckets (7GW) NOT credited — 180MW TX project attrition shows funnel decay"
+        "sites": "BP ph2 350 IT (AEP 1GW interconnect executed); RB ROFO: OWNER MANDATE 2026-07-08 — assume Fluidstack exercises: tranche 1 400MW graded ESTIMATED (Entergy power expansion pending → not disclosed), balance 600MW rumored; 7GW exclusivity/diligence funnel still NOT credited (attrition evidence)"
       },
       "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
       "bull": [
@@ -1608,12 +1617,19 @@
       ],
       "finMix": "Funded mainly by IG non-recourse project bonds (~$7.5B, 6.1–6.2% coupons, 95% LTC, fully amortizing) plus capital recycling; parent recourse limited to a $200M BTC-backed FalconX facility and the in-the-money Coatue $150M convert; ~5,600 BTC + ~$700M cash and an ~80% ABTC stake provide a liquidity cushion.",
       "leaseQ": 2,
-      "log": [],
+      "log": [
+        {
+          "d": "2026-07-08",
+          "t": "judgement",
+          "s": "Owner mandate",
+          "x": "River Bend ROFO (up to 1,000MW IT, Fluidstack/Anthropic umbrella to 2.295GW) assumed EXERCISED: tranche 1 400MW upgraded rumored→estimated, balance 600MW added rumored. Falsifier: no Entergy power-expansion progress or ROFO signal by mid-2027 → regrade down."
+        }
+      ],
       "stake": {
         "tk": "ABTC",
         "pct": 0.553
       },
-      "thesis": "The street and our model agree on the signed-asset floor (~$84 — Northland's own 15x table matches us to the dollar); the $118 price pays for Beacon Point/River Bend phases that have neither bonds nor tenants yet, capitalized by bulls as if signed. We credit the interconnect-secured phase and a graded ROFO tranche but refuse to mark unsigned leases as signed — HUT is the universe's most paid-forward name, not its worst business.",
+      "thesis": "Street floor and our floor agree (~$84); the price pays for unsigned expansion — and by owner mandate we now assume the River Bend ROFO exercises (400MW estimated + 600MW rumored, annotated with a mid-2027 falsifier), which closes most of the gap: HUT screens roughly fair. The remaining swing is Beacon Point ph2 signing and the 7GW funnel we still refuse to credit.",
       "committedDebt": 7500,
       "verified": {
         "capital": "2026-07-02",
@@ -3368,6 +3384,11 @@
       "tk": "WULF",
       "note": "KY permanent project financing to term out the $500M Morgan Stanley bridge — becomes committedDebt when issued (watch size/coupon); Century Aluminum 6.8% Raylan minority already in seniorClaims",
       "added": "2026-07-06"
+    },
+    {
+      "tk": "HUT",
+      "note": "RB ROFO exercise ASSUMED by owner mandate (400MW estimated + 600MW rumored). Watch: Entergy power expansion filings / Fluidstack-Anthropic expansion announcements. Falsifier: silence through mid-2027 → regrade",
+      "added": "2026-07-08"
     }
   ]
 }
