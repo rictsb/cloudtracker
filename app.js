@@ -85,23 +85,29 @@ function renderLeases(){
   const half=s2=>{const [y,m]=s2.split('-').map(Number);return y+(m<=6?' H1':' H2');};
   const byHalf={};eff.forEach(r=>{if(r.l.signed)(byHalf[half(r.l.signed)]=byHalf[half(r.l.signed)]||[]).push(r.l.noiPerMWyr);});
   h+=`<div class="legend2" style="margin:0 4px 18px">Print tape (median signed NOI $M/MW·yr) — by kind: ${Object.entries(byKind).map(([k,x])=>`<b>${k}</b> $${med(x).toFixed(2)} (${x.length})`).join(' · ')} &nbsp;|&nbsp; by vintage: ${Object.keys(byHalf).sort().map(k=>`<b>${k}</b> $${med(byHalf[k]).toFixed(2)}`).join(' → ')}</div>`;
-  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th>Lessor</th><th>Tenant / credit</th><th>Campus</th><th>Kind</th><th class="r">Signed</th><th class="r">Term</th><th class="r">IT MW</th><th class="r">NOI $/MW·yr</th><th class="r">Annual NOI</th><th class="r">Base-term</th><th class="r">Value added</th><th class="r">Campus leased</th><th class="r">First rent</th></tr></thead><tbody>`;
-  rows.forEach(r=>{const l=r.l;const pend=l.effective===false;
-    h+=`<tr class="lrow${pend?' lpend':''}" data-tk="${r.c.tk}"><td class="co">${r.c.tk}</td>`+
-    `<td style="max-width:230px">${l.counterparty}${pend?' <span class="prov rumored">not effective</span>':''}</td>`+
-    `<td style="max-width:180px;font-size:11.5px">${r.camp}</td>`+
-    `<td><span class="prov ${l.kind==='build-to-spec'?'disclosed':l.kind==='conversion'?'estimated':'rumored'}">${l.kind||'—'}</span></td>`+
-    `<td class="r mono">${l.signed||'—'}</td><td class="r mono">${l.termYrs}y</td>`+
-    `<td class="r mono">${l.mw.toLocaleString()}${l.grossMW?' <span style="color:var(--ink-soft)">('+l.grossMW+')</span>':''}</td>`+
+  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th><th>Lessor</th><th>Tenant</th><th>Campus</th><th class="r">IT MW</th><th class="r">NOI $/MW·yr</th><th class="r">Base term</th></tr></thead><tbody>`;
+  rows.forEach((r,i)=>{const l=r.l;const pend=l.effective===false;
+    h+=`<tr class="lrow srow${pend?' lpend':''}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
+    `<td class="co">${r.c.tk}</td>`+
+    `<td style="max-width:250px">${l.counterparty}${pend?' <span class="prov rumored">not effective</span>':''}</td>`+
+    `<td style="max-width:200px;font-size:11.5px">${r.camp}</td>`+
+    `<td class="r mono">${l.mw.toLocaleString()}</td>`+
     `<td class="r mono">$${l.noiPerMWyr.toFixed(2)}M</td>`+
-    `<td class="r mono">${pend?'—':'$'+r.annual.toFixed(0)+'M'}</td>`+
-    `<td class="r mono">${l.totalRevM?'$'+(l.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
-    `<td class="r mono">${pend?'—':fmtM(r.ev)}</td>`+
-    `<td class="r mono">${r.pctCamp!=null?(r.pctCamp*100).toFixed(0)+'%'+' <span style="color:var(--ink-soft)">of '+r.campMW.toLocaleString()+'</span>':'—'}</td>`+
-    `<td class="r mono">${r.startYr||'—'}</td></tr>`;});
-  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing, not a model output. IT MW <span style="color:var(--ink-soft)">(gross)</span> where disclosed. <b>Value added</b> = the capitalized EV the leased sites contribute. <b>Campus leased</b> = this lease's IT MW ÷ the campus capacity the model credits (leased + graded forward rows — the expansion runway on land and power that already exist; not marketing ambitions). Signed-but-not-effective books (conditions precedent) are listed but excluded from totals and the engine. Click a row for the company page.</div>`;
+    `<td class="r mono">${l.totalRevM?'$'+(l.totalRevM/1000).toFixed(1)+'B':'—'}</td></tr>`;
+    const f2=(k2,v2)=>`<div class="cstep"><span>${k2}</span><span class="cval">${v2}</span><span class="cnote"></span></div>`;
+    h+=`<tr class="sdetail" id="ld-${i}"><td colspan="7"><div class="sitecalc">`+
+      f2('Kind',l.kind||'—')+f2('Signed',l.signed||'—')+f2('Term',l.termYrs+' yrs')+
+      (l.grossMW?f2('Gross MW',l.grossMW+' MW ('+Math.round(l.mw/l.grossMW*100)+'% IT ratio)'):'')+
+      (pend?'':f2('Annual NOI','$'+r.annual.toFixed(0)+'M'))+
+      (pend?'':f2('Value added',fmtM(r.ev)))+
+      (r.pctCamp!=null?f2('Campus leased',(r.pctCamp*100).toFixed(0)+'% of '+r.campMW.toLocaleString()+' MW credited'):'')+
+      (r.startYr?f2('First rent',String(r.startYr)):'')+
+      `<div class="cstep"><span>Source</span><span class="cval" style="text-align:left;font-family:var(--sans);font-size:11px;color:var(--ink-soft)">${l.source||'—'}</span><span class="cnote"></span></div>`+
+      `<a class="clearfilter" href="#${r.c.tk}" style="font-size:11px">open ${r.c.tk} page →</a>`+
+      `</div></td></tr>`;});
+  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing. <b>Base term</b> = total base-term contract value. Click a row for kind, vintage, term, gross MW, annual NOI, value added, campus-leased runway and the source.</div>`;
   body.innerHTML=h;
-  body.querySelectorAll('.lrow').forEach(tr=>tr.addEventListener('click',()=>setHash(tr.dataset.tk)));
+  body.querySelectorAll('.lrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ld-'+tr.dataset.i);if(d)d.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
 let RAW_DATA=null;
