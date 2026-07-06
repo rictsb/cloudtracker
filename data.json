@@ -1548,7 +1548,7 @@
         },
         {
           "n": "Beacon Point Ph2 (TX)",
-          "mw": 300,
+          "mw": 350,
           "owned": true,
           "region": "cheap",
           "yr": 2028,
@@ -1557,7 +1557,7 @@
         },
         {
           "n": "River Bend expansion (ROFO to 1GW)",
-          "mw": 245,
+          "mw": 400,
           "owned": true,
           "region": "cheap",
           "yr": 2029,
@@ -1578,7 +1578,8 @@
         "plannedRaise": "parent recourse net debt ~$0 (Coatue convert nets w/ cash); $7.5B is nonrecourse SPV project debt netted against the campuses",
         "stake": "55.3% economic of American Bitcoin (ABTC), marked live; replaces the old generic legacy residual (HUT folded ~all mining into ABTC)",
         "equityDiscount": "entity complexity — 55% consolidated ABTC (related-party, big minority interest) + SPV structures",
-        "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses"
+        "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses",
+        "sites": "BP ph2 350 IT (1GW AEP interconnect executed); RB ROFO 400 of 1,000MW rumored (no interconnect; HUT excludes from own pipeline count); exclusivity/diligence buckets (7GW) NOT credited — 180MW TX project attrition shows funnel decay"
       },
       "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
       "bull": [
@@ -1612,7 +1613,7 @@
         "tk": "ABTC",
         "pct": 0.553
       },
-      "thesis": "Overvalued on the math: campuses credited at full value but funded ~95% by $7.5B of nonrecourse project debt, leaving thin equity, plus a live ~55% ABTC stake. The market pays for developer optionality the leverage doesn't support.",
+      "thesis": "The street and our model agree on the signed-asset floor (~$84 — Northland's own 15x table matches us to the dollar); the $118 price pays for Beacon Point/River Bend phases that have neither bonds nor tenants yet, capitalized by bulls as if signed. We credit the interconnect-secured phase and a graded ROFO tranche but refuse to mark unsigned leases as signed — HUT is the universe's most paid-forward name, not its worst business.",
       "committedDebt": 7500,
       "verified": {
         "capital": "2026-07-02",
@@ -2973,17 +2974,17 @@
       "contractedPct": 0,
       "termYrs": 0,
       "netDebt": -50,
-      "shares": 1060,
-      "price": 0.68,
+      "shares": 70.9,
+      "price": 7.9,
       "legacyEV": 150,
-      "btc": 7200,
+      "btc": 8000,
       "plannedRaise": 0,
       "equityDiscount": 0,
       "sites": [],
       "basis": {
         "plannedRaise": "BTC treasury + ~89k-rig self-mining; funds via BTC cash flow + capital markets"
       },
-      "narrative": "American Bitcoin (NASDAQ:ABTC) — a Bitcoin treasury + self-mining vehicle majority-owned by Hut 8 (55.3% economic / ~80% vote). Value is ~7,200 BTC marked live plus a self-mining fleet; tracked here mainly so HUT's stake marks to a live look-through. Not an AI-infra name. (Figures pre the 1-for-15 reverse split approved Jun 2026.)",
+      "narrative": "American Bitcoin (NASDAQ:ABTC) — a Bitcoin treasury + self-mining vehicle majority-owned by Hut 8 (55.3% economic / ~80% vote). Value is ~7,200 BTC marked live plus a self-mining fleet; tracked here mainly so HUT's stake marks to a live look-through. Not an AI-infra name. (Post 1-for-15 reverse split, effective Jul 2026; ~70.9M shares.)",
       "bull": [
         "Direct BTC-price leverage via treasury + mining",
         "Hut 8 operational backing + scale"
