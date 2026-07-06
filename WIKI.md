@@ -3,7 +3,7 @@
 The terse, always-current reference. Plain-English companion to `AI-Infra-Tracker-Spec.md` (binding). Present-tense only — no history (that's `CHANGELOG.md`).
 
 ## What it is
-First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser).
+First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser) · **Portfolio** (the self-balancing paper book).
 
 ## The formula
 One engine; only the per-MW step branches by model.
@@ -20,6 +20,19 @@ both      site value = value/MW × MW × provenance haircut × time-discount
 - **NOI** grows the same way (uncontracted slice × lease-up × trend); **cap** = (cap dial + tier spread) × (1 − 0.30 × site-aware contracted%), floored at 6.5%.
 - **provenance haircut**: disclosed 0.95 / estimated 0.55 / rumored 0.25. **time-discount** = 1/(1+disc)^years, years = energization − now + ramp.
 - **legacy** = BTC × live price + ETH × live price + stake (pct × the held company's modelled equity) + non-crypto residual (`legacyEV`).
+
+## Paper portfolio (spec §6b)
+Hypothetical daily-rebalanced book — measures whether the ranking adds alpha within the universe. Long-only + cash; no broker, ever.
+```
+view       ν = λ × confidence × m × ln(target ÷ price)
+confidence   = 0.35 + 0.65 × (contracted floor + legacy) ÷ EV, less open watch-items
+weights      = softmax(ν, T=0.15) over ν>0 names — concentrated, no cap, by mandate
+gross        = min(1, Σν⁺ ÷ 0.75) — cash grows mechanically when total edge thins
+```
+- **λ** (fight-the-market) follows realized rank-IC monthly; per-name **m** shrinks where the market persistently opposed the view and drifts back when vindicated. `conviction: true` on a name in `portfolio.json` exempts it. Learning adapts *sizing only* — it never edits `data.json`; facts still enter through the proposal path.
+- **Files**: `portfolio.json` (state, overwritten) · `portfolio-history.json` (the one sanctioned ledger). `engine.js` is the shared valuation engine (browser + node — one math). Daily mark: GitHub Action → `node portfolio-run.js` after US close, commits, Render redeploys.
+- **Benchmark**: equal-weight universe, monthly rebalance. Beat that, not SPX.
+- **Genesis is simulated** (today's data.json vs last year's prices — not alpha); live record starts after `backtestThrough`. Regenerate with `node portfolio-backtest.js` (uses `FINNHUB_TOKEN` env if it has candle access, else Yahoo daily closes; BTC/ETH from Coinbase).
 
 ## Dashboard gauge
 Per row: bar = our value (target), split **contracted floor (solid) / expected pipeline (hatched) / legacy (gold)**; dark line = market price; green gap = upside, red = overvalued. Sorted by upside. "▸ valuation narrative" expands the per-name thesis.

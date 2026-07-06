@@ -37,6 +37,7 @@
         <button class="tab on" data-view="cmp">Comparison</button>
         <button class="tab" data-view="sites">All sites</button>
         <button class="tab" data-view="checks">Checks <span id="tabbadge"></span></button>
+        <button class="tab" data-view="port">Portfolio</button>
       </div>
 
       <section id="view-cmp">
@@ -64,6 +65,11 @@
         <div id="checks-body"></div>
       </section>
 
+      <section id="view-port" style="display:none">
+        <div class="eyebrow">Paper portfolio — the model's views, sized daily against the market · hypothetical, paper only</div>
+        <div id="port-body"></div>
+      </section>
+
       <section id="view-sites" style="display:none">
         <div class="eyebrow" id="sites-eyebrow">Every site in the universe — the inventory the roll-up is built from</div>
         <div style="overflow-x:auto">
@@ -88,6 +94,8 @@
 <script src="config.js"></script>
 <script src="checks-core.js"></script>
 <script src="engine.js"></script>
+<script src="portfolio-core.js"></script>
 <script src="app.js"></script>
+<script src="portfolio-ui.js"></script>
 </body>
 </html>

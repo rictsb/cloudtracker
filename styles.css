@@ -238,3 +238,11 @@ h4.sec{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transf
 .ck-cn{font-size:9px;vertical-align:super;margin-left:2px}
 .ck-age{font-family:var(--mono);font-size:10.5px;border-radius:99px;padding:1px 8px}
 .ck-age.ok{color:var(--pine);background:#EDF3EE} .ck-age.mid{color:#7A6A3E;background:#F6F1E3} .ck-age.bad{color:var(--clay);background:#FBF3EE}
+
+/* ---- portfolio tab (spec §6b) ---- */
+.pf-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 6px}
+.pf-stat{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:11px 13px;display:flex;flex-direction:column;gap:3px}
+.pf-stat span{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.pf-stat b{font-family:var(--mono);font-size:17px;font-weight:500}
+.pf-stat i{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--ink-soft)}
+.pf-chart{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 8px 4px}

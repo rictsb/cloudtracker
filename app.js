@@ -53,7 +53,7 @@ function render(){
   const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
   document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin+CONST.leasedCMargin)/100)*(A.multiple*(1+CONST.multPremium*0.6)))+' / MW';
   document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
-  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else renderSites();
+  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else renderSites();
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
 let RAW_DATA=null;
@@ -338,6 +338,7 @@ function route(){
     showDashboard('sites',(tk&&COMPANIES.find(x=>x.tk===tk))?tk:null);return;
   }
   if(raw==='checks'){showDashboard('checks',null);return;}
+  if(raw==='portfolio'){showDashboard('port',null);return;}
   showDashboard('cmp',null);
 }
 function showDashboard(v,filter){
@@ -348,12 +349,13 @@ function showDashboard(v,filter){
   document.getElementById('view-cmp').style.display=v==='cmp'?'':'none';
   document.getElementById('view-sites').style.display=v==='sites'?'':'none';
   const vc=document.getElementById('view-checks');if(vc)vc.style.display=v==='checks'?'':'none';
+  const vp=document.getElementById('view-port');if(vp)vp.style.display=v==='port'?'':'none';
   render();window.scrollTo(0,0);
 }
 
 /* ---- wiring (after data loads) ---- */
 function wireEvents(){
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':'')));
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':'')));
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
