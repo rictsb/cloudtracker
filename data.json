@@ -472,7 +472,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "S-1/10-K concentration math; verifier-corrected from $14B; MW never disclosed",
-          "ratePerMWyr": 9.3
+          "ratePerMWyr": 9.3,
+          "mw": 370
         },
         {
           "id": "crwv-oai-master",
@@ -484,7 +485,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "424B4: up to ~$11.9B ($350M taken in IPO shares)",
-          "ratePerMWyr": 9.3
+          "ratePerMWyr": 9.3,
+          "mw": 229
         },
         {
           "id": "crwv-oai-exp1",
@@ -496,7 +498,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "Q2-25 8-K: $4B expansion",
-          "ratePerMWyr": 9.3
+          "ratePerMWyr": 9.3,
+          "mw": 110
         },
         {
           "id": "crwv-oai-exp2",
@@ -508,7 +511,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "8-K 9/25/25: up to ~$6.5B; OpenAI aggregate ~$22.4B",
-          "ratePerMWyr": 9.3
+          "ratePerMWyr": 9.3,
+          "mw": 123
         },
         {
           "id": "crwv-meta-1",
@@ -520,7 +524,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "8-K 9/30/25: up to ~$14.2B under 2023 MSA",
-          "ratePerMWyr": 9.3
+          "ratePerMWyr": 9.3,
+          "mw": 246
         },
         {
           "id": "crwv-meta-2",
@@ -532,7 +537,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "8-K 4/9/26: ~$21B, executed 3/31/26 — inside the $99.4B backlog; Meta aggregate ~$35.2B",
-          "ratePerMWyr": 9.3
+          "ratePerMWyr": 9.3,
+          "mw": 337
         },
         {
           "id": "crwv-anthropic",
@@ -555,7 +561,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "8-K 4/15/26: ~$6B + separate $1B equity at $109; term undisclosed (5yr placeholder)",
-          "ratePerMWyr": 9.3
+          "ratePerMWyr": 9.3,
+          "mw": 129
         },
         {
           "id": "crwv-other",
@@ -841,7 +848,8 @@
           "inferredMW": true,
           "effective": true,
           "source": "firm $17.4B (to $19.4B w/ option); MW never disclosed",
-          "ratePerMWyr": 11.6
+          "ratePerMWyr": 11.6,
+          "mw": 300
         },
         {
           "id": "nbis-meta-1",
@@ -852,7 +860,8 @@
           "gen": "blackwell",
           "inferredMW": true,
           "effective": true,
-          "source": "$2.9B"
+          "source": "$2.9B",
+          "mw": 50
         },
         {
           "id": "nbis-meta-2",
@@ -863,7 +872,8 @@
           "gen": "vera-rubin",
           "inferredMW": true,
           "effective": true,
-          "source": "6-K 3/16/26: firm dedicated Vera Rubin ~$12B; balance to $27B optional (verifier-corrected from $27B)"
+          "source": "6-K 3/16/26: firm dedicated Vera Rubin ~$12B; balance to $27B optional (verifier-corrected from $27B)",
+          "mw": 207
         },
         {
           "id": "nbis-ent",
@@ -1489,7 +1499,8 @@
           "inferredMW": false,
           "effective": true,
           "source": "$9.7B/5yr/200MW, 20% prepaid — rare disclosed-MW print",
-          "ratePerMWyr": 9.7
+          "ratePerMWyr": 9.7,
+          "mw": 200
         },
         {
           "id": "iren-nvda",
@@ -1501,7 +1512,8 @@
           "inferredMW": false,
           "effective": true,
           "source": "$3.4B/5yr/60MW + $2.1B equity right",
-          "ratePerMWyr": 11.33
+          "ratePerMWyr": 11.33,
+          "mw": 60
         },
         {
           "id": "iren-cloud",

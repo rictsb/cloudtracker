@@ -18,7 +18,7 @@ let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
-let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1;
+let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
@@ -110,19 +110,36 @@ function renderLeases(){
   h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing. <b>Base term</b> = total base-term contract value. Click a row for kind, vintage, term, gross MW, annual NOI, value added, campus-leased runway and the source.</div>`;
   // compute contracts (GPU-cloud owners) — dollars+term facts; $/MW mostly inferred
   const oc=[];COMPANIES.forEach(c=>(c.contracts||[]).forEach(x=>oc.push({c,x})));
-  if(oc.length){oc.sort((p,q)=>(q.x.totalRevM||0)-(p.x.totalRevM||0));
-    h+=`<h4 class="sec" style="margin-top:30px">Compute contracts — GPU clouds (dollars + term are the facts; $/MW mostly inferred)</h4>`;
-    h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th>Owner</th><th>Counterparty</th><th>Gen</th><th class="r">Signed</th><th class="r">Term</th><th class="r">Total</th><th class="r">$/MW·yr</th></tr></thead><tbody>`;
-    oc.forEach(({c,x})=>{const pend=x.effective===false;
-      h+=`<tr class="${pend?'lpend':''}"><td class="co">${c.tk}</td><td style="max-width:230px">${x.counterparty}${pend?' <span class="prov rumored">pending</span>':''}</td>`+
+  if(oc.length){
+    const OKEY={tk:r=>r.c.tk,cp:r=>r.x.counterparty||'',gen:r=>r.x.gen||'',signed:r=>r.x.signed||'',total:r=>r.x.totalRevM||0,mw:r=>r.x.mw||0,rate:r=>r.x.ratePerMWyr||0};
+    const okf=OKEY[ocSort]||OKEY.total;
+    oc.sort((p,q)=>{const av=okf(p),bv=okf(q);return (typeof av==='string'?av.localeCompare(bv):av-bv)*ocDir;});
+    const eff2=oc.filter(r=>r.x.effective!==false);
+    const totB=eff2.reduce((a3,r)=>a3+(r.x.totalRevM||0),0);
+    h+=`<h4 class="sec" style="margin-top:30px">Compute contracts — GPU clouds</h4>`;
+    h+=`<div class="ssummary" style="margin:4px 4px 12px"><span><b>${eff2.length}</b> signed contracts</span><span><b>$${(totB/1000).toFixed(0)}B</b> total book</span><span>signed rates: <b>CRWV $9.3M</b>~ · <b>NBIS $11.5M</b>~ · <b>IREN $10.1M</b> (disclosed MW)</span><span>gen ladder: hopper ~$9.3 → blackwell $9.7–11.6 → VR (1H27, est. $13–16)</span></div>`;
+    h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Owner',''],['cp','Counterparty',''],['gen','Gen',''],['total','Base term','r'],['mw','~IT MW','r'],['rate','$/MW·yr','r']].map(([k,lab,cl])=>`<th class="${cl}" data-oc="${k}">${lab}${ocSort===k?' <span class="arr">'+(ocDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
+    oc.forEach((r,i)=>{const x=r.x;const pend=x.effective===false;
+      h+=`<tr class="ocrow srow${pend?' lpend':''}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
+      `<td class="co">${r.c.tk}</td><td style="max-width:250px">${x.counterparty}${pend?' <span class="prov rumored">pending</span>':''}</td>`+
       `<td><span class="prov ${x.gen==='vera-rubin'?'rumored':x.gen==='blackwell'?'disclosed':'estimated'}">${x.gen||'—'}</span></td>`+
-      `<td class="r mono">${x.signed||'—'}</td><td class="r mono">${x.termYrs}y</td>`+
       `<td class="r mono">${x.totalRevM?'$'+(x.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
-      `<td class="r mono">${x.ratePerMWyr?('$'+x.ratePerMWyr.toFixed(1)+'M'+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':'')):'—'}</td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2">Compute contracts are take-or-pay DOLLARS over a TERM — MW is analyst inference where marked <b>~</b>. Each owner's $-weighted blended rate binds its contracted slice via `+'`signedRate`'+`; the unsigned + re-signing slices ride the GPU gen-curve dial.</div>`;}
+      `<td class="r mono">${x.mw?x.mw.toLocaleString()+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':''):'—'}</td>`+
+      `<td class="r mono">${x.ratePerMWyr?('$'+x.ratePerMWyr.toFixed(1)+'M'+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':'')):'—'}</td></tr>`;
+      const f3=(k2,v2)=>`<div class="cstep"><span>${k2}</span><span class="cval">${v2}</span><span class="cnote"></span></div>`;
+      h+=`<tr class="sdetail" id="oc-${i}"><td colspan="7"><div class="sitecalc">`+
+        f3('Signed',x.signed||'—')+f3('Term',x.termYrs+' yrs')+f3('Status',pend?'signed, pending/undisclosed':'effective')+
+        f3('Annual run-rate',x.totalRevM?'$'+(x.totalRevM/x.termYrs/1000).toFixed(2)+'B/yr':'—')+
+        (x.mw?f3('MW basis',x.inferredMW?'analyst inference (dollars ÷ fleet rate) — not disclosed':'COMPANY-DISCLOSED'):'')+
+        `<div class="cstep"><span>Source</span><span class="cval" style="text-align:left;font-family:var(--sans);font-size:11px;color:var(--ink-soft)">${x.source||'—'}</span><span class="cnote"></span></div>`+
+        `<a class="clearfilter" href="#${r.c.tk}" style="font-size:11px">open ${r.c.tk} page →</a></div></td></tr>`;});
+    h+=`</tbody></table></div><div class="legend2">Compute contracts are take-or-pay DOLLARS over a TERM — MW and $/MW marked <b>~</b> are analyst inference (only IREN disclosés contractual MW). Each owner's $-weighted blended rate binds its contracted slice via `+'`signedRate`'+`; unsigned + re-signing slices ride the GPU gen-curve dial. Click a row for detail.</div>`;}
   body.innerHTML=h;
   body.querySelectorAll('th[data-ls]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.ls;
     if(k===leaseSort)leaseDir*=-1;else{leaseSort=k;leaseDir=(k==='tk'||k==='tenant'||k==='camp')?1:-1;}renderLeases();}));
+  body.querySelectorAll('th[data-oc]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.oc;
+    if(k===ocSort)ocDir*=-1;else{ocSort=k;ocDir=(k==='tk'||k==='cp'||k==='gen'||k==='signed')?1:-1;}renderLeases();}));
+  body.querySelectorAll('.ocrow').forEach(tr=>tr.addEventListener('click',()=>{const d2=document.getElementById('oc-'+tr.dataset.i);if(d2)d2.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d2&&d2.classList.contains('open')?'▾':'▸';}));
   body.querySelectorAll('.lrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ld-'+tr.dataset.i);if(d)d.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
