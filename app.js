@@ -85,15 +85,15 @@ function renderLeases(){
   const half=s2=>{const [y,m]=s2.split('-').map(Number);return y+(m<=6?' H1':' H2');};
   const byHalf={};eff.forEach(r=>{if(r.l.signed)(byHalf[half(r.l.signed)]=byHalf[half(r.l.signed)]||[]).push(r.l.noiPerMWyr);});
   h+=`<div class="legend2" style="margin:0 4px 18px">Print tape (median signed NOI $M/MW·yr) — by kind: ${Object.entries(byKind).map(([k,x])=>`<b>${k}</b> $${med(x).toFixed(2)} (${x.length})`).join(' · ')} &nbsp;|&nbsp; by vintage: ${Object.keys(byHalf).sort().map(k=>`<b>${k}</b> $${med(byHalf[k]).toFixed(2)}`).join(' → ')}</div>`;
-  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th><th>Lessor</th><th>Tenant</th><th>Campus</th><th class="r">IT MW</th><th class="r">NOI $/MW·yr</th><th class="r">Base term</th></tr></thead><tbody>`;
+  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th><th>Lessor</th><th>Tenant</th><th>Campus</th><th class="r">Base term</th><th class="r">IT MW</th><th class="r">NOI $/MW·yr</th></tr></thead><tbody>`;
   rows.forEach((r,i)=>{const l=r.l;const pend=l.effective===false;
     h+=`<tr class="lrow srow${pend?' lpend':''}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
     `<td class="co">${r.c.tk}</td>`+
     `<td style="max-width:250px">${l.counterparty}${pend?' <span class="prov rumored">not effective</span>':''}</td>`+
     `<td style="max-width:200px;font-size:11.5px">${r.camp}</td>`+
+    `<td class="r mono">${l.totalRevM?'$'+(l.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
     `<td class="r mono">${l.mw.toLocaleString()}</td>`+
-    `<td class="r mono">$${l.noiPerMWyr.toFixed(2)}M</td>`+
-    `<td class="r mono">${l.totalRevM?'$'+(l.totalRevM/1000).toFixed(1)+'B':'—'}</td></tr>`;
+    `<td class="r mono">$${l.noiPerMWyr.toFixed(2)}M</td></tr>`;
     const f2=(k2,v2)=>`<div class="cstep"><span>${k2}</span><span class="cval">${v2}</span><span class="cnote"></span></div>`;
     h+=`<tr class="sdetail" id="ld-${i}"><td colspan="7"><div class="sitecalc">`+
       f2('Kind',l.kind||'—')+f2('Signed',l.signed||'—')+f2('Term',l.termYrs+' yrs')+

@@ -851,7 +851,7 @@
       "leases": [
         {
           "id": "riot-amd",
-          "counterparty": "AMD direct (Rockdale Bldg G)",
+          "counterparty": "AMD",
           "mw": 50,
           "termYrs": 10,
           "noiPerMWyr": 1.02,
@@ -1042,7 +1042,7 @@
       "leases": [
         {
           "id": "btdr-tydal",
-          "counterparty": "Undisclosed (Tydal NO — signed, NOT effective; terms undisclosed, placeholders)",
+          "counterparty": "Undisclosed",
           "mw": 180,
           "termYrs": 10,
           "noiPerMWyr": 1.25,
@@ -1500,7 +1500,7 @@
       "leases": [
         {
           "id": "glxy-crwv-helios",
-          "counterparty": "CoreWeave (Helios Ph I-III)",
+          "counterparty": "CoreWeave",
           "mw": 526,
           "termYrs": 15,
           "noiPerMWyr": 2.06,
@@ -1639,7 +1639,7 @@
       "leases": [
         {
           "id": "hut-riverbend",
-          "counterparty": "Fluidstack (Google backstop) — River Bend LA",
+          "counterparty": "Fluidstack · Google backstop",
           "mw": 245,
           "termYrs": 15,
           "noiPerMWyr": 1.85,
@@ -1652,7 +1652,7 @@
         },
         {
           "id": "hut-beaconpoint",
-          "counterparty": "Undisclosed multi-trillion-cap tenant — Beacon Point TX",
+          "counterparty": "Undisclosed multi-trillion-cap tenant",
           "mw": 352,
           "termYrs": 15,
           "noiPerMWyr": 1.86,
@@ -1660,7 +1660,8 @@
           "signed": "2026-05",
           "effective": true,
           "source": "PR: 352MW IT, 15yr; SPV bonds 6/9/26",
-          "grossMW": 500
+          "grossMW": 500,
+          "totalRevM": 9800
         }
       ]
     },
@@ -1838,7 +1839,7 @@
       "leases": [
         {
           "id": "cifr-fs-blp1",
-          "counterparty": "Fluidstack/Google (Barber Lake Ph1)",
+          "counterparty": "Fluidstack · Google backstop",
           "mw": 168,
           "termYrs": 10,
           "noiPerMWyr": 1.48,
@@ -1851,7 +1852,7 @@
         },
         {
           "id": "cifr-fs-blp2",
-          "counterparty": "Fluidstack/Google (Barber Lake Ph2)",
+          "counterparty": "Fluidstack · Google backstop",
           "mw": 39,
           "termYrs": 10,
           "noiPerMWyr": 1.84,
@@ -1862,7 +1863,7 @@
         },
         {
           "id": "cifr-aws-blackpearl",
-          "counterparty": "Amazon Data Services (Black Pearl)",
+          "counterparty": "Amazon (AWS)",
           "mw": 216,
           "termYrs": 15,
           "noiPerMWyr": 1.69,
@@ -1874,7 +1875,7 @@
         },
         {
           "id": "cifr-aws-stingray",
-          "counterparty": "Amazon Data Services (Stingray, Andrews TX)",
+          "counterparty": "Amazon (AWS)",
           "mw": 70,
           "termYrs": 15,
           "noiPerMWyr": 1.9,
@@ -2165,7 +2166,7 @@
       "leases": [
         {
           "id": "corz-crwv-12yr",
-          "counterparty": "CoreWeave (12-yr book, 5 campuses)",
+          "counterparty": "CoreWeave",
           "mw": 570,
           "termYrs": 12,
           "noiPerMWyr": 1.2,
@@ -2177,7 +2178,7 @@
         },
         {
           "id": "corz-crwv-austin",
-          "counterparty": "CoreWeave (Austin, leased bldg)",
+          "counterparty": "CoreWeave",
           "mw": 16,
           "termYrs": 7,
           "noiPerMWyr": 0.6,
@@ -2348,7 +2349,7 @@
       "leases": [
         {
           "id": "wulf-core42",
-          "counterparty": "Core42/G42 (Lake Mariner CB-1/2)",
+          "counterparty": "Core42 (G42)",
           "mw": 60,
           "termYrs": 10,
           "noiPerMWyr": 1.46,
@@ -2361,7 +2362,7 @@
         },
         {
           "id": "wulf-fluidstack",
-          "counterparty": "Fluidstack (Google backstop; Lake Mariner CB-3/4/5)",
+          "counterparty": "Fluidstack · Google backstop",
           "mw": 378,
           "termYrs": 10,
           "noiPerMWyr": 1.51,
@@ -2373,7 +2374,7 @@
         },
         {
           "id": "wulf-anthropic",
-          "counterparty": "Anthropic direct (Hawesville KY, IG wrap)",
+          "counterparty": "Anthropic · IG wrap",
           "mw": 401,
           "termYrs": 20,
           "noiPerMWyr": 2.01,
@@ -2608,7 +2609,7 @@
       "leases": [
         {
           "id": "wyfi-nscale",
-          "counterparty": "Nscale (NC-1 Madison NC)",
+          "counterparty": "Nscale",
           "mw": 40,
           "termYrs": 10,
           "noiPerMWyr": 1.84,
@@ -2620,7 +2621,7 @@
         },
         {
           "id": "wyfi-cerebras",
-          "counterparty": "Cerebras (MTL-3 Quebec)",
+          "counterparty": "Cerebras",
           "mw": 5,
           "termYrs": 5,
           "noiPerMWyr": 2.0,
@@ -2918,7 +2919,7 @@
       "leases": [
         {
           "id": "apld-crwv-eln",
-          "counterparty": "CoreWeave (ELN-02/03)",
+          "counterparty": "CoreWeave",
           "mw": 250,
           "termYrs": 15,
           "noiPerMWyr": 1.59,
@@ -2930,7 +2931,7 @@
         },
         {
           "id": "apld-crwv-eln04",
-          "counterparty": "CoreWeave (ELN-04)",
+          "counterparty": "CoreWeave",
           "mw": 150,
           "termYrs": 15,
           "noiPerMWyr": 1.51,
@@ -2942,7 +2943,7 @@
         },
         {
           "id": "apld-igA-pf2",
-          "counterparty": "IG hyperscaler A (PF2 Harwood)",
+          "counterparty": "IG hyperscaler A",
           "mw": 200,
           "termYrs": 15,
           "noiPerMWyr": 1.42,
@@ -2954,7 +2955,7 @@
         },
         {
           "id": "apld-igB-df1",
-          "counterparty": "High-IG hyperscaler B (Delta Forge 1)",
+          "counterparty": "High-IG hyperscaler B",
           "mw": 300,
           "termYrs": 15,
           "noiPerMWyr": 1.42,
@@ -2966,7 +2967,7 @@
         },
         {
           "id": "apld-igB-pf3",
-          "counterparty": "High-IG hyperscaler B (Polaris Forge 3)",
+          "counterparty": "High-IG hyperscaler B",
           "mw": 300,
           "termYrs": 15,
           "noiPerMWyr": 1.42,
@@ -2978,7 +2979,7 @@
         },
         {
           "id": "apld-igB-df2",
-          "counterparty": "High-IG hyperscaler B (Delta Forge 2)",
+          "counterparty": "High-IG hyperscaler B",
           "mw": 210,
           "termYrs": 15,
           "noiPerMWyr": 1.4,
