@@ -16,6 +16,7 @@
     { k: 'basis',   name: 'Judgement discipline',   guards: 'every plannedRaise / non-Proven tier / equityDiscount / committedDebt / seniorClaims carries a sourced basis' },
     { k: 'stakes',  name: 'Stake integrity',        guards: 'stake targets tracked; pct in (0,1]; no self-stakes or cycles at any depth' },
     { k: 'fresh',   name: 'Freshness',              guards: 'thesis present & ≤3 sentences; developments log recency; filing-verification age' },
+    { k: 'leases',  name: 'Lease registry',         guards: 'every leaseId resolves; signed NOI within sane bounds; effective leases map to sites; sources present; leased sites disclosed; contracted% ≈ leased share' },
     { k: 'port',    name: 'Portfolio ledger',       guards: 'NAV recomputes from holdings; dates monotonic; weights sum to 1; px-vs-fundamentals basis tripwire; ledger freshness; learning-state bounds' },
   ];
 
@@ -58,7 +59,7 @@
     const tks = cos.map(c => c.tk);
     failIf('schema', null, new Set(tks).size !== tks.length, 'duplicate tickers');
     const REG = Object.keys(cfg.regions), PROV = ['disclosed','estimated','rumored'];
-    const DEAD = ['renewalProb','costOfDebt','legacyExBtc','confidence','dataGaps'];
+    const DEAD = ['renewalProb','costOfDebt','legacyExBtc','confidence','dataGaps','mtm'];
     let siteCount = 0;
 
     for (const c of cos) {
@@ -74,7 +75,6 @@
       } else {
         failIf('schema', id, !(c.sites || []).length, 'operating company with no sites');
         if (c.model !== 'landlord') failIf('schema', id, !(c.termYrs > 0), 'owner/hybrid needs termYrs > 0');
-        else failIf('schema', id, !(c.mtm > 0 && c.mtm <= 1.3), 'landlord mtm out of range');
       }
 
       failIf('capital', id, !(c.shares > 0), 'shares must be > 0');
@@ -121,6 +121,40 @@
       const rumMW = (c.sites || []).filter(s => s.prov === 'rumored').reduce((a, s) => a + s.mw, 0);
       warnIf('prov', id, !holdco && c.contractedPct >= 80 && rumMW / (mw || 1) > 0.5, `${c.contractedPct}% contracted but ${(rumMW / (mw || 1) * 100).toFixed(0)}% of MW rumored — consistent?`);
       warnIf('prov', id, !holdco && c.contractedPct <= 5 && (c.sites || []).every(s => s.prov === 'disclosed') && mw > 500, `~0% contracted yet all-disclosed ${mw}MW — lease-up risk carried only by contractedPct`);
+
+      // -- lease registry (landlords)
+      const LSE = c.leases || [];
+      const lids = {};
+      for (const l of LSE) {
+        failIf('leases', id, !l.id || lids[l.id], `lease ${l.id||'?'}: missing/duplicate id`); lids[l.id] = l;
+        failIf('leases', id, !(l.mw > 0), `lease ${l.id}: mw must be > 0`);
+        if (l.effective !== false) {
+          failIf('leases', id, !(l.noiPerMWyr >= 0.4 && l.noiPerMWyr <= 3.5), `lease ${l.id}: NOI $${l.noiPerMWyr}M/MW·yr outside sane bounds (0.4–3.5)`);
+          failIf('leases', id, !(l.termYrs >= 1 && l.termYrs <= 30), `lease ${l.id}: term ${l.termYrs}yr out of range`);
+        }
+        warnIf('leases', id, l.kind && !['retrofit','conversion','build-to-spec'].includes(l.kind), `lease ${l.id}: unknown kind ${l.kind}`);
+        warnIf('leases', id, !l.kind, `lease ${l.id}: no kind tag (retrofit / conversion / build-to-spec)`);
+        failIf('leases', id, !l.counterparty || !l.source, `lease ${l.id}: counterparty/source missing`);
+        if (l.effective !== false) {
+          const cover = (c.sites || []).filter(x => x.leaseId === l.id);
+          warnIf('leases', id, !cover.length, `lease ${l.id}: effective but mapped to no site rows`);
+          const cmw = cover.reduce((a2h, x) => a2h + x.mw, 0);
+          warnIf('leases', id, cover.length > 0 && Math.abs(cmw - l.mw) / l.mw > 0.25, `lease ${l.id}: site rows sum ${cmw}MW vs lease ${l.mw}MW (>25% gap)`);
+        }
+      }
+      for (const x of (c.sites || [])) {
+        if (!x.leaseId) continue;
+        const l = lids[x.leaseId];
+        failIf('leases', id, !l, `site ${x.n}: leaseId ${x.leaseId} not in registry`);
+        if (l) warnIf('leases', id, l.effective === false, `site ${x.n}: linked lease ${x.leaseId} is not yet effective — should not be linked`);
+        warnIf('leases', id, x.prov !== 'disclosed', `site ${x.n}: leased but prov=${x.prov} (signed lease ⇒ disclosed)`);
+      }
+      if (c.model === 'landlord' && !holdco) {
+        const lmw = (c.sites || []).filter(x => x.leaseId && lids[x.leaseId] && lids[x.leaseId].effective !== false).reduce((a2h, x) => a2h + x.mw, 0);
+        const tmw2 = (c.sites || []).reduce((a2h, x) => a2h + x.mw, 0);
+        const derived = tmw2 ? Math.round(lmw / tmw2 * 100) : 0;
+        warnIf('leases', id, Math.abs(derived - c.contractedPct) > 15, `contractedPct ${c.contractedPct} vs registry-derived leased share ${derived}% (>15pt gap)`);
+      }
 
       warnIf('fresh', id, !c.thesis, 'no thesis');
       if (c.thesis) warnIf('fresh', id, ((c.thesis.match(/[.!?](\s|$)/g) || []).length) > 3, 'thesis over 3 sentences');

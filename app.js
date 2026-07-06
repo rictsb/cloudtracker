@@ -171,8 +171,13 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
   const row=(a,b,note)=>`<div class="cstep"><span>${a}</span><span class="cval">${b}</span><span class="cnote">${note||''}</span></div>`;
   let steps='';
   if(c.model==='landlord'){
-    steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`${Math.round(sg.contractedShare*100)}% locked @ $${(k.baseNOI||k.noi).toFixed(2)}M · rest @ $${(k.prevailingNOI||k.baseNOI||k.noi).toFixed(2)}M (${s.yr} prevailing, ${(A.rateTrend>=0?'+':'')+(A.rateTrend||0)}%/yr)`);
-    steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − ${(CONST.capCompress*(s.prov==='rumored'?0:c.contractedPct)).toFixed(0)}% contracted (site-aware) · floor ${(CONST.capFloor||6.5)}%`);
+    if(k.leased){
+      steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`SIGNED LEASE — ${k.counterparty}${k.kind?' · '+k.kind:''} · term-average of the actual contract (escalators embedded)`);
+      steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − full contracted compression · floor ${(CONST.capFloor||6.5)}%`);
+    }else{
+      steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`UNLEASED — market anchor $${(k.baseNOI||k.noi).toFixed(2)}M (incl. size factor) × lease-up × trend → $${(k.prevailingNOI||k.noi).toFixed(2)}M at ${s.yr} vintage`);
+      steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} · no compression without a signed lease · floor ${(CONST.capFloor||6.5)}%`);
+    }
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
   }else{
     steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% locked @ $${A.rate.toFixed(1)}M · rest @ $${(k.prevailing||A.rate).toFixed(1)}M (${s.yr} prevailing, ${(A.rateTrend>=0?'+':'')+(A.rateTrend||0)}%/yr)`);
@@ -199,7 +204,7 @@ function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span
   (holdco?'':(owner?f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×'):f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%')))+
   (holdco?'':f('Contracted today',c.contractedPct+'%'))+
   (holdco?'':(owner?f('Avg term remaining',c.termYrs+' yrs'):''))+
-  (holdco?'':(!owner?f('Mark-to-market (% original)',(c.mtm*100).toFixed(0)+'%'):''))+
+  (holdco?'':(!owner?(()=>{const ls=(c.leases||[]).filter(l=>l.effective!==false);if(!ls.length)return '';const mw=ls.reduce((a,l)=>a+l.mw,0);const wnoi=ls.reduce((a,l)=>a+l.noiPerMWyr*l.mw,0)/(mw||1);return f('Signed lease book',`${mw.toLocaleString()}MW @ $${wnoi.toFixed(2)}M NOI/MW·yr (term-avg, actual contracts)`);})():''))+
   (holdco?'':(owner?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):''))+
   stakeRow+ethRow+btcRow+
   (c.legacyEV?f(holdco?'Legacy mining':'Legacy / other',fmtM(c.legacyEV)):'')+

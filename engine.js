@@ -58,12 +58,27 @@
       return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs};
     }
     function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
+    // anchor-scale premium on FORWARD space only: big blocks print richer than small retrofits (observed across signed deals)
+    function sizeFactor(mw){if(mw<(CONST.sizeSmallMW||100))return CONST.sizeSmallF||0.9;if(mw>(CONST.sizeLargeMW||300))return CONST.sizeLargeF||1.1;return 1;}
+    function leaseOf(c,s){if(!s.leaseId)return null;const l=(c.leases||[]).find(x=>x.id===s.leaseId);return (l&&l.effective!==false)?l:null;}
     function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,contractedShare,calc;
       // site-aware contracted share: rumored capacity has no contracts, so it earns NO contract premium / cap compression
       const cs0=(s.prov==='rumored')?0:(c.contractedPct/100);
-      if(c.model==='landlord'){const vyrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);const escal=Math.pow(1+effTrend()/100,vyrs);const baseNOI=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const trendMult=cs0+(1-cs0)*leaseUp()*escal;const noi=baseNOI*trendMult;
-        const cap=Math.max(((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*cs0),(CONST.capFloor||6.5)/100);ppm=noi/cap;   // floored at the DLR fully-leased-IG print
-        contractedShare=trendMult>0?cs0/trendMult:0;calc={noi,cap,baseNOI,prevailingNOI:baseNOI*escal};}
+      if(c.model==='landlord'){
+        const lease=leaseOf(c,s);
+        if(lease){
+          // SIGNED lease — a fact, not a model: actual TERM-AVERAGE NOI (escalators embedded), fully contracted.
+          const noi=lease.noiPerMWyr;
+          const cap=Math.max(((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress),(CONST.capFloor||6.5)/100);
+          ppm=noi/cap;contractedShare=1;calc={noi,cap,leased:true,counterparty:lease.counterparty,kind:lease.kind};
+        }else{
+          // FORWARD space — market anchor × grid(region) × size × lease-up × trend to vintage. The anchor prices only what's unsigned.
+          const vyrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);const escal=Math.pow(1+effTrend()/100,vyrs);
+          const baseNOI=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*sizeFactor(s.physMW||s.mw);  // physMW: physical block size when row MW is an economic slice (JVs)
+          const noi=baseNOI*leaseUp()*escal;
+          const cap=Math.max(((A.capRate+tier.capSpread)/100),(CONST.capFloor||6.5)/100);   // no compression without a signed lease
+          ppm=noi/cap;contractedShare=0;calc={noi,cap,baseNOI,prevailingNOI:baseNOI*escal,leased:false};
+        }}
       else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*cs0);ppm=R.eff*(m/100)*mult;
         contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult,prevailing:R.prevailing};}
       const dr=A.disc,gross=ppm*s.mw;
@@ -89,7 +104,7 @@
 
     return { A, BASE, ctx, CFG, YEAR, NOW, HORIZON, SLIDERS, REGION, CONST, TIERS, PROV, PROV_OP, COMPANIES,
              priceOf, btcPrice, ethPrice, stakeValue, legacyOf, prevailingRate, ownerRate, effTrend, leaseUp,
-             siteRates, tierOf, siteValue, value };
+             sizeFactor, leaseOf, siteRates, tierOf, siteValue, value };
   }
 
   return { createEngine };

@@ -173,7 +173,11 @@
       "leasedLNOI": 0.9,
       "capFloor": 6.5,
       "capexOwnerMW": 25,
-      "capexLandlordMW": 10
+      "capexLandlordMW": 10,
+      "sizeSmallMW": 100,
+      "sizeSmallF": 0.9,
+      "sizeLargeMW": 300,
+      "sizeLargeF": 1.1
     },
     "btcFallback": 60000,
     "ethFallback": 3000,
@@ -187,7 +191,6 @@
       "tier": "proven",
       "contractedPct": 95,
       "termYrs": 5,
-      "mtm": 1,
       "leaseQ": 4.3,
       "netDebt": 22900,
       "shares": 610,
@@ -450,7 +453,6 @@
       "tier": "proven",
       "contractedPct": 80,
       "termYrs": 4,
-      "mtm": 1,
       "leaseQ": 4.4,
       "netDebt": -9280,
       "shares": 341,
@@ -704,7 +706,6 @@
       "tier": "ig",
       "contractedPct": 5,
       "termYrs": 10,
-      "mtm": 0.97,
       "leaseQ": 3.8,
       "netDebt": 53,
       "shares": 422,
@@ -744,7 +745,8 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 5,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "riot-amd"
         },
         {
           "n": "Rockdale — AMD Ph3",
@@ -753,7 +755,8 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 11,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "riot-amd"
         },
         {
           "n": "Rockdale — AMD Ph4 (completes 50 MW)",
@@ -762,7 +765,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 5,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "riot-amd"
         },
         {
           "n": "Corsicana — Building 1 core-and-shell (spec, no tenant)",
@@ -843,7 +847,21 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-28"
-      }
+      },
+      "leases": [
+        {
+          "id": "riot-amd",
+          "counterparty": "AMD direct (Rockdale Bldg G)",
+          "mw": 50,
+          "termYrs": 10,
+          "noiPerMWyr": 1.02,
+          "kind": "retrofit",
+          "signed": "2026-01",
+          "effective": true,
+          "source": "Q1-26 deck: $636M rev/$510M NOI over initial 10yr; 25MW @$25M/yr + 25MW tranches",
+          "totalRevM": 636
+        }
+      ]
     },
     {
       "tk": "BTDR",
@@ -852,7 +870,6 @@
       "tier": "proven",
       "contractedPct": 5,
       "termYrs": 10,
-      "mtm": 0.95,
       "leaseQ": 3,
       "netDebt": 444,
       "shares": 350,
@@ -1021,7 +1038,20 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-29"
-      }
+      },
+      "leases": [
+        {
+          "id": "btdr-tydal",
+          "counterparty": "Undisclosed (Tydal NO — signed, NOT effective; terms undisclosed, placeholders)",
+          "mw": 180,
+          "termYrs": 10,
+          "noiPerMWyr": 1.25,
+          "kind": "conversion",
+          "signed": "2026-06",
+          "effective": false,
+          "source": "8-K 6/29/26: conditions precedent; NOT in engine until effective"
+        }
+      ]
     },
     {
       "tk": "IREN",
@@ -1030,7 +1060,6 @@
       "tier": "proven",
       "contractedPct": 20,
       "termYrs": 5,
-      "mtm": 1,
       "leaseQ": 4.8,
       "netDebt": 3100,
       "shares": 409,
@@ -1275,7 +1304,6 @@
       "tier": "proven",
       "contractedPct": 5,
       "termYrs": 5,
-      "mtm": 1,
       "netDebt": -58,
       "shares": 160,
       "price": 1.4,
@@ -1354,9 +1382,8 @@
       "name": "Galaxy Digital",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 40,
+      "contractedPct": 25,
       "termYrs": 15,
-      "mtm": 1,
       "netDebt": 1745,
       "shares": 418,
       "price": 29.66,
@@ -1372,7 +1399,8 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 4,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "glxy-crwv-helios"
         },
         {
           "n": "Helios Ph II (CoreWeave)",
@@ -1381,7 +1409,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "glxy-crwv-helios"
         },
         {
           "n": "Helios Ph III (CoreWeave)",
@@ -1390,7 +1419,8 @@
           "region": "cheap",
           "yr": 2028,
           "mo": 6,
-          "prov": "estimated"
+          "prov": "disclosed",
+          "leaseId": "glxy-crwv-helios"
         },
         {
           "n": "Helios approved expansion A",
@@ -1465,16 +1495,29 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "leases": [
+        {
+          "id": "glxy-crwv-helios",
+          "counterparty": "CoreWeave (Helios Ph I-III)",
+          "mw": 526,
+          "termYrs": 15,
+          "noiPerMWyr": 2.06,
+          "kind": "conversion",
+          "signed": "2025-03",
+          "effective": true,
+          "source": "Phase PRs: 133+260+133MW, 15yr + 2x5 opts; term-avg $2.06M (verifier)",
+          "totalRevM": 18000
+        }
+      ]
     },
     {
       "tk": "HUT",
       "name": "Hut 8 Corp.",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 68,
+      "contractedPct": 46,
       "termYrs": 15,
-      "mtm": 1,
       "netDebt": 85,
       "shares": 132,
       "price": 118.27,
@@ -1490,7 +1533,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "hut-riverbend"
         },
         {
           "n": "Beacon Point Ph1 (Nueces Co, TX)",
@@ -1499,7 +1543,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 3,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "hut-beaconpoint"
         },
         {
           "n": "Beacon Point Ph2 (TX)",
@@ -1572,16 +1617,40 @@
       "verified": {
         "capital": "2026-07-02",
         "contracts": "2026-06-30"
-      }
+      },
+      "leases": [
+        {
+          "id": "hut-riverbend",
+          "counterparty": "Fluidstack (Google backstop) — River Bend LA",
+          "mw": 245,
+          "termYrs": 15,
+          "noiPerMWyr": 1.85,
+          "kind": "build-to-spec",
+          "signed": "2025-12",
+          "effective": true,
+          "source": "8-K 12/17/25: $7.0B/15yr NNN/245MW IT",
+          "totalRevM": 7000
+        },
+        {
+          "id": "hut-beaconpoint",
+          "counterparty": "Undisclosed multi-trillion-cap tenant — Beacon Point TX",
+          "mw": 352,
+          "termYrs": 15,
+          "noiPerMWyr": 1.86,
+          "kind": "build-to-spec",
+          "signed": "2026-05",
+          "effective": true,
+          "source": "PR: 352MW IT, 15yr; SPV bonds 6/9/26"
+        }
+      ]
     },
     {
       "tk": "CIFR",
       "name": "Cipher Digital",
       "model": "landlord",
       "tier": "ig",
-      "contractedPct": 35,
+      "contractedPct": 16,
       "termYrs": 13,
-      "mtm": 1,
       "netDebt": 965,
       "shares": 577,
       "price": 25.88,
@@ -1592,12 +1661,13 @@
       "sites": [
         {
           "n": "Barber Lake Ph1 (Fluidstack/Google, TX)",
-          "mw": 100,
+          "mw": 168,
           "owned": true,
           "region": "cheap",
           "yr": 2026,
           "mo": 10,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "cifr-fs-blp1"
         },
         {
           "n": "Black Pearl Ph1 (AWS, TX)",
@@ -1606,16 +1676,18 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 8,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "cifr-aws-blackpearl"
         },
         {
           "n": "Barber Lake Ph2 (Fluidstack/Google, TX)",
-          "mw": 107,
+          "mw": 39,
           "owned": true,
           "region": "cheap",
           "yr": 2027,
           "mo": 1,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "cifr-fs-blp2"
         },
         {
           "n": "Black Pearl Ph2 (AWS, completes 216MW IT)",
@@ -1624,7 +1696,8 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 12,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "cifr-aws-blackpearl"
         },
         {
           "n": "Reveille (TX)",
@@ -1636,13 +1709,14 @@
           "prov": "estimated"
         },
         {
-          "n": "Third campus (IG hyperscaler, TX)",
-          "mw": 150,
+          "n": "Stingray (AWS, Andrews TX)",
+          "mw": 70,
           "owned": true,
           "region": "cheap",
           "yr": 2027,
           "mo": 6,
-          "prov": "estimated"
+          "prov": "disclosed",
+          "leaseId": "cifr-aws-stingray"
         },
         {
           "n": "Ulysses (Ohio, PJM, interconnect-approved)",
@@ -1740,7 +1814,54 @@
       "verified": {
         "capital": "2026-07-02",
         "contracts": "2026-06-30"
-      }
+      },
+      "leases": [
+        {
+          "id": "cifr-fs-blp1",
+          "counterparty": "Fluidstack/Google (Barber Lake Ph1)",
+          "mw": 168,
+          "termYrs": 10,
+          "noiPerMWyr": 1.48,
+          "kind": "build-to-spec",
+          "signed": "2025-09",
+          "effective": true,
+          "source": "PR 9/25/25: ~$3B/10yr/168MW IT; 80-85% NOI (verifier 1.48)",
+          "totalRevM": 3008
+        },
+        {
+          "id": "cifr-fs-blp2",
+          "counterparty": "Fluidstack/Google (Barber Lake Ph2)",
+          "mw": 39,
+          "termYrs": 10,
+          "noiPerMWyr": 1.84,
+          "kind": "build-to-spec",
+          "signed": "2025-11",
+          "effective": true,
+          "source": "A&R lease: +39MW to full 300MW gross"
+        },
+        {
+          "id": "cifr-aws-blackpearl",
+          "counterparty": "Amazon Data Services (Black Pearl)",
+          "mw": 216,
+          "termYrs": 15,
+          "noiPerMWyr": 1.69,
+          "kind": "build-to-spec",
+          "signed": "2025-10",
+          "effective": true,
+          "source": "8-K: 300MW gross/216 IT, 15yr"
+        },
+        {
+          "id": "cifr-aws-stingray",
+          "counterparty": "Amazon Data Services (Stingray, Andrews TX)",
+          "mw": 70,
+          "termYrs": 15,
+          "noiPerMWyr": 1.9,
+          "kind": "build-to-spec",
+          "signed": "2026-03",
+          "effective": true,
+          "source": "Stingray notes deck 6/15/26: 100MW gross/70 IT"
+        }
+      ]
     },
     {
       "tk": "MARA",
@@ -1749,7 +1870,6 @@
       "tier": "proven",
       "contractedPct": 0,
       "termYrs": 10,
-      "mtm": 1,
       "netDebt": 1938,
       "shares": 381,
       "price": 14.03,
@@ -1855,9 +1975,8 @@
       "name": "Core Scientific",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 45,
+      "contractedPct": 26,
       "termYrs": 12,
-      "mtm": 1,
       "netDebt": 3380,
       "shares": 455,
       "price": 27,
@@ -1872,7 +1991,8 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 3,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "corz-crwv-12yr"
         },
         {
           "n": "Denton, TX (CoreWeave) ph2",
@@ -1881,7 +2001,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 1,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "corz-crwv-12yr"
         },
         {
           "n": "Dalton, GA (CoreWeave) ph1",
@@ -1890,7 +2011,8 @@
           "region": "mid",
           "yr": 2026,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "corz-crwv-12yr"
         },
         {
           "n": "Dalton, GA (CoreWeave) ph2",
@@ -1899,7 +2021,8 @@
           "region": "mid",
           "yr": 2027,
           "mo": 1,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "corz-crwv-12yr"
         },
         {
           "n": "Muskogee, OK (CoreWeave)",
@@ -1908,7 +2031,8 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "corz-crwv-12yr"
         },
         {
           "n": "Marble, NC (CoreWeave)",
@@ -1917,16 +2041,18 @@
           "region": "mid",
           "yr": 2026,
           "mo": 9,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "corz-crwv-12yr"
         },
         {
           "n": "Austin, TX (CoreWeave)",
-          "mw": 20,
+          "mw": 16,
           "owned": true,
           "region": "cheap",
           "yr": 2026,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "corz-crwv-austin"
         },
         {
           "n": "Pecos, TX (legacy + ph1)",
@@ -2012,16 +2138,40 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "leases": [
+        {
+          "id": "corz-crwv-12yr",
+          "counterparty": "CoreWeave (12-yr book, 5 campuses)",
+          "mw": 570,
+          "termYrs": 12,
+          "noiPerMWyr": 1.2,
+          "kind": "conversion",
+          "signed": "2024-06",
+          "effective": true,
+          "source": "8-Ks Jun 2024–2025: ~$10B, ~570MW critical IT, ~12yr",
+          "totalRevM": 9925
+        },
+        {
+          "id": "corz-crwv-austin",
+          "counterparty": "CoreWeave (Austin, leased bldg)",
+          "mw": 16,
+          "termYrs": 7,
+          "noiPerMWyr": 0.6,
+          "kind": "retrofit",
+          "signed": "2024-02",
+          "effective": true,
+          "source": "10-K: 8-yr head lease drags NOI (verifier 0.60)"
+        }
+      ]
     },
     {
       "tk": "WULF",
       "name": "TeraWulf",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 45,
+      "contractedPct": 36,
       "termYrs": 16,
-      "mtm": 1,
       "netDebt": 110,
       "shares": 744,
       "price": 24.5,
@@ -2036,7 +2186,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 10,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wulf-anthropic"
         },
         {
           "n": "Hawesville KY 'Justified' Ph B (Anthropic, 20yr)",
@@ -2045,7 +2196,8 @@
           "region": "cheap",
           "yr": 2028,
           "mo": 2,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wulf-anthropic"
         },
         {
           "n": "Lake Mariner CB-1/CB-2 (Core42)",
@@ -2054,34 +2206,38 @@
           "region": "mid",
           "yr": 2026,
           "mo": 1,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wulf-core42"
         },
         {
           "n": "Lake Mariner CB-3 (Fluidstack)",
-          "mw": 70,
+          "mw": 105,
           "owned": true,
           "region": "mid",
           "yr": 2026,
           "mo": 5,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wulf-fluidstack"
         },
         {
           "n": "Lake Mariner CB-4 (Fluidstack)",
-          "mw": 70,
+          "mw": 105,
           "owned": true,
           "region": "mid",
           "yr": 2026,
           "mo": 9,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wulf-fluidstack"
         },
         {
           "n": "Lake Mariner CB-5 (Fluidstack)",
-          "mw": 160,
+          "mw": 168,
           "owned": true,
           "region": "mid",
           "yr": 2026,
           "mo": 12,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wulf-fluidstack"
         },
         {
           "n": "Muskie Kentucky Phase I",
@@ -2165,7 +2321,45 @@
       "verified": {
         "capital": "2026-07-02",
         "contracts": "2026-07-06"
-      }
+      },
+      "leases": [
+        {
+          "id": "wulf-core42",
+          "counterparty": "Core42/G42 (Lake Mariner CB-1/2)",
+          "mw": 60,
+          "termYrs": 10,
+          "noiPerMWyr": 1.46,
+          "kind": "build-to-spec",
+          "signed": "2024-12",
+          "effective": true,
+          "source": "10-K: 60MW IT, 10yr, ~$90M/yr",
+          "totalRevM": 900
+        },
+        {
+          "id": "wulf-fluidstack",
+          "counterparty": "Fluidstack (Google backstop; Lake Mariner CB-3/4/5)",
+          "mw": 378,
+          "termYrs": 10,
+          "noiPerMWyr": 1.51,
+          "kind": "build-to-spec",
+          "signed": "2025-08",
+          "effective": true,
+          "source": "10-K/PRs: 378MW IT, $6.7B initial 10yr",
+          "totalRevM": 6700
+        },
+        {
+          "id": "wulf-anthropic",
+          "counterparty": "Anthropic direct (Hawesville KY, IG wrap)",
+          "mw": 401,
+          "termYrs": 20,
+          "noiPerMWyr": 2.01,
+          "kind": "conversion",
+          "signed": "2026-07",
+          "effective": true,
+          "source": "8-K 7/6/26: $19B/20yr/401MW IT",
+          "totalRevM": 19000
+        }
+      ]
     },
     {
       "tk": "FRMI",
@@ -2174,7 +2368,6 @@
       "tier": "proven",
       "contractedPct": 0,
       "termYrs": 20,
-      "mtm": 1,
       "netDebt": 178,
       "shares": 638,
       "price": 9.5,
@@ -2254,9 +2447,8 @@
       "name": "WhiteFiber, Inc.",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 55,
+      "contractedPct": 25,
       "termYrs": 9,
-      "mtm": 1,
       "netDebt": -63,
       "shares": 50.5,
       "price": 36,
@@ -2275,12 +2467,13 @@
         },
         {
           "n": "MTL-3 (Saint-Jerome, Cerebras 5MW)",
-          "mw": 7,
+          "mw": 5,
           "owned": true,
           "region": "mid",
           "yr": 2025,
           "mo": 11,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wyfi-cerebras"
         },
         {
           "n": "NC-1 Phase 1 (Madison, Nscale 20MW)",
@@ -2289,7 +2482,8 @@
           "region": "mid",
           "yr": 2026,
           "mo": 5,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wyfi-nscale"
         },
         {
           "n": "NC-1 Phase 2 (Madison, Nscale 20MW)",
@@ -2298,7 +2492,8 @@
           "region": "mid",
           "yr": 2026,
           "mo": 9,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "wyfi-nscale"
         },
         {
           "n": "Iceland (Blonduos, 5.5MW IT contracted)",
@@ -2384,7 +2579,32 @@
       "verified": {
         "capital": "2026-07-02",
         "contracts": "2026-06-30"
-      }
+      },
+      "leases": [
+        {
+          "id": "wyfi-nscale",
+          "counterparty": "Nscale (NC-1 Madison NC)",
+          "mw": 40,
+          "termYrs": 10,
+          "noiPerMWyr": 1.84,
+          "kind": "conversion",
+          "signed": "2025-11",
+          "effective": true,
+          "source": "$865M/10yr/40MW ($2.16M rev incl NRCs → ~85% NOI)",
+          "totalRevM": 865
+        },
+        {
+          "id": "wyfi-cerebras",
+          "counterparty": "Cerebras (MTL-3 Quebec)",
+          "mw": 5,
+          "termYrs": 5,
+          "noiPerMWyr": 2.0,
+          "kind": "retrofit",
+          "signed": "2025-02",
+          "effective": true,
+          "source": "built-to-suit colo, 5MW"
+        }
+      ]
     },
     {
       "tk": "HIVE",
@@ -2393,7 +2613,6 @@
       "tier": "proven",
       "contractedPct": 35,
       "termYrs": 2,
-      "mtm": 1,
       "netDebt": -55,
       "shares": 327,
       "price": 3.8,
@@ -2492,9 +2711,8 @@
       "name": "Applied Digital",
       "model": "landlord",
       "tier": "ig",
-      "contractedPct": 85,
+      "contractedPct": 66,
       "termYrs": 15,
-      "mtm": 1,
       "netDebt": 834,
       "shares": 380,
       "price": 38,
@@ -2503,22 +2721,24 @@
       "equityDiscount": 0,
       "sites": [
         {
-          "n": "Polaris Forge 1 ELN-01 (Ellendale ND, CoreWeave)",
+          "n": "Polaris Forge 1 ELN-02 (Ellendale ND, CoreWeave)",
           "mw": 100,
           "owned": true,
           "region": "cheap",
           "yr": 2025,
           "mo": 12,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "apld-crwv-eln"
         },
         {
-          "n": "Polaris Forge 1 ELN-02 (Ellendale ND, CoreWeave)",
+          "n": "Polaris Forge 1 ELN-03 (Ellendale ND, CoreWeave)",
           "mw": 150,
           "owned": true,
           "region": "cheap",
           "yr": 2026,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "apld-crwv-eln"
         },
         {
           "n": "Polaris Forge 2 Bldg 1 (Harwood ND, IG hyperscaler)",
@@ -2527,16 +2747,18 @@
           "region": "cheap",
           "yr": 2026,
           "mo": 12,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "apld-igA-pf2"
         },
         {
-          "n": "Polaris Forge 1 ELN-03 (Ellendale ND, CoreWeave; completes 400 MW)",
+          "n": "Polaris Forge 1 ELN-04 (Ellendale ND, CoreWeave)",
           "mw": 150,
           "owned": true,
           "region": "cheap",
           "yr": 2027,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "apld-crwv-eln04"
         },
         {
           "n": "Polaris Forge 2 Bldg 2 (Harwood ND; completes 200 MW)",
@@ -2545,7 +2767,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 3,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "apld-igA-pf2"
         },
         {
           "n": "Delta Forge 1 Ph1 (Rapides Parish LA, IG hyperscaler)",
@@ -2554,7 +2777,8 @@
           "region": "mid",
           "yr": 2027,
           "mo": 6,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "apld-igB-df1"
         },
         {
           "n": "Polaris Forge 3 Ph1 (northern US, IG hyperscaler)",
@@ -2563,7 +2787,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 8,
-          "prov": "disclosed"
+          "prov": "disclosed",
+          "leaseId": "apld-igB-pf3"
         },
         {
           "n": "Delta Forge 1 Ph2 (LA; completes 300 MW lease)",
@@ -2572,7 +2797,8 @@
           "region": "mid",
           "yr": 2027,
           "mo": 12,
-          "prov": "estimated"
+          "prov": "disclosed",
+          "leaseId": "apld-igB-df1"
         },
         {
           "n": "Polaris Forge 3 Ph2 (completes 300 MW lease)",
@@ -2581,7 +2807,18 @@
           "region": "cheap",
           "yr": 2028,
           "mo": 3,
-          "prov": "estimated"
+          "prov": "disclosed",
+          "leaseId": "apld-igB-pf3"
+        },
+        {
+          "n": "Delta Forge 2 (southern US, IG hyperscaler)",
+          "mw": 210,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 2,
+          "prov": "disclosed",
+          "leaseId": "apld-igB-df2"
         },
         {
           "n": "Delta Forge 1 expansion (430 MW campus balance, uncontracted)",
@@ -2652,7 +2889,81 @@
       "verified": {
         "capital": "2026-07-05",
         "contracts": "2026-06-30"
-      }
+      },
+      "leases": [
+        {
+          "id": "apld-crwv-eln",
+          "counterparty": "CoreWeave (ELN-02/03)",
+          "mw": 250,
+          "termYrs": 15,
+          "noiPerMWyr": 1.59,
+          "kind": "build-to-spec",
+          "signed": "2025-05",
+          "effective": true,
+          "source": "8-K 6/2/25: two ~15yr leases, ~$7B; PF1 ELN-02/03; ~85% NOI (verifier)",
+          "totalRevM": 7000
+        },
+        {
+          "id": "apld-crwv-eln04",
+          "counterparty": "CoreWeave (ELN-04)",
+          "mw": 150,
+          "termYrs": 15,
+          "noiPerMWyr": 1.51,
+          "kind": "build-to-spec",
+          "signed": "2025-08",
+          "effective": true,
+          "source": "8-K 8/29/25: $4.0B/15yr Bldg 4",
+          "totalRevM": 4000
+        },
+        {
+          "id": "apld-igA-pf2",
+          "counterparty": "IG hyperscaler A (PF2 Harwood)",
+          "mw": 200,
+          "termYrs": 15,
+          "noiPerMWyr": 1.42,
+          "kind": "build-to-spec",
+          "signed": "2025-10",
+          "effective": true,
+          "source": "PR/8-K 10/22/25: ~$5B/200MW/15yr; 85-86% NOI",
+          "totalRevM": 5000
+        },
+        {
+          "id": "apld-igB-df1",
+          "counterparty": "High-IG hyperscaler B (Delta Forge 1)",
+          "mw": 300,
+          "termYrs": 15,
+          "noiPerMWyr": 1.42,
+          "kind": "build-to-spec",
+          "signed": "2026-04",
+          "effective": true,
+          "source": "PR 4/23/26: $7.5B/300MW/15yr",
+          "totalRevM": 7500
+        },
+        {
+          "id": "apld-igB-pf3",
+          "counterparty": "High-IG hyperscaler B (Polaris Forge 3)",
+          "mw": 300,
+          "termYrs": 15,
+          "noiPerMWyr": 1.42,
+          "kind": "build-to-spec",
+          "signed": "2026-05",
+          "effective": true,
+          "source": "PR 5/20/26: $7.5B/300MW/15yr take-or-pay",
+          "totalRevM": 7500
+        },
+        {
+          "id": "apld-igB-df2",
+          "counterparty": "High-IG hyperscaler B (Delta Forge 2)",
+          "mw": 210,
+          "termYrs": 15,
+          "noiPerMWyr": 1.4,
+          "kind": "build-to-spec",
+          "signed": "2026-06",
+          "effective": true,
+          "source": "8-K 6/9/26: $5.2B/210MW/15yr",
+          "totalRevM": 5200
+        }
+      ]
     },
     {
       "tk": "ABTC",
@@ -2661,7 +2972,6 @@
       "tier": "proven",
       "contractedPct": 0,
       "termYrs": 0,
-      "mtm": 1,
       "netDebt": -50,
       "shares": 1060,
       "price": 0.68,
@@ -2708,7 +3018,6 @@
       "tier": "proven",
       "contractedPct": 0,
       "termYrs": 12,
-      "mtm": 1,
       "netDebt": 909,
       "shares": 327,
       "price": 15.37,
@@ -2808,7 +3117,6 @@
       "tier": "proven",
       "contractedPct": 0,
       "termYrs": 0,
-      "mtm": 1,
       "netDebt": 313,
       "shares": 349,
       "price": 1.8,
@@ -2863,7 +3171,6 @@
       "tier": "proven",
       "contractedPct": 0,
       "termYrs": 15,
-      "mtm": 1,
       "netDebt": -49,
       "shares": 115.9,
       "price": 4.78,
@@ -2878,7 +3185,8 @@
           "region": "cheap",
           "yr": 2027,
           "mo": 12,
-          "prov": "estimated"
+          "prov": "estimated",
+          "physMW": 207
         },
         {
           "n": "TCDC Ph2 443MW BTM gas (NUAI ~20%)",
@@ -2887,7 +3195,8 @@
           "region": "cheap",
           "yr": 2029,
           "mo": 3,
-          "prov": "estimated"
+          "prov": "estimated",
+          "physMW": 443
         },
         {
           "n": "TCDC Ph3 toward 1.4GW gross (NUAI ~20%)",
@@ -2896,7 +3205,8 @@
           "region": "cheap",
           "yr": 2030,
           "mo": 6,
-          "prov": "rumored"
+          "prov": "rumored",
+          "physMW": 250
         }
       ],
       "basis": {
@@ -2945,7 +3255,6 @@
       "tier": "proven",
       "contractedPct": 0,
       "termYrs": 15,
-      "mtm": 1,
       "netDebt": 330,
       "shares": 626,
       "price": 4.59,
@@ -3039,11 +3348,6 @@
     }
   ],
   "watchItems": [
-    {
-      "tk": "CIFR",
-      "note": "Third campus modeled at 150MW; Stingray/AWS Andrews facility is actually 70 IT MW (100 gross) — trim the site row",
-      "added": "2026-07-02"
-    },
     {
       "tk": "APLD",
       "note": "Macquarie preferred: $900M face drawn of a $5B program (12.75% PIK, 1.8x MOIC floor) — seniorClaims grows as it draws; re-mark quarterly",

@@ -9,7 +9,9 @@ First-principles relative-value tracker for AI-infrastructure equities; value ro
 One engine; only the per-MW step branches by model.
 ```
 OWNER     value/MW = effRate × margin% × multiple
-LANDLORD  value/MW = NOI ÷ cap rate   (cap floored at 6.5% — the DLR print)
+LANDLORD  signed site:   value/MW = actual lease NOI (term-avg fact) ÷ cap
+          unleased site: value/MW = anchor × region × size × lease-up × trend ÷ cap
+          (cap floored at 6.5% — the DLR print; compression only with a signed lease)
 both      site value = value/MW × MW × provenance haircut × time-discount
           EV     = Σ sites + legacy
           equity = (EV − net debt − committed project debt − preferred/NCI) × (1 − governance discount)
@@ -17,7 +19,7 @@ both      site value = value/MW × MW × provenance haircut × time-discount
           upside = target ÷ price − 1
 ```
 - **effRate** = contracted slice (locked at today's GPU rate) + uncontracted slice (today's rate grown by the trend to the site's year) × region factor × **lease-up dial**. The contract premium and cap compression are **site-aware** — rumored capacity earns neither. The **ramp** delays only the uncontracted share (take-or-pay leases bill from commencement). Trend is capped at disc − 2 so the time axis can't invert.
-- **NOI** grows the same way (uncontracted slice × lease-up × trend); **cap** = (cap dial + tier spread) × (1 − 0.30 × site-aware contracted%), floored at 6.5%.
+- **Signed economics bind**: every signed lease lives in the `leases[]` registry (counterparty, MW, term, term-average NOI, `kind` = retrofit / conversion / build-to-spec, source) and its sites value at the ACTUAL contract — recalibrating the anchor never touches a signed dollar. The registry doubles as the market print-tape (current range: $0.60M retrofit-with-head-lease → $2.06M premium conversion; build-to-spec IG cluster $1.4–1.9M).
 - **provenance haircut**: disclosed 0.95 / estimated 0.55 / rumored 0.25. **time-discount** = 1/(1+disc)^years, years = energization − now + ramp.
 - **legacy** = BTC × live price + ETH × live price + stake (pct × the held company's modelled equity) + non-crypto residual (`legacyEV`).
 
@@ -80,7 +82,7 @@ Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-ra
 ## Keeping it current
 - **Checks tab / `node checks.js`** — the same test suite runs live in the browser on every load AND as the pre-push CLI (shared `checks-core.js`). Deterministic checks: schema, site schedules & phasing, provenance consistency, capital-structure sanity, basis notes on judgement inputs, stake integrity, freshness. Research checks (FD shares vs filings, new debt/equity issuance, contract announcements, GPU spot pricing vs the rate/trend dials) run in the weekly sweep.
 - Weekly scheduled refresh re-checks each name, proposes thesis/input changes for review, and stamps `verified` dates (capital / contracts, + `config.verifiedPricing`) on approval — the Checks tab colors them by age.
-- **Update a name**: edit its fields (new lease → raise `contractedPct` / upgrade site `prov`; new debt or raise → `netDebt` / `shares`).
+- **Update a name**: new signed lease → append a `leases[]` record + tag its site rows with `leaseId`; new debt or raise → `netDebt` / `shares`.
 - **Add a name**: data entry into `companies[]` only — never touch the engine (spec §5a).
 
 ## Known limitations
