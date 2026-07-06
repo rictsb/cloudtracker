@@ -3,7 +3,7 @@
 The terse, always-current reference. Plain-English companion to `AI-Infra-Tracker-Spec.md` (binding). Present-tense only — no history (that's `CHANGELOG.md`).
 
 ## What it is
-First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser) · **Portfolio** (the self-balancing paper book).
+First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Leases** (the registry + print tape) · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser) · **Portfolio** (the self-balancing paper book).
 
 ## The formula
 One engine; only the per-MW step branches by model.
