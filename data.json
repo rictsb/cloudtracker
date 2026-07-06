@@ -1194,6 +1194,12 @@
       ],
       "log": [
         {
+          "d": "2026-06-18",
+          "t": "earnings",
+          "s": "6-K",
+          "x": "Bitdeer AI cloud: ARR $8M (Sep-25) → ~$69M (May-26); 4,248 GPUs (H100→GB300 NVL72), 90% utilization; mgmt: book shifted to 3-5yr terms, H100 rates +40% since late-25. NO named customers or per-contract disclosure — excluded from the contract registry until one prints."
+        },
+        {
           "d": "2026-06-29",
           "t": "lease",
           "s": "Co. 6-K / press release",
@@ -1893,6 +1899,21 @@
           "source": "PR: 352MW IT, 15yr; SPV bonds 6/9/26",
           "grossMW": 500,
           "totalRevM": 9800
+        }
+      ],
+      "contracts": [
+        {
+          "id": "hut-highrise",
+          "counterparty": "Undisclosed AI cloud provider (via Highrise AI)",
+          "totalRevM": 46,
+          "termYrs": 5,
+          "signed": "2024-09",
+          "gen": "hopper",
+          "inferredMW": true,
+          "effective": true,
+          "source": "PR 9/26/24 + 10-K rev-rec: 1,000 H100 + 96 H200 owned cluster near Chicago; fixed fee + utilization revenue share; TCV INFERRED (~$9.2M FY25 rev × 5yr)",
+          "gpuCount": 1096,
+          "mw": 1.5
         }
       ]
     },
@@ -2861,6 +2882,102 @@
           "effective": true,
           "source": "built-to-suit colo, 5MW"
         }
+      ],
+      "contracts": [
+        {
+          "id": "wyfi-paris-ig",
+          "counterparty": "Investment-grade technology customer (Paris, 3rd-party DC)",
+          "totalRevM": 160,
+          "termYrs": 5,
+          "signed": "2026-05",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "8-K/PR 5/21/26: 5-yr agreement >$160M TCV, 12mo prepaid; commences Jul-26; largest cloud signing in company history"
+        },
+        {
+          "id": "wyfi-h100-order",
+          "counterparty": "Existing MSA customer (Nov-24) — 2,048 H100s",
+          "totalRevM": 50.2,
+          "termYrs": 2,
+          "signed": "2026-03",
+          "gen": "hopper",
+          "inferredMW": true,
+          "effective": true,
+          "source": "FY25 10-K: Mar-26 service order, 256 servers, 24mo + 12mo option",
+          "gpuCount": 2048
+        },
+        {
+          "id": "wyfi-b200-order",
+          "counterparty": "Undisclosed customer — 384 B200s",
+          "totalRevM": 18.1,
+          "termYrs": 2,
+          "signed": "2026-02",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "FY25 10-K: 24mo initial, monthly auto-renew; revenue from 1/27/26",
+          "gpuCount": 384
+        },
+        {
+          "id": "wyfi-hyperbolic",
+          "counterparty": "Hyperbolic (Modal Labs end-customer)",
+          "totalRevM": 17,
+          "termYrs": 2,
+          "signed": "2026-05",
+          "gen": "hopper",
+          "inferredMW": true,
+          "effective": true,
+          "source": "Q1-26 PR: ~$17M/2yr on existing H200 fleet; revenue from Jun-26"
+        },
+        {
+          "id": "wyfi-boosteroid",
+          "counterparty": "Boosteroid (cloud gaming)",
+          "totalRevM": 18.3,
+          "termYrs": 5,
+          "signed": "2024-10",
+          "gen": "mixed",
+          "inferredMW": true,
+          "effective": true,
+          "source": "FY25 10-K: cumulative executed service orders (initial ~$7.9M thru Nov-29 + Q3-25 POs ~$10.4M); AMD gaming GPUs",
+          "gpuCount": 1190
+        },
+        {
+          "id": "wyfi-initial-b200",
+          "counterparty": "Initial Customer — 464 B200s",
+          "totalRevM": 22.5,
+          "termYrs": 1.5,
+          "signed": "2025-01",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "~$15M annualized × 18mo; deployed from inventory Aug-25",
+          "gpuCount": 464
+        },
+        {
+          "id": "wyfi-128b200",
+          "counterparty": "New customer — 128 B200s",
+          "totalRevM": 3,
+          "termYrs": 1,
+          "signed": "2025-11",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "FY25 10-K: 12mo initial then monthly; billing from 12/1/25",
+          "gpuCount": 128
+        },
+        {
+          "id": "wyfi-initial-h100",
+          "counterparty": "Initial Customer — 2,048 H100s (Iceland) — NON-PERFORMING",
+          "totalRevM": 150,
+          "termYrs": 3,
+          "signed": "2023-12",
+          "gen": "hopper",
+          "inferredMW": true,
+          "effective": false,
+          "source": "MSA 12/12/23, >$50M annualized; PAUSED since ~Nov-25 (payment dispute) — carried at zero pending resolution",
+          "gpuCount": 2048
+        }
       ]
     },
     {
@@ -2868,7 +2985,7 @@
       "name": "HIVE Digital Technologies",
       "model": "owner",
       "tier": "proven",
-      "contractedPct": 35,
+      "contractedPct": 10,
       "termYrs": 2,
       "netDebt": -55,
       "shares": 327,
@@ -2927,7 +3044,8 @@
       "basis": {
         "plannedRaise": "HIVE funds the AI buildout heavily off ATM equity — in FY26 it issued 53.5M shares for $119.2M (Amended Oct-2024 ATM) plus ~$56.9M (Nov-2025 ATM), ~76% share growth YoY, on top of a $115M 0% exchangeable note (Apr-2026) for the GB200 procurement; cumulative forward ATM ~$250M is realistic for a spec-heavy small-cap with active distribution agreements (KBW/Stifel/Canaccord).",
         "equityDiscount": "0.1: chair/CEO Frank Holmes influence, foreign private issuer (Canada/Bermuda note structure), serial ATM dilution and very high beta (~3.7).",
-        "tier": "proven: AI book is early-stage neocloud ARR with 6–24 month terms and a not-yet-investment-grade anchor (Cohere); no IG-rated contracted income."
+        "tier": "proven: AI book is early-stage neocloud ARR with 6–24 month terms and a not-yet-investment-grade anchor (Cohere); no IG-rated contracted income.",
+        "signedRate": "Bell/Cohere + BUZZ book ≈ $250M over ~6MW-equivalent GB200 deployments ≈ $14.7M/MW·yr — small-scale full-stack GB200 economics (top of the gen ladder)"
       },
       "narrative": "HIVE is a Bitcoin miner (~24.5 EH/s across ~464 MW of mostly-owned hydro capacity in Paraguay, Canada and Sweden) pivoting into AI through subsidiary BUZZ HPC — an owner-operator \"sovereign\" GPU cloud that procures and runs NVIDIA GPUs and sells compute, not a colocation landlord. The AI book is still small (~$35M realized ARR on ~5,500 GPUs, $19.5M FY26 HPC revenue) but ramping fast: a $220M / 3-yr GB200 deal with Bell and Cohere (2,304 Grace-Blackwell GPUs at Merritt, BC, live late-2026 / early-2027) adds ~$70M ARR, and a Tier III+ upgrade of the owned 70 MW New Brunswick site is pitched to hold 25,000+ GPUs. The investable question is execution and funding: BUZZ is a sub-scale neocloud competing with far larger owner-operators, contracts are short (6–24 months) against a non-IG anchor, and the buildout leans on serial ATM dilution plus a 0% convert while the legacy mining business runs a thin BTC treasury (just ~150 coins after spending 2,139 BTC on equipment).",
       "bull": [
@@ -2956,12 +3074,48 @@
       ],
       "finMix": "$115M 0% exchangeable notes (2031) + serial ATM equity + Dell finance lease (504 B200s) + mortgage/term loans; AI capex funded mainly by equity and the convert, not contracted prepayments.",
       "leaseQ": 2.5,
-      "log": [],
-      "thesis": "Modest upside — a small live GPU-cloud (~9 MW) plus a 320 MW GTA pipeline on owned green power, still mostly a BTC miner. Cheap optionality on the buildout.",
+      "log": [
+        {
+          "d": "2026-06-18",
+          "t": "lease",
+          "s": "PR/8-K",
+          "x": "BUZZ HPC executes $220M/3yr sovereign-AI GPU contract — Bell AI Fabric pays, Cohere operates: 2,304 GB200s at Bell Merritt BC, ~$70M ARR from late-26/early-27. Contracted ARR path ~$105M (> the $100M target). Watch: Canada's $890M Sovereign Compute program (proposals closed 6/1/26, no award yet)."
+        }
+      ],
+      "thesis": "The GPU-cloud pivot just got its anchor: a signed $220M/3yr sovereign-AI contract (Bell pays, Cohere operates, GB200 at ~$14.7M/MW·yr — top of the gen ladder) puts BUZZ past its $100M ARR target, against a small credited footprint. Still mostly a miner by MW; the GTA pipeline and the federal sovereign-compute award are the next legs.",
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "contracts": [
+        {
+          "id": "hive-bell-cohere",
+          "counterparty": "Bell AI Fabric (payer) — Cohere end-user, sovereign AI",
+          "totalRevM": 220,
+          "termYrs": 3,
+          "signed": "2026-06",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "PR 6/18/26 + 8-K exhibit: executed 3-yr GPU cloud contract, $220M TCV, 2,304 GB200 (NVL72) at Bell Merritt BC; ~$70M ARR from go-live late-26/early-27",
+          "gpuCount": 2304,
+          "mw": 5
+        },
+        {
+          "id": "hive-buzz-book",
+          "counterparty": "Undisclosed customers (executed agreements, BUZZ Canada West)",
+          "totalRevM": 30,
+          "termYrs": 2,
+          "signed": "2026-02",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "PR 2/13/26: ~$30M TCV over 2-yr fixed terms, 504 liquid-cooled GPUs, live since ~Q1-26 (~$15M ARR)",
+          "gpuCount": 504,
+          "mw": 1
+        }
+      ],
+      "signedRate": 14.5
     },
     {
       "tk": "APLD",
@@ -3219,6 +3373,20 @@
           "effective": true,
           "source": "8-K 6/9/26: $5.2B/210MW/15yr",
           "totalRevM": 5200
+        }
+      ],
+      "contracts": [
+        {
+          "id": "apld-sai-cloud",
+          "counterparty": "Undisclosed AI customer (Sai Computing → ChronoScale)",
+          "totalRevM": 180,
+          "termYrs": 2,
+          "signed": "2023-05",
+          "gen": "hopper",
+          "inferredMW": true,
+          "effective": true,
+          "source": "8-K EX-99.2 May-23: \"up to $180M\" first AI cloud customer; business being separated as ChronoScale",
+          "gpuCount": 6144
         }
       ]
     },
