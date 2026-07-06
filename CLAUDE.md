@@ -6,6 +6,8 @@
 
 A static web app (HTML / CSS / vanilla JS, no framework) — a first-principles relative-value tracker for AI-infrastructure names. All company and site data lives in `data.json`, loaded at runtime. The app is a Render Static Site; push to `main` auto-deploys.
 
+The valuation engine lives in `engine.js` (shared browser + node — never fork the math). The paper portfolio (spec §6b) is `portfolio-core.js` (allocation), `portfolio-run.js` (daily job, run by the GitHub Action), `portfolio-backtest.js` (regenerates history), `portfolio.json` (state, overwritten daily) and `portfolio-history.json` (the ONE sanctioned time-series ledger).
+
 ## File discipline (spec §10–§11 — hard rules)
 
 1. **State is present-tense only.** No file records "previously X, now Y, updated on…". History lives in `CHANGELOG.md`, nowhere else.

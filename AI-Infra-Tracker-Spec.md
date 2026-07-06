@@ -10,7 +10,7 @@ A comparative valuation tracker where **logging a development updates the model*
 
 ## 2. What this is NOT (scope guard)
 
-- Not a trading system or anything that touches a broker.
+- Not a trading system or anything that touches a broker. The **paper portfolio** (§6b) sizes a hypothetical book from the model's outputs — it never touches execution, an account, or an order.
 - Not an auto-scraper. On-demand lookups from your preferred sources are expected; what stays out is unattended, broad ingestion. Governing rule: **retrieval is open, writes are gated** — a lookup produces a *proposed* update you review and accept, then it's applied (the miner-swarm pattern). Every applied fact carries its source.
 - Share price is live-fed — the one objective market input, used for the upside calc; everything analytical stays manually entered. (Real-time equity quotes need a paid entitlement; a delayed/snapshot feed is sufficient for a tracker that informs sizing, not execution.)
 - Not multi-user. One analyst, one app.
@@ -108,13 +108,14 @@ Pure data entry into `data.json` `companies[]` — **never touch the engine** (n
 
 First-principles per name: sites + MW · energization schedule + certainty (→ provenance) · data-center tier/quality (size, power source, owned/leased → region & $/MW) · anchor/hyperscaler tenants (→ contracted% + tier) · capital structure (net debt, shares, converts, BTC, planned equity raise → dilution).
 
-## 6. The screens (five)
+## 6. The screens (six)
 
 1. **Comparison dashboard** — all names ranked by upside; each row carries a **value gauge** (bar = our target value split contracted-floor / expected / legacy; dark line = market price; shaded gap = upside or overvalued) and a collapsed **valuation narrative** toggle.
 2. **Company one-pager** — a full research page per ticker (see §6a): the quantitative roll-up plus qualitative narrative and judgement. Hash-routed (`#TICKER`), deep-linkable; clicking a dashboard row goes straight to it.
 3. **Sites table** — every site across the whole universe in one list: company, MW, owned/leased, region, energization date, provenance, and discounted value contribution. Sortable and filterable. The master inventory the roll-up is built from, and the fastest way to see how much of the universe's MW is disclosed vs rumored, or concentrated in one region or one delivery year.
 4. **Assumptions panel** — the global dials; change one and everything recomputes live.
 5. **Checks** — the data test suite, run live in the browser against the deployed data on every load (same code as `node checks.js`): group verdicts, findings, a per-company matrix, filing-verification ages (stamped by the weekly sweep via per-company `verified` dates + `config.verifiedPricing`), and the open watch-items registry (`watchItems`). A pass/warn/fail badge sits on the tab.
+6. **Portfolio** — the paper portfolio (§6b): NAV vs the equal-weight universe benchmark, current holdings with the confidence math behind each weight, the trade ledger, and the learning state (λ, per-name multipliers, where the market is disagreeing with us and what it has cost).
 
 ### 6a. The company one-pager
 
@@ -137,6 +138,30 @@ Planned modules (full page only, not built now — the layout reserves room):
 The one-pager is the thing you'd actually read before sizing a position, and the thing Cowork refreshes each week.
 
 **Signature — the value-composition bar carries time and provenance.** Each site is a segment sized by its discounted, haircut value; near-term capacity reads solid, far-out and rumored capacity reads faded. A target resting on 2030 rumored MW *looks* exactly as thin as it is. A built-in skepticism meter against both timing and source — the antidote to a bull talking himself into rumored upside.
+
+### 6b. The paper portfolio (self-balancing)
+
+The tracker's outputs become a daily-rebalanced hypothetical book. Purpose: measure whether the model's ranking adds alpha *within* the universe, and force a disciplined confrontation with the market's view. Paper only — no broker, no orders (§2). Long-only plus cash for now; the machinery supports shorting later without redesign.
+
+**Allocation rule (binding, one formula for every name):**
+
+- **Raw view** per name: `μ = ln(target ÷ price)` — the model's mispricing signal, computed by the same engine as the dashboard (one engine, §5).
+- **Confidence** `c ∈ [cMin, 1]`, computed from what the model already knows: the share of EV that is contracted floor + legacy (marked-to-market treasuries/stakes) vs expected/pipeline, times a penalty per open watch-item. A 60% upside built on signed leases sizes bigger than 60% built on rumored 2030 MW.
+- **Learning multipliers**: a global λ (how hard we fight the market) and a per-name multiplier `m` (where the market has persistently disagreed). Effective view: `ν = λ × c × m × μ`.
+- **Weights**: softmax over investable names **plus cash entered at ν = 0** with concentration temperature T — low T concentrates into the top convictions (no per-name cap, by mandate); cash grows mechanically when universe-wide upside thins. Sub-1% weights drop to zero. Names without a live price are uninvestable (weight 0) until they trade.
+- **Rebalance band**: recompute daily, trade to target only when some weight drifts beyond the band — the ledger records decisions, not noise.
+
+**Learning rule (adapts sizing, never edits the model):** every 21 trading days, λ moves with the realized rank-correlation between past views and subsequent returns (clamped); per-name `m` decays when a name's excess return has persistently opposed our view, and drifts back to 1 when vindicated. A `conviction` flag exempts a name from shrinkage — the override is explicit, never silent. Disagreements and their running cost are *surfaced on the Portfolio screen*; changing the underlying valuation inputs remains the analyst's job through the normal proposal path (§9). Numeric parameters live in `portfolio.json` and are shown on the screen — the formula is spec, the calibration is data.
+
+**Benchmark**: equal-weight basket of the investable universe, rebalanced monthly. Beating SPX measures the sector; beating equal-weight measures the ranking. Both NAVs start at 100.
+
+**Files (the only two, both owned by the app):**
+- `portfolio.json` — present-tense state: parameters, current holdings, cash, λ, per-name multipliers, as-of date. Overwritten daily.
+- `portfolio-history.json` — **the single sanctioned time-series ledger** in the repo (§10 carve-out): one record per trading day (NAV, benchmark NAV, weights, trades, λ). A `backtestThrough` date marks where simulation ends and the live record begins.
+
+**Daily job**: a scheduled GitHub Action runs `node portfolio-run.js` after US close (Mon–Fri): fetch closes (Finnhub) + BTC/ETH (Coinbase), value every name with the engine at the run date (the time discount rolls forward daily), rebalance, append the ledger, commit — the site redeploys with the new state. Idempotent per date. News never enters here: facts flow through the normal proposal path into `data.json`, and the next run reprices them.
+
+**Backtest provenance (honest label):** the genesis year is simulated with *today's* `data.json` against historical prices — it validates the machinery and calibrates parameters; it is **not** evidence of alpha (the inputs contain hindsight). The live record starts at `backtestThrough`.
 
 ## 7. Build plan
 
@@ -170,7 +195,7 @@ This is stated as **analyst method, not hard-coded logic** — it guides how you
 
 The failure mode that sinks projects like this is markdown sprawl — files that accumulate session history ("previously X, now Y, updated June 24…") until they read as lab notebooks. Four hard rules:
 
-1. **State files are present-tense only.** Every file answers "what is true now," never "what changed and when." If a line contains a date, a "previously," a "we thought," or a "this run," it is history — it belongs in the changelog or nowhere.
+1. **State files are present-tense only.** Every file answers "what is true now," never "what changed and when." If a line contains a date, a "previously," a "we thought," or a "this run," it is history — it belongs in the changelog or nowhere. One carve-out: `portfolio-history.json` is the single sanctioned time-series ledger (§6b) — a market record appended by the daily job, not narrative state. No other file accumulates history.
 2. **Ticker state is structured data, not markdown.** A company's current view (sites, commercial layer, narrative, bull/bear) lives in the app's data file as fields you overwrite — not in a per-ticker document. Data holds values, not their history, so cruft has nowhere to land. There are no per-ticker markdown files.
 3. **Closed allow-list of markdown files.** Only these exist: this spec/contract, one CHANGELOG, and the wiki (one file, or a few clearly-scoped ones) for durable how-it-works knowledge and discipline definitions. Anything outside this list is not created without being asked.
 4. **Edit in place, never append.** When state changes, overwrite the old value. That it used to differ is one line in the CHANGELOG, recorded once, then gone from view. No file grows just because time passed.
