@@ -75,7 +75,7 @@ Intuition: the real discount on future compute = discount − trend.
 - **Ignore sell-side price targets.**
 
 ## Data & benchmarks
-Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-rate sanity: DLR/Blackstone (Jun 2026) ≈ $17M/MW equity, ~6.5% cap, ~15× NOI for fully-leased IG hyperscale. Base landlord NOI is calibrated to signed hyperscaler NNN prints (~$1.3M/MW·yr cheap-market owned; APLD's $36B/15yr/1.41GW ⇒ $1.34M).
+Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-rate sanity: DLR/Blackstone (Jun 2026) ≈ $17M/MW equity, ~6.5% cap, ~15× NOI for fully-leased IG hyperscale. Base landlord NOI is calibrated to the MIDPOINT OF THE BULLISH CASE on signed hyperscaler prints ($1.76M/MW·yr cheap-market owned): conservative read = year-1 de-escalated (~$1.5M, WULF/Anthropic 7/26), bullish read = term-average (~$2.0M — justified because the engine locks contracted rent flat, so year-1 anchoring drops the signed escalators). Owner's deliberate calibration, 2026-07-06.
 
 ## Keeping it current
 - **Checks tab / `node checks.js`** — the same test suite runs live in the browser on every load AND as the pre-push CLI (shared `checks-core.js`). Deterministic checks: schema, site schedules & phasing, provenance consistency, capital-structure sanity, basis notes on judgement inputs, stake integrity, freshness. Research checks (FD shares vs filings, new debt/equity issuance, contract announcements, GPU spot pricing vs the rate/trend dials) run in the weekly sweep.
