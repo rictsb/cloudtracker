@@ -86,9 +86,10 @@ Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-ra
 
 ## Keeping it current
 - **Checks tab / `node checks.js`** — the same test suite runs live in the browser on every load AND as the pre-push CLI (shared `checks-core.js`). Deterministic checks: schema, site schedules & phasing, provenance consistency, capital-structure sanity, basis notes on judgement inputs, stake integrity, freshness. Research checks (FD shares vs filings, new debt/equity issuance, contract announcements, GPU spot pricing vs the rate/trend dials) run in the weekly sweep.
-- Weekly scheduled refresh re-checks each name, proposes thesis/input changes for review, and stamps `verified` dates (capital / contracts, + `config.verifiedPricing`) on approval — the Checks tab colors them by age.
+- Weekly scheduled refresh (Mondays) iterates the `sources[]` registry — never a hardcoded list: filings/research sources drive per-name verification; every `commentary` feed (McNallie Money et al.) is swept for new output on covered names, concrete claims verified against filings before entering (unverified claims capped at the source's provenance ceiling, soft state only), pure opinion used as thesis color at most. Proposes changes for review with per-fact registry-id citations, stamps `verified` dates (capital / contracts, + `config.verifiedPricing`) on approval — the Checks tab colors them by age.
 - **Update a name**: new signed lease → append a `leases[]` record + tag its site rows with `leaseId`; new debt or raise → `netDebt` / `shares`.
 - **Add a name**: data entry into `companies[]` only — never touch the engine (spec §5a).
+- **Add a source**: one entry in `sources[]` (id, name, type, url, provCeiling, note) — checks validate it and the next weekly sweep picks it up automatically; nothing else to change.
 
 ## Known limitations
 - Revenue-multiple, not a per-name DCF.
