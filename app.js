@@ -12,6 +12,7 @@ const FMT={
 };
 
 /* runtime state, populated once data.json loads */
+let E=null;   // the shared valuation engine instance (engine.js) — all math lives there
 let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
 let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
@@ -22,70 +23,23 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
 function fmtM(x){return Math.abs(x)>=1000?'$'+(x/1000).toFixed(1)+'B':'$'+x.toFixed(0)+'M';}
-function priceOf(c){const p=LIVE_PRICES[c.tk];return (typeof p==='number'&&p>0)?p:c.price;}
 function fmtPrice(p){return p>=100?'$'+p.toFixed(0):'$'+p.toFixed(2);}
-function btcPrice(){return BTC_PRICE||(CFG&&CFG.btcFallback)||60000;}
-function ethPrice(){return ETH_PRICE||(CFG&&CFG.ethFallback)||3000;}
-// Look-through value of a controlling stake in another tracked name (SOTP holdcos, e.g. BTBT → WhiteFiber).
-// pct × that company's modeled equity; auto-updates as the held company's inputs/price move (the "routine").
-function stakeValue(c){if(!c.stake)return 0;const t=COMPANIES&&COMPANIES.find(x=>x.tk===c.stake.tk);if(!t)return 0;const v=value(t);
-  const dil=v.fundedShares>0?t.shares/v.fundedShares:1;                      // ownership dilutes through the held company's planned raise
-  const eq=(c.stake.pct>0.5&&v.equityPre!=null)?v.equityPre:v.equity;       // a CONTROLLING stake doesn't inherit the minority discount its own control created
-  return (c.stake.pct||0)*dil*eq;}
-// Legacy/non-core EV = BTC + ETH treasuries (marked live) + look-through stakes + a non-crypto residual (mining/software).
-function legacyOf(c){return (c.btc||0)*btcPrice()/1e6+(c.eth||0)*ethPrice()/1e6+stakeValue(c)+(c.legacyEV||0);}
 function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
 
-/* ---- engine ---- */
-function prevailingRate(yrs){return A.rate*Math.pow(1+(A.rateTrend||0)/100,Math.max(0,yrs));}
-function ownerRate(c){return A.rate;}
-// Vintage-rate model (spec §4): $/MW·yr is priced at the rate prevailing when capacity is
-// contracted/energized, and that rate trends over time (the "GPU rate trend" dial). The CONTRACTED
-// share is locked at today's rate; the UNCONTRACTED share floats to the future prevailing rate at
-// its energization vintage — so in a rising-rate world unsold capacity is the upside, not a spot
-// haircut. `contracted %` remains the company number; rumored sites are 100% uncontracted (no lock).
-function effTrend(){return Math.min(A.rateTrend||0,(A.disc||10)-2);}  // guardrail: uncontracted real discount ≥2%/yr (time axis can't invert at bull settings)
-function leaseUp(){return A.leaseUp!=null?A.leaseUp:1;}               // lease-up / spot realization on the uncontracted slice (base 1.0 = scarcity view: energized capacity gets rented; 0.42 = consensus spread)
-function siteRates(c,s){
-  const lock=Math.min(c.termYrs/3,1);
-  const cf=(s.prov==='rumored')?0:(c.contractedPct/100);
-  const ls=lock*cf;
-  const rm=(REGION[s.region]&&REGION[s.region].rateMul)||1;   // geography rate factor (US 1.0, EU/AU < 1)
-  const base=A.rate*rm;
-  const yrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);
-  const prevailing=base*Math.pow(1+effTrend()/100,yrs);
-  const contractedRate=ls*base, spotRate=(1-ls)*prevailing*leaseUp();
-  return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs};
-}
-function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
-function siteValue(c,s){const r=REGION[s.region];const tier=tierOf(c);let ppm,contractedShare,calc;
-  // site-aware contracted share: rumored capacity has no contracts, so it earns NO contract premium / cap compression
-  const cs0=(s.prov==='rumored')?0:(c.contractedPct/100);
-  if(c.model==='landlord'){const vyrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);const escal=Math.pow(1+effTrend()/100,vyrs);const baseNOI=CONST.landlordNOI*r.lNOI*(s.owned?CONST.ownedLNOI:CONST.leasedLNOI)*(0.9+0.1*c.mtm);const trendMult=cs0+(1-cs0)*leaseUp()*escal;const noi=baseNOI*trendMult;
-    const cap=Math.max(((A.capRate+tier.capSpread)/100)*(1-CONST.capCompress*cs0),(CONST.capFloor||6.5)/100);ppm=noi/cap;   // floored at the DLR fully-leased-IG print
-    contractedShare=trendMult>0?cs0/trendMult:0;calc={noi,cap,baseNOI,prevailingNOI:baseNOI*escal};}
-  else{const R=siteRates(c,s);const m=A.margin+r.cMargin+(s.owned?CONST.ownedCMargin:CONST.leasedCMargin);const mult=A.multiple*tier.multFactor*(1+CONST.multPremium*cs0);ppm=R.eff*(m/100)*mult;
-    contractedShare=R.eff>0?R.contractedRate/R.eff:0;calc={eff:R.eff,m,mult,prevailing:R.prevailing};}
-  const dr=A.disc,gross=ppm*s.mw;
-  let hair=PROV[s.prov];if(s.prov==='rumored')hair*=(A.pipelineCredit!=null?A.pipelineCredit:1);  // rumored-pipeline credit dial
-  const t=s.yr+((s.mo||1)-1)/12;
-  // ramp (commissioning/fill) applies only to the UNCONTRACTED share — take-or-pay leases bill from commencement
-  const yrsC=Math.max(0,t-NOW),yrsU=Math.max(0,t+(A.ramp||0)/12-NOW),yrs=yrsU;
-  const dfac=contractedShare/Math.pow(1+dr/100,yrsC)+(1-contractedShare)/Math.pow(1+dr/100,yrsU);
-  const ev=gross*hair*dfac;
-  return{gross,ev,contractedEV:ev*contractedShare,expectedEV:ev*(1-contractedShare),hair,yrs,dfac,ppm,contractedShare,dr,calc};}
-function value(c){let ev=0,cEV=0,eEV=0;const segs=[];c.sites.forEach(s=>{const sv=siteValue(c,s);ev+=sv.ev;cEV+=sv.contractedEV;eEV+=sv.expectedEV;segs.push({s,...sv});});ev+=legacyOf(c);
-  // claims senior to common: net debt + ISSUED project bonds funding credited sites (committedDebt, even if escrowed) + drawn preferred/NCI (seniorClaims)
-  const claims=c.netDebt+(c.committedDebt||0)+(c.seniorClaims||0);
-  const equityPre=ev-claims,equity=equityPre*(1-(c.equityDiscount||0)),px=priceOf(c);
-  // Funding dilution: charge only the REALISTIC equity each name actually issues (its ATM / telegraphed
-  // raises, `plannedRaise`), NOT full build capex — the rest is debt / prepayments / project finance, and a
-  // revenue multiple already embeds capital intensity. New shares raised at the live price; a global
-  // `dilutionStress` dial scales every planned raise. Built-out equity is spread over the funded share count.
-  const equityRaise=(c.plannedRaise||0)*(A.dilutionStress!=null?A.dilutionStress:1);
-  const newShares=px>0?equityRaise/px:0, fundedShares=c.shares+newShares;
-  const target=equity/fundedShares;
-  return{ev,equity,equityPre,claims,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs,equityRaise,newShares,fundedShares};}
+/* ---- engine (engine.js — shared with the node portfolio scripts; thin delegates keep call-sites unchanged) ---- */
+function priceOf(c){return E.priceOf(c);}
+function btcPrice(){return E.btcPrice();}
+function ethPrice(){return E.ethPrice();}
+function stakeValue(c){return E.stakeValue(c);}
+function legacyOf(c){return E.legacyOf(c);}
+function prevailingRate(yrs){return E.prevailingRate(yrs);}
+function ownerRate(c){return E.ownerRate(c);}
+function effTrend(){return E.effTrend();}
+function leaseUp(){return E.leaseUp();}
+function siteRates(c,s){return E.siteRates(c,s);}
+function tierOf(c){return E.tierOf(c);}
+function siteValue(c,s){return E.siteValue(c,s);}
+function value(c){return E.value(c);}
 function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
 function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
 /* ---- controls ---- */
@@ -429,27 +383,20 @@ async function fetchPrices(){
 async function fetchBtc(){
   try{const r=await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
     if(!r.ok)return;const j=await r.json();const p=parseFloat(j&&j.data&&j.data.amount);
-    if(p>0){BTC_PRICE=p;BTC_AT=new Date();updatePriceNote(!!PRICES_AT);render();}}catch(e){}
+    if(p>0){BTC_PRICE=p;E.ctx.btc=p;BTC_AT=new Date();updatePriceNote(!!PRICES_AT);render();}}catch(e){}
 }
 async function fetchEth(){
   try{const r=await fetch('https://api.coinbase.com/v2/prices/ETH-USD/spot');
     if(!r.ok)return;const j=await r.json();const p=parseFloat(j&&j.data&&j.data.amount);
-    if(p>0){ETH_PRICE=p;updatePriceNote(!!PRICES_AT);render();}}catch(e){}
+    if(p>0){ETH_PRICE=p;E.ctx.eth=p;updatePriceNote(!!PRICES_AT);render();}}catch(e){}
 }
 
 /* ---- boot: load data, then build ---- */
-function applyConfig(cfg){
-  CFG=cfg;
-  YEAR=cfg.referenceYear;
-  NOW=cfg.referenceYear+((cfg.referenceMonth||1)-1)/12;
-  HORIZON=cfg.horizon;
-  BASE={...cfg.dials};A={...cfg.dials};
-  SLIDERS=cfg.sliders;
-  REGION=cfg.regions;
-  CONST=cfg.constants;
-  TIERS=cfg.tiers||{};
-  PROV={};PROV_OP={};
-  Object.entries(cfg.provenance).forEach(([k,v])=>{PROV[k]=v.haircut;PROV_OP[k]=v.opacity;});
+function applyConfig(data){
+  E=Engine.createEngine(data);
+  CFG=E.CFG;YEAR=E.YEAR;NOW=E.NOW;HORIZON=E.HORIZON;BASE=E.BASE;A=E.A;SLIDERS=E.SLIDERS;
+  REGION=E.REGION;CONST=E.CONST;TIERS=E.TIERS;PROV=E.PROV;PROV_OP=E.PROV_OP;
+  LIVE_PRICES=E.ctx.prices;   // same object — quote fetches flow straight into the engine
 }
 async function boot(){
   try{
@@ -457,7 +404,7 @@ async function boot(){
     if(!res.ok)throw new Error('HTTP '+res.status);
     const data=await res.json();
     RAW_DATA=data;
-    applyConfig(data.config);
+    applyConfig(data);
     COMPANIES=data.companies;
     buildControls();
     wireEvents();
