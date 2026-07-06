@@ -1,11 +1,16 @@
 #!/usr/bin/env node
-/* Data unit tests for data.json — run `node checks.js` (exit 1 on FAIL).
+/* Data unit tests for data.json + the portfolio ledger — run `node checks.js` (exit 1 on FAIL).
    Thin CLI wrapper around checks-core.js — the SAME checks the site's
    "Checks" tab runs live in the browser on every load. */
 const fs = require('fs');
 const { runChecks } = require('./checks-core.js');
 const d = JSON.parse(fs.readFileSync(__dirname + '/data.json', 'utf8'));
-const r = runChecks(d);
+let pf = null;
+try {
+  pf = { portfolio: JSON.parse(fs.readFileSync(__dirname + '/portfolio.json', 'utf8')),
+         history: JSON.parse(fs.readFileSync(__dirname + '/portfolio-history.json', 'utf8')) };
+} catch (e) { /* portfolio files optional — checks run without the port group */ }
+const r = runChecks(d, undefined, pf);
 
 let g = null;
 for (const m of r.msgs) {

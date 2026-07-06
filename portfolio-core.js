@@ -12,7 +12,8 @@
      effective ν = λ × c × m × μ   (λ global fight-the-market, m per-name learning)
      weights: softmax over ν>0 names at temperature T (low T = concentrated, no cap),
               gross exposure = min(1, Σν⁺ ÷ grossFullAt) — cash grows as edge thins,
-     rebalance only when a weight drifts past the band. */
+     rebalance only when a weight drifts past the band; frozen (non-tradable) names
+     are never traded — their value is carved out of the investable base. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.PortfolioCore = factory();
@@ -32,12 +33,13 @@
     learnEvery: 21,        // trading days between learning updates
     lookback: 63,          // trading days a view is given to play out
     mShrink: 0.92, mRecover: 1.03, mMin: 0.5,
-    excessThreshold: 0.10, // |excess vs universe| that counts as dis/agreement
+    excessThreshold: 0.10, // |excess vs universe median| that counts as dis/agreement
     benchEvery: 21,        // benchmark equal-weight rebalance cadence
   };
 
   const r2 = x => Math.round(x * 100) / 100;
   const r4 = x => Math.round(x * 10000) / 10000;
+  const rPx = x => (x < 10 ? r4(x) : r2(x));   // sub-$10 names keep 4dp — cents-rounding a $0.33 name is a 1.5% error
 
   function nameState(state, tk) {
     if (!state.names) state.names = {};
@@ -91,36 +93,61 @@
     return w;
   }
 
-  /* trade to target when drift breaches the band; returns {holdings, trades} (new objects) */
-  function applyRebalance(holdings, tw, px, params) {
+  /* Trade to target when drift breaches the band; returns {holdings, trades, drift} (new objects).
+     tradable (Set|null): names allowed to trade — null means all. Frozen names (stale quote,
+     removed from universe, suspect print) keep their shares; their value is carved out of the
+     investable base so the tradable book still sums correctly. Cost-aware sizing keeps cash ≥ 0. */
+  function applyRebalance(holdings, tw, px, params, tradable) {
     const nav = markNav(holdings, px);
+    if (nav <= 0) return { holdings, trades: [], drift: 0 };
+    const isT = tk => (!tradable || tradable.has(tk)) && px[tk] > 0;
+    let frozenVal = 0;
+    for (const tk in holdings.positions) if (!isT(tk)) frozenVal += holdings.positions[tk] * (px[tk] || 0);
+    const inv = Math.max(0, nav - frozenVal);          // investable base
     const cur = currentWeights(holdings, px);
-    const names = new Set([...Object.keys(cur), ...Object.keys(tw.weights)]);
-    let drift = Math.abs((holdings.cash / nav) - tw.cash);
-    names.forEach(tk => { drift = Math.max(drift, Math.abs((cur[tk] || 0) - (tw.weights[tk] || 0))); });
+    const names = [...new Set([...Object.keys(cur), ...Object.keys(tw.weights)])].filter(isT);
+    let drift = Math.abs((holdings.cash / nav) - tw.cash * inv / nav);
+    names.forEach(tk => { drift = Math.max(drift, Math.abs((cur[tk] || 0) - (tw.weights[tk] || 0) * inv / nav)); });
     if (drift <= params.band) return { holdings, trades: [], drift };
-    const positions = {}; const trades = []; let cost = 0;
+
+    // two-pass cost-aware sizing: size positions to (investable − cost) so cash never goes negative
+    let cost = 0, navEff = inv;
+    for (let pass = 0; pass < 2; pass++) {
+      cost = 0;
+      names.forEach(tk => {
+        const dv = (tw.weights[tk] || 0) * navEff - (holdings.positions[tk] || 0) * px[tk];
+        if (Math.abs(dv) > nav * 1e-6) cost += Math.abs(dv) * params.tcBps / 1e4;
+      });
+      navEff = inv - cost;
+    }
+    const positions = {}; const trades = [];
+    for (const tk in holdings.positions) if (!isT(tk) && holdings.positions[tk] > 0) positions[tk] = holdings.positions[tk]; // frozen carry
     names.forEach(tk => {
-      if (!(px[tk] > 0)) { // unpriceable (halted/delisted): freeze the position, never trade blind
-        if (holdings.positions[tk]) positions[tk] = holdings.positions[tk];
-        return;
-      }
       const curVal = (holdings.positions[tk] || 0) * px[tk];
-      const tgtVal = (tw.weights[tk] || 0) * nav;
+      const tgtVal = (tw.weights[tk] || 0) * navEff;
       const dv = tgtVal - curVal;
-      if (Math.abs(dv) > nav * 1e-6) {
-        trades.push({ tk, usd: r2(dv), px: r2(px[tk]), to: r4((tw.weights[tk] || 0)) });
-        cost += Math.abs(dv) * params.tcBps / 1e4;
-      }
+      if (Math.abs(dv) > nav * 1e-6) trades.push({ tk, usd: r2(dv), px: rPx(px[tk]), to: r4(tw.weights[tk] || 0) });
       if (tgtVal > 0) positions[tk] = tgtVal / px[tk];
     });
     let held = 0; for (const tk in positions) held += positions[tk] * (px[tk] || 0);
-    return { holdings: { cash: nav - held - cost, positions }, trades, drift };
+    return { holdings: { cash: Math.max(0, nav - held - cost), positions }, trades, drift };
   }
 
+  /* Spearman with average ranks for ties (equal ν values are common — equal confidence tiers) */
   function spearman(xs, ys) {
-    const rank = a => { const idx = a.map((v, i) => [v, i]).sort((p, q) => p[0] - q[0]);
-      const rk = new Array(a.length); idx.forEach((p, i) => { rk[p[1]] = i + 1; }); return rk; };
+    const rank = a => {
+      const idx = a.map((v, i) => [v, i]).sort((p, q) => p[0] - q[0]);
+      const rk = new Array(a.length);
+      let i = 0;
+      while (i < idx.length) {
+        let j = i;
+        while (j + 1 < idx.length && idx[j + 1][0] === idx[i][0]) j++;
+        const r = (i + j) / 2 + 1;
+        for (let k = i; k <= j; k++) rk[idx[k][1]] = r;
+        i = j + 1;
+      }
+      return rk;
+    };
     const rx = rank(xs), ry = rank(ys), n = xs.length;
     const mean = n ? (n + 1) / 2 : 0;
     let num = 0, dx = 0, dy = 0;
@@ -129,12 +156,16 @@
   }
 
   /* Every learnEvery days: λ follows the realized rank-correlation of views → returns;
-     per-name m shrinks where the market persistently disagreed (unless conviction), recovers when vindicated.
-     Adapts SIZING only — never touches data.json. Diagnostics are surfaced on the Portfolio tab. */
-  function updateLearning(state, ledger, params) {
+     per-name m shrinks only when the market opposed the view in TWO CONSECUTIVE learn windows
+     (one bad window is noise; overlapping windows must not triple-count one episode), measured
+     vs the cross-sectional MEDIAN (one +800% moonshot must not mark every other name 'wrong').
+     m recovers only when vindicated (aligned), exactly as §6b states. eraStart (date string):
+     never learn from windows that begin at or before it — simulated-era views are hindsight. */
+  function updateLearning(state, ledger, params, eraStart) {
     const t = ledger.length - 1, t0 = t - params.lookback;
     if (t0 < 0) return null;
     const a = ledger[t0], b = ledger[t];
+    if (eraStart && a.d <= eraStart) return null;
     const pairs = [];
     for (const tk in (a.nu || {})) {
       if (a.nu[tk] != null && a.px[tk] > 0 && b.px[tk] > 0)
@@ -143,40 +174,47 @@
     if (pairs.length < 6) return null;
     const ic = spearman(pairs.map(p => p.nu), pairs.map(p => p.ret));
     state.lambda = Math.min(params.lambdaMax, Math.max(params.lambdaMin, state.lambda * (1 + params.lambdaGain * ic)));
-    const mean = pairs.reduce((s, p) => s + p.ret, 0) / pairs.length;
+    const rets = pairs.map(p => p.ret).sort((x, y) => x - y);
+    const median = rets.length % 2 ? rets[(rets.length - 1) / 2] : (rets[rets.length / 2 - 1] + rets[rets.length / 2]) / 2;
     const diag = [];
     pairs.forEach(p => {
       const ns = nameState(state, p.tk);
-      const excess = p.ret - mean, thr = params.excessThreshold;
+      const excess = p.ret - median, thr = params.excessThreshold;
       const opposed = (p.nu > 0 && excess < -thr) || (p.nu < 0 && excess > thr);
       const aligned = (p.nu > 0 && excess > thr) || (p.nu < 0 && excess < -thr);
-      if (opposed && !ns.conviction) ns.m = Math.max(params.mMin, ns.m * params.mShrink);
-      else if (aligned || ns.m < 1) ns.m = Math.min(1, ns.m * params.mRecover);
-      if (ns.m < 0.995) diag.push({ tk: p.tk, m: r4(ns.m), excess: r4(excess) });
+      if (opposed && !ns.conviction) {
+        ns.opp = (ns.opp || 0) + 1;
+        if (ns.opp >= 2) { ns.m = Math.max(params.mMin, ns.m * params.mShrink); ns.opp = 0; }
+      } else {
+        ns.opp = 0;
+        if (aligned) ns.m = Math.min(1, ns.m * params.mRecover);
+      }
+      if (ns.m < 0.995 || ns.opp > 0) diag.push({ tk: p.tk, m: r4(ns.m), opp: ns.opp || 0, excess: r4(excess) });
     });
     return { ic: r4(ic), lambda: r4(state.lambda), diag };
   }
 
   /* One trading day, identical for backtest and live run.
-     ctx: {date, rows, px, state, params, holdings, bench, ledger, dayIdx}
-     px prices every ticker seen so far (forward-filled); rows only names trading today. */
+     ctx: {date, rows, px, state, params, holdings, bench, ledger, dayIdx,
+           eraStart?, tradable?, btc?, eth?, notes?}
+     px prices every ticker seen so far (forward-filled); rows only names investable today. */
   function step(ctx) {
     const { params, state } = ctx;
 
-    // learn BEFORE forming today's views, on the recorded history
+    // learn BEFORE forming today's views, on the recorded history (era-gated)
     let learn = null;
     if (ctx.ledger.length >= params.lookback && ctx.ledger.length % params.learnEvery === 0)
-      learn = updateLearning(state, ctx.ledger, params);
+      learn = updateLearning(state, ctx.ledger, params, ctx.eraStart || null);
 
     const views = computeViews(ctx.rows, state, params);
     const tw = targetWeights(views, params);
-    const reb = applyRebalance(ctx.holdings, tw, ctx.px, params);
+    const reb = applyRebalance(ctx.holdings, tw, ctx.px, params, ctx.tradable || null);
     ctx.holdings = reb.holdings;
     const nav = markNav(ctx.holdings, ctx.px);
 
-    // benchmark: equal-weight every name trading today, rebalanced monthly (new listings enter then)
+    // benchmark: equal-weight every investable name, rebalanced monthly (new listings enter then)
     const investable = ctx.rows.filter(r => r.price > 0).map(r => r.tk);
-    if (ctx.bench.lastReb == null || ctx.dayIdx - ctx.bench.lastReb >= params.benchEvery) {
+    if (investable.length && (ctx.bench.lastReb == null || ctx.dayIdx - ctx.bench.lastReb >= params.benchEvery)) {
       const bnav = markNav(ctx.bench, ctx.px);
       const positions = {};
       investable.forEach(tk => { positions[tk] = (bnav / investable.length) / ctx.px[tk]; });
@@ -188,11 +226,14 @@
     const curW = currentWeights(ctx.holdings, ctx.px);
     for (const tk in curW) if (curW[tk] >= 0.0005) w[tk] = r4(curW[tk]);
     views.forEach(v => { if (v.nu != null) nu[v.tk] = r4(v.nu); });
-    for (const tk in ctx.px) pxr[tk] = r2(ctx.px[tk]) || ctx.px[tk];
+    for (const tk in ctx.px) pxr[tk] = rPx(ctx.px[tk]) || ctx.px[tk];
 
     const rec = { d: ctx.date, nav: r2(nav), bench: r2(benchNav),
-                  cash: r4(ctx.holdings.cash / nav), gross: r4(tw.gross),
+                  cash: r4(nav > 0 ? ctx.holdings.cash / nav : 1), gross: r4(tw.gross),
                   lambda: r4(state.lambda), w, nu, px: pxr, trades: reb.trades };
+    if (ctx.btc != null) rec.btc = r2(ctx.btc);
+    if (ctx.eth != null) rec.eth = r2(ctx.eth);
+    if (ctx.notes && ctx.notes.length) rec.notes = ctx.notes;
     if (learn) rec.learn = learn;
     ctx.ledger.push(rec);
     return rec;

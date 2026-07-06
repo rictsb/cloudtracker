@@ -1,13 +1,15 @@
 # Paper-portfolio daily mark (spec §6b) — after US close, Mon–Fri.
 # Appends one ledger record + updates portfolio.json, commits, pushes (Render redeploys).
 # FINNHUB_TOKEN secret is optional — the script falls back to the free quote token in config.js.
+# On failure it opens a GitHub issue so a non-coder actually finds out.
 name: portfolio-daily
 on:
   schedule:
-    - cron: '35 22 * * 1-5'   # 22:35 UTC ≈ 5:35pm CDT / 6:35pm EST — always after the 4pm ET close
+    - cron: '35 22 * * 1-5'   # 22:35 UTC = 6:35pm EDT / 5:35pm EST — after the 4pm ET close year-round
   workflow_dispatch: {}
 permissions:
   contents: write
+  issues: write
 concurrency:
   group: portfolio-daily
   cancel-in-progress: false
@@ -30,7 +32,25 @@ jobs:
             git config user.email "actions@users.noreply.github.com"
             git add portfolio.json portfolio-history.json
             git commit -m "portfolio: daily mark $(date -u +%F)"
-            git push
+            for i in 1 2 3; do
+              git push && break
+              echo "push rejected (concurrent commit to main) — rebasing and retrying ($i/3)"
+              git pull --rebase origin main
+              sleep 5
+            done
           else
             echo "no ledger change (closed day) — nothing to commit"
+          fi
+      - name: Alert on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="portfolio-daily failed — needs a look"
+          BODY="Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} ($(date -u +%F)). The paper-portfolio ledger did not update. Common causes: a suspect price print held for 3 days (possible split/delisting needing manual reconciliation), a dead quote feed, or a push conflict."
+          EXISTING=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' || true)
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY" || true
+          else
+            gh issue create --title "$TITLE" --body "$BODY" || true
           fi

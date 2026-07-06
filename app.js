@@ -63,7 +63,10 @@ function updateChecksBadge(r){const el=document.getElementById('tabbadge');if(!e
   el.textContent=r.summary.fail?r.summary.fail+' fail':r.summary.warn?r.summary.warn+' warn':'✓';}
 function renderChecks(){
   const body=document.getElementById('checks-body');if(!body||!RAW_DATA||typeof ChecksCore==='undefined')return;
-  const r=ChecksCore.runChecks(RAW_DATA);updateChecksBadge(r);
+  // include the portfolio-ledger group once portfolio files are loaded (portfolio-ui.js re-renders on arrival)
+  const pfFiles=(typeof PF!=='undefined'&&PF&&PFH)?{portfolio:PF,history:PFH}:null;
+  if(!pfFiles&&typeof loadPortfolio==='function')loadPortfolio();
+  const r=ChecksCore.runChecks(RAW_DATA,undefined,pfFiles);updateChecksBadge(r);
   const esc=t=>String(t).replace(/</g,'&lt;');
   let h=`<div class="ck-verdict ${r.summary.fail?'bad':'ok'}">${r.summary.fail?'✗':'✓'} ${r.summary.checksRun.toLocaleString()} checks · ${r.summary.companies} companies · ${r.summary.sites} sites — <b>${r.summary.fail} FAIL</b> · ${r.summary.warn} warn · checked just now, in this browser, against the deployed data</div>`;
   // group cards

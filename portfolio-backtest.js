@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 /* Paper-portfolio backtest (spec §6b) — regenerates the simulated genesis.
-   `node portfolio-backtest.js [--days 365]`
+   `node portfolio-backtest.js [--days 365] [--force] [--allow-missing]`
    Prices: Finnhub daily candles when FINNHUB_TOKEN (env) has candle access,
-   else Yahoo's public chart API. BTC/ETH: Coinbase daily candles.
+   else Yahoo's public chart API — never mixed. Every series is BASIS-VALIDATED
+   against a live quote (Yahoo chart series can sit on a different share basis
+   than the live listing — ABTC shipped 15× off) and rescaled when it disagrees.
+   BTC/ETH: Coinbase daily candles, stored per record for live forward-fill.
+   Refuses to overwrite a ledger containing LIVE records unless --force.
    HONEST LABEL: uses TODAY'S data.json against historical prices — validates the
-   machinery and calibrates λ; it is NOT evidence of alpha. Writes portfolio.json
-   + portfolio-history.json with backtestThrough = the last simulated day. */
+   machinery and calibrates parameters; it is NOT evidence of alpha. */
 const fs = require('fs');
 const path = require('path');
 const { createEngine } = require('./engine.js');
@@ -13,7 +16,11 @@ const PC = require('./portfolio-core.js');
 
 const ROOT = __dirname;
 const DAYS = (() => { const i = process.argv.indexOf('--days'); return i > 0 ? +process.argv[i + 1] : 365; })();
+const FORCE = process.argv.includes('--force');
+const ALLOW_MISSING = process.argv.includes('--allow-missing');
 const TOKEN = process.env.FINNHUB_TOKEN || '';
+const QUOTE_TOKEN = TOKEN ||
+  (fs.readFileSync(path.join(ROOT, 'config.js'), 'utf8').match(/"([a-z0-9]{20,})"/) || [])[1] || '';
 
 const iso = d => d.toISOString().slice(0, 10);
 function decYear(isoDate) {
@@ -66,33 +73,78 @@ async function coinbaseDaily(product, from, to) {
   return out;
 }
 
+async function fetchAll(tickers, from, to, source) {
+  const hist = {}; const missing = [];
+  for (const tk of tickers) {
+    try {
+      hist[tk] = source === 'finnhub' ? await finnhubDaily(tk, from, to) : await yahooDaily(tk, from, to);
+    } catch (e) {
+      if (source === 'finnhub') throw { fallback: true, message: e.message };  // restart the WHOLE fetch on yahoo — never mix bases
+      missing.push(`${tk} (${e.message})`);
+      hist[tk] = {};
+    }
+    process.stdout.write(`${tk}:${Object.keys(hist[tk]).length}d `);
+  }
+  return { hist, missing };
+}
+
 async function main() {
   const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data.json'), 'utf8'));
   const tickers = data.companies.map(c => c.tk);
   const to = Math.floor(Date.now() / 1000);
   const from = to - (DAYS + 10) * 86400;
 
-  // fetch price history (Finnhub if entitled, else Yahoo), sequential to respect rate limits
-  let source = TOKEN ? 'finnhub' : 'yahoo';
-  const hist = {};
-  for (const tk of tickers) {
-    try {
-      hist[tk] = source === 'finnhub' ? await finnhubDaily(tk, from, to) : await yahooDaily(tk, from, to);
-    } catch (e) {
-      if (source === 'finnhub') {          // token lacks candle access → fall back for the whole run
-        console.error(`finnhub candles unavailable (${e.message}) — falling back to yahoo`);
-        source = 'yahoo';
-        hist[tk] = await yahooDaily(tk, from, to);
-      } else { console.error(`WARN no history for ${tk}: ${e.message}`); hist[tk] = {}; }
+  // refuse to clobber live history
+  const histPath = path.join(ROOT, 'portfolio-history.json');
+  if (fs.existsSync(histPath) && !FORCE) {
+    const old = JSON.parse(fs.readFileSync(histPath, 'utf8'));
+    const live = (old.days || []).filter(d => old.meta && d.d > old.meta.backtestThrough);
+    if (live.length) {
+      console.error(`REFUSING: ${live.length} LIVE ledger records exist after ${old.meta.backtestThrough} — rerun with --force to destroy them.`);
+      process.exit(1);
     }
-    process.stdout.write(`${tk}:${Object.keys(hist[tk]).length}d `);
+  }
+
+  let source = TOKEN ? 'finnhub' : 'yahoo';
+  let fetched;
+  try { fetched = await fetchAll(tickers, from, to, source); }
+  catch (e) {
+    if (!e.fallback) throw e;
+    console.error(`\nfinnhub candles unavailable (${e.message}) — refetching EVERYTHING via yahoo`);
+    source = 'yahoo';
+    fetched = await fetchAll(tickers, from, to, source);
+  }
+  const { hist, missing } = fetched;
+  if (missing.length && !ALLOW_MISSING) {
+    console.error(`\nFAILED to fetch: ${missing.join(', ')} — a silently smaller universe corrupts the benchmark. Rerun with --allow-missing to accept.`);
+    process.exit(1);
   }
   console.log(`\nprice source: ${source}`);
+
+  // BASIS VALIDATION: a chart series can sit on a different share basis than the live
+  // listing (ABTC: Yahoo chart 15× off vs its own live quote). Compare each series' last
+  // close to a live Finnhub quote and rescale the WHOLE series (return-preserving).
+  const rescaled = {};
+  for (const tk of tickers) {
+    const dts = Object.keys(hist[tk]).sort();
+    if (!dts.length) continue;
+    const lastClose = hist[tk][dts[dts.length - 1]];
+    let ref = null;
+    try { const q = await getJSON(`https://finnhub.io/api/v1/quote?symbol=${tk}&token=${QUOTE_TOKEN}`); if (q && q.c > 0) ref = q.c; } catch (e) {}
+    if (ref == null) { const c = data.companies.find(x => x.tk === tk); ref = c && c.price; }
+    if (!(ref > 0) || !(lastClose > 0)) continue;
+    const ratio = ref / lastClose;
+    if (Math.abs(Math.log(ratio)) > Math.log(1.25)) {
+      dts.forEach(d => { hist[tk][d] *= ratio; });
+      rescaled[tk] = +ratio.toFixed(6);
+      console.error(`BASIS FIX ${tk}: series rescaled ×${ratio.toFixed(4)} (chart ${lastClose} vs live ${ref})`);
+    }
+  }
+
   const btc = await coinbaseDaily('BTC-USD', from, to);
   const eth = await coinbaseDaily('ETH-USD', from, to);
   console.log(`BTC ${Object.keys(btc).length}d, ETH ${Object.keys(eth).length}d`);
 
-  // trading calendar = union of equity trading dates
   const days = [...new Set(Object.values(hist).flatMap(h => Object.keys(h)))].sort();
   if (!days.length) throw new Error('no price history fetched');
 
@@ -104,7 +156,7 @@ async function main() {
   let holdings = { cash: 100, positions: {} };   // NAV index base 100
   let bench = { cash: 100, positions: {}, lastReb: null };
   const ledger = [];
-  const px = {};                                  // forward-filled last close per ticker
+  const px = {};
   let lastBtc = null, lastEth = null;
 
   days.forEach((d, dayIdx) => {
@@ -122,7 +174,8 @@ async function main() {
                contractedEV: v.contractedEV, legacy: E.legacyOf(c), watch: watch[c.tk] || 0 };
     });
 
-    const ctx = { date: d, rows, px: { ...px }, state, params, holdings, bench, ledger, dayIdx };
+    const ctx = { date: d, rows, px: { ...px }, state, params, holdings, bench, ledger, dayIdx,
+                  btc: lastBtc, eth: lastEth };
     PC.step(ctx);
     holdings = ctx.holdings; bench = ctx.bench;
   });
@@ -131,16 +184,18 @@ async function main() {
   console.log(`\n${ledger.length} trading days ${days[0]} → ${last.d}`);
   console.log(`portfolio NAV ${last.nav} vs equal-weight ${last.bench} (base 100) · λ ${last.lambda} · cash ${(last.cash * 100).toFixed(1)}%`);
 
-  fs.writeFileSync(path.join(ROOT, 'portfolio-history.json'), JSON.stringify({
-    meta: { base: 100, start: days[0], backtestThrough: last.d,
-            note: 'Records through backtestThrough are SIMULATED with current data.json against historical prices (spec §6b) — machinery validation, not evidence of alpha.' },
-    days: ledger,
-  }));
+  const meta = { base: 100, start: days[0], backtestThrough: last.d,
+                 note: 'Records through backtestThrough are SIMULATED with current data.json against historical prices (spec §6b) — machinery validation, not evidence of alpha.' };
+  if (Object.keys(rescaled).length) meta.rescaled = rescaled;
+  fs.writeFileSync(histPath, JSON.stringify({ meta, days: ledger }));
   fs.writeFileSync(path.join(ROOT, 'portfolio.json'), JSON.stringify({
     asOf: last.d, backtestThrough: last.d, priceSource: source, params,
     // live learning restarts NEUTRAL: the backtest's λ/m are hindsight-contaminated
     // (today's data.json "knew" the year) — the ledger keeps them for inspection only
     state: { lambda: params.lambda0, names: {} },
+    suspect: {},
+    // seed freshness at go-live: every name that priced on the final simulated day counts as fresh then
+    lastFresh: Object.fromEntries(tickers.filter(tk => px[tk] > 0).map(tk => [tk, last.d])),
     holdings: { cash: holdings.cash, positions: Object.fromEntries(Object.entries(holdings.positions).map(([k, v]) => [k, +v.toFixed(6)])) },
     bench: { cash: bench.cash, positions: Object.fromEntries(Object.entries(bench.positions).map(([k, v]) => [k, +v.toFixed(6)])), lastReb: bench.lastReb },
     dayIdx: ledger.length - 1,
