@@ -2837,6 +2837,187 @@
         "capital": "2026-07-02",
         "contracts": "2026-06-30"
       }
+    },
+    {
+      "tk": "NUAI",
+      "name": "New Era Energy & Digital",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 0,
+      "termYrs": 15,
+      "mtm": 1.0,
+      "netDebt": -49,
+      "shares": 115.9,
+      "price": 4.78,
+      "legacyEV": 0,
+      "plannedRaise": 100,
+      "equityDiscount": 0.2,
+      "sites": [
+        {
+          "n": "TCDC Ph1 207MW (Odessa TX — NUAI ~20% JV economics)",
+          "mw": 41,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "TCDC Ph2 443MW BTM gas (NUAI ~20%)",
+          "mw": 89,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 3,
+          "prov": "estimated"
+        },
+        {
+          "n": "TCDC Ph3 toward 1.4GW gross (NUAI ~20%)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "$75M ATW EPFA live + fresh S-3 shelf; parent covered for Ph1 co-invest, Ph2/3 co-invest + G&A need equity (serial-diluter history)",
+        "equityDiscount": "securities class action + Dec-25 short report + CEO penny-stock history + pre-raise going-concern language + brand-new C-suite",
+        "jv": "sites scaled to ~20% of TCDC MW — Stream (Apollo) JV LOI: institutional LP takes majority project equity + ~80% project debt; NUAI = GP/sponsor with minority equity + promote/fees (100% owned today, but cannot fund alone)"
+      },
+      "narrative": "New Era Energy & Digital (NASDAQ:NUAI) — a single-project landlord option: TCDC in Ector County (Odessa) TX, 438 owned acres beside Vistra and Calpine plants with 650MW gross secured behind-the-meter gas (turbines on order; fully islanded config under study, ultimately ~1.4GW gross / high-800s critical IT). A top-4 hyperscaler (Alphabet/Amazon/Meta/Microsoft) is in advanced commercial discussions; Phase 1 is 207MW on a ~14-month build, and the $290M Macquarie facility REQUIRES a lease by Oct 8, 2026 — the hard catalyst date. Economics run through a Stream Data Centers (Apollo) JV in which NUAI keeps only a minority (~15-25%) of project equity plus promote and fees — the model credits ~20% of the MW. Net cash today after the $115M raise; governance carries a 20% discount (class action, short report, wholesale C-suite turnover).",
+      "bull": [
+        "Top-4 hyperscaler actively engaged; TCDC moved up the tenant's priority list after Stream's NY project stalled",
+        "650MW secured BTM gas bypasses the ERCOT queue entirely — speed-to-power is the whole pitch",
+        "Apollo/Stream JV brings hyperscaler relationships, operations, and ~80% project debt — NUAI isn't funding multi-billion capex",
+        "Net cash, Macquarie bridge in place, new operator-grade C-suite (ex-Sabey COO)"
+      ],
+      "bear": [
+        "Binary: no lease by the Oct 8 Macquarie deadline and the financing bridge wobbles",
+        "NUAI keeps only ~20% of the project it promotes — the headline GW mostly isn't theirs",
+        "Governance overhang: class action, short-seller report, CEO history, going-concern language pre-raise",
+        "Serial dilution history; Ph2/3 co-invest needs more equity"
+      ],
+      "catalysts": [
+        "Signed hyperscaler lease on TCDC Ph1 by early Oct 2026 (Macquarie deadline) — the binary re-rate",
+        "Definitive JV close with Stream + capital partner (converts LOI economics to contract)",
+        "Fully-islanded BTM configuration confirmed (kills interconnection risk)",
+        "Construction start → ~14-month Ph1 delivery"
+      ],
+      "risks": [
+        "Lease slips past Oct 8 — facility conditions fail",
+        "JV terms land below the ~20% economics modeled",
+        "Hyperscaler chooses a competing site (CIFR Odessa is next door)",
+        "Litigation / disclosure history resurfaces"
+      ],
+      "finMix": "$290M Macquarie facility ($20M funded; $270M conditional on lease by 10/8/26) → JV ~80% project debt; parent equity via ATW EPFA + shelf",
+      "leaseQ": 2.0,
+      "log": [],
+      "verified": {
+        "capital": "2026-07-05",
+        "contracts": "2026-07-05"
+      },
+      "thesis": "A single-lease binary: a top-4 hyperscaler is in advanced talks on TCDC/Odessa with a hard Oct-8 financing deadline, but NUAI keeps only ~20% of the project under the Apollo/Stream JV and carries a 20% governance discount. Sign the lease and it re-rates; miss the date and the bridge wobbles."
+    },
+    {
+      "tk": "KEEL",
+      "name": "Keel Infrastructure",
+      "model": "landlord",
+      "tier": "proven",
+      "contractedPct": 0,
+      "termYrs": 15,
+      "mtm": 1.0,
+      "netDebt": 330,
+      "shares": 626,
+      "price": 4.59,
+      "legacyEV": 150,
+      "btc": 2469,
+      "plannedRaise": 0,
+      "equityDiscount": 0,
+      "sites": [
+        {
+          "n": "Panther Creek Ph1 (Carbon Co PA, PJM)",
+          "mw": 50,
+          "owned": true,
+          "region": "mid",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Panther Creek Ph2 (PA, PJM)",
+          "mw": 300,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Sharon (PA, PJM)",
+          "mw": 110,
+          "owned": true,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Moses Lake (WA, hybrid pilot)",
+          "mw": 18,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Pipeline (PA expansion + Quebec conversions, nearest tranche)",
+          "mw": 800,
+          "owned": true,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "basis": {
+        "plannedRaise": "funded: ~$920M liquidity post the $458M 1.25% 2032 convert — CFO guides all three campuses through lease execution + G&A through 2028; both converts OTM ($6.86/$7.41) so they stay in net debt"
+      },
+      "narrative": "Keel Infrastructure (NASDAQ/TSX:KEEL) — the successor to Bitfarms (1:1 US redomiciliation + rebrand, April 2026), now an AI/HPC landlord developer. Three owned, zoned, power-secured campuses: Panther Creek PA (350MW via a March-2026 utility ESA, PJM — the flagship), Sharon PA (110MW, delivery agreement signed), and Moses Lake WA (18MW pilot, turnkey EPC, likely first online H1-2027). Zero leases signed; management targets three by YE26 — the leasing risk sits entirely in contracted %, not existence. ~$920M of liquidity (two capped-call converts, both out-of-the-money at today's price) funds the build through lease execution; the Macquarie project facility was repaid. Legacy: the Bitfarms Quebec mining estate (partly convertible to AI) and a small, shrinking BTC treasury. Identified pipeline runs to ~2.2GW; the model credits the nearest ~800MW tranche as rumored.",
+      "bull": [
+        "478MW of owned, zoned, power-secured capacity in PJM — the scarce input, existence de-risked (all disclosed)",
+        "~$920M liquidity funds everything through lease execution — no near-term dilution (converts OTM, capped calls to ~$11.9)",
+        "Three lease catalysts targeted by YE26; Moses Lake online H1-2027 proves delivery",
+        "Quebec mining estate = optional conversion pipeline the market ignores"
+      ],
+      "bear": [
+        "Zero leases signed — the entire thesis is lease-execution, and the stock fell ~30% in a week on exactly that fear",
+        "PJM (mid-cost power) — thinner spreads than the ERCOT/hydro names",
+        "$1.05B of convert debt if the stock stays below the $6.86/$7.41 strikes",
+        "Ex-mining management team executing its first hyperscaler leases"
+      ],
+      "catalysts": [
+        "First signed lease (Panther Creek the flagship; management targets three by YE26)",
+        "Moses Lake energization H1-2027 — first delivered AI capacity",
+        "Panther Creek Ph1 50MW ready end-2026",
+        "Sharon transmission upgrades milestone (LC due 1/31/27)"
+      ],
+      "risks": [
+        "Lease slippage past YE26 — the market is already pricing doubt",
+        "PJM interconnection/transmission timing",
+        "Convert overhang if leases disappoint (OTM today, $1.05B principal)",
+        "Quebec conversion pipeline may stay mining"
+      ],
+      "finMix": "Two capped-call converts ($588M 1.375% '31 @ $6.86 + $458M 1.25% '32 @ $7.41, both OTM → in net debt) − ~$720M cash; Macquarie project facility repaid",
+      "leaseQ": 2.5,
+      "log": [],
+      "verified": {
+        "capital": "2026-07-05",
+        "contracts": "2026-07-05"
+      },
+      "thesis": "The Bitfarms successor owns three zoned, power-secured campuses (478MW, all existence-derisked) with ~$920M of liquidity and zero leases — the market prices lease doubt, we credit the powered land. Three targeted YE26 leases are the catalysts; both converts are out-of-the-money, so dilution waits on success."
     }
   ],
   "watchItems": [
