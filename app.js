@@ -59,13 +59,19 @@ function render(){
 /* ---- leases page: the registry rendered — every signed book + its economics (the print tape) ---- */
 function renderLeases(){
   const body=document.getElementById('leases-body');if(!body)return;
+  // campus stem: the site-name prefix before phase/building qualifiers — groups rows into physical campuses
+  const stem=n=>{let x=n;const seps=[' ph',' Ph',' ELN',' CB-',' Bldg',' ROFO',' expansion',' approved',' pipeline',' tranche',' balance',' initial',' build-out',' buildout',' long-term',' Phase','(','—','ph1','ph2'];
+    let cut=x.length;seps.forEach(sp=>{const i=x.indexOf(sp);if(i>0&&i<cut)cut=i;});return x.slice(0,cut).trim().replace(/[,\s]+$/,'');};
   const rows=[];
   COMPANIES.forEach(c=>(c.leases||[]).forEach(l=>{
     const v=value(c);const segs=v.segs.filter(g=>g.s.leaseId===l.id);
     const ev=segs.reduce((x,g)=>x+g.ev,0);
     const startYr=segs.length?Math.min(...segs.map(g=>g.s.yr)):null;
     const camp=segs.length?[...new Set(segs.map(g=>g.s.n.split('(')[0].trim()))].join(' · '):'—';
-    rows.push({c,l,ev,pctEV:v.ev>0?ev/v.ev:0,annual:l.mw*l.noiPerMWyr,startYr,camp});
+    // leased share of the campus power we credit: this lease's MW ÷ all company rows sharing its campus stems
+    const stems=[...new Set(segs.map(g=>stem(g.s.n)))];
+    const campMW=stems.length?c.sites.filter(s2=>stems.some(st=>stem(s2.n)===st)).reduce((x,s2)=>x+(s2.physMW||s2.mw),0):0;
+    rows.push({c,l,ev,campMW,pctCamp:campMW>0?l.mw/campMW:null,annual:l.mw*l.noiPerMWyr,startYr,camp});
   }));
   rows.sort((a2,b2)=>b2.annual-a2.annual);
   const eff=rows.filter(r=>r.l.effective!==false);
@@ -79,7 +85,7 @@ function renderLeases(){
   const half=s2=>{const [y,m]=s2.split('-').map(Number);return y+(m<=6?' H1':' H2');};
   const byHalf={};eff.forEach(r=>{if(r.l.signed)(byHalf[half(r.l.signed)]=byHalf[half(r.l.signed)]||[]).push(r.l.noiPerMWyr);});
   h+=`<div class="legend2" style="margin:0 4px 18px">Print tape (median signed NOI $M/MW·yr) — by kind: ${Object.entries(byKind).map(([k,x])=>`<b>${k}</b> $${med(x).toFixed(2)} (${x.length})`).join(' · ')} &nbsp;|&nbsp; by vintage: ${Object.keys(byHalf).sort().map(k=>`<b>${k}</b> $${med(byHalf[k]).toFixed(2)}`).join(' → ')}</div>`;
-  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th>Lessor</th><th>Tenant / credit</th><th>Campus</th><th>Kind</th><th class="r">Signed</th><th class="r">Term</th><th class="r">IT MW</th><th class="r">NOI $/MW·yr</th><th class="r">Annual NOI</th><th class="r">Base-term</th><th class="r">Value (%EV)</th><th class="r">First rent</th></tr></thead><tbody>`;
+  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th>Lessor</th><th>Tenant / credit</th><th>Campus</th><th>Kind</th><th class="r">Signed</th><th class="r">Term</th><th class="r">IT MW</th><th class="r">NOI $/MW·yr</th><th class="r">Annual NOI</th><th class="r">Base-term</th><th class="r">Value added</th><th class="r">Campus leased</th><th class="r">First rent</th></tr></thead><tbody>`;
   rows.forEach(r=>{const l=r.l;const pend=l.effective===false;
     h+=`<tr class="lrow${pend?' lpend':''}" data-tk="${r.c.tk}"><td class="co">${r.c.tk}</td>`+
     `<td style="max-width:230px">${l.counterparty}${pend?' <span class="prov rumored">not effective</span>':''}</td>`+
@@ -90,9 +96,10 @@ function renderLeases(){
     `<td class="r mono">$${l.noiPerMWyr.toFixed(2)}M</td>`+
     `<td class="r mono">${pend?'—':'$'+r.annual.toFixed(0)+'M'}</td>`+
     `<td class="r mono">${l.totalRevM?'$'+(l.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
-    `<td class="r mono">${pend?'—':fmtM(r.ev)+' ('+(r.pctEV*100).toFixed(0)+'%)'}</td>`+
+    `<td class="r mono">${pend?'—':fmtM(r.ev)}</td>`+
+    `<td class="r mono">${r.pctCamp!=null?(r.pctCamp*100).toFixed(0)+'%'+' <span style="color:var(--ink-soft)">of '+r.campMW.toLocaleString()+'</span>':'—'}</td>`+
     `<td class="r mono">${r.startYr||'—'}</td></tr>`;});
-  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing, not a model output. IT MW <span style="color:var(--ink-soft)">(gross)</span> where disclosed. <b>Value (%EV)</b> = the capitalized EV these leased sites contribute ÷ the company's total EV. Signed-but-not-effective books (conditions precedent) are listed but excluded from totals and the engine. Click a row for the company page.</div>`;
+  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing, not a model output. IT MW <span style="color:var(--ink-soft)">(gross)</span> where disclosed. <b>Value added</b> = the capitalized EV the leased sites contribute. <b>Campus leased</b> = this lease's IT MW ÷ the campus capacity the model credits (leased + graded forward rows — the expansion runway on land and power that already exist; not marketing ambitions). Signed-but-not-effective books (conditions precedent) are listed but excluded from totals and the engine. Click a row for the company page.</div>`;
   body.innerHTML=h;
   body.querySelectorAll('.lrow').forEach(tr=>tr.addEventListener('click',()=>setHash(tr.dataset.tk)));
 }
