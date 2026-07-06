@@ -44,6 +44,7 @@ A site is deliberately just a few fields, never a mini-model:
 - Landlord cap rate
 - Discount rate (time)
 - Revenue ramp to steady-state (months) — delays the UNCONTRACTED share of each site's value after first power (take-or-pay leases bill from commencement)
+- GPU gen-curve (%/yr, owners — the generation ladder's blended slope; measured from the contract print-tape, VR = 1H27 by owner mandate) — landlord rents keep their own trend dial
 - Lease-up / spot realization (× the uncontracted slice, both paths; base 1.0 = the scarcity conviction that energized capacity gets rented; 0.42 = the consensus uncontracted spread)
 - Rumored-pipeline credit (× the rumored provenance haircut; stress the far pipeline to zero without editing data)
 - (Fixed tables: provenance → execution probability; region → power-cost adjustment)
@@ -78,8 +79,10 @@ Term remaining sets how fast today's contracted book rolls toward those long-run
 **One engine, every name. Only the per-MW step branches by model.** This is binding — a new name must fit it with no new code path.
 
 Per **site** → value/MW:
-- **Owner (cloud):** `value/MW = effective rate × margin% × multiple`
-  - effective rate = contracted slice (locked at today's GPU rate) + uncontracted slice (today's rate grown at the GPU-rate **trend** to the site's energization year) × region rate-factor (US 1.0; EU/AU < 1). Lock = `min(term/3, 1) × contracted%` (rumored sites = 0% locked).
+- **Owner (cloud):** `value/MW = effective rate × margin% × multiple` — two slices, split by the compute-contract registry:
+  - **Signed slice**: earns the company's `signedRate` — the $-weighted rate of its actual take-or-pay book (`contracts[]`: dollars + term are the facts; MW is usually inference, so the rate binds at COMPANY level, basis-noted and checks-reconciled against the registry). Lock = `min(term ÷ capitalization-years (≈ the multiple), 1) × contracted%` — a 5-yr book on a ~7-yr capitalization leaves ~30% of every contracted MW at the RE-SIGNING.
+  - **Unsigned + re-signing slices**: earn the market rate grown at the **GPU gen-curve dial** (`gpuTrend`, decoupled from landlord rents; VR-revenue-from-1H2027 owner mandate baked into its calibration) × region factor × `genAccess` (frontier-allocation factor) × lease-up. This is how rising $/MW enters over time.
+  - Rumored sites = 0% locked.
   - margin% = base-margin dial + region (cheap +5 / mid 0 / costly −5) + (owned +5 / leased −3)
   - multiple = multiple dial × tier factor (Proven 1.0 / IG 1.12 / IG-REIT 1.25) × (1 + 0.40 × contracted%) — **site-aware**: rumored sites earn no contract premium
 - **Landlord (colo):** `value/MW = NOI ÷ cap rate` — two regimes, split by the lease registry:
@@ -101,7 +104,7 @@ Roll-up to **target**:
 
 Pure data entry into `data.json` `companies[]` — **never touch the engine** (no per-ticker code exists).
 
-- **Valuation inputs** (move the target): `model`, `tier`, `sites[]` (`{n, mw, owned, region, yr, mo, prov}`), `leases[]` (the registry: one record per signed rate book — {id, counterparty, mw, termYrs, noiPerMWyr (term-average), kind, effective, signed, source}; sites link via `leaseId`, JV slices carry `physMW`), `contractedPct` (owners; derived from the registry for landlords), `termYrs` (owner lock), `netDebt`, `committedDebt`, `seniorClaims`, `shares`, `legacyEV` (non-BTC residual), `btc`/`eth` (counts, if any), `stake` ({tk,pct}, holdcos), `plannedRaise`, `equityDiscount` (default 0).
+- **Valuation inputs** (move the target): `model`, `tier`, `sites[]` (`{n, mw, owned, region, yr, mo, prov}`), `contracts[]` (owner compute-contract registry: {id, counterparty, totalRevM, termYrs, signed, gen: hopper/blackwell/vera-rubin/mixed/tpu, inferredMW, ratePerMWyr?, effective, source}) + company `signedRate` (+basis) and `genAccess` (+basis if ≠1), `leases[]` (the registry: one record per signed rate book — {id, counterparty, mw, termYrs, noiPerMWyr (term-average), kind, effective, signed, source}; sites link via `leaseId`, JV slices carry `physMW`), `contractedPct` (owners; derived from the registry for landlords), `termYrs` (owner lock), `netDebt`, `committedDebt`, `seniorClaims`, `shares`, `legacyEV` (non-BTC residual), `btc`/`eth` (counts, if any), `stake` ({tk,pct}, holdcos), `plannedRaise`, `equityDiscount` (default 0).
 - **Judgement inputs need a one-line `basis`** (shown in the panel): `plannedRaise`, `equityDiscount`, `committedDebt`, `seniorClaims`, any non-Proven `tier`.
 - **Reference facts** (do NOT move the target): `narrative`, `bull`, `bear`, `catalysts`, `risks`, `finMix`, `leaseQ` (ranking score only), `log`.
 - **Capital-structure discipline (the most error-prone inputs):** `shares` = **fully-diluted** via if-converted/treasury — add deep-in-the-money convertibles (and remove their principal from `netDebt` when you count them), RSUs, and penny/ITM warrants; out-of-the-money converts stay in `netDebt` and add **no** shares. `netDebt` = borrowings + finance leases − cash − escrowed construction proceeds, EXCLUDING operating leases and crypto treasuries; **project/SPV debt is netted only to the extent drawn** — forward/undrawn facilities are not parent net debt. Hold shares, cash, and debt to ONE as-of date. (Audited to filings 2026-06-30 across the universe.)

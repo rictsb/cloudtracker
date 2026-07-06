@@ -108,6 +108,18 @@ function renderLeases(){
       `<a class="clearfilter" href="#${r.c.tk}" style="font-size:11px">open ${r.c.tk} page →</a>`+
       `</div></td></tr>`;});
   h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing. <b>Base term</b> = total base-term contract value. Click a row for kind, vintage, term, gross MW, annual NOI, value added, campus-leased runway and the source.</div>`;
+  // compute contracts (GPU-cloud owners) — dollars+term facts; $/MW mostly inferred
+  const oc=[];COMPANIES.forEach(c=>(c.contracts||[]).forEach(x=>oc.push({c,x})));
+  if(oc.length){oc.sort((p,q)=>(q.x.totalRevM||0)-(p.x.totalRevM||0));
+    h+=`<h4 class="sec" style="margin-top:30px">Compute contracts — GPU clouds (dollars + term are the facts; $/MW mostly inferred)</h4>`;
+    h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th>Owner</th><th>Counterparty</th><th>Gen</th><th class="r">Signed</th><th class="r">Term</th><th class="r">Total</th><th class="r">$/MW·yr</th></tr></thead><tbody>`;
+    oc.forEach(({c,x})=>{const pend=x.effective===false;
+      h+=`<tr class="${pend?'lpend':''}"><td class="co">${c.tk}</td><td style="max-width:230px">${x.counterparty}${pend?' <span class="prov rumored">pending</span>':''}</td>`+
+      `<td><span class="prov ${x.gen==='vera-rubin'?'rumored':x.gen==='blackwell'?'disclosed':'estimated'}">${x.gen||'—'}</span></td>`+
+      `<td class="r mono">${x.signed||'—'}</td><td class="r mono">${x.termYrs}y</td>`+
+      `<td class="r mono">${x.totalRevM?'$'+(x.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
+      `<td class="r mono">${x.ratePerMWyr?('$'+x.ratePerMWyr.toFixed(1)+'M'+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':'')):'—'}</td></tr>`;});
+    h+=`</tbody></table></div><div class="legend2">Compute contracts are take-or-pay DOLLARS over a TERM — MW is analyst inference where marked <b>~</b>. Each owner's $-weighted blended rate binds its contracted slice via `+'`signedRate`'+`; the unsigned + re-signing slices ride the GPU gen-curve dial.</div>`;}
   body.innerHTML=h;
   body.querySelectorAll('th[data-ls]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.ls;
     if(k===leaseSort)leaseDir*=-1;else{leaseSort=k;leaseDir=(k==='tk'||k==='tenant'||k==='camp')?1:-1;}renderLeases();}));
@@ -238,7 +250,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
     }
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
   }else{
-    steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% locked @ $${A.rate.toFixed(1)}M · rest @ $${(k.prevailing||A.rate).toFixed(1)}M (${s.yr} prevailing, ${(A.rateTrend>=0?'+':'')+(A.rateTrend||0)}%/yr)`);
+    steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% @ signed book $${(c.signedRate||A.rate).toFixed(1)}M · rest @ $${(k.prevailing||A.rate).toFixed(1)}M (${s.yr} gen-curve, ${(A.gpuTrend>=0?'+':'')+(A.gpuTrend!=null?A.gpuTrend:A.rateTrend)}%/yr${c.genAccess&&c.genAccess!==1?' × '+c.genAccess+' access':''})`);
     steps+=row('Margin',k.m+'%',`${A.margin} ${r.cMargin>=0?'+':'−'}${Math.abs(r.cMargin)} ${r.name.toLowerCase()} ${s.owned?'+'+CONST.ownedCMargin+' owned':CONST.leasedCMargin+' leased'}`);
     steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× × ${tier.multFactor} ${tier.name} · (1 + ${(CONST.multPremium*(s.prov==='rumored'?0:c.contractedPct)/100).toFixed(2)} contracted, site-aware)`);
     steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','rate × margin × multiple');
@@ -263,7 +275,8 @@ function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span
   (holdco?'':f('Contracted today',c.contractedPct+'%'))+
   (holdco?'':(owner?f('Avg term remaining',c.termYrs+' yrs'):''))+
   (holdco?'':(!owner?(()=>{const ls=(c.leases||[]).filter(l=>l.effective!==false);if(!ls.length)return '';const mw=ls.reduce((a,l)=>a+l.mw,0);const wnoi=ls.reduce((a,l)=>a+l.noiPerMWyr*l.mw,0)/(mw||1);return f('Signed lease book',`${mw.toLocaleString()}MW @ $${wnoi.toFixed(2)}M NOI/MW·yr (term-avg, actual contracts)`);})():''))+
-  (holdco?'':(owner?f('GPU rate (today · trend)','$'+A.rate.toFixed(1)+'M · '+(A.rateTrend>=0?'+':'')+(A.rateTrend||0)+'%/yr'):''))+
+  (holdco?'':(owner?f('GPU rate (market · gen-curve)','$'+A.rate.toFixed(1)+'M · '+((A.gpuTrend!=null?A.gpuTrend:A.rateTrend)>=0?'+':'')+(A.gpuTrend!=null?A.gpuTrend:A.rateTrend)+'%/yr'):''))+
+  (owner&&!holdco&&(c.contracts||[]).length?(()=>{const cs2=(c.contracts||[]).filter(x=>x.effective!==false);const tot=cs2.reduce((a3,x)=>a3+(x.totalRevM||0),0);return f('Signed compute book',`$${(tot/1000).toFixed(1)}B across ${cs2.length} contracts @ ~$${(c.signedRate||0).toFixed(1)}M/MW·yr blended`);})():'')+
   stakeRow+ethRow+btcRow+
   (c.legacyEV?f(holdco?'Legacy mining':'Legacy / other',fmtM(c.legacyEV)):'')+
   f('Net debt',fmtM(c.netDebt))+

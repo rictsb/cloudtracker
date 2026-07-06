@@ -44,7 +44,7 @@
     const days = (iso) => iso ? Math.round((today - new Date(iso)) / 86400000) : null;
 
     /* ---- config ---- */
-    const dials = ['rate','margin','multiple','capRate','disc','ramp','rateTrend','dilutionStress','leaseUp','pipelineCredit'];
+    const dials = ['rate','margin','multiple','capRate','disc','ramp','rateTrend','gpuTrend','dilutionStress','leaseUp','pipelineCredit'];
     const sk = (cfg.sliders || []).map(s => s.k);
     dials.forEach(k => { failIf('config', null, !(k in cfg.dials), `config.dials missing ${k}`); failIf('config', null, !sk.includes(k), `no slider for dial ${k}`); });
     sk.forEach(k => failIf('config', null, !(k in cfg.dials), `slider ${k} has no dial`));
@@ -155,6 +155,33 @@
         const derived = tmw2 ? Math.round(lmw / tmw2 * 100) : 0;
         warnIf('leases', id, Math.abs(derived - c.contractedPct) > 15, `contractedPct ${c.contractedPct} vs registry-derived leased share ${derived}% (>15pt gap)`);
       }
+
+      // -- owner compute-contract registry
+      const OC = c.contracts || [];
+      const ocids = {};
+      for (const x of OC) {
+        failIf('leases', id, !x.id || ocids[x.id], `contract ${x.id||'?'}: missing/duplicate id`); ocids[x.id] = 1;
+        failIf('leases', id, !(x.totalRevM > 0), `contract ${x.id}: totalRevM must be > 0`);
+        failIf('leases', id, !(x.termYrs >= 1 && x.termYrs <= 20), `contract ${x.id}: term ${x.termYrs}yr out of range`);
+        failIf('leases', id, !x.counterparty || !x.source, `contract ${x.id}: counterparty/source missing`);
+        warnIf('leases', id, !['hopper','blackwell','vera-rubin','mixed','tpu'].includes(x.gen), `contract ${x.id}: unknown gen ${x.gen}`);
+        if (x.ratePerMWyr != null) failIf('leases', id, !(x.ratePerMWyr >= 3 && x.ratePerMWyr <= 20), `contract ${x.id}: rate $${x.ratePerMWyr}M/MW·yr outside sane bounds (3–20)`);
+      }
+      if (c.signedRate != null) {
+        failIf('leases', id, !(c.signedRate >= 3 && c.signedRate <= 20), `signedRate $${c.signedRate}M/MW·yr outside sane bounds`);
+        failIf('basis', id, !bz.signedRate, 'signedRate without basis');
+        // reconcile vs registry where per-contract rates are computable
+        const rc = OC.filter(x => x.effective !== false && x.ratePerMWyr && x.totalRevM);
+        if (rc.length) {
+          const w = rc.reduce((a3, x) => a3 + x.ratePerMWyr * x.totalRevM, 0) / rc.reduce((a3, x) => a3 + x.totalRevM, 0);
+          warnIf('leases', id, Math.abs(w - c.signedRate) / w > 0.2, `signedRate $${c.signedRate}M vs registry $-weighted $${w.toFixed(2)}M (>20% gap)`);
+        }
+      }
+      if (c.genAccess != null) {
+        failIf('leases', id, !(c.genAccess >= 0.5 && c.genAccess <= 1.2), `genAccess ${c.genAccess} out of range`);
+        failIf('basis', id, c.genAccess !== 1 && !bz.genAccess, 'non-default genAccess without basis');
+      }
+      warnIf('leases', id, OC.length > 0 && c.signedRate == null, 'contracts[] present but no signedRate derived');
 
       warnIf('fresh', id, !c.thesis, 'no thesis');
       if (c.thesis) warnIf('fresh', id, ((c.thesis.match(/[.!?](\s|$)/g) || []).length) > 3, 'thesis over 3 sentences');

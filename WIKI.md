@@ -9,6 +9,8 @@ First-principles relative-value tracker for AI-infrastructure equities; value ro
 One engine; only the per-MW step branches by model.
 ```
 OWNER     value/MW = effRate × margin% × multiple
+          signed slice @ signedRate (the actual take-or-pay book, $-weighted)
+          unsigned + re-sign slices @ market × (1+gpuTrend)^vintage × genAccess
 LANDLORD  signed site:   value/MW = actual lease NOI (term-avg fact) ÷ cap
           unleased site: value/MW = anchor × region × size × lease-up × trend ÷ cap
           (cap floored at 6.5% — the DLR print; compression only with a signed lease)
@@ -19,6 +21,7 @@ both      site value = value/MW × MW × provenance haircut × time-discount
           upside = target ÷ price − 1
 ```
 - **effRate** = contracted slice (locked at today's GPU rate) + uncontracted slice (today's rate grown by the trend to the site's year) × region factor × **lease-up dial**. The contract premium and cap compression are **site-aware** — rumored capacity earns neither. The **ramp** delays only the uncontracted share (take-or-pay leases bill from commencement). Trend is capped at disc − 2 so the time axis can't invert.
+- **Owner books bind as dollars+term**: compute contracts live in `contracts[]` (dollars and term are contractual; MW is inference — flagged). Each owner's $-weighted `signedRate` binds its contracted slice; the lock is term ÷ capitalization-years, so ~30% of a 5-yr book prices at the re-signing off the gen-curve. CRWV's registry reconciles to its $99.4B reported backlog; NVIDIA backstops its unsold capacity through Apr 2032.
 - **Signed economics bind**: every signed lease lives in the `leases[]` registry (counterparty, MW, term, term-average NOI, `kind` = retrofit / conversion / build-to-spec, source) and its sites value at the ACTUAL contract — recalibrating the anchor never touches a signed dollar. The registry doubles as the market print-tape (current range: $0.60M retrofit-with-head-lease → $2.06M premium conversion; build-to-spec IG cluster $1.4–1.9M).
 - **provenance haircut**: disclosed 0.95 / estimated 0.55 / rumored 0.25. **time-discount** = 1/(1+disc)^years, years = energization − now + ramp.
 - **legacy** = BTC × live price + ETH × live price + stake (pct × the held company's modelled equity) + non-crypto residual (`legacyEV`).
@@ -46,7 +49,8 @@ Per row: bar = our value (target), split **contracted floor (solid) / expected p
 | Dial | Does | Hits |
 |---|---|---|
 | GPU rate | today's $/MW·yr | owners |
-| GPU rate trend | %/yr growth of that rate | owners + landlord rents |
+| GPU gen-curve | %/yr the owner $/MW ladder climbs (Hopper→Blackwell→VR; VR = 1H27 mandate; default +8 from the measured ladder, bull 15-20 / bear ≤0) | owners |
+| Landlord rent trend | %/yr rent escalation on unleased space | landlords |
 | Owner margin | operating margin % | owners |
 | Compute multiple | × on owner economics | owners |
 | Landlord cap rate | NOI yield | landlords |

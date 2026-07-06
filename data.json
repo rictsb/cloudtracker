@@ -16,7 +16,8 @@
       "rateTrend": 3,
       "dilutionStress": 1,
       "leaseUp": 1,
-      "pipelineCredit": 1
+      "pipelineCredit": 1,
+      "gpuTrend": 8
     },
     "sliders": [
       {
@@ -69,7 +70,7 @@
       },
       {
         "k": "rateTrend",
-        "label": "GPU rate trend / yr",
+        "label": "Landlord rent trend / yr",
         "min": -10,
         "max": 20,
         "step": 1,
@@ -98,6 +99,14 @@
         "max": 1,
         "step": 0.1,
         "fmt": "mult"
+      },
+      {
+        "k": "gpuTrend",
+        "label": "GPU $/MW curve / yr (owners)",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "fmt": "trend"
       }
     ],
     "provenance": {
@@ -190,7 +199,7 @@
       "model": "owner",
       "tier": "proven",
       "contractedPct": 95,
-      "termYrs": 5,
+      "termYrs": 6,
       "leaseQ": 4.3,
       "netDebt": 22900,
       "shares": 610,
@@ -406,6 +415,12 @@
       ],
       "log": [
         {
+          "d": "2026-04-15",
+          "t": "lease",
+          "s": "8-Ks/IR",
+          "x": "Q1-26 signing wave: Meta ~$21B (VR-era, thru 2032; aggregate ~$35.2B), Anthropic multibillion (undisclosed), Jane Street ~$6B + $1B equity at $109. Backlog $66.8B→$99.4B in one quarter. NVIDIA remains OBLIGATED to buy unsold capacity through Apr 2032 ($6.3B initial floor) — a contractual floor under the uncontracted book."
+        },
+        {
           "d": "2026-06-05",
           "t": "lease",
           "s": "DCD",
@@ -438,13 +453,123 @@
       ],
       "plannedRaise": 15000,
       "basis": {
-        "plannedRaise": "~10-12% equity slice of $31-35B/yr FY26 capex; ~84% DDTL-debt funded, equity opportunistic (NVIDIA/Jane Street)"
+        "plannedRaise": "~10-12% equity slice of $31-35B/yr FY26 capex; ~84% DDTL-debt funded, equity opportunistic (NVIDIA/Jane Street)",
+        "signedRate": "fleet-blended inference: $99.4B backlog ÷ implied MW-yrs at ~$9.3M/MW·yr (CRWV discloses dollars+term only — MW/GPU never disclosed; registry reconciles to the reported backlog)"
       },
-      "thesis": "Model credits the full 8 GW pipeline at owner economics while the market mainly prices the contracted ~$99B backlog — the gap closes as back-half capacity re-signs. Brakes: ~$23B debt and ~67% Microsoft concentration.",
+      "thesis": "The market models CRWV's blended $/MW flat (SemiAnalysis: consensus revenue ÷ physical MW shows no generation credit) while its book re-signs up the Hopper→Blackwell→Vera Rubin ladder — the signed rate already runs ~$9.3M vs the $8M market dial, and NVIDIA contractually backstops any unsold capacity through 2032. Watch: ~$8-9B of new debt raised Apr-Jun 2026 needs re-verification against the target.",
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-27"
-      }
+      },
+      "contracts": [
+        {
+          "id": "crwv-msft-2023",
+          "counterparty": "Microsoft (6+ contracts, MSA 2023)",
+          "totalRevM": 10000,
+          "termYrs": 6,
+          "signed": "2023-02",
+          "gen": "hopper",
+          "inferredMW": true,
+          "effective": true,
+          "source": "S-1/10-K concentration math; verifier-corrected from $14B; MW never disclosed",
+          "ratePerMWyr": 9.3
+        },
+        {
+          "id": "crwv-oai-master",
+          "counterparty": "OpenAI (master, thru Oct 2030)",
+          "totalRevM": 11900,
+          "termYrs": 5.6,
+          "signed": "2025-03",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "424B4: up to ~$11.9B ($350M taken in IPO shares)",
+          "ratePerMWyr": 9.3
+        },
+        {
+          "id": "crwv-oai-exp1",
+          "counterparty": "OpenAI (expansion, thru Apr 2029)",
+          "totalRevM": 4000,
+          "termYrs": 3.9,
+          "signed": "2025-05",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "Q2-25 8-K: $4B expansion",
+          "ratePerMWyr": 9.3
+        },
+        {
+          "id": "crwv-oai-exp2",
+          "counterparty": "OpenAI (order form, thru May 2031)",
+          "totalRevM": 6500,
+          "termYrs": 5.7,
+          "signed": "2025-09",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "8-K 9/25/25: up to ~$6.5B; OpenAI aggregate ~$22.4B",
+          "ratePerMWyr": 9.3
+        },
+        {
+          "id": "crwv-meta-1",
+          "counterparty": "Meta (thru Dec 2031 + option)",
+          "totalRevM": 14200,
+          "termYrs": 6.2,
+          "signed": "2025-09",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "8-K 9/30/25: up to ~$14.2B under 2023 MSA",
+          "ratePerMWyr": 9.3
+        },
+        {
+          "id": "crwv-meta-2",
+          "counterparty": "Meta (new + option exercise, thru Dec 2032)",
+          "totalRevM": 21000,
+          "termYrs": 6.7,
+          "signed": "2026-03",
+          "gen": "vera-rubin",
+          "inferredMW": true,
+          "effective": true,
+          "source": "8-K 4/9/26: ~$21B, executed 3/31/26 — inside the $99.4B backlog; Meta aggregate ~$35.2B",
+          "ratePerMWyr": 9.3
+        },
+        {
+          "id": "crwv-anthropic",
+          "counterparty": "Anthropic (multibillion, value undisclosed — est.)",
+          "totalRevM": 6000,
+          "termYrs": 5,
+          "signed": "2026-03",
+          "gen": "mixed",
+          "inferredMW": true,
+          "effective": true,
+          "source": "IR 4/10/26; CEO \"multibillion\"; backlog-residual bound $4-10B → $6B midpoint ESTIMATE"
+        },
+        {
+          "id": "crwv-janestreet",
+          "counterparty": "Jane Street (take-or-pay incl. Vera Rubin)",
+          "totalRevM": 6000,
+          "termYrs": 5,
+          "signed": "2026-04",
+          "gen": "vera-rubin",
+          "inferredMW": true,
+          "effective": true,
+          "source": "8-K 4/15/26: ~$6B + separate $1B equity at $109; term undisclosed (5yr placeholder)",
+          "ratePerMWyr": 9.3
+        },
+        {
+          "id": "crwv-other",
+          "counterparty": "Other signed book (IBM, Google/hyperscaler expansions, Cohere/Mistral, residual)",
+          "totalRevM": 19800,
+          "termYrs": 5,
+          "signed": "2025-12",
+          "gen": "mixed",
+          "inferredMW": true,
+          "effective": true,
+          "source": "Residual reconciling named records to the $99.4B 3/31/26 revenue backlog ($98.8B RPO + $0.6B)"
+        }
+      ],
+      "signedRate": 9.3
     },
     {
       "tk": "NBIS",
@@ -452,7 +577,7 @@
       "model": "owner",
       "tier": "proven",
       "contractedPct": 80,
-      "termYrs": 4,
+      "termYrs": 5,
       "leaseQ": 4.4,
       "netDebt": -9280,
       "shares": 341,
@@ -659,6 +784,12 @@
       ],
       "log": [
         {
+          "d": "2026-03-16",
+          "t": "lease",
+          "s": "6-K",
+          "x": "Meta contract #2: firm ~$12B dedicated Vera Rubin capacity (up to $27B with options), 5yr — RPO $21.3B→$33.6B. Watch the optional ~$15B tranche."
+        },
+        {
           "d": "2026-05-13",
           "t": "earnings",
           "s": "Q1 2026 6-K / call",
@@ -691,13 +822,62 @@
       ],
       "plannedRaise": 10000,
       "basis": {
-        "plannedRaise": "NVIDIA $2B + ~$2.5B ATM + 1-2 follow-ons; prepayments fund ~60% of capex"
+        "plannedRaise": "NVIDIA $2B + ~$2.5B ATM + 1-2 follow-ons; prepayments fund ~60% of capex",
+        "signedRate": "MSFT-deal inference ~$11.6M/MW·yr $-weighted across the firm book (~$34.2B ≈ the $33.6B 3/31/26 RPO); NBIS discloses no MW"
       },
       "thesis": "Roughly fair — the 80%-contracted hyperscaler book and $5.8B of non-core stakes are largely priced in, leaving modest upside from the 6.5 GW ramp. Net-cash balance sheet is the cushion.",
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-28"
-      }
+      },
+      "contracts": [
+        {
+          "id": "nbis-msft",
+          "counterparty": "Microsoft (Vineland, +$2B option)",
+          "totalRevM": 17400,
+          "termYrs": 5,
+          "signed": "2025-09",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "firm $17.4B (to $19.4B w/ option); MW never disclosed",
+          "ratePerMWyr": 11.6
+        },
+        {
+          "id": "nbis-meta-1",
+          "counterparty": "Meta (contract #1)",
+          "totalRevM": 2900,
+          "termYrs": 5,
+          "signed": "2025-11",
+          "gen": "blackwell",
+          "inferredMW": true,
+          "effective": true,
+          "source": "$2.9B"
+        },
+        {
+          "id": "nbis-meta-2",
+          "counterparty": "Meta (contract #2 — firm VR portion of up-to-$27B)",
+          "totalRevM": 12000,
+          "termYrs": 5,
+          "signed": "2026-03",
+          "gen": "vera-rubin",
+          "inferredMW": true,
+          "effective": true,
+          "source": "6-K 3/16/26: firm dedicated Vera Rubin ~$12B; balance to $27B optional (verifier-corrected from $27B)"
+        },
+        {
+          "id": "nbis-ent",
+          "counterparty": "Enterprise / AI-native aggregate (~ARR basis)",
+          "totalRevM": 1900,
+          "termYrs": 1,
+          "signed": "2026-03",
+          "gen": "mixed",
+          "inferredMW": true,
+          "effective": true,
+          "source": "Q1-26 ARR $1.92B — aggregate short-duration book, not a single TCV"
+        }
+      ],
+      "signedRate": 11.5
     },
     {
       "tk": "RIOT",
@@ -1290,13 +1470,52 @@
       ],
       "plannedRaise": 8000,
       "basis": {
-        "plannedRaise": "~$4.9B undrawn of $6B ATM + future programs; MSFT prepay + $3.65B GPU debt + converts carry ~90%"
+        "plannedRaise": "~$4.9B undrawn of $6B ATM + future programs; MSFT prepay + $3.65B GPU debt + converts carry ~90%",
+        "signedRate": "$-weighted over the two DISCLOSED-MW contracts: (9700×9.70+3400×11.33)/13100 = $10.12M/MW·yr — the only owner book with contractual MW"
       },
       "thesis": "Most undervalued and most speculative — the model credits a ~5.8 GW mostly-uncontracted global pipeline riding the rising-rate trend, while the market prices today's small live AI book. Post-realistic-dilution but pre-execution: it must build, fill and fund the pipeline.",
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "contracts": [
+        {
+          "id": "iren-msft",
+          "counterparty": "Microsoft (GB300, 200MW — MW DISCLOSED)",
+          "totalRevM": 9700,
+          "termYrs": 5,
+          "signed": "2025-11",
+          "gen": "blackwell",
+          "inferredMW": false,
+          "effective": true,
+          "source": "$9.7B/5yr/200MW, 20% prepaid — rare disclosed-MW print",
+          "ratePerMWyr": 9.7
+        },
+        {
+          "id": "iren-nvda",
+          "counterparty": "NVIDIA (Blackwell, 60MW — MW DISCLOSED)",
+          "totalRevM": 3400,
+          "termYrs": 5,
+          "signed": "2026-05",
+          "gen": "blackwell",
+          "inferredMW": false,
+          "effective": true,
+          "source": "$3.4B/5yr/60MW + $2.1B equity right",
+          "ratePerMWyr": 11.33
+        },
+        {
+          "id": "iren-cloud",
+          "counterparty": "Legacy GPU cloud (Prince George etc., ARR-inferred)",
+          "totalRevM": 1000,
+          "termYrs": 2,
+          "signed": "2025-10",
+          "gen": "mixed",
+          "inferredMW": true,
+          "effective": true,
+          "source": "~$1B TCV inference from ARR × term"
+        }
+      ],
+      "signedRate": 10.1
     },
     {
       "tk": "SLNH",
@@ -3398,6 +3617,11 @@
       "tk": "HUT",
       "note": "RB ROFO exercise ASSUMED by owner mandate (400MW estimated + 600MW rumored). Watch: Entergy power expansion filings / Fluidstack-Anthropic expansion announcements. Falsifier: silence through mid-2027 → regrade",
       "added": "2026-07-08"
+    },
+    {
+      "tk": "CRWV",
+      "note": "Apr-Jun 2026 debt wave (~$2.75B 9.75% notes + $3.1B DDTL 5.0 + $1.25B/€2B notes) not yet in netDebt ($22.9B is Feb-era) — re-verify capital structure; also pin Anthropic contract value ($6B is a bounded estimate)",
+      "added": "2026-07-09"
     }
   ]
 }

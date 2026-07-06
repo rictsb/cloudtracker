@@ -38,24 +38,33 @@
     function legacyOf(c){return (c.btc||0)*btcPrice()/1e6+(c.eth||0)*ethPrice()/1e6+stakeValue(c)+(c.legacyEV||0);}
 
     function prevailingRate(yrs){return A.rate*Math.pow(1+(A.rateTrend||0)/100,Math.max(0,yrs));}
-    function ownerRate(c){return A.rate;}
+    function ownerRate(c){return c&&c.signedRate?c.signedRate:A.rate;}
     // Vintage-rate model (spec §4): $/MW·yr is priced at the rate prevailing when capacity is
     // contracted/energized, and that rate trends over time (the "GPU rate trend" dial). The CONTRACTED
     // share is locked at today's rate; the UNCONTRACTED share floats to the future prevailing rate at
     // its energization vintage — so in a rising-rate world unsold capacity is the upside, not a spot
     // haircut. `contracted %` remains the company number; rumored sites are 100% uncontracted (no lock).
-    function effTrend(){return Math.min(A.rateTrend||0,(A.disc||10)-2);}  // guardrail: uncontracted real discount ≥2%/yr (time axis can't invert at bull settings)
+    function effTrend(){return Math.min(A.rateTrend||0,(A.disc||10)-2);}  // landlord RENT trend, guardrailed (uncontracted real discount ≥2%/yr)
+    function gpuTrendEff(){return Math.min(A.gpuTrend!=null?A.gpuTrend:(A.rateTrend||0),(A.disc||10)-2);}  // owner GPU $/MW GENERATION curve (decoupled from rents), same guardrail
+    // Signed compute book (owner contract registry): the $-weighted rate of the signed take-or-pay book.
+    // Contracts are DOLLARS+TERM facts; MW is often inference — so the company carries a `signedRate`
+    // ($/MW·yr, basis-noted, checks-reconciled vs the registry) rather than per-contract rate binding.
+    function signedRateOf(c){return c.signedRate||A.rate;}
+    function genAccessOf(c){return c.genAccess!=null?c.genAccess:1;}       // frontier-allocation factor on UNSIGNED/re-sign rates (1.0 = frontier access)
     function leaseUp(){return A.leaseUp!=null?A.leaseUp:1;}               // lease-up / spot realization on the uncontracted slice (base 1.0 = scarcity view: energized capacity gets rented; 0.42 = consensus spread)
     function siteRates(c,s){
-      const lock=Math.min(c.termYrs/3,1);
+      // lock = share of capitalized value inside the signed window: term ÷ capitalization years (≈ the multiple).
+      // A 5-yr compute book on a ~7-yr capitalization leaves ~30% of every contracted MW's value at the
+      // RE-SIGNING — priced off the generation curve. That terminal slice is how rising $/MW enters over time.
+      const capYears=Math.max(A.multiple||7,1);
+      const lock=Math.min(c.termYrs/capYears,1);
       const cf=(s.prov==='rumored')?0:(c.contractedPct/100);
       const ls=lock*cf;
       const rm=(REGION[s.region]&&REGION[s.region].rateMul)||1;   // geography rate factor (US 1.0, EU/AU < 1)
-      const base=A.rate*rm;
       const yrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);
-      const prevailing=base*Math.pow(1+effTrend()/100,yrs);
-      const contractedRate=ls*base, spotRate=(1-ls)*prevailing*leaseUp();
-      return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs};
+      const prevailing=A.rate*rm*Math.pow(1+gpuTrendEff()/100,yrs)*genAccessOf(c);  // gen-curve rate at this vintage, for this operator's silicon access
+      const contractedRate=ls*signedRateOf(c)*rm, spotRate=(1-ls)*prevailing*leaseUp();
+      return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs,lock,signedRate:signedRateOf(c)};
     }
     function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
     // anchor-scale premium on FORWARD space only: big blocks print richer than small retrofits (observed across signed deals)
@@ -104,7 +113,7 @@
 
     return { A, BASE, ctx, CFG, YEAR, NOW, HORIZON, SLIDERS, REGION, CONST, TIERS, PROV, PROV_OP, COMPANIES,
              priceOf, btcPrice, ethPrice, stakeValue, legacyOf, prevailingRate, ownerRate, effTrend, leaseUp,
-             sizeFactor, leaseOf, siteRates, tierOf, siteValue, value };
+             sizeFactor, leaseOf, gpuTrendEff, signedRateOf, genAccessOf, siteRates, tierOf, siteValue, value };
   }
 
   return { createEngine };
