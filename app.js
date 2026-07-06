@@ -18,7 +18,7 @@ let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
-let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1;
+let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
@@ -73,7 +73,9 @@ function renderLeases(){
     const campMW=stems.length?c.sites.filter(s2=>stems.some(st=>stem(s2.n)===st)).reduce((x,s2)=>x+(s2.physMW||s2.mw),0):0;
     rows.push({c,l,ev,campMW,pctCamp:campMW>0?l.mw/campMW:null,annual:l.mw*l.noiPerMWyr,startYr,camp});
   }));
-  rows.sort((a2,b2)=>b2.annual-a2.annual);
+  const LKEY={tk:r=>r.c.tk,tenant:r=>r.l.counterparty||'',camp:r=>r.camp||'',base:r=>r.l.totalRevM||0,mw:r=>r.l.mw,noi:r=>r.l.noiPerMWyr,annual:r=>r.annual};
+  const kf=LKEY[leaseSort]||LKEY.annual;
+  rows.sort((x,y)=>{const av=kf(x),bv=kf(y);return (typeof av==='string'?av.localeCompare(bv):av-bv)*leaseDir;});
   const eff=rows.filter(r=>r.l.effective!==false);
   const totMW=eff.reduce((x,r)=>x+r.l.mw,0),totNOI=eff.reduce((x,r)=>x+r.annual,0);
   const totBase=eff.reduce((x,r)=>x+(r.l.totalRevM||0),0);
@@ -85,7 +87,7 @@ function renderLeases(){
   const half=s2=>{const [y,m]=s2.split('-').map(Number);return y+(m<=6?' H1':' H2');};
   const byHalf={};eff.forEach(r=>{if(r.l.signed)(byHalf[half(r.l.signed)]=byHalf[half(r.l.signed)]||[]).push(r.l.noiPerMWyr);});
   h+=`<div class="legend2" style="margin:0 4px 18px">Print tape (median signed NOI $M/MW·yr) — by kind: ${Object.entries(byKind).map(([k,x])=>`<b>${k}</b> $${med(x).toFixed(2)} (${x.length})`).join(' · ')} &nbsp;|&nbsp; by vintage: ${Object.keys(byHalf).sort().map(k=>`<b>${k}</b> $${med(byHalf[k]).toFixed(2)}`).join(' → ')}</div>`;
-  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th><th>Lessor</th><th>Tenant</th><th>Campus</th><th class="r">Base term</th><th class="r">IT MW</th><th class="r">NOI $/MW·yr</th></tr></thead><tbody>`;
+  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Lessor',''],['tenant','Tenant',''],['camp','Campus',''],['base','Base term','r'],['mw','IT MW','r'],['noi','NOI $/MW·yr','r']].map(([k,lab,cl])=>`<th class="${cl}" data-ls="${k}">${lab}${leaseSort===k?' <span class="arr">'+(leaseDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
   rows.forEach((r,i)=>{const l=r.l;const pend=l.effective===false;
     h+=`<tr class="lrow srow${pend?' lpend':''}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
     `<td class="co">${r.c.tk}</td>`+
@@ -107,6 +109,8 @@ function renderLeases(){
       `</div></td></tr>`;});
   h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing. <b>Base term</b> = total base-term contract value. Click a row for kind, vintage, term, gross MW, annual NOI, value added, campus-leased runway and the source.</div>`;
   body.innerHTML=h;
+  body.querySelectorAll('th[data-ls]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.ls;
+    if(k===leaseSort)leaseDir*=-1;else{leaseSort=k;leaseDir=(k==='tk'||k==='tenant'||k==='camp')?1:-1;}renderLeases();}));
   body.querySelectorAll('.lrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ld-'+tr.dataset.i);if(d)d.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
