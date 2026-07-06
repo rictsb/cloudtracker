@@ -81,6 +81,7 @@ Intuition: the real discount on future compute = discount − trend.
 - **Ignore sell-side price targets.**
 
 ## Data & benchmarks
+**Preferred-source registry** (`sources[]` in `data.json`, spec §9): the curated list of where facts come from — market data (Finnhub, Coinbase), primary filings (EDGAR, company IR), proprietary research (SemiAnalysis; sell-side inputs cross-checked only), and curated commentary/interview feeds (McNallie Money on YouTube). Each source carries a **provenance ceiling** — the highest provenance a fact from it alone can enter with (filings → disclosed; research & management interviews → estimated until filed; refuted sources → none, e.g. BTC Miner Terminal). Checks-validated.
 Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-rate sanity: DLR/Blackstone (Jun 2026) ≈ $17M/MW equity, ~6.5% cap, ~15× NOI for fully-leased IG hyperscale. Base landlord NOI is calibrated to the MIDPOINT OF THE BULLISH CASE on signed hyperscaler prints ($1.76M/MW·yr cheap-market owned): conservative read = year-1 de-escalated (~$1.5M, WULF/Anthropic 7/26), bullish read = term-average (~$2.0M — justified because the engine locks contracted rent flat, so year-1 anchoring drops the signed escalators). Owner's deliberate calibration, 2026-07-06.
 
 ## Keeping it current

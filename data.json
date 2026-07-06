@@ -192,6 +192,72 @@
     "ethFallback": 3000,
     "verifiedPricing": "2026-07-02"
   },
+  "sources": [
+    {
+      "id": "edgar",
+      "name": "SEC EDGAR",
+      "type": "filings",
+      "url": "https://www.sec.gov/edgar",
+      "provCeiling": "disclosed",
+      "note": "Primary filings (10-K/Q, 8-K, S-1, prospectuses) — the binding record for capital structure, contracts, share counts."
+    },
+    {
+      "id": "company-ir",
+      "name": "Company IR sites & press releases",
+      "type": "filings",
+      "url": "",
+      "provCeiling": "disclosed",
+      "note": "Company-disclosed announcements (leases, contracts, site phasing); filed confirmation preferred where the two differ."
+    },
+    {
+      "id": "finnhub",
+      "name": "Finnhub",
+      "type": "market",
+      "url": "https://finnhub.io",
+      "provCeiling": "disclosed",
+      "note": "Live equity prices (token in config.js) — hourly + manual refresh."
+    },
+    {
+      "id": "coinbase",
+      "name": "Coinbase spot",
+      "type": "market",
+      "url": "https://api.coinbase.com",
+      "provCeiling": "disclosed",
+      "note": "Live BTC / ETH prices for treasury marks."
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "type": "research",
+      "url": "https://semianalysis.com",
+      "provCeiling": "estimated",
+      "note": "Proprietary research — accessed via own authentication, entered manually, tagged proprietary. Informs the gen-curve and rate dials, never a sole fact source."
+    },
+    {
+      "id": "sell-side",
+      "name": "Sell-side research (Northland et al.)",
+      "type": "research",
+      "url": "",
+      "provCeiling": "estimated",
+      "note": "Cross-check inputs only (share counts, debt schedules, MW assumptions) — price targets ignored by convention."
+    },
+    {
+      "id": "mcnallie-money",
+      "name": "McNallie Money (YouTube)",
+      "type": "commentary",
+      "url": "https://www.youtube.com/@McNallieMoney",
+      "provCeiling": "estimated",
+      "note": "Curated miner / HPC commentary and management interviews — feeds the sentiment desk and weekly sweep. Management statements in interviews enter as estimated until confirmed in a filing; channel opinion is a lead, never a fact source."
+    },
+    {
+      "id": "btc-miner-terminal",
+      "name": "BTC Miner Terminal",
+      "type": "research",
+      "url": "https://btc-miner-terminal-frontend.onrender.com",
+      "provCeiling": "none",
+      "note": "Refuted by the Jun-2026 filings audit (net-debt figures ignored escrowed cash; FD counts diverged from filings) — do not source facts from it."
+    }
+  ],
   "companies": [
     {
       "tk": "CRWV",

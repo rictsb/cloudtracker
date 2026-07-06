@@ -8,7 +8,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
 
   const GROUPS = [
-    { k: 'config',  name: 'Config integrity',       guards: 'every dial has a slider; provenance/regions complete; no dead constants' },
+    { k: 'config',  name: 'Config integrity',       guards: 'every dial has a slider; provenance/regions complete; no dead constants; source registry typed with provenance ceilings' },
     { k: 'schema',  name: 'Schema & types',         guards: 'required fields per model type; valid enums; no dead fields; holdco shape' },
     { k: 'sites',   name: 'Site schedules',         guards: 'energization dates & months in range; MW > 0; phased blocks ≤ ~800MW; no duplicates' },
     { k: 'prov',    name: 'Provenance consistency', guards: 'past capacity must be disclosed; 2031+ "disclosed" questioned; contracted% vs rumored-MW tension' },
@@ -54,6 +54,20 @@
     warnIf('config', null, !cfg.btcFallback || !cfg.ethFallback, 'btcFallback/ethFallback missing');
     const pAge = days(cfg.verifiedPricing);
     warnIf('config', null, pAge == null || pAge > 30, `GPU rate/trend dials last checked vs market ${pAge == null ? 'never' : pAge + 'd ago'} (verify ≤30d)`);
+
+    /* ---- preferred-source registry (spec §9) ---- */
+    const SRC_T = ['market','filings','research','commentary','calendar'];
+    const SRC_P = ['disclosed','estimated','rumored','none'];
+    const srcs = d.sources || [];
+    failIf('config', null, !srcs.length, 'preferred-source registry (sources[]) missing or empty');
+    const srcIds = {};
+    for (const s of srcs) {
+      failIf('config', null, !s.id || srcIds[s.id], `source ${s.id || '?'}: missing/duplicate id`); srcIds[s.id] = 1;
+      failIf('config', null, !s.name || !s.note, `source ${s.id}: name/note missing`);
+      failIf('config', null, !SRC_T.includes(s.type), `source ${s.id}: bad type ${s.type}`);
+      failIf('config', null, !SRC_P.includes(s.provCeiling), `source ${s.id}: bad provCeiling ${s.provCeiling}`);
+      warnIf('config', null, s.type === 'commentary' && s.provCeiling === 'disclosed', `source ${s.id}: commentary cannot carry a disclosed ceiling`);
+    }
 
     /* ---- companies ---- */
     const tks = cos.map(c => c.tk);
