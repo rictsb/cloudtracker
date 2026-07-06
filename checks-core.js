@@ -172,6 +172,14 @@
         for (const tk in (P.suspect || {})) warnIf('port', cos.find(x => x.tk === tk) ? tk : null, P.suspect[tk] > 0, `${tk}: suspect print quarantined ${P.suspect[tk]} day(s) — 3 fails the Action`);
         for (const tk in (P.lastFresh || {})) { const a = days(P.lastFresh[tk]); warnIf('port', cos.find(x => x.tk === tk) ? tk : null, a > 10, `${tk}: no fresh market print for ${a}d — halted/delisted?`); }
       }
+      // exclusions are judgement inputs: every entry carries a one-line basis, and a held
+      // exclusion is a pending sale, not a steady state
+      Object.entries(P.exclude || {}).forEach(([tk, basis]) => {
+        const id = cos.find(x => x.tk === tk) ? tk : null;
+        failIf('port', id, !(typeof basis === 'string' && basis.trim().length > 5), 'excluded without a basis note');
+        warnIf('port', id, !!((P.holdings || {}).positions || {})[tk], 'excluded but still held — sells at the next mark');
+        warnIf('port', id, !!((P.bench || {}).positions || {})[tk], 'excluded but still in the benchmark — rebuilds at the next mark');
+      });
       failIf('port', null, !(st.lambda >= (prm.lambdaMin || 0.3) - 1e-9 && st.lambda <= (prm.lambdaMax || 1.25) + 1e-9), `λ ${st.lambda} outside [${prm.lambdaMin}, ${prm.lambdaMax}]`);
       Object.entries(st.names || {}).forEach(([tk, ns]) => {
         failIf('port', cos.find(x => x.tk === tk) ? tk : null, !(ns.m >= (prm.mMin || 0.5) - 1e-9 && ns.m <= 1 + 1e-9), `${tk}: multiplier m ${ns.m} out of bounds`);

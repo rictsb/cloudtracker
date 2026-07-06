@@ -23,11 +23,23 @@ function pfW(x){return (x*100).toFixed(1)+'%';}
 /* today's views/targets from the live engine + the CURRENT (go-live) learning state */
 function pfTodayViews(){
   const watch={};(RAW_DATA.watchItems||[]).forEach(w=>{watch[w.tk]=(watch[w.tk]||0)+1;});
-  const rows=COMPANIES.map(c=>{const v=value(c);return{tk:c.tk,price:priceOf(c),target:v.target,ev:v.ev,contractedEV:v.contractedEV,legacy:legacyOf(c),watch:watch[c.tk]||0};});
+  const excluded=new Set(Object.keys(PF.exclude||{}));
+  const rows=COMPANIES.filter(c=>!excluded.has(c.tk)).map(c=>{const v=value(c);return{tk:c.tk,price:priceOf(c),target:v.target,ev:v.ev,contractedEV:v.contractedEV,legacy:legacyOf(c),watch:watch[c.tk]||0};});
   const state=JSON.parse(JSON.stringify(PF.state));
   const views=PortfolioCore.computeViews(rows,state,PF.params);
   const tw=PortfolioCore.targetWeights(views,PF.params);
-  return{views,tw};
+  return{views,tw,excluded};
+}
+
+/* chart range selector: trading-day windows */
+let PF_RANGE='1y';
+const PF_WINDOWS={'1d':1,'5d':5,'1m':21,'6m':126,'1y':252};
+function pfSetRange(r){PF_RANGE=r;render();}
+function pfRet(days,n,key){  // absolute return over the last n trading days (or since inception)
+  if(days.length<2)return null;
+  const i=Math.max(0,days.length-1-n);
+  const a=days[i][key],b=days[days.length-1][key];
+  return a>0?{r:b/a-1,partial:days.length-1<n}:null;
 }
 
 /* per-name NAV-point contributions: w(t−1) × return(t) × nav(t−1)/100, split sim vs live */
@@ -44,32 +56,43 @@ function pfAttribution(days,backtestThrough){
   return{sim,live};
 }
 
-function pfChartHTML(days,meta){
-  const W=640,H=260,ml=46,mr=12,mt=12,mb=26,pw=W-ml-mr,ph=H-mt-mb;
-  const lo=Math.min(...days.map(d=>Math.min(d.nav,d.bench))),hi=Math.max(...days.map(d=>Math.max(d.nav,d.bench)));
-  const span=Math.max(1e-9,Math.log(hi*1.05)-Math.log(lo*0.95));
-  const yOf=v=>mt+ph-((Math.log(v)-Math.log(lo*0.95))/span)*ph;
-  const xOf=i=>ml+(i/Math.max(1,days.length-1))*pw;
+/* cumulative % return over the selected window — both series rebased to 0% at window start */
+function pfChartHTML(allDays,meta){
+  const n=PF_WINDOWS[PF_RANGE]||252;
+  const days=allDays.slice(-(n+1));
+  if(days.length<2)return '<div class="legend2">not enough history for this window yet</div>';
+  const base={nav:days[0].nav,bench:days[0].bench};
+  const val=(d,k)=>(d[k]/base[k]-1)*100;
+  const W=640,H=260,ml=52,mr=12,mt=12,mb=26,pw=W-ml-mr,ph=H-mt-mb;
+  let lo=0,hi=0;days.forEach(d=>{lo=Math.min(lo,val(d,'nav'),val(d,'bench'));hi=Math.max(hi,val(d,'nav'),val(d,'bench'));});
+  const pad=Math.max(1,(hi-lo)*0.06);lo-=pad;hi+=pad;
+  const yOf=v=>mt+ph-((v-lo)/(hi-lo))*ph;
+  const xOf=i=>ml+(i/(days.length-1))*pw;
   const tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
   let s='';
-  // simulated-genesis region
+  // simulated-genesis region (within the window)
   let simEnd=days.length-1;
   for(let i=0;i<days.length;i++)if(days[i].d>meta.backtestThrough){simEnd=i-1;break;}
   if(simEnd>=0)s+=`<rect x="${ml}" y="${mt}" width="${(xOf(simEnd)-ml).toFixed(1)}" height="${ph}" fill="var(--far)" opacity="0.14"/>`;
-  const levels=[25,50,75,100,150,200,300,400,600,800,1200,1600,2400].filter(v=>v>=lo*0.95&&v<=hi*1.05);
-  levels.forEach(v=>{const y=yOf(v);s+=`<line x1="${ml}" y1="${y.toFixed(1)}" x2="${W-mr}" y2="${y.toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(y+3).toFixed(1)}" text-anchor="end" ${tx}>${v}</text>`;});
-  // date ticks: quarterly under ~1.7yr, else semiannual, else annual
-  const months=days.length>900?[1]:days.length>420?[1,7]:[1,4,7,10];
-  let lastLbl='';days.forEach((d,i)=>{const ym=d.d.slice(0,7),m=+d.d.slice(5,7);
-    if(ym!==lastLbl&&months.includes(m)){lastLbl=ym;
-      const x=Math.min(Math.max(xOf(i),ml+22),W-mr-22);
-      s+=`<text x="${x.toFixed(1)}" y="${(mt+ph+16).toFixed(1)}" text-anchor="middle" ${tx}>${d.d.slice(0,7)}</text>`;}});
-  const line=(key,style)=>`<polyline fill="none" ${style} points="${days.map((d,i)=>xOf(i).toFixed(1)+','+yOf(d[key]).toFixed(1)).join(' ')}"/>`;
+  // % gridlines at a nice step (~5 lines), 0% emphasized
+  const step=[0.5,1,2,5,10,20,25,50,100,200,400].find(st=>(hi-lo)/st<=7)||800;
+  for(let v=Math.ceil(lo/step)*step;v<=hi;v+=step){const y=yOf(v);
+    s+=`<line x1="${ml}" y1="${y.toFixed(1)}" x2="${W-mr}" y2="${y.toFixed(1)}" style="stroke:${v===0?'var(--ink-soft)':'var(--line)'};stroke-width:1"/><text x="${ml-6}" y="${(y+3).toFixed(1)}" text-anchor="end" ${tx}>${v>0?'+':''}${v}%</text>`;}
+  // date ticks: ~5 evenly spaced
+  const nt=Math.min(5,days.length);
+  for(let k=0;k<nt;k++){const i=Math.round(k*(days.length-1)/Math.max(1,nt-1));
+    const x=Math.min(Math.max(xOf(i),ml+20),W-mr-20);
+    const lbl=days.length>140?days[i].d.slice(0,7):days[i].d.slice(5);
+    s+=`<text x="${x.toFixed(1)}" y="${(mt+ph+16).toFixed(1)}" text-anchor="middle" ${tx}>${lbl}</text>`;}
+  const line=(key,style)=>`<polyline fill="none" ${style} points="${days.map((d,i)=>xOf(i).toFixed(1)+','+yOf(val(d,key)).toFixed(1)).join(' ')}"/>`;
   s+=line('bench','style="stroke:var(--ink-soft);stroke-width:1.3" stroke-dasharray="4 3"');
   s+=line('nav','style="stroke:var(--indigo);stroke-width:1.8"');
   if(simEnd>=0&&simEnd<days.length-1){const x=xOf(simEnd);s+=`<line x1="${x.toFixed(1)}" y1="${mt}" x2="${x.toFixed(1)}" y2="${mt+ph}" style="stroke:var(--clay);stroke-width:1" stroke-dasharray="2 3"/>`;}
-  s+=`<text x="${ml+6}" y="${mt+12}" ${tx}>simulated genesis</text>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Portfolio NAV vs equal-weight benchmark (log scale, base 100)">${s}</svg>`;
+  if(simEnd>=0)s+=`<text x="${ml+6}" y="${mt+12}" ${tx}>simulated genesis</text>`;
+  // endpoint labels
+  const lastD=days[days.length-1];
+  s+=`<text x="${(W-mr-4).toFixed(1)}" y="${(yOf(val(lastD,'nav'))-5).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:10px;fill:var(--indigo)">${pfPct(val(lastD,'nav')/100,1)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Cumulative return, portfolio vs equal-weight benchmark, ${PF_RANGE} window">${s}</svg>`;
 }
 
 function renderPortfolio(){
@@ -81,7 +104,7 @@ function renderPortfolio(){
   const days=PFH.days,meta=PFH.meta,last=days[days.length-1];
   const liveDays=days.filter(d=>d.d>PF.backtestThrough);
   let peak=0,mdd=0;days.forEach(d=>{peak=Math.max(peak,d.nav);mdd=Math.max(mdd,1-d.nav/peak);});
-  const {views,tw}=pfTodayViews();
+  const {views,tw,excluded}=pfTodayViews();
   const vBy={};views.forEach(v=>{vBy[v.tk]=v;});
   const dialsMoved=typeof A!=='undefined'&&typeof BASE!=='undefined'&&JSON.stringify(A)!==JSON.stringify(BASE);
 
@@ -95,23 +118,33 @@ function renderPortfolio(){
     stat('λ fight-the-market',PF.state.lambda.toFixed(2),'restarted neutral at go-live')+
     `</div>`;
 
-  h+=`<h4 class="sec">NAV vs equal-weight universe (log scale)</h4><div class="pf-chart">${pfChartHTML(days,meta)}</div>
-  <div class="legend2"><b>solid</b> portfolio · <b>dashed</b> equal-weight benchmark · shaded = simulated genesis (today's data.json against last year's prices — machinery validation, <b>not evidence of alpha</b>); the live record starts at the clay line.</div>`;
+  // absolute returns over standard windows — the number the chart is drawing
+  const retCell=(x)=>x==null?'<td class="r mono">—</td>':`<td class="r mono" style="color:${x.r>=0?'var(--pine)':'var(--clay)'}">${pfPct(x.r,Math.abs(x.r)<0.10?1:0)}${x.partial?'<span title="shorter history than the window">*</span>':''}</td>`;
+  h+=`<h4 class="sec">Absolute returns</h4><div style="overflow-x:auto"><table class="stab"><thead><tr><th></th><th class="r">1D</th><th class="r">5D</th><th class="r">1M</th><th class="r">6M</th><th class="r">1Y</th></tr></thead><tbody>`;
+  [['Portfolio','nav'],['Equal-weight','bench']].forEach(([lbl,key])=>{
+    h+=`<tr><td class="co">${lbl}</td>`+[1,5,21,126,252].map(nn=>retCell(pfRet(days,nn,key))).join('')+`</tr>`;});
+  h+=`</tbody></table></div>`;
+
+  const rangeBtns=Object.keys(PF_WINDOWS).map(r=>`<button class="bo-tog${PF_RANGE===r?' on':''}" onclick="pfSetRange('${r}')">${r.toUpperCase()}</button>`).join('');
+  h+=`<h4 class="sec">Cumulative return vs equal-weight universe</h4>
+  <div class="bo-head"><div class="bo-toggle">${rangeBtns}</div></div>
+  <div class="pf-chart">${pfChartHTML(days,meta)}</div>
+  <div class="legend2">Vertical axis = cumulative <b>%</b> return from the start of the selected window (both lines rebased to 0%). <b>solid</b> portfolio · <b>dashed</b> equal-weight benchmark · shaded = simulated genesis (today's data.json against last year's prices — machinery validation, <b>not evidence of alpha</b>); the live record starts at the clay line.</div>`;
 
   if(PF_ERR)h+=`<div class="ck-m mid"><span class="ck-lv">note</span>background refresh failed (${PF_ERR}) — showing the last loaded state. <button class="refreshbtn" onclick="retryPortfolio()">retry now</button></div>`;
   if(dialsMoved)h+=`<div class="ck-m mid"><span class="ck-lv">note</span><b>dials moved</b> "Target now" below reflects your sandbox dial settings, not the base case the daily job trades — hit "Reset to base case" to see the job's view.</div>`;
 
-  // holdings: current book (ledger) vs where today's views want it
-  const names=new Set([...Object.keys(last.w),...Object.keys(tw.weights)]);
+  // holdings: current book (ledger) vs where today's views want it (excluded names show until sold)
+  const names=new Set([...Object.keys(last.w),...Object.keys(tw.weights),...excluded].filter(tk=>last.w[tk]||tw.weights[tk]||excluded.has(tk)));
   const rows=[...names].map(tk=>({tk,cur:last.w[tk]||0,tgt:tw.weights[tk]||0,v:vBy[tk]})).sort((a,b)=>b.tgt-a.tgt||b.cur-a.cur);
   h+=`<h4 class="sec">Holdings — current book → today's target</h4><div style="overflow-x:auto"><table class="stab"><thead><tr>
     <th>Name</th><th class="r">Weight</th><th class="r">Target now</th><th class="r">Upside</th><th class="r">Confidence</th><th class="r">Mult m</th><th class="r">View ν</th></tr></thead><tbody>`;
-  rows.forEach(r=>{const v=r.v||{};
-    h+=`<tr><td class="co">${r.tk}</td><td class="r mono">${pfW(r.cur)}</td><td class="r mono">${pfW(r.tgt)}</td>
+  rows.forEach(r=>{const v=r.v||{};const ex=excluded.has(r.tk);
+    h+=`<tr><td class="co">${r.tk}${ex?' <span class="prov rumored" title="'+String((PF.exclude||{})[r.tk]||'').replace(/"/g,'&quot;')+'">excluded</span>':''}</td><td class="r mono">${pfW(r.cur)}</td><td class="r mono">${ex?'0.0%':pfW(r.tgt)}</td>
       <td class="r mono">${v.upside!=null?pfPct(v.upside,0):'—'}</td>
       <td class="r mono" title="hard backing ${(100*(v.hardShare||0)).toFixed(0)}% of EV (contracted floor + legacy)">${v.conf!=null?(v.conf*100).toFixed(0)+'%':'—'}</td>
       <td class="r mono">${v.m!=null?v.m.toFixed(2):'—'}</td>
-      <td class="r mono">${v.nu!=null?v.nu.toFixed(3):'—'}</td></tr>`;});
+      <td class="r mono">${ex?'out by mandate':v.nu!=null?v.nu.toFixed(3):'—'}</td></tr>`;});
   h+=`<tr><td class="co">Cash</td><td class="r mono">${pfW(last.cash)}</td><td class="r mono">${pfW(tw.cash)}</td><td class="r mono">—</td><td class="r mono">—</td><td class="r mono">—</td><td class="r mono">0</td></tr>`;
   h+=`</tbody></table></div>
   <div class="legend2">ν = λ × confidence × m × ln(target ÷ price) — the shrunk view that sizes the book. Confidence comes from how much of the target is contracted floor + marked legacy vs pipeline hope, less open watch-items. Softmax at T=${PF.params.temperature} (low = concentrated, no cap, by mandate); gross ${(tw.gross*100).toFixed(0)}% — cash grows mechanically when total edge thins. Trades fire only past the ${(PF.params.band*100).toFixed(0)}pt band.</div>`;

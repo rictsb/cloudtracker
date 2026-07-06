@@ -94,6 +94,12 @@ async function main() {
   const to = Math.floor(Date.now() / 1000);
   const from = to - (DAYS + 10) * 86400;
 
+  // exclusions are a standing judgement input — preserved (and honored) across regenerations
+  let exclude = {};
+  try { exclude = JSON.parse(fs.readFileSync(path.join(ROOT, 'portfolio.json'), 'utf8')).exclude || {}; } catch (e) {}
+  const excluded = new Set(Object.keys(exclude));
+  if (excluded.size) console.log(`excluded from book + benchmark: ${[...excluded].join(', ')}`);
+
   // refuse to clobber live history
   const histPath = path.join(ROOT, 'portfolio-history.json');
   if (fs.existsSync(histPath) && !FORCE) {
@@ -168,7 +174,7 @@ async function main() {
     Object.assign(E.ctx.prices, px);
     E.ctx.btc = lastBtc; E.ctx.eth = lastEth;
 
-    const rows = data.companies.filter(c => px[c.tk] > 0).map(c => {
+    const rows = data.companies.filter(c => px[c.tk] > 0 && !excluded.has(c.tk)).map(c => {
       const v = E.value(c);
       return { tk: c.tk, price: px[c.tk], target: v.target, ev: v.ev,
                contractedEV: v.contractedEV, legacy: E.legacyOf(c), watch: watch[c.tk] || 0 };
@@ -194,6 +200,7 @@ async function main() {
     // (today's data.json "knew" the year) — the ledger keeps them for inspection only
     state: { lambda: params.lambda0, names: {} },
     suspect: {},
+    exclude, lastExcludeKey: [...excluded].sort().join(','),
     // seed freshness at go-live from ACTUAL final-day prints — a name that stopped printing
     // months ago must enter live operation already counted stale, not masked by forward-fill
     lastFresh: Object.fromEntries(tickers.filter(tk => hist[tk][last.d] != null).map(tk => [tk, last.d])),

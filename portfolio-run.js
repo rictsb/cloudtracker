@@ -67,7 +67,13 @@ async function main() {
   const universe = new Set(data.companies.map(c => c.tk));
   pf.suspect = pf.suspect || {};
   pf.lastFresh = pf.lastFresh || {};
+  pf.exclude = pf.exclude || {};                 // ticker → one-line basis (judgement input, checks-enforced)
+  const excluded = new Set(Object.keys(pf.exclude));
+  // an exclusion change rebuilds the benchmark immediately — book and yardstick must share a universe
+  const excludeKey = [...excluded].sort().join(',');
+  const forceBenchReb = excludeKey !== (pf.lastExcludeKey || '');
   const notes = [];
+  if (forceBenchReb) notes.push(`investable universe changed (excluded: ${excludeKey || 'none'}) — benchmark rebuilt`);
 
   const today = etDate(Date.now());
   const dow = new Date(today + 'T12:00:00Z').getUTCDay();
@@ -168,7 +174,7 @@ async function main() {
   const watch = {};
   (data.watchItems || []).forEach(w => { watch[w.tk] = (watch[w.tk] || 0) + 1; });
 
-  const rows = data.companies.filter(c => px[c.tk] > 0 && !stale.has(c.tk) && !(pf.suspect[c.tk] > 0)).map(c => {
+  const rows = data.companies.filter(c => px[c.tk] > 0 && !stale.has(c.tk) && !(pf.suspect[c.tk] > 0) && !excluded.has(c.tk)).map(c => {
     const v = E.value(c);
     return { tk: c.tk, price: px[c.tk], target: v.target, ev: v.ev,
              contractedEV: v.contractedEV, legacy: E.legacyOf(c), watch: watch[c.tk] || 0 };
@@ -176,7 +182,7 @@ async function main() {
 
   const ctx = { date: today, rows, px, state: pf.state, params: pf.params,
                 holdings, bench, ledger, dayIdx: pf.dayIdx + 1,
-                eraStart: pf.backtestThrough, tradable, btc, eth, notes };
+                eraStart: pf.backtestThrough, tradable, excluded, forceBenchReb, btc, eth, notes };
   const rec = PC.step(ctx);
 
   writeAtomic(path.join(ROOT, 'portfolio-history.json'),
@@ -184,6 +190,7 @@ async function main() {
   writeAtomic(path.join(ROOT, 'portfolio.json'), JSON.stringify({
     asOf: today, backtestThrough: pf.backtestThrough, priceSource: pf.priceSource,
     params: pf.params, state: pf.state, suspect: pf.suspect, lastFresh: pf.lastFresh,
+    exclude: pf.exclude, lastExcludeKey: excludeKey,
     holdings: { cash: ctx.holdings.cash, positions: Object.fromEntries(Object.entries(ctx.holdings.positions).map(([k, v]) => [k, +v.toFixed(6)])) },
     bench: { cash: ctx.bench.cash, positions: Object.fromEntries(Object.entries(ctx.bench.positions).map(([k, v]) => [k, +v.toFixed(6)])), lastReb: ctx.bench.lastReb },
     dayIdx: ctx.dayIdx,

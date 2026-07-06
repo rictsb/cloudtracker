@@ -33,6 +33,8 @@ gross        = min(1, Σν⁺ ÷ 0.75) — cash grows mechanically when total ed
 - **Unattended-safety guards** (daily job): violent moves are split-checked (shares adjust, value-preserving) or quarantined on source conflict (3 suspect days → red Action + GitHub issue); dead feed → red Action; partial tape marks NAV but suspends trading; names stale >10d freeze as uninvestable; BTC/ETH forward-fill on outage. The Checks tab carries a "Portfolio ledger" group (NAV recompute, basis tripwire, staleness).
 - **Files**: `portfolio.json` (state, overwritten) · `portfolio-history.json` (the one sanctioned ledger). `engine.js` is the shared valuation engine (browser + node — one math). Daily mark: GitHub Action → `node portfolio-run.js` after US close, commits, Render redeploys.
 - **Benchmark**: equal-weight universe, monthly rebalance. Beat that, not SPX.
+- **Excluding a name from the book**: add it to `exclude` in `portfolio.json` with a one-line basis — it leaves book AND benchmark at the next mark; it stays in the tracker. (BTBT is excluded — special case.)
+- **Chart**: cumulative % return over a selectable window (1D/5D/1M/6M/1Y), both lines rebased to 0% at window start; absolute returns per window in the table above it.
 - **Genesis is simulated** (today's data.json vs last year's prices — not alpha); live record starts after `backtestThrough`. Regenerate with `node portfolio-backtest.js` (uses `FINNHUB_TOKEN` env if it has candle access, else Yahoo daily closes; BTC/ETH from Coinbase).
 
 ## Dashboard gauge

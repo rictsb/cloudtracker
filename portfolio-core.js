@@ -236,13 +236,15 @@
     const nav = markNav(ctx.holdings, ctx.px);
 
     // benchmark: equal-weight every investable name, rebalanced monthly (new listings enter then).
-    // Frozen names (in the bench but not investable today) carry their shares — never liquidated
-    // at a forward-filled phantom price; suspended days (empty tradable set) defer the rebuild.
+    // Frozen names (no clean price) carry their shares — never liquidated at a forward-filled
+    // phantom price. EXCLUDED names (deliberate, priced) are liquidated into the pool — a
+    // benchmark holding names the book may not own measures nothing. Suspended days defer.
     const investable = ctx.rows.filter(r => r.price > 0).map(r => r.tk);
     const suspended = !!(ctx.tradable && ctx.tradable.size === 0);
-    if (investable.length && !suspended && (ctx.bench.lastReb == null || ctx.dayIdx - ctx.bench.lastReb >= params.benchEvery)) {
+    if (investable.length && !suspended &&
+        (ctx.bench.lastReb == null || ctx.forceBenchReb || ctx.dayIdx - ctx.bench.lastReb >= params.benchEvery)) {
       const positions = {}; let frozenVal = 0;
-      for (const tk in ctx.bench.positions) if (!investable.includes(tk)) {
+      for (const tk in ctx.bench.positions) if (!investable.includes(tk) && !(ctx.excluded && ctx.excluded.has(tk))) {
         positions[tk] = ctx.bench.positions[tk]; frozenVal += ctx.bench.positions[tk] * (ctx.px[tk] || 0);
       }
       const investVal = Math.max(0, markNav(ctx.bench, ctx.px) - frozenVal);
