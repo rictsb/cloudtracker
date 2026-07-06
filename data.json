@@ -2481,7 +2481,7 @@
       "netDebt": 834,
       "shares": 380,
       "price": 38,
-      "legacyEV": 400,
+      "legacyEV": 629,
       "plannedRaise": 1000,
       "equityDiscount": 0,
       "sites": [
@@ -2598,7 +2598,8 @@
         "plannedRaise": "~$1B judgmental: APLD funds buildout via $2.15B PF2 senior secured notes (6.75% '31), Macquarie $5B perpetual preferred ($2.25M/MW, 12.75%) + ~$900M NCI + converts; telegraphs minimal common-equity/ATM issuance",
         "tier": "IG — ~1.2 GW under 15-yr take-or-pay, ~65% of revenue backed by U.S. investment-grade hyperscalers (Polaris Forge 2/3, Delta Forge 1); CoreWeave book de-risked to A3 via springing guarantee",
         "committedDebt": "ComputeCo-2 $2.15B (closed 3/10/26, PF2 200MW; escrow released 6/17/26) + ComputeCo-3 $1.59B (closed 6/16/26, ELN-04) — funded paper only, $430M FNBO revolver capacity excluded",
-        "seniorClaims": "Macquarie preferred $900M drawn face → ~$970M accreted (12.75% PIK) + ~$130M Polaris JV common NCI (10% TopCo 2)"
+        "seniorClaims": "Macquarie preferred $900M drawn face → ~$970M accreted (12.75% PIK) + ~$130M Polaris JV common NCI (10% TopCo 2)",
+        "legacy": "includes $229M capped-call intrinsic value (strike $9.752/cap $14.72, covers the full 46.1M convert shares; stock far above cap so value is fixed; Ex 10.2 unwind terms preserve it on redemption/early conversion)"
       },
       "narrative": "A pure-play AI data-center landlord that exited its own GPU cloud (spun into ChronoScale, ~97%-owned) precisely so hyperscalers would stop seeing it as a competitor — now leasing purpose-built powered shells under ~15-year take-or-pay leases. It has crossed ~1.2 GW of contracted capacity across four campuses (~$31B base / up to ~$73B with renewals): Ellendale/Polaris Forge 1 (400 MW, CoreWeave, now A3-guaranteed) plus Polaris Forge 2, Polaris Forge 3 and Delta Forge 1 leased to U.S. investment-grade hyperscalers (~65% of revenue IG). The investable question is execution and energization on a ~$3B-per-campus buildout funded largely by project debt, Macquarie's perpetual preferred and NCI rather than common equity — plus whether the planned REIT conversion lands.",
       "bull": [
@@ -2632,7 +2633,7 @@
       "committedDebt": 3740,
       "seniorClaims": 1100,
       "verified": {
-        "capital": "2026-07-02",
+        "capital": "2026-07-05",
         "contracts": "2026-06-30"
       }
     },
