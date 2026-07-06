@@ -250,6 +250,46 @@
       "note": "Curated miner / HPC commentary and management interviews — feeds the sentiment desk and weekly sweep. Management statements in interviews enter as estimated until confirmed in a filing; channel opinion is a lead, never a fact source."
     },
     {
+      "id": "agrippa",
+      "name": "Agrippa Investments (Substack)",
+      "type": "commentary",
+      "url": "https://www.agrippa.investments/",
+      "provCeiling": "estimated",
+      "note": "Close-follower, pseudonymous (X @Agrippa_Inv) — IREN followed at extreme depth (site/deal detail, capital raises, exec comp; colo-vs-compute underwriting workbook behind the paid tier), NUAI recently added, CRWV/NBIS used as comps. Disclosed concentrated IREN/NUAI long — a well-modeled bull, not neutral coverage. Leads and deal detail; facts re-verified against filings."
+    },
+    {
+      "id": "hypertech",
+      "name": "Daniel Romero — Hyper Tech Invest (Substack)",
+      "type": "commentary",
+      "url": "https://hypertechinvest.com/",
+      "provCeiling": "estimated",
+      "note": "Close-follower — long-form neocloud/AI-buildout writeups: NBIS flagship bull, plus CRWV, IREN, GLXY, APLD, RIOT and supply-chain names; maintains operator and announced-deal comp tables. Paywalled, talks his own long book. Useful for cross-name comps; never a sole fact source."
+    },
+    {
+      "id": "fransbakker",
+      "name": "Frans Bakker (X)",
+      "type": "commentary",
+      "url": "https://x.com/FransBakker9812",
+      "provCeiling": "estimated",
+      "note": "Close-follower — the best-known IREN retail account on X: monthly investor-update breakdowns, ATM/convertible forensics, Childress/Sweetwater site-visit threads, weekly recorded Space that has hosted co-CEO Dan Roberts. Free and genuinely granular on filings; heavily long IREN. Management statements made on his Space enter as estimated until filed."
+    },
+    {
+      "id": "zeiner",
+      "name": "Stephen Zeiner (YouTube)",
+      "type": "commentary",
+      "url": "https://www.youtube.com/@stephenzeiner",
+      "provCeiling": "rumored",
+      "note": "Close-follower of the miner-pivot small-cap corner — near-daily reaction commentary, KEEL dominant plus HIVE, SLNH, Fermi America. Bullish KEEL retail advocacy, no models or interviews — a sentiment/lead feed only, so claims from it alone enter as rumored."
+    },
+    {
+      "id": "springbok",
+      "name": "Springbok Finance (Substack)",
+      "type": "commentary",
+      "url": "https://springbokfinance.substack.com/",
+      "provCeiling": "estimated",
+      "note": "Close-follower — anonymous neocloud research Substack (launched Mar 2026, small): IREN heaviest within a NBIS/CRWV/APLD/CIFR/DOCN portfolio, plus AI-memory (MU, SNDK). Publishes models and price targets — PTs ignored by convention. Anonymity and a ~4-month track record are the caveats; everything re-verified."
+    },
+    {
       "id": "btc-miner-terminal",
       "name": "BTC Miner Terminal",
       "type": "research",
