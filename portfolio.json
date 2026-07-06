@@ -1,0 +1,79 @@
+{
+ "asOf": "2026-07-02",
+ "backtestThrough": "2026-07-02",
+ "priceSource": "yahoo",
+ "params": {
+  "temperature": 0.15,
+  "confMin": 0.35,
+  "watchPenalty": 0.9,
+  "watchPenaltyFloor": 0.7,
+  "deMinimis": 0.01,
+  "band": 0.02,
+  "grossFullAt": 0.75,
+  "tcBps": 5,
+  "lambda0": 0.75,
+  "lambdaMin": 0.3,
+  "lambdaMax": 1.25,
+  "lambdaGain": 0.3,
+  "learnEvery": 21,
+  "lookback": 63,
+  "mShrink": 0.92,
+  "mRecover": 1.03,
+  "mMin": 0.5,
+  "excessThreshold": 0.1,
+  "benchEvery": 21
+ },
+ "state": {
+  "lambda": 0.75,
+  "names": {}
+ },
+ "holdings": {
+  "cash": -0.024611966884104483,
+  "positions": {
+   "RIOT": 0.741583,
+   "IREN": 9.327995,
+   "CIFR": 1.382003,
+   "KEEL": 14.536171,
+   "MARA": 1.402788,
+   "CLSK": 1.66696,
+   "BTDR": 1.371922,
+   "CRWV": 0.57212,
+   "BTBT": 14.140724,
+   "SLNH": 7.629976,
+   "NBIS": 0.057226,
+   "CORZ": 0.699892,
+   "APLD": 0.45454,
+   "HIVE": 2.353146,
+   "GLXY": 0.332349,
+   "NUAI": 1.572273
+  }
+ },
+ "bench": {
+  "cash": 0,
+  "positions": {
+   "CRWV": 0.157431,
+   "NBIS": 0.057577,
+   "RIOT": 0.541847,
+   "BTDR": 0.948062,
+   "IREN": 0.327516,
+   "SLNH": 10.740189,
+   "GLXY": 0.527033,
+   "HUT": 0.127135,
+   "CIFR": 0.605568,
+   "MARA": 1.071722,
+   "CORZ": 0.579656,
+   "WULF": 0.587813,
+   "FRMI": 1.591139,
+   "WYFI": 0.417153,
+   "HIVE": 3.999006,
+   "APLD": 0.398101,
+   "ABTC": 1.402571,
+   "CLSK": 0.978287,
+   "BTBT": 8.216538,
+   "NUAI": 2.448903,
+   "KEEL": 2.60143
+  },
+  "lastReb": 252
+ },
+ "dayIdx": 255
+}
