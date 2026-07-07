@@ -93,8 +93,7 @@
 
       failIf('capital', id, !(c.shares > 0), 'shares must be > 0');
       failIf('capital', id, !(c.price > 0), 'price must be > 0');
-      failIf('capital', id, Math.abs(c.netDebt) > 200000, `netDebt ${c.netDebt} implausible`);
-      warnIf('capital', id, Math.abs(c.netDebt) > 60000 && c.shares * c.price < 100000, `netDebt ${c.netDebt} vs sub-$100B market cap — mega-cap-scale debt on a small name, check`);
+      failIf('capital', id, Math.abs(c.netDebt) > 60000, `netDebt ${c.netDebt} implausible`);
       failIf('capital', id, c.contractedPct < 0 || c.contractedPct > 100, 'contractedPct out of range');
       failIf('capital', id, !!c.equityDiscount && (c.equityDiscount < 0 || c.equityDiscount > 0.5), 'equityDiscount out of range');
       failIf('capital', id, (c.plannedRaise || 0) < 0, 'negative plannedRaise');
