@@ -3,7 +3,7 @@
 The terse, always-current reference. Plain-English companion to `AI-Infra-Tracker-Spec.md` (binding). Present-tense only — no history (that's `CHANGELOG.md`).
 
 ## What it is
-First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Leases** (the registry + print tape) · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser) · **Portfolio** (the self-balancing paper book).
+First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Leases** (the registry + print tape) · **Coverage** (contracted value vs market cap) · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser) · **Portfolio** (the self-balancing paper book).
 
 ## The formula
 One engine; only the per-MW step branches by model.
@@ -42,6 +42,9 @@ gross        = min(1, Σν⁺ ÷ 0.75) — cash grows mechanically when total ed
 - **Chart**: cumulative % return over a selectable window (1D/5D/1M/6M/1Y), both lines rebased to 0% at window start; absolute returns per window in the table above it.
 - **Genesis is simulated** (today's data.json vs last year's prices — not alpha); live record starts after `backtestThrough`. Regenerate with `node portfolio-backtest.js` (uses `FINNHUB_TOKEN` env if it has candle access, else Yahoo daily closes; BTC/ETH from Coinbase).
 
+## Coverage screen
+One row per name, sortable by any column: **market cap** (reported/basic `sharesReported` × live price — NOT fully-diluted) vs **confirmed contracted value** (gross headline $ of every effective lease + compute contract), gross-weighted **avg term**, **annualized** (Σ gross ÷ term — a term-average, ramps not modelled), and two coverage ratios (annual ÷ cap, backlog ÷ cap). Two display-only fields feed it: `grossTotalM` on each lease (the announced value, distinct from the engine's `noiPerMWyr` NOI) and `sharesReported` per company (basic shares, distinct from the engine's FD `shares`). Row click → per-contract breakdown with terms. Excludes options, LOIs, non-performing books.
+
 ## Dashboard gauge
 Per row: bar = our value (target), split **contracted floor (solid) / expected pipeline (hatched) / legacy (gold)**; dark line = market price; green gap = upside, red = overvalued. Sorted by upside. "▸ valuation narrative" expands the per-name thesis.
 
@@ -65,6 +68,7 @@ Intuition: the real discount on future compute = discount − trend.
 ## Fields (per company, `data.json`)
 - **Move the target:** `model` (owner/landlord/holdco) · `tier` (proven/ig/ig-reit) · `sites[]` {n, mw, owned, region cheap/mid/exp/eu/au, yr, mo, prov disclosed/estimated/rumored} · `contractedPct` · `termYrs` (owner lock) · `mtm` (landlord) · `netDebt` · `committedDebt` (issued project bonds funding credited sites, even if escrowed) · `seniorClaims` (drawn preferred + NCI) · `shares` (fully diluted) · `legacyEV` · `btc` · `eth` · `stake` {tk, pct} · `plannedRaise` · `equityDiscount`.
 - **Need a `basis` note:** `plannedRaise`, non-Proven `tier`, `equityDiscount`, `committedDebt`, `seniorClaims`.
+- **Coverage-screen only (display, never touch the engine):** `sharesReported` (basic shares for the reported market cap) · `grossTotalM` on each lease (gross headline contract value vs the engine's `noiPerMWyr` NOI).
 - **Reference only:** `narrative`, `thesis`, `bull`, `bear`, `catalysts`, `risks`, `finMix`, `log`.
 
 ## Conventions

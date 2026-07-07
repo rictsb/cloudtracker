@@ -18,7 +18,7 @@ let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
-let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1;
+let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1,covSort='totcov',covDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
@@ -53,7 +53,7 @@ function render(){
   const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
   document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin+CONST.leasedCMargin)/100)*(A.multiple*(1+CONST.multPremium*0.6)))+' / MW';
   document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
-  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else renderSites();
+  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else renderSites();
 }
 
 /* ---- leases page: the registry rendered — every signed book + its economics (the print tape) ---- */
@@ -141,6 +141,48 @@ function renderLeases(){
     if(k===ocSort)ocDir*=-1;else{ocSort=k;ocDir=(k==='tk'||k==='cp'||k==='gen'||k==='signed')?1:-1;}renderLeases();}));
   body.querySelectorAll('.ocrow').forEach(tr=>tr.addEventListener('click',()=>{const d2=document.getElementById('oc-'+tr.dataset.i);if(d2)d2.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d2&&d2.classList.contains('open')?'▾':'▸';}));
   body.querySelectorAll('.lrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ld-'+tr.dataset.i);if(d)d.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
+}
+/* ---- coverage page: confirmed contracted value vs live market cap (gross headline $, not NOI) ---- */
+function renderCoverage(){
+  const body=document.getElementById('cover-body');if(!body)return;
+  const rows=COMPANIES.map(c=>{
+    const px=priceOf(c),mcap=(c.sharesReported||c.shares)*px;   // reported (basic) shares × live price, $M
+    const items=[];
+    (c.leases||[]).forEach(l=>{if(l.effective===false)return;const g=l.grossTotalM||0;if(g<=0)return;
+      items.push({kind:'lease',cp:l.counterparty,gross:g,term:l.termYrs,mw:l.mw,ann:g/l.termYrs});});
+    (c.contracts||[]).forEach(x=>{if(x.effective===false)return;const g=x.totalRevM||0;if(g<=0)return;
+      items.push({kind:'compute',cp:x.counterparty,gross:g,term:x.termYrs,mw:x.mw||null,ann:g/x.termYrs});});
+    const gross=items.reduce((a,i)=>a+i.gross,0),ann=items.reduce((a,i)=>a+i.ann,0);
+    const wterm=gross?items.reduce((a,i)=>a+i.gross*i.term,0)/gross:0;
+    return {c,px,mcap,items,gross,ann,wterm,anncov:mcap?ann/mcap:0,totcov:mcap?gross/mcap:0};
+  });
+  const CKEY={tk:r=>r.c.tk,mcap:r=>r.mcap,gross:r=>r.gross,wterm:r=>r.wterm,ann:r=>r.ann,anncov:r=>r.anncov,totcov:r=>r.totcov};
+  const kf=CKEY[covSort]||CKEY.totcov;
+  rows.sort((x,y)=>{const av=kf(x),bv=kf(y);return (typeof av==='string'?av.localeCompare(bv):av-bv)*covDir;});
+  const uMcap=rows.reduce((a,r)=>a+r.mcap,0),uGross=rows.reduce((a,r)=>a+r.gross,0),uAnn=rows.reduce((a,r)=>a+r.ann,0);
+  let h=`<div class="ssummary" style="margin:4px 4px 16px"><span><b>${fmtM(uMcap)}</b> total market cap</span><span><b>${fmtM(uGross)}</b> confirmed contracted</span><span><b>${fmtM(uAnn)}</b>/yr annualized</span><span>backlog / market cap <b>${(uGross/uMcap*100).toFixed(0)}%</b></span></div>`;
+  const cols=[['tk','Company',''],['mcap','Market cap','r'],['gross','Contracted','r'],['wterm','Avg term','r'],['ann','Annualized','r'],['anncov','Ann ÷ cap','r'],['totcov','Backlog ÷ cap','r']];
+  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${cols.map(([k,lab,cl])=>`<th class="${cl}" data-cv="${k}">${lab}${covSort===k?' <span class="arr">'+(covDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
+  rows.forEach((r,i)=>{const none=r.items.length===0;
+    h+=`<tr class="cvrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">${none?'':'▸'}</td>`+
+      `<td class="co">${r.c.tk}</td>`+
+      `<td class="r mono">${fmtM(r.mcap)}</td>`+
+      `<td class="r mono">${none?'—':fmtM(r.gross)}</td>`+
+      `<td class="r mono">${none?'—':r.wterm.toFixed(1)+'y'}</td>`+
+      `<td class="r mono">${none?'—':fmtM(r.ann)+'/y'}</td>`+
+      `<td class="r mono">${none?'—':(r.anncov*100).toFixed(0)+'%'}</td>`+
+      `<td class="r mono"><b>${none?'—':(r.totcov*100).toFixed(0)+'%'}</b></td></tr>`;
+    if(!none){const its=[...r.items].sort((a,b)=>b.gross-a.gross);
+      h+=`<tr class="sdetail" id="cv-${i}"><td colspan="8"><div style="padding:8px 14px 12px">`+
+        `<table class="stab" style="margin:0;width:100%"><thead><tr><th>Counterparty</th><th></th><th class="r">Gross</th><th class="r">Term</th><th class="r">Annualized</th><th class="r">IT&nbsp;MW</th></tr></thead><tbody>`+
+        its.map(it=>`<tr><td style="max-width:300px">${it.cp}</td><td><span class="prov ${it.kind==='lease'?'disclosed':'estimated'}">${it.kind==='lease'?'colo lease':'compute'}</span></td><td class="r mono">${fmtM(it.gross)}</td><td class="r mono">${it.term}y</td><td class="r mono">${fmtM(it.ann)}/y</td><td class="r mono">${it.mw?it.mw.toLocaleString():'—'}</td></tr>`).join('')+
+        `</tbody></table><a class="clearfilter" href="#${r.c.tk}" style="font-size:11px">open ${r.c.tk} page →</a></div></td></tr>`;}
+  });
+  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>Market cap</b> = reported (basic) shares × live price — tracks the tape, not fully-diluted. <b>Contracted</b> = gross value of every signed/effective lease + compute contract (the headline announced $, not NOI). <b>Annualized</b> = Σ(gross ÷ term) — a term-average, not a current run-rate (many contracts ramp from 2027+). <b>Ann ÷ cap</b> and <b>Backlog ÷ cap</b> measure contracted revenue against market value. Excludes options, LOIs and non-performing books. Click a row for the per-contract breakdown with terms.</div>`;
+  body.innerHTML=h;
+  body.querySelectorAll('th[data-cv]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.cv;
+    if(k===covSort)covDir*=-1;else{covSort=k;covDir=(k==='tk')?1:-1;}renderCoverage();}));
+  body.querySelectorAll('.cvrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('cv-'+tr.dataset.i);if(!d)return;d.classList.toggle('open');const car=tr.querySelector('td');if(car&&car.textContent)car.textContent=d.classList.contains('open')?'▾':'▸';}));
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
 let RAW_DATA=null;
@@ -436,6 +478,7 @@ function route(){
   }
   if(raw==='checks'){showDashboard('checks',null);return;}
   if(raw==='leases'){showDashboard('leases',null);return;}
+  if(raw==='coverage'){showDashboard('cover',null);return;}
   if(raw==='portfolio'){showDashboard('port',null);return;}
   showDashboard('cmp',null);
 }
@@ -449,12 +492,13 @@ function showDashboard(v,filter){
   const vc=document.getElementById('view-checks');if(vc)vc.style.display=v==='checks'?'':'none';
   const vp=document.getElementById('view-port');if(vp)vp.style.display=v==='port'?'':'none';
   const vl=document.getElementById('view-leases');if(vl)vl.style.display=v==='leases'?'':'none';
+  const vv=document.getElementById('view-cover');if(vv)vv.style.display=v==='cover'?'':'none';
   render();window.scrollTo(0,0);
 }
 
 /* ---- wiring (after data loads) ---- */
 function wireEvents(){
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':'')));
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':t.dataset.view==='cover'?'coverage':'')));
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});

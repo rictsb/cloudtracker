@@ -682,7 +682,8 @@
           "source": "Residual reconciling named records to the $99.4B 3/31/26 revenue backlog ($98.8B RPO + $0.6B)"
         }
       ],
-      "signedRate": 9.3
+      "signedRate": 9.3,
+      "sharesReported": 545.6
     },
     {
       "tk": "NBIS",
@@ -993,7 +994,8 @@
           "source": "Q1-26 ARR $1.92B — aggregate short-duration book, not a single TCV"
         }
       ],
-      "signedRate": 11.5
+      "signedRate": 11.5,
+      "sharesReported": 256.0
     },
     {
       "tk": "RIOT",
@@ -1155,9 +1157,11 @@
           "signed": "2026-01",
           "effective": true,
           "source": "Q1-26 deck: $636M rev/$510M NOI over initial 10yr; 25MW @$25M/yr + 25MW tranches",
-          "totalRevM": 636
+          "totalRevM": 636,
+          "grossTotalM": 636
         }
-      ]
+      ],
+      "sharesReported": 378.1
     },
     {
       "tk": "BTDR",
@@ -1354,7 +1358,8 @@
           "source": "8-K 6/29/26: conditions precedent; NOT in engine until effective",
           "grossMW": 225
         }
-      ]
+      ],
+      "sharesReported": 243.3
     },
     {
       "tk": "IREN",
@@ -1639,7 +1644,8 @@
           "source": "~$1B TCV inference from ARR × term"
         }
       ],
-      "signedRate": 10.1
+      "signedRate": 10.1,
+      "sharesReported": 357.4
     },
     {
       "tk": "SLNH",
@@ -1719,7 +1725,8 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "sharesReported": 157.8
     },
     {
       "tk": "GLXY",
@@ -1851,9 +1858,11 @@
           "signed": "2025-03",
           "effective": true,
           "source": "Phase PRs: 133+260+133MW, 15yr + 2x5 opts; term-avg $2.06M (verifier)",
-          "totalRevM": 18000
+          "totalRevM": 18000,
+          "grossTotalM": 16250
         }
-      ]
+      ],
+      "sharesReported": 389.9
     },
     {
       "tk": "HUT",
@@ -1991,7 +2000,8 @@
           "effective": true,
           "source": "8-K 12/17/25: $7.0B/15yr NNN/245MW IT",
           "totalRevM": 7000,
-          "grossMW": 330
+          "grossMW": 330,
+          "grossTotalM": 7000
         },
         {
           "id": "hut-beaconpoint",
@@ -2004,7 +2014,8 @@
           "effective": true,
           "source": "PR: 352MW IT, 15yr; SPV bonds 6/9/26",
           "grossMW": 500,
-          "totalRevM": 9800
+          "totalRevM": 9800,
+          "grossTotalM": 9800
         }
       ],
       "contracts": [
@@ -2021,7 +2032,8 @@
           "gpuCount": 1096,
           "mw": 1.5
         }
-      ]
+      ],
+      "sharesReported": 112.6
     },
     {
       "tk": "CIFR",
@@ -2206,7 +2218,8 @@
           "effective": true,
           "source": "PR 9/25/25: ~$3B/10yr/168MW IT; 80-85% NOI (verifier 1.48)",
           "totalRevM": 3008,
-          "grossMW": 244
+          "grossMW": 244,
+          "grossTotalM": 3000
         },
         {
           "id": "cifr-fs-blp2",
@@ -2217,7 +2230,8 @@
           "kind": "build-to-spec",
           "signed": "2025-11",
           "effective": true,
-          "source": "A&R lease: +39MW to full 300MW gross"
+          "source": "A&R lease: +39MW to full 300MW gross",
+          "grossTotalM": 830
         },
         {
           "id": "cifr-aws-blackpearl",
@@ -2229,7 +2243,8 @@
           "signed": "2025-10",
           "effective": true,
           "source": "8-K: 300MW gross/216 IT, 15yr",
-          "grossMW": 300
+          "grossMW": 300,
+          "grossTotalM": 5500
         },
         {
           "id": "cifr-aws-stingray",
@@ -2241,9 +2256,11 @@
           "signed": "2026-03",
           "effective": true,
           "source": "Stingray notes deck 6/15/26: 100MW gross/70 IT",
-          "grossMW": 100
+          "grossMW": 100,
+          "grossTotalM": 2000
         }
-      ]
+      ],
+      "sharesReported": 409
     },
     {
       "tk": "MARA",
@@ -2350,7 +2367,8 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "sharesReported": 381.3
     },
     {
       "tk": "CORZ",
@@ -2532,7 +2550,8 @@
           "signed": "2024-06",
           "effective": true,
           "source": "8-Ks Jun 2024–2025: ~$10B, ~570MW critical IT, ~12yr",
-          "totalRevM": 9925
+          "totalRevM": 9925,
+          "grossTotalM": 10200
         },
         {
           "id": "corz-crwv-austin",
@@ -2543,9 +2562,11 @@
           "kind": "retrofit",
           "signed": "2024-02",
           "effective": true,
-          "source": "10-K: 8-yr head lease drags NOI (verifier 0.60)"
+          "source": "10-K: 8-yr head lease drags NOI (verifier 0.60)",
+          "grossTotalM": 100
         }
-      ]
+      ],
+      "sharesReported": 317.9
     },
     {
       "tk": "WULF",
@@ -2716,7 +2737,8 @@
           "effective": true,
           "source": "10-K: 60MW IT, 10yr, ~$90M/yr",
           "totalRevM": 900,
-          "grossMW": 72
+          "grossMW": 72,
+          "grossTotalM": 1100
         },
         {
           "id": "wulf-fluidstack",
@@ -2728,7 +2750,8 @@
           "signed": "2025-08",
           "effective": true,
           "source": "10-K/PRs: 378MW IT, $6.7B initial 10yr",
-          "totalRevM": 6700
+          "totalRevM": 6700,
+          "grossTotalM": 6700
         },
         {
           "id": "wulf-anthropic",
@@ -2741,9 +2764,11 @@
           "effective": true,
           "source": "8-K 7/6/26: $19B/20yr/401MW IT",
           "totalRevM": 19000,
-          "grossMW": 480
+          "grossMW": 480,
+          "grossTotalM": 19000
         }
-      ]
+      ],
+      "sharesReported": 495.5
     },
     {
       "tk": "FRMI",
@@ -2843,7 +2868,8 @@
       "verified": {
         "capital": "2026-07-06",
         "contracts": "2026-07-06"
-      }
+      },
+      "sharesReported": 637.6
     },
     {
       "tk": "WYFI",
@@ -2994,7 +3020,8 @@
           "signed": "2025-11",
           "effective": true,
           "source": "$865M/10yr/40MW ($2.16M rev incl NRCs → ~85% NOI)",
-          "totalRevM": 865
+          "totalRevM": 865,
+          "grossTotalM": 865
         },
         {
           "id": "wyfi-cerebras",
@@ -3005,7 +3032,8 @@
           "kind": "retrofit",
           "signed": "2025-02",
           "effective": true,
-          "source": "built-to-suit colo, 5MW"
+          "source": "built-to-suit colo, 5MW",
+          "grossTotalM": 59
         }
       ],
       "contracts": [
@@ -3103,7 +3131,8 @@
           "source": "MSA 12/12/23, >$50M annualized; PAUSED since ~Nov-25 (payment dispute) — carried at zero pending resolution",
           "gpuCount": 2048
         }
-      ]
+      ],
+      "sharesReported": 38.6
     },
     {
       "tk": "HIVE",
@@ -3240,7 +3269,8 @@
           "mw": 1
         }
       ],
-      "signedRate": 14.5
+      "signedRate": 14.5,
+      "sharesReported": 267.4
     },
     {
       "tk": "APLD",
@@ -3437,7 +3467,8 @@
           "signed": "2025-05",
           "effective": true,
           "source": "8-K 6/2/25: two ~15yr leases, ~$7B; PF1 ELN-02/03; ~85% NOI (verifier)",
-          "totalRevM": 7000
+          "totalRevM": 7000,
+          "grossTotalM": 7000
         },
         {
           "id": "apld-crwv-eln04",
@@ -3449,7 +3480,8 @@
           "signed": "2025-08",
           "effective": true,
           "source": "8-K 8/29/25: $4.0B/15yr Bldg 4",
-          "totalRevM": 4000
+          "totalRevM": 4000,
+          "grossTotalM": 4000
         },
         {
           "id": "apld-igA-pf2",
@@ -3461,7 +3493,8 @@
           "signed": "2025-10",
           "effective": true,
           "source": "PR/8-K 10/22/25: ~$5B/200MW/15yr; 85-86% NOI",
-          "totalRevM": 5000
+          "totalRevM": 5000,
+          "grossTotalM": 5000
         },
         {
           "id": "apld-igB-df1",
@@ -3473,7 +3506,8 @@
           "signed": "2026-04",
           "effective": true,
           "source": "PR 4/23/26: $7.5B/300MW/15yr",
-          "totalRevM": 7500
+          "totalRevM": 7500,
+          "grossTotalM": 7500
         },
         {
           "id": "apld-igB-pf3",
@@ -3485,7 +3519,8 @@
           "signed": "2026-05",
           "effective": true,
           "source": "PR 5/20/26: $7.5B/300MW/15yr take-or-pay",
-          "totalRevM": 7500
+          "totalRevM": 7500,
+          "grossTotalM": 7500
         },
         {
           "id": "apld-igB-df2",
@@ -3497,7 +3532,8 @@
           "signed": "2026-06",
           "effective": true,
           "source": "8-K 6/9/26: $5.2B/210MW/15yr",
-          "totalRevM": 5200
+          "totalRevM": 5200,
+          "grossTotalM": 5200
         }
       ],
       "contracts": [
@@ -3513,7 +3549,8 @@
           "source": "8-K EX-99.2 May-23: \"up to $180M\" first AI cloud customer; business being separated as ChronoScale",
           "gpuCount": 6144
         }
-      ]
+      ],
+      "sharesReported": 285.8
     },
     {
       "tk": "ABTC",
@@ -3559,7 +3596,8 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "sharesReported": 70.9
     },
     {
       "tk": "CLSK",
@@ -3658,7 +3696,8 @@
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-06-30"
-      }
+      },
+      "sharesReported": 255.6
     },
     {
       "tk": "BTBT",
@@ -3712,7 +3751,8 @@
       "verified": {
         "capital": "2026-07-02",
         "contracts": "2026-06-30"
-      }
+      },
+      "sharesReported": 353.4
     },
     {
       "tk": "NUAI",
@@ -3796,7 +3836,8 @@
         "capital": "2026-07-05",
         "contracts": "2026-07-05"
       },
-      "thesis": "A single-lease binary: a top-4 hyperscaler is in advanced talks on TCDC/Odessa with a hard Oct-8 financing deadline, but NUAI keeps only ~20% of the project under the Apollo/Stream JV and carries a 20% governance discount. Sign the lease and it re-rates; miss the date and the bridge wobbles."
+      "thesis": "A single-lease binary: a top-4 hyperscaler is in advanced talks on TCDC/Odessa with a hard Oct-8 financing deadline, but NUAI keeps only ~20% of the project under the Apollo/Stream JV and carries a 20% governance discount. Sign the lease and it re-rates; miss the date and the bridge wobbles.",
+      "sharesReported": 101.3
     },
     {
       "tk": "KEEL",
@@ -3894,7 +3935,8 @@
         "capital": "2026-07-05",
         "contracts": "2026-07-05"
       },
-      "thesis": "The Bitfarms successor owns three zoned, power-secured campuses (478MW, all existence-derisked) with ~$920M of liquidity and zero leases — the market prices lease doubt, we credit the powered land. Three targeted YE26 leases are the catalysts; both converts are out-of-the-money, so dilution waits on success."
+      "thesis": "The Bitfarms successor owns three zoned, power-secured campuses (478MW, all existence-derisked) with ~$920M of liquidity and zero leases — the market prices lease doubt, we credit the powered land. Three targeted YE26 leases are the catalysts; both converts are out-of-the-money, so dilution waits on success.",
+      "sharesReported": 603.8
     }
   ],
   "watchItems": [

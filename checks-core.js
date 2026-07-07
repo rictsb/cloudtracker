@@ -16,7 +16,7 @@
     { k: 'basis',   name: 'Judgement discipline',   guards: 'every plannedRaise / non-Proven tier / equityDiscount / committedDebt / seniorClaims carries a sourced basis' },
     { k: 'stakes',  name: 'Stake integrity',        guards: 'stake targets tracked; pct in (0,1]; no self-stakes or cycles at any depth' },
     { k: 'fresh',   name: 'Freshness',              guards: 'thesis present & ≤3 sentences; developments log recency; filing-verification age' },
-    { k: 'leases',  name: 'Lease registry',         guards: 'every leaseId resolves; signed NOI within sane bounds; effective leases map to sites; sources present; leased sites disclosed; contracted% ≈ leased share' },
+    { k: 'leases',  name: 'Lease registry',         guards: 'every leaseId resolves; signed NOI within sane bounds; effective leases map to sites; sources present; leased sites disclosed; contracted% ≈ leased share; gross contract value ≥ NOI base-term' },
     { k: 'port',    name: 'Portfolio ledger',       guards: 'NAV recomputes from holdings; dates monotonic; weights sum to 1; px-vs-fundamentals basis tripwire; ledger freshness; learning-state bounds' },
   ];
 
@@ -93,6 +93,8 @@
 
       failIf('capital', id, !(c.shares > 0), 'shares must be > 0');
       failIf('capital', id, !(c.price > 0), 'price must be > 0');
+      warnIf('capital', id, !(c.sharesReported > 0), 'no sharesReported (basic shares for the Coverage market cap)');
+      warnIf('capital', id, c.sharesReported > 0 && c.sharesReported > c.shares * 1.05, `sharesReported ${c.sharesReported} > FD shares ${c.shares} (basic should be ≤ fully-diluted)`);
       failIf('capital', id, Math.abs(c.netDebt) > 60000, `netDebt ${c.netDebt} implausible`);
       failIf('capital', id, c.contractedPct < 0 || c.contractedPct > 100, 'contractedPct out of range');
       failIf('capital', id, !!c.equityDiscount && (c.equityDiscount < 0 || c.equityDiscount > 0.5), 'equityDiscount out of range');
@@ -145,6 +147,12 @@
         if (l.effective !== false) {
           failIf('leases', id, !(l.noiPerMWyr >= 0.4 && l.noiPerMWyr <= 3.5), `lease ${l.id}: NOI $${l.noiPerMWyr}M/MW·yr outside sane bounds (0.4–3.5)`);
           failIf('leases', id, !(l.termYrs >= 1 && l.termYrs <= 30), `lease ${l.id}: term ${l.termYrs}yr out of range`);
+          // grossTotalM = headline gross contract value (Coverage tab); must exist and exceed the NOI base-term (gross ≥ net)
+          warnIf('leases', id, l.grossTotalM == null, `lease ${l.id}: no grossTotalM (gross headline value the Coverage tab needs)`);
+          if (l.grossTotalM != null) {
+            failIf('leases', id, !(l.grossTotalM > 0), `lease ${l.id}: grossTotalM must be > 0`);
+            warnIf('leases', id, l.grossTotalM < l.noiPerMWyr * l.mw * l.termYrs * 0.98, `lease ${l.id}: grossTotalM $${l.grossTotalM}M below NOI base-term $${(l.noiPerMWyr*l.mw*l.termYrs).toFixed(0)}M (gross should exceed net)`);
+          }
         }
         warnIf('leases', id, l.kind && !['retrofit','conversion','build-to-spec'].includes(l.kind), `lease ${l.id}: unknown kind ${l.kind}`);
         warnIf('leases', id, !l.kind, `lease ${l.id}: no kind tag (retrofit / conversion / build-to-spec)`);
