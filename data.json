@@ -2753,8 +2753,8 @@
       "contractedPct": 0,
       "termYrs": 20,
       "netDebt": 178,
-      "shares": 638,
-      "price": 9.5,
+      "shares": 630,
+      "price": 8.6,
       "legacyEV": 0,
       "plannedRaise": 3500,
       "equityDiscount": 0.15,
@@ -2790,7 +2790,7 @@
       "basis": {
         "plannedRaise": "~$3.5B: pre-revenue, multi-GW gas+shell capex vs ~$243M cash; ~$785M non-recourse equipment finance funds turbines, equity/ATM funds the rest",
         "tier": "proven — no contracted income; re-rates only on a signed hyperscaler/OpenAI anchor",
-        "equityDiscount": "governance reset — CEO+CFO departed, securities class action, anchor collapse, zero binding tenants"
+        "equityDiscount": "governance reset — interim CEO/CFO (Heidrick search 'far along'), securities class action (Lupia, SDNY) + XO Energy suit, founder proxy campaign SUSPENDED 7/3/26 (bylaw litigation alive, possible annual-meeting rematch), zero binding tenants [edgar]"
       },
       "narrative": "Fermi Inc / Fermi America (NASDAQ:FRMI) — 'Project Matador,' a 5,236-acre powered-land play in Amarillo TX (99-yr Texas Tech lease, next to DOE Pantex). The case is OPTIONALITY ON A SCARCE, MASSIVE POWER SITE: a ~6 GW TCEQ air permit APPROVED (the binding scarce asset), a 10-yr Energy Transfer firm gas supply (~2 GW), ~1.5-2.2 GW of gas turbines ordered/LOI, and a 200 MW grid ESA — a credible ~2 GW firm secured-power base, with an 11-17 GW permitting ambition (nuclear AP1000 / SMR / solar) as a deep out-of-the-money option. But it is PRE-TENANT and in governance reset: the first anchor (Amazon-linked) collapsed Dec 2025, the CEO and CFO departed into a 'Fermi 2.0' restructuring, and talks (including OpenAI) are unsigned. Value here credits the ~2 GW firm secured power as graded RAW-power optionality (estimated/rumored, pre-tenant), not built or contracted capacity — a signed hyperscaler/OpenAI anchor is the binary re-rating event.",
       "bull": [
@@ -2819,11 +2819,30 @@
       ],
       "finMix": "Near net-cash today (~$421M debt incl. equipment finance vs ~$243M cash → ~$178M net debt, op-leases excluded); funded so far by IPO (~$746M), converts/preferred, and non-recourse equipment financing (MUFG $500M, Yorkville $156M) — but the multi-GW buildout will be overwhelmingly equity/ATM-dependent given no contracted cash flow.",
       "leaseQ": 2,
-      "log": [],
-      "thesis": "The firm ~2 GW of secured gas power (approved 6 GW air permit, turbines ordered) roughly supports the price; the premium is the 11-17 GW ambition + OpenAI-anchor optionality, credited at ~zero. A signed anchor is the binary re-rate — no tenant yet.",
+      "log": [
+        {
+          "d": "2026-05-15",
+          "t": "capital",
+          "s": "[edgar] Q1 10-Q",
+          "x": "Verified 3/31/26: netDebt $178M (debt $439M gross, cash $207.5M + restricted $35.8M), shares 629.84M (638→630 corrected), Q1 capex $441M. Going-concern doubt raised then alleviated via $156.25M Yorkville standby (up to +40M shares if drawn). Turbine book beyond '3 ordered': 3×SGT6-5000F ($324.4M, $276.6M paid) + 6×SGT-800 (Beal $165M @12%) + 7 TM2500 leased DEFERRED to 2027; $192.4M Siemens commitments remain. Equipment stack $785M: MUFG $500M ($396.6M drawn) + Keystone $120M + Beal $165M."
+        },
+        {
+          "d": "2026-07-03",
+          "t": "governance",
+          "s": "[edgar] DFAN14A 7/6",
+          "x": "Neugebauer SUSPENDED the consent campaign 7/3 after the Texas Business Court judge recused (claims ~70% of votes cast + Glass Lewis + Egan-Jones favored a special meeting); company had non-suited its own bylaw defense 6/30 rather than face expedited discovery. Bylaw challenge alive; possible annual-meeting rematch. Rick Perry sold 864k sh @ $7.31 (6/30); Caddis (Griffin Perry, 9.3%) publicly pro-board. Stock rallied to ~$8.6 on de-escalation."
+        },
+        {
+          "d": "2026-06-30",
+          "t": "site",
+          "s": "[company-ir]",
+          "x": "Primoris selected for balance-of-plant EPC (6/30); TSK early works (6/25). SPS ESA schedule intact: 86MW 2H26 + 114MW targeted by YE26. 90-day plan: binding tenant ~mid-Aug, ~1.1GW new power by YE26 (aspirational vs our Dec-27 gas ph1), Phase 0+1 capex >$3B."
+        }
+      ],
+      "thesis": "The firm ~2GW of secured gas power (final 6GW TCEQ air permit, 3×F-class + 6×SGT-800 turbines secured, 200MW grid ESA) roughly supports the price; the 11–17GW ambition and OpenAI-anchor optionality are credited at ~zero. The binary is now dated: management targets a binding tenant ~mid-August, and without a ≥400MW lease by ~Nov 10 the MUFG facility doubles amortization and can market the turbines. Proxy war suspended July 3 — governance risk down, not gone.",
       "verified": {
-        "capital": "2026-06-30",
-        "contracts": "2026-06-30"
+        "capital": "2026-07-06",
+        "contracts": "2026-07-06"
       }
     },
     {
@@ -3876,6 +3895,271 @@
         "contracts": "2026-07-05"
       },
       "thesis": "The Bitfarms successor owns three zoned, power-secured campuses (478MW, all existence-derisked) with ~$920M of liquidity and zero leases — the market prices lease doubt, we credit the powered land. Three targeted YE26 leases are the catalysts; both converts are out-of-the-money, so dilution waits on success."
+    },
+    {
+      "tk": "ORCL",
+      "name": "Oracle Corp",
+      "model": "owner",
+      "tier": "proven",
+      "contractedPct": 85,
+      "termYrs": 5,
+      "leaseQ": 2.5,
+      "netDebt": 105348,
+      "committedDebt": 0,
+      "seniorClaims": 548,
+      "shares": 2997,
+      "price": 141.01,
+      "legacyEV": 210000,
+      "plannedRaise": 20000,
+      "equityDiscount": 0,
+      "signedRate": 8.0,
+      "sites": [
+        {
+          "n": "Abilene TX — Stargate 1 bldgs 1–2 (live, GB200)",
+          "mw": 300,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2025,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Abilene TX — Stargate 1 bldgs 3–6 (construction, slipped)",
+          "mw": 500,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Abilene TX — Stargate 1 bldgs 7–8 (topped out)",
+          "mw": 400,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Shackelford TX — Frontier ph1 (Vantage shell, VoltaGrid gas)",
+          "mw": 700,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Shackelford TX — Frontier ph2",
+          "mw": 700,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Doña Ana NM — Project Jupiter ph1 (STACK shell, gas microgrid)",
+          "mw": 700,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "estimated"
+        },
+        {
+          "n": "Doña Ana NM — Project Jupiter ph2",
+          "mw": 800,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Doña Ana NM — Project Jupiter ph3",
+          "mw": 700,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Saline Twp MI — the Barn ph1 (Related shell, DTE 2027)",
+          "mw": 550,
+          "owned": false,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Saline Twp MI — the Barn ph2",
+          "mw": 550,
+          "owned": false,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Port Washington WI — Lighthouse ph1 (Vantage shell)",
+          "mw": 450,
+          "owned": false,
+          "region": "mid",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Port Washington WI — Lighthouse ph2",
+          "mw": 450,
+          "owned": false,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 9,
+          "prov": "estimated"
+        },
+        {
+          "n": "Red Oak TX — DataBank anchor (4 bldgs, non-Stargate)",
+          "mw": 240,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Secured-power pipeline tranche 1 (of 10GW mgmt claim, unsited)",
+          "mw": 800,
+          "owned": false,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Secured-power pipeline tranche 2 (unsited)",
+          "mw": 800,
+          "owned": false,
+          "region": "mid",
+          "yr": 2029,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Secured-power pipeline tranche 3 (unsited)",
+          "mw": 800,
+          "owned": false,
+          "region": "mid",
+          "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        }
+      ],
+      "contracts": [
+        {
+          "id": "orcl-openai-stargate",
+          "counterparty": "OpenAI (Stargate)",
+          "totalRevM": 300000,
+          "termYrs": 5,
+          "signed": "2025-09",
+          "gen": "mixed",
+          "mw": 4500,
+          "inferredMW": true,
+          "effective": true,
+          "source": "Dollars+term WSJ 9/10/25 (never filed); filed anchor = 8-K 6/30/25 unnamed customer >$30B/yr from FY28; 4.5GW per OpenAI PR 7/22/25. Implied ~$13.3M/MW·yr ($300B ÷ 5yr ÷ 4.5GW) — both MW and rate are inference. Payments begin calendar 2027; no disclosed LC/take-or-pay protection; $75B of total RPO is prepaid/customer-supplied hardware"
+        },
+        {
+          "id": "orcl-meta-oci",
+          "counterparty": "Meta (OCI capacity)",
+          "totalRevM": 20000,
+          "termYrs": 5,
+          "signed": "2025-11",
+          "gen": "mixed",
+          "mw": 300,
+          "inferredMW": true,
+          "effective": true,
+          "source": "Named (without dollars) as new RPO commitment in Q2 FY26 earnings release 12/25; ~$20B size press-reported (Bloomberg 9/25). Dollars are press, counterparty is company-disclosed"
+        },
+        {
+          "id": "orcl-rpo-residual",
+          "counterparty": "Residual AI book (xAI, NVIDIA, AMD, TikTok/JV, other)",
+          "totalRevM": 103000,
+          "termYrs": 5,
+          "signed": "2026-05",
+          "gen": "mixed",
+          "mw": 1500,
+          "inferredMW": true,
+          "effective": true,
+          "source": "Reconciliation record: total RPO $638B (FY26 10-K) − $75B prepaid/customer-hardware − ~$140B classic cloud/SaaS backlog (pre-AI RPO run-rate) − OpenAI $300B − Meta ~$20B ≈ $103B. Counterparties named on calls without dollars (xAI, NVIDIA, AMD; TikTok ~$800M/yr OCI revenue)"
+        }
+      ],
+      "basis": {
+        "signedRate": "Margin-normalized: OpenAI implied print $13.3M/MW·yr × (Oracle's guided 30–40% AI-infra gross margin ÷ the model's 55% steady-state owner margin) ≈ $8.0M. Oracle rents its shells at market from Blue Owl/Vantage/Related SPVs ($260B signed-not-commenced leases, 15–19yr) — the shared margin dial would otherwise credit it CRWV-quality economics on a top-of-ladder rate. Actuals reported: 14–16% GM on early Blackwell rentals (The Information 10/25); Oracle counter-guides 30–40% lifetime, 32% delivered Q3 FY26 [company-ir]",
+        "seniorClaims": "NCI $548M (Oracle Financial Services Software Ltd et al.), FY26 10-K [edgar]",
+        "plannedRaise": "$20B ATM established 2/2/26, ZERO sold at FYE 5/31/26, sales agents expanded via 424B5 6/23/26; FY27 plan ~$40B debt+equity of which this ATM is the stated equity lever [edgar]",
+        "legacyEV": "Oracle-classic ex-OCI: $49.2B revenue (support annuity $19.8B flat 3yrs at ~93–95% incr. margin; license $4.7B −9%/yr; SaaS $15.9B +11%; hardware+services $8.8B) → ~$13–16B steady-state unlevered FCF ex-AI-buildout → $210B central at ~14.5× (range $160–260B). Cross-anchor: end-2022 pre-AI market cap ~$220B [edgar]"
+      },
+      "narrative": "The mega-cap test case: a software annuity financing the largest committed AI buildout of any owner — $563B services RPO against ~9.4GW of leased-shell Stargate capacity, all pre-sold to one cash-burning counterparty.",
+      "thesis": "The registry prices Oracle's AI bet at its signed economics: $563B of services RPO across ~9.4GW of leased-shell Stargate capacity at the top-of-ladder $13.3M/MW·yr implied print — but margin-normalized to ~$8M because Oracle rents every shell from Blue Owl/Vantage/Related SPVs ($260B of signed 15–19yr leases) and guides only 30–40% infra gross margin. Legacy Oracle (~$210B) plus the contracted book covers much but not all of a $510B EV; the gap is the market paying for OCI's FY30 $166B ambition beyond the signed book. Kill risks both ways: OpenAI counterparty concentration (negative outlooks at Moody's/S&P, payments only start 2027) vs the book re-rating if delivered margins hold above guidance.",
+      "bull": [
+        "OCI FY30 $166B revenue plan lands — the book beyond the signed $563B RPO",
+        "Delivered AI gross margin holds 32%+ (Q3 FY26 print) and scales toward the 30–40% guide — would unwind the signedRate normalization upward",
+        "Re-signing the 4.5GW at VR-era rates off the gen-curve",
+        "$75B prepay/customer-hardware model keeps de-risking the build"
+      ],
+      "bear": [
+        "OpenAI (~$30B/yr due from 2027) stumbles before payment season — unrated, ~$3.7B/qtr burn",
+        "Duration mismatch: ~5yr customer contracts riding on 15–19yr leased shells ($260B committed) — Oracle eats the tail",
+        "FY27 −$70B net capex + ~$40B raise; FCF −$23.7B in FY26 already",
+        "Early actuals (14–16% GM reported) vs 30–40% guided — if actuals win, even $83 is generous"
+      ],
+      "catalysts": [
+        "FY27 Q1 (Sep-26) RPO print + first ATM draws",
+        "$3.3B lessor-borrowing guarantee matures Sep-26",
+        "OpenAI payment commencement calendar 2027",
+        "Abilene full 1.2GW energization (late-26/27)"
+      ],
+      "risks": [
+        "Single-counterparty concentration (OpenAI, unrated, cash-burning)",
+        "Duration mismatch: 5yr contracts on 15-19yr leased shells",
+        "Delivered AI margins vs 30-40% guide",
+        "Rating pressure: Baa2/BBB both negative outlook"
+      ],
+      "log": [
+        {
+          "d": "2026-06-22",
+          "t": "capital",
+          "s": "[edgar] FY26 10-K",
+          "x": "Capital stack as of 5/31/26: borrowings $129.5B + finance leases $7.7B − cash $31.9B = netDebt $105.3B. $43B notes issued FY26; $5B 6.5% mandatory-convert preferred (→ ~31M shares at max rate, counted in FD 2,997M); $20B ATM zero-sold; FY26 FCF −$23.7B; FY27 ~$70B net capex, ~$40B debt+equity plan. OFF-BS: $260B signed-not-commenced DC leases (15–19yr, FY27–29 commencement) incl. $3.3B lessor guarantee maturing Sep-26."
+        },
+        {
+          "d": "2026-06-10",
+          "t": "contract",
+          "s": "[edgar] Q4 FY26 8-K",
+          "x": "RPO $638B (+363% YoY; $138B→$455B→$523B→$553B→$638B over FY26). $75B is prepaid/customer-supplied hardware. Registry reconciliation: OpenAI $300B + Meta ~$20B + residual AI ~$103B + classic cloud ~$140B + hardware $75B."
+        },
+        {
+          "d": "2026-07-06",
+          "t": "site",
+          "s": "[company-ir]/[sell-side] verified sweep",
+          "x": "Oracle-operated capacity roll-up: Abilene 1.2GW (300MW live; bldgs 3-4 verifiably late), Shackelford 1.4GW (first bldg H2-26), Doña Ana 2.2GW proj (ph1 end-26), Saline MI ~1.1GW IT (Blackstone $16B, DTE power 2027), Port Washington ~0.9GW, Red Oak 240MW anchor. Milam + Lordstown are SoftBank-side (EXCLUDED); UAE slice unquantified (excluded, watch). +600MW Abilene expansion scrapped; central ~7.5GW by end-2028."
+        },
+        {
+          "d": "2026-07-06",
+          "t": "note",
+          "s": "[reported] margin evidence",
+          "x": "The economics debate IS the valuation: The Information (10/25) 14% GM on GPU rentals / ~16% avg from internal docs; Oracle counter-guides 30–40% lifetime (35% illustrative deal, 10/16/25 analyst meeting), delivered 32% Q3 FY26. signedRate margin-normalized 13.3→8.0 accordingly. Moody's Baa2 neg outlook (7/28/25, leverage/FCF — predates OpenAI deal), S&P BBB neg (9/24/25, trigger 4x). CDS ~198bp record Dec-25. Counterparty OpenAI: $122B round at $852B post (3/31/26), >$73B cash, ~$2B/mo revenue, still burning $3.7B/qtr."
+        }
+      ],
+      "verified": {
+        "capital": "2026-07-06",
+        "contracts": "2026-07-06"
+      },
+      "finMix": "IG bonds + $20B ATM + customer prepay/BYO-hardware; shells leased from Blue Owl/Vantage/Related SPVs"
     }
   ],
   "watchItems": [
@@ -3908,6 +4192,16 @@
       "tk": "CRWV",
       "note": "Apr-Jun 2026 debt wave (~$2.75B 9.75% notes + $3.1B DDTL 5.0 + $1.25B/€2B notes) not yet in netDebt ($22.9B is Feb-era) — re-verify capital structure; also pin Anthropic contract value ($6B is a bounded estimate)",
       "added": "2026-07-09"
+    },
+    {
+      "tk": "FRMI",
+      "note": "TENANT TRIPWIRES (10-Q): ≥400MW Phase-1 lease by ~Nov 10 2026 or MUFG amortization doubles + agent may market the turbines; Keystone mandatory prepayment + TTU notice-to-proceed both need a customer by Dec 31 2026. Mgmt targets binding lease ~mid-Aug. A signed anchor re-rates; a missed deadline is the falsifier for the whole gas-phase schedule",
+      "added": "2026-07-06"
+    },
+    {
+      "tk": "ORCL",
+      "note": "$3.3B lessor-borrowing guarantee matures Sep-26 (inside the $260B not-yet-commenced lease book); first $20B-ATM draws land FY27 — plannedRaise is calibrated to the ATM only, re-mark if the $40B plan tilts further to equity; delivered AI GM prints (32% Q3 FY26) vs the 30–40% guide drive the signedRate normalization",
+      "added": "2026-07-06"
     }
   ]
 }

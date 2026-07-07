@@ -1,193 +1,108 @@
 {
- "asOf": "2026-07-06",
- "backtestThrough": "2026-07-02",
- "priceSource": "yahoo",
- "params": {
-  "temperature": 0.15,
-  "confMin": 0.35,
-  "watchPenalty": 0.9,
-  "watchPenaltyFloor": 0.7,
-  "deMinimis": 0.01,
-  "band": 0.02,
-  "grossFullAt": 0.75,
-  "tcBps": 5,
-  "lambda0": 0.75,
-  "lambdaMin": 0.3,
-  "lambdaMax": 1.25,
-  "lambdaGain": 0.3,
-  "learnEvery": 21,
-  "lookback": 63,
-  "mShrink": 0.92,
-  "mRecover": 1.03,
-  "mMin": 0.5,
-  "excessThreshold": 0.1,
-  "benchEvery": 21
- },
- "state": {
-  "lambda": 0.75,
-  "names": {
-   "CRWV": {
-    "m": 1
-   },
-   "NBIS": {
-    "m": 1
-   },
-   "RIOT": {
-    "m": 1
-   },
-   "BTDR": {
-    "m": 1
-   },
-   "IREN": {
-    "m": 1
-   },
-   "SLNH": {
-    "m": 1
-   },
-   "GLXY": {
-    "m": 1
-   },
-   "HUT": {
-    "m": 1
-   },
-   "CIFR": {
-    "m": 1
-   },
-   "MARA": {
-    "m": 1
-   },
-   "CORZ": {
-    "m": 1
-   },
-   "WULF": {
-    "m": 1
-   },
-   "FRMI": {
-    "m": 1
-   },
-   "WYFI": {
-    "m": 1
-   },
-   "HIVE": {
-    "m": 1
-   },
-   "APLD": {
-    "m": 1
-   },
-   "ABTC": {
-    "m": 1
-   },
-   "CLSK": {
-    "m": 1
-   },
-   "NUAI": {
-    "m": 1
-   },
-   "KEEL": {
-    "m": 1
-   }
+  "asOf": "2026-07-02",
+  "backtestThrough": "2026-07-02",
+  "priceSource": "yahoo",
+  "params": {
+    "temperature": 0.15,
+    "confMin": 0.35,
+    "watchPenalty": 0.9,
+    "watchPenaltyFloor": 0.7,
+    "deMinimis": 0.01,
+    "band": 0.02,
+    "grossFullAt": 0.75,
+    "tcBps": 5,
+    "lambda0": 0.75,
+    "lambdaMin": 0.3,
+    "lambdaMax": 1.25,
+    "lambdaGain": 0.3,
+    "learnEvery": 21,
+    "lookback": 63,
+    "mShrink": 0.92,
+    "mRecover": 1.03,
+    "mMin": 0.5,
+    "excessThreshold": 0.1,
+    "benchEvery": 21
   },
-  "lastGateNote": 256
- },
- "suspect": {
-  "CRWV": 0,
-  "NBIS": 0,
-  "RIOT": 0,
-  "BTDR": 0,
-  "IREN": 0,
-  "SLNH": 0,
-  "GLXY": 0,
-  "HUT": 0,
-  "CIFR": 0,
-  "MARA": 0,
-  "CORZ": 0,
-  "WULF": 0,
-  "FRMI": 0,
-  "WYFI": 0,
-  "HIVE": 0,
-  "APLD": 0,
-  "ABTC": 0,
-  "CLSK": 0,
-  "BTBT": 0,
-  "NUAI": 0,
-  "KEEL": 0
- },
- "lastFresh": {
-  "CRWV": "2026-07-06",
-  "NBIS": "2026-07-06",
-  "RIOT": "2026-07-06",
-  "BTDR": "2026-07-06",
-  "IREN": "2026-07-06",
-  "SLNH": "2026-07-06",
-  "GLXY": "2026-07-06",
-  "HUT": "2026-07-06",
-  "CIFR": "2026-07-06",
-  "MARA": "2026-07-06",
-  "CORZ": "2026-07-06",
-  "WULF": "2026-07-06",
-  "FRMI": "2026-07-06",
-  "WYFI": "2026-07-06",
-  "HIVE": "2026-07-06",
-  "APLD": "2026-07-06",
-  "ABTC": "2026-07-06",
-  "CLSK": "2026-07-06",
-  "BTBT": "2026-07-06",
-  "NUAI": "2026-07-06",
-  "KEEL": "2026-07-06"
- },
- "exclude": {
-  "BTBT": "Richard 2026-07-06: special case (holdco/SOTP discount vehicle) — out of the paper book pending review; stays in the tracker for HUT/WYFI look-throughs"
- },
- "lastExcludeKey": "BTBT",
- "holdings": {
-  "cash": 2.2870594307278225e-14,
-  "positions": {
-   "RIOT": 1.313756,
-   "IREN": 2.873397,
-   "CIFR": 2.818857,
-   "KEEL": 13.5214,
-   "MARA": 3.527661,
-   "CRWV": 0.619739,
-   "CLSK": 2.317974,
-   "BTDR": 2.749685,
-   "SLNH": 14.75434,
-   "CORZ": 1.325767,
-   "GLXY": 3.361216,
-   "HIVE": 2.934495,
-   "APLD": 3.375754,
-   "NBIS": 0.129402,
-   "NUAI": 4.156238,
-   "ABTC": 2.123404,
-   "HUT": 0.138499,
-   "WULF": 2.230926,
-   "FRMI": 1.781427
-  }
- },
- "bench": {
-  "cash": 0,
-  "positions": {
-   "CRWV": 0.160888,
-   "NBIS": 0.065301,
-   "RIOT": 0.608238,
-   "BTDR": 0.976168,
-   "IREN": 0.316793,
-   "SLNH": 10.867499,
-   "GLXY": 0.547653,
-   "HUT": 0.134037,
-   "CIFR": 0.640147,
-   "MARA": 1.074162,
-   "CORZ": 0.610105,
-   "WULF": 0.626312,
-   "FRMI": 1.694324,
-   "WYFI": 0.391401,
-   "HIVE": 4.115503,
-   "APLD": 0.415236,
-   "ABTC": 1.638445,
-   "CLSK": 1.029637,
-   "NUAI": 2.922353,
-   "KEEL": 2.874049
+  "state": {
+    "lambda": 0.75,
+    "names": {}
   },
-  "lastReb": 256
- },
- "dayIdx": 256
+  "suspect": {},
+  "exclude": {
+    "BTBT": "Richard 2026-07-06: special case (holdco/SOTP discount vehicle) \u2014 out of the paper book pending review; stays in the tracker for HUT/WYFI look-throughs",
+    "ORCL": "Richard queued the add 2026-07-06; mega-cap hyperscaler \u2014 stays in the tracker for relative value, excluded from paper book AND equal-weight benchmark so the small/mid-cap scoreboard stays meaningful"
+  },
+  "lastFresh": {
+    "CRWV": "2026-07-02",
+    "NBIS": "2026-07-02",
+    "RIOT": "2026-07-02",
+    "BTDR": "2026-07-02",
+    "IREN": "2026-07-02",
+    "SLNH": "2026-07-02",
+    "GLXY": "2026-07-02",
+    "HUT": "2026-07-02",
+    "CIFR": "2026-07-02",
+    "MARA": "2026-07-02",
+    "CORZ": "2026-07-02",
+    "WULF": "2026-07-02",
+    "FRMI": "2026-07-02",
+    "WYFI": "2026-07-02",
+    "HIVE": "2026-07-02",
+    "APLD": "2026-07-02",
+    "ABTC": "2026-07-02",
+    "CLSK": "2026-07-02",
+    "BTBT": "2026-07-02",
+    "NUAI": "2026-07-02",
+    "KEEL": "2026-07-02"
+  },
+  "holdings": {
+    "cash": 0,
+    "positions": {
+      "RIOT": 0.830351,
+      "IREN": 9.482912,
+      "CIFR": 1.404955,
+      "KEEL": 16.886366,
+      "MARA": 1.890114,
+      "CRWV": 1.017295,
+      "CLSK": 1.744979,
+      "BTBT": 27.429061,
+      "BTDR": 1.983357,
+      "SLNH": 8.788504,
+      "CORZ": 0.778414,
+      "GLXY": 0.355436,
+      "HIVE": 2.813294,
+      "APLD": 0.512556,
+      "NBIS": 0.062715,
+      "NUAI": 1.669132,
+      "ABTC": 15.610198
+    }
+  },
+  "bench": {
+    "cash": 0,
+    "positions": {
+      "CRWV": 0.157431,
+      "NBIS": 0.057577,
+      "RIOT": 0.541847,
+      "BTDR": 0.948062,
+      "IREN": 0.327516,
+      "SLNH": 10.740189,
+      "GLXY": 0.527033,
+      "HUT": 0.127135,
+      "CIFR": 0.605568,
+      "MARA": 1.071722,
+      "CORZ": 0.579656,
+      "WULF": 0.587813,
+      "FRMI": 1.591139,
+      "WYFI": 0.417153,
+      "HIVE": 3.999006,
+      "APLD": 0.398101,
+      "ABTC": 21.038567,
+      "CLSK": 0.978287,
+      "BTBT": 8.216538,
+      "NUAI": 2.448903,
+      "KEEL": 2.60143
+    },
+    "lastReb": 252
+  },
+  "dayIdx": 255
 }
