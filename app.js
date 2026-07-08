@@ -18,7 +18,7 @@ let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
-let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1,covSort='totcov',covDir=-1;
+let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1,covSort='anncov',covDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
@@ -161,7 +161,7 @@ function renderCoverage(){
   rows.sort((x,y)=>{const av=kf(x),bv=kf(y);return (typeof av==='string'?av.localeCompare(bv):av-bv)*covDir;});
   const uMcap=rows.reduce((a,r)=>a+r.mcap,0),uGross=rows.reduce((a,r)=>a+r.gross,0),uAnn=rows.reduce((a,r)=>a+r.ann,0);
   let h=`<div class="ssummary" style="margin:4px 4px 16px"><span><b>${fmtM(uMcap)}</b> total market cap</span><span><b>${fmtM(uGross)}</b> confirmed contracted</span><span><b>${fmtM(uAnn)}</b>/yr annualized</span><span>backlog / market cap <b>${(uGross/uMcap*100).toFixed(0)}%</b></span></div>`;
-  const cols=[['tk','Company',''],['mcap','Market cap','r'],['gross','Contracted','r'],['wterm','Avg term','r'],['ann','Annualized','r'],['anncov','Ann ÷ cap','r'],['totcov','Backlog ÷ cap','r']];
+  const cols=[['tk','Company',''],['mcap','Market cap','r'],['gross','Contracted','r'],['wterm','Avg term','r'],['ann','Annualized','r'],['totcov','Backlog ÷ cap','r'],['anncov','Ann ÷ cap','r']];
   h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${cols.map(([k,lab,cl])=>`<th class="${cl}" data-cv="${k}">${lab}${covSort===k?' <span class="arr">'+(covDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
   rows.forEach((r,i)=>{const none=r.items.length===0;
     h+=`<tr class="cvrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">${none?'':'▸'}</td>`+
@@ -170,8 +170,8 @@ function renderCoverage(){
       `<td class="r mono">${none?'—':fmtM(r.gross)}</td>`+
       `<td class="r mono">${none?'—':r.wterm.toFixed(1)+'y'}</td>`+
       `<td class="r mono">${none?'—':fmtM(r.ann)+'/y'}</td>`+
-      `<td class="r mono">${none?'—':(r.anncov*100).toFixed(0)+'%'}</td>`+
-      `<td class="r mono"><b>${none?'—':(r.totcov*100).toFixed(0)+'%'}</b></td></tr>`;
+      `<td class="r mono">${none?'—':(r.totcov*100).toFixed(0)+'%'}</td>`+
+      `<td class="r mono"><b>${none?'—':(r.anncov*100).toFixed(0)+'%'}</b></td></tr>`;
     if(!none){const its=[...r.items].sort((a,b)=>b.gross-a.gross);
       h+=`<tr class="sdetail" id="cv-${i}"><td colspan="8"><div style="padding:8px 14px 12px">`+
         `<table class="stab" style="margin:0;width:100%"><thead><tr><th>Counterparty</th><th></th><th class="r">Gross</th><th class="r">Term</th><th class="r">Annualized</th><th class="r">IT&nbsp;MW</th></tr></thead><tbody>`+
