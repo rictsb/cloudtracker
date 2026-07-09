@@ -519,6 +519,26 @@
           "prov": "rumored"
         }
       ],
+      "raises": [
+        {
+          "d": "2026-05-18",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 3100,
+          "terms": "DDTL 5.0 — first syndicated HPC-backed financing (close announcement)",
+          "use": "GPU / HPC buildout capex",
+          "source": "Co. release 2026-05-18"
+        },
+        {
+          "d": "2026-03-31",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 8500,
+          "terms": "DDTL 4.0 — first investment-grade GPU-backed facility (close announcement)",
+          "use": "GPU capex",
+          "source": "Co. release 2026-03-31"
+        }
+      ],
       "log": [
         {
           "d": "2026-04-15",
@@ -894,6 +914,26 @@
           "yr": 2031,
           "mo": 6,
           "prov": "rumored"
+        }
+      ],
+      "raises": [
+        {
+          "d": "2026-03-11",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 4340,
+          "terms": "two-tranche convertible notes priced 1.25% / 2.625%",
+          "use": "GPU / data-center capex; same-day pair with the Nvidia placement — confounded day-0 read",
+          "source": "6-K 2026-03-11"
+        },
+        {
+          "d": "2026-03-11",
+          "ah": false,
+          "kind": "equity",
+          "sizeM": 2000,
+          "terms": "Nvidia prefunded-warrant placement (~8% stake)",
+          "use": "strategic placement alongside the convert — confounded day-0 read",
+          "source": "6-K 2026-03-11"
         }
       ],
       "log": [
@@ -1561,6 +1601,17 @@
           "yr": 2030,
           "mo": 6,
           "prov": "rumored"
+        }
+      ],
+      "raises": [
+        {
+          "d": "2026-06-01",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 3650,
+          "terms": "investment-grade GPU financing, Fitch A, ~6%, secured on GPUs + Microsoft contract cash flows (close announcement)",
+          "use": "funds ~96% of the $5.8B Dell GPU purchase",
+          "source": "Co. release 2026-06-01"
         }
       ],
       "log": [

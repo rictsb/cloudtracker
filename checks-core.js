@@ -12,7 +12,7 @@
     { k: 'schema',  name: 'Schema & types',         guards: 'required fields per model type; valid enums; no dead fields; holdco shape' },
     { k: 'sites',   name: 'Site schedules',         guards: 'energization dates & months in range; MW > 0; phased blocks ≤ ~800MW; no duplicates' },
     { k: 'prov',    name: 'Provenance consistency', guards: 'past capacity must be disclosed; 2031+ "disclosed" questioned; contracted% vs rumored-MW tension' },
-    { k: 'capital', name: 'Capital structure',      guards: 'shares/price/net-debt sanity; raise vs market cap; claims non-negative; discount bounds' },
+    { k: 'capital', name: 'Capital structure',      guards: 'shares/price/net-debt sanity; raise vs market cap; claims non-negative; discount bounds; raise registry dated/typed/sourced' },
     { k: 'basis',   name: 'Judgement discipline',   guards: 'every plannedRaise / non-Proven tier / equityDiscount / committedDebt / seniorClaims carries a sourced basis' },
     { k: 'stakes',  name: 'Stake integrity',        guards: 'stake targets tracked; pct in (0,1]; no self-stakes or cycles at any depth' },
     { k: 'fresh',   name: 'Freshness',              guards: 'thesis present & ≤3 sentences; developments log recency; filing-verification age' },
@@ -74,6 +74,8 @@
     failIf('schema', null, new Set(tks).size !== tks.length, 'duplicate tickers');
     const REG = Object.keys(cfg.regions), PROV = ['disclosed','estimated','rumored'];
     const DEAD = ['renewalProb','costOfDebt','legacyExBtc','confidence','dataGaps','mtm'];
+    const RZ_KINDS = ['equity','atm','convert','debt','pref','other'];
+    const LEDGER_START = (pf && pf.history && pf.history.meta && pf.history.meta.start) || '2025-06-26';
     let siteCount = 0;
 
     for (const c of cos) {
@@ -101,6 +103,21 @@
       failIf('capital', id, (c.plannedRaise || 0) < 0, 'negative plannedRaise');
       failIf('capital', id, (c.committedDebt || 0) < 0 || (c.seniorClaims || 0) < 0, 'negative committedDebt/seniorClaims');
       warnIf('capital', id, (c.plannedRaise || 0) > c.shares * c.price * 3, `plannedRaise ${c.plannedRaise} > 3x market cap — check`);
+
+      /* capital-raise registry (spec §6c) — dated facts, display-only; returns derive from the ledger */
+      const rseen = {};
+      for (const r of (c.raises || [])) {
+        const rid = `raise ${r.d || '?'}/${r.kind || '?'}`;
+        failIf('capital', id, !/^\d{4}-\d{2}-\d{2}$/.test(r.d || ''), `${rid}: d must be ISO YYYY-MM-DD`);
+        failIf('capital', id, !!r.d && days(r.d) < 0, `${rid}: announcement date in the future`);
+        failIf('capital', id, !RZ_KINDS.includes(r.kind), `${rid}: bad kind`);
+        failIf('capital', id, !(typeof r.source === 'string' && r.source.trim().length > 3), `${rid}: source missing`);
+        failIf('capital', id, !(r.sizeM === null || r.sizeM > 0), `${rid}: sizeM must be > 0 or null (undisclosed)`);
+        failIf('capital', id, r.ah !== undefined && typeof r.ah !== 'boolean', `${rid}: ah must be boolean`);
+        warnIf('capital', id, !!r.d && r.d < LEDGER_START, `${rid}: predates the ledger (${LEDGER_START}) — no returns derivable`);
+        warnIf('capital', id, !!rseen[r.d + '|' + r.kind], `${rid}: duplicate date+kind`); rseen[r.d + '|' + r.kind] = 1;
+        warnIf('capital', id, (r.kind === 'equity' || r.kind === 'atm') && r.sizeM > c.shares * c.price, `${rid}: sizeM $${r.sizeM}M exceeds market cap — check units`);
+      }
 
       const bz = c.basis || {};
       failIf('basis', id, (c.plannedRaise || 0) > 0 && !bz.plannedRaise, 'plannedRaise without basis');
