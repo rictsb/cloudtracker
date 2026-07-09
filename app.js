@@ -187,6 +187,7 @@ function renderCoverage(){
 /* ---- raises page: capital-raise event study (spec §6c) — returns derived live from the sanctioned ledger, nothing stored ---- */
 const RZ_WINDOWS=[5,15,30];
 const RZ_KIND_CLS={equity:'rumored',atm:'rumored',convert:'estimated',pref:'estimated',debt:'disclosed',other:'disclosed'};
+const RZ_KIND_LABEL={equity:'Equity',atm:'ATM',convert:'Convert',pref:'Preferred',debt:'Debt',other:'Other'};
 function rzNextDay(iso){const t=new Date(iso+'T12:00:00Z');t.setUTCDate(t.getUTCDate()+1);return t.toISOString().slice(0,10);}
 function rzDerive(tk,ev,days){
   const eff=ev.ah?rzNextDay(ev.d):ev.d,last=days.length-1;
@@ -221,10 +222,13 @@ function renderRaises(){
   const pc=x=>x==null?'—':(x>=0?'+':'')+(x*100).toFixed(1)+'%';
   const col=(x,inner)=>x==null?'—':`<span style="color:${x>=0?'var(--pine)':'var(--clay)'}">${inner}</span>`;
   let h=`<div class="ssummary" style="margin:4px 4px 16px"><span><b>${rows.length}</b> raises recorded</span><span><b>${A[15].n}</b> with a complete +15d window</span><span>day-0 median <b>${pc(A.rx)}</b></span><span>+15d median <b>${pc(A[15].med)}</b>${A[15].hit!=null?' · hit <b>'+(A[15].hit*100).toFixed(0)+'%</b>':''}</span></div>`;
-  /* aggregate table by instrument */
-  h+=`<div style="overflow-x:auto"><table class="stab" style="margin:0 0 18px"><thead><tr><th>Type</th><th class="r">N</th><th class="r">Day 0 med</th><th class="r">+5d</th><th class="r">+15d</th></tr></thead><tbody>`;
-  const aggRow=(lab,a,bold)=>{const w=N=>a[N].n?`${col(a[N].med,pc(a[N].med))} · ${(a[N].hit*100).toFixed(0)}% <span style="color:var(--ink-soft)">(${a[N].n})</span>`:'—';
-    return `<tr>${bold?'<td><b>All</b></td>':`<td><span class="prov ${RZ_KIND_CLS[lab]}">${lab}</span></td>`}<td class="r mono">${a.n}</td><td class="r mono">${col(a.rx,pc(a.rx))}</td><td class="r mono">${w(5)}</td><td class="r mono">${w(15)}</td></tr>`;};
+  /* aggregate table by instrument — per window: absolute median | median net of universe | hit rate */
+  const gsep='border-left:1px solid var(--line)';
+  h+=`<div style="overflow-x:auto"><table class="stab" style="margin:0 0 18px"><thead>`+
+    `<tr><th rowspan="2" style="vertical-align:bottom">Type</th><th class="r" rowspan="2" style="vertical-align:bottom">N</th><th class="r" rowspan="2" style="vertical-align:bottom">Day 0 med</th><th colspan="3" style="text-align:center;${gsep}">+5d</th><th colspan="3" style="text-align:center;${gsep}">+15d</th></tr>`+
+    `<tr><th class="r" style="${gsep}">abs</th><th class="r">vs univ</th><th class="r">hit</th><th class="r" style="${gsep}">abs</th><th class="r">vs univ</th><th class="r">hit</th></tr></thead><tbody>`;
+  const aggRow=(lab,a,bold)=>{const w=N=>a[N].n?`<td class="r mono" style="${gsep}">${col(a[N].med,pc(a[N].med))}</td><td class="r mono">${col(a[N].xmed,pc(a[N].xmed))}</td><td class="r mono">${(a[N].hit*100).toFixed(0)}% <span style="color:var(--ink-soft)">(${a[N].n})</span></td>`:`<td class="r mono" style="${gsep}">—</td><td class="r mono">—</td><td class="r mono">—</td>`;
+    return `<tr><td>${bold?'<b>All</b>':(RZ_KIND_LABEL[lab]||lab)}</td><td class="r mono">${a.n}</td><td class="r mono">${col(a.rx,pc(a.rx))}</td>${w(5)}${w(15)}</tr>`;};
   kinds.forEach(k=>{h+=aggRow(k,agg(k),false);});
   h+=aggRow('all',A,true)+`</tbody></table></div>`;
   /* event table */
@@ -253,7 +257,7 @@ function renderRaises(){
       (ev.terms?`<br><b>Terms</b> ${ev.terms}`:'')+(ev.use?`<br><b>Purpose</b> ${ev.use}`:'')+
       `<br><b>Source</b> <span style="color:var(--ink-soft)">${ev.source||'—'}</span> · <a class="clearfilter" href="#${c.tk}" style="font-size:11px">open ${c.tk} page →</a></div></td></tr>`;
   });
-  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>Day 0</b> = the first ledger session on/after the announcement (<b>ah</b> = announced after the close → next session). Windows are trading days, anchored at the day-0 close — they test buying the reaction, not the round trip. All table returns are <b>absolute</b> (the stock's own move); the row detail adds <b>excess</b> per window — the name's return minus the equal-weight universe benchmark over the same span (the name itself is ~1/${COMPANIES.length} of that basket) — plus the +30d path. <i>Italic grey</i> = window still running (return so far — excluded from every aggregate). Ledger closes forward-fill on days without a fresh print, so a flat day 0 on an illiquid name is suspect. Dimmed rows predate the name's ledger history — facts without returns. Aggregates: median · hit rate (share positive) · (N complete).</div>`;
+  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>Day 0</b> = the first ledger session on/after the announcement (<b>ah</b> = announced after the close → next session). Windows are trading days, anchored at the day-0 close — they test buying the reaction, not the round trip. Event-table returns are <b>absolute</b> (the stock's own move). Type summary: <b>abs</b> = median move from the day-0 close, <b>vs univ</b> = the same net of the equal-weight universe benchmark over the window (the name itself is ~1/${COMPANIES.length} of that basket), <b>hit</b> = share that finished positive, (n) = events with the window complete. The row detail adds the +30d path and per-window excess for each event. <i>Italic grey</i> = window still running (return so far — excluded from every aggregate). Ledger closes forward-fill on days without a fresh print, so a flat day 0 on an illiquid name is suspect. Dimmed rows predate the name's ledger history — facts without returns.</div>`;
   body.innerHTML=h;
   body.querySelectorAll('th[data-rz]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.rz;
     if(k===rzSort)rzDir*=-1;else{rzSort=k;rzDir=(k==='tk'||k==='kind')?1:-1;}renderRaises();}));
