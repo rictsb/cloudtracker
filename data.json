@@ -521,6 +521,15 @@
       ],
       "raises": [
         {
+          "d": "2026-06-11",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 3500,
+          "terms": "launched $3.5B-equivalent dual-currency senior notes due 2032 (144A/RegS) at dawn for the European book; final $1.25B USD 9.625% + €2.0B 8.500%; closed 6/18",
+          "use": "GCP incl. debt repayment",
+          "source": "launch PR + 8-K 2026-06-11 06:03 ET; closing 8-K 6/18"
+        },
+        {
           "d": "2026-05-18",
           "ah": false,
           "kind": "debt",
@@ -530,6 +539,42 @@
           "source": "Co. release 2026-05-18"
         },
         {
+          "d": "2026-04-16",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1000,
+          "terms": "same-day launch + pricing of a $1.0B add-on to the 9.750% 2031 notes at 102.0 (tap); closed 4/21",
+          "use": "GCP incl. debt repayment",
+          "source": "launch + pricing PRs 2026-04-16; 8-K 4/21"
+        },
+        {
+          "d": "2026-04-15",
+          "ah": false,
+          "kind": "equity",
+          "sizeM": 1000,
+          "terms": "Jane Street strategic equity investment: $1.0B of Class A common at $109.00 (unregistered placement), alongside a ~$6B AI-cloud usage commitment",
+          "use": "balance-sheet capital tied to the Jane Street compute contract (Vera Rubin capacity) — confounded day-0 (contract news same wire)",
+          "source": "joint PR 2026-04-15 ~08:15 ET + 8-K 16:05 ET"
+        },
+        {
+          "d": "2026-04-09",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1250,
+          "terms": "launched $1.25B senior unsecured notes due 2031 (144A) pre-market; priced UPSIZED to $1.75B at 9.750%; settled 4/14",
+          "use": "GCP incl. debt repayment — HY leg of the same-morning debt+convert pair, launched with the $21B Meta contract expansion (heavily confounded day-0)",
+          "source": "launch PR + 8-K 2026-04-09 07:52 ET; closing 8-K 4/14"
+        },
+        {
+          "d": "2026-04-09",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 3000,
+          "terms": "launched $3.0B convertible senior notes due 2032 (+$450M option, 144A) PRE-market — unusually not after close; priced 4/10 UPSIZED to $3.5B at 1.75%, conv ~$119.60; option raised to $500M, exercised in full; settled 4/14 at $4.0B total",
+          "use": "capped calls + GCP — convert leg of the pair, launched with the $21B Meta news (heavily confounded day-0)",
+          "source": "launch PR + 8-K 2026-04-09 07:52 ET; pricing PR 4/10; closing 8-K 4/14"
+        },
+        {
           "d": "2026-03-31",
           "ah": false,
           "kind": "debt",
@@ -537,6 +582,60 @@
           "terms": "DDTL 4.0 — first investment-grade GPU-backed facility (close announcement)",
           "use": "GPU capex",
           "source": "Co. release 2026-03-31"
+        },
+        {
+          "d": "2026-01-26",
+          "ah": false,
+          "kind": "equity",
+          "sizeM": 2000,
+          "terms": "NVIDIA strategic equity investment: $2.0B of Class A common at $87.20 (unregistered placement)",
+          "use": "expanded NVIDIA partnership to accelerate >5GW of AI-factory buildout by 2030 — confounded day-0 (partnership news same wire)",
+          "source": "joint PR + 8-K 2026-01-26 09:04 ET"
+        },
+        {
+          "d": "2025-12-08",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 2000,
+          "terms": "launched $2.0B convertible senior notes (+$300M option, 144A) after the close; priced overnight UPSIZED to $2.25B at 1.75% due 2031, conv ~$107.80 (+25%); option raised to $337.5M; capped calls; settled 12/11",
+          "use": "capped call cost + general corporate purposes",
+          "source": "launch PR 12/8; pricing PR 12/9; 8-K 12/11"
+        },
+        {
+          "d": "2025-11-12",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1000,
+          "terms": "revolving credit facility expanded $1.5B → $2.5B (+$1.0B new commitments); maturity extended to Nov 2029; 9-bank syndicate",
+          "use": "general liquidity to support growth",
+          "source": "PR 2025-11-12 ~09:00 ET"
+        },
+        {
+          "d": "2025-10-02",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 3000,
+          "terms": "Fifth Amendment (signed 9/29) to the DDTL 2.0 credit agreement: incremental $3.0B delayed-draw tranche at SOFR+425 (vs 600-1300 on prior tranches); draws to Mar-26, each 5-yr",
+          "use": "equipment/infrastructure for investment-grade AND unrated strategic customer contracts",
+          "source": "8-K 2025-10-02 09:00 ET (no PR)"
+        },
+        {
+          "d": "2025-07-31",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 2600,
+          "terms": "DDTL 3.0: $2.6B delayed-draw term loan announced-closed; MS + MUFG joint leads, 10-bank syndicate; credit agreement dated 7/28",
+          "use": "equipment and infrastructure for the OpenAI long-term contract (OpenAI CFO quoted in release)",
+          "source": "PR + 8-K 2025-07-31 08:49 ET"
+        },
+        {
+          "d": "2025-07-21",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1500,
+          "terms": "launched $1.5B senior unsecured notes (144A) pre-market; priced 7/22 UPSIZED to $1.75B at 9.000% due 2/2031; closed 7/25",
+          "use": "general corporate purposes incl. debt repayment",
+          "source": "launch PR + 8-K 2025-07-21 07:33 ET; pricing 8-K 7/22"
         }
       ],
       "log": [
@@ -934,6 +1033,33 @@
           "terms": "Nvidia prefunded-warrant placement (~8% stake)",
           "use": "strategic placement alongside the convert — confounded day-0 read",
           "source": "6-K 2026-03-11"
+        },
+        {
+          "d": "2025-11-12",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": null,
+          "terms": "NEW ATM program: Equity Distribution Agreement for up to 25,000,000 Class A shares (share-capped, no $ cap — ~$2.2-2.4B at then-prevailing ~$90); GS/MS/BofA/Citi managers",
+          "use": "opportunistic equity issuance for AI-infra capex — filed with Q3 results (confounded day-0), Meta $3B contract same week",
+          "source": "6-K + 424B5 2025-11-12 16:06 ET (no PR)"
+        },
+        {
+          "d": "2025-09-10",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 2000,
+          "terms": "launched $2.0B convertible senior notes in two equal series (144A) pre-market; priced after close UPSIZED to $2.75B ($1.375B 1.00% 2030 + $1.375B 2.75% 2032) + $206.25M option per series, later fully exercised → $3.16B total; settled 9/15",
+          "use": "AI-infrastructure growth capex after the Microsoft $17.4B deal (announced 9/8) — convert leg of the same-morning pair",
+          "source": "launch PR/FWP 2025-09-10 ~08:46 ET; pricing FWP 9/11; 424B5 9/12"
+        },
+        {
+          "d": "2025-09-10",
+          "ah": false,
+          "kind": "equity",
+          "sizeM": 1000,
+          "terms": "concurrent underwritten public offering launched at $1.0B of Class A (+$150M option) pre-market; priced after close: 10.81M sh @ $92.50 (last sale $93.39); option exercised 9/22 → $1.15B total; GS lead",
+          "use": "same growth-capex program — equity leg of the September pair (combined $4.31B with all options)",
+          "source": "launch FWP/424B5 2025-09-10 08:46 ET; pricing FWP 9/11; UA 6-K 9/11"
         }
       ],
       "log": [
@@ -1143,6 +1269,17 @@
           "prov": "disclosed"
         }
       ],
+      "raises": [
+        {
+          "d": "2025-12-30",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": 500,
+          "terms": "NEW $500M at-the-market program (2025 Sales Agreement, 9 agents); simultaneously terminated the Aug-2024 $750M ATM ($600.5M sold)",
+          "use": "general corporate purposes",
+          "source": "8-K + 424B5 accepted 2025-12-30 evening"
+        }
+      ],
       "log": [
         {
           "d": "2026-05-30",
@@ -1340,6 +1477,71 @@
           "yr": 2029,
           "mo": 6,
           "prov": "rumored"
+        }
+      ],
+      "raises": [
+        {
+          "d": "2026-02-19",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 300,
+          "terms": "$300M convertible senior notes due 2032 launched 07:00 ET pre-market; priced 2/20 pre-market UPSIZED $325M at 5.00%, conv ~$9.9 (+25% over the $7.94 RD price); option to $50M; net ~$315M; closed 2/24",
+          "use": "capped calls; with RD proceeds repurchase $135M of the 5.25% 2029 notes; datacenter/ASIC/HPC-AI expansion",
+          "source": "GlobeNewswire 2026-02-19 07:00 ET; 6-K 2/20; closing 6-K 2/26"
+        },
+        {
+          "d": "2026-02-19",
+          "ah": false,
+          "kind": "equity",
+          "sizeM": null,
+          "terms": "registered direct launched pre-market, size undisclosed; priced 2/20: 5.50M Class A @ $7.94 (= last sale) = ~$43.7M gross; closed ~2/24",
+          "use": "with convert proceeds, repurchase $135M of 5.25% 2029 converts",
+          "source": "prelim 424B5 2/19/26; final 424B5 2/20/26"
+        },
+        {
+          "d": "2026-02-19",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 100,
+          "terms": "first public disclosure of the December-2025 (up to $50M) and January-2026 (up to $50M, fully drawn 2/18) Matrixport facilities + a 2/17 800-BTC loan at 3% and a structured-product master agreement",
+          "use": "working capital (related-party Matrixport ladder)",
+          "source": "424B5 prelim 2/19/26 Recent Developments (no PR)"
+        },
+        {
+          "d": "2025-11-12",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 400,
+          "terms": "$400M convertible senior notes due 2031 launched after close; priced overnight: 4.00%, conv ~$17.77 (+27.5% over the $13.94 RD price), capped calls to $27.88; +$60M option; net ~$388M; closed 11/17",
+          "use": "capped calls; with RD proceeds repurchase $200M of the 5.25% 2029 converts; datacenter expansion, SEALMINER, HPC/AI cloud",
+          "source": "6-K 11/13/25 (launch+pricing PRs); 6-K 11/19/25 (closing)"
+        },
+        {
+          "d": "2025-11-12",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": null,
+          "terms": "registered direct launched after close, size undisclosed; priced: 10.66M Class A @ $13.94 = ~$148.6M gross; Barclays sole agent; closed 11/19",
+          "use": "with convert proceeds, fund the repurchase of $200M of 5.25% 2029 converts (sold to those holders)",
+          "source": "prelim 424B5 11/12/25 4:50pm ET; final 424B5 11/14"
+        },
+        {
+          "d": "2025-11-12",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 100,
+          "terms": "October-2025 Matrixport facility up to $100M; 9.0% + reference, 24-mo amortizing; fully drawn as of 11/10",
+          "use": "working capital / equipment financing (related party)",
+          "source": "424B5 prelim 11/12/25 'Recent Developments' (first public disclosure)"
+        },
+        {
+          "d": "2025-09-29",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 400,
+          "terms": "NEW September-2025 Matrixport loan facility up to $400M; 9.0% + reference rate, 24-mo amortizing, secured by SEALMINER rig pledge; same filing disclosed the July upsize of the April facility $200M→$400M (fully drawn) and an Aug USDT structured-financing master agreement",
+          "use": "mining rig / datacenter working capital (related-party Matrixport funding ladder)",
+          "source": "6-K H1-2025 interim report 2025-09-29 (accepted 4:10pm ET; no PR)"
         }
       ],
       "log": [
@@ -1612,6 +1814,51 @@
           "terms": "investment-grade GPU financing, Fitch A, ~6%, secured on GPUs + Microsoft contract cash flows (close announcement)",
           "use": "funds ~96% of the $5.8B Dell GPU purchase",
           "source": "Co. release 2026-06-01"
+        },
+        {
+          "d": "2026-05-11",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 2000,
+          "terms": "launched $2.0B convertible senior notes due 2033 PRE-market Monday (8-K 7:11am ET); priced 5/12 pre-market UPSIZED $2.6B at 1.00%, 32.5% premium (conv ~$73.07), capped calls to $110.30; $400M option exercised in full; closed 5/14 at $3.0B total; net ~$2.96B",
+          "use": "capped calls + GC/working capital (Horizon / AI-cloud buildout)",
+          "source": "8-K 2026-05-11 launch; 8-K 5/12 pricing; 8-K 5/14 closing + indenture"
+        },
+        {
+          "d": "2026-03-04",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": 6000,
+          "terms": "new prospectus supplement for up to $6.0B of ordinary shares under the A&R At-Market Issuance Sales Agreement (9 agents) — replaces the fully-used $1.0B supplement",
+          "use": "general corporate purposes / AI data-center capex — filed alongside Dell GPU purchase-agreement disclosures",
+          "source": "424B5 2026-03-04 (accepted 5:24pm ET) + 8-K"
+        },
+        {
+          "d": "2025-12-01",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 2000,
+          "terms": "dual-tranche launch after close (8-K 4:48pm ET): $1B due 2032 + $1B due 2033; priced 12/3 pre-market at 0.25% and 1.00%, both 25% premium (conv ~$51.40), capped calls to $82.24; closed 12/8 at $2.27B total after option exercises",
+          "use": "GC/working capital + capped calls — package with the concurrent registered direct funding old-convert repurchases (~$3.9B gross combined)",
+          "source": "8-K + 424B5 2025-12-01 launch; 8-K 12/3 pricing; 8-K 12/8 closing"
+        },
+        {
+          "d": "2025-12-01",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": null,
+          "terms": "concurrent registered direct launched after close, size undisclosed; priced 12/3: 39.70M shares @ $41.12 = ~$1.63B gross; closed 12/8",
+          "use": "fund the cash repurchase of the in-the-money 3.50% 2029 and 3.25% 2030 converts — dilution-managed liability retirement",
+          "source": "8-K 2025-12-01 (launch PR); 8-K 12/3 pricing; 424B5 12/4"
+        },
+        {
+          "d": "2025-10-07",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 875,
+          "terms": "$875M convertible senior notes due 2031 launched after close (8-K 4:16pm ET); priced 10/8 at 0.00%, 42.5% premium (conv ~$85.63), capped calls to $120.18; $125M option exercised in full → $1.0B total; net ~$979M",
+          "use": "capped calls, GC and working capital (AI/data-center buildout)",
+          "source": "8-K 2025-10-07 launch; 8-K 10/9 pricing; 8-K 10/14 closing"
         }
       ],
       "log": [
@@ -1771,6 +2018,62 @@
       ],
       "finMix": "Near net-cash (~$41M post-Briscoe): ~$28M project/equipment debt (Generate, Galaxy, Green Cloud, equipment) + ~$2M finance leases vs ~$69M cash; funded chiefly by equity ($500M ATM, registered directs, warrants) and project-level capital from Spring Lane/Generate; no BTC treasury.",
       "leaseQ": 2.2,
+      "raises": [
+        {
+          "d": "2026-04-17",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 12,
+          "terms": "$12M unsecured promissory note to YA II PN (Yorkville): 5% (18% default), $1.2M/mo amortization, due 5/15/2027",
+          "use": "fund the $16.5M buyout of Spring Lane's 85.4% Class B interest in Project Dorothy 1A",
+          "source": "8-K accepted 2026-04-17 4:30pm ET"
+        },
+        {
+          "d": "2026-04-03",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 12.5,
+          "terms": "Amendment No. 1 to the Generate facility: new $12.5M Tranche C term loan (SOFR+8.0%) + lender warrants",
+          "use": "fund/reimburse the $53M Briscoe Wind Farm (150MW) acquisition closed 4/1",
+          "source": "8-K accepted 2026-04-03 4:19pm ET"
+        },
+        {
+          "d": "2026-04-01",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": 500,
+          "terms": "new $500M ATM prospectus under the new S-3 (H.C. Wainwright agreement, 3.0% commission); replaces prior $87.65M capacity",
+          "use": "AI/data-center pivot funding (Dorothy 3 AI campus), general corporate",
+          "source": "424B5 accepted 2026-04-01 4:30pm ET"
+        },
+        {
+          "d": "2025-12-05",
+          "ah": false,
+          "kind": "equity",
+          "sizeM": 32,
+          "terms": "registered direct priced at-the-market: 18.08M shares/pre-funded warrants + Series C warrants (ex $1.65) at $1.77/unit; gross ~$32M; closed 12/8",
+          "use": "working capital, project-level equity",
+          "source": "PR 2025-12-05 8:00am ET + 8-K + 424B5"
+        },
+        {
+          "d": "2025-09-16",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 100,
+          "terms": "'up to $100M' project credit facility from Generate Capital: $35.5M committed term loans + up to $64.5M additional tranches; SOFR+10.0% (3.5% floor), due 2030; $12.6M drawn at close; lender warrants",
+          "use": "finance/construct Dorothy 1A, Dorothy 2 and Kati data-center projects",
+          "source": "PR 2025-09-16 + 8-K accepted 7:00am ET"
+        },
+        {
+          "d": "2025-07-15",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 5,
+          "terms": "S-1 public offering: 9.09M units (shares/pre-funded warrants + Series A 5-yr and B 24-mo warrants at $0.55) at $0.55; gross ~$5.0M; closed 7/17",
+          "use": "working capital, project-level equity",
+          "source": "PR 2025-07-15 ~8pm ET + 424B4 7/17 + 8-K 2025-07-17"
+        }
+      ],
       "log": [],
       "thesis": "A distressed micro-cap option: ~280 MW of mostly pre-tenant AI capacity on cheap renewable power, nearly offset by the ~3-4x dilution needed to fund it. Binary on landing a JV/anchor before the going-concern clock.",
       "verified": {
@@ -1892,6 +2195,44 @@
       ],
       "finMix": "Debt-led: $1.4B Helios project facility (80% LTC, 36mo) + $3.1B total notes payable (incl. ~$2.1B exchangeable notes) + $2.6B corporate cash/stablecoins + financial-services cash flow; buying back stock, minimal equity issuance.",
       "leaseQ": 3,
+      "raises": [
+        {
+          "d": "2026-05-08",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": 500,
+          "terms": "NEW $500M at-the-market program: Open Market Sale Agreement with Jefferies, BNYMCM and UBS; S-3ASR + 424B5 same day",
+          "use": "general corporate purposes / balance-sheet flexibility for the data-center buildout",
+          "source": "8-K + S-3ASR + 424B5 2026-05-08 ~16:40 ET (no PR)"
+        },
+        {
+          "d": "2025-10-27",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 1000,
+          "terms": "launched $1.0B exchangeable senior notes due 2031 (+$150M option, 144A) at 16:03 ET; priced overnight UPSIZED to $1.15B at 0.50%; closed 10/30 at $1.3B with option in full",
+          "use": "growth across core businesses + GCP; may repay the 3.00% 2026 exchangeables",
+          "source": "launch PR 2025-10-27 16:03 ET; pricing PR 10/28; 8-K 10/30"
+        },
+        {
+          "d": "2025-10-10",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 325,
+          "terms": "$460M private strategic investment at $36.00/sh from an unnamed top-tier asset manager: $325M primary (9.03M new shares) + $135M secondary from executives incl. Novogratz; closed ~10/17",
+          "use": "general corporate purposes + Helios buildout",
+          "source": "PR 2025-10-10 16:01 ET + 8-K 10/14"
+        },
+        {
+          "d": "2025-08-15",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1400,
+          "terms": "Helios Phase 1 project financing announced-closed: $1.4B senior secured term loan (Galaxy Helios I), Deutsche Bank initial lender; 3-yr; ~SOFR+475, ~80% loan-to-cost; Galaxy funded $350M equity requirement",
+          "use": "construction of the Helios campus (Dickens County TX) leased to CoreWeave; includes a one-time dividend to parent",
+          "source": "PR 2025-08-15 07:00 ET + 8-K 07:03 ET"
+        }
+      ],
       "log": [],
       "thesis": "Fair — the 15-yr CoreWeave Helios lease (526 MW) is priced in; the ~1.6 GW unleased ERCOT pipeline is the option you're buying. Upside needs the next anchor; the financial-services arm is ballast.",
       "verified": {
@@ -2021,6 +2362,53 @@
       ],
       "finMix": "Funded mainly by IG non-recourse project bonds (~$7.5B, 6.1–6.2% coupons, 95% LTC, fully amortizing) plus capital recycling; parent recourse limited to a $200M BTC-backed FalconX facility and the in-the-money Coatue $150M convert; ~5,600 BTC + ~$700M cash and an ~80% ABTC stake provide a liquidity cushion.",
       "leaseQ": 2,
+      "raises": [
+        {
+          "d": "2026-06-04",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 4250,
+          "terms": "Beacon Point DC LLC senior secured notes due 2042: launched $4,250M intraday, priced same day at 6.129%, fully amortizing from 2030; non-recourse (Baa2); closed 6/9",
+          "use": "construct six-hall 352MW turnkey DC + substation, Nueces County TX, pre-leased to an undisclosed AA-or-better tenant",
+          "source": "8-K 2026-06-04 (launch) + 8-K 2026-06-05 (pricing)"
+        },
+        {
+          "d": "2026-04-27",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 3248,
+          "terms": "Hut 8 DC LLC (River Bend) senior secured notes due 2042: launched $3,248M in the morning, priced same day $3,250M at 6.192%; non-recourse project bond (BBB-); closed 4/30",
+          "use": "construct 245MW turnkey River Bend DC + substation (St. Francisville LA; 15-yr Fluidstack lease, Google backstop), reimburse parent equity, reserves",
+          "source": "8-K 2026-04-27 (launch) + 8-K 2026-04-28 (pricing)"
+        },
+        {
+          "d": "2025-12-31",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 70,
+          "terms": "Coinbase BTC-backed facility upsized by $70M to $200M total (Fourth A&R credit agreement dated 12/22, drawn in full 12/22); terms otherwise unchanged",
+          "use": "general corporate purposes",
+          "source": "8-K 2025-12-31"
+        },
+        {
+          "d": "2025-08-29",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 200,
+          "terms": "NEW $200M BTC-backed revolving credit facility with Two Prime Lending; 7.99% fixed; 364-day; BTC collateral in BitGo custody, recourse limited to collateral",
+          "use": "general corporate purposes",
+          "source": "8-K 2025-08-29 (agreement dated 2025-08-25)"
+        },
+        {
+          "d": "2025-08-22",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": 1000,
+          "terms": "NEW $1.0B ATM prospectus supplement (Cantor-led, US + Canadian agents); simultaneously terminated the Dec-2024 $500M ATM ($299.4M sold)",
+          "use": "general corporate purposes",
+          "source": "424B5 2025-08-22 + 8-K 2025-08-22"
+        }
+      ],
       "log": [
         {
           "d": "2026-07-08",
@@ -2249,6 +2637,62 @@
       ],
       "finMix": "Nonrecourse project bonds (Black Pearl $2.0B @6.125%, Barber Lake $1.7B @7.125%) + converts ($1.3B 0% + $173M 1.75%) + $200M revolver + ATM equity; ~$960M net debt",
       "leaseQ": 4.2,
+      "raises": [
+        {
+          "d": "2026-06-08",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 810,
+          "terms": "Stingray Compute LLC $810M senior secured notes launched pre-market; priced same day ~9pm ET: 6.000% due 2031 at 99.75; closed 6/15",
+          "use": "finance the Stingray facility (70MW IT leased to AWS, ~$2.0B contracted revenue, 15-yr + options), reimburse ~$63.6M equity, fund DSRs",
+          "source": "8-K 2026-06-08 launch (7:25am ET); 8-K 6/9 pricing; 8-K 6/15 closing"
+        },
+        {
+          "d": "2026-03-25",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 200,
+          "terms": "$200M 4-yr corporate revolving credit facility ($50M LC sublimit; availability capped $50M pre-Stabilization; springing maturity inside the nearest convert); MSSF admin agent, 6-arranger group; undrawn at close",
+          "use": "general corporate liquidity — first-ever CIFR corporate revolver",
+          "source": "8-K 2026-03-25 7:15am ET (agreement dated 3/23; no PR)"
+        },
+        {
+          "d": "2026-02-03",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 2000,
+          "terms": "Black Pearl Compute LLC $2.0B senior secured notes launched pre-market; priced 2/4 at par: 6.125% due 2031; closed 2/11",
+          "use": "finance the remaining Black Pearl (Wink TX — AWS site) cost, reimburse ~$232.5M prior equity contributions, fund DSRs",
+          "source": "8-K 2026-02-03 launch (8:04am ET); 8-K 2/5 pricing; 8-K 2/11 closing"
+        },
+        {
+          "d": "2025-11-20",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 333,
+          "terms": "$333M add-on tap of the 7.125% 2030 notes announced pre-market alongside a +56MW/10-yr Fluidstack lease (~$830M revenue) and a Google backstop increase to $1.73B; closed 11/24",
+          "use": "fund the incremental 39MW Barber Lake buildout — confounded day-0 (lease expansion same wire)",
+          "source": "8-K 2025-11-20 (7:47am ET); 8-K 11/24 closing"
+        },
+        {
+          "d": "2025-11-04",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1400,
+          "terms": "Cipher Compute LLC $1.4B senior secured notes launched pre-market (144A roadshow); priced 11/5 at par: 7.125% due 2030; closed 11/13",
+          "use": "finance the Barber Lake data center (Fluidstack 10-yr lease, Google backstop); first-lien + Fluidstack lockbox",
+          "source": "8-K 2025-11-04 launch (8:44am ET); 8-K 11/6 pricing; 8-K 11/13 closing"
+        },
+        {
+          "d": "2025-09-25",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 800,
+          "terms": "$800M (+$120M option) convertible senior notes due 2031 launched ~7:00am ET — hours after the Fluidstack/Google Barber Lake announcement; priced same day after close UPSIZED $1.1B at 0.00%, conv ~$16.03 (~37.5% premium), capped calls to $22.32; option raised to $200M, exercised in full → $1.3B total; closed 10/1",
+          "use": "Barber Lake (Colchis) data-center buildout, capped calls, GC — heavily confounded day-0 (Google/Fluidstack news same morning)",
+          "source": "8-K 2025-09-25 launch (7:07am ET); 8-K 9/26 pricing; 8-K 10/1 closing"
+        }
+      ],
       "log": [],
       "thesis": "Undervalued — 700 MW of signed hyperscaler colo plus a ~2 GW queued pipeline credited near-full while the market still treats it as a miner. Re-rates as Barber Lake energizes and the pipeline contracts.",
       "committedDebt": 4341,
@@ -2413,6 +2857,26 @@
       ],
       "finMix": "BTC-treasury sales + zero/low-coupon converts (~$2.3B) + Barclays bridge & assumed debt on Long Ridge (~$1.5B) + $2B ATM at the margin; Starwood JV co-finances projects.",
       "leaseQ": 2.5,
+      "raises": [
+        {
+          "d": "2026-04-30",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 785,
+          "terms": "Barclays commitment letter, 364-day senior secured bridge term loan up to $785M, announced with the ~$1.5B Long Ridge Energy & Power acquisition (485MW CCGT, Hannibal OH)",
+          "use": "bridge financing for the Long Ridge acquisition — confounded day-0 read (M&A announced same wire)",
+          "source": "8-K 2026-04-30 (7:19am ET) + PR 2026-04-30"
+        },
+        {
+          "d": "2025-07-23",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 850,
+          "terms": "launched $850M 0.00% convertible senior notes due 2032 (144A) pre-market + $150M option; priced after the close same day UPSIZED to $950M; conv ~$20.2585 (~17.5% premium), capped calls to ~$24.14; closed 7/25",
+          "use": "up to $50M repurchase of 1.00% 2026 converts ($18.3M done), capped calls ~$36.9M, acquire bitcoin, GCP",
+          "source": "8-K 2025-07-23 (launch, 7:05am ET) + 8-K 2025-07-24 (pricing)"
+        }
+      ],
       "log": [],
       "thesis": "Looks cheap because the model credits ~2.5 GW of owned power, but nearly all is mining/spec with zero signed AI leases (real AI-leasable ~200 MW). Needs an actual AI conversion, not just owned megawatts.",
       "verified": {
@@ -2583,6 +3047,35 @@
       ],
       "finMix": "$3.3B 7.75% senior secured notes due 2031 + ~$1.1B convertibles (2029/2031) + finance leases; CoreWeave fit-out prepayment (~$750M) and BTC liquidation fund capex; minimal equity reliance.",
       "leaseQ": 4,
+      "raises": [
+        {
+          "d": "2026-04-21",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 3300,
+          "terms": "$3.3B 144A senior secured notes launched 4/21 pre-market; priced 4/22 at 7.750% due 2031 at 99.25, secured by five DC-site subs; closed 5/6, net ~$3.24B",
+          "use": "repay the $1.0B bridge in full + fund the CoreWeave-anchored HPC data-center buildout",
+          "source": "8-K + launch PR accepted 2026-04-21 7:36am ET; closing 8-K 2026-05-06"
+        },
+        {
+          "d": "2026-03-23",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 500,
+          "terms": "accordion exercised: +$500M incremental term loan from JPMorgan, total commitments $1.0B; same SOFR+250; drawn in full 3/18",
+          "use": "data-center development capex",
+          "source": "8-K + PR 2026-03-23 (accepted 8:29am ET)"
+        },
+        {
+          "d": "2026-03-05",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 500,
+          "terms": "$500M 364-day senior secured delayed-draw bridge term loan, Morgan Stanley; SOFR+250; accordion to $1.0B; drawn in full 3/5",
+          "use": "data-center development capex (Pecos/HPC buildout); bridge to permanent financing — first standalone financing after the CoreWeave merger vote failed 10/30/25",
+          "source": "PR 2026-03-05 + 8-K 2026-03-06"
+        }
+      ],
       "log": [],
       "btc": 547,
       "thesis": "Undervalued vs its CoreWeave colo book (~590 MW, 12-yr) plus ~1.3 GW of pipeline; the market discounts the single-tenant concentration. The CoreWeave relationship is both the value and the risk.",
@@ -2762,6 +3255,62 @@
       ],
       "finMix": "Debt-led: ~$2.5B converts + $3.2B WULF Compute senior secured notes + $0.1B KY bridge, ~$3.1B cash; Google ~$3.2B backstop; minimal ATM/equity reliance.",
       "leaseQ": 3,
+      "raises": [
+        {
+          "d": "2026-04-14",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 800,
+          "terms": "$800M public common offering (+$120M option) launched after close alongside prelim Q1 results (8-K 5:10pm ET); priced same evening UPSIZED: 47.4M sh @ $19.00 = $900M gross; option exercised in full 4/16 → ~$1.035B gross; MS-led; new S-3ASR same day",
+          "use": "fund the AI data-center growth pipeline (Justified/Muskie) and GC — earnings-confounded day-0",
+          "source": "8-K + 424B5 2026-04-14 launch; 8-K 4/15 pricing (dated 4/14); 8-K 4/16 closing"
+        },
+        {
+          "d": "2026-03-16",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 500,
+          "terms": "364-day $500M delayed-draw senior secured bridge (dated 3/13; borrower Raylan Data LLC / Justified entities), Term SOFR + margin",
+          "use": "construction of the Hawesville KY campus (Justified Data Campus — later leased to Anthropic 7/6/26, ~$19B/20-yr)",
+          "source": "8-K 2026-03-16 (8:00am ET)"
+        },
+        {
+          "d": "2025-12-18",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1275,
+          "terms": "Flash Compute LLC (Abernathy JV, WULF 50.1%) $1.275B senior secured notes launched pre-market with investor deck; UPSIZED and priced same day after close: $1.3B 7.250% due 2030; closed 12/29",
+          "use": "finance the Abernathy 168MW JV buildout (Fluidstack lease, Google backstop)",
+          "source": "8-Ks 2025-12-18 (launch 7:28am ET; pricing 5:24pm ET); 8-K 12/29 closing"
+        },
+        {
+          "d": "2025-10-29",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 500,
+          "terms": "$500M (+$75M option) convertible senior notes due 2032 launched pre-market (8-K 7:07am ET); priced same day after close UPSIZED $900M at 0.00%, 37.5% premium; $125M option exercised in full at the 10/31 close → $1.025B total",
+          "use": "capped calls, data-center buildout, GC",
+          "source": "8-K 2025-10-29 launch; 8-K 10/30 pricing (dated 10/29); 8-K 10/31 closing"
+        },
+        {
+          "d": "2025-10-14",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 3200,
+          "terms": "WULF Compute LLC $3.2B senior secured notes launched pre-market (144A roadshow); priced 10/16 at par: 7.750% due 2030; closed 10/23",
+          "use": "finance Lake Mariner CB-3/4/5 construction (Fluidstack leases, Google backstop; Fluidstack lockbox in collateral)",
+          "source": "8-K 2025-10-14 launch (7:59am ET); 8-K 10/16 pricing; 8-K 10/23 closing"
+        },
+        {
+          "d": "2025-08-18",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 400,
+          "terms": "$400M (+$60M option) convertible senior notes due 2031 launched pre-market (8-K 7:17am ET) — same morning as the Fluidstack CB-5 lease expansion with Google backstop; priced same day after close UPSIZED $850M at 1.00%, 32.5% premium (conv ~$12.43), capped calls to $18.76; $150M option exercised in full 8/22 → $1.0B total",
+          "use": "capped calls (~$85.5M), Lake Mariner HPC buildout, GC — confounded day-0 (CB-5 lease news same morning)",
+          "source": "8-K 2025-08-18 launch; 8-K 8/19 pricing (dated 8/18); 8-Ks 8/20 + 8/22"
+        }
+      ],
       "log": [
         {
           "d": "2026-07-06",
@@ -2895,6 +3444,71 @@
       ],
       "finMix": "Near net-cash today (~$421M debt incl. equipment finance vs ~$243M cash → ~$178M net debt, op-leases excluded); funded so far by IPO (~$746M), converts/preferred, and non-recourse equipment financing (MUFG $500M, Yorkville $156M) — but the multi-GW buildout will be overwhelmingly equity/ATM-dependent given no contracted cash flow.",
       "leaseQ": 2,
+      "raises": [
+        {
+          "d": "2026-07-09",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 350,
+          "terms": "$350M convertible senior notes due 2031 launched intraday via 144A + $52.5M option; capped calls planned; pricing pending at entry",
+          "use": "capped call cost + GCP; launched amid the live Neugebauer proxy fight",
+          "source": "8-K + PR 2026-07-09 accepted 1:11pm ET"
+        },
+        {
+          "d": "2026-03-30",
+          "ah": true,
+          "kind": "other",
+          "sizeM": 156.25,
+          "terms": "Yorkville standby: $156.25M senior unsecured promissory-note facility (YA II PN), up to 5 advances through 10/1/26, commitment auto-reduces ~$26M/30d, 0% coupon (18% default), amortization largely share-settled (caps 8M sh/payment, 40M aggregate)",
+          "use": "general corporate / going-concern liquidity backstop — disclosed in the FY25 10-K subsequent-events note (earnings-confounded day-0)",
+          "source": "10-K accepted 2026-03-30 5:35pm ET (no 8-K, no PR)"
+        },
+        {
+          "d": "2026-03-27",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 165,
+          "terms": "Beal Bank/CSG equipment financing (dated 3/26): $165M senior secured limited-recourse term loan (Fermi Turbine Warehouse II); 12.00% cash pay; 33-mo; $37M exit fee less cumulative interest",
+          "use": "progress payments on six Siemens SGT-800 turbines for Project Matador",
+          "source": "8-K 2026-03-27 accepted 4:01pm ET (no PR)"
+        },
+        {
+          "d": "2026-02-25",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 120,
+          "terms": "Keystone Private Income Fund master loan (dated 2/19): $120M senior secured equipment facility + $100M accordion; 80% advance rate; 12-mo availability",
+          "use": "advance procurement of high-voltage equipment (transformers, breakers, switchgear) for Project Matador",
+          "source": "8-K 2026-02-25 accepted 4:29pm ET (no PR)"
+        },
+        {
+          "d": "2026-02-10",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 500,
+          "terms": "MUFG senior secured equipment-loan warehouse facility up to $500M (Fermi Turbine Warehouse LLC); SOFR+4.00%; 9-mo draw window; due 2027-08-10; non-recourse",
+          "use": "acquire 3 Siemens F-class turbines, refinance the $100M pre-IPO Macquarie bridge, turbine delivery/construction",
+          "source": "8-K + PR 2026-02-10 4:10pm ET"
+        },
+        {
+          "d": "2025-11-10",
+          "ah": true,
+          "kind": "other",
+          "sizeM": 150,
+          "terms": "Advance in Aid of Construction Agreement (dated 11/3) with unnamed investment-grade LOI tenant — tenant to advance up to $150M of Matador shared-infrastructure construction; never drawn, tenant terminated 12/11 after LOI exclusivity lapsed",
+          "use": "fund shared infrastructure ahead of tenant occupancy — disclosed inside the Q3 letter (earnings-confounded day-0)",
+          "source": "8-K 2025-11-10 (accepted 5:03pm ET)"
+        },
+        {
+          "d": "2025-09-30",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 784.9,
+          "terms": "IPO: 32.5M sh @ $21.00 + over-allotment 4.875M exercised at pricing = 37.375M sh, $784.9M gross / $745.6M net; UBS/Evercore/Cantor/Mizuho; traded 10/1",
+          "use": "Project Matador (Amarillo TX) 11GW AI-campus development, turbines/construction, GCP",
+          "source": "PR 2025-09-30 ~6pm ET + 8-K 2025-10-03"
+        }
+      ],
       "log": [
         {
           "d": "2026-05-15",
@@ -3054,6 +3668,44 @@
       ],
       "finMix": "$230M 4.5% convert due 2031 (+$120M zero-strike call), $100-150M Bit Digital delayed-draw TL, CAD60M RBC facility, $20M Iceland TL; $75.8M cash; ~38.6M shares; no BTC treasury (stayed with BTBT).",
       "leaseQ": 2,
+      "raises": [
+        {
+          "d": "2026-05-27",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 100,
+          "terms": "related-party bridge: DDTL facility (effective 5/20) from Bit Digital Capital to Enovum NC-1 Venture: up to $100M expandable to $150M; 9.5% stepping to 8.0%; 3% OID; PIK option; min 1.1x money-back",
+          "use": "complete NC-1 (Madison NC) 40MW Phase 1 pending permanent project financing — bridges the Nscale $865M/10-yr contract",
+          "source": "8-K + PR 2026-05-27 accepted 5:06pm ET"
+        },
+        {
+          "d": "2026-03-26",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 20,
+          "terms": "WhiteFiber Iceland secured term facility with Landsbankinn (dated 3/25): up to $20M; SOFR+4.25%; 2-yr extendable to 4; parent-guaranteed, secured by Iceland sub equity + GPU assets",
+          "use": "Iceland HPC/cloud operations financing — disclosed in the FY25 10-K subsequent-events note (earnings-confounded day-0)",
+          "source": "10-K accepted 2026-03-26 7:00am ET (no 8-K, no PR)"
+        },
+        {
+          "d": "2026-01-21",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 200,
+          "terms": "launched $200M convertible senior notes due 2031 (144A) at ~4:01pm ET (+$30M option), concurrent with prelim Q4 results; priced 1/22 UPSIZED to $210M at 4.500%, conv ~$25.91 (+27.5%); closed 1/26 at $230M with option in full",
+          "use": "data-center buildout / strategic growth, GCP — launched alongside prelim results (confounded day-0)",
+          "source": "launch PR 2026-01-21; pricing PR 1/22; 8-K + indenture 1/26"
+        },
+        {
+          "d": "2025-08-06",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 159.4,
+          "terms": "IPO priced 9.375M ordinary shares @ $17.00 = $159.4M gross (evening 8/6; traded 8/7); 30-day option exercised in full 9/2 (+$23.9M → $183.3M total); B. Riley + Needham",
+          "use": "HPC/AI data-center buildout (NC-1 acquisition/fit-out, Enovum expansion) + GCP; Bit Digital retained ~72%",
+          "source": "S-1MEF 2025-08-06 accepted 5:03pm ET; 8-K 2025-08-08; greenshoe PR 9/3"
+        }
+      ],
       "log": [],
       "thesis": "Undervalued AI hybrid (GPU cloud + colo to Nscale/Cerebras), but a single-tenant, single-site, thin-float bet — concentration is the thesis. Its value also drives BTBT's look-through.",
       "verified": {
@@ -3279,6 +3931,35 @@
       ],
       "finMix": "$115M 0% exchangeable notes (2031) + serial ATM equity + Dell finance lease (504 B200s) + mortgage/term loans; AI capex funded mainly by equity and the convert, not contracted prepayments.",
       "leaseQ": 2.5,
+      "raises": [
+        {
+          "d": "2026-06-25",
+          "ah": false,
+          "kind": "convert",
+          "sizeM": 100,
+          "terms": "launched pre-market as US$100M proposed 0% exchangeable notes due 7/2031; priced after same-day close UPSIZED to $115M + $15M shoe = $130M total; exchange $4.83 (+27.5%); capped calls",
+          "use": "HPC/AI expansion (BUZZ), mining growth; funds capped calls",
+          "source": "launch 8-K accepted 2026-06-25 8:56am ET; pricing PR 6/25 evening"
+        },
+        {
+          "d": "2026-04-15",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 75,
+          "terms": "launched post-close as US$75M proposed 0% exchangeable senior notes due 2031 (144A, HIVE Bermuda, parent-guaranteed); priced 4/16 UPSIZED to $100M + $15M shoe = $115M total; exchange $2.57 (+17.5%); capped calls",
+          "use": "BUZZ HPC/AI data-center buildout + mining expansion; funds capped calls",
+          "source": "launch 8-K accepted 2026-04-15 5:04pm ET; pricing PR 4/16"
+        },
+        {
+          "d": "2025-11-25",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": 300,
+          "terms": "new US$300M at-the-market equity program (KBW/Cantor/Canaccord + Stifel Canada et al.), TSXV+Nasdaq, under the new F-3ASR shelf",
+          "use": "ASIC fleet + Paraguay expansion, BUZZ HPC/AI data-center growth, working capital",
+          "source": "424B5 accepted 2025-11-25 5:01pm ET + PR in 6-K 11/26"
+        }
+      ],
       "log": [
         {
           "d": "2026-06-18",
@@ -3499,6 +4180,116 @@
       ],
       "finMix": "Project-level senior secured notes (6.75% '31) + Macquarie $5B perpetual preferred (12.75%, 15% common in HPC JV) + NCI contributions + converts; modest corporate equity",
       "leaseQ": 4.2,
+      "raises": [
+        {
+          "d": "2026-06-26",
+          "ah": true,
+          "kind": "pref",
+          "sizeM": 2000,
+          "terms": "Sixth Amendment to the Series G PEPA: commitment upsized $1.59B → $2.00B",
+          "use": "additional preferred-program availability for campus buildout",
+          "source": "8-K 2026-06-26 17:03 ET (no PR)"
+        },
+        {
+          "d": "2026-06-09",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 1590,
+          "terms": "launched $1.59B senior secured notes (APLD ComputeCo 3, 144A) pre-market; priced same day after close at 7.000% due 2031 @ par; closed 6/16",
+          "use": "fund the 150MW fourth building (ELN-04) at Polaris Forge 1 — CoreWeave lease; repay the GS bridge",
+          "source": "launch PR + 8-K 2026-06-09 08:01 ET; pricing 17:27 ET"
+        },
+        {
+          "d": "2026-06-08",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 550,
+          "terms": "new corporate revolving credit facility (closed 5/29): $350M committed + $200M accordion; Goldman lead-left, 6-bank syndicate",
+          "use": "pre- and post-lease development spend, working capital, GCP",
+          "source": "PR 2026-06-08 08:00 ET + 8-K 6/9"
+        },
+        {
+          "d": "2026-03-02",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 2150,
+          "terms": "launched $2.15B senior secured notes (APLD ComputeCo 2, 144A) at 16:05 ET; priced 3/4 pre-market at 6.750% due 2031 @ 98.0; closed 3/10; Goldman lead",
+          "use": "fund 200MW at Polaris Forge 2 (Harwood ND) — leased to Oracle",
+          "source": "launch PR + 8-K 2026-03-02 16:05 ET; pricing PR 3/4"
+        },
+        {
+          "d": "2025-12-18",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 100,
+          "terms": "new Macquarie DevCo pre-lease development loan: $45M drawn at close + $55M conditional second draw",
+          "use": "pre-lease sourcing/planning/construction of NEW campuses; tied to advanced negotiations with a second investment-grade hyperscaler",
+          "source": "PR 2025-12-18 08:15 ET + 8-K 12/22"
+        },
+        {
+          "d": "2025-11-12",
+          "ah": false,
+          "kind": "pref",
+          "sizeM": 787.5,
+          "terms": "second draw under the MAM $5.0B perpetual-preferred facility: $787.5M expected by month-end ($450M to Polaris Forge 2)",
+          "use": "Polaris Forge 1 + 2 buildout — draw under the pre-window MAM program",
+          "source": "PR 2025-11-12 13:05 ET + 8-K"
+        },
+        {
+          "d": "2025-11-10",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 2350,
+          "terms": "launched $2.35B senior secured notes (APLD ComputeCo, 144A) pre-market; priced 11/13 at 9.250% due 2030 @ 97.0; closed 11/20",
+          "use": "construct ELN-02/ELN-03 (250MW) at Polaris Forge 1 — CoreWeave leases; repay the Feb-25 credit agreement",
+          "source": "launch PR + 8-K 2025-11-10 07:47 ET; pricing 11/13"
+        },
+        {
+          "d": "2025-10-21",
+          "ah": true,
+          "kind": "pref",
+          "sizeM": 1590,
+          "terms": "Fourth Amendment to the Series G PEPA: commitment upsized $590M → $1.59B; max $75M per put, one per 7 business days; OID 2%→3%",
+          "use": "Polaris Forge 1 and 2 construction + working capital",
+          "source": "8-K 2025-10-21 16:15 ET (no PR)"
+        },
+        {
+          "d": "2025-10-07",
+          "ah": false,
+          "kind": "pref",
+          "sizeM": 112.5,
+          "terms": "first funding under the Macquarie Asset Management perpetual-preferred SPV facility: 112,500 preferred units @ $1,000 in APLD HPC TopCo 2 + 7.5% SPV common to MAM",
+          "use": "Polaris Forge 1 400MW buildout (CoreWeave leases) — draw under the pre-window up-to-$5.0B MAM program",
+          "source": "PR 2025-10-07 08:00 ET + 8-K 10/9"
+        },
+        {
+          "d": "2025-09-12",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 75,
+          "terms": "Macquarie Equipment Capital promissory note: $50M drawn at close (9/9) + up to $25M additional; 8.0% PIK yr 1; 1.10x return hurdle; due 9/9/27",
+          "use": "Polaris Forge 2 (Harwood ND) land, transformers, early construction — ahead of the Oracle lease",
+          "source": "8-K 2025-09-12 16:30 ET (no PR)"
+        },
+        {
+          "d": "2025-09-12",
+          "ah": true,
+          "kind": "pref",
+          "sizeM": 450,
+          "terms": "Second Amendment to the Series G PEPA: commitment upsized $300M → $450M",
+          "use": "Polaris Forge 1/2 construction + working capital",
+          "source": "8-K 2025-09-12 16:30 ET (no PR)"
+        },
+        {
+          "d": "2025-08-15",
+          "ah": true,
+          "kind": "pref",
+          "sizeM": 300,
+          "terms": "First Amendment to the Series G Convertible Preferred PEPA: commitment upsized $150M → $300M; $75M-per-issuance put limitation removed",
+          "use": "fund continued construction of Polaris Forge 1 (Ellendale ND; CoreWeave tenant)",
+          "source": "8-K 2025-08-15 16:45 ET (no PR)"
+        }
+      ],
       "log": [],
       "thesis": "Undervalued — ~1.4 GW of 15-yr triple-net leases to CoreWeave/Oracle (~$36B lease value) credited near-full while the market discounts execution and debt. One of the cleanest contracted-landlord books here.",
       "committedDebt": 3740,
@@ -3642,6 +4433,26 @@
       ],
       "finMix": "BTC treasury + mining cash flow + capital markets",
       "leaseQ": 1,
+      "raises": [
+        {
+          "d": "2025-09-03",
+          "ah": false,
+          "kind": "atm",
+          "sizeM": 2100,
+          "terms": "$2.1B at-the-market program established on Nasdaq listing day; 15 agents led by Cantor/Mizuho/BTIG",
+          "use": "BTC treasury accumulation + mining expansion, general corporate",
+          "source": "424B5 + 8-K 2025-09-03 (accepted 9:28am ET)"
+        },
+        {
+          "d": "2025-06-30",
+          "ah": true,
+          "kind": "other",
+          "sizeM": 220,
+          "terms": "pre-listing private placement of Class A common at $20.00/sh — 11,002,954 shares, $220.1M gross (~$10M paid in BTC at $104k); Reg D; first closing 6/27",
+          "use": "grow bitcoin reserves + miner purchases ahead of the Nasdaq listing via the Gryphon merger — disclosed via parent HUT 8-K while still private",
+          "source": "HUT 8-K 2025-06-30 (Item 3.02)"
+        }
+      ],
       "log": [],
       "thesis": "A BTC treasury/miner (Hut 8-controlled), tracked mainly so HUT marks its stake live; screens near BTC NAV. Not an AI bet — pure Bitcoin and dilution exposure.",
       "verified": {
@@ -3742,6 +4553,35 @@
       ],
       "finMix": "$1.84B of 0% convertible notes (2030 $692M + 2032 $1.15B); all BTC-backed credit lines repaid with convert proceeds; net debt ~$1.56B excl. BTC. Buildout to be financed primarily by project/high-yield debt against future IG anchor leases (mgmt cites Cipher-style 6-8% hyperscaler-backed debt) plus monthly BTC production and ~$0.8B liquidity; equity (ATM) deliberately a last resort — zero issuance in 15 months, ~20% share count REDUCED via $463M buyback.",
       "leaseQ": 2.5,
+      "raises": [
+        {
+          "d": "2025-11-10",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 1000,
+          "terms": "launched $1.0B 0.00% convertible senior notes due 2032 (144A) + $200M option; priced same evening UPSIZED to $1.15B, 27.5% premium (conv ~$19.16); closed 11/13 at $1.15B",
+          "use": "~$460M concurrent common-stock repurchase from note investors (delta placement); power/land expansion, data centers, repay BTC-backed lines, GCP",
+          "source": "8-K 2025-11-10 (launch) + 8-K 2025-11-12 (pricing)"
+        },
+        {
+          "d": "2025-09-25",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 100,
+          "terms": "NEW $100M BTC-backed revolving facility with Two Prime Lending; Term SOFR +3.55%; matures 2026-09-14; recourse limited to digital-asset collateral; brings total collateralized lending capacity to $400M",
+          "use": "hashrate deployment, HPC investment, Digital Asset Management strategies",
+          "source": "PR 2025-09-25 + 8-K 2025-09-25"
+        },
+        {
+          "d": "2025-09-22",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 100,
+          "terms": "Coinbase Prime BTC-backed master loan capacity increased by $100M, from $200M to $300M aggregate (side letter executed 2025-09-18); per-loan rates set in individual confirmations; BTC/USDC collateral with margin maintenance",
+          "use": "strategic capex — energy portfolio expansion, scaling BTC mining, HPC investment",
+          "source": "PR 2025-09-22 + 8-K 2025-09-23"
+        }
+      ],
       "log": [],
       "thesis": "Cheap vs ~1.1 GW of owned, powered TX/GA land plus a 13.5k-BTC treasury, but the AI-landlord thesis is entirely pre-contract (Meta only a 'frontrunner'). A first signed anchor re-rates it from miner to colo.",
       "verified": {
@@ -3797,6 +4637,35 @@
       ],
       "finMix": "~70% WhiteFiber stake + ~158k ETH treasury + small mining; low net debt",
       "leaseQ": 1,
+      "raises": [
+        {
+          "d": "2025-10-31",
+          "ah": true,
+          "kind": "atm",
+          "sizeM": 2500,
+          "terms": "ATM cap raised $500M → $2.5B: new WKSI S-3ASR + amended H.C. Wainwright sales agreement",
+          "use": "ETH treasury accumulation and general corporate",
+          "source": "S-3ASR + EX-1.3 filed 2025-10-31 (accepted 5:00pm ET)"
+        },
+        {
+          "d": "2025-09-29",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 100,
+          "terms": "launched after close as $100M proposed; priced overnight UPSIZED to $135M 4.00% convertible senior notes due 2030 at conv $4.16 (+30%); $15M shoe exercised in full = $150M total; settled 10/2",
+          "use": "purchase Ethereum (31,057 ETH bought)",
+          "source": "8-K + 424B5 accepted 2025-09-29 ~4:17pm ET; FWP 9/30"
+        },
+        {
+          "d": "2025-07-14",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 67.3,
+          "terms": "registered direct: 22.0M ordinary shares at $3.06 (vs $3.33 prior close); B. Riley sole agent; closed 7/15",
+          "use": "purchase Ethereum (~19,683 ETH bought with proceeds)",
+          "source": "PR 2025-07-14 + 424B5 accepted 5:06pm ET + 8-K 2025-07-15"
+        }
+      ],
       "log": [],
       "thesis": "Deep holdco discount — its 70% WhiteFiber stake alone is ~1.5x the whole company's market cap, plus a 158k-ETH treasury. Upside is the SOTP closing and WhiteFiber re-rating; risk is the discount persisting.",
       "verified": {
@@ -3882,6 +4751,53 @@
       ],
       "finMix": "$290M Macquarie facility ($20M funded; $270M conditional on lease by 10/8/26) → JV ~80% project debt; parent equity via ATW EPFA + shelf",
       "leaseQ": 2,
+      "raises": [
+        {
+          "d": "2026-04-14",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 5,
+          "terms": "strategic placement to lender: 1.0M sh @ ~$5.00 + 400k warrants @ ~$5.00 sold to Macquarie Equipment Capital with the TL A-1 drawdown; registration rights",
+          "use": "equity component of the Macquarie TCDC financing package",
+          "source": "8-K 2026-04-14 accepted 4:21pm ET"
+        },
+        {
+          "d": "2026-04-08",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 290,
+          "terms": "Macquarie Equipment Capital senior secured term facility up to $290M for Texas Critical Data Centers: $20M committed TL A-1 + $30M/$40M/$200M discretionary tranches; SOFR+5.50-7.75%; due 2029; MOIC premiums 1.15-1.35x",
+          "use": "TCDC Ector County TX AI/HPC campus project financing (250MW initial) — same-evening pair with the equity launch",
+          "source": "8-K + PR 2026-04-08 accepted 4:11pm ET"
+        },
+        {
+          "d": "2026-04-08",
+          "ah": true,
+          "kind": "equity",
+          "sizeM": 100,
+          "terms": "underwritten public offering launched after close (PR 4:41pm ET); priced pre-market 4/9 at $3.35 (−19% vs the $4.14 close): 29.85M sh = $100.0M gross; option exercised in full 4/10 → $115.0M total / ~$107.4M net; Northland lead",
+          "use": "repay the $50M SharonAI seller convertible note (prepaid 4/24), remainder GCP — same-evening pair with the $290M Macquarie facility",
+          "source": "launch PR + 8-K 2026-04-08; pricing PR 2026-04-09 7:02am ET; 424B5 4/9"
+        },
+        {
+          "d": "2026-04-06",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 5,
+          "terms": "$5.0M promissory note (dated 3/31, A&R 4/6) from Zachary Yi Zhou (>5% holder); 5%; mandatorily converts at the Qualified-Equity-Financing offer price; 1.02x premium",
+          "use": "bridge ahead of the TCDC financing package (related party)",
+          "source": "8-K 2026-04-06 accepted 4:15pm ET"
+        },
+        {
+          "d": "2025-10-28",
+          "ah": true,
+          "kind": "debt",
+          "sizeM": 4,
+          "terms": "$4.0M secured promissory note (dated 10/23) from Joel Solis / Aventus Properties (related party); 18%; due 12/6/25; secured by Odessa/Pecos TX deeds of trust",
+          "use": "near-term liquidity bridge (related party)",
+          "source": "8-K 2025-10-28 accepted 5:11pm ET (no PR)"
+        }
+      ],
       "log": [],
       "verified": {
         "capital": "2026-07-05",
@@ -3981,6 +4897,35 @@
       ],
       "finMix": "Two capped-call converts ($588M 1.375% '31 @ $6.86 + $458M 1.25% '32 @ $7.41, both OTM → in net debt) − ~$720M cash; Macquarie project facility repaid",
       "leaseQ": 2.5,
+      "raises": [
+        {
+          "d": "2026-06-04",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 350,
+          "terms": "launched $350M convertible senior notes due 2032 (8-K accepted 5:11pm ET); priced overnight UPSIZED to $400M at 1.250% + $58M option; closed 6/9 at $458M with option in full; capped calls",
+          "use": "deposits for long-lead equipment + LC collateral to accelerate Panther Creek, Sharon, Moses Lake",
+          "source": "8-K + PR 2026-06-04 (launch); pricing 6/5; closing 8-K 6/10"
+        },
+        {
+          "d": "2025-10-15",
+          "ah": true,
+          "kind": "convert",
+          "sizeM": 300,
+          "terms": "launched $300M convertible senior notes due 2031 after close (+$60M option); priced after close 10/16 UPSIZED to $500M at 1.375% + $88M option; closed 10/21 at $588M with option in full; capped calls (125% cap)",
+          "use": "opportunistic raise, GCP",
+          "source": "launch PR + 6-K 2025-10-15 (accepted 9:29pm ET); pricing 10/16; indenture 10/21"
+        },
+        {
+          "d": "2025-10-10",
+          "ah": false,
+          "kind": "debt",
+          "sizeM": 50,
+          "terms": "Amendment No. 1 to Macquarie Equipment Capital facility: converted to $300M Panther Creek project financing + additional $50M draw ($100M drawn through closing); closing included 2.197M warrants @ $5.69",
+          "use": "Panther Creek (PA) Phase 1: civil works, substation, long-lead equipment",
+          "source": "PR 2025-10-10 9:25am ET + 6-K"
+        }
+      ],
       "log": [],
       "verified": {
         "capital": "2026-07-05",
