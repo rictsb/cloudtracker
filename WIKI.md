@@ -45,6 +45,9 @@ gross        = min(1, Σν⁺ ÷ 0.75) — cash grows mechanically when total ed
 ## Coverage screen
 One row per name, sortable by any column: **market cap** (reported/basic `sharesReported` × live price — NOT fully-diluted) vs **confirmed contracted value** (gross headline $ of every effective lease + compute contract), gross-weighted **avg term**, **annualized** (Σ gross ÷ term — a term-average, ramps not modelled), and two coverage ratios (annual ÷ cap, backlog ÷ cap). Two display-only fields feed it: `grossTotalM` on each lease (the announced value, distinct from the engine's `noiPerMWyr` NOI) and `sharesReported` per company (basic shares, distinct from the engine's FD `shares`). Row click → per-contract breakdown with terms. Excludes options, LOIs, non-performing books.
 
+## Raises screen
+The capital-raise event study (spec §6c): every announced raise as a dated, sourced fact in per-company `raises[]` — `{d, ah, kind equity/atm/convert/debt/pref/other, sizeM, terms, use, source}` — with day-0 reaction and +5/+15/+30 trading-day forward returns **derived live from the portfolio ledger, never stored**. Excess = return minus the equal-weight universe over the same window. Aggregates (median · hit rate · N, complete windows only) by instrument test the drop-then-recover hypothesis. Entry rules: **new-capital announcements only** (refis/refixes stay in `log[]`); `d` = the announcement wire, not pricing/close (converts usually launch after the close → `ah:true`); ATM = the program announcement, cap as size; every record carries a source and is sanity-checked against the ledger before entry. Display-only — the engine never reads it.
+
 ## Dashboard gauge
 Per row: bar = our value (target), split **contracted floor (solid) / expected pipeline (hatched) / legacy (gold)**; dark line = market price; green gap = upside, red = overvalued. Sorted by upside. "▸ valuation narrative" expands the per-name thesis.
 
@@ -69,7 +72,7 @@ Intuition: the real discount on future compute = discount − trend.
 - **Move the target:** `model` (owner/landlord/holdco) · `tier` (proven/ig/ig-reit) · `sites[]` {n, mw, owned, region cheap/mid/exp/eu/au, yr, mo, prov disclosed/estimated/rumored} · `contractedPct` · `termYrs` (owner lock) · `mtm` (landlord) · `netDebt` · `committedDebt` (issued project bonds funding credited sites, even if escrowed) · `seniorClaims` (drawn preferred + NCI) · `shares` (fully diluted) · `legacyEV` · `btc` · `eth` · `stake` {tk, pct} · `plannedRaise` · `equityDiscount`.
 - **Need a `basis` note:** `plannedRaise`, non-Proven `tier`, `equityDiscount`, `committedDebt`, `seniorClaims`.
 - **Coverage-screen only (display, never touch the engine):** `sharesReported` (basic shares for the reported market cap) · `grossTotalM` on each lease (gross headline contract value vs the engine's `noiPerMWyr` NOI).
-- **Reference only:** `narrative`, `thesis`, `bull`, `bear`, `catalysts`, `risks`, `finMix`, `log`.
+- **Reference only:** `narrative`, `thesis`, `bull`, `bear`, `catalysts`, `risks`, `finMix`, `log`, `raises[]` (the raise event registry, spec §6c).
 
 ## Conventions
 - **Provenance = existence** (will the MW energize), not leasing. Leasing risk lives in `contractedPct`.

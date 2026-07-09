@@ -13,7 +13,7 @@ async function loadPortfolio(){
     PF=await a.json();PFH=await b.json();PF_AT=Date.now();
   }catch(e){PF_ERR=e.message;}
   PF_LOADING=false;
-  if(view==='port'||view==='checks')render();
+  if(view==='port'||view==='checks'||view==='raises')render();
 }
 function retryPortfolio(){PF_ERR=null;PF=null;PFH=null;loadPortfolio();}
 

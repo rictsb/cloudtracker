@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=13">
+<link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
 
@@ -37,6 +37,7 @@
         <button class="tab" data-view="sites">All sites</button>
         <button class="tab" data-view="leases">Leases</button>
         <button class="tab" data-view="cover">Coverage</button>
+        <button class="tab" data-view="raises">Raises</button>
         <button class="tab" data-view="checks">Checks <span id="tabbadge"></span></button>
         <button class="tab" data-view="port">Portfolio</button>
       </div>
@@ -71,6 +72,11 @@
         <div id="cover-body"></div>
       </section>
 
+      <section id="view-raises" style="display:none">
+        <div class="eyebrow">Capital raises — every announced raise, its day-0 reaction and the +5/+15/+30 trading-day path, absolute and vs the equal-weight universe. Derived live from the portfolio ledger; nothing stored. Click a column to sort; click a row for terms, purpose and the source.</div>
+        <div id="raises-body"></div>
+      </section>
+
       <section id="view-checks" style="display:none">
         <div class="eyebrow">Data unit tests — run live in this browser against the deployed data, on every load</div>
         <div id="checks-body"></div>
@@ -103,11 +109,11 @@
 </div>
 
 <!-- bump ?v= together with meaningful JS/CSS changes — browsers cache these heuristically -->
-<script src="config.js?v=13"></script>
-<script src="checks-core.js?v=13"></script>
-<script src="engine.js?v=13"></script>
-<script src="portfolio-core.js?v=13"></script>
-<script src="app.js?v=13"></script>
-<script src="portfolio-ui.js?v=13"></script>
+<script src="config.js?v=14"></script>
+<script src="checks-core.js?v=14"></script>
+<script src="engine.js?v=14"></script>
+<script src="portfolio-core.js?v=14"></script>
+<script src="app.js?v=14"></script>
+<script src="portfolio-ui.js?v=14"></script>
 </body>
 </html>

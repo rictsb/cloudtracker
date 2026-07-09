@@ -18,7 +18,7 @@ let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
 
-let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1,covSort='anncov',covDir=-1;
+let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1,covSort='anncov',covDir=-1,rzSort='d',rzDir=-1;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
@@ -53,7 +53,7 @@ function render(){
   const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
   document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin+CONST.leasedCMargin)/100)*(A.multiple*(1+CONST.multPremium*0.6)))+' / MW';
   document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
-  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else renderSites();
+  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else if(view==='raises')renderRaises(); else renderSites();
 }
 
 /* ---- leases page: the registry rendered — every signed book + its economics (the print tape) ---- */
@@ -183,6 +183,82 @@ function renderCoverage(){
   body.querySelectorAll('th[data-cv]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.cv;
     if(k===covSort)covDir*=-1;else{covSort=k;covDir=(k==='tk')?1:-1;}renderCoverage();}));
   body.querySelectorAll('.cvrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('cv-'+tr.dataset.i);if(!d)return;d.classList.toggle('open');const car=tr.querySelector('td');if(car&&car.textContent)car.textContent=d.classList.contains('open')?'▾':'▸';}));
+}
+/* ---- raises page: capital-raise event study (spec §6c) — returns derived live from the sanctioned ledger, nothing stored ---- */
+const RZ_WINDOWS=[5,15,30];
+const RZ_KIND_CLS={equity:'rumored',atm:'rumored',convert:'estimated',pref:'estimated',debt:'disclosed',other:'disclosed'};
+function rzNextDay(iso){const t=new Date(iso+'T12:00:00Z');t.setUTCDate(t.getUTCDate()+1);return t.toISOString().slice(0,10);}
+function rzDerive(tk,ev,days){
+  const eff=ev.ah?rzNextDay(ev.d):ev.d,last=days.length-1;
+  if(eff>days[last].d)return{status:'pending'};                       // announced after the last mark — day 0 not printed yet
+  let i0=-1;for(let i=0;i<days.length;i++){if(days[i].d>=eff&&days[i].px[tk]>0){i0=i;break;}}
+  if(i0<=0||!(days[i0-1].px[tk]>0))return{status:'nohistory'};        // pre-ledger or pre-listing: a fact without returns
+  const baseline=days[i0-1].px[tk],px0=days[i0].px[tk],wins={};
+  RZ_WINDOWS.forEach(N=>{const j=i0+N;
+    if(j<=last){wins[N]={r:days[j].px[tk]/px0-1,x:days[j].px[tk]/px0-1-(days[j].bench/days[i0].bench-1),done:true};}
+    else if(last>i0){const lp=LIVE_PRICES[tk]>0?LIVE_PRICES[tk]:days[last].px[tk];
+      wins[N]={r:lp/px0-1,x:lp/px0-1-(days[last].bench/days[i0].bench-1),done:false,el:last-i0};}
+    else wins[N]=null;});                                             // day 0 is the latest mark — no forward path yet
+  return{status:'ok',d0:days[i0].d,baseline,px0,reaction:px0/baseline-1,wins};
+}
+function renderRaises(){
+  const body=document.getElementById('raises-body');if(!body)return;
+  if(typeof PFH==='undefined'||!PFH){
+    body.innerHTML=(typeof PF_ERR!=='undefined'&&PF_ERR)?`<div class="appmsg err">Could not load the price ledger — ${PF_ERR} <button class="refreshbtn" onclick="retryPortfolio()">retry</button></div>`:'<div class="legend2">loading price ledger…</div>';
+    if(typeof loadPortfolio==='function'&&!PF_LOADING&&!PF_ERR)loadPortfolio();return;}
+  const days=PFH.days;
+  const rows=[];COMPANIES.forEach(c=>(c.raises||[]).forEach(ev=>rows.push({c,ev,der:rzDerive(c.tk,ev,days)})));
+  if(!rows.length){body.innerHTML='<div class="legend2">no raises recorded yet — events enter data.json as sourced facts (spec §6c)</div>';return;}
+  /* aggregates — complete windows only; the hypothesis test */
+  const med=a=>{if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2;};
+  const agg=ks=>{const ev=rows.filter(r=>r.der.status==='ok'&&(ks==='all'||r.ev.kind===ks));
+    const o={n:ev.length,rx:med(ev.map(r=>r.der.reaction))};
+    RZ_WINDOWS.forEach(N=>{const done=ev.filter(r=>r.der.wins[N]&&r.der.wins[N].done);
+      o[N]={n:done.length,med:med(done.map(r=>r.der.wins[N].r)),hit:done.length?done.filter(r=>r.der.wins[N].r>0).length/done.length:null,xmed:med(done.map(r=>r.der.wins[N].x))};});
+    return o;};
+  const A=agg('all');
+  const kinds=Object.keys(RZ_KIND_CLS).filter(k=>rows.some(r=>r.ev.kind===k&&r.der.status==='ok'));
+  const pc=x=>x==null?'—':(x>=0?'+':'')+(x*100).toFixed(1)+'%';
+  const col=(x,inner)=>x==null?'—':`<span style="color:${x>=0?'var(--pine)':'var(--clay)'}">${inner}</span>`;
+  let h=`<div class="ssummary" style="margin:4px 4px 16px"><span><b>${rows.length}</b> raises recorded</span><span><b>${A[30].n}</b> with a complete +30d window</span><span>day-0 median <b>${pc(A.rx)}</b></span><span>+30d median <b>${pc(A[30].med)}</b>${A[30].hit!=null?' · hit <b>'+(A[30].hit*100).toFixed(0)+'%</b>':''}</span><span>+30d median excess <b>${pc(A[30].xmed)}</b></span></div>`;
+  /* aggregate table by instrument */
+  h+=`<div style="overflow-x:auto"><table class="stab" style="margin:0 0 18px"><thead><tr><th>Type</th><th class="r">N</th><th class="r">Day 0 med</th><th class="r">+5d</th><th class="r">+15d</th><th class="r">+30d</th><th class="r">Excess +30d</th></tr></thead><tbody>`;
+  const aggRow=(lab,a,bold)=>{const w=N=>a[N].n?`${col(a[N].med,pc(a[N].med))} · ${(a[N].hit*100).toFixed(0)}% <span style="color:var(--ink-soft)">(${a[N].n})</span>`:'—';
+    return `<tr>${bold?'<td><b>All</b></td>':`<td><span class="prov ${RZ_KIND_CLS[lab]}">${lab}</span></td>`}<td class="r mono">${a.n}</td><td class="r mono">${col(a.rx,pc(a.rx))}</td><td class="r mono">${w(5)}</td><td class="r mono">${w(15)}</td><td class="r mono">${w(30)}</td><td class="r mono">${bold?'<b>':''}${col(a[30].xmed,pc(a[30].xmed))}${bold?'</b>':''}</td></tr>`;};
+  kinds.forEach(k=>{h+=aggRow(k,agg(k),false);});
+  h+=aggRow('all',A,true)+`</tbody></table></div>`;
+  /* event table */
+  const wk=(N,f)=>r=>{const w=r.der.wins&&r.der.wins[N];return w&&w.done?w[f]:-9;};
+  const RKEY={tk:r=>r.c.tk,d:r=>r.ev.d,kind:r=>r.ev.kind,sizeM:r=>r.ev.sizeM||0,rx:r=>r.der.reaction!=null?r.der.reaction:-9,r5:wk(5,'r'),r15:wk(15,'r'),r30:wk(30,'r'),x30:wk(30,'x')};
+  const kf=RKEY[rzSort]||RKEY.d;
+  rows.sort((x,y)=>{const av=kf(x),bv=kf(y);return (typeof av==='string'?av.localeCompare(bv):av-bv)*rzDir;});
+  const cols=[['tk','Company',''],['d','Announced',''],['kind','Type',''],['sizeM','Size','r'],['rx','Day 0','r'],['r5','+5d','r'],['r15','+15d','r'],['r30','+30d','r'],['x30','Excess +30d','r']];
+  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${cols.map(([k,lab,cl])=>`<th class="${cl}" data-rz="${k}">${lab}${rzSort===k?' <span class="arr">'+(rzDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
+  const wcell=(der,N)=>{if(der.status!=='ok'||!der.wins[N])return '—';const w=der.wins[N];
+    return w.done?col(w.r,pc(w.r)):`<span class="sofar">${pc(w.r)} (${w.el}d)</span>`;};
+  rows.forEach((r,i)=>{const{c,ev,der}=r,ok=der.status==='ok';
+    h+=`<tr class="rzrow srow${ok?'':' rzdim'}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
+      `<td class="co">${c.tk}</td>`+
+      `<td class="mono">${ev.d}${ev.ah?'<span style="color:var(--ink-soft)" title="announced after the close — day 0 is the next session"> ah</span>':''}</td>`+
+      `<td><span class="prov ${RZ_KIND_CLS[ev.kind]||'estimated'}">${ev.kind}</span></td>`+
+      `<td class="r mono">${ev.sizeM?fmtM(ev.sizeM):'—'}</td>`+
+      `<td class="r mono">${ok?col(der.reaction,pc(der.reaction)):`<span style="color:var(--ink-soft)">${der.status==='pending'?'awaiting mark':'no price history'}</span>`}</td>`+
+      `<td class="r mono">${wcell(der,5)}</td><td class="r mono">${wcell(der,15)}</td><td class="r mono">${wcell(der,30)}</td>`+
+      `<td class="r mono"><b>${der.status==='ok'&&der.wins[30]&&der.wins[30].done?col(der.wins[30].x,pc(der.wins[30].x)):'—'}</b></td></tr>`;
+    const xs=N=>der.status==='ok'&&der.wins[N]?` <span style="color:var(--ink-soft)">(xs ${pc(der.wins[N].x)}${der.wins[N].done?'':' so far'})</span>`:'';
+    h+=`<tr class="sdetail" id="rz-${i}"><td colspan="10"><div style="padding:8px 14px 12px;font-size:12px;line-height:1.8">`+
+      `<b>Announced</b> ${ev.d}${ev.ah?' — after the close; day 0 is the next session':''}`+
+      (ok?` · <b>day 0</b> ${der.d0}: ${fmtPrice(der.baseline)} → ${fmtPrice(der.px0)} (${pc(der.reaction)})`:'')+
+      (ev.sizeM?` · <b>size</b> ${fmtM(ev.sizeM)}${(c.sharesReported||c.shares)&&priceOf(c)?` = ${(ev.sizeM/((c.sharesReported||c.shares)*priceOf(c))*100).toFixed(0)}% of today's mkt cap`:''}`:'')+
+      (ok?`<br><b>Windows</b> +5d ${wcell(der,5)}${xs(5)} · +15d ${wcell(der,15)}${xs(15)} · +30d ${wcell(der,30)}${xs(30)}`:'')+
+      (ev.terms?`<br><b>Terms</b> ${ev.terms}`:'')+(ev.use?`<br><b>Purpose</b> ${ev.use}`:'')+
+      `<br><b>Source</b> <span style="color:var(--ink-soft)">${ev.source||'—'}</span> · <a class="clearfilter" href="#${c.tk}" style="font-size:11px">open ${c.tk} page →</a></div></td></tr>`;
+  });
+  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>Day 0</b> = the first ledger session on/after the announcement (<b>ah</b> = announced after the close → next session). Windows are trading days, anchored at the day-0 close — they test buying the reaction, not the round trip. <b>Excess</b> = the name's return minus the equal-weight universe benchmark over the same window (the name itself is ~1/${COMPANIES.length} of that basket). <i>Italic grey</i> = window still running (return so far — excluded from every aggregate). Ledger closes forward-fill on days without a fresh print, so a flat day 0 on an illiquid name is suspect. Dimmed rows predate the name's ledger history — facts without returns. Aggregates: median · hit rate (share positive) · (N complete).</div>`;
+  body.innerHTML=h;
+  body.querySelectorAll('th[data-rz]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.rz;
+    if(k===rzSort)rzDir*=-1;else{rzSort=k;rzDir=(k==='tk'||k==='kind')?1:-1;}renderRaises();}));
+  body.querySelectorAll('.rzrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('rz-'+tr.dataset.i);if(!d)return;d.classList.toggle('open');const car=tr.querySelector('td');if(car&&car.textContent)car.textContent=d.classList.contains('open')?'▾':'▸';}));
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
 let RAW_DATA=null;
@@ -479,6 +555,7 @@ function route(){
   if(raw==='checks'){showDashboard('checks',null);return;}
   if(raw==='leases'){showDashboard('leases',null);return;}
   if(raw==='coverage'){showDashboard('cover',null);return;}
+  if(raw==='raises'){showDashboard('raises',null);return;}
   if(raw==='portfolio'){showDashboard('port',null);return;}
   showDashboard('cmp',null);
 }
@@ -493,12 +570,13 @@ function showDashboard(v,filter){
   const vp=document.getElementById('view-port');if(vp)vp.style.display=v==='port'?'':'none';
   const vl=document.getElementById('view-leases');if(vl)vl.style.display=v==='leases'?'':'none';
   const vv=document.getElementById('view-cover');if(vv)vv.style.display=v==='cover'?'':'none';
+  const vz=document.getElementById('view-raises');if(vz)vz.style.display=v==='raises'?'':'none';
   render();window.scrollTo(0,0);
 }
 
 /* ---- wiring (after data loads) ---- */
 function wireEvents(){
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':t.dataset.view==='cover'?'coverage':'')));
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':t.dataset.view==='cover'?'coverage':t.dataset.view==='raises'?'raises':'')));
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});

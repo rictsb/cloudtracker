@@ -250,3 +250,7 @@ h4.sec{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transf
 /* leases page */
 .lrow{cursor:pointer} .lrow:hover td{background:var(--card)}
 .lrow.lpend td{opacity:.55}
+
+/* raises page */
+.sofar{color:var(--ink-soft);font-style:italic}
+.rzrow.rzdim td{opacity:.55}
