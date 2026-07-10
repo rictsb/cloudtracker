@@ -162,13 +162,14 @@ The tracker's outputs become a daily-rebalanced hypothetical book. Purpose: meas
 
 **Benchmark**: equal-weight basket of the investable universe, rebalanced monthly. Beating SPX measures the sector; beating equal-weight measures the ranking. Both NAVs start at 100.
 
-**Files (the only two, both owned by the app):**
+**Files (the only three, all owned by the app):**
 - `portfolio.json` — present-tense state: parameters, current holdings, cash, λ, per-name multipliers, as-of date. Overwritten daily.
 - `portfolio-history.json` — **the single sanctioned time-series ledger** in the repo (§10 carve-out): one record per trading day (NAV, benchmark NAV, weights, trades, λ). A `backtestThrough` date marks where simulation ends and the live record begins.
+- `data-pit.json` — the dated point-in-time company snapshots the reconstructed genesis runs on (data, engine schema, each snapshot basis-noted and date-disciplined; regenerated rarely, only through review).
 
 **Daily job**: a scheduled GitHub Action runs `node portfolio-run.js` after US close (Mon–Fri): fetch closes (Finnhub) + BTC/ETH (Coinbase), value every name with the engine at the run date (the time discount rolls forward daily), rebalance, append the ledger, commit — the site redeploys with the new state. Idempotent per date. News never enters here: facts flow through the normal proposal path into `data.json`, and the next run reprices them. The job **fails loudly rather than record silently wrong numbers**: violent overnight moves are cross-checked for splits (share counts adjust, value-preserving) vs source conflicts (name freezes; three suspect days fail the run), a mostly-missing tape marks NAV but suspends trading, names without a fresh print for >10 days freeze as uninvestable, a dead feed or unresolved conflict turns the Action red and opens a GitHub issue, and BTC/ETH forward-fill from the ledger on an outage — never a static fallback.
 
-**Backtest provenance (honest label):** the genesis year is simulated with *today's* `data.json` against historical prices — it validates the machinery and calibrates parameters; it is **not** evidence of alpha (the inputs contain hindsight). The live record starts at `backtestThrough`.
+**Genesis provenance (honest reconstruction):** the genesis year runs on `data-pit.json` — dated snapshots of every company rebuilt from disclosures **published on or before each snapshot date**: leases enter when signed, sites when disclosed, raises when closed, names at listing, and pre-pivot names appear as what they then were (a miner, a holdco). Facts are period-true; three residual biases are structural and stay stated: the model's *structure and calibration* are today's, the *universe selection* is today's (survivorship), and reconstructed *judgement fields* (provenance, contracted %) are inferred from disclosure, not re-lived. A reconstruction, never a track record — the live record starting at `backtestThrough` is the only evidence that counts, and the Portfolio screen toggles the genesis off to show the live record alone.
 
 ### 6c. The capital-raise registry (Raises screen)
 

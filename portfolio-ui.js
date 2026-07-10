@@ -35,6 +35,16 @@ function pfTodayViews(){
 let PF_RANGE='1y';
 const PF_WINDOWS={'1d':1,'5d':5,'1m':21,'6m':126,'1y':252};
 function pfSetRange(r){PF_RANGE=r;render();}
+/* scope: full history (incl. reconstructed genesis) vs the live record alone.
+   Live scope keeps the go-live boundary record as day 0 — its close is the true live base. */
+let PF_SCOPE='all';try{PF_SCOPE=localStorage.getItem('pfScope')||'all';}catch(e){}
+function pfSetScope(s){PF_SCOPE=s;try{localStorage.setItem('pfScope',s);}catch(e){}render();}
+function pfScopeDays(days,backtestThrough){
+  if(PF_SCOPE!=='live')return days;
+  const i=days.findIndex(d=>d.d>backtestThrough);
+  if(i<0)return days.slice(-1);          // no live records yet — show the boundary point
+  return days.slice(Math.max(0,i-1));    // boundary record = live day 0
+}
 function pfRet(days,n,key){  // absolute return over the last n trading days (or since inception)
   if(days.length<2)return null;
   const i=Math.max(0,days.length-1-n);
@@ -88,7 +98,7 @@ function pfChartHTML(allDays,meta){
   s+=line('bench','style="stroke:var(--ink-soft);stroke-width:1.3" stroke-dasharray="4 3"');
   s+=line('nav','style="stroke:var(--indigo);stroke-width:1.8"');
   if(simEnd>=0&&simEnd<days.length-1){const x=xOf(simEnd);s+=`<line x1="${x.toFixed(1)}" y1="${mt}" x2="${x.toFixed(1)}" y2="${mt+ph}" style="stroke:var(--clay);stroke-width:1" stroke-dasharray="2 3"/>`;}
-  if(simEnd>=0)s+=`<text x="${ml+6}" y="${mt+12}" ${tx}>simulated genesis</text>`;
+  if(simEnd>=2)s+=`<text x="${ml+6}" y="${mt+12}" ${tx}>${meta.pit?'reconstructed genesis':'simulated genesis'}</text>`;
   // endpoint labels
   const lastD=days[days.length-1];
   s+=`<text x="${(W-mr-4).toFixed(1)}" y="${(yOf(val(lastD,'nav'))-5).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:10px;fill:var(--indigo)">${pfPct(val(lastD,'nav')/100,1)}</text>`;
@@ -101,19 +111,25 @@ function renderPortfolio(){
   if(PF_ERR&&(!PF||!PFH)){body.innerHTML=`<div class="appmsg err">Could not load portfolio files — ${PF_ERR} <button class="refreshbtn" onclick="retryPortfolio()">retry</button></div>`;return;}
   if(!PF||!PFH){body.innerHTML='<div class="legend2">loading portfolio…</div>';if(!PF_LOADING)loadPortfolio();return;}
   if(!PF_ERR&&Date.now()-PF_AT>1800000)loadPortfolio();   // stale open tab: refetch every 30min (daily Action commits new marks)
-  const days=PFH.days,meta=PFH.meta,last=days[days.length-1];
-  const liveDays=days.filter(d=>d.d>PF.backtestThrough);
+  const allDays=PFH.days,meta=PFH.meta;
+  const gLabel=meta.pit?'reconstructed genesis':'simulated genesis';
+  const days=pfScopeDays(allDays,PF.backtestThrough);
+  const last=allDays[allDays.length-1];
+  const liveDays=allDays.filter(d=>d.d>PF.backtestThrough);
   let peak=0,mdd=0;days.forEach(d=>{peak=Math.max(peak,d.nav);mdd=Math.max(mdd,1-d.nav/peak);});
   const {views,tw,excluded}=pfTodayViews();
   const vBy={};views.forEach(v=>{vBy[v.tk]=v;});
   const dialsMoved=typeof A!=='undefined'&&typeof BASE!=='undefined'&&JSON.stringify(A)!==JSON.stringify(BASE);
 
   const stat=(l,v,sub)=>`<div class="pf-stat"><span>${l}</span><b>${v}</b>${sub?`<i>${sub}</i>`:''}</div>`;
+  const liveBase=liveDays.length?allDays[allDays.length-1-liveDays.length]:null;
   let h=`<div class="pf-stats">`+
     stat('NAV (base 100)',last.nav.toFixed(1),last.d)+
-    stat('Total return',pfPct(last.nav/meta.base-1,0),'vs equal-weight '+pfPct(last.bench/meta.base-1,0))+
-    stat('Live period',liveDays.length?pfPct(last.nav/days[days.length-1-liveDays.length].nav-1):'starts next close',liveDays.length?liveDays.length+' trading days · bench '+pfPct(last.bench/days[days.length-1-liveDays.length].bench-1):'genesis is simulated')+
-    stat('Max drawdown',pfPct(-mdd,0),'benchmark path is rougher')+
+    (PF_SCOPE==='live'
+      ? stat('Live return',liveBase?pfPct(last.nav/liveBase.nav-1):'—',liveBase?'vs equal-weight '+pfPct(last.bench/liveBase.bench-1):'no live records yet')
+      : stat('Total return',pfPct(last.nav/meta.base-1,0),'vs equal-weight '+pfPct(last.bench/meta.base-1,0)+' · incl. genesis'))+
+    stat('Live period',liveBase?pfPct(last.nav/liveBase.nav-1):'starts next close',liveBase?liveDays.length+' trading days · bench '+pfPct(last.bench/liveBase.bench-1):'genesis only so far')+
+    stat('Max drawdown',pfPct(-mdd,0),PF_SCOPE==='live'?'live era only':'incl. genesis')+
     stat('Invested',pfW(1-last.cash),'cash '+pfW(last.cash))+
     stat('λ fight-the-market',PF.state.lambda.toFixed(2),'restarted neutral at go-live')+
     `</div>`;
@@ -124,12 +140,14 @@ function renderPortfolio(){
   [['Portfolio','nav'],['Equal-weight','bench']].forEach(([lbl,key])=>{
     h+=`<tr><td class="co">${lbl}</td>`+[1,5,21,126,252].map(nn=>retCell(pfRet(days,nn,key))).join('')+`</tr>`;});
   h+=`</tbody></table></div>`;
+  if(PF_SCOPE==='live')h+=`<div class="legend2">Live records only — a window longer than the live era shows the since-go-live return, marked *.</div>`;
 
   const rangeBtns=Object.keys(PF_WINDOWS).map(r=>`<button class="bo-tog${PF_RANGE===r?' on':''}" onclick="pfSetRange('${r}')">${r.toUpperCase()}</button>`).join('');
+  const scopeBtns=[['all','Incl. genesis'],['live','Live only']].map(([k,l])=>`<button class="bo-tog${PF_SCOPE===k?' on':''}" onclick="pfSetScope('${k}')">${l}</button>`).join('');
   h+=`<h4 class="sec">Cumulative return vs equal-weight universe</h4>
-  <div class="bo-head"><div class="bo-toggle">${rangeBtns}</div></div>
+  <div class="bo-head"><div class="bo-toggle">${rangeBtns}</div><div class="bo-toggle">${scopeBtns}</div></div>
   <div class="pf-chart">${pfChartHTML(days,meta)}</div>
-  <div class="legend2">Vertical axis = cumulative <b>%</b> return from the start of the selected window (both lines rebased to 0%). <b>solid</b> portfolio · <b>dashed</b> equal-weight benchmark · shaded = simulated genesis (today's data.json against last year's prices — machinery validation, <b>not evidence of alpha</b>); the live record starts at the clay line.</div>`;
+  <div class="legend2">Vertical axis = cumulative <b>%</b> return from the start of the selected window (both lines rebased to 0%). <b>solid</b> portfolio · <b>dashed</b> equal-weight benchmark${PF_SCOPE==='live'?` · live records only (from ${PF.backtestThrough})`:` · shaded = ${gLabel}${meta.pit?' (point-in-time facts, today’s model & universe — de-biased, still not a track record)':' (today’s data.json against last year’s prices — machinery validation, <b>not evidence of alpha</b>)'}; the live record starts at the clay line`}.</div>`;
 
   if(PF_ERR)h+=`<div class="ck-m mid"><span class="ck-lv">note</span>background refresh failed (${PF_ERR}) — showing the last loaded state. <button class="refreshbtn" onclick="retryPortfolio()">retry now</button></div>`;
   if(dialsMoved)h+=`<div class="ck-m mid"><span class="ck-lv">note</span><b>dials moved</b> "Target now" below reflects your sandbox dial settings, not the base case the daily job trades — hit "Reset to base case" to see the job's view.</div>`;
@@ -150,15 +168,17 @@ function renderPortfolio(){
   <div class="legend2">ν = λ × confidence × m × ln(target ÷ price) — the shrunk view that sizes the book. Confidence comes from how much of the target is contracted floor + marked legacy vs pipeline hope, less open watch-items. Softmax at T=${PF.params.temperature} (low = concentrated, no cap, by mandate); gross ${(tw.gross*100).toFixed(0)}% — cash grows mechanically when total edge thins. Trades fire only past the ${(PF.params.band*100).toFixed(0)}pt band.</div>`;
 
   // attribution: who actually made the money
-  const att=pfAttribution(days,PF.backtestThrough);
+  const showSim=PF_SCOPE!=='live';
+  const att=pfAttribution(allDays,PF.backtestThrough);
   const attNames=[...new Set([...Object.keys(att.sim),...Object.keys(att.live)])]
     .map(tk=>({tk,sim:att.sim[tk]||0,live:att.live[tk]||0}))
-    .sort((a,b)=>(b.live+b.sim)-(a.live+a.sim));
+    .filter(a=>showSim||Math.abs(a.live)>0.005)
+    .sort((a,b)=>showSim?((b.live+b.sim)-(a.live+a.sim)):(b.live-a.live));
   if(attNames.length){
-    h+=`<h4 class="sec">Attribution — NAV points by name</h4><div style="overflow-x:auto"><table class="stab"><thead><tr><th>Name</th><th class="r">Simulated</th><th class="r">Live</th></tr></thead><tbody>`;
+    h+=`<h4 class="sec">Attribution — NAV points by name</h4><div style="overflow-x:auto"><table class="stab"><thead><tr><th>Name</th>${showSim?`<th class="r">${meta.pit?'Reconstructed':'Simulated'}</th>`:''}<th class="r">Live</th></tr></thead><tbody>`;
     attNames.forEach(a=>{const f=x=>x?`<span style="color:${x>=0?'var(--pine)':'var(--clay)'}">${x>=0?'+':''}${x.toFixed(1)}</span>`:'—';
-      h+=`<tr><td class="co">${a.tk}</td><td class="r mono">${f(a.sim)}</td><td class="r mono">${f(a.live)}</td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2">Every name that ever held weight — winners AND losers (yesterday's weight × today's return, in points of a base-100 NAV). The simulated column is hindsight (see chart label); the live column is the real scoreboard and starts empty.</div>`;
+      h+=`<tr><td class="co">${a.tk}</td>${showSim?`<td class="r mono">${f(a.sim)}</td>`:''}<td class="r mono">${f(a.live)}</td></tr>`;});
+    h+=`</tbody></table></div><div class="legend2">Every name that ${showSim?'ever held':'holds'} weight — winners AND losers (yesterday's weight × today's return, in points of a base-100 NAV). ${showSim?`The ${meta.pit?'reconstructed':'simulated'} column carries the genesis caveats (see chart label); the`:'The'} live column is the real scoreboard.</div>`;
   }
 
   // learning state

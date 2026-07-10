@@ -18,6 +18,7 @@ const ROOT = __dirname;
 const DAYS = (() => { const i = process.argv.indexOf('--days'); return i > 0 ? +process.argv[i + 1] : 365; })();
 const FORCE = process.argv.includes('--force');
 const ALLOW_MISSING = process.argv.includes('--allow-missing');
+const PIT = process.argv.includes('--pit');   // run the genesis on data-pit.json point-in-time snapshots
 const TOKEN = process.env.FINNHUB_TOKEN || '';
 const QUOTE_TOKEN = TOKEN ||
   (fs.readFileSync(path.join(ROOT, 'config.js'), 'utf8').match(/"([a-z0-9]{20,})"/) || [])[1] || '';
@@ -100,16 +101,41 @@ async function main() {
   const excluded = new Set(Object.keys(exclude));
   if (excluded.size) console.log(`excluded from book + benchmark: ${[...excluded].join(', ')}`);
 
-  // refuse to clobber live history
+  // live history is sacred: by default a regeneration REATTACHES existing live records onto the
+  // new genesis (rescaled, return-preserving); --force discards them (almost never what you want)
   const histPath = path.join(ROOT, 'portfolio-history.json');
+  let oldLive = [], oldSimEnd = null, simCutoff = null, oldSimLen = 0;
   if (fs.existsSync(histPath) && !FORCE) {
     const old = JSON.parse(fs.readFileSync(histPath, 'utf8'));
-    const live = (old.days || []).filter(d => old.meta && d.d > old.meta.backtestThrough);
-    if (live.length) {
-      console.error(`REFUSING: ${live.length} LIVE ledger records exist after ${old.meta.backtestThrough} — rerun with --force to destroy them.`);
-      process.exit(1);
+    if (old.meta) {
+      oldLive = (old.days || []).filter(d => d.d > old.meta.backtestThrough);
+      const oldSim = (old.days || []).filter(d => d.d <= old.meta.backtestThrough);
+      oldSimEnd = oldSim[oldSim.length - 1] || null;
+      oldSimLen = oldSim.length;
+      if (oldLive.length) {
+        simCutoff = old.meta.backtestThrough;   // the sim must stop where the live record begins
+        console.log(`reattaching ${oldLive.length} live records after ${simCutoff}`);
+      }
     }
   }
+
+  // point-in-time snapshots: {companies: {TK: [{asOf, basis, company}, ...]}} sorted by asOf
+  let pit = null;
+  if (PIT) {
+    pit = JSON.parse(fs.readFileSync(path.join(ROOT, 'data-pit.json'), 'utf8'));
+    Object.values(pit.companies).forEach(sn => sn.sort((a, b) => a.asOf < b.asOf ? -1 : 1));
+    console.log(`PIT mode: ${Object.keys(pit.companies).length} tickers, ${Object.values(pit.companies).reduce((a, s) => a + s.length, 0)} dated snapshots`);
+  }
+  const activeCompanies = (d) => {
+    if (!pit) return data.companies;
+    const out = [];
+    for (const tk in pit.companies) {
+      let cur = null;
+      for (const s of pit.companies[tk]) { if (s.asOf <= d) cur = s.company; else break; }
+      if (cur) out.push(cur);
+    }
+    return out;
+  };
 
   let source = TOKEN ? 'finnhub' : 'yahoo';
   let fetched;
@@ -151,7 +177,8 @@ async function main() {
   const eth = await coinbaseDaily('ETH-USD', from, to);
   console.log(`BTC ${Object.keys(btc).length}d, ETH ${Object.keys(eth).length}d`);
 
-  const days = [...new Set(Object.values(hist).flatMap(h => Object.keys(h)))].sort();
+  let days = [...new Set(Object.values(hist).flatMap(h => Object.keys(h)))].sort();
+  if (simCutoff) days = days.filter(d => d <= simCutoff);
   if (!days.length) throw new Error('no price history fetched');
 
   const watch = {};
@@ -170,14 +197,16 @@ async function main() {
     if (btc[d] != null) lastBtc = btc[d];
     if (eth[d] != null) lastEth = eth[d];
 
-    const E = createEngine(data, { now: decYear(d) });
+    const active = activeCompanies(d);
+    const E = createEngine({ config: data.config, companies: active }, { now: decYear(d) });
     Object.assign(E.ctx.prices, px);
     E.ctx.btc = lastBtc; E.ctx.eth = lastEth;
 
-    const rows = data.companies.filter(c => px[c.tk] > 0 && !excluded.has(c.tk)).map(c => {
+    // PIT mode: watch-items are today's judgements — they do not exist in the reconstruction
+    const rows = active.filter(c => px[c.tk] > 0 && !excluded.has(c.tk)).map(c => {
       const v = E.value(c);
       return { tk: c.tk, price: px[c.tk], target: v.target, ev: v.ev,
-               contractedEV: v.contractedEV, legacy: E.legacyOf(c), watch: watch[c.tk] || 0 };
+               contractedEV: v.contractedEV, legacy: E.legacyOf(c), watch: pit ? 0 : (watch[c.tk] || 0) };
     });
 
     const ctx = { date: d, rows, px: { ...px }, state, params, holdings, bench, ledger, dayIdx,
@@ -186,28 +215,76 @@ async function main() {
     holdings = ctx.holdings; bench = ctx.bench;
   });
 
-  const last = ledger[ledger.length - 1];
-  console.log(`\n${ledger.length} trading days ${days[0]} → ${last.d}`);
-  console.log(`portfolio NAV ${last.nav} vs equal-weight ${last.bench} (base 100) · λ ${last.lambda} · cash ${(last.cash * 100).toFixed(1)}%`);
+  const simEnd = ledger[ledger.length - 1];
+  console.log(`\n${ledger.length} simulated trading days ${days[0]} → ${simEnd.d}`);
+  console.log(`genesis NAV ${simEnd.nav} vs equal-weight ${simEnd.bench} (base 100) · λ ${simEnd.lambda} · cash ${(simEnd.cash * 100).toFixed(1)}%`);
 
-  const meta = { base: 100, start: days[0], backtestThrough: last.d,
-                 note: 'Records through backtestThrough are SIMULATED with current data.json against historical prices (spec §6b) — machinery validation, not evidence of alpha.' };
+  // reattach live records: rescale (return-preserving) so the live era chains from the new genesis end
+  const rPx = x => (x < 10 ? Math.round(x * 10000) / 10000 : Math.round(x * 100) / 100);
+  if (oldLive.length && oldSimEnd) {
+    // seam guard: if a ticker's price basis differs between the new sim series and the live
+    // records (splits handled live but not in a re-fetched chart, etc.), align the SIM series
+    // to the live basis — live is canonical
+    const firstLive = oldLive[0];
+    for (const tk of Object.keys(firstLive.px || {})) {
+      const a = simEnd.px[tk], b = firstLive.px[tk];
+      if (a > 0 && b > 0 && Math.abs(Math.log(b / a)) > Math.log(1.5)) {
+        const f = b / a;
+        ledger.forEach(rec => { if (rec.px[tk] != null) rec.px[tk] = rPx(rec.px[tk] * f); });
+        console.log(`SEAM FIX ${tk}: sim price series aligned ×${f.toFixed(4)} to the live basis`);
+      }
+    }
+    const r = simEnd.nav / oldSimEnd.nav, rB = simEnd.bench / oldSimEnd.bench;
+    oldLive.forEach(recOld => {
+      const rec = JSON.parse(JSON.stringify(recOld));
+      rec.nav = Math.round(rec.nav * r * 100) / 100;
+      rec.bench = Math.round(rec.bench * rB * 100) / 100;
+      rec.trades.forEach(t => { t.usd = Math.round(t.usd * r * 100) / 100; });
+      ledger.push(rec);
+    });
+    console.log(`reattached ${oldLive.length} live records (NAV ×${r.toFixed(4)}, bench ×${rB.toFixed(4)}) → ledger ends ${ledger[ledger.length - 1].d}`);
+  }
+  const last = ledger[ledger.length - 1];
+
+  const meta = { base: 100, start: days[0], backtestThrough: simEnd.d,
+                 note: pit
+                   ? 'Records through backtestThrough are a RECONSTRUCTION: point-in-time company snapshots (data-pit.json, facts as disclosed by each date) valued with TODAY\'S model, calibration and universe selection (spec §6b) — meaningfully de-biased, still not a track record. The live record after backtestThrough is the evidence.'
+                   : 'Records through backtestThrough are SIMULATED with current data.json against historical prices (spec §6b) — machinery validation, not evidence of alpha.' };
+  if (pit) meta.pit = { generated: pit.meta && pit.meta.generated, snapshots: Object.values(pit.companies).reduce((a, s) => a + s.length, 0) };
   if (Object.keys(rescaled).length) meta.rescaled = rescaled;
   fs.writeFileSync(histPath, JSON.stringify({ meta, days: ledger }));
-  fs.writeFileSync(path.join(ROOT, 'portfolio.json'), JSON.stringify({
-    asOf: last.d, backtestThrough: last.d, priceSource: source, params,
-    // live learning restarts NEUTRAL: the backtest's λ/m are hindsight-contaminated
-    // (today's data.json "knew" the year) — the ledger keeps them for inspection only
-    state: { lambda: params.lambda0, names: {} },
-    suspect: {},
-    exclude, lastExcludeKey: [...excluded].sort().join(','),
-    // seed freshness at go-live from ACTUAL final-day prints — a name that stopped printing
-    // months ago must enter live operation already counted stale, not masked by forward-fill
-    lastFresh: Object.fromEntries(tickers.filter(tk => hist[tk][last.d] != null).map(tk => [tk, last.d])),
-    holdings: { cash: holdings.cash, positions: Object.fromEntries(Object.entries(holdings.positions).map(([k, v]) => [k, +v.toFixed(6)])) },
-    bench: { cash: bench.cash, positions: Object.fromEntries(Object.entries(bench.positions).map(([k, v]) => [k, +v.toFixed(6)])), lastReb: bench.lastReb },
-    dayIdx: ledger.length - 1,
-  }, null, 1));
+
+  if (oldLive.length && oldSimEnd) {
+    // live state is sacred: preserve portfolio.json wholesale, rescale only the book & bench
+    const pfOld = JSON.parse(fs.readFileSync(path.join(ROOT, 'portfolio.json'), 'utf8'));
+    const r = simEnd.nav / oldSimEnd.nav, rB = simEnd.bench / oldSimEnd.bench;
+    const scale = (book, f) => ({ ...book, cash: book.cash * f,
+      positions: Object.fromEntries(Object.entries(book.positions).map(([k, v]) => [k, +(v * f).toFixed(6)])) });
+    const dLen = ledger.length - oldLive.length - oldSimLen;   // sim-length delta shifts ledger-length anchors
+    if (pfOld.state) {
+      if (pfOld.state.lastLearnLen != null) pfOld.state.lastLearnLen += dLen;
+      if (pfOld.state.lastGateNote != null) pfOld.state.lastGateNote += dLen;
+    }
+    fs.writeFileSync(path.join(ROOT, 'portfolio.json'), JSON.stringify({
+      ...pfOld, holdings: scale(pfOld.holdings, r), bench: scale(pfOld.bench, rB),
+      dayIdx: ledger.length - 1,
+    }, null, 1));
+    console.log('portfolio.json: live state preserved, book rescaled to the new genesis chain');
+  } else {
+    fs.writeFileSync(path.join(ROOT, 'portfolio.json'), JSON.stringify({
+      asOf: last.d, backtestThrough: simEnd.d, priceSource: source, params,
+      // live learning restarts NEUTRAL: the genesis λ/m are artifacts — the ledger keeps them for inspection only
+      state: { lambda: params.lambda0, names: {} },
+      suspect: {},
+      exclude, lastExcludeKey: [...excluded].sort().join(','),
+      // seed freshness at go-live from ACTUAL final-day prints — a name that stopped printing
+      // months ago must enter live operation already counted stale, not masked by forward-fill
+      lastFresh: Object.fromEntries(tickers.filter(tk => hist[tk][last.d] != null).map(tk => [tk, last.d])),
+      holdings: { cash: holdings.cash, positions: Object.fromEntries(Object.entries(holdings.positions).map(([k, v]) => [k, +v.toFixed(6)])) },
+      bench: { cash: bench.cash, positions: Object.fromEntries(Object.entries(bench.positions).map(([k, v]) => [k, +v.toFixed(6)])), lastReb: bench.lastReb },
+      dayIdx: ledger.length - 1,
+    }, null, 1));
+  }
   console.log('wrote portfolio.json + portfolio-history.json');
 }
 
