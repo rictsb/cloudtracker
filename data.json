@@ -2828,7 +2828,7 @@
         }
       ],
       "basis": {
-        "plannedRaise": "~$1.5B: $2B ATM facility established Mar 2026, ~$2.5B equity raised across 2024-25; BTC sales + Barclays bridge + ~$785M assumed Long Ridge debt carry most buildout capex, but a spec-heavy multi-GW pivot with no signed AI leases will lean on the ATM at the margin."
+        "plannedRaise": "~$1.5B: $2B ATM facility established Mar 2025, ~$2.5B equity raised across 2024-25; BTC sales + Barclays bridge + ~$785M assumed Long Ridge debt carry most buildout capex, but a spec-heavy multi-GW pivot with no signed AI leases will lean on the ATM at the margin."
       },
       "narrative": "MARA Holdings is a top-tier Bitcoin miner (~72 EH/s, ~1.9 GW of power across 19 sites, 35,303 BTC) repositioning its power-rich, largely-owned portfolio into an AI/HPC landlord — building powered data-center shells (Long Ridge OH 505MW gas plant + up to 600MW DC; MPLX West Texas 400MW→1.5GW; a Starwood JV targeting ~1GW near-term to >2.5GW) to lease to investment-grade AI/IT tenants while flexing workloads back to mining when economics favor it. The investable question is execution and contracting: the AI book has zero signed leases today (only \"inbound interest\"), buildout starts in 2027 with first power around mid-2028, and most of the multi-GW pipeline is announced rather than secured. Capital structure is heavy — ~$2.3B converts post-Q1 buyback plus the ~$1.5B Long Ridge bridge — partly offset by a still-large but shrinking BTC treasury that management is now selling to cut debt.",
       "bull": [
@@ -4466,7 +4466,7 @@
       "name": "CleanSpark, Inc.",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 0,
+      "contractedPct": 15,
       "termYrs": 12,
       "netDebt": 909,
       "shares": 327,
@@ -4477,16 +4477,26 @@
       "equityDiscount": 0,
       "sites": [
         {
-          "n": "Sandersville, GA — AI conversion (Meta frontrunner; basis-of-design)",
-          "mw": 250,
+          "n": "Sandersville, GA — signed anchor (high-IG, 20yr NNN)",
+          "mw": 175,
           "owned": true,
           "region": "mid",
           "yr": 2027,
-          "mo": 9,
+          "mo": 12,
+          "prov": "disclosed",
+          "leaseId": "clsk-sandersville"
+        },
+        {
+          "n": "Sandersville, GA — residual campus power (undisclosed; kept per owner ruling 7/14/26)",
+          "mw": 75,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
+          "mo": 6,
           "prov": "rumored"
         },
         {
-          "n": "Sealy / Austin County, TX — Phase 1 (energization H1'27)",
+          "n": "Sealy / Austin County, TX — Phase 1 (energization H1'27; tenant exclusivity)",
           "mw": 207,
           "owned": true,
           "region": "cheap",
@@ -4495,7 +4505,7 @@
           "prov": "disclosed"
         },
         {
-          "n": "Sealy / Austin County, TX — Phase 2-3 (+40 MW each)",
+          "n": "Sealy / Austin County, TX — Phase 2-3 (+40 MW each; tenant exclusivity)",
           "mw": 78,
           "owned": true,
           "region": "cheap",
@@ -4504,7 +4514,7 @@
           "prov": "estimated"
         },
         {
-          "n": "Brazoria County, TX — campus (300 MW load secured)",
+          "n": "Brazoria County, TX — campus (300 MW load secured; tenant exclusivity)",
           "mw": 300,
           "owned": true,
           "region": "cheap",
@@ -4513,18 +4523,18 @@
           "prov": "estimated"
         },
         {
-          "n": "Brazoria County, TX — expansion (to 600 MW)",
+          "n": "Brazoria County, TX — expansion to 600 MW (tenant exclusivity — OWNER MANDATE 7/14/26: will energize)",
           "mw": 300,
           "owned": true,
           "region": "cheap",
           "yr": 2030,
           "mo": 6,
-          "prov": "rumored"
+          "prov": "estimated"
         }
       ],
       "basis": {
-        "plannedRaise": "~$300M: mgmt is explicitly anti-dilution (\"dilution is not a strategy, discipline is\"), $0 ATM in 15 months, and bought back $463M of stock. But ~900 MW of TX AI campuses at $9-11M/MW implies ~$8-9B of capex vs ~$0.8B liquidity — once leases sign, some equity at the margin alongside heavy project debt is realistic.",
-        "tier": "proven: zero signed AI/HPC leases or LOIs — only basis-of-design talks (Meta frontrunner at Sandersville). No IG-rated contracted income yet, so base case stays Proven; re-rating to IG is upside if an anchor lease lands."
+        "plannedRaise": "~$300M kept per owner ruling 7/14/26: mgmt anti-dilution; ~$2B Sandersville build expected project-financeable against the 20yr IG NNN lease — committedDebt when bonds/facility print (watch item)",
+        "tier": "proven — held PENDING owner ruling on the IG re-rate (anchor lease landed 7/14/26: 20yr high-IG NNN; our prior basis pre-committed to considering the re-rate). capSpread -1.25 quantified for Richard"
       },
       "narrative": "CleanSpark is a top-tier U.S. Bitcoin miner (~50 EH/s, ~13,470 BTC treasury, 1.8 GW of contracted power across Georgia/Tennessee/Mississippi/Wyoming) executing a deliberate, capital-disciplined pivot into AI/HPC as a powered-shell LANDLORD — not a GPU owner-operator. Management is explicit: it will \"build the shell, slot in the reference architecture\" per tenant and sign long-term leases with \"Grade A credit quality\" tenants, owning the real estate and power, not the compute. The pivot is real but entirely pre-contract: the AI book has ZERO signed leases or LOIs as of mid-2026 — only basis-of-design negotiations, with Meta cited as the \"clear frontrunner\" for the 250 MW Sandersville, GA campus and advanced talks with an investment-grade hyperscaler. The land grab is genuine: two greenfield ERCOT campuses near Houston (Sealy/Austin County 285 MW, energizing ~207 MW H1 2027; Brazoria County 300 MW, expandable to 600 MW, ~late-2027/early-2028), both fee-simple land with secured/approved power, plus the existing energized Sandersville site being converted from mining to AI. Capital structure is now convert-heavy ($1.84B of 0% notes, ~$1.56B net debt excl. BTC) but un-diluted — mgmt repaid all BTC-backed lines and bought back $463M of stock, and intends to fund the ~$9-11M/MW buildout via project/high-yield debt against future IG leases rather than equity. The investable question is pure execution: can CLSK convert \"frontrunner\" talks into a signed IG anchor lease (the single re-rating event) before the speculative TX capex commits, and is the AI optionality already priced into a stock that has run on Meta headlines?",
       "bull": [
@@ -4582,13 +4592,34 @@
           "source": "PR 2025-09-22 + 8-K 2025-09-23"
         }
       ],
-      "log": [],
-      "thesis": "Cheap vs ~1.1 GW of owned, powered TX/GA land plus a 13.5k-BTC treasury, but the AI-landlord thesis is entirely pre-contract (Meta only a 'frontrunner'). A first signed anchor re-rates it from miner to colo.",
+      "log": [
+        {
+          "d": "2026-07-14",
+          "t": "lease",
+          "s": "[company-ir] PR (8-K pending)",
+          "x": "SIGNED: 20yr NNN lease, 175MW IT at Sandersville GA, $6.6B initial term (~$330M/yr avg NOI, ~100% margin, annual escalators), two 5-yr extensions to $11.6B; deliveries from Q4-27; landlord cost $10-12M/MW (~$1.75-2.1B). Tenant confidential — 'high-investment-grade cohort' global tech (Meta was the rumored frontrunner). SAME tenant: LOI + exclusivity across all 718 acres/885MW in TX (Sealy ~300MW, Brazoria 300→600MW). Print: $1.886M/MW·yr term-avg at 20yrs — above the $1.76 forward anchor, second 20yr term on the tape after WULF-Anthropic. Owner rulings 7/14: residual 75MW row kept rumored; Brazoria expansion → estimated ('will definitely energize'); plannedRaise held $300M (project-financeable); entered on PR, 8-K verification pending."
+        }
+      ],
+      "thesis": "The first anchor landed 7/14/26: a 20-year, $6.6B NNN lease (175MW, ~$1.89M/MW·yr NOI — top of the build-to-spec tape) from a high-IG global tech tenant, converting the miner into a contracted AI landlord. The same tenant holds exclusivity over the entire 885MW Texas portfolio — the pipeline now has a named buyer, and the 13.5k-BTC treasury still backs the balance sheet. Execution risks: ~$2B build to Q4-27 first delivery, financing not yet in place, 8-K terms pending.",
       "verified": {
         "capital": "2026-06-30",
-        "contracts": "2026-06-30"
+        "contracts": "2026-07-14"
       },
-      "sharesReported": 255.6
+      "sharesReported": 255.6,
+      "leases": [
+        {
+          "id": "clsk-sandersville",
+          "counterparty": "High-IG global technology company (confidential)",
+          "mw": 175,
+          "termYrs": 20,
+          "noiPerMWyr": 1.886,
+          "kind": "build-to-spec",
+          "grossTotalM": 6600,
+          "effective": true,
+          "signed": "2026-07",
+          "source": "PR 7/14/26: $6.6B/20yr/175MW IT, NNN w/ annual escalators, ~100% NOI margin (avg ~$330M/yr); two 5-yr extensions ($11.6B all-in); deliveries begin Q4-27; landlord cost $10-12M/MW; tenant confidential 'high-investment-grade cohort'; same tenant holds LOI+exclusivity over entire 718-acre/885MW TX portfolio. 8-K PENDING — verify on filing"
+        }
+      ]
     },
     {
       "tk": "BTBT",
@@ -4970,6 +5001,11 @@
       "tk": "FRMI",
       "note": "TENANT TRIPWIRES (10-Q): ≥400MW Phase-1 lease by ~Nov 10 2026 or MUFG amortization doubles + agent may market the turbines; Keystone mandatory prepayment + TTU notice-to-proceed both need a customer by Dec 31 2026. Mgmt targets binding lease ~mid-Aug. A signed anchor re-rates; a missed deadline is the falsifier for the whole gas-phase schedule",
       "added": "2026-07-06"
+    },
+    {
+      "tk": "CLSK",
+      "note": "Sandersville anchor entered on PR 7/14/26 — 8-K PENDING: verify term/value/escalators/termination on filing; tenant identity (Meta was rumored frontrunner); ~$2B build financing → committedDebt when project debt prints; TX exclusivity LOI (885MW, same tenant) → watch conversion to signed leases; IG tier re-rate pending owner ruling",
+      "added": "2026-07-14"
     }
   ]
 }
