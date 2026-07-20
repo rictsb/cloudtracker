@@ -1608,8 +1608,8 @@
       "name": "IREN",
       "model": "owner",
       "tier": "proven",
-      "contractedPct": 20,
-      "termYrs": 5,
+      "contractedPct": 27,
+      "termYrs": 4.0,
       "leaseQ": 4.8,
       "netDebt": 3100,
       "shares": 409,
@@ -1863,6 +1863,12 @@
       ],
       "log": [
         {
+          "d": "2026-07-20",
+          "t": "contract",
+          "s": "[edgar] 8-K Ex-99.1",
+          "x": "$2.8bn new multi-year cloud contracts with leading AI developers (Perplexity, Figure AI, Together AI, Fluidstack, Fireworks, Fal, Hume + one unnamed) — book now $16.9B TCV / ~$4.2B/yr annualized at full ramp. ARR target $3.7→$4bn+ (~85% contracted). Portfolio wtd-avg term ~4yrs disclosed (ARR-weighted) → termYrs 5→4.0; implied new-cohort term ~2.5yr. ~45% customer prepayments on GPU capex since 6/1/26; $7.6bn cash 6/30 (incl. $1.7bn restricted, Horizon 1-4 GPU financing). Owner-approved: contractedPct 20→27 (scaled by contracted-ARR growth)."
+        },
+        {
           "d": "2026-06-01",
           "t": "capital",
           "s": "Co. release",
@@ -1896,12 +1902,13 @@
       "plannedRaise": 8000,
       "basis": {
         "plannedRaise": "~$4.9B undrawn of $6B ATM + future programs; MSFT prepay + $3.65B GPU debt + converts carry ~90%",
-        "signedRate": "$-weighted over the two DISCLOSED-MW contracts: (9700×9.70+3400×11.33)/13100 = $10.12M/MW·yr — the only owner book with contractual MW"
+        "signedRate": "$-weighted over the two DISCLOSED-MW contracts: (9700×9.70+3400×11.33)/13100 = $10.12M/MW·yr — the only owner book with contractual MW",
+        "termYrs": "COMPANY-DISCLOSED: portfolio weighted-average contract term ~4yrs (8-K 7/20/26 note 4, ARR-weighted); replaces the 5yr TCV placeholder. TCV-weighted alt = 4.4 (±$0.30 on target) — owner ruled: use disclosed 4.0"
       },
-      "thesis": "Most undervalued and most speculative — the model credits a ~5.8 GW mostly-uncontracted global pipeline riding the rising-rate trend, while the market prices today's small live AI book. Post-realistic-dilution but pre-execution: it must build, fill and fund the pipeline.",
+      "thesis": "The vertically-integrated AI cloud keeps compounding: $16.9B contracted TCV across Microsoft, NVIDIA and now a ten-name AI-developer cohort ($2.8B added 7/20), YE-26 ARR target $4bn+ at 85% contracted, and ~45% customer prepayments doing the financing the market once assumed dilution would. The 5.8GW global power book is the multiplier — 480MW delivering 2026, 1.2GW targeted 2027, priced up the gen-curve as it lands. Watch: $7.6bn cash vs the $8B assumed raise looks increasingly conservative; revisit at FY results.",
       "verified": {
         "capital": "2026-06-30",
-        "contracts": "2026-06-30"
+        "contracts": "2026-07-20"
       },
       "contracts": [
         {
@@ -1940,6 +1947,18 @@
           "inferredMW": true,
           "effective": true,
           "source": "~$1B TCV inference from ARR × term"
+        },
+        {
+          "id": "iren-aidev-2026",
+          "counterparty": "AI-developer cohort — Perplexity, Figure AI, Together AI, Fireworks AI, Fal AI, Hume AI + unnamed leading AI developer (aggregate)",
+          "totalRevM": 2800,
+          "termYrs": 2.53,
+          "signed": "2026-07",
+          "gen": "mixed",
+          "mw": 110,
+          "inferredMW": true,
+          "effective": true,
+          "source": "8-K 7/20/26 (Ex-99.1): $2.8bn TCV multi-year cloud contracts with leading AI developers; ARR target raised $3.7bn→$4bn+ (~85% under contract); ~45% customer prepayment of associated GPU capex (contracts since 6/1/26). TERM INFERRED: portfolio wtd-avg ~4yrs ARR-weighted (filing note 4) against the known 5/5/2yr book ⇒ (14.1+2.8)/(3.12+2.8/T)=4.0 ⇒ T≈2.5yr; MW inferred at ~$10M/MW·yr"
         }
       ],
       "signedRate": 10.1,
@@ -5006,6 +5025,11 @@
       "tk": "CLSK",
       "note": "Sandersville anchor entered on PR 7/14/26 — 8-K PENDING: verify term/value/escalators/termination on filing; tenant identity (Meta was rumored frontrunner); ~$2B build financing → committedDebt when project debt prints; TX exclusivity LOI (885MW, same tenant) → watch conversion to signed leases",
       "added": "2026-07-14"
+    },
+    {
+      "tk": "IREN",
+      "note": "8-K 7/20/26 follow-ups: identity of the unnamed 'leading AI developer'; netDebt re-verify (cash $7.6bn 6/30 printed but borrowings side stale — one as-of date rule); plannedRaise $8B looks stale-conservative vs 45% prepay model + cash — revisit at FY results (Aug)",
+      "added": "2026-07-20"
     }
   ]
 }
