@@ -2279,8 +2279,8 @@
       "tk": "HUT",
       "name": "Hut 8 Corp.",
       "model": "landlord",
-      "tier": "proven",
-      "contractedPct": 46,
+      "tier": "ig",
+      "contractedPct": 45,
       "termYrs": 15,
       "netDebt": 85,
       "shares": 132,
@@ -2311,13 +2311,14 @@
           "leaseId": "hut-beaconpoint"
         },
         {
-          "n": "Beacon Point Ph2 (TX)",
-          "mw": 350,
+          "n": "Beacon Point Ph2 (same high-IG tenant, signed 7/20/26)",
+          "mw": 352,
           "owned": true,
           "region": "cheap",
           "yr": 2028,
-          "mo": 9,
-          "prov": "estimated"
+          "mo": 6,
+          "prov": "disclosed",
+          "leaseId": "hut-beaconpoint2"
         },
         {
           "n": "River Bend ROFO tranche 1 (Fluidstack — exercise assumed)",
@@ -2352,7 +2353,8 @@
         "stake": "55.3% economic of American Bitcoin (ABTC), marked live; replaces the old generic legacy residual (HUT folded ~all mining into ABTC)",
         "equityDiscount": "entity complexity — 55% consolidated ABTC (related-party, big minority interest) + SPV structures",
         "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses",
-        "sites": "BP ph2 350 IT (AEP 1GW interconnect executed); RB ROFO: OWNER MANDATE 2026-07-08 — assume Fluidstack exercises: tranche 1 400MW graded ESTIMATED (Entergy power expansion pending → not disclosed), balance 600MW rumored; 7GW exclusivity/diligence funnel still NOT credited (attrition evidence)"
+        "sites": "BP ph2 350 IT (AEP 1GW interconnect executed); RB ROFO: OWNER MANDATE 2026-07-08 — assume Fluidstack exercises: tranche 1 400MW graded ESTIMATED (Entergy power expansion pending → not disclosed), balance 600MW rumored; 7GW exclusivity/diligence funnel still NOT credited (attrition evidence)",
+        "tier": "ig — OWNER RULING 7/20/26: two 15-yr NNN leases at Beacon Point (704MW to one tenant, $19.6B campus) with the tenant COMPANY-DISCLOSED as 'high-investment-grade' in the 8-K exhibit (unnamed; lease not exhibited), plus Google-backstopped River Bend ($7.0B/245MW) and IG project debt on Ph1; company states 100% of contracted AI capacity is IG-leased or backstopped [edgar]. FALSIFIER: tenant identity revealing sub-IG credit, or exhibited lease terms diverging from the PR"
       },
       "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
       "bull": [
@@ -2430,6 +2432,12 @@
       ],
       "log": [
         {
+          "d": "2026-07-20",
+          "t": "lease",
+          "s": "[edgar] 8-K Ex-99.1",
+          "x": "BEACON POINT FULLY COMMERCIALIZED: second $9.8B/15yr/352MW IT NNN lease, SAME high-IG tenant (now 704MW at campus), 3.0% escalators, ~$655M/yr avg NOI — identical $1.856M/MW·yr print to Ph1. Campus $19.6B base-term ($50.2B w/ all 3×5yr options) against the full 1,000MW AEP interconnect. First Ph2 hall Q2-28. Portfolio: 949MW contracted, $26.6B, >$1.75B/yr NOI, 100% IG-leased/backstopped (company-disclosed). Buyback reauthorized (6,159,439 sh = 5.0% → ~123.2M out; sharesReported corrected 112.6→123.2). Owner rulings: tier proven→IG (basis + falsifier noted); no new financing — Ph2 debt → committedDebt when it prints."
+        },
+        {
           "d": "2026-07-08",
           "t": "judgement",
           "s": "Owner mandate",
@@ -2440,11 +2448,11 @@
         "tk": "ABTC",
         "pct": 0.553
       },
-      "thesis": "Street floor and our floor agree (~$84); the price pays for unsigned expansion — and by owner mandate we now assume the River Bend ROFO exercises (400MW estimated + 600MW rumored, annotated with a mid-2027 falsifier), which closes most of the gap: HUT screens roughly fair. The remaining swing is Beacon Point ph2 signing and the 7GW funnel we still refuse to credit.",
+      "thesis": "Beacon Point is fully commercialized: 949MW of contracted IT across two 15-yr NNN leases to an unnamed high-IG tenant (704MW, $19.6B campus, 3% escalators) plus Google-backstopped River Bend — $26.6B base-term value, >$1.75B average annual NOI, 100% IG-leased or backstopped per the company. Remaining upside is the River Bend ROFO (exercise assumed — mid-2027 falsifier) and Vega; the market's discount is the unnamed tenant and unexhibited leases. Watch the $7.5B committed project debt grow when Ph2 financing prints.",
       "committedDebt": 7500,
       "verified": {
         "capital": "2026-07-02",
-        "contracts": "2026-06-30"
+        "contracts": "2026-07-20"
       },
       "leases": [
         {
@@ -2474,6 +2482,19 @@
           "grossMW": 500,
           "totalRevM": 9800,
           "grossTotalM": 9800
+        },
+        {
+          "id": "hut-beaconpoint2",
+          "counterparty": "Undisclosed multi-trillion-cap tenant (same as Ph1)",
+          "mw": 352,
+          "grossMW": 500,
+          "termYrs": 15,
+          "noiPerMWyr": 1.856,
+          "kind": "build-to-spec",
+          "grossTotalM": 9800,
+          "effective": true,
+          "signed": "2026-07",
+          "source": "8-K 7/20/26 (acc. 0001104659-26-084862, Item 8.01, Ex-99.1): second 15yr NNN lease, 352MW IT / 500MW utility slice, $9.8B base-term (~$655M/yr avg NOI), 3.0% annual escalators, substantially Ph1 terms; three 5-yr renewal options (campus $50.2B all-in); first Ph2 data hall Q2-28, campus energization Q1-27; NVIDIA DSX architecture. Same tenant as Ph1 — company characterizes 'high-investment-grade'; lease NOT exhibited (Ph1 pattern)"
         }
       ],
       "contracts": [
@@ -2491,7 +2512,7 @@
           "mw": 1.5
         }
       ],
-      "sharesReported": 112.6
+      "sharesReported": 123.2
     },
     {
       "tk": "CIFR",
@@ -2712,13 +2733,20 @@
           "source": "8-K 2025-09-25 launch (7:07am ET); 8-K 9/26 pricing; 8-K 10/1 closing"
         }
       ],
-      "log": [],
+      "log": [
+        {
+          "d": "2026-07-20",
+          "t": "note",
+          "s": "[edgar]/[reported]",
+          "x": "No new deal — +11-18% was sympathy (HUT BP2 + IREN wave; EDGAR: nothing filed since the 6/15 Stingray notes closing). The real CIFR event: AWS Black Pearl Ph1 capacity delivery begins July, RENT COMMENCES AUGUST — first AWS rent on the $5.5B book. MS PT trim to $47 ignored by convention."
+        }
+      ],
       "thesis": "Undervalued — 700 MW of signed hyperscaler colo plus a ~2 GW queued pipeline credited near-full while the market still treats it as a miner. Re-rates as Barber Lake energizes and the pipeline contracts.",
       "committedDebt": 4341,
       "seniorClaims": 26,
       "verified": {
         "capital": "2026-07-02",
-        "contracts": "2026-06-30"
+        "contracts": "2026-07-20"
       },
       "leases": [
         {
@@ -5029,6 +5057,11 @@
     {
       "tk": "IREN",
       "note": "8-K 7/20/26 follow-ups: identity of the unnamed 'leading AI developer'; netDebt re-verify (cash $7.6bn 6/30 printed but borrowings side stale — one as-of date rule); plannedRaise $8B looks stale-conservative vs 45% prepay model + cash — revisit at FY results (Aug)",
+      "added": "2026-07-20"
+    },
+    {
+      "tk": "HUT",
+      "note": "Beacon Point Ph2 construction financing → committedDebt when the SPV bonds/facility print (Ph1 pattern; $7.5B carried today); tenant identity still undisclosed — IG tier rests on company characterization (see basis.tier falsifier); lease not exhibited",
       "added": "2026-07-20"
     }
   ]
