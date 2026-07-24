@@ -2351,7 +2351,7 @@
           "prov": "estimated"
         },
         {
-          "n": "Vega (TX) AI/HPC conversion",
+          "n": "Vega (TX) AI/HPC conversion (205MW gross ≈ 150 IT @1.35 PUE)",
           "mw": 150,
           "owned": true,
           "region": "cheap",
@@ -2365,6 +2365,42 @@
           "owned": true,
           "region": "cheap",
           "yr": 2030,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Medicine Hat AB — BTC-site conversion optionality (67MW gross; OWNED; hosts ABTC)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Salt Creek TX — BTC-site conversion optionality (63MW gross; leased site; hosts ABTC)",
+          "mw": 47,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 6,
+          "prov": "rumored"
+        },
+        {
+          "n": "Drumheller AB — conversion optionality (42MW gross; reenergized 4/26 w/ 24-mo BTC pledge — anti-conversion signal near-term)",
+          "mw": 31,
+          "owned": false,
+          "region": "cheap",
+          "yr": 2029,
+          "mo": 12,
+          "prov": "rumored"
+        },
+        {
+          "n": "Batavia IL — purpose-built HPC/colo (50MW gross; crypto BANNED by city MSA; Ph1 ~20MW late-26/early-27, full by ~2031)",
+          "mw": 37,
+          "owned": true,
+          "region": "mid",
+          "yr": 2028,
           "mo": 6,
           "prov": "rumored"
         }
@@ -2453,6 +2489,12 @@
         }
       ],
       "log": [
+        {
+          "d": "2026-07-23",
+          "t": "site",
+          "s": "[edgar]/[company-ir] verify (owner-approved add)",
+          "x": "BTC-site conversion optionality added as rumored rows per owner ruling (the MS convert set, VERIFIED with corrections): Medicine Hat 67MW gross/50 IT (OWNED — not 'leased' as MS wrote; hosts ABTC under MCSA, conversion requires unwinding service orders); Salt Creek 63/47 (leased site, greenfield 2024); Drumheller 42/31 (MS list technically right but the 10-K still says non-operational — closed 3/24, REENERGIZED 4/22/26 with ~11.3k fresh ABTC S21+ on a 24-month bitcoin pledge → near-term anti-conversion signal, dated 2029/12); Batavia 50/37 (NOT a conversion: purpose-built Enterprise Colo/HPC, crypto contractually banned by the city MSA, permits+construction underway, Ph1 ~20MW late-26/early-27 — candidate for prov upgrade to estimated). Vega row confirmed by MS gross print (205 ≈ our 150 IT). All at 1.35 PUE gross→IT. MS's $3.7B for this bucket vs our rumored-haircut treatment."
+        },
         {
           "d": "2026-07-23",
           "t": "capital",
