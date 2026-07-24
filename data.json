@@ -235,11 +235,11 @@
     },
     {
       "id": "sell-side",
-      "name": "Sell-side research (Northland et al.)",
+      "name": "Sell-side research (Northland, Morgan Stanley/Byrd et al.)",
       "type": "research",
       "url": "",
       "provCeiling": "estimated",
-      "note": "Cross-check inputs only (share counts, debt schedules, MW assumptions) — price targets ignored by convention."
+      "note": "Cross-check inputs only (share counts, debt schedules, MW assumptions, deal-economics tables) — price targets ignored by convention. MS/Byrd 7/23/26 PSP initiation is the reference sell-side framework: '15/15/15' (15yr/15% yield-on-capex/$15-per-watt creation), 'REIT endgame' exit at 15x EV/EBITDA ≈ 6.67% cap — independently matches our 6.5% signed-lease cap floor and our registry NOI prints to the cent."
     },
     {
       "id": "mcnallie-money",
@@ -639,6 +639,12 @@
         }
       ],
       "log": [
+        {
+          "d": "2026-07-23",
+          "t": "note",
+          "s": "[sell-side] via MS initiation",
+          "x": "Gen-curve/renewal evidence: MS cites CRWV mgmt disclosure that new contracts on relatively old Hopper GPUs re-signed at 95% OF ORIGINAL CONTRACT PRICING — far above theoretical decay for aged silicon. Supports the re-sign slice riding the curve (gpuTrend) and low renewal-rate decay."
+        },
         {
           "d": "2026-04-15",
           "t": "lease",
@@ -1281,6 +1287,12 @@
         }
       ],
       "log": [
+        {
+          "d": "2026-07-23",
+          "t": "note",
+          "s": "[sell-side] MS initiation (Byrd)",
+          "x": "MS initiates OW $36: expects a lease THIS SUMMER at Corsicana (1GW, 'rare site in control of their utility power') or Rockdale (700MW, up to 635 available after AMD); values ~750MW unsigned converts at $9/W PV, 75% energization probability (highest in their coverage — mirrors our Corsicana crown-jewel mandate). AMD holds conditional first-priority right on up to 100MW more at Rockdale."
+        },
         {
           "d": "2026-05-30",
           "t": "expansion",
@@ -2441,6 +2453,12 @@
       ],
       "log": [
         {
+          "d": "2026-07-23",
+          "t": "note",
+          "s": "[sell-side] MS initiation (Byrd)",
+          "x": "MS initiates OW, PT $263 (their SOTP: signed 949MW at 'REIT endgame' 15x/8% ≈ $16.1B equity net of project debt — essentially IDENTICAL to our signed-book math at the 6.5% floor; + $11.6B for 2,680MW exclusivity pipeline at 50% energization ≈ $5.9/W; + $3.7B for energized BTC sites as converts at $11.7/W: Vega 205MW, Medicine Hat 67, Salt Creek 63, Drumheller 42, Batavia 50; excludes Alpha 50MW, NextEra-JV 280MW, and all 5,315MW under diligence). FACTS TO RE-VERIFY: MS uses 111M basic + 9.72M Coutue convert at $16.395 = ~121M FSDO vs our 132M FD / 123.2M buyback-implied — share-count reconciliation open. MS expects BP2 financed with ~$4.25B IG bond (HUTRBA/HUTBPA pattern, Jacobs construction guarantee is why HUT alone gets IG ratings) → committedDebt +$4.25B when it prints. Their bear case: -4%."
+        },
+        {
           "d": "2026-07-20",
           "t": "lease",
           "s": "[edgar] 8-K Ex-99.1",
@@ -3368,6 +3386,12 @@
         }
       ],
       "log": [
+        {
+          "d": "2026-07-23",
+          "t": "note",
+          "s": "[sell-side] MS (Byrd)",
+          "x": "MS deal-econ table on the Anthropic lease prints $2.37 revenue/W and $2.01 MARGIN/W at 18% yield-on-cost, $19.21/W net value creation — their $2.01 margin/watt is EXACTLY our registry noiPerMWyr 2.01 (independent confirmation of the print). MS carries WULF at +262% to PT, their most bullish PSP."
+        },
         {
           "d": "2026-07-06",
           "t": "lease",
@@ -4346,7 +4370,14 @@
           "source": "8-K 2025-08-15 16:45 ET (no PR)"
         }
       ],
-      "log": [],
+      "log": [
+        {
+          "d": "2026-07-23",
+          "t": "note",
+          "s": "[sell-side] MS initiation (Byrd)",
+          "x": "MS initiates EQUAL-WEIGHT $36.50 — the one street voice BELOW us: penalizes APLD's sub-15% yields-on-capex vs the PSP cohort and assumes FULL Macquarie draw (+$4.9B beyond the $900M funded; 1.8x MOIC, 12.75% PIK from 2031, redeemable Apr-28, sale-process right Oct-32) — our seniorClaims carries only the accreted funded piece; if draws accelerate our claims line grows materially (existing watch item). Also: 96% ChronoScale stake with modeled 23% sell-down."
+        }
+      ],
       "thesis": "Undervalued — ~1.4 GW of 15-yr triple-net leases to CoreWeave/Oracle (~$36B lease value) credited near-full while the market discounts execution and debt. One of the cleanest contracted-landlord books here.",
       "committedDebt": 3740,
       "seniorClaims": 1100,
@@ -5072,6 +5103,11 @@
       "tk": "HUT",
       "note": "Beacon Point Ph2 construction financing → committedDebt when the SPV bonds/facility print (Ph1 pattern; $7.5B carried today); tenant identity still undisclosed — IG tier rests on company characterization (see basis.tier falsifier); lease not exhibited",
       "added": "2026-07-20"
+    },
+    {
+      "tk": "HUT",
+      "note": "SHARE-COUNT RECONCILIATION (from MS 7/23 cross-check): MS uses 111M basic + 9.72M Coutue notes converting at $16.395 = ~121M FSDO; the 7/20 buyback PR implies 123.2M issued+outstanding; we carry 132M FD. If ~121M FSDO is right our HUT target is mechanically ~9% higher. Re-verify vs latest 10-Q/proxy: basic count, Coutue note terms, other dilutives — one as-of date",
+      "added": "2026-07-23"
     }
   ]
 }
