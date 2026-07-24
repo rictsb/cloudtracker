@@ -2303,8 +2303,8 @@
       "tier": "ig",
       "contractedPct": 45,
       "termYrs": 15,
-      "netDebt": 85,
-      "shares": 132,
+      "netDebt": -74,
+      "shares": 133.7,
       "price": 118.27,
       "legacyEV": 0,
       "btc": 5600,
@@ -2375,7 +2375,8 @@
         "equityDiscount": "entity complexity — 55% consolidated ABTC (related-party, big minority interest) + SPV structures",
         "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses",
         "sites": "BP ph2 350 IT (AEP 1GW interconnect executed); RB ROFO: OWNER MANDATE 2026-07-08 — assume Fluidstack exercises: tranche 1 400MW graded ESTIMATED (Entergy power expansion pending → not disclosed), balance 600MW rumored; 7GW exclusivity/diligence funnel still NOT credited (attrition evidence)",
-        "tier": "ig — OWNER RULING 7/20/26: two 15-yr NNN leases at Beacon Point (704MW to one tenant, $19.6B campus) with the tenant COMPANY-DISCLOSED as 'high-investment-grade' in the 8-K exhibit (unnamed; lease not exhibited), plus Google-backstopped River Bend ($7.0B/245MW) and IG project debt on Ph1; company states 100% of contracted AI capacity is IG-leased or backstopped [edgar]. FALSIFIER: tenant identity revealing sub-IG credit, or exhibited lease terms diverging from the PR"
+        "tier": "ig — OWNER RULING 7/20/26: two 15-yr NNN leases at Beacon Point (704MW to one tenant, $19.6B campus) with the tenant COMPANY-DISCLOSED as 'high-investment-grade' in the 8-K exhibit (unnamed; lease not exhibited), plus Google-backstopped River Bend ($7.0B/245MW) and IG project debt on Ph1; company states 100% of contracted AI capacity is IG-leased or backstopped [edgar]. FALSIFIER: tenant identity revealing sub-IG credit, or exhibited lease terms diverging from the PR",
+        "shares": "FD if-converted 133.7M, filing-derived 7/23/26: basic 123.19M as of 7/20/26 (buyback 8-K: 6,159,439 = 5.0% of current outstanding ×20; = 112.59M 5/4 cover + 9.72M Coatue conversion + ~0.9M ATM/RSU dribble) + 3.35M RSUs + 4.55M PSUs (at target) + 0.07M DSUs + 2.58M options TSM @$5.91 WAEP (all ITM at ~$109) + de-minimis warrants [edgar 10-Q acc 0001104659-26-055891 + 8-K acc 0001104659-26-084862]. Coatue $159.285M accreted principal converted (preferred reading — forced-redemption right live 6/28/26 at 6.6× conv price) → stripped from netDebt (85 → −74); FD identical under either reading. MS's 121M FSDO refuted: stale Q1 weighted-avg + no award overhang"
       },
       "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
       "bull": [
@@ -2454,6 +2455,12 @@
       "log": [
         {
           "d": "2026-07-23",
+          "t": "capital",
+          "s": "[edgar] reconciliation (2-agent verify)",
+          "x": "SHARE COUNT RESOLVED: basic 123.19M (7/20 buyback arithmetic, freshest print), FD if-converted 133.7M. MS's 121M refuted (Q1 weighted-AVERAGE basic + convert, no RSU/PSU/option overhang); our 132M was right-convention, 1.7M light. Coatue $159.3M accreted → converted between 6/28 (redemption right live at ~6.6× the $16.395 conv price) and 7/20 per the +10.59M share delta; principal stripped from netDebt 85→−74 (parent is NET CASH ex the nonrecourse SPV bonds). Falsifier: Q2 10-Q (~Aug) — if somehow unconverted, basic reverts ~113.5M (display only), FD unchanged 133.7."
+        },
+        {
+          "d": "2026-07-23",
           "t": "note",
           "s": "[sell-side] MS initiation (Byrd)",
           "x": "MS initiates OW, PT $263 (their SOTP: signed 949MW at 'REIT endgame' 15x/8% ≈ $16.1B equity net of project debt — essentially IDENTICAL to our signed-book math at the 6.5% floor; + $11.6B for 2,680MW exclusivity pipeline at 50% energization ≈ $5.9/W; + $3.7B for energized BTC sites as converts at $11.7/W: Vega 205MW, Medicine Hat 67, Salt Creek 63, Drumheller 42, Batavia 50; excludes Alpha 50MW, NextEra-JV 280MW, and all 5,315MW under diligence). FACTS TO RE-VERIFY: MS uses 111M basic + 9.72M Coutue convert at $16.395 = ~121M FSDO vs our 132M FD / 123.2M buyback-implied — share-count reconciliation open. MS expects BP2 financed with ~$4.25B IG bond (HUTRBA/HUTBPA pattern, Jacobs construction guarantee is why HUT alone gets IG ratings) → committedDebt +$4.25B when it prints. Their bear case: -4%."
@@ -2478,7 +2485,7 @@
       "thesis": "Beacon Point is fully commercialized: 949MW of contracted IT across two 15-yr NNN leases to an unnamed high-IG tenant (704MW, $19.6B campus, 3% escalators) plus Google-backstopped River Bend — $26.6B base-term value, >$1.75B average annual NOI, 100% IG-leased or backstopped per the company. Remaining upside is the River Bend ROFO (exercise assumed — mid-2027 falsifier) and Vega; the market's discount is the unnamed tenant and unexhibited leases. Watch the $7.5B committed project debt grow when Ph2 financing prints.",
       "committedDebt": 7500,
       "verified": {
-        "capital": "2026-07-02",
+        "capital": "2026-07-23",
         "contracts": "2026-07-20"
       },
       "leases": [
@@ -5106,7 +5113,7 @@
     },
     {
       "tk": "HUT",
-      "note": "SHARE-COUNT RECONCILIATION (from MS 7/23 cross-check): MS uses 111M basic + 9.72M Coutue notes converting at $16.395 = ~121M FSDO; the 7/20 buyback PR implies 123.2M issued+outstanding; we carry 132M FD. If ~121M FSDO is right our HUT target is mechanically ~9% higher. Re-verify vs latest 10-Q/proxy: basic count, Coutue note terms, other dilutives — one as-of date",
+      "note": "RESOLVED 7/23/26 (shares 133.7 FD / 123.19 basic; Coatue stripped from netDebt) — remaining confirmation: Q2 2026 10-Q (~Aug) must show the Coatue conversion and ~123.2M outstanding; if not, revert basic display to ~113.5M and re-add $159.3M to the convert line (FD unchanged)",
       "added": "2026-07-23"
     }
   ]
