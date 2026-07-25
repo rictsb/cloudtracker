@@ -53,7 +53,7 @@ function render(){
   const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
   document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin+CONST.leasedCMargin)/100)*(A.multiple*(1+CONST.multPremium*0.6)))+' / MW';
   document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
-  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else if(view==='raises')renderRaises(); else if(view==='outlook')renderOutlook(); else if(view==='ramp')renderRamp(); else renderSites();
+  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else if(view==='raises')renderRaises(); else if(view==='outlook')renderOutlook(); else if(view==='ramp'){if(!RAMP_CTX||!document.getElementById('rampPlayBtn'))renderRamp();} else renderSites();
 }
 
 /* ---- leases page: the registry rendered — every signed book + its economics (the print tape) ---- */
@@ -319,30 +319,56 @@ function renderOutlook(){
   body.querySelectorAll('.olrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ol-'+tr.dataset.i);if(d)d.classList.toggle('open');const c2=tr.querySelector('td');if(c2)c2.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
   body.querySelectorAll('.oerow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('oe-'+tr.dataset.i);if(d)d.classList.toggle('open');const c2=tr.querySelector('td');if(c2)c2.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
 }
-/* ---- GPU ramp page: quarterly capacity/fleet/revenue overlay for GPU-cloud owners (spec §6 screen 11 — display-only, never a valuation input) ---- */
+/* ---- GPU ramp page (spec §6 screen 11) — the rollout explorer: scrub or replay the build-out quarter by
+   quarter, per-quarter callouts, tranche spotlight, synced crosshairs. Display-only; never a valuation input ---- */
 let rampCo='IREN';
+let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO=false,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1;
 const RAMP_GEN={hopper:{c:'var(--gen-hopper)',n:'Hopper'},blackwell:{c:'var(--gen-blackwell)',n:'Blackwell'},rubin:{c:'var(--gen-rubin)',n:'Rubin-class'},next:{c:'var(--gen-next)',n:'Next-gen'}};
+const RAMP_QS=l=>{const y=+l.slice(0,4),q=+l.slice(5);return (y-2026)*4+q;};
+const RAMP_QL=s=>`${2026+Math.floor((s-1)/4)}Q${((s-1)%4)+1}`;
+const RAMP_START=3,RAMP_END=20;   // 2026Q3 .. 2030Q4
 function rampQuarters(R){
-  const S=l=>{const y=+l.slice(0,4),q=+l.slice(5);return (y-2026)*4+q;};
-  const L=s=>`${2026+Math.floor((s-1)/4)}Q${((s-1)%4)+1}`;
-  const YR=s=>2026+Math.floor((s-1)/4);
+  const YR=s=>2026+Math.floor((s-1)/4);   // serial 1 = 2026Q1 … 20 = 2030Q4
   const out=[];
-  for(let s=S('2026Q3');s<=S('2030Q4');s++){
+  for(let s=RAMP_START;s<=RAMP_END;s++){
     const by={hopper:0,blackwell:0,rubin:0,next:0},rv={hopper:0,blackwell:0,rubin:0,next:0};
     let cum=0,prev=0,signed=0,ctr=0,rev=0;
     R.tranches.forEach(t=>{
-      const rs=S(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1),f0=Math.min(Math.max((s-rs)/t.rampQtrs,0),1);
+      const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1),f0=Math.min(Math.max((s-rs)/t.rampQtrs,0),1);
       if(f<=0)return;const live=t.gpus*f;
       by[t.gen]+=live;cum+=live;prev+=t.gpus*f0;signed+=live*(t.signed||0);ctr+=live*t.ctr;
       const er=t.ctr*t.rate+(1-t.ctr)*(R.spot[String(YR(s))]||0)*(R.spotMult[t.gen]||1);
       const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;});
-    const grossMW=R.tranches.filter(t=>S(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
-    const itMW=R.tranches.reduce((a,t)=>{const rs=S(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);return a+t.itMW*f;},0);
-    const lbl=L(s);const cons=(R.consensus||{})[lbl]||null;
+    const grossMW=R.tranches.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
+    const itMW=R.tranches.reduce((a,t)=>{const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);return a+t.itMW*f;},0);
+    const lbl=RAMP_QL(s);const cons=(R.consensus||{})[lbl]||null;
     out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,grossMW,itMW,
       mining:(R.mining||{})[lbl]||0,consTot:cons?cons[0]:null,consAI:cons?cons[1]:null,
       blend:cum>0?rev*1e6/(cum*2190):0});}
   return out;
+}
+function rampTrancheAt(R,t,s){   // {gpus,revM} of one tranche in quarter s
+  const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);
+  if(f<=0)return{g:0,r:0};
+  const yr=2026+Math.floor((s-1)/4);
+  const er=t.ctr*t.rate+(1-t.ctr)*(R.spot[String(yr)]||0)*(R.spotMult[t.gen]||1);
+  return{g:t.gpus*f,r:t.gpus*f*er*2190/1e6};
+}
+function rampEvents(R,Q){
+  const ev={};const add=(s,k,t)=>{if(s<RAMP_START||s>RAMP_END)return;(ev[s]=ev[s]||[]).push({k,t});};
+  R.tranches.forEach(t=>{
+    add(RAMP_QS(t.energize),'power',`${t.n} energized — +${t.grossMW}MW at ${t.campus}`);
+    add(RAMP_QS(t.rev),'rev',`${t.n} starts earning — ${Math.round(t.gpus/1000)}k ${RAMP_GEN[t.gen].n} GPUs ramp over ${t.rampQtrs} qtr${t.rampQtrs>1?'s':''}${(t.signed||0)>0?'':' · uncontracted today'}`);});
+  Q.forEach((q,i)=>{const p=i>0?Q[i-1]:null;
+    const x=(f,lvl,txt)=>{if((p?p[f]:0)<lvl&&q[f]>=lvl)add(q.s,'mile',txt);};
+    x('grossMW',480,'480MW energized — the 2026 program lands (company target)');
+    x('grossMW',1210,'1,210MW energized — the 2027 program lands (company target)');
+    [[100000,'100k'],[250000,'250k'],[500000,'500k'],[750000,'750k']].forEach(([l,n])=>x('cum',l,`fleet passes ${n} revenue-generating GPUs`));
+    if(p&&p.by.rubin<=0&&q.by.rubin>0)add(q.s,'mile','first Rubin-class silicon earns — the Sweetwater / 800V-DC era begins');
+    if(p&&p.by.next<=0&&q.by.next>0)add(q.s,'mile','first next-generation silicon earns');
+    if(p&&p.consTot!=null&&q.consTot!=null&&(p.rev+p.mining)<=p.consTot&&(q.rev+q.mining)>q.consTot)add(q.s,'mile','model revenue passes street consensus — the capacity wedge opens');
+    if(p&&p.mining>0&&q.mining<=0)add(q.s,'mile','Bitcoin mining revenue reaches zero — the pivot completes');});
+  return ev;
 }
 let RAMP_TIP_EL=null;
 // two-layer escape for tip strings embedded in inline single-quoted handler attributes:
@@ -353,104 +379,228 @@ function rampTip(e,html){const wrap=e.currentTarget&&e.currentTarget.closest?e.c
   const w=wrap.getBoundingClientRect();let x=e.clientX-w.left+14,y=e.clientY-w.top+14;
   if(x+t.offsetWidth>w.width-6)x=w.width-t.offsetWidth-6;if(x<2)x=2;t.style.left=x+'px';t.style.top=y+'px';}
 function rampTipHide(){if(RAMP_TIP_EL)RAMP_TIP_EL.style.display='none';}
+/* ---- chart builders: each emits a ghost layer (full picture, faint) + a reveal layer clipped at the scrub time ---- */
+const RAMP_GANTT={W:960,ml:150,mr:56,d0:2025.6,d1:2031.2};
+function rampGanttX(dec){const G=RAMP_GANTT;return G.ml+(dec-G.d0)*((G.W-G.ml-G.mr)/(G.d1-G.d0));}
 function rampGanttHTML(R){
+  const G=RAMP_GANTT,W=G.W;
   const dec=l=>{const y=+l.slice(0,4),q=+l.slice(5);return y+(q-1)*0.25;};
-  // campus display order derived from the data: by each campus's earliest energization
   const CAMPS=[...new Set([...R.tranches].sort((a,b)=>dec(a.energize)-dec(b.energize)).map(t=>t.campus))];
-  const rows=[...R.tranches].sort((a,b)=>(CAMPS.indexOf(a.campus)-CAMPS.indexOf(b.campus))||(dec(a.energize)-dec(b.energize)));
-  const W=960,ml=150,mr=56,rowH=22,H=34+rows.length*rowH+26;
-  const X=yr=>ml+(yr-2025.6)*((W-ml-mr)/(2031.2-2025.6));
-  const tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
-  let s='<defs>'+Object.entries(RAMP_GEN).map(([k,g])=>`<pattern id="rghx-${k}" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="${g.c}" opacity="0.3"/><rect width="2.2" height="5" fill="${g.c}" opacity="0.85"/></pattern>`).join('')+'</defs>';
-  for(let yr=2026;yr<=2031;yr++){const x=X(yr);s+=`<line x1="${x.toFixed(1)}" y1="18" x2="${x.toFixed(1)}" y2="${H-22}" style="stroke:var(--line);stroke-width:1"/><text x="${(x+4).toFixed(1)}" y="${H-8}" ${tx}>${yr}</text>`;}
+  const rows=R.tranches.map((t,ti)=>({t,ti})).sort((a,b)=>(CAMPS.indexOf(a.t.campus)-CAMPS.indexOf(b.t.campus))||(dec(a.t.energize)-dec(b.t.energize)));
+  const rowH=22,H=34+rows.length*rowH+26;
+  const X=rampGanttX,tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
+  let stat='',bars='';
+  stat+='<defs>'+Object.entries(RAMP_GEN).map(([k,g])=>`<pattern id="rghx-${k}" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="${g.c}" opacity="0.3"/><rect width="2.2" height="5" fill="${g.c}" opacity="0.85"/></pattern>`).join('')+
+    `<clipPath id="rampClipG"><rect id="rampClipGR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
+  for(let yr=2026;yr<=2031;yr++){const x=X(yr);stat+=`<line x1="${x.toFixed(1)}" y1="18" x2="${x.toFixed(1)}" y2="${H-22}" style="stroke:var(--line);stroke-width:1"/><text x="${(x+4).toFixed(1)}" y="${H-8}" ${tx}>${yr}</text>`;}
+  stat+=`<rect x="${G.ml}" y="18" width="${W-G.ml-G.mr}" height="${H-40}" fill="transparent" style="cursor:crosshair" onclick="rampGanttSeek(event)"/>`;
   let lastCamp=null;
-  rows.forEach((t,i)=>{const y=30+i*rowH;
-    if(t.campus!==lastCamp){lastCamp=t.campus;s+=`<text x="2" y="${y+12}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.06em">${t.campus.toUpperCase()}</text>`;}
+  rows.forEach(({t,ti},i)=>{const y=30+i*rowH;
+    if(t.campus!==lastCamp){lastCamp=t.campus;stat+=`<text x="2" y="${y+12}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.06em">${t.campus.toUpperCase()}</text>`;}
     const th=Math.max(4,Math.sqrt(t.grossMW)*1.05),x0=X(dec(t.energize)),x1=X(2031.1);
     const g=RAMP_GEN[t.gen],solid=(t.signed||0)>0;
-    const tip=`<b>${t.n}</b><br>${t.campus} · ${g.n}<br>${t.grossMW}MW gross · ${t.itMW}MW IT · ${(t.gpus/1000).toFixed(0)}k GPUs<br>energized ${t.energize} · first revenue ${t.rev} (${t.rampQtrs}q ramp)<br>${solid?`signed today (${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr)`:`uncontracted today · modeled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr at commissioning`}`;
-    s+=`<rect x="${x0.toFixed(1)}" y="${(y+(rowH-4-th)/2).toFixed(1)}" width="${(x1-x0).toFixed(1)}" height="${th.toFixed(1)}" fill="${solid?g.c:`url(#rghx-${t.gen})`}"${solid?' opacity="0.9"':''} onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()"/>`;
+    const tip=`<b>${t.n}</b><br>${t.campus} · ${g.n}<br>${t.grossMW}MW gross · ${t.itMW}MW IT · ${(t.gpus/1000).toFixed(0)}k GPUs<br>energized ${t.energize} · first revenue ${t.rev} (${t.rampQtrs}q ramp)<br>${solid?`signed today (${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr)`:`uncontracted today · modeled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr at commissioning`}<br><span style="color:var(--ink-soft)">click to spotlight this tranche</span>`;
+    const rect=cls=>`<rect class="${cls}" data-ti="${ti}" x="${x0.toFixed(1)}" y="${(y+(rowH-4-th)/2).toFixed(1)}" width="${(x1-x0).toFixed(1)}" height="${th.toFixed(1)}" fill="${solid?g.c:`url(#rghx-${t.gen})`}"${solid?' opacity="0.9"':''}`;
+    bars+=rect('rampbarR')+` style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()" onclick="rampSelect(${ti})"/>`;
     const rx=X(dec(t.rev));
-    s+=`<path d="M ${rx.toFixed(1)} ${y+rowH/2-6} l 4.5 5 l -4.5 5 l -4.5 -5 z" fill="var(--ink)" opacity="0.85" style="pointer-events:none"/>`;
-    s+=`<text x="${(X(2031.1)+3).toFixed(1)}" y="${y+rowH/2+3}" ${tx}>${t.grossMW}MW</text>`;});
-  const tx2=X(NOW);
-  s+=`<line x1="${tx2.toFixed(1)}" y1="18" x2="${tx2.toFixed(1)}" y2="${H-22}" style="stroke:var(--clay);stroke-width:1;stroke-dasharray:2 3"/><text x="${(tx2-4).toFixed(1)}" y="27" text-anchor="end" style="font-family:var(--mono);font-size:9px;fill:var(--clay)">TODAY</text>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Capacity tranches by campus: energization to first revenue">${s}</svg>`;
+    bars+=`<path data-ti="${ti}" class="rampbarR" d="M ${rx.toFixed(1)} ${y+rowH/2-6} l 4.5 5 l -4.5 5 l -4.5 -5 z" fill="var(--ink)" opacity="0.85" style="pointer-events:none"/>`;
+    stat+=`<text x="${(X(2031.1)+3).toFixed(1)}" y="${y+rowH/2+3}" style="font-family:var(--mono);font-size:9px;fill:var(--ink-soft)">${t.grossMW}MW</text>`;});
+  const tn=X(NOW);
+  stat+=`<line x1="${tn.toFixed(1)}" y1="18" x2="${tn.toFixed(1)}" y2="${H-22}" style="stroke:var(--clay);stroke-width:1;stroke-dasharray:2 3"/><text x="${(tn-4).toFixed(1)}" y="27" text-anchor="end" style="font-family:var(--mono);font-size:9px;fill:var(--clay)">TODAY</text>`;
+  const ghost=`<g class="rampghost" style="pointer-events:none">${bars.replace(/onmousemove="[^"]*" onmouseleave="[^"]*" onclick="[^"]*"/g,'')}</g>`;
+  const reveal=`<g clip-path="url(#rampClipG)">${bars}</g>`;
+  const sweep=`<g id="rampSweepG" style="pointer-events:none"><line id="rampSweepGL" x1="0" y1="18" x2="0" y2="${H-22}" style="stroke:var(--ink);stroke-width:1.5"/><text id="rampSweepGT" x="0" y="14" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--ink);font-weight:600"></text></g>`;
+  const hl=`<rect id="rampHLG" y="18" height="${H-40}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Capacity tranches by campus: energization to first revenue; drag the timeline to replay">${stat}${hl}${ghost}${reveal}${sweep}</svg>`;
 }
+const RAMP_F={W:960,ml:54,mr:20,H:300,mt:16,mb:26};
 function rampFleetHTML(Q){
-  const W=960,ml=54,mr=20,H=300,mt=16,mb=26,ph=H-mt-mb;
+  const F=RAMP_F,W=F.W,ml=F.ml,mr=F.mr,H=F.H,mt=F.mt,ph=H-mt-F.mb;
   const max=Math.max(...Q.map(q=>q.cum))*1.06;
   const X=i=>ml+i*((W-ml-mr)/(Q.length-1)),Y=v=>mt+ph-(v/max)*ph;
+  RAMP_F.X=X;RAMP_F.Y=Y;RAMP_F.max=max;
   const tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
-  let s='';
-  for(let k=0;k<max;k+=200000){s+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':k/1000+'k'}</text>`;}
+  let stat='',body='';
+  stat+=`<defs><clipPath id="rampClipF"><rect id="rampClipFR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
+  for(let k=0;k<max;k+=200000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':k/1000+'k'}</text>`;}
+  Q.forEach((q,i)=>{if(i%2)return;stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
   let base=Q.map(()=>0);
   ['hopper','blackwell','rubin','next'].forEach(gk=>{
     const tops=Q.map((q,i)=>base[i]+q.by[gk]);
     if(tops.some((t,i)=>t>base[i])){
       const p='M'+Q.map((q,i)=>`${X(i).toFixed(1)},${Y(tops[i]).toFixed(1)}`).join(' L')+' L'+[...Q].map((q,i)=>Q.length-1-i).map(i=>`${X(i).toFixed(1)},${Y(base[i]).toFixed(1)}`).join(' L')+' Z';
-      s+=`<path d="${p}" fill="${RAMP_GEN[gk].c}" opacity="0.82" style="stroke:var(--card);stroke-width:1.5"><title>${RAMP_GEN[gk].n}</title></path>`;}
+      body+=`<path d="${p}" fill="${RAMP_GEN[gk].c}" opacity="0.82" style="stroke:var(--card);stroke-width:1.5"/>`;}
     base=tops;});
-  s+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(q.signed).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink);stroke-width:1.8;stroke-dasharray:6 4"/>`;
-  s+=`<text x="${X(5).toFixed(1)}" y="${(Y(Q[5].signed)-7).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">contracted today (signed book)</text>`;
-  // direct labels anchored at each generation's widest quarter (data-derived, not fixed indices)
+  body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(q.signed).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink);stroke-width:1.8;stroke-dasharray:6 4"/>`;
   const li=gk=>{let bi=-1,bv=0;Q.forEach((q,i)=>{if(q.by[gk]>bv){bv=q.by[gk];bi=i;}});return bi;};
   const lbl=(gk,txt,fill)=>{const i=li(gk);if(i<0)return '';const q=Q[i];let b=0;for(const g of ['hopper','blackwell','rubin','next']){if(g===gk)break;b+=q.by[g];}
     if(q.by[gk]<=60000)return '';
-    let cy=Y(b+q.by[gk]*0.5);const sy=Y(q.signed);if(Math.abs(cy-sy)<12)cy+=(cy>=sy?14:-14);   // dodge the signed-book line
+    let cy=Y(b+q.by[gk]*0.5);const sy=Y(q.signed);if(Math.abs(cy-sy)<12)cy+=(cy>=sy?14:-14);
     return `<text x="${X(i).toFixed(1)}" y="${(cy+4).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:${fill}">${txt}</text>`;};
-  s+=lbl('blackwell','BLACKWELL','#fff')+lbl('rubin','RUBIN','#fff')+lbl('next','NEXT','#7c2c52');
-  Q.forEach((q,i)=>{if(i%2)return;s+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
-  Q.forEach((q,i)=>{const tip=`<b>${q.lbl}</b><br>fleet ${(q.cum/1000).toFixed(0)}k GPUs (+${(q.added/1000).toFixed(1)}k)<br>`+['hopper','blackwell','rubin','next'].filter(g=>q.by[g]>0).map(g=>`${RAMP_GEN[g].n} ${(q.by[g]/1000).toFixed(0)}k`).join(' · ')+`<br>signed today ${(q.signed/1000).toFixed(0)}k · modeled contracted ${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}`;
-    s+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()"/>`;});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Revenue-generating GPUs by generation, quarterly">${s}</svg>`;
+  body+=lbl('blackwell','BLACKWELL','#fff')+lbl('rubin','RUBIN','#fff')+lbl('next','NEXT','#7c2c52');
+  body+=`<text x="${X(5).toFixed(1)}" y="${(Y(Q[5].signed)-7).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">contracted today (signed book)</text>`;
+  let cap='';
+  Q.forEach((q,i)=>{const tip=`<b>${q.lbl}</b><br>fleet ${(q.cum/1000).toFixed(0)}k GPUs (+${(q.added/1000).toFixed(1)}k)<br>`+['hopper','blackwell','rubin','next'].filter(g=>q.by[g]>0).map(g=>`${RAMP_GEN[g].n} ${(q.by[g]/1000).toFixed(0)}k`).join(' · ')+`<br>signed today ${(q.signed/1000).toFixed(0)}k · modeled contracted ${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
+    cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Revenue-generating GPUs by generation, quarterly">${stat}<rect id="rampHLF" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipF)">${body}</g><path id="rampSelF0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelF" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
 }
 function rampRevHTML(Q){
-  const W=960,ml=54,mr=20,H=310,mt=16,mb=26,ph=H-mt-mb;
+  const F=RAMP_F,W=F.W,ml=F.ml,mr=F.mr,H=310,mt=16,ph=H-mt-26;
   const max=Math.max(...Q.map(q=>q.rev+q.mining))*1.1;
   const n=Q.length,slot=(W-ml-mr)/n,bw=slot*0.6;
   const X=i=>ml+i*slot+slot/2,Y=v=>mt+ph-(v/max)*ph;
+  RAMP_F.rX=X;RAMP_F.rY=Y;RAMP_F.rmax=max;RAMP_F.rslot=slot;
   const tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
-  let s='';
-  for(let k=0;k<max;k+=2000){s+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+k/1000+'B'}</text>`;}
+  let stat='',body='',cap='';
+  stat+=`<defs><clipPath id="rampClipR"><rect id="rampClipRR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
+  for(let k=0;k<max;k+=2000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+k/1000+'B'}</text>`;}
+  Q.forEach((q,i)=>{if(i%2===0)stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
   Q.forEach((q,i)=>{let y0=mt+ph;
     const parts=[['mining',q.mining,'var(--far)','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],RAMP_GEN[g].c,RAMP_GEN[g].n])];
     parts.forEach(([g,v,col])=>{if(v<1)return;const h=(v/max)*ph;
-      s+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(h,0.5).toFixed(1)}" fill="${col}" style="stroke:var(--card);stroke-width:1.5"/>`;y0-=h;});
-    const tip=`<b>${q.lbl}</b><br>total $${Math.round(q.rev+q.mining)}M${q.consTot?` · consensus $${Math.round(q.consTot)}M (Δ ${Math.round(((q.rev+q.mining)/q.consTot-1)*100)}%)`:''}<br>`+parts.filter(p=>p[1]>=1).map(p=>`${p[3]} $${Math.round(p[1])}M`).join(' · ')+`<br>blend $${q.blend.toFixed(2)}/GPU-hr`;
-    s+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()"/>`;
-    if(i%2===0)s+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
+      body+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(h,0.5).toFixed(1)}" fill="${col}" style="stroke:var(--card);stroke-width:1.5"/>`;y0-=h;});
+    const tip=`<b>${q.lbl}</b><br>total $${Math.round(q.rev+q.mining)}M${q.consTot?` · consensus $${Math.round(q.consTot)}M (Δ ${Math.round(((q.rev+q.mining)/q.consTot-1)*100)}%)`:''}<br>`+parts.filter(p=>p[1]>=1).map(p=>`${p[3]} $${Math.round(p[1])}M`).join(' · ')+`<br>blend $${q.blend.toFixed(2)}/GPU-hr<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
+    cap+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
   const cpts=Q.map((q,i)=>q.consTot!=null?`${X(i).toFixed(1)},${Y(q.consTot).toFixed(1)}`:null).filter(Boolean);
-  if(cpts.length){s+=`<path d="M${cpts.join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
-    Q.forEach((q,i)=>{if(q.consTot==null)return;s+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(q.consTot).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5;pointer-events:none"/>`;});
-  }
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarterly revenue by GPU generation vs Bloomberg consensus">${s}</svg>`;
+  if(cpts.length){body+=`<path d="M${cpts.join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
+    Q.forEach((q,i)=>{if(q.consTot==null)return;body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(q.consTot).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarterly revenue by GPU generation vs Bloomberg consensus">${stat}<rect id="rampHLR" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipR)">${body}</g><path id="rampSelR0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelR" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
+}
+/* ---- interactions ---- */
+function rampSeek(v,keepPlay){RAMP_T=Math.max(RAMP_START,Math.min(RAMP_END,+v));if(!keepPlay)rampStop();rampApply();}
+function rampSeekQ(i){rampSeek(RAMP_START+i);}
+function rampGanttSeek(e){const svg=e.currentTarget.ownerSVGElement,r=svg.getBoundingClientRect();
+  const vx=(e.clientX-r.left)*(RAMP_GANTT.W/r.width);
+  const G=RAMP_GANTT,dec=G.d0+(vx-G.ml)/((G.W-G.ml-G.mr)/(G.d1-G.d0));
+  rampSeek((dec-2026)/0.25);}
+function rampStop(){if(RAMP_INTRO_TO){clearTimeout(RAMP_INTRO_TO);RAMP_INTRO_TO=0;}
+  RAMP_PLAYING=false;if(RAMP_RAF)cancelAnimationFrame(RAMP_RAF);if(RAMP_IV)clearInterval(RAMP_IV);RAMP_RAF=0;RAMP_IV=null;
+  const b=document.getElementById('rampPlayBtn');if(b)b.textContent=(RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play';}
+function rampPlay(){
+  if(RAMP_PLAYING){rampStop();return;}
+  if(RAMP_T>=RAMP_END-0.01)RAMP_T=RAMP_START;
+  RAMP_PLAYING=true;const b=document.getElementById('rampPlayBtn');if(b)b.textContent='❚❚ pause';
+  if(reduce){rampApply();RAMP_IV=setInterval(()=>{RAMP_T=Math.min(RAMP_END,Math.round(RAMP_T)+1);rampApply();if(RAMP_T>=RAMP_END)rampStop();},700);return;}
+  RAMP_LASTF=performance.now();
+  const step=now=>{if(!RAMP_PLAYING)return;const dt=Math.min((now-RAMP_LASTF)/1000,0.1);RAMP_LASTF=now;
+    RAMP_T=Math.min(RAMP_END,RAMP_T+dt*1.6);rampApply();
+    if(RAMP_T>=RAMP_END){rampStop();return;}RAMP_RAF=requestAnimationFrame(step);};
+  RAMP_RAF=requestAnimationFrame(step);
+}
+function rampHoverQ(i){const C=RAMP_CTX;if(!C)return;const F=RAMP_F;
+  const set=(id,x,w)=>{const el=document.getElementById(id);if(el){el.setAttribute('x',x);el.setAttribute('width',w);}};
+  const half=((F.W-F.ml-F.mr)/(C.Q.length-1))/2;
+  set('rampHLF',F.X(i)-half,half*2);
+  set('rampHLR',F.rX(i)-F.rslot/2,F.rslot);
+  const s=RAMP_START+i,x0=rampGanttX(2026+(s-1)*0.25),x1=rampGanttX(2026+s*0.25);
+  set('rampHLG',x0,x1-x0);}
+function rampHoverClear(){['rampHLF','rampHLR','rampHLG'].forEach(id=>{const el=document.getElementById(id);if(el)el.setAttribute('width',0);});}
+function rampSelect(ti){
+  const C=RAMP_CTX;if(!C)return;
+  RAMP_SEL=(RAMP_SEL===ti)?null:ti;
+  document.querySelectorAll('#ramp-body [data-ti]').forEach(el=>{el.style.opacity=(RAMP_SEL==null||+el.dataset.ti===RAMP_SEL)?'':'0.12';});
+  const card=document.getElementById('rampSelCard');
+  const setD=(id,d,col)=>{const el=document.getElementById(id);if(el){el.setAttribute('d',d);if(col)el.style.stroke=col;}};
+  if(RAMP_SEL==null){if(card)card.style.display='none';setD('rampSelF','');setD('rampSelF0','');setD('rampSelR','');setD('rampSelR0','');return;}
+  const t=C.R.tranches[RAMP_SEL],F=RAMP_F;
+  const pts=C.Q.map((q,i)=>rampTrancheAt(C.R,t,q.s));
+  const df='M'+C.Q.map((q,i)=>`${F.X(i).toFixed(1)},${F.Y(Math.min(pts[i].g,F.max)).toFixed(1)}`).join(' L');
+  const dr='M'+C.Q.map((q,i)=>`${F.rX(i).toFixed(1)},${F.rY(Math.min(pts[i].r,F.rmax)).toFixed(1)}`).join(' L');
+  const col=RAMP_GEN[t.gen].c;
+  setD('rampSelF0',df);setD('rampSelF',df,col);setD('rampSelR0',dr);setD('rampSelR',dr,col);
+  const peak=Math.max(...pts.map(p=>p.r));
+  const f=(a,b,note)=>`<div class="cstep"><span>${a}</span><span class="cval">${b}</span><span class="cnote">${note||''}</span></div>`;
+  card.style.display='';
+  card.innerHTML=`<div class="sitecalc">`+
+    `<div class="cstep tot"><span>${t.n}</span><span class="cval">${t.campus}</span><span class="cnote"><a href="#ramp" onclick="rampSelect(${RAMP_SEL});return false" style="color:var(--indigo)">✕ clear spotlight</a></span></div>`+
+    f('Generation',RAMP_GEN[t.gen].n)+f('Power',`${t.grossMW}MW gross · ${t.itMW}MW critical IT`)+
+    f('Fleet',`${(t.gpus/1000).toFixed(0)}k GPUs`,`${((t.gpus/C.Q[C.Q.length-1].cum)*100).toFixed(0)}% of the YE-30 fleet`)+
+    f('Energized',t.energize)+f('First revenue',t.rev,`${t.rampQtrs}-quarter ramp to full`)+
+    f('Contract',(t.signed||0)>0?`signed today — ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`:`uncontracted today — modeled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`,(t.signed||0)>0?'take-or-pay, bills 8,760 hr/yr':'rest earns effective spot')+
+    f('Peak quarter',`$${Math.round(peak)}M revenue`)+
+    `</div>`;
+  card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+}
+function rampApply(){
+  const C=RAMP_CTX;if(!C)return;
+  const T=Math.max(RAMP_START,Math.min(RAMP_END,RAMP_T)),cur=Math.min(RAMP_END,Math.round(T)),q=C.Q[cur-RAMP_START];
+  // clips + sweep
+  const gx=rampGanttX(2026+T*0.25);
+  const gr=document.getElementById('rampClipGR');if(gr)gr.setAttribute('width',gx.toFixed(1));
+  const sl=document.getElementById('rampSweepGL'),st=document.getElementById('rampSweepGT');
+  if(sl){sl.setAttribute('x1',gx.toFixed(1));sl.setAttribute('x2',gx.toFixed(1));}
+  if(st){st.setAttribute('x',Math.min(gx,RAMP_GANTT.W-30).toFixed(1));st.textContent=RAMP_QL(cur);}
+  const F=RAMP_F,fx=F.X(Math.max(0,T-RAMP_START))+((F.W-F.ml-F.mr)/(C.Q.length-1))/2;
+  const fr=document.getElementById('rampClipFR');if(fr)fr.setAttribute('width',fx.toFixed(1));
+  const rx=F.rX(Math.max(0,T-RAMP_START))+F.rslot/2;
+  const rr=document.getElementById('rampClipRR');if(rr)rr.setAttribute('width',rx.toFixed(1));
+  // scrubber (every frame; idempotent during a user drag since T derives from the input)
+  const rg=document.getElementById('rampRange');if(rg)rg.value=T;
+  // quarter-keyed writes: only when the displayed quarter actually changes
+  if(cur===RAMP_CUR)return;
+  RAMP_CUR=cur;
+  const qn=document.getElementById('rampQnow');if(qn)qn.textContent=RAMP_QL(cur);
+  const S=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  S('rs-gpu',(q.cum/1000).toFixed(q.cum<100000?1:0)+'k');
+  S('rs-mw',Math.round(q.grossMW).toLocaleString());
+  S('rs-it',Math.round(q.itMW).toLocaleString());
+  S('rs-rev','$'+Math.round(q.rev+q.mining).toLocaleString()+'M');
+  S('rs-blend','$'+q.blend.toFixed(2));
+  S('rs-sign',q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—');
+  // callouts
+  const cc=document.getElementById('rampCall');
+  if(cc){const evs=C.EV[cur]||[];const nxt=C.EV[cur+1]||[];
+    const PILL={power:['disclosed','power'],rev:['estimated','revenue'],mile:['rumored','milestone']};
+    cc.innerHTML=`<div class="cq">${RAMP_QL(cur)} — what happens</div>`+
+      (evs.length?evs.map(e=>`<div class="rampev"><span class="prov ${PILL[e.k][0]}">${PILL[e.k][1]}</span><span>${e.t}</span></div>`).join(''):`<div class="rampev" style="color:var(--ink-soft)">quiet quarter — capacity ramps, revenue compounds</div>`)+
+      (nxt.length?`<div class="rampnext">next quarter: ${nxt[0].t}${nxt.length>1?` (+${nxt.length-1} more)`:''}</div>`:'');}
+  // table highlight
+  if(C.rows)C.rows.forEach((tr,i)=>tr.classList.toggle('ramp-now',i===cur-RAMP_START));
 }
 function renderRamp(){
   const body=document.getElementById('ramp-body');if(!body)return;
+  rampStop();
   const cos=COMPANIES.filter(c=>c.ramp);
-  if(!cos.length){body.innerHTML='<div class="legend2">no ramp models yet — built per GPU-cloud name from the quarterly research overlay</div>';return;}
+  if(!cos.length){body.innerHTML='<div class="legend2">no ramp models yet — built per GPU-cloud name from the quarterly research overlay</div>';RAMP_CTX=null;return;}
   const c=cos.find(x=>x.tk===rampCo)||cos[0];rampCo=c.tk;
-  const R=c.ramp,Q=rampQuarters(R);
+  const R=c.ramp,Q=rampQuarters(R),EV=rampEvents(R,Q);
   const last=Q[Q.length-1],signedK=Math.round(R.tranches.reduce((a,t)=>a+t.gpus*(t.signed||0),0)/1000);
   const secured=(c.sites||[]).reduce((a,s)=>a+s.mw,0);
   const genLeg=Object.entries(RAMP_GEN).map(([k,g])=>`<span class="bo-leg"><i style="background:${g.c}"></i>${g.n}</span>`).join('');
   const hatchLeg=`<span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--ink-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>hatched = uncontracted today</span>`;
   const lineLeg=(col,lab)=>`<span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed ${col}"></i>${lab}</span>`;
   let h=`<div style="margin:0 4px 12px">${cos.map(x=>`<button class="tab ${x.tk===rampCo?'on':''}" data-rc="${x.tk}">${x.tk}</button>`).join(' ')}<span style="font-size:11px;color:var(--ink-soft);margin-left:10px">model as of ${R.asOf}</span></div>`;
-  h+=`<div class="ssummary" style="margin:4px 4px 16px"><span>secured power <b>${(secured/1000).toFixed(1)} GW</b></span><span>modeled in-window <b>${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)} GW</b></span><span>GPUs 26Q3 <b>${(Q[0].cum/1000).toFixed(1)}k</b> → YE-30 <b>~${Math.round(last.cum/1000)}k</b></span><span>signed book today <b>~${signedK}k GPUs</b></span><span>exit ARR 2030 <b>$${(last.rev*4/1000).toFixed(1)}B</b> @ $${last.blend.toFixed(2)}/GPU-hr</span></div>`;
+  h+=`<div class="ssummary" style="margin:4px 4px 12px"><span>secured power <b>${(secured/1000).toFixed(1)} GW</b></span><span>modeled in-window <b>${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)} GW</b></span><span>GPUs 26Q3 <b>${(Q[0].cum/1000).toFixed(1)}k</b> → YE-30 <b>~${Math.round(last.cum/1000)}k</b></span><span>signed book today <b>~${signedK}k GPUs</b></span><span>exit ARR 2030 <b>$${(last.rev*4/1000).toFixed(1)}B</b> @ $${last.blend.toFixed(2)}/GPU-hr</span></div>`;
+  // the time machine
+  h+=`<div class="rampbar"><button class="rampplay" id="rampPlayBtn">${(RAMP_T==null||RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play'}</button><div class="ramptrack"><div class="rampflags">`+
+    Object.keys(EV).map(s=>{const kinds=[...new Set(EV[s].map(e=>e.k))];const col=kinds.includes('mile')?'var(--clay)':kinds.includes('rev')?'var(--gold)':'var(--indigo-soft)';
+      return `<i class="rampflag" style="left:${(((+s)-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%;background:${col}" title="${RAMP_QL(+s)}: ${EV[s].map(e=>e.t).join(' · ')}" onclick="rampSeek(${s})"></i>`;}).join('')+
+    `</div><input type="range" id="rampRange" min="${RAMP_START}" max="${RAMP_END}" step="0.05" value="${RAMP_END}" aria-label="Timeline scrubber — drag to replay the build-out"></div><span class="qnow" id="rampQnow">${RAMP_QL(RAMP_END)}</span></div>`;
+  h+=`<div class="legend2" style="margin:0 4px 10px">Drag the timeline (or press replay) and the whole page rebuilds IREN quarter by quarter. Dots mark events — <span style="color:var(--indigo)">power-on</span>, <span style="color:#8a7137">first revenue</span>, <span style="color:var(--clay)">milestones</span>. Click any chart to jump; click a tranche bar to spotlight it everywhere.</div>`;
+  // live state panel
+  h+=`<div class="rampstats">`+[['rs-gpu','GPUs earning'],['rs-mw','gross MW energized'],['rs-it','critical IT MW active'],['rs-rev','revenue / qtr'],['rs-blend','blend $/GPU-hr'],['rs-sign','fleet signed today']].map(([id,lab])=>`<div class="rampstat"><span>${lab}</span><b id="${id}">—</b></div>`).join('')+`</div>`;
+  h+=`<div class="rampcall" id="rampCall"></div>`;
   h+=`<h4 class="sec">Concrete — capacity tranches (energize → first revenue)</h4><div class="bo-head"><div class="bo-legend">${genLeg}${hatchLeg}<span class="bo-leg">◆ first revenue</span></div></div><div class="bo-wrap">${rampGanttHTML(R)}<div class="bo-tip"></div></div>`;
+  h+=`<div id="rampSelCard" style="display:none;margin:10px 4px 0"></div>`;
   h+=`<div class="legend2" style="margin:6px 4px 0">Bar starts at energization, ◆ marks first revenue, thickness ∝ gross MW. Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modeled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetized in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
   h+=`<h4 class="sec">Silicon — revenue-generating fleet by generation</h4><div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
   h+=`<h4 class="sec">Money — quarterly revenue vs the street</h4><div class="bo-head"><div class="bo-legend">${genLeg}<span class="bo-leg"><i style="background:var(--far)"></i>BTC mining (residual)</span>${lineLeg('var(--ink-soft)','consensus (Bloomberg)')}</div></div><div class="bo-wrap">${rampRevHTML(Q)}<div class="bo-tip"></div></div>`;
   h+=`<h4 class="sec">The quarterly table</h4><div style="overflow-x:auto"><table class="stab nosort"><thead><tr><th>Qtr</th><th class="r">Gross MW (cum)</th><th class="r">IT MW active</th><th class="r">GPUs added</th><th class="r">GPUs cum</th><th class="r">Signed today</th><th class="r">Contracted (mod.)</th><th class="r">Blend $/hr</th><th class="r">AI rev $M</th><th class="r">Total $M</th><th class="r">Consensus $M</th><th class="r">Δ</th></tr></thead><tbody>`;
   Q.forEach(q=>{const tot=q.rev+q.mining;
-    h+=`<tr class="srow"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consTot!=null?Math.round(q.consTot).toLocaleString():'—'}</td><td class="r mono">${q.consTot?((tot/q.consTot-1)>=0?'+':'')+Math.round((tot/q.consTot-1)*100)+'%':'—'}</td></tr>`;});
+    h+=`<tr class="srow ramprow" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consTot!=null?Math.round(q.consTot).toLocaleString():'—'}</td><td class="r mono">${q.consTot?((tot/q.consTot-1)>=0?'+':'')+Math.round((tot/q.consTot-1)*100)+'%':'—'}</td></tr>`;});
   h+=`</tbody></table></div>`;
   h+=`<div class="legend2" style="margin-top:12px"><b>Basis.</b> ${R.basis}</div>`;
   h+=`<div class="legend2" style="margin-top:6px"><b>Consensus.</b> ${R.consensusSource}</div>`;
   body.innerHTML=h;
-  body.querySelectorAll('[data-rc]').forEach(b=>b.addEventListener('click',()=>{rampCo=b.dataset.rc;renderRamp();}));
+  RAMP_SEL=null;RAMP_CUR=-1;
+  RAMP_CTX={Q,EV,R,rows:[...body.querySelectorAll('tr.ramprow')]};
+  body.querySelectorAll('[data-rc]').forEach(b=>b.addEventListener('click',()=>{rampCo=b.dataset.rc;RAMP_T=RAMP_END;renderRamp();}));
+  const btn=document.getElementById('rampPlayBtn');if(btn)btn.addEventListener('click',rampPlay);
+  const rg=document.getElementById('rampRange');if(rg)rg.addEventListener('input',()=>rampSeek(rg.value));
+  RAMP_CTX.rows.forEach(tr=>tr.addEventListener('click',()=>rampSeek(+tr.dataset.qs)));
+  if(RAMP_T==null)RAMP_T=RAMP_END;
+  if(!RAMP_INTRO&&!reduce){RAMP_INTRO=true;RAMP_T=RAMP_START;rampApply();RAMP_INTRO_TO=setTimeout(()=>{RAMP_INTRO_TO=0;if(view==='ramp'&&!RAMP_PLAYING)rampPlay();},500);}
+  else rampApply();
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
 let RAW_DATA=null;
@@ -755,6 +905,7 @@ function route(){
 }
 function showDashboard(v,filter){
   SITE_FILTER=filter||null;view=v;
+  if(v!=='ramp'&&typeof rampStop==='function')rampStop();   // leaving the ramp view stops any running replay
   document.getElementById('fullpage').classList.remove('on');
   document.querySelector('.grid').style.display='';
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.view===v));

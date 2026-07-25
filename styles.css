@@ -80,6 +80,27 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
 .stab th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;white-space:nowrap}
 .stab th.r{text-align:right} .stab th:hover{color:var(--indigo)}
 .stab.nosort th{cursor:default} .stab.nosort th:hover{color:var(--ink-soft)}
+/* GPU-ramp rollout explorer */
+.rampbar{display:flex;align-items:center;gap:16px;margin:8px 4px 8px}
+.rampplay{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);background:var(--card);border:1px solid var(--indigo-soft);border-radius:3px;padding:6px 13px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.rampplay:hover{background:var(--indigo);color:var(--card)}
+.ramptrack{position:relative;flex:1;padding-top:8px}
+.rampflags{position:absolute;left:0;right:0;top:0;height:7px}
+.rampflag{position:absolute;width:5px;height:5px;border-radius:50%;transform:translateX(-50%);cursor:pointer}
+.rampflag:hover{transform:translateX(-50%) scale(1.6)}
+.rampbar .qnow{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--ink);min-width:62px;text-align:right}
+.rampstats{display:flex;gap:34px;flex-wrap:wrap;margin:12px 4px 14px}
+.rampstat span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px}
+.rampstat b{font-family:var(--mono);font-size:19px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.rampcall{border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px 14px;margin:0 4px 6px;min-height:46px}
+.rampcall .cq{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.rampev{display:flex;gap:9px;align-items:baseline;font-size:12.5px;margin:3px 0}
+.rampev .prov{flex:none}
+.rampnext{font-size:11px;color:var(--ink-soft);margin-top:7px;font-style:italic}
+.rampghost{opacity:.13}
+tr.ramp-now td{background:rgba(55,73,91,.08)}
+tr.ramprow{cursor:pointer}
+@media (prefers-reduced-motion:no-preference){.rampbarR{transition:opacity .2s}}
 .stab td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
 .stab tr:hover td{background:var(--card)}
 .stab .co{font-family:var(--serif);font-size:15px}
