@@ -69,6 +69,25 @@
       warnIf('config', null, s.type === 'commentary' && s.provCeiling === 'disclosed', `source ${s.id}: commentary cannot carry a disclosed ceiling`);
     }
 
+    /* ---- outlook (forward book — judgement, weekly refresh) ---- */
+    const OL = d.outlook;
+    warnIf('fresh', null, !OL, 'no outlook object — the weekly sweep generates the forward book');
+    if (OL) {
+      const oAge = days(OL.asOf);
+      warnIf('fresh', null, oAge == null || oAge > 8, `outlook stale — asOf ${OL.asOf || 'missing'} (${oAge == null ? '?' : oAge + 'd'}; weekly cadence)`);
+      const ctks = (d.companies || []).map(c => c.tk);
+      (OL.leases || []).forEach(r => {
+        failIf('fresh', r.tk, !ctks.includes(r.tk), `outlook lease row: unknown ticker ${r.tk}`);
+        failIf('fresh', r.tk, !(r.prob >= 0 && r.prob <= 100), `outlook ${r.tk}: P(lease) ${r.prob} out of 0-100`);
+        warnIf('fresh', r.tk, !(r.drivers || []).length, `outlook ${r.tk}: lease row with no evidence drivers`);
+      });
+      (OL.earnings || []).forEach(r => {
+        failIf('fresh', r.tk, !ctks.includes(r.tk), `outlook earnings row: unknown ticker ${r.tk}`);
+        failIf('fresh', r.tk, !(r.score >= -5 && r.score <= 5), `outlook ${r.tk}: surprise score ${r.score} out of -5..5`);
+        warnIf('fresh', r.tk, r.date != null && isNaN(new Date(r.date).getTime()), `outlook ${r.tk}: unparseable earnings date ${r.date}`);
+      });
+    }
+
     /* ---- companies ---- */
     const tks = cos.map(c => c.tk);
     failIf('schema', null, new Set(tks).size !== tks.length, 'duplicate tickers');

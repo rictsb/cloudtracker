@@ -2627,7 +2627,7 @@
           "owned": true,
           "region": "cheap",
           "yr": 2026,
-          "mo": 8,
+          "mo": 11,
           "prov": "disclosed",
           "leaseId": "cifr-aws-blackpearl"
         },
@@ -2646,8 +2646,8 @@
           "mw": 108,
           "owned": true,
           "region": "cheap",
-          "yr": 2026,
-          "mo": 12,
+          "yr": 2027,
+          "mo": 2,
           "prov": "disclosed",
           "leaseId": "cifr-aws-blackpearl"
         },
@@ -2817,10 +2817,16 @@
       ],
       "log": [
         {
+          "d": "2026-07-24",
+          "t": "site",
+          "s": "[edgar] 8-K 2/3/26 + 6/8/26 decks (verify pass)",
+          "x": "Black Pearl schedule set to the DISCLOSED subphase plan: 50/35/35 IT MW commencing 10/1-12/1/26 (Ph1 row → 2026/11), 15+81 MW to 2/28/27 (Ph2 row → 2027/02); first rent 10/1/26. Corrects the 7/20 log's Aug-rent claim."
+        },
+        {
           "d": "2026-07-20",
           "t": "note",
           "s": "[edgar]/[reported]",
-          "x": "No new deal — +11-18% was sympathy (HUT BP2 + IREN wave; EDGAR: nothing filed since the 6/15 Stingray notes closing). The real CIFR event: AWS Black Pearl Ph1 capacity delivery begins July, RENT COMMENCES AUGUST — first AWS rent on the $5.5B book. MS PT trim to $47 ignored by convention."
+          "x": "No new deal — +11-18% was sympathy (HUT BP2 + IREN wave; EDGAR: nothing filed since the 6/15 Stingray notes closing). The real CIFR event: CORRECTED 7/24 (verify pass vs 8-K 2/3/26 deck): AWS Black Pearl Ph1 initial delivery targets SEPT 30, first rent OCT 1 2026 (final phase rent Mar-27) — the earlier \"delivery July / rent August\" read was wrong; site rows re-dated to the disclosed subphase schedule. MS PT trim to $47 ignored by convention."
         }
       ],
       "thesis": "Undervalued — 700 MW of signed hyperscaler colo plus a ~2 GW queued pipeline credited near-full while the market still treats it as a miner. Re-rates as Barber Lake energizes and the pipeline contracts.",
@@ -5163,6 +5169,980 @@
       "tk": "HUT",
       "note": "RESOLVED 7/23/26 (shares 133.7 FD / 123.19 basic; Coatue stripped from netDebt) — remaining confirmation: Q2 2026 10-Q (~Aug) must show the Coatue conversion and ~123.2M outstanding; if not, revert basic display to ~113.5M and re-add $159.3M to the convert line (FD unchanged)",
       "added": "2026-07-23"
+    },
+    {
+      "tk": "CRWV",
+      "note": "Verify pass 7/24: Galaxy PR says Helios Ph1 delivered 200MW GROSS / 133MW critical IT — our CRWV 'Helios Ph1' site row carries 200 (IT convention). Re-verify all Helios rows gross-vs-IT against the Galaxy lease PRs and re-date if needed; also July Form 4 wave (CEO ~$80M, CDO ~$43M, CFO $5.5M) + Q2 backlog restate ($33-35B signed in Q1, Jane St was April)",
+      "added": "2026-07-24"
     }
-  ]
+  ],
+  "outlook": {
+    "asOf": "2026-07-24",
+    "cadence": "weekly (Monday sweep, STEP 2b)",
+    "method": "21 research desks (filings/calls/X/commentary triangulation) + adversarial verification on the top-ranked claims; [verify-corrected] marks claims that were checked against primary sources and corrected. Judgement only — never a valuation input.",
+    "leases": [
+      {
+        "tk": "CRWV",
+        "prob": 95,
+        "mwLo": 150,
+        "mwHi": 400,
+        "window": "Aug-Oct 2026, highest density at/around the Q2 print (now CONFIRMED Aug 18, 2026",
+        "site": "Helios Ph2 (Dickens Co, TX) — Galaxy has 526MW committed across 3 phases and Ph1 200MW energized 7/8/26; or Ellendale/Polaris Forge ELN-04 (150MW, financed by A",
+        "tenants": "Follow-on order from an existing anchor most likely: Anthropic expansion (added as customer Q1-26, initial deal undisclosed/multibillion, Claude inference ramping) or another Vera Rubin-generation order from OpenAI/Meta ",
+        "drivers": [
+          "Verbatim negotiation language, Q1-26 call 5/7/26 (Intrator): 'Our pipeline for additional capacity is extremely large. We're reviewing lots of different sites... lots of different deals that would allow us to continue our ramp'; (Agrawal): 'we remain largely sold out of our 2026 capacity, with prices increasing across the board... we have begun allocating capacity we expect to come online next year [2027]' — 2027 allocation talks are live now (FactSet CallStreet transcript, corrected).",
+          "Signing cadence makes a new binding contract within 6 months the base case, not a call option: $40B+ of new commitments in Q1-26 alone (Meta $21B, Anthropic, Jane Street $6B, Hudson River Trading, initial Vera Rubin deals), backlog $99.4B +~50% QoQ (8-K + call, 5/7/26). CRWV has added material bookings every quarter as a public company.",
+          "Financing tripwires signal deals: 5th DDTL priced 5/6/26, first syndicated in the public loan market, explicitly 'to finance contracts with OpenAI and Cohere,' priced 50bps inside talk; $8.5B DDTL <6%; $2B NVIDIA-linked equity; S&P outlook to positive. Agrawal doctrine: 'the capital we raise is tied to customer demand' — each new facility telegraphs a signed or imminent contract.",
+          "Sellable inventory is staged: ~1.4GW of contracted-in power not yet customer-allocated (Northland's Chokshi math on the 5/7/26 call, accepted by Intrator: 'the word allocate is probably accurate'); Helios Ph1 200MW live 7/8/26 with 526MW committed over 3 phases (15-yr lease, Galaxy PR); ELN-04 150MW financed 6/18/26; Denton 260MW RFS H2-26 (CORZ PRs, $10B+/590MW total relationship).",
+          "execScore evidence (4/5): active power ~tripled since start-2025 to >1GW ('a milestone only a handful of cloud companies have ever achieved'), +2GW contracted power added in 12 months, powered-shell-to-revenue fit-out ~1-2 months with contribution margins normalizing mid-20s 'by month three' (Agrawal 5/7/26). Docked one point: CRWV rents most shells — the Nov-10-2025 FY25 guide trim on a third-party data-center developer delay showed announced-to-energized is partly hostage to landlords (APLD/CORZ/Galaxy), unlike true self-builders; self-build program only now starting ('a series of self-build data centers' — Intrator 5/7/26)."
+        ],
+        "exec": 4,
+        "sources": [
+          "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q1/CoreWeave-Inc-CRWV-US-Q1-2026-Earnings-Call-7-May-2026-5_00-PM-ET.pdf (5/7/26 transcript, verbatim quotes)",
+          "https://finance.yahoo.com/markets/stocks/articles/coreweave-crwv-secures-helios-power-182144925.html (7/8/26 Galaxy Helios 200MW/526MW)",
+          "https://ir.applieddigital.com/news-events/press-releases/detail/128/ (APLD 150MW CoreWeave lease; 400MW/$11B total PF1)",
+          "https://www.foreignpolicyjournal.com/2026/06/18/applied-digital-nasdaq-apld-raises-1-59b-in-senior-secured-notes-to-power-150-mw-polaris-forge-1-expansion/ (6/18/26 ELN-04 financing; 6/5/26 MOU assigning Building 3 lease to CRWV sub)"
+        ]
+      },
+      {
+        "tk": "NBIS",
+        "prob": 75,
+        "mwLo": 30,
+        "mwHi": 150,
+        "window": "Aug-Nov 2026 (intra-quarter PRs are the norm — Reflection landed 7/14; Q2 call e",
+        "site": "Independence, MO gigawatt-scale campus (ground broken 5/12/26, COO: first capacity 'Q1 next year' = Q1 2027 — matches a 2H26 signing); Birmingham AL 300MW (BHM0",
+        "tenants": "Three lanes, in order of likelihood: (1) another frontier-lab offtake a la Reflection AI (>$1B, 3yr, GB300 — signed 7/14/26 per Bloomberg and 6-K; CRO says '4 or more customers competing for every GPU'); (2) Meta convers",
+        "drivers": [
+          "[verify-corrected] Cadence corrected: THREE confirmed contracts in 7 months (MSFT 9/25, Meta 11/25, Meta-VR 3/26) and nothing signed since March — the \"accelerating cadence\" claim inverted on verification. The 7/14 Reflection AI report has NO 6-K and no company PR: unconfirmed press, excluded.",
+          "Capacity argument intact: contracted power >3.5GW targeting >4GW; Vineland Ph2 + Israel expansions land 2027 — capacity to sell exists and mgmt guides to selling it.",
+          "The $15B NVIDIA unsold-capacity backstop is real but narrower than headlines: \"certain GPU clusters as specified\", up to $15B, 5-yr clock per block — a floor under new builds, not a blanket guarantee.",
+          "[verify-corrected] RISK moved from the news column: NVIDIA 13G (7/20) mechanically flags the pre-funded warrant becoming exercisable — a 21.1M-share (~8% of out) supply overhang unlocks Sept 11, 2026."
+        ],
+        "exec": 3.5,
+        "sources": [
+          "nebius.com/newsroom PR 3/16/26 (Meta agreement: $12B dedicated + up to $15B additional); CNBC 3/16/26",
+          "Bloomberg 7/14/26 'Nebius to Sell $1 Billion in AI Capacity to Startup Reflection'; SEC 6-K ex99-1 (edgar/data/1513845/000110465926084452)",
+          "Motley Fool Q1 2026 earnings call transcript, 5/13/26 (Volozh, Boroditsky, Korolenko, Alonso quotes)",
+          "nebius.com newsroom: 7/17/26 $775M secured debt; 7/15/26 infrastructure-partnership model; 5/12/26 Missouri groundbreaking; 6/8/26 UK expansion"
+        ]
+      },
+      {
+        "tk": "RIOT",
+        "prob": 60,
+        "mwLo": 100,
+        "mwHi": 400,
+        "window": "Sep-Dec 2026 (MS says 'this summer'; mgmt refuses timing — modal case is a Q4'26",
+        "site": "Corsicana — 756 MW critical-IT campus on ~1.0 GW owned/approved utility power; mgmt says the majority of conversations are for the ENTIRE site. Fallback path: R",
+        "tenants": "Unnamed. Scale of the talks (full-campus single tenant, ~750 MW-1 GW) implies a hyperscaler or frontier AI lab — mgmt: 'We have not seen any deals signed by peers at that scale' (Q1'26 call, 4/30/26). Only NAMED candidat",
+        "drivers": [
+          "FACT (Q1'26 call, 4/30/26, Les verbatim): 'We are in a great spot; there are no gating items or issues... we have interest for capacity across both Corsicana and Rockdale, and we are pursuing those opportunities in parallel' and 'the majority of the conversations are still around the entire site.' BUT also: 'I cannot tell you when our next lease will be signed' and peers have seen 'multiple deals start to stop or fall through before one got to the finish line' — constructive pipeline, zero timing commitment, no term-sheet/LOI/exclusivity language ever disclosed.",
+          "LEAD (sell-side, 7/23/26): MS initiation (Byrd, OW $36) expects a lease THIS SUMMER at Corsicana ('rare site in control of their utility power') or Rockdale; assigns 75% energization probability to ~750 MW unsigned — highest in their coverage; flags AMD conditional first-priority right on up to 100 MW more at Rockdale. Citi ($21->$28) and BTIG ($28->$40) raised 7/20 on the same AI-infrastructure framing.",
+          "FINANCING TRIPWIRE (Q1'26 call, 4/30/26, Chung verbatim): 'actively engaging with multiple institutional lenders on project-level nonrecourse financing structures for the AMD lease... we continue to target attractive loan-to-cost ratios in the range of 80%'; 'initial feedback has been very positive.' A close recycles AMD-lease equity into Corsicana and marks the first external validation of $/W value. EDGAR check 7/24: NO closing 8-K yet — nothing material filed since 6/15 (annual-meeting 8-K only).",
+          "SPEC CAPITAL AHEAD OF DEMAND (facts): $400M TDLR permit filed 5/30/26 for a second 168 MW Corsicana core-and-shell ('Project Ditto', completion 2028); Q1'26 replan consolidated Bldg 1 into a single 168 MW shell (+50% IT for same capex) and lifted campus plan to 756 MW IT — building two spec shells signals confidence in the pipeline, and first shell completes 2027 so a 2026 signing can be accommodated.",
+          "FORCING PRESSURES (facts): Starboard (~3.1%, 2/18/26) publicly pushing faster AI dealmaking; BTC closed Q2 below $60K (21-month low, 6/30/26) making the FCF-negative mining fleet (cost-to-mine ~127% of production) untenable — raises urgency to convert power to leases and to stop funding via BTC sales (3,778 BTC sold in Q1 for $289.5M)."
+        ],
+        "exec": 3.5,
+        "sources": []
+      },
+      {
+        "tk": "BTDR",
+        "prob": 80,
+        "mwLo": 50,
+        "mwHi": 180,
+        "window": "Jul-Sep 2026",
+        "site": "Tydal, Norway (ph.1 50 MW, target completion 'as early as December 2026'; campus framed by mgmt as the '180MW Tydal AI data center' and 'Norway's largest operat",
+        "tenants": "Unnamed. FACT (6-K/PR 6/29/26): lease executed with a counterparty whose conditions precedent include 'the completion of certain external customer and supplier arrangements by the counterparty' — that language fits a neo",
+        "drivers": [
+          "[verify-corrected] Tydal lease signed 6/29, conditions-precedent pending — and the PR guides EFFECTIVENESS \"within the next month\" (~end-July), a stronger forcing function than first read; company will announce terms upon effectiveness.",
+          "[verify-corrected] Counterparty descriptor corrected UP: \"advanced stages of negotiations with a CREDIT-WORTHY colocation tenant for Tydal\" (Q1 results PR 5/14/26, verbatim).",
+          "Rockdale \"several prospective colocation tenants\" + the FY26 project-debt financing plan are call-sourced (paraphrase-grade until the transcript is pulled — flagged, not assumed).",
+          "[verify-corrected] AI cloud: 4,248 GPUs deployed (June PR), ARR $8M→~$69M in 8 months, 90% utilization — execution evidence for the exec score."
+        ],
+        "exec": 3,
+        "sources": [
+          "https://www.globenewswire.com/news-release/2026/06/29/3318832/0/en/Bitdeer-Technologies-Group-Signs-Colocation-Lease-Agreement-for-Tydal-Norway-AI-Data-Center-Site.html (6/29/26)",
+          "https://www.fool.com/earnings/call-transcripts/2026/05/14/bitdeer-btdr-q1-2026-earnings-transcript/ (5/14/26)",
+          "https://www.stocktitan.net/news/BTDR/ (filings/news list thru 7/21/26)",
+          "https://blockspace.media/insight/bitdeer-faces-lawsuit-over-clarington-data-center-plans/ (Clarington suit)"
+        ]
+      },
+      {
+        "tk": "IREN",
+        "prob": 85,
+        "mwLo": 100,
+        "mwHi": 300,
+        "window": "Aug-Nov 2026",
+        "site": "Sweetwater 1 (TX) — 1.4GW substation energized 5/1/26, ~2GW secured, essentially uncontracted; near-term incremental cloud tranches sit on Childress Horizon 5-6",
+        "tenants": "Most likely: (a) expansion by the unnamed 'leading AI developer' from the 7/20/26 8-K (identity still a watch item — PR lists Microsoft, NVIDIA, Perplexity, Figure AI, Together AI, Fluidstack, Fireworks, Fal, Hume + one ",
+        "drivers": [
+          "[verify-corrected] Two desk \"verbatim\" quotes were FABRICATED (not in the SEC-filed transcript) and are excluded. The real, stronger quote stands: Roberts — \"there's nothing stopping us contracting that capacity today. It just gets easier the closer we get.\" (8-K-filed FY-call transcript).",
+          "Draper (CCO, one continuous answer, correctly attributed): capacity for '27 \"extremely scarce... continuing to push into '28\" — \"the ability to market those sites for '27 and '28 online dates\" while \"structuring the contracts in the right way\".",
+          "FILED demand language, 8-K 7/20/26: \"Demand from hyperscalers, enterprises, AI developers and frontier labs continues to exceed IREN's available and planned capacity\" — with $2.8B signed the same day and ~45% customer prepayments.",
+          "Cadence is the base case: 4 signings in 12 months (MSFT $9.7B, NVIDIA $3.4B, cloud book, AI-dev cohort $2.8B); Sweetwater 1.4GW + Horizon 5-6 are the sellable 2027 inventory."
+        ],
+        "exec": 4.5,
+        "sources": [
+          "GlobeNewswire 7/20/26 — IREN Signs $2.8bn in New Customer Contracts, raises 2026 ARR target to $4bn+ (85% contracted, 45% prepayments, 480MW 2026 → 1.2GW 2027, $7.6bn cash 6/30)",
+          "SEC 8-K ex99-1 7/20/26 (sec.gov/Archives/edgar/data/1878848/000114036126028871/ef20078253_ex99-1.htm)",
+          "Investing.com Q3 FY2026 earnings-call transcript, 5/7/26 (Roberts/Draper/Lewis quotes)",
+          "GlobeNewswire 6/1/26 — IREN Closes $3.65bn Investment-Grade GPU Financing (Fitch A, 6.00% blended)"
+        ]
+      },
+      {
+        "tk": "SLNH",
+        "prob": 55,
+        "mwLo": 100,
+        "mwHi": 350,
+        "window": "Sep-Dec 2026 (LOI signed as of Jul 14 PR; lease-doc finalization stage; first co",
+        "site": "Kati 2 Ph1 (TX, Metrobloks JV) — first 100 MW+ CIT of the 350 MW / 7-building Tier 3 campus; binding lease likely papers Ph1 with expansion options even though ",
+        "tenants": "Unknown — one unnamed party under a signed LOI. Funnel described as 'Hyperscalers and Neoclouds' (Jun 9 PR); Feb 12 PR said three potential SINGLE-tenants to pre-lease the entire 350 MW campus, implying a hyperscaler or ",
+        "drivers": [
+          "FACT (Jul 14, 2026 monthly update): 'A Letter of Intent (LOI) for this potential tenant has been signed' — focus now on 'finalizing the design, commercial terms, and lease agreement'; GC selected and onboarding; detailed design ~50% complete; long-lead electrical equipment LOIs signed",
+          "FACT (Jun 9, 2026 update): definitive JV agreement signed with Metrobloks (replacing non-binding MOU) — Metrobloks leads design, leasing, pre-lease commitments; 'formal commercial negotiations have started with at least one potential tenant'; tenant due diligence 'continues with Hyperscalers and Neoclouds'",
+          "FACT (Jun 9, 2026): 'Soluna has engaged a top-tier investment bank experienced in financing AI infrastructure projects to lead capital raising for Kati 2' — financing track running in parallel with the lease; closing likely mutually conditional (chicken-and-egg risk both ways)",
+          "FACT (Feb 12, 2026 update): 'in negotiations with three potential single-tenants to pre-lease the entire campus' — a 5-month documented funnel narrowing 3 → 1 → LOI, the classic pre-signature progression",
+          "RISKS to conversion: tenant unnamed; leasing outsourced to Metrobloks, a 2024-founded seed-stage startup ($5.2M raised) unproven at 350 MW scale; SLNH is a going-concern-flagged ~$200M micro-cap tenants must credit-diligence; neocloud credit-risk jitters are stalling sector deals (DCK, 2026 — lead); Dorothy 3 (300 ac land under definitive purchase agreement May '26, Briscoe wind owned) is 12+ months behind Kati 2 and not a near-term lease candidate"
+        ],
+        "exec": 2,
+        "sources": [
+          "https://www.solunacomputing.com/news/monthly-update-july-2026/ (Jul 14, 2026)",
+          "https://www.solunacomputing.com/news/monthly-update-june-2026/ (Jun 9, 2026)",
+          "https://www.morningstar.com/news/business-wire/20260212269143/soluna-announces-monthly-business-update (Feb 12, 2026)",
+          "https://www.businesswire.com/news/home/20250812900775/en/Soluna-Expands-Partnership-with-Galaxy-Digital-to-Deploy-48-MW-at-Project-Kati (Aug 12, 2025)"
+        ]
+      },
+      {
+        "tk": "GLXY",
+        "prob": 75,
+        "mwLo": 250,
+        "mwHi": 550,
+        "window": "Aug-Oct 2026",
+        "site": "Helios 830 MW ERCOT-approved expansion, Dickens County TX (interconnection studies complete, classified baseload not batch-zero under PGRR145; equipment procure",
+        "tenants": "Direct hyperscaler most likely — Novogratz: in negotiation with '5 or 6 [hyperscaler] players' for the 830 MW (Blockspace, LEAD); Ferraro on Q1 call (4/28/26) said the 830 decision will prioritize 'a diversified exposure",
+        "drivers": [
+          "Q1 2026 call, 4/28/26 (Ferraro): 'We are in active discussions with a select group of potential customers' … 'the customer conversations we're having extends pretty far beyond just CoreWeave' … 830 MW decision to weigh 'the importance of having a diversified exposure client base.' Novogratz: 'We're in conversations with a lot of big people you can guess who they are.' (transcript — fact)",
+          "Novogratz, 6/6/26 'All Things Markets' podcast (LEAD): Helios 1.6 GW is half leased and he 'expects the full 1.6 gigawatts to be spoken for by the end of summer' — management's own deadline lands Aug-Sep 2026, right on the 8/5 print.",
+          "Capex ahead of contract: 'early-stage equipment procurement underway' for the 830 MW and 'not waiting on commercial structure to be finalized to proceed on development' (Q1 call) — they are spending as if a tenant is coming.",
+          "Financing tripwire: $3.507B 9.875% senior secured notes (Galaxy Helios DC II LLC, priced 7/22/26, closes 7/28/26; MS/GS books; 8-K) fully fund the CONTRACTED Phase II ($10.4B minimum lease payments), freeing the $500M ATM (filed 5/8/26) and $2.6B corporate cash for the 830 MW; the next project-debt tranche wants a signed lease first — pattern says sign, then finance.",
+          "Site readiness: 830 MW ERCOT-approved with completed interconnection studies at an already-energized campus (Phase I 133 MW CIT delivered to CoreWeave, PR 7/6/26); up to 1.8 GW further under load study; Project Merlin (500 acres, McGregor TX, ~$400M initial, up to 8 buildings) approved 6/25/26 as campus #2 — the 'LOI stage' projects teased on the Q1 call materialized on schedule."
+        ],
+        "exec": 3.5,
+        "sources": [
+          "Motley Fool GLXY Q1 2026 earnings transcript, 4/28/26: fool.com/earnings/call-transcripts/2026/04/28/galaxy-digital-glxy-q1-2026-earnings-transcript/",
+          "Galaxy PR 7/6/26 Phase I completion/rent commencement: prnewswire.com/news-releases/galaxy-completes-phase-i-of-its-helios-data-center-campus-delivering-133-megawatts-of-critical-it-load-to-coreweave-302818664.html",
+          "Bloomberg 7/22/26 + Investing.com: $3.507B 9.875% notes due 8/1/31, closing 7/28/26, Phase II 260 MW CIT, $10.4B min lease payments",
+          "Blockspace: 'Galaxy potentially in negotiation with hyperscalers for 830 MW Helios expansion: Novogratz' ('5 or 6 players')"
+        ]
+      },
+      {
+        "tk": "HUT",
+        "prob": 70,
+        "mwLo": 250,
+        "mwHi": 450,
+        "window": "Sep-Dec 2026 — Entergy expansion disclosure first (teased 5/6/26 as coming), ROF",
+        "site": "River Bend (West Feliciana, LA) expansion — ROFO tranche 1, ~400 MW IT per our registry estimate; Beacon Point is now FULLY leased (7/20/26), so RB is the only ",
+        "tenants": "Fluidstack (contractual ROFO holder at River Bend, under the 'at least 245 MW and up to 2,295 MW' Anthropic partnership, Google payment backstop — PRs 12/2025). Alternate: the unnamed high-IG Beacon Point tenant ('AA-or-",
+        "drivers": [
+          "FACT — the next lease is pre-written into the Dec-2025 contract: River Bend lease grants the tenant a ROFO for up to 1,000 MW of additional IT capacity 'subject to the expansion of power at the site' (Hut 8 PR, Dec 2025). The gate is Entergy, not demand.",
+          "FACT/QUOTE — Genoot on the Entergy expansion, Q1 call 5/6/26: 'We've been working closely with Entergy Louisiana... how do we scale that quicker and faster' and 'We haven't shared the exact dates and scale of that yet, but hope to do so in the coming time period.' A scale-and-dates announcement is the tripwire that converts our estimated 400 MW ROFO tranche toward disclosed.",
+          "FACT — demonstrated exclusivity-to-signature velocity: Genoot 5/6/26 on Beacon Point: 'The tenant does have a ROFO right on the remaining capacity at the campus. And some exclusivity for a short period of time to decide what they want to do on kind of the next phase.' That converted to the signed $9.8B Ph2 lease on 7/20/26 (~10 weeks). CEO 7/20: tenant 'chose to double its footprint at the site.'",
+          "FACT — signing cadence: three 15-yr NNN mega-leases in 8 months (River Bend 12/2025 $7.0B/245MW; BP Ph1 5/6/26 $9.8B/352MW — announced with the Q1 print; BP Ph2 7/20/26 $9.8B/352MW). Base rate alone supports ~1 signing per 2-3 quarters.",
+          "FACT — the financing template is proven and repeatable without equity: $3.25B BBB- River Bend SPV bond (launched 4/27/26, closed 4/30) and $4.25B Baa2 Beacon Point bond (launched 6/4/26, priced same day at 6.129%, closed 6/9), both non-recourse ~95% LTC. BP Ph2 financing is the next print to watch (our watchlist tripwire) and each closed bond validates the next lease's fundability."
+        ],
+        "exec": 3.5,
+        "sources": [
+          "https://www.prnewswire.com/news-releases/hut-8-signs-15-year-245-mw-ai-data-center-lease-at-river-bend-campus-with-total-contract-value-of-7-0-billion-302644600.html (Dec 2025 — ROFO 'up to 1,000 MW... subject to the expansion of power')",
+          "https://www.prnewswire.com/news-releases/hut-8-announces-ai-infrastructure-partnership-with-anthropic-and-fluidstack-302644377.html (Dec 2025 — 'at least 245 MW and up to 2,295 MW')",
+          "https://www.insidermonkey.com/blog/hut-8-corp-nasdaqhut-q1-2026-earnings-call-transcript-1756915/ (5/6/26 call — Genoot Entergy + exclusivity quotes verbatim)",
+          "https://www.prnewswire.com/news-releases/hut-8-commercializes-first-phase-of-1-gw-beacon-point-ai-data-center-campus-with-15-year-352-mw-it-lease-with-base-term-contract-value-of-9-8-billion-302763484.html (5/6/26 BP Ph1)"
+        ]
+      },
+      {
+        "tk": "CIFR",
+        "prob": 72,
+        "mwLo": 70,
+        "mwHi": 200,
+        "window": "Aug-Nov 2026 — likeliest with/around the 8/4 BMO print (3/25/26 set the preceden",
+        "site": "Ulysses (Ohio, PJM, 200 MW, interconnect-approved, disclosed) — scarce 2027 PJM capacity in 'advanced discussions'; Reveille (70 MW, TX, 9/27) close second but ",
+        "tenants": "AWS is the revealed repeat tenant (Black Pearl Oct'25 + Stingray Mar'26, 15-yr + options, underwrites overruns >$9.5M/IT-MW) — a third AWS site is the base case; Google stepping from Fluidstack backstop ($1.73B guarantee",
+        "drivers": [
+          "Ulysses (200MW, PJM, interconnect-approved) is the marketable near-term asset; McLennan/Mikeska/Colchis behind it — ~2GW of queued pipeline to sell.",
+          "[verify-corrected] Execution record corrected but still strong: Black Pearl announce (11/3/25) → initial rent target (10/1/26) is ~11 months — a schedule MET on time, not beaten; Stingray deck (6/8/26): both projects \"on schedule\".",
+          "[verify-corrected] A desk \"bullish appetite\" quote was NOT in the transcript and is excluded; the factual bull case (three IG/backstopped tenants signed in 10 months: Fluidstack/Google, AWS ×2) carries the probability instead.",
+          "Fresh $200M revolver + $810M Stingray notes leave build capital in place; the constraint is tenant demand, which the MS 15/15/15 market print supports."
+        ],
+        "exec": 4,
+        "sources": [
+          "https://www.fool.com/earnings/call-transcripts/2026/05/05/cipher-mining-cifr-q1-2026-earnings-transcript/ (Q1'26 call, 5/5/26 — verbatim quotes)",
+          "https://data.sec.gov/submissions/CIK0001819989.json (EDGAR filing tape through 7/24/26 — no 8-K since 6/15)",
+          "https://www.stocktitan.net/news/CIFR/ (6/8 Stingray notes, 6/16 Blevins hire, 7/21 earnings-date PR)",
+          "https://www.coindesk.com/markets/2026/03/25/cipher-digital-stock-rises-9-on-new-data-center-deal-with-hyperscale-tenant (3/25/26 third-campus lease + revolver pairing)"
+        ]
+      },
+      {
+        "tk": "MARA",
+        "prob": 40,
+        "mwLo": 100,
+        "mwHi": 300,
+        "window": "Nov 2026 – Jan 2027 (mgmt's explicit 'by year-end' guide; earliest credible venu",
+        "site": "Hannibal/Long Ridge OH Phase 1 (200 MW, pre-construction lease against ~mid-2028 delivery) or the first Starwood JV retrofit site; Matagorda/HIF is the 2027-28 ",
+        "tenants": "Unknown — no counterparty named in any filing or PR. Mgmt characterizes the funnel as ~'90/10' hyperscalers-to-enterprise near term (Q1 call, 5/11/26), and the HIF deal structure (milestone paid on 'execution of a data c",
+        "drivers": [
+          "FACT (call, 5/11/26): CEO Fred Thiel — 'We expect to sign multiple tenant leases by year-end'; 'multiple tenants looking across multiple sites that make up 90% of our capacity today'; 'competition amongst the prospective tenants to get into the site'; tenant mix 'near term 90/10' hyperscalers/enterprise. Strong words, but this is the same team that has marketed 'inbound interest' since 2025 with zero signings.",
+          "FACT (8-K/PR 7/9/26): definitive agreement to acquire 1,200+ acre Matagorda County TX powered site from HIF USA — up to $600M paid ONLY as milestones incl. regulatory approvals, power authorization, and 'execution of a data center lease with a third-party tenant'; HIF retains a minority interest that vests when an HPC lease signs. 1 GW grid capacity targeted Oct 2027, 2 GW Apr 2028. This is a financing structure built around a future signing — and a NEW site missing from our registry (not the MPLX 'West Texas' rows).",
+          "FACT (8-K/PR 2/26/26): Starwood JV — SDV leads design, development, TENANT SOURCING, construction and ops across ~1 GW near-term IT (pathway >2.5 GW); MARA takes only 10–50% per-project interest with Starwood as managing member. This is the institutional origination engine MARA itself lacks, but it also means the first 'MARA lease' may be a minority-JV economic, not a wholly-owned one.",
+          "FACT — readiness lags rhetoric: Long Ridge acquisition (PR 4/30/26, ~$1.5B incl. debt; Barclays $785M bridge) has NOT closed — H2 2026 close pending HSR/FERC (consent solicitation completed 5/15/26); the 200 MW DC is 'construction beginning around 2027, initial capacity mid-2028' (Thiel, 5/11/26). MPLX West Texas is still only an LOI (11/4/25, 400 MW→1.5 GW). Any 2026 signing is a paper lease against 2028 power.",
+          "BASE RATE shifted favorable in July: CLSK signed its first-ever AI lease ($6.6B, 7/14/26) and HUT signed $9.8B (7/20/26) — tenants demonstrably will sign multi-billion leases with first-time miner-landlords, and MARA rallied in sympathy both days. Counterweight: press framing remains 'still no tenant' (ts2, Jul 2026) and MARA is competing for tenants against proven builders (Cipher, HUT, CLSK, IREN, Galaxy)."
+        ],
+        "exec": 2,
+        "sources": [
+          "https://ir.mara.com/news-events/press-releases/detail/1424/mara-signs-agreement-with-hif-to-acquire-strategic-powered-land-site-in-texas (2026-07-09)",
+          "https://www.globenewswire.com/news-release/2026/07/09/3324769/0/en/MARA-Signs-Agreement-with-HIF-to-Acquire-Strategic-Powered-Land-Site-in-Texas (2026-07-09)",
+          "https://www.fool.com/earnings/call-transcripts/2026/05/11/mara-mara-q1-2026-earnings-call-transcript/ (2026-05-11)",
+          "https://ir.mara.com/news-events/press-releases/detail/1416/mara-announces-strategic-partnership-with-starwood-to-accelerate-delivery-of-cutting-edge-hyperscale-enterprise-and-ai-capable-digital-infrastructure (2026-02-26)"
+        ]
+      },
+      {
+        "tk": "CORZ",
+        "prob": 60,
+        "mwLo": 100,
+        "mwHi": 300,
+        "window": "Sep-Dec 2026 (post-Q2-call through year-end; Pecos ph1 early-2027 delivery force",
+        "site": "Pecos, TX ph1 (185 MW / 431k sqft data hall under vertical construction, first delivery early 2027; 1.5 GW gross campus plan per 4/27/26 PR); Muskogee, OK close",
+        "tenants": "Three unnamed hyperscalers engaged on Pecos/Muskogee since ~April 2026 under milestone-based exclusivity (mgmt, 5/6/26 call) — the prior exclusive hyperscaler walked at end of exclusivity, identity never disclosed. Funne",
+        "drivers": [
+          "NEGOTIATION ARC (filings/calls = fact): Q4'25 call 3/2/26, Sullivan: '500 megawatts under exclusivity arrangements with a large investment-grade counterparty'... 'This is a timing issue, not a demand issue'... 'We did not sign one by this call; we are not satisfied with that.' Q1'26 call 5/6/26: 'That exclusivity is now expired. However, three hyperscalers immediately engaged on those same sites'; new 'milestone arrangement method... ensures the cadence is moving at the pace we would expect in a deal that would move towards closing'; 'actively engaged right now across every major group... very confident based on where we sit today versus where we sat three months ago.' EDGAR confirms NO material 8-K since 5/26/26 — no deal signed as of 7/24/26, ~6 months of 'soon' and one failed exclusivity.",
+          "FINANCING TRIPWIRES: $3.3B 7.75% senior secured notes (CoreWeave project bond) closed 5/6/26 — CoreWeave book completion fully funded; JPM+MS $1.0B 364-day facility at SOFR+250 (Mar 2026) is short-dated paper; ~$2B FY26 capex incl. ~$700M Hunt County close (5/5/26) + Polaris/Muskogee being deployed SPEC — Nygaard/Sullivan: accelerating Pecos, Muskogee, Hunt, Dalton III, Auburn and 'not waiting for deal negotiations to conclude.' Spec building = both readiness and pressure to sign.",
+          "SITE READINESS: Pecos 1.5 GW gross / ~1.0 GW leasable plan (PR 4/27/26), ph1 185 MW vertical construction underway, first data hall early 2027 — a tenant wanting 2027 capacity must sign in H2'26; Muskogee 1.5 GW plan (PR 5/6/26), 82.5 MW building initiated, 2H27 first delivery. Matches our unleasedSites (Pecos 300 MW '27, Hunt 285 MW '28) with upside beyond registry.",
+          "TENANT-SIDE / CHANNEL LEADS (not facts): Trip Miller (Gullane, blocked the CRWV merger) 1/6/26: expects >100 MW of deals 'within 90 days' and ~400 MW leased to new clients in 2026, based on talks with 'knowledgeable parties outside management' — the 90-day claim ALREADY MISSED (nothing by 7/24/26), so discount the 400 MW. BTIG (early 2026): expects CORZ to 'hit the ground running' signing additional HPC colo in 2026 (LEAD).",
+          "EXEC TRACK RECORD (basis for execScore 3): delivered Marble 65 MW full-site transition + Dalton ph1 30 MW handover in Q1'26; 243 MW billing by 5/6/26 on the Jun-2024-signed 590 MW book, >450 MW guided by end of summer, full 590 MW early 2027 — competent but ~2.5yr signed-to-full. Documented blemish: Denton (OpenAI cluster via CoreWeave) completion 'pushed back several months' (WSJ 12/15/25), CORZ had flagged delays ~9 months earlier; the slip triggered CRWV securities class actions. Not Cipher-tier fast; clearly above pure-miner peers with zero HPC delivery history."
+        ],
+        "exec": 3,
+        "sources": []
+      },
+      {
+        "tk": "WULF",
+        "prob": 45,
+        "mwLo": 250,
+        "mwHi": 500,
+        "window": "Dec 2026 – Mar 2027 (base case early-2027, just beyond the 6-mo window; the Aug ",
+        "site": "Muskie Data Campus, eastern Kentucky — Phase I 500MW IT, first ramp targeted 2H28 (acquired 5/26/26 PR); secondary: Chesapeake Data / Morgantown MD 210MW if the",
+        "tenants": "Anthropic expansion is the top candidate — the 7/6/26 lease 'creates a framework for future expansion' (PR language; no ROFO/option terms disclosed). Fluidstack/Google second (two existing books, $3.2B Google backstop pr",
+        "drivers": [
+          "Negotiation language (FACT, dated): Q1 call 5/8/26, Prager: 'We are in late-stage negotiations... I remain highly confident. We expect to have a customer in place in the second quarter' — delivered 7/6/26 as the $19B Anthropic lease (~5wk slip). That was the only 'advanced negotiations' on record; nothing equivalent is outstanding for Muskie yet — the pipeline language must be re-seeded on the Aug 5 call.",
+          "Build-discipline forces the timeline: Prager Q1 call: 'We do not build on speculation. We contract first, deploy capital second.' Muskie Ph I ramping 2H28 implies an anchor signing by ~H1 2027; KBW (Blockspace, late May 2026) framed the Muskie acquisition as strengthening the '2027 AI lease outlook' — Street expects 2027, not 2026.",
+          "Financing tripwire pattern: WULF raises project debt AFTER signing (Fluidstack Aug-25 → $3.2B notes Oct-25; Abernathy → $1.3B Dec-25; Anthropic 7/6 → $3.5B MS-led lev-loan/HY now being lined up per Bloomberg mid-Jul-26). The $3.5B raise terms out the $500M bridge and needs NO new lease; a NEW Muskie SPV financing appearing would be the signature that a lease is signed/imminent.",
+          "NY moratorium narrows the funnel to KY/MD: Hochul EO (~7/14/26) pauses permits for new >50MW hyperscale DCs for 1 year — TeraWulf's ~400MW Lansing plan explicitly on hold (NBC/Ithaca Voice 7/14-16) and the incremental 250MW Lake Mariner interconnect path is complicated. All near-term leasing supply is now Muskie (KY) + Morgantown (MD, FERC-gated).",
+          "Capital is not a forcing function: ~$530M Abernathy proceeds ($250M ~immediate, $150M by 12/31/26, ~$130M by 4/30/27) + $3.1B cash mean WULF doesn't need to pre-lease for liquidity — signing timing is demand/readiness-driven, which argues patience over a rushed print."
+        ],
+        "exec": 3,
+        "sources": [
+          "https://www.fool.com/earnings/call-transcripts/2026/06/01/terawulf-wulf-q1-2026-earnings-transcript/ (Q1 call quotes, held 5/8/26)",
+          "https://www.globenewswire.com/news-release/2026/07/06/3322382/0/en/terawulf-announces-anthropic-lease-at-justified-data-campus-and-sale-of-majority-interest-in-abernathy-joint-venture-to-fluidstack.html (7/6/26 PR — 8-K same day)",
+          "https://investors.terawulf.com/news-events/press-releases/detail/141/terawulf-expands-infrastructure-platform-with-acquisition-of-1-gw-eastern-kentucky-hpc-campus (Muskie acquisition 5/26/26)",
+          "https://finance.yahoo.com/technology/ai/articles/terawulf-plans-3-5-billion-165019899.html (Bloomberg: $3.5B KY debt raise, mid-Jul 2026 — LEAD until 8-K)"
+        ]
+      },
+      {
+        "tk": "FRMI",
+        "prob": 55,
+        "mwLo": 300,
+        "mwHi": 800,
+        "window": "Aug–Oct 2026 (mgmt's own 90-day clock expires ~Aug 12; MUFG ≥400MW tripwire forc",
+        "site": "Project Matador Phase 1, Amarillo/Carson County TX — 200MW SPS grid ESA (86MW energizing 2H26, 114MW targeted YE26) + first gas block (3× SGT6-5000F, up to 780M",
+        "tenants": "OpenAI is the live LEAD — JMP Citizens (6/12/26): OpenAI 'has likely been assessing Fermi's capacity at Project Matador,' flagging 'the potential for a major commercial agreement'; stock +26% on the report, no confirmati",
+        "drivers": [
+          "MGMT ON THE CLOCK (FACT): Q1 2026 release, 5/14/26 (SEC EX-99.1, verified verbatim): 'Over the next 90 days, we're executing a disciplined plan that includes securing a binding tenant agreement… hiring our next CEO… and delivering power at our project site' (Haas). Reaffirmed 6/30/26 IR update (our log): binding tenant ~mid-Aug. Same release hedges itself: Bofa (Co-President) only commits to 'reaching new NON-binding long-term agreements in the near future' — the binding/non-binding gap is the tell.",
+          "FINANCING TRIPWIRE (FACT, 10-Q): MUFG $500M equipment warehouse ($396.6M drawn at 3/31) requires a ≥400MW Phase-1 lease by ~Nov 10 2026 or amortization doubles AND the agent may market the turbines — the strongest deal-forcing function in our coverage; it also anchors minimum deal size at 400MW.",
+          "PIPELINE DEPTH (FACT, Q1 10-Q via stocktitan): counterparties at three stages — 'exchanged draft lease documentation,' 'evaluating term sheet structures,' 'conducting confirmatory technical and site diligence'; company 'expects to sign its first binding JV partner and/or tenant agreement in Q3 2026.'",
+          "TENANT-SIDE LEAD: JMP Citizens 6/12/26 — OpenAI likely evaluating Matador capacity, 'major commercial deal could be close' (stock +26%, faded fully). LEAD not fact; neither party confirmed. No new tenant news in any June–July 8-K.",
+          "SITE READINESS REAL AND IMPROVING (FACTS): final ~6GW TCEQ air permit; 2nd ~5GW permit expected Q4 (SA, 5/14); firm Energy Transfer gas; 3 F-class turbines physically in Texas 7/21/26; Primoris BOP EPC selected 6/30; TSK early works 6/25; $1.4B gross PP&E at 3/31. Liquidity bridged: $375M 5.00% converts due 2031 priced 7/9 (upsized, $431.25M with option; conv $9.52, capped call $14.64) on top of $243M cash — funds ~2 quarters of Q1-pace capex ($441M)."
+        ],
+        "exec": 2,
+        "sources": [
+          "SEC EX-99.1 Q1 2026 earnings release 5/14/26 (fetched direct from EDGAR)",
+          "FRMI Q1 10-Q 5/15/26 (our verified registry: MUFG tripwire, netDebt $178M)",
+          "stocktitan.net/news/FRMI July 2026 timeline (7/9 convert, 7/13 Everson, 7/15 rationale, 7/21 turbines, 7/23 LSE admission)",
+          "JMP Citizens via proactiveinvestors/Yahoo 6/12/26 (OpenAI lead)"
+        ]
+      },
+      {
+        "tk": "WYFI",
+        "prob": 80,
+        "mwLo": 20,
+        "mwHi": 45,
+        "window": "Aug-Nov 2026 (highest density around/after the Aug 13 Q2 call; 'coming months' c",
+        "site": "NC-1 (Madison, NC) 45MW tranche-2 — marketing began summer 2026, delivery mid-to-late 2027, utility path to ~300 gross MW; secondary: one NEW site closed with a",
+        "tenants": "Nscale — most likely (NC-1 40MW anchor is backed by 'investment-grade hyperscaler offtake' per mgmt, i.e. Microsoft-class; our registry already carries NC-1 Phase 3 as an Nscale 2x expansion, estimated). Cerebras — Montr",
+        "drivers": [
+          "FACT — Q1'26 call (May 13, 2026), CEO Sam Tabar verbatim: 'We are in advanced discussions with two large high quality customers for two distinct site opportunities' and expects to 'close at least one additional site in the coming months'; site criteria stated as grid-power only with 'a customer already in hand' — meaning a site close arrives WITH a binding anchor lease. As of Jul 24 no such 8-K has landed — the promise is 10 weeks old and outstanding.",
+          "FACT — NC-1 tranche 2: 'expect to begin marketing the next 45 megawatts tranche of capacity this summer' (Q1'26 call), delivery mid-to-end 2027; working with Duke Energy toward ~300 gross MW. Nscale's existing 40MW ($865M/10yr TCV, signed Dec 18, 2025) is backed by an investment-grade hyperscaler offtake, making Nscale the natural tranche-2 taker.",
+          "FACT — proven signing cadence ~1 material contract/quarter: Dec 18, 2025 Nscale $865M/10yr/40MW; May 21, 2026 Paris $160M+/5yr cloud with investment-grade customer (was 'final stages of a long duration nine figure cloud opportunity' on the May 13 call — signed 8 days later, so their negotiation language has converted fast); plus $17M/2yr Hyperbolic (May 2026).",
+          "FACT — financing tripwires set for the next deal: $100M delayed-draw facility from parent Bit Digital 'for near-term growth' (May 27, 2026); $230M convertible senior notes (Q1'26); $20M BRC Specialty Finance secured term loan (Jun 3, 2026); and a repeatable project-financing template on the Paris deal funded by 12 months of customer prepayments (binding term sheet, June 2026 close) — deals increasingly self-funding, limited balance-sheet reliance.",
+          "FACT — MTL-2 (5MW, build deferred): 'continue to advance discussions around the best customer solution for that site' with 'quality customer interest' (Q1'26 call); MTL-3 purchase (post-Q1) cut lease costs ~$2.3M/yr and power-tripling application creates Cerebras expansion runway in Montreal."
+        ],
+        "exec": 3.5,
+        "sources": [
+          "https://www.sahmcapital.com/news/content/whitefiber-reports-q1-2026-results-full-earnings-call-transcript-2026-05-14 (Q1'26 call, May 13-14, 2026)",
+          "https://www.prnewswire.com/news-releases/whitefiber-and-nscale-announce-10-year-40-mw-colocation-agreement-representing-approximately-865-million-in-total-contract-value-at-nc-1-ai-data-center-campus-302646399.html (Dec 18, 2025)",
+          "https://www.prnewswire.com/news-releases/whitefiber-signs-ai-compute-agreement-with-total-contract-value-in-excess-of-160-million-with-investment-grade-technology-customer-302779342.html (May 21, 2026)",
+          "https://www.prnewswire.com/news-releases/whitefiber-inc-bit-digitals-ai-unit-acquires-1-000-000-square-foot-north-carolina-industrial-property-to-support-up-to-200-mw-hpc-data-center-campus-302470022.html (Jun 2, 2025; close May 20, 2025)"
+        ]
+      },
+      {
+        "tk": "HIVE",
+        "prob": 80,
+        "mwLo": 4,
+        "mwHi": 25,
+        "window": "Aug-Nov 2026",
+        "site": "GB300 cluster: Bell AI Fabric colo or Grand Falls NB 70MW Tier III retrofit (liquid-cooling capable). Boden, Sweden 32MW-gross/25MW-IT facility (acquisition ann",
+        "tenants": "Two documented candidates: (1) undisclosed counterparty on the signed 2,080-GB300 MOU (GPU-cloud deal, ~+$70M ARR when definitive; likely Canadian enterprise/sovereign sourced via the Bell AI Fabric demand funnel); (2) '",
+        "drivers": [
+          "FACT — MOU pipeline with proven conversion speed: on the 6/2/26 FY26 call (Motley Fool transcript) CEO Aydin Kilic: '2,304 GB200s, MOU signed 2,080 GB300s [MOU] signed... signing 1 of these deals gets us to $100 million ARR and the second large GPU deal gets us to $170 million in ARR.' The GB200 MOU became the BINDING $220M/3yr Bell/Cohere contract 16 days later (PR + 8-K, 6/18/26). The 2,080-GB300 MOU is still outstanding (~+$70M ARR), and Kilic committed 'when we announce the definitives, we'll be able to advise you on total contract value... stay tuned for big updates' and 'we'll be announcing contracted revenues in due course.'",
+          "FACT — Boden LOI (PR 6/25/26): non-binding 10-yr LOI for ~25 MW critical IT load (of 32 MW gross) with an 'investment-grade, sovereign Swedish technology company'; retrofit for up to 10,000 GB300s at 150kW racks. Kilic: 'We anticipate this to contribute significant annual recurring revenue, and we look forward to securing a long-term colocation offtake lease with the Client.' Conditional on HIVE closing its Boden facility acquisition (announced 6/18/26). At owner-colo rates, 25 MW IT ≈ $35-50M/yr for 10 years.",
+          "FACT — financing tripwire fires: the $100M 0% exchangeable-notes offering launched the SAME MORNING as the Boden LOI (6/25/26, 7:00am ET PR), was upsized/priced 6/26 and CLOSED 6/30/26 at $130M total ($4.83 exchange, capped calls), proceeds for HPC/AI expansion — the GB300/Boden capex is pre-funded, which historically precedes HIVE definitives (the April $115M convert preceded the Bell/Cohere signing by ~9 weeks).",
+          "FACT — tenant-side/government signal: Canada's $890M AI Sovereign Compute Infrastructure Program closed proposals 6/1/26 with NO award announced as of 7/24/26 (ISED site); BUZZ's entire brand is sovereign-AI and Kilic calls Bell 'a massive demand funnel from Canadian enterprise clients that are looking for sovereign AI compute' (6/2/26 call). An award to a BUZZ-linked consortium inside the window is free optionality, not base case.",
+          "EXECUTION EVIDENCE (score 3/5): fast at small scale — 504 B200s from Dell contract (Feb 2026 PRs) to revenue-live May 2026 billing $2.90/GPU-hr, 32% above plan; mining fleet 6.5→25.1 EH/s in 12 months incl. 100MW+ Paraguay hydro phases on schedule. But unproven at AI-campus scale: go-lives to date ride Bell's facilities, Grand Falls Tier III retrofit not yet delivered, GTA is a CAD$3.5B build against a ~$0.9B-EV company (serial-ATM funded), H2-2027 target. Not Cipher-class; better than pure-miner holdcos."
+        ],
+        "exec": 3,
+        "sources": [
+          "https://www.fool.com/earnings/call-transcripts/2026/06/02/hive-hive-q4-2026-earnings-call-transcript/ (6/2/26 call quotes)",
+          "https://www.hivedigitaltechnologies.com/news/hives-buzz-hpc-closes-usd-220-million-sovereign-ai-gpu-contract (PR 6/18/26, Bell/Cohere)",
+          "https://www.newsfilecorp.com/release/302844/ (Boden LOI PR, 6/25/26 7:00am ET)",
+          "https://www.hivedigitaltechnologies.com/news/ (PR index: Boden acquisition 6/18/26; convert launch 6/25, pricing 6/26, close 6/30/26)"
+        ]
+      },
+      {
+        "tk": "APLD",
+        "prob": 70,
+        "mwLo": 130,
+        "mwHi": 300,
+        "window": "Aug-Nov 2026",
+        "site": "Delta Forge 1 campus balance (~130 MW of the 430 MW campus, our unleasedSites entry) is the most likely; close seconds are the PF3 campus balance (MDU electric ",
+        "tenants": "Incumbent unnamed 'U.S. based high investment-grade hyperscaler' — already signed 3 leases in 8 weeks (DF1 4/23, PF3 5/20, DF2 6/8/26); press speculation of Microsoft/Google is a LEAD, not fact. Secondary: CoreWeave for ",
+        "drivers": [
+          "[verify-corrected] Cadence corrected: THREE signings in 3 months (DF1 4/23, PF3 5/20, DF2 6/8) — all the SAME hyperscaler; ELN-04 was a financing, not a fourth lease.",
+          "[verify-corrected] The \"exclusivity sites still open\" argument is REFUTED: three exclusivity sites → three conversions → zero demonstrably remaining. The next lease needs NEW demand, hence 80→70.",
+          "Real remaining inventory: Delta Forge 1 campus balance (~130MW) + PF2 ROFR capacity (800MW) with the incumbent tenant holding first-refusal rights.",
+          "Management economics language (sub-15% yields per MS) suggests they can win volume on price when they choose to."
+        ],
+        "exec": 3.5,
+        "sources": [
+          "https://www.fool.com/earnings/call-transcripts/2026/04/09/applied-digital-apld-q3-2026-earnings-transcript/ (call 4/8/26)",
+          "https://www.globenewswire.com/news-release/2026/04/23/3279814/en/ (DF1 300 MW lease PR 4/23/26)",
+          "https://ir.applieddigital.com/news-events/press-releases/detail/152/ (PF3 300 MW / 1 GW milestone PR 5/20/26)",
+          "https://www.globenewswire.com/news-release/2026/06/08/3308459/en/ (DF2 210 MW / $5.2B PR 6/8/26)"
+        ]
+      },
+      {
+        "tk": "ABTC",
+        "prob": 3,
+        "mwLo": null,
+        "mwHi": null,
+        "window": "None visible through Jan 2027 — no lease path exists; reassess only if the Aug 3",
+        "site": "None — ABTC owns no sites. Nearest adjacency: HUT-owned Medicine Hat (50 IT MW) / Salt Creek (47 IT MW) conversion optionality, but that is HUT's deal and would",
+        "tenants": "unknown — none; ABTC has no facilities to lease and no compute-buyer discussions disclosed anywhere in filings or press",
+        "drivers": [
+          "STRUCTURAL: FY2025 10-K (filed 2026-03-27, acc 0001193125-26-127278) — ABTC owns zero facilities; miners run at four Hut 8 sites under the Master Colocation Services Agreement: 'Alpha (Niagara Falls, NY); Salt Creek (Orla, TX); Medicine Hat (Medicine Hat, AB); and Vega (Amarillo, TX)' (Drumheller AB added Q1 2026). 'As of December 31, 2025, we had two full-time employees.' No development team, no land, no interconnects.",
+          "EXCLUSIVITY LOCK: 10-K — 'Hut 8 and its affiliates will be the exclusive providers to us of (i) hosting and colocation services with respect to all digital asset mining equipment owned by us and (ii) digital asset mining operations services' until the MMSA/MCSA expire. ABTC is a captive tenant of HUT, not a landlord.",
+          "ZERO AI INTENT: 10-K contains 0 mentions of 'HPC' or 'high-performance computing' outside competitive/risk boilerplate; 'Bitcoin accumulation is our primary business objective.' Q1 2026 PR (2026-05-06, acc 0001193125-26-209054) — Mike Ho: 'we will keep deploying incremental capacity when expected returns justify it and focus on compounding our Bitcoin reserve while preserving balance sheet flexibility.' No negotiation language ('term sheets', 'LOIs', 'discussions') exists in any ABTC filing.",
+          "NO FINANCING TRIPWIRE TOWARD LEASES: capital structure is a $2.1B common-stock ATM ($240.5M gross sold in 2025, further 84.0M pre-split shares Jan 1–Mar 25, 2026 per 10-K) + BTC pledged to Bitmain for miner purchases (3,090 BTC pledged as of 3/25/26). All financing funds BTC accumulation and rigs, not datacenter capex; nothing forces or funds a compute contract.",
+          "PRESS CONFIRMS NO-PIVOT STANCE: cryptotimes 2026-07-13 — unlike RIOT/MARA/CIFR/WULF (AI pivots, +60% type moves), ABTC 'maintains focus on Bitcoin mining'; earlier search hits attributing a gas-powered AI/HPC datacenter to ABTC were conflation with Bitdeer (Fox Creek AB) and MARA/MPLX news — no such ABTC 8-K exists (verified against full EDGAR filing index CIK 1755953)."
+        ],
+        "exec": 1,
+        "sources": [
+          "SEC 10-K FY2025 acc 0001193125-26-127278 (2026-03-27): sites, MCSA/MMSA, exclusivity, 2 FTEs, ATM, Bitmain pledges",
+          "SEC 8-K + Ex-99.1 acc 0001193125-26-209054 (2026-05-06): Q1 2026 results PR, Drumheller energization",
+          "SEC 8-K acc 0001193125-26-296396 (2026-07-06): 1-for-15 reverse split, share counts",
+          "cryptotimes.io 2026-07-13: no-AI-pivot stance vs peers"
+        ]
+      },
+      {
+        "tk": "CLSK",
+        "prob": 70,
+        "mwLo": 150,
+        "mwHi": 300,
+        "window": "Sep-Nov 2026 (Needham's 30-120-day clock from 7/15 runs mid-Aug to mid-Nov; base",
+        "site": "Sealy / Austin County, TX Phase 1 (~207 MW gross, energization H1 2027 — the nearest-ready site under the tenant's exclusivity; Brazoria 300 MW is the second sh",
+        "tenants": "The SAME unnamed 'high-investment-grade, leading global technology company' that signed Sandersville — the 7/14/26 8-K/PR states this tenant simultaneously executed an LOI with exclusivity over the ENTIRE 718-acre / up-t",
+        "drivers": [
+          "FACT (8-K filed 7/14/26, event 7/10/26; PR 7/14/26): tenant 'executed a letter of intent with exclusivity covering CleanSpark's entire Texas portfolio' — 718 acres, up to 885 MW (Sealy 271 ac/~300 MW; Brazoria 447 ac/300 MW expandable to 600). Same counterparty, diligence already done — lowest-friction deal #2 in the sector.",
+          "LEAD (Needham, 7/15/26, PT $18→$23): 'Additional leases could come on one or both sites over the next 30 to 120 days' — sell-side expectation, NOT a mgmt statement; Needham now models Sealy ~300 MW + Brazoria 300 MW contributing 2028. Cantor to $26, B. Riley $19 same week — Street is underwriting conversion.",
+          "Timeline pressure is real: Sealy Phase 1 energizes H1 2027 (registry, disclosed) and the tenant's Sandersville deliveries begin Q4 2027 — a 2027/28 TX delivery slot requires a binding lease within months, not years.",
+          "Financing tripwire: the $1.75-2.1B Sandersville build ($10-12M/MW × 175 MW, PR 7/14/26) is UNFUNDED vs $260M cash + ~$0.85B BTC-at-$60K (10-Q 3/31/26 via CryptoSlate 7/15/26); mgmt's model is lease-backed project debt ('Cipher-style 6-8%', FQ2 call 5/11/26). CryptoSlate's read of the filing flags missed financing/construction/delivery milestones → rent abatement/termination rights (LEAD — verify lease exhibit). A financing print likely precedes or accompanies deal #2; conversely a frozen credit market slows both.",
+          "Guidance track record: mgmt said anchor announcements 'within less than a year' (FY25/FQ2'26 commentary) and delivered on 7/10/26 — first-lease promise kept roughly on schedule. Registry watch item RESOLVED: 8-K verified 20-yr initial + two 5-yr extensions, NNN, annual escalators (% undisclosed), $6.6B→$11.6B, ~100% NOI margin, ~$330M avg annual NOI, deliveries Q4 2027."
+        ],
+        "exec": 3,
+        "sources": [
+          "SEC 8-K clsk-20260710.htm, filed 2026-07-14 (lease terms, TX LOI/exclusivity)",
+          "PRNewswire 2026-07-14: CleanSpark Secures Twenty-Year Lease... Sandersville (Schultz quote: 'transformational moment... complete our evolution into a diversified digital infrastructure platform')",
+          "Blockspace 2026-07-14: 'CleanSpark jumps 10% on 20-year, $6.6B Sandersville lease, adds Texas exclusivity pact'",
+          "CryptoSlate 2026-07-15: 'signed a $6.6B AI lease before securing the $2.1B required to build it' (financing gap, milestone/termination language)"
+        ]
+      },
+      {
+        "tk": "BTBT",
+        "prob": 82,
+        "mwLo": 5,
+        "mwHi": 40,
+        "window": "Aug-Oct 2026",
+        "site": "NC-1 (Madison, NC) — 54MW gross delivered by Duke Energy, 40MW IT contracted to Nscale, headroom to 99MW gross by May 2029 and a Duke transmission study for +20",
+        "tenants": "Nscale — strongest named candidate: holds 'priority notification rights for future site capacity' and 'potential expansion toward ~2x initial deployment by end of 2027' (WYFI June deck, 6/10/26 8-K); Paris investment-gra",
+        "drivers": [
+          "Mgmt negotiation language (verbatim): 'We believe our pipeline continues to improve in both quality and scale, and we are advancing multiple larger site opportunities' — Sam Tabar, WYFI Q1-26 results PR, 5/14/26 (PRNewswire). WYFI June investor deck (8-K 6/10/26): 'Large pipeline under review, with at least one near-term site acquisition targeted' (~1.5GW pipeline). BTBT July deck (8-K 6/30/26): 'Robust Retrofit Acquisition Pipeline: Evaluating retrofit acquisition opportunities where power access, customer demand and speed to market align.'",
+          "Signing cadence is the base rate: 6 new binding compute contracts in the trailing 9 months — Nscale $865M/10yr/40MW (Nov/Dec-25), 128-B200 (Nov-25), B200 $18.1M (Feb-26), H100 $50.2M (Mar-26), Paris IG >$160M/5yr + Hyperbolic ~$17M (May-26, '>$175M recent cloud TCV'). Roughly one print every 6-8 weeks; a 6-month dry spell would be the outlier.",
+          "Financing tripwires FUND rather than force deals: Paris deal closed with a binding term sheet for project-level financing + 12mo customer prepayment (PR 5/21/26); BTBT's $100M (expandable $150M) DDTL to Enovum NC-1 (8-K 5/27/26) is ring-fenced for NC-1 Phase 1, funded via a ~5.5% Galaxy ETH-backed facility (7% spread per BTBT July deck); BRC Specialty Finance assumed a $20M advance of the DDTL on 6/3/26 (PR) — third-party lender validation. Nscale expansion 'project-level financing expected to support remaining deployment' (June deck) — the 2x option needs a financing print first, watch for it as the tell.",
+          "Contractual expansion hooks already in place: Nscale priority-notification rights + ~2x-by-end-2027 expansion option at NC-1; Duke has completed delivery of the initial 54 gross MW and a transmission study for an additional 200MW is underway (June deck); Boosteroid ROFR on 50k servers; colo RPO already $921M (Q1-26 PR, 5/14/26).",
+          "Tenant-side signal (LEAD, background knowledge — verify): Nscale is well-capitalized post its late-2025 megaraises/Microsoft GB300 agreements, supporting its ability to exercise the NC-1 expansion; no fresh July-2026 Nscale credit read obtained in this sweep (search budget hit)."
+        ],
+        "exec": 4,
+        "sources": [
+          "WYFI Q1-26 results PR, PRNewswire, 5/14/26: prnewswire.com/news-releases/whitefiber-inc-reports-first-quarter-2026-results-302771681.html",
+          "WYFI Paris IG contract PR, 5/21/26: prnewswire.com/news-releases/whitefiber-signs-ai-compute-agreement-with-total-contract-value-in-excess-of-160-million-with-investment-grade-technology-customer-302779342.html",
+          "WYFI investor deck, 8-K Ex-99.1, 6/10/26: sec.gov/Archives/edgar/data/2042022/000121390026067329/ea029430601ex99-1.htm",
+          "BTBT investor deck, 8-K Ex-99.1, 6/30/26: sec.gov/Archives/edgar/data/1710350/000121390026073316/ea029641201ex99-1.htm"
+        ]
+      },
+      {
+        "tk": "NUAI",
+        "prob": 55,
+        "mwLo": 100,
+        "mwHi": 207,
+        "window": "Aug-Oct 2026 (front-loaded to beat the Oct-8-2026 Macquarie lease covenant; seco",
+        "site": "TCDC Phase 1 (200-207MW powered shell), Ector County / Odessa TX — 'no significant electrical infrastructure required' via adjacent Vistra/Calpine generation (M",
+        "tenants": "Unnamed top-4 hyperscaler (Alphabet/Amazon/Meta/Microsoft per our registry) in sustained single-counterparty negotiation since at least Dec-2025; weak LEAD toward Microsoft — new COO Jose Rodriguez was hired directly out",
+        "drivers": [
+          "FINANCING FORCING FUNCTION (fact): Q1-26 10-Q (filed 5/15/26) verbatim — 'if a data center lease is not executed within six months of the closing date [Apr 8 → Oct 8, 2026], or if aggregate loan drawings are less than $50 million, the lender may elect to require full prepayment or monthly repayment installments' on the $290M Macquarie facility; B. Riley's 7/7/26 Buy/$10 initiation is explicitly keyed to this 'embedded Macquarie covenant that ties credit facility availability to binding hyperscaler lease execution'",
+          "NEGOTIATION LANGUAGE ARC (facts, quoted): 12/11/25 — 'in negotiations with a hyperscaler for a long-term lease'; Q1 call 5/18/26 — CFO Warner: 'I can't comment publicly on where we are on that front on that level of negotiation', CEO Gray: 'I wish I could announce who the prospective tenant is and I can't wait to announce it one day', Nelson: 'The lease remains the key commercial priority'; July 2026 coverage — 'negotiations with a leading hyperscaler on a long-term triple-net lease for a powered-shell deployment'. 7+ months of sustained engagement, no term-sheet/exclusivity disclosure yet — deep but unsigned",
+          "STREAM/APOLLO JV CO-CATALYST (fact): non-binding LOI 4/1/26; Q1 call 5/18/26 — Nelson: 'the JV docs are well underway. Multiple turns already with the lawyers'; institutional LP takes majority project equity + ~80% project debt, NUAI keeps GP/minority (~20% modeled). An Apollo platform company doesn't paper SPV docs without tenant visibility — but definitive agreement was still unsigned at last disclosure, and its close is itself a needed catalyst",
+          "PRE-SIGNATURE HOUSEKEEPING (facts): founder E. Will Gray II removed from CEO/Chairman/board effective 7/1/26 (8-K 7/6/26; demoted to 'President, Permian Basin'), operator C-suite installed (Nelson CEO ex-Sabey; Rodriguez COO ex-Microsoft/ByteDance DC ops); NM lawsuit claims vs company dismissed with final bankruptcy-court approval (PR 7/9/26, $1.0M payment); Conversant Capital LLC / Michael Simanovsky filed a 13G on 7/20/26 for 5,387,220 shares (~4.6% of 119.6M) — sophisticated real-asset money positioning ahead of the binary (stock +45% 7/20-7/21 on the print)",
+          "COUNTERWEIGHTS: FID language slipped from 'by the end of Q1 2026' (12/11/25) to a '2026 investment decision' (July 2026 coverage); NUAI has never delivered a data center and TCDC Ph1 in-service is already 'second half of 27' (Nelson, 5/18/26 call); Macquarie's 7/17/26 Consent Letter (8-K 7/22/26) waived the missed $100M-ATM covenant — cooperative lender, but confirms covenant slippage; competing ready Odessa supply next door (CIFR); going-concern doubt retained in the Q1 10-Q even post-raise"
+        ],
+        "exec": 2,
+        "sources": [
+          "NUAI Q1-26 10-Q, filed 2026-05-15 (SEC 0001213900-26-057022): Macquarie tranche structure, lease-within-six-months covenant, going-concern, WC deficit $58.0M",
+          "8-K 2026-07-22 (Consent Letter dated 7/17/26): Macquarie waives/extends $100M ATM covenant",
+          "8-K 2026-07-06: Nelson CEO/Chairman, Warner President+CFO+director, Rodriguez COO (ex-Microsoft Critical Environment Operations Director to July 2026), Gray resignation from board effective 7/1/26",
+          "8-K 2026-05-19 (Ex 99.1, May-18-26 Q1 Business Update deck): near-term priorities 'Hyperscaler lease / Stream JV definitive agreement', $80M+ cash at 4/30/26, Ph1 200MW powered shell, turbines on order Ph2, New Mexico Lea County 3,500-acre second campus"
+        ]
+      },
+      {
+        "tk": "KEEL",
+        "prob": 55,
+        "mwLo": 15,
+        "mwHi": 270,
+        "window": "Sep-Dec 2026 (mgmt target YE26 for all three; permits due 'mid-late summer' gate",
+        "site": "Panther Creek (Carbon Co PA, PJM) — flagship 350MW ESA campus, Ph1 50MW energization targeted YE26, $300M project financing in place; Moses Lake 18MW is the dar",
+        "tenants": "Unknown — no tenant named or characterized in any filing. CEO Gagnon (Q1 call, 5/11/26) described BOTH funnels: 'Hyperscaler client is probably a little bit tighter on the economics, but that's largely offset by the qual",
+        "drivers": [
+          "NEGOTIATION LANGUAGE (FACT, Q1 call 5/11/26): Gagnon — Panther Creek: 'We are in active conversations with multiple potential customers and the engagement quality has been strong'; Sharon: 'the response to our permitting progress has been positive'; Moses Lake: 'actively being commercialized with strong inbound interest and ongoing engagement with multiple counterparties.' Explicitly NO term sheets, LOIs, or exclusivities disclosed — mid-funnel language, a notch below peers who cite 'advanced negotiations.' Target verbatim: '3 leases signed by year-end, revenue commencing in 2027. That is the plan, and that is what we are focused on delivering.'",
+          "FINANCING PRE-POSITIONING (FACT, 8-K/PR 6/9/26): $458M 1.25% '32 convert closed with capped calls to $11.86; 'Existing liquidity expected to be sufficient to develop Panther Creek, Sharon, and Moses Lake through leasing'; proceeds earmarked for 'funding deposits for long-lead equipment and/or collateralizing letters of credit related to expanding and/or accelerating data center development projects' — the classic fund-first-sign-second sector pattern. ~$920M liquidity removes financing as a signing blocker; Sharon transmission LC due 1/31/27 adds a timing forcing-function.",
+          "COMMERCIAL HIRE (FACT, 8-K 7/6/26): Ganesh Aiyer, ex-Digital Realty Chief Business Officer (led global commercial strategy for hyperscale/cloud/enterprise), appointed President to 'convert our power portfolio into long-term partnerships' and build on 'current commercial momentum for our U.S. sites.' Strong intent signal — but the market read it as proof no deal was imminent (stock -8.3% to $4.44 by 7/7-7/8).",
+          "SITE READINESS (FACT): all three campuses zoned; Panther Creek 350MW secured via March-26 utility ESA with full-site permits tracking 'mid-late summer' (Q1 call) — i.e., due NOW, right before the Aug print; Sharon 110MW delivery agreement signed; Moses Lake turnkey EPC likely first online H1-27. Sherbrooke 96MW Hydro-Sherbrooke transfer approved 7/15/26 extends the Quebec conversion pipeline.",
+          "COUNTER-SIGNALS (LEADS): early-July reports of 'unanticipated project delays and capital expenditures overruns' and 'delayed government approvals' circulated via low-quality algorithmic feeds (StocksToTrade/Sykes 7/1 and 7/24) — unverified, but they rhyme with the permit timeline sitting at its deadline. CEO's 6/1 X activity (129 investor meetings, 'pump the brakes on further investor calls') sparked imminent-deal speculation that produced nothing in 7+ weeks — a credibility drag."
+        ],
+        "exec": 2,
+        "sources": [
+          "Q1-26 call transcript (Motley Fool, 5/11/26)",
+          "Q1-26 results PR / 8-K (SEC ea028991401ex99-1.htm, 5/11/26)",
+          "Convert closing 8-K (SEC ea029411501ex99-1.htm, 6/9/26)",
+          "Aiyer 8-K (SEC ea029707701ex99-1.htm, 7/6/26)"
+        ]
+      }
+    ],
+    "earnings": [
+      {
+        "tk": "CRWV",
+        "date": "2026-08-18",
+        "session": "AMC",
+        "confirmed": false,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "Q2 revenue vs ~$2.62B Street (company guide $2.45-2.6B — consensus already sits ABOVE the guide top) and whether the FY26 $12-13B guide gets raised on the call",
+        "consensusRevM": 2690,
+        "drivers": [
+          "[verify-corrected] Date NOT confirmed: vendors split Aug 11 (stockanalysis) vs Aug 18 (Investing.com, listed as estimate); no scheduling 8-K on EDGAR — the owner-calendar Aug 6 is equally unsupported.",
+          "[verify-corrected] Consensus ~$2.69-2.70B (LSEG/MarketBeat) sits ABOVE the company guide top of $2.6B — an in-guide print reads as a miss; a typical ~5% guide-beat lands ~$2.68-2.73B, i.e. at/just above the bar.",
+          "Revenue is contractually locked (\"largely sold out of 2026 capacity, prices increasing across the board\" — Agrawal 5/7/26 transcript); beat every reported quarter on revenue; the swing factor is the FY26 guide ($12-13B) getting raised.",
+          "Known landmine: margins/EPS — EPS missed 3 of last 4; Q2 guide only $30-90M adj op income vs $650-730M interest expense; capex already raised once on component pricing.",
+          "[verify-corrected] Drawdown real but restated: $122 (6/17) → $71.88 (7/24), −41%. July insider selling is MATERIAL and was understated: CEO ~$79.8M + CDO ~$42.7M + CFO $5.5M of Form 4 sales — a genuine sentiment overhang into the print."
+        ],
+        "sentiment": "Tape: -38% off the 6/17 high, worst day (-14%) 7/1 on Meta cloud report; still bleeding into the print (7/24 bearish momentum pieces). Short interest 10.5% of float / 29.0M shares but DOWN ~49% MoM with 1.4 days-to-cover — shorts already covered into weakness, less squeeze fuel than the headline % suggests (Fintel/stockanalysis). Sell-side skewed long: 26 Buy / 9 Hold / 2 Sell, avg PT $138 (+92%); Roth's Kulkarni calls the 12-15% neocloud slide '",
+        "sources": [
+          "https://www.investing.com/equities/coreweave-earnings (confirmed 8/18/26 date; beat/miss history)",
+          "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/07/60556444/... (BofA Liani Q2 preview, 7/20/26)",
+          "https://www.cnbc.com/2026/05/07/coreweave-crwv-q1-earnings-report-2026.html (guide $2.45-2.6B vs LSEG $2.69B)",
+          "https://stockanalysis.com/stocks/crwv/forecast/ (FY26 $12.65B consensus, 35 analysts, avg PT $138.03, ratings split)"
+        ]
+      },
+      {
+        "tk": "NBIS",
+        "date": "2026-07-28",
+        "session": "DMH",
+        "confirmed": false,
+        "score": 1,
+        "direction": "upside",
+        "keyNumber": "Q2 exit ARR (annualized run-rate revenue) trajectory vs the $7-9B year-end guide — reiterated 5/13/26; ARR was $1.9B end-March, so the call must show the hockey-stick is on schedule",
+        "consensusRevM": 577,
+        "drivers": [
+          "[verify-corrected] Prints in days (7/28 during-market, unconfirmed). Q2 revenue ramp is contracted (MSFT Vineland + Meta), but the signing lull since March means the call needs a NEW deal or guide raise to surprise.",
+          "[verify-corrected] Sept 11 NVDA warrant unlock (~8% of shares) now sits 6 weeks past the print — expect the question on the call.",
+          "ARR trajectory is the number: $1.92B AI-cloud ARR at Q1 vs the $3.0-3.4B FY guide."
+        ],
+        "sentiment": "Washed-out on narrative, not on data: -37% from $299.86 ATH to $187.77 (7/24) — -17% on 7/1 (Bloomberg Meta-Compute report, ~$11.9B mkt cap lost in a day), -14% on 7/16-17 neocloud capex selloff, +18.8% on 7/21 (NVDA 13G 9.3% stake + Freedom Capital/Northland upgrades), -15% on 7/24 in a broad AI risk-off Benzinga called 'no clean Nebius-specific catalyst.' Short interest modest and falling: 14.5M sh / 7.26% of float (MarketBeat, July). Sell-side",
+        "sources": [
+          "Benzinga NBIS earnings page (cons $576.67M / EPS -$0.73; Aug 6 date); ChartMill ($595.3M); 247wallst.com/companies/nbis/earnings",
+          "stockanalysis.com/stocks/nbis, 7/24/26 ($187.77 -15.02%, mkt cap $48.1B, Buy x17, PT $258.13, next earnings Jul 28)",
+          "TipRanks 2/26 'Nebius Earnings: NBIS Stock Falls as Q4 Miss Disappoints' ($227.7M vs $247.5M; EBITDA $15.0M vs $22.55M); Investing.com Q4'25 transcript note",
+          "mlq.ai + Yahoo Finance 5/13/26 (Q1 beat: $399M vs $388.57M; adj EBITDA $129M vs $90.5M; +17% AH); Motley Fool Q1'26 transcript 5/13/26"
+        ]
+      },
+      {
+        "tk": "RIOT",
+        "date": "2026-07-29",
+        "session": "AMC",
+        "confirmed": false,
+        "score": -1,
+        "direction": "downside",
+        "keyNumber": "Data Center segment revenue — whether AMD recurring rent + lumpy fit-out revenue bridges the ~$50M non-mining gap to the $150.5M consensus (Q1 comparison: $33.2M DC revenue but ~97% one-time fit-out, only $0.9M recurring",
+        "consensusRevM": 150.47,
+        "drivers": [
+          "CONSENSUS (Zacks via Yahoo, ~7/17/26): Q2'26 revenue $150.47M (-1.7% y/y), EPS -$0.39 (-168% y/y); consensus EPS CUT 13.68% in the last 30 days, Earnings ESP -102.56%, Zacks #5 — the quant whisper is below the printed consensus. Date note: registry says 7/29 AMC (unconfirmed); stockanalysis shows 7/29, TIKR says 7/30 — no company PR found confirming either.",
+          "MINING LEG HAS SURPRISE ROOM (unusual): Riot DROPPED monthly production prints in 2026 — only a quarterly PR (Q1 update 4/2/26: 1,473 BTC, 42.5 EH/s), and NO Q2 production PR found on EDGAR/wires through 7/24. Unlike peers, Q2 mining revenue is not pre-disclosed; BTC averaged roughly $62-68K in Q2 vs $76.6K Q1 avg sale price and closed the quarter below $60K (21-month low, 6/30) — mining revenue down q/q and a roughly -$150-160M non-cash fair-value mark on 15,680 BTC is near-certain.",
+          "REVENUE COMMENCING (facts): AMD 25 MW now billing — 5 MW delivered late Jan, 20 MW delivered May 2026; but recurring lease rent is still tiny (Q1: $0.9M; company guide: exiting 2026 at only $37.8M ANNUALIZED run-rate). Hitting $150M consensus therefore requires another lumpy fit-out/reimbursement quarter like Q1's $32.3M; if fit-out is light, revenue can print $115-135M — a real miss. This is the decisive line item.",
+          "WHAT THE DRAWDOWN DE-RATED (and didn't): stock $22.53 (7/24) — ~26% off the $30.32 52-wk high, whipsawed -7.1% (7/16), +7.8% (7/20 on Citi/BTIG raises), +2% (7/23 MS OW $36), -5.6% (7/24) — but still up ~85%+ YTD on the AMD-lease pivot. The BTC leg is de-rated; the AI-lease-timing hope was RE-INFLATED by three bullish notes in the five days before the print, against a CEO who explicitly refuses lease timing. Elevated call expectations = asymmetric disappointment risk if lease language is unchanged.",
+          "BEAT HISTORY: 2 of last 4 EPS beats; Q1'26 was a -336% GAAP EPS miss (-$1.44 vs -$0.33 est., mostly non-cash BTC mark) yet REVENUE BEAT and the stock ROSE (Investing.com 4/30) — market looks through BTC marks and trades the DC segment + leasing narrative, so an ugly GAAP loss alone won't sink it."
+        ],
+        "sentiment": "Split tape into the print: sell-side aggressively bullish (13 Buy/6 Outperform/1 Hold, mean PT $29.45 = ~31% upside; fresh Citi $28 and BTIG $40 raises 7/20, MS OW $36 initiation 7/23 — all leaning on a near-term Corsicana lease) vs quant/estimate momentum bearish (Zacks #5, ESP -102.6%, EPS cut 13.7% in 30 days). Short interest 15.3% of float (7/15) and FALLING from 17.7% late-May — shorts covered into the selloff, so less squeeze fuel on a good",
+        "sources": [
+          "Motley Fool — Riot Q1 2026 earnings call transcript, 4/30/26: https://www.fool.com/earnings/call-transcripts/2026/04/30/riot-riot-q1-2026-earnings-call-transcript/",
+          "TIKR — 'Riot Platforms Reports Q2 2026 Earnings July 30', ~7/23/26: https://www.tikr.com/blog/riot-platforms-reports-q2-2026-earnings-july-30-what-the-stock-needs-to-show",
+          "Yahoo/Zacks — 'Analysts Estimate RIOT to Report a Decline in Earnings', ~7/17/26: https://finance.yahoo.com/markets/stocks/articles/analysts-estimate-riot-platforms-inc-140030328.html",
+          "stockanalysis.com RIOT (price $22.53, earnings 7/29, PT $29.45, 20 analysts): https://stockanalysis.com/stocks/riot/"
+        ]
+      },
+      {
+        "tk": "BTDR",
+        "date": "2026-08-12",
+        "session": "BMO",
+        "confirmed": false,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "Tydal lease effectiveness + disclosed commercial terms (MW x term x $/MW-yr) on or before the call — with AI Cloud ARR run-rate ($76M June, 95% util) as the print's swing metric",
+        "consensusRevM": null,
+        "drivers": [
+          "DATE CAVEAT: our 8/12 BMO is unconfirmed; MarketBeat/WallStreetZen/stockanalysis carry Aug 17 (estimated, BMO), one feed says Aug 7; company has not announced. Prior-year cadence was mid-August. Treat window as Aug 12-18.",
+          "CONSENSUS: no published Q2'26 street revenue found (MarketBeat lists none; Zacks blocked). Q2'26 cons EPS -$0.26 on only 2 estimates, range -$0.40 to -$0.11 (MarketBeat 7/24/26); FY26 revenue consensus $960.3M (stockanalysis, 11-12 analysts) vs Q1 actual $188.9M implies street Q2 ~$210-220M (our derivation, not a published figure).",
+          "MINING PRE-DISCLOSED (facts, monthly PRs): Q2 production 2,694 BTC (Apr 783 / May 921 / Jun 990, +388% YoY in June; self-mining 73.0 EH/s) — at ~$65-75k avg BTC that's roughly $175-200M self-mining revenue, little surprise left; the swing vs Q1's $146.9M self-mining is already public. AI cloud adds ~$17-18M in-quarter (ARR 43→69→~72→76 Mar-Jun).",
+          "PATTERN: 3 straight REVENUE beats (Q3'25 $169.7M vs $151.8M; Q4'25 $224.8M vs $208.3M; Q1'26 $188.9M vs $184.0M) but 4 straight EPS misses, some huge (Q3'25 -$1.06, Q4'25 -$0.59, Q1'26 -$0.21) — GAAP headline 'miss' risk is chronic (BTC fair-value marks, SBC, derivative marks) even when ops beat. Adjusted EBITDA turned POSITIVE in Q1'26 (+$14.4M) — a second positive print is achievable and would extend the inflection story.",
+          "WHAT THE CALL CAN DELIVER: Tydal commercial terms (due ~end-July per 6/29 PR — if it lands BEFORE the print, the surprise migrates to that PR and the call becomes financing color; if not yet landed, the call carries binary risk both ways), project-level debt financing details ('bulk of FY26 financing needs' gated on it), Rockdale tenant color ('discussions with several prospective colocation tenants', 5/14/26), July AI-cloud ARR (trajectory suggests $80-90M), FY26 mining-capex reiterate ($180-200M)."
+        ],
+        "sentiment": "Positioning skews favorably for upside surprise: sell-side is aggressively long (8 Strong Buy / 2 Buy / 2 Hold, avg PT $22.64 = ~96% upside, range $15-35; Citizens $35 on 6/24/26, Cantor $34, HCW $32 after trimming — HCW called the post-Q1 selloff 'overdone', TheFly, May-26; Benchmark Buy/$27 reaffirmed) while the stock sits 24% below its 50DMA with double-digit-to-37%-of-float short interest. Retail/X tone: Stocktwits sentiment 'neutral' with no",
+        "sources": [
+          "https://www.marketbeat.com/stocks/NASDAQ/BTDR/earnings/ (cons EPS, beat/miss table, 7/24/26)",
+          "https://stockanalysis.com/stocks/btdr/ , /statistics/ , /forecast/ (price, SI, FY26 cons $960.3M, PTs; 7/24/26)",
+          "https://www.globenewswire.com/news-release/2026/05/14/3294742/0/en/Bitdeer-Reports-Unaudited-Financial-Results-for-the-First-Quarter-of-2026.html (Q1'26, 5/14/26)",
+          "https://www.globenewswire.com/news-release/2026/07/21/3330289/0/en/bitdeer-announces-june-2026-production-and-operations-update.html (7/21/26)"
+        ]
+      },
+      {
+        "tk": "IREN",
+        "date": "2026-08-28",
+        "session": "AMC",
+        "confirmed": false,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "AI Cloud revenue exit run-rate (June-q print + Horizon 1 Microsoft handoff confirmation) and the FY27 revenue guide vs $3.0bn consensus",
+        "consensusRevM": 158,
+        "drivers": [
+          "Consensus derivation: stockanalysis.com FY26 (ending 6/30/26) revenue consensus $727.5M minus reported 9-month actuals ($240.3M FQ1 + $184.7M FQ2 + $144.8M FQ3 = $569.8M) implies ~$158M for the June quarter; HC Wainwright FQ4 EPS est -$0.60 (7/24/26), FY26 consensus EPS ~-$1.85/-$2.05. Building blocks: mining ~$95-115M (declining, decommissioning disclosed) + AI cloud $45-60M if the 94% q/q growth pattern (FQ3) even halves → revenue roughly in line to modest beat.",
+          "Little revenue surprise mechanically available THIS quarter: CFO Lewis on the 5/7/26 call — Microsoft revenue and revenue from the additional 50k GPUs 'expected to begin ramping in Q3 2026' (calendar), i.e. AFTER the June quarter; and the quarter-end cash reveal ($7.6bn incl. $1.7bn restricted) was pre-announced on 7/20. Mining is telegraphed (decommissioning disclosed at Q3; no BTC treasury — sells daily), so the surprise lives in the CALL, not the print.",
+          "What the 8/28 call CAN deliver: first FY27 framing off a YE26 exit of $4bn+ ARR 85% contracted (~$3.4bn contracted) vs FY27 Street revenue of only $3.00B — a credible guide at/above consensus; confirmation of the Horizon 1 Microsoft handoff (scheduled calendar Q3 — i.e. right at print time), which de-risks the $9.7bn contract's revenue start; possible naming/color on the unnamed 'leading AI developer'; and, on cadence (deals every ~8-10 weeks, last 7/20), a real chance of a new-contract 8-K at or before the print.",
+          "Guidance/reaction history is the main downside pattern: Q2 FY26 (2/5/26) 'loss wider than expected, revenues decline q/q'; Q3 FY26 (5/7/26) 'misses earnings, stock dips' — GAAP is chronically noisy (FQ3: -$247.8M net loss on $140.4M impairments + $23.7M cap-call MTM; FQ2: -$155.4M on $219.2M convert-hedge losses). Expect another ugly GAAP headline as Childress conversions drive further impairments; algorithms selling the EPS-miss headline is the repeatable risk.",
+          "What the drawdown de-rated vs what improved: stock fell 43% in a month ($60+ June high → $34.67 early July; 7-session -22% Jul 9-17) on the Chanos-amplified governance backlash (18M RSU / ~$800M co-CEO grant, 7/1), Meta compute-competition narrative and sector risk-off — none of which touched the contracted book, which IMPROVED (ARR target raised, 45% prepays, IG financing at A). The 7/20 8-K clawed back +19.5% to ~$46 (our 7/23 mark $45.91), so part of the good news is re-priced, but the stock still sits ~24% below the June high with a materially better book."
+        ],
+        "sentiment": "Tape: -43% June→early-July ($60+ → $34.67), 7-session -22% slide Jul 9-17 driven by Chanos' public attack on the 7/1 co-CEO RSU grant (~$800M), Meta-as-compute-competitor fears and the broad AI-infra selloff; then +19.5% on the 7/20 $2.8bn 8-K to ~$46 — IREN diverged UP against the sector's final leg down. Short interest ~22% of float with a celebrity short (Chanos) attached to a governance, not fundamental, thesis. Retail/X (our feeds): Agrippa_",
+        "sources": [
+          "stockanalysis.com/stocks/IREN/forecast — FY26 rev cons $727.5M, FY27 $3.00B, EPS -$2.05/-$0.94, PT $81.07, 16 analysts (accessed 7/24/26)",
+          "GlobeNewswire 5/7/26 — IREN Business Update and Q3 FY26 Results ($144.8M rev, AI cloud $33.6M +94.2% q/q, adj EBITDA $59.5M, net loss -$247.8M, $140.4M impairments)",
+          "Investing.com 5/7/26 — Q3 FY26 call transcript ('Horizon 1 scheduled for Microsoft handoff in Q3'; Microsoft + 50k-GPU revenue 'begin ramping in Q3 2026')",
+          "GlobeNewswire 7/20/26 — $2.8bn contracts 8-K ($7.6bn cash 6/30/26, ARR target $4bn+ 85% contracted, 45% prepayments)"
+        ]
+      },
+      {
+        "tk": "SLNH",
+        "date": "2026-08-13",
+        "session": "AMC",
+        "confirmed": true,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "Q2 revenue vs Q1's $9.4M (5th straight sequential record; ~$11-13M attainable from Kati 1A full quarter + K1B Ph1/2 energizations + Briscoe wind) — plus Kati 2 LOI-to-lease color on the first-ever earnings call",
+        "consensusRevM": null,
+        "drivers": [
+          "No published Street revenue consensus found for Q2'26 — only EPS: HCW (Colonnese) initiated Jul 20, 2026 (Buy, $4 PT) with Q2 EPS est. -$0.11; FY26 EPS consensus -$0.27 across 3 analysts (MarketBeat). The revenue bar is effectively a whisper, and the monthly-update run-rate makes another record quarter highly visible.",
+          "Revenue already contractually commencing (all pre-disclosed facts): Kati 1A 48 MW Galaxy hosting completed ~Q1'26 (announced Aug 12, 2025; on guidance) gets its first full quarter; Kati 1B Ph1 Cormint 12 MW power-commissioned May, Ph2 9 MW substantial completion June, Ph3 14 MW 'ahead of schedule'; Briscoe Wind Farm (acquired Apr '26, ~$53M per our book) adds a new energy/REC revenue line — Q2 REC sales completed per Jul 14 PR.",
+          "Monthly business updates pre-disclose operations (Jun 9, Jul 14 PRs), so the revenue line itself carries little surprise; the surprise lever is the CALL — Aug 13 is Soluna's FIRST-EVER quarterly earnings call (announced Jul 14), a new channel landing ~4 weeks after the signed Kati 2 LOI, with possible project-financing (top-tier IB) and Dorothy 3 load-conversion color, ahead of the mid-August monthly update.",
+          "De-rate is severe: $1.26 (Jul 24) vs $5.14 52-wk high (-75%); slid from ~$1.85 late-June to ~$1.14 mid-July (~-30-38%), worse than the sector's -5% to -15% — the AI-pivot premium is largely wrung out while the Kati 2 funnel objectively advanced.",
+          "Squeeze fuel: short interest 32.2M shares = 20.4% of shares out (Jul 19 data, Fintel/Benzinga); Russell 3000 + Russell 2000 Value add (June 2026) broadens the buyer base; Zacks upgrade Jul 23 (lead)."
+        ],
+        "sentiment": "Washed out and retail-dominated. Tape: -30%+ from late-June highs into mid-July (worse than sector), a +14.6% bounce around Jul 20 on the monthly update/HCW initiation, then fading again (-4.6% on Jul 24 to $1.26). 20.4% short interest on a $200M micro-cap is heavy. Flow is day-trader (StocksToTrade/Sykes-style coverage dominates — leads); none of our tracked quality feeds (Agrippa, Frans Bakker, McNallie, Zeiner) cover SLNH, so there is an insti",
+        "sources": [
+          "https://www.businesswire.com/news/home/20260518023353/en/Soluna-Reports-Q126-Results-Revenue-Grows-58-Year-Over-Year-and-4th-Consecutive-Quarter-Sequentially (May 18, 2026)",
+          "https://www.solunacomputing.com/news/monthly-update-july-2026/ (Jul 14, 2026)",
+          "https://www.solunacomputing.com/news/monthly-update-june-2026/ (Jun 9, 2026)",
+          "https://stockanalysis.com/stocks/slnh/ (Jul 24, 2026 quote)"
+        ]
+      },
+      {
+        "tk": "GLXY",
+        "date": "2026-08-05",
+        "session": "BMO",
+        "confirmed": true,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "First-ever data-center segment rent revenue (Phase I, commenced Q2) + 830 MW lease status delivered on the call",
+        "consensusRevM": null,
+        "drivers": [
+          "Revenue commencing: Phase I rent COMMENCED in Q2 2026 under the 15-yr CoreWeave lease (PR 7/6/26 — fact), so the 8/5 print is the segment-reveal quarter for the ~90% lease-level-EBITDA-margin annuity; partial-quarter dollars are small but it converts the story from promise to P&L. Phase II ($10.4B contracted minimums) financing closes 7/28 — funding overhang for contracted capacity cleared before the call.",
+          "Crypto side is visibly bad and therefore largely priced: BTC ran $72-80k in April, faded to ~$67k end-May, hit a 21-month low near $58k in June on record ETF outflows; Q1 was already a -$216M net loss on a 20% crypto-mcap drawdown. The '$90M Q2-to-date adjusted EBITDA' disclosed 4/28 was captured at the April peak — May/June likely erased much of it; expect an ugly headline loss BMO before the 8:30 call.",
+          "Consensus: no clean quarterly Street revenue exists (GLXY's gross digital-asset-sales presentation makes it non-meaningful; TipRanks/Zacks blocked); FY26 consensus $46.35B revenue / -$0.26 EPS, 16 analysts, avg PT $40.94 vs ~$22.93 price (stockanalysis.com, Jul 2026). Piper Sandler trimmed PT $36→$33, kept Overweight (Jul 2026).",
+          "Call catalysts stacked in bulls' favor: Novogratz promised on the Q1 call that 'by the time we're on next quarter, we're talking about that with much more detail' (LOI-stage projects — Merlin already delivered via 6/25 council approval), and separately set an 'end of summer' deadline for the remaining 1.6 GW to be spoken for (6/6/26 podcast, LEAD). Any term-sheet/exclusivity disclosure on the 830 MW is the re-rating trigger; conversely 'still negotiating' against his own deadline is the downside case.",
+          "What the drawdown de-rated: stock ~-50% from the Oct 2025 peak ($45.92 high, $22.93 now), -9% and -5% single days in July on the AI/semis selloff, CLARITY Act collapse and BTC <$58k — the market is pricing GLXY as a levered crypto proxy and giving little credit for the now-cash-flowing landlord book or the 830 MW option. That is the asymmetry: the contracted ramp is intact and fully financed while the multiple compressed on crypto beta."
+        ],
+        "sentiment": "Washed out and two-tiered: retail/Stocktwits in outright 'bearish' territory even on green days, explicitly waiting for a Helios tenant announcement and Project Merlin before re-engaging; short interest 24.0M sh / 6.15% of outstanding, +177% y/y — shorts pressing the crypto-proxy trade into the print. Sell-side is the opposite: 14 Buy / 2 Hold, zero Sell, avg PT ~$41 (+80%), with only modest July trims (Piper $36→$33, Overweight). Tape: -50% off ",
+        "sources": [
+          "stockanalysis.com/stocks/glxy/forecast/ (FY26 cons. $46.35B rev, -$0.26 EPS, PTs, ratings; Jul 2026)",
+          "stockanalysis.com + finviz (short interest 24.01M sh / 6.15%, +176.7% y/y)",
+          "Motley Fool Q1 2026 transcript 4/28/26 ($90M QTD adj EBITDA; 'much more detail' next quarter)",
+          "Galaxy PR 7/6/26 (Phase I complete, rent commenced Q2 2026)"
+        ]
+      },
+      {
+        "tk": "HUT",
+        "date": "2026-08-04",
+        "session": "BMO",
+        "confirmed": true,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "Entergy/River Bend power-expansion scale-and-dates on the 8:30am call (it gates the 1,000 MW ROFO) — NOT the revenue line; secondary: Beacon Point Ph2 financing color",
+        "consensusRevM": 84,
+        "drivers": [
+          "NO landlord revenue commences this quarter — first data-hall deliveries are Q1-27 (Beacon Point) and Q2-27 (River Bend), so Q2-26 revenue is Vega Bitmain hosting (~$135M annualized), ASIC-colo/managed-services fees and power. Consensus: EPS -$0.24 (4 ests, MarketBeat); quarterly revenue not directly published — inferred ~$80-88M (FY26 cons $333.7M stockanalysis / $335.2M SimplyWallSt, minus Q1A $71.0M); we carry ~$84M. Q1 was a revenue MISS ($71.0M vs $81.3M cons) — modest miss risk again on the print itself.",
+          "GAAP headline will be ugly and it does not matter: BTC closed Q2 at ~$59.9K, -13% QoQ and -50% off the Oct-25 $126K ATH (CoinDesk 6/30/26), so another large non-cash digital-asset mark vs the -$0.24 consensus is likely. Q1 precedent: EPS -$1.98A vs -$0.33 cons (missed by $1.65, reported 5/6/26) and the stock still ran +39.6% on the quarter — the market trades the leases, not the marks. Beat/miss history is mixed and GAAP-noisy: Q3-25 beat (+$0.09), Q2-25 beat (+$0.01), Q1-25 miss (-$0.06), Q1-26 big miss (MarketBeat table).",
+          "Mining leg is pre-disclosed — no surprise left: ABTC publishes treasury/production (record 817 BTC mined in Q1 at $36.2K cost/BTC; treasury past 8,000 BTC by early July per PRs). The BTC-price damage is already in the tape — it IS the two-week sector selloff.",
+          "What the call can deliver that is NOT fully priced: (1) the Entergy expansion scale/dates teased verbatim on 5/6/26 ('hope to do so in the coming time period') — the ROFO gate; (2) BP Ph2 SPV bond (Ph1 pattern: lease 5/6 → $4.25B bond launched 6/4, ~4 weeks); (3) live precedent of announcing new leases ON the earnings call (BP Ph1 came with the 5/6 Q1 print); (4) buyback — 6.16M-share (5.0%) authorization per the 7/20 8-K, parent net cash (-$74M reconciled).",
+          "What IS priced: the 7/20 Ph2 lease drove +16% and three same-week PT raises — Needham $128→$145 (7/21), Benchmark $165→$195 (7/22), Canaccord $130 (7/22); stock retraced +20% W/W off the 7/17 low into the print, so part of the call optionality is pre-spent. The 7/24 -6.5% giveback ($117.67→$109.99) rebuilt some cushion. KBW-style street models already capitalize unsigned RB phases, so an Entergy announcement confirms rather than shocks parts of the street."
+        ],
+        "sentiment": "Tape: $123.02 (6/26) → $91.45 (7/17, -26% drawdown with the sector/BTC<$60K) → +16% on the 7/20 lease → $117.67 (7/23, helped by Alphabet capex-raise comments per Benzinga) → $109.99 (7/24, -6.5%); +39.6% on the quarter, -5.3% on the month (Finviz). Short interest 11.59% of float, 11.82M shares, 2.58 days to cover (Finviz, 7/24) — real squeeze fuel into a positive call. Sell-side is unanimously long: 16 analysts, 11 Strong Buy / 5 Buy, 0 Hold/Sel",
+        "sources": [
+          "https://www.marketbeat.com/stocks/NASDAQ/HUT/earnings/ (Q2 cons EPS -$0.24; beat/miss table; 8/4 8:30am call)",
+          "https://stockanalysis.com/stocks/HUT/forecast/ (FY26 rev cons $333.74M; 16 analysts; PT $140.19; raises 7/21-7/22)",
+          "https://stockanalysis.com/stocks/HUT/ (price $109.99, -6.53% on 7/24; 52wk $18.68-$140.80; mkt cap $12.38B)",
+          "https://www.prnewswire.com/news-releases/hut-8-reports-first-quarter-2026-results-302763660.html (Q1A: rev $71.0M — Power $3.7M / DI $1.3M / Compute $66.0M; net loss $253.1M; adj EBITDA -$250.5M; $16.8B backlog then)"
+        ]
+      },
+      {
+        "tk": "CIFR",
+        "date": "2026-08-04",
+        "session": "BMO",
+        "confirmed": true,
+        "score": 1,
+        "direction": "upside",
+        "keyNumber": "Black Pearl Ph1 (AWS) rent-commencement confirmation for August — first cash rent on the $5.5B book — plus any first-ever H2'26/FY27 colo revenue/NOI guide; the Q2 revenue line itself (~$32M mining rump) is near-zero inf",
+        "consensusRevM": 31.9,
+        "drivers": [
+          "[verify-corrected] THE AUGUST CATALYST DOES NOT EXIST: Black Pearl Ph1 initial delivery targets SEPT 30 and first rent OCT 1 (8-K 2/3/26 deck; reconfirmed 6/8/26) — colo rent is contractually zero in Q2 AND Q3. First rent-bearing quarter is Q4'26.",
+          "[verify-corrected] Q2 print is therefore a mining-revenue + construction-progress report; the surprise lever is schedule confirmation and any pipeline color, not financials.",
+          "BTC production already pre-disclosed monthly — little revenue surprise left in the quarter itself."
+        ],
+        "sentiment": "Whipsaw tape, positioning skews short into a catalyst-rich print: 13.7% of float short and rising through the -25% flush; 7/20-7/22 bounce was sympathy (HUT BP2 + IREN wave) plus 'highly shorted stock soars' dip-buying headlines (finviz/stocktwits — leads), not CIFR news (EDGAR clean since 6/15); today -10.3% shows weak hands. Retail/X quiet on CIFR specifically — our tracked miner feeds (McNallie, Zeiner) surfaced no CIFR takes this month; TheVa",
+        "sources": [
+          "https://www.marketbeat.com/stocks/NASDAQ/CIFR/earnings/ (Q2 EPS consensus -$0.21, 2 ests; beat/miss table)",
+          "https://www.benzinga.com/trading-ideas/movers/26/07/60281237/cipher-digital-stock-price-monday (July preview: ~$31.9M rev / -$0.11 EPS; SI 16.3%; 2 straight EPS misses)",
+          "https://stockanalysis.com/stocks/cifr/ and /forecast/ (7/24 close $23.15, $9.47B cap; FY26 $233.7M / FY27 $873.5M; 16 analysts, avg PT $32.53)",
+          "https://fintel.io/ss/us/cifr (short interest 54.5M sh, 13.3% outstanding / 13.7% float, rising)"
+        ]
+      },
+      {
+        "tk": "MARA",
+        "date": "2026-08-06",
+        "session": "AMC",
+        "confirmed": true,
+        "score": -2,
+        "direction": "downside",
+        "keyNumber": "Q2 revenue vs the stale ~$208M Street number (bottom-up points to ~$160–175M) — and on the call, whether Thiel re-ups or hedges 'multiple tenant leases by year-end' plus a Long Ridge close date",
+        "consensusRevM": 208.49,
+        "drivers": [
+          "Consensus looks STALE vs the BTC tape: Zacks consensus Q2 rev $208.49M / EPS -$0.56 (cited via Yahoo/Zacks, late Jul 2026; corroborated by stockanalysis.com FY26 $799M ≈ $208M/qtr for the remaining quarters). Bottom-up: Q1 printed $174.6M on ~25 BTC/day at a HIGHER average BTC price; Q2 avg price fell (BTC $68,233 on 3/31 → May high $82.8K → $58,504 on 6/30, -14% on the quarter) with network difficulty rising → mining revenue plausibly $160–175M. Headline revenue miss is the base case.",
+          "MARA no longer pre-discloses: monthly BTC production PRs stopped — none published Jan–Jul 2026 on the IR release list (last found vintage Sep 2025). Unlike peer miners, Q2 production is NOT already printed, so there IS headline surprise room — and the direction of that room is negative given the price/difficulty math.",
+          "EPS wildcard is the treasury mark, and it's ugly but knowable: ~36.3K BTC marked $68,233 → $58,504 ≈ -$350M fair-value hit (~-$0.9/sh before operations) vs consensus EPS of only -$0.56. Pattern check: Q1 2026 missed BOTH lines (Yahoo, 5/12/26: 'MARA Barely Moves Since Missing Q1 Earnings & Revenue Estimates') — no beat cushion in the record.",
+          "Zero contracted AI revenue commences this quarter or any quarter yet: no signed leases, and Long Ridge's disclosed +$144M annualized adj. EBITDA only arrives at close (H2 2026, HSR/FERC pending). The only pre-announced Q2 items are the strategic ones already public (HIF 7/9 was Q3 anyway; $1.0B convert repurchase + 15,133 BTC sale was 3/26, a Q1 event).",
+          "What the CALL can deliver: Long Ridge close timing ('imminent' would be real EBITDA), Matagorda tenant-funnel color, Starwood site FIDs, and the year-end lease guide. But 'we expect multiple leases by year-end' was already said on 5/11 — a reiteration is not new news, only an actual signing or a named exclusivity would be, and neither is likely by Aug 6. A hedge on the timeline is the live negative risk."
+        ],
+        "sentiment": "Positioning is heavily bearish but well-known: short interest 102.6M sh / 27.54% of float as of 6/15/26 (fintel; ~27.2% late Jul per ChartMill) — among the most-shorted large miners. Sell-side skews constructive-but-trimming: 13 analysts, consensus Buy, avg PT $18.13 (range $5.50–$30, stockanalysis 7/24/26); Piper Sandler cut PT $16→$13 keeping Overweight in July (LEAD: via stocktwits/Sykes recaps 7/21–23). Retail/X tone is mixed and headline-cha",
+        "sources": [
+          "https://sg.finance.yahoo.com/news/marathon-digital-holdings-inc-mara-214503853.html (Zacks consensus $208.49M rev / -$0.56 EPS, late Jul 2026)",
+          "https://stockanalysis.com/stocks/mara/ (price $12.12, mkt cap $4.62B, 7/24/26)",
+          "https://stockanalysis.com/stocks/mara/forecast/ (FY26 rev est $799M, ratings 5 SB/3 B/4 H/1 SS, PT $5.50–$30)",
+          "https://www.fool.com/earnings/call-transcripts/2026/05/11/mara-mara-q1-2026-earnings-call-transcript/ (Q1 rev $174.6M, 25 BTC/day, 72.2 EH/s, lease quotes)"
+        ]
+      },
+      {
+        "tk": "CORZ",
+        "date": "2026-08-06",
+        "session": "AMC",
+        "confirmed": false,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "Billed CoreWeave megawatts / annualized colocation GAAP revenue run-rate (243 MW ~ $350M annualized at 5/6/26; guided '>450 MW by end of summer') — the Q2 colocation step-up and progress toward that 450 MW is what the pr",
+        "consensusRevM": 144.5,
+        "drivers": [
+          "CONTRACTED COMMENCEMENTS (fact): Q1 exit billing 243 MW = '>$350M of annualized colocation GAAP revenue' (Nygaard, 5/6/26); Denton South was 'on schedule for Q2 completion' (Brown, 3/2/26); Muskogee 70 MW and Austin 16 MW slated ~mid-2026; mgmt guided '>450 MW by end of summer,' full 590 MW early 2027. Q2 colocation revenue mechanically steps up from Q1's $77.5M on take-or-pay contracts — zero demand risk, ~80-85% cash gross margin band (raised from 75-80% on 5/6/26).",
+          "CONSENSUS & MISS PATTERN: Q2 Street revenue ~$144.5M (aggregator print, 6/12/26 — weak source, flag it; FY26 consensus $626M / 16 analysts, stockanalysis 7/24/26; MarketBeat next-qtr EPS +$0.05). Headline risk is DOWN not up: CORZ missed revenue in Q1'26 ($115.2M vs $117.0M) and Q3'25/Q4'25 per MarketBeat history, and Q2's non-colo line is squeezed by deliberate mining runoff + Pecos conversion + BTC near $63K (mining prints already public — little surprise left there, but Street models may still carry stale mining revenue). Upside case is NOT a revenue beat; it's run-rate/margin/backlog optics.",
+          "WHAT THE DRAWDOWN DE-RATED: -26% in a month (vs IREN -41%, APLD -43%, WULF -36%) on sector-wide rates/semis correlation — NO company-specific news (EDGAR: nothing but Form 4s since 5/26/26). $22.75 close 7/24/26 vs our $27 registry mark. The CoreWeave book ($10B+, 12-yr, now fully funded by the $3.3B 7.75% project bond closed 5/6/26) is unchanged; the de-rate is macro, so any company-specific good news reprices against a lowered bar.",
+          "POSITIONING/SENTIMENT: short interest 69.1M sh = 27.0% of float, 5.6 days to cover (stockanalysis, 7/24/26) — squeeze fuel into any second-tenant headline on or before the call; options put/call 0.87 vs 0.59 typical, moderately bearish (GuruFocus 7/22/26); sell-side still skewed long: 12 Strong Buy / 3 Buy / 2 Hold, avg PT $33.36 (+47%); retail/X tone not directly sampled this cycle (our tracked miner feeds surfaced nothing CORZ-specific in search) — treat as unknown, with Trip Miller publicly and loudly long (Jan 2026).",
+          "CALL DELIVERABLES: (a) billing progress toward 450 MW + reaffirmed 80-85% CoreWeave margin band; (b) second-tenant color — milestone-exclusivity progress on Pecos/Muskogee with three hyperscalers, any LOI/exclusivity re-entry disclosure would move the stock hard given 27% short; (c) Polaris close (Q3'26) and Pecos ph1 construction milestones; (d) possible FY26 colocation revenue framing. KEY RISK: third consecutive call with no second tenant ('not satisfied' 3/2/26 -> 'very confident' 5/6/26 -> ?), which caps the score at +2 rather than +3; EPS will look ugly regardless (Q1: -$1.06 actual vs -$0.02 est on $266.5M impairments) so optical misses are likely even in the good scenario."
+        ],
+        "sentiment": "Tape: $22.75 (7/24/26, -5.1% on the day), -26% over the past month in a sector-wide AI-infra de-rate (IREN -41%, APLD -43%, WULF -36%); still +69% over 52 weeks. Positioning: 27.0% of float short, 5.6 days to cover; put/call 0.87 vs 0.59 norm (bearish tilt). Sell-side: 15 of 17 at Buy-or-better, avg PT $33.36 — bullish skew intact through the selloff (Jefferies constructive 7/26; BTIG bullish since early '26). Retail/X: no direct CORZ reads from ",
+        "sources": []
+      },
+      {
+        "tk": "WULF",
+        "date": "2026-08-05",
+        "session": "BMO",
+        "confirmed": true,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "HPC/colo lease revenue and explicit CB-3 (Fluidstack 105MW) rent-commencement confirmation — the swing factor inside the ~$48-49M total-revenue consensus; secondary: $3.5B KY financing pricing color",
+        "consensusRevM": 49,
+        "drivers": [
+          "Consensus ~$48-49M rev ($49.05M per stockanalysis-linked consensus, $47.99M per chartmill; EPS -$0.23) sits at the TOP of the achievable band: Core42 full quarter ~$22.5M + at most ~1 month of CB-3 Fluidstack rent (delivered 'defined scope by end of May' per Q1 call; 105MW at Fluidstack's ~$1.77M/MW-yr gross ≈ up to ~$15M/mo) + declining mining (~$8-12M vs $13M in Q1) = ~$42-50M. 'Coordinating with Fluidstack and Google to align infrastructure delivery with technology deployment' (Q1 PR, 5/8/26) is commencement-lag language — headline-miss risk on timing.",
+          "Beat/miss record is poor: Q1-26 missed rev by 7.1% ($34.0M vs $36.59M est) and EPS badly (-$1.01 vs -$0.19, Investing.com 5/8-6/1/26); Q4-25 'missed big' on both (247wallst 2/27/26). Two straight misses — the market does not expect a clean print, which lowers the bar. (Note: one Yahoo/Zacks-style headline claims Q1 'tops revenue estimates' — consensus-set discrepancy, flagged.)",
+          "What the drawdown de-rated vs what's contracted: -36% from late-June ~$29 to $18.46 (7/24, -7.9% that day), driven by the 7/14 NY moratorium — which only touches capacity our registry carries as RUMORED with near-zero credit (Lansing/Lake Hawkeye, Lake Mariner +250MW permits). The signed ~$26.6B gross book (Anthropic $19B + Fluidstack $6.7B + Core42 $0.9B) and in-construction CB-4 (Q3-26) / CB-5 (Q4-26) rent starts are unaffected — existing Lake Mariner permits stand. The market sold the contracted story on an uncontracted-pipeline headline.",
+          "Call ammunition exceeds P&L risk: first Fluidstack-rent quarter proves the Google-backstopped structure converts backlog to revenue; CB-4/CB-5 on-track confirmation frames a ~$760M/yr gross run-rate exiting 2027; $3.5B MS-led KY financing color (Bloomberg, mid-July) would retire the bridge watch-item; Abernathy $250M first payment lands in cash; any Muskie 'discussions' language is fresh news. Mgmt reaffirming '250-500MW new contracted capacity annually' with Anthropic already banked makes raises cheap to deliver.",
+          "Upside-capper (real): the April precedent — WULF launched an $800M equity deal the same evening as prelim Q1 results (8-K 4/14/26, our raise ledger, 'earnings-confounded day-0'). A surprise equity launch or the $3.5B HY deal marketing alongside the Aug 5 print could smother a squeeze; converts have historically been greeted better than equity (our ledger: converts +2.7% by +15d, equity -6.6% at +30d)."
+        ],
+        "sentiment": "Tape: brutal — $29 late-June high → $18.46 (7/24, -7.9% on the day), -36% in four weeks, below the 50-dma (~$24.30), though still +65% YTD and +260% TTM. Short interest 28.8% of float (95.1M sh, up from 91.3M) and rising into the print — crowded short against a Strong Buy consensus (17 analysts, avg PT $38.59). Sell-side skew: uniformly bullish and getting louder into weakness (Cantor $37 'buying opportunity', Rosenblatt $30 'overdone', Citi/Need",
+        "sources": [
+          "https://stockanalysis.com/stocks/WULF/ (price $18.46, mktcap $9.15B, PT $38.59, 17-analyst Strong Buy — pulled 7/24/26)",
+          "https://www.globenewswire.com/news-release/2026/07/22/3331478/0/en/TeraWulf-Schedules-Conference-Call-for-Second-Quarter-2026-Financial-Results.html (Aug 5 8:00am ET call, PR 7/22/26 — confirms BMO)",
+          "https://www.globenewswire.com/news-release/2026/05/08/3290994/0/en/TeraWulf-Reports-First-Quarter-2026-Results.html (Q1: $34.0M rev = $21.0M HPC + $13.0M mining; adj EBITDA -$4.1M; $3.1B cash; CB-3 May, CB-4/CB-5 2026 rent commencement — 5/8/26)",
+          "https://www.investing.com/news/company-news/terawulf-q1-2026-slides-hpc-revenue-surges-despite-earnings-miss-93CH-4673026 (Q1 miss detail: $34.0 vs $36.59M, EPS -$1.01 vs -$0.19)"
+        ]
+      },
+      {
+        "tk": "FRMI",
+        "date": "2026-08-13",
+        "session": "BMO",
+        "confirmed": true,
+        "score": 1.5,
+        "direction": "upside",
+        "keyNumber": "Binding-tenant verdict on the call — the 90-day clock set 5/14 expires ~Aug 12, the day BEFORE the print; P&L is irrelevant (pre-revenue, Q2 revenue ~$0)",
+        "consensusRevM": 0,
+        "drivers": [
+          "CONSENSUS IS EFFECTIVELY NIL: Fermi has generated zero revenue to date (Q1 2026: $0 rev, $189M net loss, -$0.30/sh — $134M of it non-cash SBC + $25M Macquarie extinguishment). Street FY2026 revenue consensus $52.44M is entirely back-half power/lease-commencement hope (stockanalysis.com, pulled 7/24/26); the '$188.02M Q2 consensus' circulating on chartmill is a data artifact — ignore it. EPS 'consensus' ~-$0.07 will likely be missed again on non-cash items (convert issuance costs, SBC, Yorkville) — and it won't matter.",
+          "NO REVENUE COMMENCING THIS QUARTER (FACT): zero signed books, zero contracted MW; first grid power (86MW SPS) targets 2H26, after the quarter being reported. No monthly production prints (not a miner). The entire print is the CALL.",
+          "THE CALL IS AN EVENT LOTTERY WITH A DATED BINARY: management publicly promised 'securing a binding tenant agreement' within 90 days of 5/14 — i.e., by ~Aug 12. Scenarios: (a) binding tenant announced at/before the call (~30-35% odds) → +30%+ re-rate, amplified by 13.5%-of-float short interest (33.9M sh, +941% y/y, MarketBeat Jul-26) plus convert-arb shorts; (b) tangible-but-short — named LOI/JV, CEO hire (search 'far along' since May), 2nd ~5GW permit color, REIT-election detail (floated in 7/9 8-K) (~35%) → modest relief at $6.32; (c) deadline whiffed, 'discussions continue' (~30-35%) → grind toward $5, though partially priced.",
+          "WHAT THE DRAWDOWN DE-RATED: stock $6.32 (7/24) vs ~$9+ late June — a ~30% four-week drawdown, worse than the sector's -5/-15%, driven by the 7/9-7/10 convert shock (-15-18% on pricing: $375M at a 5.00% coupon read as expensive, dilutive money) plus governance noise (Everson board resignation 7/13, Neugebauer letters). The June OpenAI pop (+26%) has fully round-tripped — deal expectations are now depressed, which is what makes the setup asymmetric.",
+          "GUIDANCE HISTORY ARGUES FOR DISCOUNTING MGMT TARGETS: Q1 EPS missed by $0.25 (-$0.30 vs -$0.05, MarketBeat); first anchor collapsed 12/11/25; TM2500s deferred; 'YE26 ~1.1GW' is aspirational vs our Dec-27 model. A company that has over-promised before, promising a deal by mid-Aug, caps how much benefit of the doubt to pre-pay."
+        ],
+        "sentiment": "Tape: $6.32 (7/24/26), -30% in four weeks, below IPO ($21) and well below the fresh $9.52 convert strike — the worst drawdown in our landlord cohort this month. Retail: Stocktwits flipped BEARISH on the convert (normal message volume); X tone is dominated by Neugebauer-vs-board drama and dilution anger, not the asset story (our tracked miner feeds — McNallie/Zeiner — don't cover FRMI; no Agrippa/Bakker-equivalent bull anchor exists for this name,",
+        "sources": [
+          "stockanalysis.com/stocks/frmi (price $6.32 7/24/26; forecast page: FY26 $52.44M, FY27 $1.39B, PT $19, 8 analysts)",
+          "MarketBeat FRMI earnings + short-interest pages (Q1 miss -$0.30 vs -$0.05; SI 33.9M sh / 13.5% float, Jul 2026)",
+          "SEC EX-99.1 Q1 2026 release 5/14/26 (90-day plan verbatim; $243M cash; $441M capex; $189M net loss)",
+          "stocktitan 7/20/26 (Q2 release 8/13 7am ET confirmed, call 9am)"
+        ]
+      },
+      {
+        "tk": "WYFI",
+        "date": "2026-08-13",
+        "session": "BMO",
+        "confirmed": false,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "Q3'26 revenue guide / confirmation NC-1 hit full 40MW Nscale billing (~$86.5M/yr run-rate) plus Paris commencement — the 2H run-rate inflection, not the Q2 headline",
+        "consensusRevM": null,
+        "drivers": [
+          "CONSENSUS — Q2'26 EPS consensus -$0.11 (MarketBeat, 3 estimates, range -$0.25 to +$0.04); no published Q2 Street revenue on free aggregators — FY26 consensus $129.86M / FY27 $267.76M (stockanalysis.com, 8 analysts) implies Q2 revenue ~$25-27M (our inference, vs $21.9M in Q1). Report date Aug 13, 2026 per aggregators (unusualwhales/wallstreetzen), matching our estimated registry date; company has NOT formally confirmed.",
+          "HEADLINE-MISS RISK (fact-based): NC-1 Nscale billing was contracted at 20MW from Apr 30 + 20MW from May 31, but mgmt said on May 13 delivery 'may begin slightly later than June 1' — so Q2 captured only ~2-4 weeks of partial billing; Paris $160M commenced July (zero Q2 revenue); and WYFI has missed EPS every public quarter (Q3'25 by $0.35, Q4'25 noisy, Q1'26 -$0.31 vs -$0.24). Consensus -$0.11 vs -$0.31 last quarter looks rich — expect the EPS line to disappoint even in a good quarter.",
+          "WHAT THE CALL CAN DELIVER (the actual setup): Q3 is a CONTRACTED inflection — full 40MW Nscale (~$21.6M/qtr at run-rate vs $21.9M total company revenue in Q1) + Paris commencement + Hyperbolic; mgmt already flagged sequential cloud growth in 2H26. Plus the undelivered May 13 promise to 'close at least one additional site in the coming months', NC-1 45MW tranche-2 leasing color, and cross-DC networking commercial launch slated Q3 — multiple call-day announcement options.",
+          "WHAT THE DRAWDOWN DE-RATED: -49% from $46.87 (Jun 22) to $23.63 (Jul 24 close, -12.8% on the sector crash day; down 7 of 10 sessions mid-July, ~-25% over that stretch) — a full round trip of the June momentum run to ~$25 (Jun 11 level), while contracted backlog GREW (>$1.04B TCV signed since Dec). EV ~$1.07B ($912M mcap + ~$158M net debt) vs FY27 consensus revenue $268M. The de-rate was tape + Q1 cash burn (FCF ~-$166M), not adverse company news — no negative 8-K in July.",
+          "SQUEEZE FUEL (fact): short interest 5,831,172 shares as of Jul 15 settlement, +44.0% from 4.05M — 15.1% of the 38.6M shares outstanding, and a far larger share of true float given Bit Digital's ~70-75% hold (per IPO filings) — days-to-cover 1.6 but float-adjusted positioning is crowded short into a BMO print with a guide-heavy call."
+        ],
+        "sentiment": "Tape: brutal 4.5-week round trip, -49% off the Jun 22 peak, -12.8% into the print-minus-3-weeks mark on Jul 24 (sector crash day) — momentum premium fully purged. Sell-side skews bullish and did not capitulate: 9 analysts, 7 Buy/2 Hold, avg PT $38.11 (+61%); BTIG raised to $50, Needham/B.Riley $38, Barclays EW $29 the low. Positioning: shorts pressed the July slide hard (+44% to 5.83M shares, ~15% of shares out, much more of true ~26-30% float ex",
+        "sources": [
+          "https://stockanalysis.com/stocks/wyfi/ (price $23.63 Jul 24, mcap $912M, TTM rev $82.7M, ratings)",
+          "https://stockanalysis.com/stocks/wyfi/forecast/ (FY26 $129.86M / -$0.87; FY27 $267.76M / $0.58; PTs $27-$50, avg $38.11)",
+          "https://www.marketbeat.com/stocks/NASDAQ/WYFI/earnings/ (Q2 EPS cons -$0.11; miss history)",
+          "https://www.marketbeat.com/stocks/NASDAQ/WYFI/short-interest/ (5.83M short Jul 15, +44%, DTC 1.6)"
+        ]
+      },
+      {
+        "tk": "HIVE",
+        "date": "2026-08-18",
+        "session": "AMC",
+        "confirmed": false,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "HPC ARR bridge on the call — contracted ARR vs the $35M→$100M(signed)→$170M(GB300 definitive) ladder — plus HPC segment revenue vs $4.6M in the prior quarter; the mining line (~90% of revenue) sets the tape reaction but ",
+        "consensusRevM": null,
+        "drivers": [
+          "DATE/CONSENSUS — Street shows Aug 13, 2026 AMC (MarketBeat, StockAnalysis; both flagged estimated, not company-confirmed) vs our registry's 8/18 — our date looks ~5 days late. No published QUARTERLY revenue consensus found (consensusRevM=null); MarketBeat Q1-FY27 EPS consensus -$0.16 (3 ests, range -$0.20 to -$0.09); FY27 revenue consensus $400.1M / EPS $0.13 (7 analysts, StockAnalysis). Desk estimate of the June quarter: ~$70-85M rev (~25.3 EH/s mining + ~$7M HPC).",
+          "PATTERN — chronic EPS misser: missed 4 of last 5 prints, some big (Q4-FY26: -$0.28 vs -$0.21 on 6/2/26; Q3-FY26: -$0.18 vs -$0.07; Q4-FY25: -$0.31 vs -$0.11 — MarketBeat history). Q4-FY26 also printed NEGATIVE adjusted EBITDA (-$9.0M) on $71.8M revenue (FY26 PR, 6/1/26). An accounting-line beat is against pattern; do not pay for one.",
+          "PRE-DISCLOSURE — unlike peers, HIVE has STOPPED monthly BTC production PRs (last monthly print PRs date to 2025; none in Apr-Jul 2026 on the company news page), so June-quarter mining revenue (~90% of the print) has genuine two-way variance; anchors are 25.1 EH/s at 3/31/26 and '25.3 EH/s today' (6/1/26 PR) with bearish crypto tape through the quarter (July commentary).",
+          "IN-QUARTER COMMENCEMENTS — the 504-B200 Bell cluster went revenue-live May 2026 at $2.90/GPU-hr, 32% above planning rate (FY26 PR 6/1/26), stepping HPC revenue from $4.6M toward ~$7M and contracted HPC ARR to $35M; the $220M/3yr Bell/Cohere GB200 deal (signed 6/18/26) does NOT bill until late-26/early-27 — the big ARR is contracted and visible but NOT in this P&L, which is exactly what the drawdown ignores.",
+          "WHAT'S DE-RATED — $4.90 mid-June → $2.96 on 7/24, near one-year low, mkt cap ~$794M: a full round-trip of the May rally (+35% pop on the 5/18 GTA announcement, '100% May rally' per 24/7 Wall St 6/1) on dilution narrative and crypto weakness — NOT on any lost contract; since the peak HIVE has only ADDED signed TCV ($220M Bell/Cohere), the Boden LOI, and $130M of 0% pre-funding."
+        ],
+        "sentiment": "Tape: washed out — $4.90 mid-June → $3.24 (7/2) → $2.96 (7/24, -6.9% on the day), near a one-year low, a full round-trip of the May GTA rally; drawdown driven by 0%-convert dilution narrative and bearish crypto tape, not lost business. Retail/X tone (LEADS): day-trader commentary (Timothy Sykes/StocksToTrade posts 6/25-7/20) is capitulatory, fixated on 'zero-coupon = dilution' and lower-highs under $4; no bullish retail champion on HIVE comparabl",
+        "sources": [
+          "https://www.marketbeat.com/stocks/NASDAQ/HIVE/earnings/ (date, EPS consensus, 8-qtr beat/miss history)",
+          "https://stockanalysis.com/stocks/HIVE/ and /forecast/ (price $2.96 7/24, mkt cap $794M, FY27 consensus $400.1M, 7 analysts, PT $7.07, earnings 8/13/26)",
+          "https://www.hivedigitaltechnologies.com/news/hive-achieves-fy2026-total-revenue-of-2978-million-158-yoy-hives-buzz-hpc-positioned-for-growth/ (FY26 PR 6/1/26: Q4 $71.8M rev, -$9.0M adj EBITDA, $4.6M HPC rev, 25.3 EH/s, $2.90/GPU-hr, $35M ARR, 150 BTC)",
+          "https://www.fool.com/earnings/call-transcripts/2026/06/02/hive-hive-q4-2026-earnings-call-transcript/ (call quotes)"
+        ]
+      },
+      {
+        "tk": "APLD",
+        "date": "2026-07-27",
+        "session": "AMC",
+        "confirmed": true,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "HPC segment base-rent run-rate vs the low-quality $82M Zacks consensus — plus the FY27 revenue/NOI ramp frame the call gives (B2 rent commencing fiscal Q1'27, PF2 online Dec 2026)",
+        "consensusRevM": 81.95,
+        "drivers": [
+          "[verify-corrected] Consensus framing rewritten: dispersion is ~$82M (Zacks) vs ~$122M (implied by S&P FY26 ex-cloud after 9M actuals of $299M) — a 49% spread, not 71%; the bar is genuinely confusable and low.",
+          "Prints MONDAY 7/27 (confirmed) — first of the season. FY27 guide + Polaris Forge delivery milestones (\"met first delivery milestone\" already PR'd) are the call levers.",
+          "Down ~9% into the print with $36.2B of contracted leases signed since April — the de-rate happened while the book grew.",
+          "Macquarie draw pace is the bear question; any refinancing color moves it."
+        ],
+        "sentiment": "Washed out into the print: -46% off May highs, -9% the final session before earnings, third down leg of a two-week sector-wide selloff; FX Leaders (7/16) talking $20 support, Benzinga noting price below key MAs and a 6% down day despite a positive Cramer mention (7/17-18). Retail/X tone has flipped from 'NVDA-backed AI landlord' to debt/CoreWeave-contagion fear — the NVDA exit (13F, Feb 2026) still colors commentary (LEADS). Our tracked feeds (Ag",
+        "sources": [
+          "https://www.tradingview.com/news/zacks:eb2a30519094b:0-applied-digital-set-to-report-q4-earnings-hold-or-fold-the-stock/ (Zacks consensus $81.95M, EPS -$0.20, surprise history, 7/22-23/26)",
+          "https://stockanalysis.com/stocks/apld/ and /forecast/ (price $27.19 on 7/24/26, FY26 cons $421.7M, avg PT $76.70, 10 analysts)",
+          "https://ir.applieddigital.com/news-events/press-releases/detail/148/ (FQ3'26 results 4/8/26: $126.6M rev, $44.1M adj EBITDA, segment detail)",
+          "https://ir.applieddigital.com/news-events/press-releases/detail/157/ (B2 75 MW RFS, 175 MW live, 7/1/26)"
+        ]
+      },
+      {
+        "tk": "ABTC",
+        "date": "2026-08-03",
+        "session": "BMO",
+        "confirmed": true,
+        "score": 1,
+        "direction": "inline",
+        "keyNumber": "Q2 cost-to-mine per BTC (Q1: ~$36,200, down from ~$46,900 in Q4) — decides whether the mine-and-hold engine still works at ~$63k BTC — plus net BTC added in Q2 (accumulation-stall check)",
+        "consensusRevM": null,
+        "drivers": [
+          "NO REAL CONSENSUS TO BEAT: 1 covering analyst (MarketBeat, 7/24/26); Q2 EPS 'consensus' $0.00–0.01 (MarketBeat; Reuters preview via TradingView: 'expected to post earnings of 1 cent a share'). No published Q2 revenue estimate (stockanalysis shows n/a across analyst fields). History is two straight big GAAP misses on BTC marks: Q1'26 EPS -$1.20 vs +$0.15 est on rev $62.1M vs $74.9M est; Q4'25 -$1.05 vs +$0.30 on rev $78.3M vs $79.6M (MarketBeat).",
+          "REVENUE LARGELY PREDICTABLE, SLIGHT UPSIDE ROOM: full quarter of ~25.0 EH/s operational (Drumheller fully energized 4/22/26 per Q1 PR) vs a ramping Q1 that produced a record 817 BTC — Q2 production plausibly ~850–950 BTC; but avg BTC realized falls again (~$63–70k vs ~$76k Q1, BTC halved from Oct-2025 peak per Bloomberg 7/22) → revenue ~flat, est $55–65M vs Q1 $62.1M. NOTE: ABTC publishes NO monthly production prints (unlike MARA/RIOT/CLSK), so modest residual production surprise exists; the balance-sheet datum was pre-disclosed anyway — treasury crossed 8,000 BTC ~7/6/26 (Bitcoin Magazine 2026-07-06, ~$525M).",
+          "GAAP WILL BE UGLY AND IT DOESN'T MATTER: FASB fair-value mark on ~7,500 BTC (Q2-end est) with BTC down through Q2 → another large non-cash loss (Q1: -$81.8M net on BTC -22% QoQ). The stock stopped trading on GAAP long ago.",
+          "WHAT THE DRAWDOWN DE-RATED — SUB-NAV: $5.68 close 7/24 (52wk $5.04–$153.60, at/near ATL), ~$403M cap vs 8,000 BTC worth ~$509M mid-July (cryptotimes 7/13) → ~0.8x the BTC stack alone with the ~89k-rig / 28.1 EH/s fleet implicitly free. Caveats priced alongside: 3,090 BTC pledged to Bitmain (10-K, as of 3/25/26), $2.1B ATM overhang, 1-for-15 reverse split (7/2/26) done purely for Nasdaq min-bid compliance. Everything bad is in the price; there is no crowd left to disappoint.",
+          "ACCUMULATION-STALL RISK (the bear card on the call): 7,021 BTC at 3/31 → ~7,500 pre-July-add (est; 8,000 on ~7/6 incl. ~500 added in July, reportedly after the BSTR-Cantor collapse — BSTR sourcing is a LEAD from coincu/coinedition, not filed) implies only ~+480 net BTC in Q2 vs +1,620 in Q1, i.e. net adds BELOW mined production — ATM issuance became value-destructive below NAV and Bitmain obligations may be consuming coins. Directly contradicts Eric Trump's Q1 line 'The compounding is accelerating' (Q1 PR, 5/6/26). Conversely: if ATM stopped, satoshis-per-share (~663 pre-split at 3/31) still grew — they will tout SPS."
+        ],
+        "sentiment": "Maximally washed out: -95%+ from the Sept-2025 peak ($139.65 pre-adj per cryptotimes), YTD -77%, -7% on 7/13 and -7% again 7/24 into the low, reverse-split stigma, and the whole DAT complex broken (BSTR-Cantor merger terminated 7/8 after the $1.5B raise failed — KuCoin/Yahoo; Bloomberg 7/22 'price plunge crushes companies that stockpiled tokens'). Effectively zero sell-side (1 analyst, no PTs), no short-interest print found. Retail/X: Eric Trump ",
+        "sources": [
+          "SEC 8-K + Ex-99.1 acc 0001193125-26-209054 (2026-05-06): Q1 2026 results — rev $62.1M, 817 BTC, cost-to-mine $36.2k, -$81.8M net, Drumheller 4/22, quotes",
+          "SEC 10-K acc 0001193125-26-127278 (2026-03-27): Bitmain pledge 3,090 BTC, ATM $240.5M sold 2025 + Q1'26 issuance, holdings 6,963 at 3/25/26",
+          "SEC 8-K acc 0001193125-26-296396 + Ex-99.1 (2026-07-06): reverse split mechanics, 1,092.3M pre-split shares -> ~73M",
+          "stockanalysis.com/stocks/abtc (2026-07-24): $5.68, $405M cap, 52wk $5.04–$153.60, no analyst coverage"
+        ]
+      },
+      {
+        "tk": "CLSK",
+        "date": "2026-08-07",
+        "session": "AMC",
+        "confirmed": false,
+        "score": 2,
+        "direction": "upside",
+        "keyNumber": "Non-dilutive project-debt commitment for the ~$2B Sandersville build (plus TX LOI-to-lease timeline color) — the P&L itself is telegraphed: 1,925 BTC mined FQ3 at ~$70K avg tape",
+        "consensusRevM": 158.26,
+        "drivers": [
+          "Zero contracted AI revenue commences this quarter — Sandersville deliveries begin Q4 2027 (8-K 7/14/26) — so the print is pure mining P&L + BTC fair-value marks; the $330M/yr NOI is backlog, not revenue.",
+          "Mining revenue is fully pre-disclosed: FQ3 production = 1,925 BTC (CY26 3,724 through 6/30 per 7/8/26 op update, minus 1,799 in FQ2) at an Apr-Jun BTC tape averaging ~$70K (June -20.5%, $58K low) → bottoms-up revenue ~$135-145M vs Zacks consensus $158.26M / EPS -$0.29 — headline revenue MISS risk if consensus hasn't fully marked to the BTC crash.",
+          "GAAP EPS will mechanically smash through -$0.29: ~13.9K BTC marked from ~$78-80K (3/31) to ~$60K (6/30) ≈ -$250M non-cash hit — exact rerun of FQ2'26 (-$1.52 actual vs -$0.41 est, rev $136.4M vs $152.3M, adj EBITDA -$241M; stock dipped, 5/11/26). Two straight BTC-driven misses = the bar is on the floor and the mechanism is public.",
+          "What the drawdown priced: BTC -20.5% in June to $58-63K, record ~$4-4.5B June ETF outflows, sector -5 to -15% in two weeks — yet CLSK is ~+10% net over the stretch ($13.16 on 7/9 → $13.45 on 7/15 → ~$14.52 now) because of the lease. The 7/14 pop faded same-day: a 20-yr, ~$330M/yr IG NOI stream (>half of the ~$5.6-6.2B EV at a 10x colo multiple) is barely priced — the market is charging for the unfunded $2B build.",
+          "The CALL is the event, not the numbers: first call since the anchor — deliverables are Sandersville project-financing progress (a lease-backed debt print validates the no-dilution model; an equity/ATM signal is the downside tail), TX LOI conversion timing (Needham: 30-120 days), the ~75 MW residual Sandersville power, FY27 capex guide. If a TX lease lands before 8/7, the print becomes a victory lap."
+        ],
+        "sentiment": "Extreme bear positioning into a de-risked narrative: short interest 33.04% of float in June (highest of any >$2B crypto-linked name, up from 32.76% — Yahoo/Benzinga, early July), while all 13 covering analysts are Buy/Strong Buy (avg PT $22.35, +54%; Needham $23, Cantor $26, B. Riley $19 post-lease) vs Zacks quant #3 Hold — a classic sell-side/quant/short three-way split. Retail/X channels are openly debating '$27 AI hyperscaler or 32% short-sque",
+        "sources": [
+          "CleanSpark June 2026 operational update, PR 2026-07-08 (614 BTC June, 1,925 BTC FQ3 implied, 50 EH/s, 13,924 BTC held, 808 MW utilized)",
+          "Blockspace 2026-07-08: June production/holdings",
+          "Yahoo Finance ~2026-07-09/14: 'CLSK Down 8.5% After Strong June Bitcoin Output But Softer Earnings Outlook' (Zacks -$0.29 EPS, revenue -20%+ YoY, Zacks #3 Hold)",
+          "Yahoo/Zacks trending note (mid-July 2026): current-quarter consensus revenue $158.26M, next report cited Aug 11"
+        ]
+      },
+      {
+        "tk": "BTBT",
+        "date": "2026-08-17",
+        "session": "AMC",
+        "confirmed": false,
+        "score": 1,
+        "direction": "inline",
+        "keyNumber": "Colocation revenue line + Q3 run-rate color — proof that NC-1 Nscale billing actually commenced in Q2 and that Paris ($160M, commenced Jul-26) + full NC-1 billing put Q3 consolidated revenue on a ~$45M+ quarterly path (S",
+        "consensusRevM": 32,
+        "drivers": [
+          "[verify-corrected] The pre-computable ETH mark is WORSE than the desk claimed: 140,196 ETH held through Q2 at $2,103.62→$1,569.45 + Apr-May adds ≈ −$90M mark (not −$66M) → GAAP EPS ≈ −$0.28 to −$0.33. Headline-ugly, economically stale (ETH +18.5% QTD since).",
+          "[verify-corrected] WYFI reports ~one day BEFORE BTBT — the operating story is 24h old by this print; BTBT is a derivative of WYFI + the ETH tape.",
+          "The actual thesis events (WYFI re-rate, SOTP discount closing) do not print on BTBT earnings day."
+        ],
+        "sentiment": "Washed out. Tape: -37% in 5 weeks, -17% in 2 weeks, closed 7/24 at $1.37 vs $1.25 52-wk low on 20M shares; WYFI -47% from its 6/22 high ($44.77 → $23.63), so the look-through fell harder than the sector's -5% to -15%. Sell-side is maximum-skew bullish: 4/4 Strong Buy, avg PT $4.13 (+201%) — H.C. Wainwright/B. Riley/Needham axis, all deal-adjacent. Short interest: not obtainable from accessible sources this sweep (flag for the weekly). Retail/X: o",
+        "sources": [
+          "stockanalysis.com/stocks/btbt/ + /forecast/ (price $1.37, mkt cap $484M, FY26 cons $142.62M, 4 Strong Buy PT $4.13, pulled 7/24/26)",
+          "MarketBeat BTBT earnings page (Q2 EPS cons -$0.03; beat/miss history; est. date 8/13/26); WallStreetZen (EPS -$0.05, 8/13/26)",
+          "BTBT Q1-26 results PR 5/14/26, PRNewswire (rev $27.9M: cloud $16.8M/colo $4.8M/staking $2.3M/mining $3.7M; net loss $146.7M incl $121.1M digital-asset marks; adj EBITDA -$9.4M; 155,444 ETH, avg cost $3,045; 27,043,750 WYFI sh; converts $334.2M consolidated)",
+          "BTBT investor deck 8-K 6/30/26 (162,080.6 ETH @ avg $3,007.63; 27.04M WYFI sh; mNAV $3.06 vs $2.02, -34% at 5/31; Galaxy ETH-backed facility; '~76MW online by YE 2026')"
+        ]
+      },
+      {
+        "tk": "NUAI",
+        "date": null,
+        "session": null,
+        "confirmed": false,
+        "score": 1,
+        "direction": "upside",
+        "keyNumber": "Not a P&L number — lease/JV milestone color vs the Oct-8 Macquarie covenant (Stream JV definitive signed? term-sheet/exclusivity language upgrade?); TTM revenue is $1.36M so the income statement is irrelevant",
+        "consensusRevM": null,
+        "drivers": [
+          "DATE UNCONFIRMED: Aug 13, 2026 is a data-provider estimate (WallStreetZen/MarketBeat/CoinCodex), not company-announced; filing pattern supports mid-Aug (Q2-25 10-Q filed 8/14/25; Q1-26 10-Q 5/15/26 with call 5/18). Registry should carry earnDate 2026-08-13 estimated, earnConfirmed false",
+          "NO NUMBERS TO BEAT: Q1-26 revenue $0.80M (legacy helium/gas), net loss $9.0M; Q2 'consensus' is one analyst at EPS -$0.09 (MarketBeat), no published revenue consensus of substance — zero contracted data-center revenue commencing this quarter (signedBooks 0), so the entire print is call-content: first outing for new CEO Charles Nelson",
+          "WHAT THE CALL CAN DELIVER (upside): Stream/Apollo JV definitive agreement ('JV docs are well underway. Multiple turns already with the lawyers' — 5/18/26, i.e. ~3 months of lawyering by print day) and lease-negotiation color 8 weeks ahead of the Oct-8 covenant — the forcing function makes material commercial news in the Aug-Oct window likelier than for any sector peer; an actual lease 8-K could land before or at the print and moot everything else",
+          "MECHANICAL DOWNSIDE AT THE PRINT: going-concern doubt was RETAINED in the Q1 10-Q (5/15/26) despite the $115M April raise and $80M+ cash at 4/30 (Macquarie tranches A-2/A-3/DDTL are 'available solely at Macquarie's discretion'), so a repeat is likely in the Q2 10-Q; worse, the 7/17/26 Consent Letter can require the $100M ATM program 'within five business days following the filing of the Company's next quarterly or annual periodic report' — a $100M ATM overhang (vs $484M cap) may go up right on the print",
+          "WHAT'S PRICED: NUAI did NOT de-rate with the sector — +8% over the two-week rout (7/10 $4.43 → 7/24 $4.78) vs sector -5% to -15%, because the Conversant 13G (7/20) and B. Riley initiation (7/7, Buy $10) sparked a +45% spike to $5.91 (7/21) that only half-faded (-10.2% on 7/24 alone). Still -28% from the 6/22 high ($6.68) and ~-49% from the 52-wk high ($9.445), so the binary carries real embedded upside (consensus PT $10.50 = ~120%), but positioning is NOT washed out — hence only modest positive skew"
+        ],
+        "sentiment": "Two-sided and hotter than the sector: institutional accumulation is fresh (Conversant Capital/Simanovsky 13G 7/20/26, 5.39M sh; Macquarie took equity at $5.00 in April), sell-side is unanimously bullish but thin (2 analysts, Strong Buy, avg PT $10.50 — B. Riley $10 initiated 7/7/26, Northland is the underwriter — treat skew accordingly), and retail/X tone is promotional microcap-bullish (our tracked feed Agrippa Investments is a disclosed NUAI lo",
+        "sources": [
+          "stockanalysis.com/stocks/nuai (fetched 7/24/26 close): $4.775, -10.24% day, mkt cap $483.7M, 52wk $0.321-$9.445, TTM rev $1.36M, 2 analysts Strong Buy PT $10.50, next earnings Aug 13 2026",
+          "MarketBeat NUAI earnings page: Q2-26 est EPS -$0.09 (1 analyst), FY26 -$0.43; Q1-26 actual rev $0.80M / EPS -$0.16; Q4-25 $0.19M; Q3-25 $0.16M",
+          "Yahoo Finance chart API (3mo daily, pulled 7/24/26): 7/16 $3.98 low, 7/21 $5.91 spike, 7/24 $4.78; 3-mo high $6.68 on 6/22",
+          "NUAI Q1-26 10-Q filed 5/15/26: going-concern retention, discretionary tranches, ATM covenant"
+        ]
+      },
+      {
+        "tk": "KEEL",
+        "date": "2026-08-10",
+        "session": "BMO",
+        "confirmed": false,
+        "score": 1.5,
+        "direction": "inline",
+        "keyNumber": "Lease-funnel language on the call — does 'active conversations' upgrade to term sheets/exclusivity, and is 'three leases by YE26' reaffirmed with Panther Creek full-site permits confirmed complete ('mid-late summer' dead",
+        "consensusRevM": 35.07,
+        "drivers": [
+          "REVENUE IS MECHANICAL, NO CONTRACTED COMMENCEMENTS: signedBooks = 0, so zero lease/rent revenue starts this quarter or any quarter yet. Q2 revenue is shrinking legacy BTC mining/energy: Q1 printed $37M (-23% YoY) and MISSED estimates (Stocktwits 5/11/26); Paso Pe Paraguay (70MW) sold 4/22/26 removes revenue; Quebec fleet shrinking into HPC conversion (Sherbrooke 7/15). Consensus $35.07M / EPS -$0.07 (Benzinga/Public/MarketBeat, retrieved 7/24/26) already models the decline — a $2-3M beat or miss moves nothing.",
+          "NO MONTHLY PRODUCTION PRINTS: unlike the pure miners, Keel discontinued monthly BTC production updates post-rebrand (none in the May-Jul PR record) — slightly more mining-revenue variance than peers, but the book is small and consensus low, so surprise potential in REVENUE is minimal either way. The print is a pure call-catalyst event.",
+          "GUIDANCE/BEAT HISTORY IS POOR AND REVISIONS ARE NEGATIVE: Q1-26 missed; Zacks consensus FY26 loss widened to 47c from 45c and FY27 to 22c from 19c over the past 30 days (Zacks via TradingView); Zacks Rank #3 Hold, Value Score F. Operating loss ran $98M in Q1 — a capex-overrun confirmation on the call (echoing the July delay leads) is the live downside tail.",
+          "WHAT THE DRAWDOWN DE-RATED: stock $5.74 (6/30) → $4.46 (7/24), -22% in July vs sector -5/-15%, and -40% off the $7.37 52-wk high; the June retail imminent-deal froth ($6.60 near 4-yr high on 6/1, 'deal announcements over the next 2 weeks' chatter) has fully unwound. Lease doubt, permit slippage, and cash burn are now PRICED; both converts ($6.86/$7.41 strikes) are OTM so there is no near-term forced-dilution overhang, and ~$920M liquidity is not in question.",
+          "CALL OPTIONALITY IS THE WHOLE TRADE: deliverables that would rip a 12.2%-shorted, washed-out stock — (1) funnel upgrade to term-sheet/exclusivity language, (2) Panther Creek full-site permit completion (due exactly now), (3) hard reaffirmation of three-by-YE26 with site-level specifics, (4) Aiyer's first call appearance with pipeline color, (5) Quebec conversion monetization detail. Symmetric risk: hedged YE26 language or confirmed 'delays and capex overruns' (currently only low-quality LEADS from StocksToTrade/Sykes 7/1, 7/24) would extend the de-rate."
+        ],
+        "sentiment": "Washed out and crowded short into the print: -22% July ($5.74→$4.46), -40% off the $7.37 high, underperforming the sector's -5/-15% two-week selloff; short interest 73.3M shares = 12.2% of shares out, +9.6% period-over-period and rising (MarketBeat, Jul-26). Retail/Stocktwits swung from 'extremely bullish' imminent-deal froth in early June (stock $6.60, '$13 fair value' chatter — LEADS) to capitulation after the no-deal July and the Aiyer-hire se",
+        "sources": [
+          "Benzinga/Public.com/MarketBeat consensus Q2-26 rev $35.07M, EPS -$0.07 (retrieved 7/24/26)",
+          "MarketBeat KEEL short interest page (Jul-26): 73.3M sh, 12.2%, +9.6%",
+          "MarketBeat earnings page: Q2 report est. 8/11/26 (unconfirmed by company)",
+          "Q1-26 results PR 5/11/26 ($37M rev, -23% YoY, $98M op loss, $533M liquidity 5/8)"
+        ]
+      }
+    ]
+  }
 }

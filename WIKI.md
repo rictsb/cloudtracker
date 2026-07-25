@@ -3,7 +3,7 @@
 The terse, always-current reference. Plain-English companion to `AI-Infra-Tracker-Spec.md` (binding). Present-tense only — no history (that's `CHANGELOG.md`).
 
 ## What it is
-First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Leases** (the registry + print tape) · **Coverage** (contracted value vs market cap) · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser) · **Portfolio** (the self-balancing paper book).
+First-principles relative-value tracker for AI-infrastructure equities; value rolls up from sites. Static web app, all data in `data.json`. Screens: **Comparison** (dashboard) · **All sites** · **Leases** (the registry + print tape) · **Coverage** (contracted value vs market cap) · **Raises** (capital-raise event study) · **Outlook** (the forward book: next leases + earnings setup) · **Company full-page** · **Global dials** · **Checks** (the data test suite, live in the browser) · **Portfolio** (the self-balancing paper book).
 
 ## The formula
 One engine; only the per-MW step branches by model.
@@ -47,6 +47,9 @@ One row per name, sortable by any column: **market cap** (reported/basic `shares
 
 ## Raises screen
 The capital-raise event study (spec §6c): every announced raise as a dated, sourced fact in per-company `raises[]` — `{d, ah, kind equity/atm/convert/debt/pref/other, sizeM, terms, use, source}` — with day-0 reaction and forward returns **derived live from the portfolio ledger, never stored**. Tables show absolute day-0 / +5d / +15d; the row detail adds the +30d path and per-window excess (return minus the equal-weight universe over the same span). Aggregates (median · hit rate · N, complete windows only) by instrument test the drop-then-recover hypothesis. Entry rules: **new-capital announcements only** (refis/refixes stay in `log[]`); `d` = the announcement wire, not pricing/close (converts usually launch after the close → `ah:true`); ATM = the program announcement, cap as size; every record carries a source and is sanity-checked against the ledger before entry. Display-only — the engine never reads it.
+
+## Outlook screen
+The forward book — pure judgement, refreshed weekly by the Monday sweep into a top-level `outlook` object (present-tense, overwritten; NEVER a valuation input). **Next leases**: P(new binding lease, ~6mo) per name with expected MW, window, candidate tenant/site, a 1–5 build-speed score (differential execution: announced→energized track record), and the quoted evidence trail; big-leases-only filter at ≥100MW. **Earnings setup**: per earnings date (owner's calendar; est. = unconfirmed), a −5…+5 surprise score = likely earnings-day surprise RELATIVE TO WHAT IS PRICED, the key metric, consensus anchor, drivers, sentiment. Checks validate tickers, bounds and staleness (>8d = sweep overdue).
 
 ## Dashboard gauge
 Per row: bar = our value (target), split **contracted floor (solid) / expected pipeline (hatched) / legacy (gold)**; dark line = market price; green gap = upside, red = overvalued. Sorted by upside. "▸ valuation narrative" expands the per-name thesis.
