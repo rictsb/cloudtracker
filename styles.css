@@ -92,6 +92,15 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
 .rampstats{display:flex;gap:34px;flex-wrap:wrap;margin:12px 4px 14px}
 .rampstat span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px}
 .rampstat b{font-family:var(--mono);font-size:19px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.rampstat i{display:block;font-family:var(--mono);font-style:normal;font-size:10px;min-height:13px;margin-top:1px;font-variant-numeric:tabular-nums}
+.rampyears{position:relative;height:13px;margin-top:2px}
+.rampyears span{position:absolute;transform:translateX(-50%);font-family:var(--mono);font-size:9px;color:var(--ink-soft)}
+tr.yrb td{border-top:2px solid #D8D2C4}
+@keyframes ramptick{from{opacity:.15;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .rampstat b.tick{animation:ramptick .25s ease-out}
+  .rampcall .rampev{animation:ramptick .25s ease-out both}
+}
 .rampcall{border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px 14px;margin:0 4px 6px;min-height:46px}
 .rampcall .cq{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
 .rampev{display:flex;gap:9px;align-items:baseline;font-size:12.5px;margin:3px 0}

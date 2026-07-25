@@ -320,9 +320,10 @@ function renderOutlook(){
   body.querySelectorAll('.oerow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('oe-'+tr.dataset.i);if(d)d.classList.toggle('open');const c2=tr.querySelector('td');if(c2)c2.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
 }
 /* ---- GPU ramp page (spec §6 screen 11) — the rollout explorer: scrub or replay the build-out quarter by
-   quarter, per-quarter callouts, tranche spotlight, synced crosshairs. Display-only; never a valuation input ---- */
+   quarter, per-quarter dispatches, tranche spotlight, synced crosshairs, model-vs-street mode.
+   Display-only; never a valuation input ---- */
 let rampCo='IREN';
-let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO=false,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1;
+let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO=false,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1,RAMP_REV_MODE='gen';
 const RAMP_GEN={hopper:{c:'var(--gen-hopper)',n:'Hopper'},blackwell:{c:'var(--gen-blackwell)',n:'Blackwell'},rubin:{c:'var(--gen-rubin)',n:'Rubin-class'},next:{c:'var(--gen-next)',n:'Next-gen'}};
 const RAMP_QS=l=>{const y=+l.slice(0,4),q=+l.slice(5);return (y-2026)*4+q;};
 const RAMP_QL=s=>`${2026+Math.floor((s-1)/4)}Q${((s-1)%4)+1}`;
@@ -331,18 +332,18 @@ function rampQuarters(R){
   const YR=s=>2026+Math.floor((s-1)/4);   // serial 1 = 2026Q1 … 20 = 2030Q4
   const out=[];
   for(let s=RAMP_START;s<=RAMP_END;s++){
-    const by={hopper:0,blackwell:0,rubin:0,next:0},rv={hopper:0,blackwell:0,rubin:0,next:0};
+    const by={hopper:0,blackwell:0,rubin:0,next:0},rv={hopper:0,blackwell:0,rubin:0,next:0},camps={};
     let cum=0,prev=0,signed=0,ctr=0,rev=0;
     R.tranches.forEach(t=>{
       const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1),f0=Math.min(Math.max((s-rs)/t.rampQtrs,0),1);
       if(f<=0)return;const live=t.gpus*f;
-      by[t.gen]+=live;cum+=live;prev+=t.gpus*f0;signed+=live*(t.signed||0);ctr+=live*t.ctr;
+      by[t.gen]+=live;cum+=live;prev+=t.gpus*f0;signed+=live*(t.signed||0);ctr+=live*t.ctr;camps[t.campus]=1;
       const er=t.ctr*t.rate+(1-t.ctr)*(R.spot[String(YR(s))]||0)*(R.spotMult[t.gen]||1);
       const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;});
     const grossMW=R.tranches.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
     const itMW=R.tranches.reduce((a,t)=>{const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);return a+t.itMW*f;},0);
     const lbl=RAMP_QL(s);const cons=(R.consensus||{})[lbl]||null;
-    out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,grossMW,itMW,
+    out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,grossMW,itMW,nCamps:Object.keys(camps).length,
       mining:(R.mining||{})[lbl]||0,consTot:cons?cons[0]:null,consAI:cons?cons[1]:null,
       blend:cum>0?rev*1e6/(cum*2190):0});}
   return out;
@@ -387,16 +388,26 @@ function rampGanttHTML(R){
   const dec=l=>{const y=+l.slice(0,4),q=+l.slice(5);return y+(q-1)*0.25;};
   const CAMPS=[...new Set([...R.tranches].sort((a,b)=>dec(a.energize)-dec(b.energize)).map(t=>t.campus))];
   const rows=R.tranches.map((t,ti)=>({t,ti})).sort((a,b)=>(CAMPS.indexOf(a.t.campus)-CAMPS.indexOf(b.t.campus))||(dec(a.t.energize)-dec(b.t.energize)));
-  const rowH=22,H=34+rows.length*rowH+26;
+  const rowH=22,top=44,H=top+rows.length*rowH+26;
   const X=rampGanttX,tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
   let stat='',bars='';
   stat+='<defs>'+Object.entries(RAMP_GEN).map(([k,g])=>`<pattern id="rghx-${k}" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="${g.c}" opacity="0.3"/><rect width="2.2" height="5" fill="${g.c}" opacity="0.85"/></pattern>`).join('')+
     `<clipPath id="rampClipG"><rect id="rampClipGR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
   for(let yr=2026;yr<=2031;yr++){const x=X(yr);stat+=`<line x1="${x.toFixed(1)}" y1="18" x2="${x.toFixed(1)}" y2="${H-22}" style="stroke:var(--line);stroke-width:1"/><text x="${(x+4).toFixed(1)}" y="${H-8}" ${tx}>${yr}</text>`;}
+  const tn=X(NOW);
+  stat+=`<line x1="${tn.toFixed(1)}" y1="18" x2="${tn.toFixed(1)}" y2="${H-22}" style="stroke:var(--clay);stroke-width:1;stroke-dasharray:2 3"/><text x="${(tn-4).toFixed(1)}" y="${H-26}" text-anchor="end" style="font-family:var(--mono);font-size:9px;fill:var(--clay)">TODAY</text>`;
+  // era bands: the three chapters of the calendar
+  const ERAS=[[2026,2027,'PROVE','480MW · 150k GPUs'],[2027,2028,'SCALE','the 1,210MW program'],[2028,2031.1,'COMPOUND','Sweetwater · Kiowa · EU / AU']];
+  ERAS.forEach(([a,b,nm,sub],i)=>{const x0=X(Math.max(a,G.d0)),x1=X(Math.min(b,G.d1));
+    stat+=`<rect x="${x0.toFixed(1)}" y="18" width="${(x1-x0).toFixed(1)}" height="${H-40}" fill="${i%2?'rgba(42,39,34,.028)':'transparent'}" style="pointer-events:none"/>`;
+    stat+=`<text x="${(x0+6).toFixed(1)}" y="30" style="font-family:var(--mono);font-size:9px;fill:var(--ink);letter-spacing:.14em;font-weight:500">${nm}</text><text x="${(x0+6).toFixed(1)}" y="40" style="font-family:var(--mono);font-size:8.5px;fill:var(--ink-soft)">${sub}</text>`;});
   stat+=`<rect x="${G.ml}" y="18" width="${W-G.ml-G.mr}" height="${H-40}" fill="transparent" style="cursor:crosshair" onclick="rampGanttSeek(event)"/>`;
   let lastCamp=null;
-  rows.forEach(({t,ti},i)=>{const y=30+i*rowH;
-    if(t.campus!==lastCamp){lastCamp=t.campus;stat+=`<text x="2" y="${y+12}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.06em">${t.campus.toUpperCase()}</text>`;}
+  rows.forEach(({t,ti},i)=>{const y=top+i*rowH;
+    if(t.campus!==lastCamp){lastCamp=t.campus;
+      const span=rows.filter(r=>r.t.campus===t.campus).length;
+      if(CAMPS.indexOf(t.campus)%2)stat+=`<rect x="0" y="${y-2}" width="${G.ml-8}" height="${span*rowH}" fill="rgba(55,73,91,.045)" style="pointer-events:none"/>`;
+      stat+=`<text x="4" y="${y+12}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.06em">${t.campus.toUpperCase()}</text>`;}
     const th=Math.max(4,Math.sqrt(t.grossMW)*1.05),x0=X(dec(t.energize)),x1=X(2031.1);
     const g=RAMP_GEN[t.gen],solid=(t.signed||0)>0;
     const tip=`<b>${t.n}</b><br>${t.campus} · ${g.n}<br>${t.grossMW}MW gross · ${t.itMW}MW IT · ${(t.gpus/1000).toFixed(0)}k GPUs<br>energized ${t.energize} · first revenue ${t.rev} (${t.rampQtrs}q ramp)<br>${solid?`signed today (${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr)`:`uncontracted today · modeled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr at commissioning`}<br><span style="color:var(--ink-soft)">click to spotlight this tranche</span>`;
@@ -405,11 +416,9 @@ function rampGanttHTML(R){
     const rx=X(dec(t.rev));
     bars+=`<path data-ti="${ti}" class="rampbarR" d="M ${rx.toFixed(1)} ${y+rowH/2-6} l 4.5 5 l -4.5 5 l -4.5 -5 z" fill="var(--ink)" opacity="0.85" style="pointer-events:none"/>`;
     stat+=`<text x="${(X(2031.1)+3).toFixed(1)}" y="${y+rowH/2+3}" style="font-family:var(--mono);font-size:9px;fill:var(--ink-soft)">${t.grossMW}MW</text>`;});
-  const tn=X(NOW);
-  stat+=`<line x1="${tn.toFixed(1)}" y1="18" x2="${tn.toFixed(1)}" y2="${H-22}" style="stroke:var(--clay);stroke-width:1;stroke-dasharray:2 3"/><text x="${(tn-4).toFixed(1)}" y="27" text-anchor="end" style="font-family:var(--mono);font-size:9px;fill:var(--clay)">TODAY</text>`;
   const ghost=`<g class="rampghost" style="pointer-events:none">${bars.replace(/onmousemove="[^"]*" onmouseleave="[^"]*" onclick="[^"]*"/g,'')}</g>`;
   const reveal=`<g clip-path="url(#rampClipG)">${bars}</g>`;
-  const sweep=`<g id="rampSweepG" style="pointer-events:none"><line id="rampSweepGL" x1="0" y1="18" x2="0" y2="${H-22}" style="stroke:var(--ink);stroke-width:1.5"/><text id="rampSweepGT" x="0" y="14" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--ink);font-weight:600"></text></g>`;
+  const sweep=`<g id="rampSweepG" style="pointer-events:none"><line id="rampSweepGL" x1="0" y1="18" x2="0" y2="${H-22}" style="stroke:var(--ink);stroke-width:1.5"/><g id="rampSweepChip"><rect id="rampSweepChipR" x="-26" y="2" width="52" height="15" rx="3" fill="var(--ink)"/><text id="rampSweepGT" x="0" y="13" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--paper);font-weight:600"></text></g></g>`;
   const hl=`<rect id="rampHLG" y="18" height="${H-40}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Capacity tranches by campus: energization to first revenue; drag the timeline to replay">${stat}${hl}${ghost}${reveal}${sweep}</svg>`;
 }
@@ -424,6 +433,11 @@ function rampFleetHTML(Q){
   stat+=`<defs><clipPath id="rampClipF"><rect id="rampClipFR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
   for(let k=0;k<max;k+=200000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':k/1000+'k'}</text>`;}
   Q.forEach((q,i)=>{if(i%2)return;stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
+  // era annotations: first Rubin quarter, first next-gen quarter
+  const mark=(cond,txt)=>{const i=Q.findIndex(cond);if(i<0)return;
+    stat+=`<line x1="${X(i).toFixed(1)}" y1="${mt}" x2="${X(i).toFixed(1)}" y2="${mt+10}" style="stroke:var(--ink-soft);stroke-width:1"/><text x="${(X(i)+4).toFixed(1)}" y="${mt+8}" style="font-family:var(--mono);font-size:8.5px;fill:var(--ink-soft);letter-spacing:.08em">${txt}</text>`;};
+  mark(q=>q.by.rubin>0,'SWEETWATER / RUBIN ERA');
+  mark(q=>q.by.next>0,'NEXT-GEN');
   let base=Q.map(()=>0);
   ['hopper','blackwell','rubin','next'].forEach(gk=>{
     const tops=Q.map((q,i)=>base[i]+q.by[gk]);
@@ -444,9 +458,10 @@ function rampFleetHTML(Q){
     cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Revenue-generating GPUs by generation, quarterly">${stat}<rect id="rampHLF" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipF)">${body}</g><path id="rampSelF0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelF" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
 }
-function rampRevHTML(Q){
+function rampRevHTML(Q,mode){
   const F=RAMP_F,W=F.W,ml=F.ml,mr=F.mr,H=310,mt=16,ph=H-mt-26;
-  const max=Math.max(...Q.map(q=>q.rev+q.mining))*1.1;
+  const tots=Q.map(q=>q.rev+q.mining);
+  const max=Math.max(...tots)*1.1;
   const n=Q.length,slot=(W-ml-mr)/n,bw=slot*0.6;
   const X=i=>ml+i*slot+slot/2,Y=v=>mt+ph-(v/max)*ph;
   RAMP_F.rX=X;RAMP_F.rY=Y;RAMP_F.rmax=max;RAMP_F.rslot=slot;
@@ -455,16 +470,42 @@ function rampRevHTML(Q){
   stat+=`<defs><clipPath id="rampClipR"><rect id="rampClipRR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
   for(let k=0;k<max;k+=2000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+k/1000+'B'}</text>`;}
   Q.forEach((q,i)=>{if(i%2===0)stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
-  Q.forEach((q,i)=>{let y0=mt+ph;
-    const parts=[['mining',q.mining,'var(--far)','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],RAMP_GEN[g].c,RAMP_GEN[g].n])];
-    parts.forEach(([g,v,col])=>{if(v<1)return;const h=(v/max)*ph;
-      body+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(h,0.5).toFixed(1)}" fill="${col}" style="stroke:var(--card);stroke-width:1.5"/>`;y0-=h;});
+  const consPts=Q.map((q,i)=>q.consTot!=null?[i,q.consTot]:null).filter(Boolean);
+  if(mode==='street'){
+    // the wedge: model total vs street, trapezoid-shaded by sign per quarter (empty-safe)
+    for(let k=0;k<consPts.length-1;k++){
+      const [i0,c0]=consPts[k],[i1,c1]=consPts[k+1],t0=tots[i0],t1=tots[i1];
+      const above=(t0-c0+t1-c1)/2>=0;
+      body+=`<path d="M${X(i0).toFixed(1)},${Y(t0).toFixed(1)} L${X(i1).toFixed(1)},${Y(t1).toFixed(1)} L${X(i1).toFixed(1)},${Y(c1).toFixed(1)} L${X(i0).toFixed(1)},${Y(c0).toFixed(1)} Z" fill="${above?'rgba(91,122,92,.16)':'rgba(170,107,79,.16)'}"/>`;}
+    if(consPts.length){
+      body+=`<path d="M${consPts.map(([i,c])=>`${X(i).toFixed(1)},${Y(c).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
+      consPts.forEach(([i,c])=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(c).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
+    body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(tots[i]).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--indigo);stroke-width:2.4"/>`;
+    Q.forEach((q,i)=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(tots[i]).toFixed(1)}" r="2.8" fill="var(--indigo)" style="stroke:var(--card);stroke-width:1.5"/>`;});
+    if(consPts.length){
+      // per-quarter deltas, every other consensus quarter
+      consPts.forEach(([i,c],k)=>{if(k%2)return;const d=tots[i]/c-1;if(Math.abs(d)<0.005)return;
+        body+=`<text x="${X(i).toFixed(1)}" y="${(Math.min(Y(tots[i]),Y(c))-8).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9px;font-weight:600;fill:${d>=0?'var(--pine)':'var(--clay)'}">${d>=0?'+':''}${Math.round(d*100)}%</text>`;});
+      const [li2,lc]=consPts[consPts.length-1];
+      body+=`<text x="${(X(li2)+8).toFixed(1)}" y="${(Y(lc)+4).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">street</text>`;
+      // cumulative wedge annotation, anchored inside the wedge opening (index-safe for shorter consensus runs)
+      const wedge=consPts.reduce((a,[i,c])=>a+(tots[i]-c),0);
+      const kk=Math.min(13,consPts.length-1),[wi,wc]=consPts[kk];
+      body+=`<text x="${X(Math.min(wi+1,Q.length-1)).toFixed(1)}" y="${((Y(tots[wi])+Y(wc))/2).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:${wedge>=0?'var(--pine)':'var(--clay)'}">the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street</text>`;}
+    body+=`<text x="${(X(Q.length-1)-8).toFixed(1)}" y="${(Y(tots[Q.length-1])-8).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--indigo);font-weight:600">model</text>`;
+  }else{
+    Q.forEach((q,i)=>{let y0=mt+ph;
+      const parts=[['mining',q.mining,'var(--far)','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],RAMP_GEN[g].c,RAMP_GEN[g].n])];
+      parts.forEach(([g,v,col])=>{if(v<1)return;const h=(v/max)*ph;
+        body+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(h,0.5).toFixed(1)}" fill="${col}" style="stroke:var(--card);stroke-width:1.5"/>`;y0-=h;});});
+    if(consPts.length){body+=`<path d="M${consPts.map(([i,c])=>`${X(i).toFixed(1)},${Y(c).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
+      consPts.forEach(([i,c])=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(c).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
+  }
+  Q.forEach((q,i)=>{
+    const parts=[['mining',q.mining,'','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],'',RAMP_GEN[g].n])];
     const tip=`<b>${q.lbl}</b><br>total $${Math.round(q.rev+q.mining)}M${q.consTot?` · consensus $${Math.round(q.consTot)}M (Δ ${Math.round(((q.rev+q.mining)/q.consTot-1)*100)}%)`:''}<br>`+parts.filter(p=>p[1]>=1).map(p=>`${p[3]} $${Math.round(p[1])}M`).join(' · ')+`<br>blend $${q.blend.toFixed(2)}/GPU-hr<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
     cap+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
-  const cpts=Q.map((q,i)=>q.consTot!=null?`${X(i).toFixed(1)},${Y(q.consTot).toFixed(1)}`:null).filter(Boolean);
-  if(cpts.length){body+=`<path d="M${cpts.join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
-    Q.forEach((q,i)=>{if(q.consTot==null)return;body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(q.consTot).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarterly revenue by GPU generation vs Bloomberg consensus">${stat}<rect id="rampHLR" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipR)">${body}</g><path id="rampSelR0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelR" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarterly revenue ${mode==='street'?'model vs Bloomberg consensus':'by GPU generation vs Bloomberg consensus'}">${stat}<rect id="rampHLR" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipR)">${body}</g><path id="rampSelR0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelR" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
 }
 /* ---- interactions ---- */
 function rampSeek(v,keepPlay){RAMP_T=Math.max(RAMP_START,Math.min(RAMP_END,+v));if(!keepPlay)rampStop();rampApply();}
@@ -473,6 +514,19 @@ function rampGanttSeek(e){const svg=e.currentTarget.ownerSVGElement,r=svg.getBou
   const vx=(e.clientX-r.left)*(RAMP_GANTT.W/r.width);
   const G=RAMP_GANTT,dec=G.d0+(vx-G.ml)/((G.W-G.ml-G.mr)/(G.d1-G.d0));
   rampSeek((dec-2026)/0.25);}
+function rampRevMode(m){if(m===RAMP_REV_MODE)return;RAMP_REV_MODE=m;
+  const holder=document.getElementById('rampRevWrap');if(!holder||!RAMP_CTX)return;
+  holder.innerHTML=rampRevHTML(RAMP_CTX.Q,m)+'<div class="bo-tip"></div>';
+  document.querySelectorAll('[data-rm]').forEach(b=>b.classList.toggle('on',b.dataset.rm===m));
+  const lg=document.getElementById('rampRevLeg');if(lg)lg.innerHTML=rampRevLegend(m);
+  RAMP_CUR=-1;rampApply();
+  if(RAMP_SEL!=null){const keep=RAMP_SEL;RAMP_SEL=null;rampSelect(keep,true);}}
+function rampRevLegend(m){
+  const genLeg=Object.entries(RAMP_GEN).map(([k,g])=>`<span class="bo-leg"><i style="background:${g.c}"></i>${g.n}</span>`).join('');
+  const lineLeg=(col,lab)=>`<span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed ${col}"></i>${lab}</span>`;
+  return m==='street'
+    ?`<span class="bo-leg"><i style="height:2px;border-radius:0;background:var(--indigo)"></i>model (total)</span>${lineLeg('var(--ink-soft)','consensus (Bloomberg)')}<span class="bo-leg"><i style="background:rgba(91,122,92,.4)"></i>model above street</span><span class="bo-leg"><i style="background:rgba(170,107,79,.4)"></i>below</span>`
+    :`${genLeg}<span class="bo-leg"><i style="background:var(--far)"></i>BTC mining (residual)</span>${lineLeg('var(--ink-soft)','consensus (Bloomberg)')}`;}
 function rampStop(){if(RAMP_INTRO_TO){clearTimeout(RAMP_INTRO_TO);RAMP_INTRO_TO=0;}
   RAMP_PLAYING=false;if(RAMP_RAF)cancelAnimationFrame(RAMP_RAF);if(RAMP_IV)clearInterval(RAMP_IV);RAMP_RAF=0;RAMP_IV=null;
   const b=document.getElementById('rampPlayBtn');if(b)b.textContent=(RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play';}
@@ -495,7 +549,7 @@ function rampHoverQ(i){const C=RAMP_CTX;if(!C)return;const F=RAMP_F;
   const s=RAMP_START+i,x0=rampGanttX(2026+(s-1)*0.25),x1=rampGanttX(2026+s*0.25);
   set('rampHLG',x0,x1-x0);}
 function rampHoverClear(){['rampHLF','rampHLR','rampHLG'].forEach(id=>{const el=document.getElementById(id);if(el)el.setAttribute('width',0);});}
-function rampSelect(ti){
+function rampSelect(ti,noScroll){
   const C=RAMP_CTX;if(!C)return;
   RAMP_SEL=(RAMP_SEL===ti)?null:ti;
   document.querySelectorAll('#ramp-body [data-ti]').forEach(el=>{el.style.opacity=(RAMP_SEL==null||+el.dataset.ti===RAMP_SEL)?'':'0.12';});
@@ -519,42 +573,57 @@ function rampSelect(ti){
     f('Contract',(t.signed||0)>0?`signed today — ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`:`uncontracted today — modeled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`,(t.signed||0)>0?'take-or-pay, bills 8,760 hr/yr':'rest earns effective spot')+
     f('Peak quarter',`$${Math.round(peak)}M revenue`)+
     `</div>`;
-  card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+  if(!noScroll)card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
 }
 function rampApply(){
   const C=RAMP_CTX;if(!C)return;
   const T=Math.max(RAMP_START,Math.min(RAMP_END,RAMP_T)),cur=Math.min(RAMP_END,Math.round(T)),q=C.Q[cur-RAMP_START];
-  // clips + sweep
+  // every frame: clips, sweep, scrubber fill
   const gx=rampGanttX(2026+T*0.25);
   const gr=document.getElementById('rampClipGR');if(gr)gr.setAttribute('width',gx.toFixed(1));
-  const sl=document.getElementById('rampSweepGL'),st=document.getElementById('rampSweepGT');
+  const sl=document.getElementById('rampSweepGL');
   if(sl){sl.setAttribute('x1',gx.toFixed(1));sl.setAttribute('x2',gx.toFixed(1));}
-  if(st){st.setAttribute('x',Math.min(gx,RAMP_GANTT.W-30).toFixed(1));st.textContent=RAMP_QL(cur);}
+  const chip=document.getElementById('rampSweepChip');
+  if(chip)chip.setAttribute('transform',`translate(${Math.max(RAMP_GANTT.ml+26,Math.min(gx,RAMP_GANTT.W-30)).toFixed(1)},0)`);
   const F=RAMP_F,fx=F.X(Math.max(0,T-RAMP_START))+((F.W-F.ml-F.mr)/(C.Q.length-1))/2;
   const fr=document.getElementById('rampClipFR');if(fr)fr.setAttribute('width',fx.toFixed(1));
   const rx=F.rX(Math.max(0,T-RAMP_START))+F.rslot/2;
   const rr=document.getElementById('rampClipRR');if(rr)rr.setAttribute('width',rx.toFixed(1));
-  // scrubber (every frame; idempotent during a user drag since T derives from the input)
-  const rg=document.getElementById('rampRange');if(rg)rg.value=T;
+  const rg=document.getElementById('rampRange');
+  if(rg){rg.value=T;const p=((T-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(2);
+    rg.style.background=`linear-gradient(to right,var(--indigo) ${p}%,var(--line) ${p}%)`;}
   // quarter-keyed writes: only when the displayed quarter actually changes
   if(cur===RAMP_CUR)return;
   RAMP_CUR=cur;
+  const st=document.getElementById('rampSweepGT');if(st)st.textContent=RAMP_QL(cur);
   const qn=document.getElementById('rampQnow');if(qn)qn.textContent=RAMP_QL(cur);
-  const S=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  const S=(id,v)=>{const el=document.getElementById(id);if(!el)return;el.textContent=v;
+    if(!reduce){el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');}};
   S('rs-gpu',(q.cum/1000).toFixed(q.cum<100000?1:0)+'k');
   S('rs-mw',Math.round(q.grossMW).toLocaleString());
   S('rs-it',Math.round(q.itMW).toLocaleString());
   S('rs-rev','$'+Math.round(q.rev+q.mining).toLocaleString()+'M');
   S('rs-blend','$'+q.blend.toFixed(2));
   S('rs-sign',q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—');
-  // callouts
+  const qp=cur>RAMP_START?C.Q[cur-RAMP_START-1]:null;
+  const D=(id,v,fmt)=>{const el=document.getElementById(id+'-d');if(!el)return;
+    if(qp==null||v==null||Math.abs(v)<1e-9){el.textContent='';return;}
+    el.textContent=(v>0?'+':'−')+fmt(Math.abs(v))+' q/q';el.style.color=v>0?'var(--pine)':'var(--clay)';};
+  D('rs-gpu',qp?q.cum-qp.cum:null,v=>(v/1000).toFixed(1)+'k');
+  D('rs-mw',qp?q.grossMW-qp.grossMW:null,v=>Math.round(v).toLocaleString());
+  D('rs-it',qp?q.itMW-qp.itMW:null,v=>Math.round(v).toLocaleString());
+  D('rs-rev',qp?(q.rev+q.mining)-(qp.rev+qp.mining):null,v=>'$'+Math.round(v).toLocaleString()+'M');
+  D('rs-blend',qp?q.blend-qp.blend:null,v=>'$'+v.toFixed(2));
+  const d=q.consTot!=null?(q.rev+q.mining)/q.consTot-1:null;
+  S('rs-street',d==null?'—':(d>=0?'+':'')+Math.round(d*100)+'%');
+  const rsEl=document.getElementById('rs-street');if(rsEl)rsEl.style.color=d==null?'':(d>=0?'var(--pine)':'var(--clay)');
+  // the dispatch
   const cc=document.getElementById('rampCall');
   if(cc){const evs=C.EV[cur]||[];const nxt=C.EV[cur+1]||[];
     const PILL={power:['disclosed','power'],rev:['estimated','revenue'],mile:['rumored','milestone']};
-    cc.innerHTML=`<div class="cq">${RAMP_QL(cur)} — what happens</div>`+
-      (evs.length?evs.map(e=>`<div class="rampev"><span class="prov ${PILL[e.k][0]}">${PILL[e.k][1]}</span><span>${e.t}</span></div>`).join(''):`<div class="rampev" style="color:var(--ink-soft)">quiet quarter — capacity ramps, revenue compounds</div>`)+
+    cc.innerHTML=`<div class="cq">${RAMP_QL(cur)} · dispatch</div>`+
+      (evs.length?evs.map((e,i)=>`<div class="rampev" style="${reduce?'':`animation-delay:${i*60}ms`}"><span class="prov ${PILL[e.k][0]}">${PILL[e.k][1]}</span><span>${e.t}</span></div>`).join(''):`<div class="rampev" style="color:var(--ink-soft)">quiet quarter — capacity ramps, revenue compounds</div>`)+
       (nxt.length?`<div class="rampnext">next quarter: ${nxt[0].t}${nxt.length>1?` (+${nxt.length-1} more)`:''}</div>`:'');}
-  // table highlight
   if(C.rows)C.rows.forEach((tr,i)=>tr.classList.toggle('ramp-now',i===cur-RAMP_START));
 }
 function renderRamp(){
@@ -574,20 +643,24 @@ function renderRamp(){
   // the time machine
   h+=`<div class="rampbar"><button class="rampplay" id="rampPlayBtn">${(RAMP_T==null||RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play'}</button><div class="ramptrack"><div class="rampflags">`+
     Object.keys(EV).map(s=>{const kinds=[...new Set(EV[s].map(e=>e.k))];const col=kinds.includes('mile')?'var(--clay)':kinds.includes('rev')?'var(--gold)':'var(--indigo-soft)';
-      return `<i class="rampflag" style="left:${(((+s)-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%;background:${col}" title="${RAMP_QL(+s)}: ${EV[s].map(e=>e.t).join(' · ')}" onclick="rampSeek(${s})"></i>`;}).join('')+
-    `</div><input type="range" id="rampRange" min="${RAMP_START}" max="${RAMP_END}" step="0.05" value="${RAMP_END}" aria-label="Timeline scrubber — drag to replay the build-out"></div><span class="qnow" id="rampQnow">${RAMP_QL(RAMP_END)}</span></div>`;
-  h+=`<div class="legend2" style="margin:0 4px 10px">Drag the timeline (or press replay) and the whole page rebuilds IREN quarter by quarter. Dots mark events — <span style="color:var(--indigo)">power-on</span>, <span style="color:#8a7137">first revenue</span>, <span style="color:var(--clay)">milestones</span>. Click any chart to jump; click a tranche bar to spotlight it everywhere.</div>`;
+      return `<i class="rampflag" style="left:${(((+s)-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%;background:${col}" title="${RAMP_QL(+s)}: ${rampTipEsc(EV[s].map(e=>e.t).join(' · '))}" onclick="rampSeek(${s})"></i>`;}).join('')+
+    `</div><input type="range" id="rampRange" min="${RAMP_START}" max="${RAMP_END}" step="0.05" value="${RAMP_END}" aria-label="Timeline scrubber — drag to replay the build-out"><div class="rampyears">`+
+    [2027,2028,2029,2030].map(y=>`<span style="left:${(((y-2026)*4+1-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%">${y}</span>`).join('')+
+    `</div></div><span class="qnow" id="rampQnow">${RAMP_QL(RAMP_END)}</span></div>`;
   // live state panel
-  h+=`<div class="rampstats">`+[['rs-gpu','GPUs earning'],['rs-mw','gross MW energized'],['rs-it','critical IT MW active'],['rs-rev','revenue / qtr'],['rs-blend','blend $/GPU-hr'],['rs-sign','fleet signed today']].map(([id,lab])=>`<div class="rampstat"><span>${lab}</span><b id="${id}">—</b></div>`).join('')+`</div>`;
+  h+=`<div class="rampstats">`+[['rs-gpu','GPUs earning'],['rs-mw','gross MW energized'],['rs-it','critical IT MW active'],['rs-rev','revenue / qtr'],['rs-blend','blend $/GPU-hr'],['rs-sign','fleet signed today'],['rs-street','vs street']].map(([id,lab])=>`<div class="rampstat"><span>${lab}</span><b id="${id}">—</b><i id="${id}-d"></i></div>`).join('')+`</div>`;
   h+=`<div class="rampcall" id="rampCall"></div>`;
-  h+=`<h4 class="sec">Concrete — capacity tranches (energize → first revenue)</h4><div class="bo-head"><div class="bo-legend">${genLeg}${hatchLeg}<span class="bo-leg">◆ first revenue</span></div></div><div class="bo-wrap">${rampGanttHTML(R)}<div class="bo-tip"></div></div>`;
+  h+=`<h4 class="sec">01 · Concrete — capacity tranches</h4>
+    <div class="bo-head"><div class="bo-legend">${genLeg}${hatchLeg}<span class="bo-leg">◆ first revenue</span></div></div><div class="bo-wrap">${rampGanttHTML(R)}<div class="bo-tip"></div></div>`;
   h+=`<div id="rampSelCard" style="display:none;margin:10px 4px 0"></div>`;
-  h+=`<div class="legend2" style="margin:6px 4px 0">Bar starts at energization, ◆ marks first revenue, thickness ∝ gross MW. Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modeled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetized in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
-  h+=`<h4 class="sec">Silicon — revenue-generating fleet by generation</h4><div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
-  h+=`<h4 class="sec">Money — quarterly revenue vs the street</h4><div class="bo-head"><div class="bo-legend">${genLeg}<span class="bo-leg"><i style="background:var(--far)"></i>BTC mining (residual)</span>${lineLeg('var(--ink-soft)','consensus (Bloomberg)')}</div></div><div class="bo-wrap">${rampRevHTML(Q)}<div class="bo-tip"></div></div>`;
+  h+=`<div class="legend2" style="margin:6px 4px 0">Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modeled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetized in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
+  h+=`<h4 class="sec">02 · Silicon — the fleet by generation</h4>
+    <div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
+  h+=`<h4 class="sec">03 · Money — revenue vs the street</h4>
+    <div class="bo-head"><div class="bo-toggle"><button class="bo-tog ${RAMP_REV_MODE==='gen'?'on':''}" data-rm="gen">by generation</button><button class="bo-tog ${RAMP_REV_MODE==='street'?'on':''}" data-rm="street">vs street</button></div><div class="bo-legend" id="rampRevLeg">${rampRevLegend(RAMP_REV_MODE)}</div></div><div class="bo-wrap" id="rampRevWrap">${rampRevHTML(Q,RAMP_REV_MODE)}<div class="bo-tip"></div></div>`;
   h+=`<h4 class="sec">The quarterly table</h4><div style="overflow-x:auto"><table class="stab nosort"><thead><tr><th>Qtr</th><th class="r">Gross MW (cum)</th><th class="r">IT MW active</th><th class="r">GPUs added</th><th class="r">GPUs cum</th><th class="r">Signed today</th><th class="r">Contracted (mod.)</th><th class="r">Blend $/hr</th><th class="r">AI rev $M</th><th class="r">Total $M</th><th class="r">Consensus $M</th><th class="r">Δ</th></tr></thead><tbody>`;
   Q.forEach(q=>{const tot=q.rev+q.mining;
-    h+=`<tr class="srow ramprow" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consTot!=null?Math.round(q.consTot).toLocaleString():'—'}</td><td class="r mono">${q.consTot?((tot/q.consTot-1)>=0?'+':'')+Math.round((tot/q.consTot-1)*100)+'%':'—'}</td></tr>`;});
+    h+=`<tr class="srow ramprow${q.s%4===1?' yrb':''}" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consTot!=null?Math.round(q.consTot).toLocaleString():'—'}</td><td class="r mono" style="${q.consTot?('color:'+((tot/q.consTot-1)>=0?'var(--pine)':'var(--clay)')):''}">${q.consTot?((tot/q.consTot-1)>=0?'+':'')+Math.round((tot/q.consTot-1)*100)+'%':'—'}</td></tr>`;});
   h+=`</tbody></table></div>`;
   h+=`<div class="legend2" style="margin-top:12px"><b>Basis.</b> ${R.basis}</div>`;
   h+=`<div class="legend2" style="margin-top:6px"><b>Consensus.</b> ${R.consensusSource}</div>`;
@@ -595,6 +668,7 @@ function renderRamp(){
   RAMP_SEL=null;RAMP_CUR=-1;
   RAMP_CTX={Q,EV,R,rows:[...body.querySelectorAll('tr.ramprow')]};
   body.querySelectorAll('[data-rc]').forEach(b=>b.addEventListener('click',()=>{rampCo=b.dataset.rc;RAMP_T=RAMP_END;renderRamp();}));
+  body.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>rampRevMode(b.dataset.rm)));
   const btn=document.getElementById('rampPlayBtn');if(btn)btn.addEventListener('click',rampPlay);
   const rg=document.getElementById('rampRange');if(rg)rg.addEventListener('input',()=>rampSeek(rg.value));
   RAMP_CTX.rows.forEach(tr=>tr.addEventListener('click',()=>rampSeek(+tr.dataset.qs)));
