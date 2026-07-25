@@ -17,6 +17,11 @@ header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
 .notice b{font-weight:500}
 
 .grid{display:grid;grid-template-columns:248px 1fr;gap:34px;margin-top:30px}
+.grid.nodials{grid-template-columns:1fr}
+.grid.nodials aside{display:none}
+.dialsbtn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:3px;padding:6px 12px;cursor:pointer;white-space:nowrap;align-self:flex-end}
+.dialsbtn:hover{color:var(--indigo);border-color:var(--indigo-soft)}
+.dialsbtn.on{color:var(--indigo);border-color:var(--indigo-soft);background:var(--card)}
 @media(max-width:780px){.grid{grid-template-columns:1fr;gap:26px}}
 .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
 

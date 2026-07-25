@@ -997,6 +997,14 @@ function showDashboard(v,filter){
 
 /* ---- wiring (after data loads) ---- */
 function wireEvents(){
+  // global dials: collapsible sidebar, collapsed by default, preference remembered
+  const grid=document.querySelector('.grid'),dbtn=document.getElementById('dialsToggle');
+  if(grid&&dbtn){
+    const setDials=open=>{grid.classList.toggle('nodials',!open);dbtn.classList.toggle('on',open);dbtn.setAttribute('aria-expanded',open?'true':'false');try{localStorage.setItem('cv-dials',open?'1':'0');}catch(e){}};
+    let dOpen=false;try{dOpen=localStorage.getItem('cv-dials')==='1';}catch(e){}
+    setDials(dOpen);
+    dbtn.addEventListener('click',()=>setDials(grid.classList.contains('nodials')));
+  }
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':t.dataset.view==='cover'?'coverage':t.dataset.view==='raises'?'raises':t.dataset.view==='outlook'?'outlook':t.dataset.view==='ramp'?'ramp':'')));
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
