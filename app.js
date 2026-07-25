@@ -323,7 +323,7 @@ function renderOutlook(){
    quarter, per-quarter dispatches, tranche spotlight, synced crosshairs, model-vs-street mode.
    Display-only; never a valuation input ---- */
 let rampCo='IREN';
-let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO=false,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1,RAMP_REV_MODE='gen';
+let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1,RAMP_REV_MODE='gen';
 const RAMP_GEN={hopper:{c:'var(--gen-hopper)',n:'Hopper'},blackwell:{c:'var(--gen-blackwell)',n:'Blackwell'},rubin:{c:'var(--gen-rubin)',n:'Rubin-class'},next:{c:'var(--gen-next)',n:'Next-gen'}};
 const RAMP_QS=l=>{const y=+l.slice(0,4),q=+l.slice(5);return (y-2026)*4+q;};
 const RAMP_QL=s=>`${2026+Math.floor((s-1)/4)}Q${((s-1)%4)+1}`;
@@ -673,8 +673,7 @@ function renderRamp(){
   const rg=document.getElementById('rampRange');if(rg)rg.addEventListener('input',()=>rampSeek(rg.value));
   RAMP_CTX.rows.forEach(tr=>tr.addEventListener('click',()=>rampSeek(+tr.dataset.qs)));
   if(RAMP_T==null)RAMP_T=RAMP_END;
-  if(!RAMP_INTRO&&!reduce){RAMP_INTRO=true;RAMP_T=RAMP_START;rampApply();RAMP_INTRO_TO=setTimeout(()=>{RAMP_INTRO_TO=0;if(view==='ramp'&&!RAMP_PLAYING)rampPlay();},500);}
-  else rampApply();
+  rampApply();   // land on the full 2030 picture; the replay button is the movie
 }
 /* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
 let RAW_DATA=null;
