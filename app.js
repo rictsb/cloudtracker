@@ -279,7 +279,8 @@ function renderOutlook(){
     rows.sort((x,y)=>{const a=kf(x),b=kf(y);return (typeof a==='string'?a.localeCompare(b):a-b)*olDir;});
     h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Company',''],['prob','P(lease, 6mo)','r'],['mw','Expected MW','r'],['window','Window',''],['exec','Build speed','r']].map(([k,lab,cl])=>`<th class="${cl}" data-ol="${k}">${lab}${olSort===k?' <span class="arr">'+(olDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
     rows.forEach((r,i)=>{
-      h+=`<tr class="olrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td><td class="co">${r.tk}</td>`+
+      const oc2=COMPANIES.find(c2=>c2.tk===r.tk);const isOwner=oc2&&(oc2.model==='owner');
+      h+=`<tr class="olrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td><td class="co">${r.tk} <span class="prov ${isOwner?'estimated':'disclosed'}" style="font-size:9px">${isOwner?'compute contract':'colo lease'}</span></td>`+
         `<td class="r mono"><b>${r.prob}%</b></td>`+
         `<td class="r mono">${r.mwLo!=null?r.mwLo+'–'+r.mwHi:'—'}</td>`+
         `<td style="font-size:11.5px">${r.window||'—'}</td>`+
@@ -289,7 +290,7 @@ function renderOutlook(){
         `<ul style="margin:0 0 8px 18px;font-size:11.5px;color:var(--ink-soft)">${(r.drivers||[]).map(d=>`<li>${d}</li>`).join('')}</ul>`+
         `<div style="font-size:10.5px;color:var(--ink-soft)">${(r.sources||[]).join(' · ')}</div>`+
         `<a class="clearfilter" href="#${r.tk}" style="font-size:11px">open ${r.tk} page →</a></div></td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>P(lease)</b> = our probability of a NEW binding lease/compute contract inside ~6 months — judgement built from negotiation language in filings/calls, financing tripwires, exclusivities, site readiness and tenant-side signals. <b>Build speed</b> = differential execution (announced→energized track record vs peers). Click a row for the evidence.</div>`;
+    h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>P(lease)</b> = our probability of the NEXT BINDING REVENUE COMMITMENT inside ~6 months — for <b>landlords</b> a colo lease (they own the shell, a tenant signs); for <b>owners</b> (CRWV/NBIS/IREN/HIVE) a take-or-pay <b>compute contract</b> (capacity sold, not property let — these names appear as TENANTS in other landlords' books) — judgement built from negotiation language in filings/calls, financing tripwires, exclusivities, site readiness and tenant-side signals. <b>Build speed</b> = differential execution (announced→energized track record vs peers). Click a row for the evidence.</div>`;
   }else{
     let rows=(O.earnings||[]).map(r=>({...r}));
     const K={tk:r=>r.tk,date:r=>r.date||'9999',score:r=>r.score||0,dir:r=>r.direction||''};
