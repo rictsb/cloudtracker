@@ -339,8 +339,8 @@
       ],
       "sites": [
         {
-          "n": "Helios Ph1 (Dickens Co, TX)",
-          "mw": 200,
+          "n": "Helios Ph1 (Dickens Co, TX — 133 IT of 200 gross)",
+          "mw": 133,
           "owned": false,
           "region": "cheap",
           "yr": 2026,
@@ -349,7 +349,7 @@
         },
         {
           "n": "Helios Ph2 (TX)",
-          "mw": 300,
+          "mw": 260,
           "owned": false,
           "region": "cheap",
           "yr": 2027,
@@ -358,7 +358,7 @@
         },
         {
           "n": "Helios Ph3 (TX)",
-          "mw": 300,
+          "mw": 133,
           "owned": false,
           "region": "cheap",
           "yr": 2028,
@@ -639,6 +639,12 @@
         }
       ],
       "log": [
+        {
+          "d": "2026-07-27",
+          "t": "site",
+          "s": "[semianalysis]+[company-ir]",
+          "x": "Helios rows corrected to the IT split 133/260/133 (was 200/300/300) — dual-corroborated by the Galaxy PR (200MW gross = 133 IT) and the SA tape. ~274MW of over-credit removed."
+        },
         {
           "d": "2026-07-23",
           "t": "note",
@@ -1620,77 +1626,688 @@
       "name": "IREN",
       "ramp": {
         "asOf": "2026-07-23",
-        "basis": "Quarterly GPU-ramp research overlay (owner-approved 7/25/26) \u2014 DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: three come off a dated print and cover 13.2% of CY2030 revenue \u2014 MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 against a $3.20 implied print (7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet (IREN's own ARR disclosure); Nebius-MSFT $3.97 is a comparator, not our print. The Rubin-class $4.50-4.60 and next-gen $6.40 vintages have NO contract print of any kind \u2014 they are derived at power parity on the Microsoft GB300 $/kW-hr, and the derivation and its counter-evidence are published in the rate link of the chain. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference \u2014 skew later, not earlier.",
+        "basis": "Quarterly GPU-ramp research overlay (owner-approved 7/25/26) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: three come off a dated print and cover 13.2% of CY2030 revenue — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 against a $3.20 implied print (7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet (IREN's own ARR disclosure); Nebius-MSFT $3.97 is a comparator, not our print. The Rubin-class $4.50-4.60 and next-gen $6.40 vintages have NO contract print of any kind — they are derived at power parity on the Microsoft GB300 $/kW-hr, and the derivation and its counter-evidence are published in the rate link of the chain. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier.",
         "chain": [
-          { "id": "secured", "link": "secured power \u2192 monetised in-window", "fn": "\u03a3 tranche grossMW", "value": "5,770 MW secured \u2192 4,230 MW modelled (73%)", "assumption": "1,540 MW net is secured but not monetised in-window. It is a RESIDUAL, not a rule: the far sites are heavily under-phased (Kiowa 36% of secured, Bundey 30%, Nostrum 48% \u2014 no disclosed schedules) while three campuses are phased ABOVE their secured figure (Childress 850 vs 750, Sweetwater 2,150 vs 2,000, BC 180 vs 130). The Childress excess is mostly a basis difference \u2014 the site list stores Horizon 1-4 at IT MW (200) where the tranches store gross (300) \u2014 not new megawatts; the Sweetwater and BC excesses are genuine over-phasing of ~150 MW and ~50 MW. Net-net the total is right for the wrong reasons and the per-campus reconciliation is published below rather than hidden.", "range": "3,900\u20134,600 MW", "moves": "fleet and revenue, proportionally, from the quarter each excluded block would have landed" },
-          { "id": "energise", "link": "monetised MW \u2192 energised MW by quarter", "fn": "step function on each tranche's energize quarter", "value": "480 MW by YE-26, 1,210 MW by YE-27 (both COMPANY-DISCLOSED); thereafter 275 MW/qtr average and 369 MW/qtr peak (MODELLED)", "assumption": "2028\u201330 cadence is an EXTRAPOLATION, and it asks more of IREN than its record shows: its best demonstrated four-quarter add is +550 MW (260\u2192810 MW, H1-2024 to H1-2025) = 138 MW/qtr, so the model asks 2.0x that on average and 2.7x at peak \u2014 across five campuses on three continents, liquid-cooled, versus a record set on one campus with power already in the ground. Its delivery record is clean on air-cooled sheds and substations (median slip 0 quarters, n=8) but the single liquid-cooled AI hall it has delivered, Horizon 1, slipped two quarters on the hall and three on revenue. Kiowa held to 2029 on SPP queue entry (Mar-2026); Nostrum to 2029Q3 on absent Spanish schedule.", "range": "\u00b12 quarters per tranche beyond 2027", "moves": "everything downstream, one quarter at a time" },
-          { "id": "derate", "link": "gross MW \u2192 critical IT MW", "fn": "itMW / grossMW, declared per tranche", "value": "0.709 fleet-average (liquid 0.667, air 0.80\u20130.85)", "assumption": "Liquid-cooled Horizon/Sweetwater at PUE \u22481.30 incl. electrical losses and ancillary load; air-cooled retrofits at PUE \u22481.20\u20131.25 (existing shells, lower density).", "range": "0.66\u20130.76 fleet-average", "moves": "GPU count and revenue by the same proportion" },
-          { "id": "density", "link": "critical IT MW \u2192 GPU count", "fn": "gpus = itMW \u00f7 (kW per GPU / 1000); GPU = PACKAGE (socket), never die \u2014 a VR200 NVL144 counts 72 packages per rack, not 144 dies", "value": "fleet-weighted Hopper 1.60 kW (627/IT-MW), Blackwell 2.48 kW (404), Rubin-class 4.23 kW (236), next-gen 6.30 kW (159) \u2014 but gpus is a STORED field per tranche, not derived, and the per-tranche spread is wide: Hopper 625\u2013633/IT-MW, Blackwell 340\u2013564, Rubin 214\u2013285, next-gen 158\u2013159", "assumption": "All-in at the IT boundary: accelerator + host CPU + memory + network + storage share, cooling already excluded by the derate. Anchored on IREN's disclosure of >19,000 GB300 per 50 MW-IT Horizon building (2.63 kW/GPU), which the Horizon tranches match exactly. THE LADDER IS PINNED TO SILICON, NOT TO TREND. Per-package accelerator TDP runs H100/H200 700 W \u2192 GB300 1,400 W \u2192 VR200 2,300 W (the raised VR200 spec reported Oct-2025, consistent with 72 packages in a 190\u2013230 kW NVL72 rack), i.e. +100% then +64%; the modelled IT-boundary ladder steps +55% (Hopper\u2192Blackwell) and +71% (Blackwell\u2192Rubin), tracking the silicon to within 7 points. The next-gen rung is therefore set at 6.30 kW (+49% on Rubin), NOT the 4.91 kW (+16%) it previously carried: a +16% rung is supported by no roadmap point \u2014 Rubin Ultra alone puts 144 quad-die packages in a ~600 kW Kyber rack (4.17 kW/package at the rack boundary, +58% on VR200's 2.64\u20133.19) and the 2028 Feynman generation is briefed at ~2 kW per die in ~1 MW racks. HONEST CAVEAT: gpus is stored per tranche rather than derived from itMW, so this link DESCRIBES the data rather than generating it \u2014 the fleet averages above are outputs, and individual tranches sit up to 41% away from them. The density scenarios move the whole generation, so a tranche already at the top of its band (Sweetwater 1 initial is 285/IT-MW, above the +18% target) is pushed beyond it. DENSITY IS NOT A MONEY LEVER ON ITS OWN: revenue is IT-MW \u00d7 $/kW-hr, so re-cutting next-gen from 4.91 to 6.30 kW moves the fleet headline (YE-30 748k \u2192 724k live GPUs; next-gen nameplate 157,000 \u2192 122,300) and leaves CY2030 revenue within 0.04% once the vintage rate is rebased with it.", "range": "Blackwell 2.2\u20132.9, Rubin 3.5\u20134.7, next-gen 5.6\u20137.0 kW/GPU", "moves": "fleet size inversely; revenue follows fleet" },
-          { "id": "hours", "link": "GPUs \u2192 GPU-hours", "fn": "live GPUs \u00d7 2,190 hr/qtr (8,760/yr)", "value": "every GPU, contracted and uncontracted alike", "assumption": "IREN's own ARR convention. Contracted GPUs genuinely bill take-or-pay. For UNCONTRACTED GPUs the \u224865% sold-utilisation is folded into the spot RATE, never into the hours \u2014 so the published blend is a billed-hours-equivalent rate, not a realised price.", "range": "n/a \u2014 convention, not an estimate", "moves": "nothing on its own; it is the unit the rate is quoted in" },
-          { "id": "ramp", "link": "first revenue \u2192 full run-rate", "fn": "linear over rampQtrs from the tranche's rev quarter", "value": "contracted leg 1\u20133 quarters (2 typical); uncontracted leg 4\u201314 quarters after the 4.4\u00d7 backtest calibration", "assumption": "MODELLED. The backtest below measures this against IREN's own commissioning history and finds the observed ramp materially slower; the slow-ramp scenario carries it.", "range": "contracted 1\u20136 quarters; uncontracted 4\u201320 quarters", "moves": "the timing of revenue, not its steady state \u2014 it cuts the retrodicted quarters by 39% but the 2030 exit ARR by only 6.9%, so it is decisive for the near-term street comparison and nearly irrelevant to the terminal number" },
-          { "id": "rate", "link": "GPU-hours \u2192 revenue", "fn": "revenue = GPU-hours \u00d7 (ctr \u00d7 vintage rate + (1\u2212ctr) \u00d7 spot \u00d7 gen multiplier)", "value": "blend $2.66/GPU-hr (2026Q3) rising to $3.77 (2030Q4), out of nine vintage rates. PRINTED AND DATED: three rates, 13.2% of CY2030 modelled AI revenue. DERIVED, no counterparty and no print: six rates, 86.8% \u2014 including the 63.2% that prices off Rubin-class or later silicon, for which NO contract price has been disclosed by anyone as at 23-Jul-2026.", "assumption": "Each vintage is a separate rate on a named tranche set, and only three of the nine come off a dated print. PRINTED. $2.91 \u2014 Horizon 1\u20134 (Microsoft GB300, 300 MW gross / 200 MW IT, 76,000 packages, first revenue 2026Q3\u20132027Q1): implied by the $9.7bn five-year contract in IREN's 8-K of 3-Nov-2025 and the ~$1.94bn annualised run-rate IREN attaches to it (1.94e9 \u00f7 (76,000 \u00d7 8,760) = $2.91). 8.9% of CY2030 revenue. $3.10 \u2014 NVIDIA 60 MW air Blackwell at Childress (25,000 packages, first revenue 2027Q1): the $3.4bn five-year contract announced 7-May-2026 carries ~$0.7bn ARR, which implies $3.20; the model runs 3% under the print. 3.1%. $2.48 \u2014 legacy H100/H200 and the Sep-2025 cohort: IREN's own disclosed ARR-implied rate (>$500m ARR on 23,000 GPUs). 1.2%. COMPARATOR, NOT OUR PRINT. $3.97 \u2014 Nebius/Microsoft, $17.4bn over five years on 100,000 GB300 (announced 8-Sep-2025, extended to $19.4bn Oct-2025). It bounds the GB300 vintage from above; IREN prints 27% below it. DERIVED, NO PRINT. $2.72 (Prince George / BC expansion) and $2.85 (50k B300, Mackenzie + Childress air) are the $2.91 GB300 print stepped for air-cooled, smaller-cluster and renewal terms \u2014 6.2% of CY2030 revenue between them. $3.20 (Childress air retrofits 27a\u2013c and the 2028 completion, 12.4%) and $3.70 (Horizon 5\u20136, 4.8%) are forward Blackwell vintages with no named counterparty and no signature. NO PRINT EXISTS FOR THE SILICON \u2014 RUBIN-CLASS AND LATER, 63.2% OF CY2030 REVENUE. $4.50 drives Sweetwater 1 initial and ramps a\u2013c (900 MW gross, 159,000 packages, first revenue 2028Q1\u20132028Q4) = 26.1%. $4.60 drives Sweetwater 1 completion a\u2013b, Sweetwater 2 phase 1, Kiowa phase 1, Bundey first halls and Nostrum first halls (1,200 MW gross, 186,000 packages, first revenue 2029Q2\u20132029Q4) = 26.2%. $6.40 drives the four 2030 waves (1,100 MW gross, 122,300 packages, first revenue 2030Q1\u20132030Q4) = 10.9%. As at 23-Jul-2026 nobody has disclosed a Rubin-class contract price: NVIDIA began VR200 production shipment to eight cloud partners (announced 27-Jun-2026), CoreWeave completed the first VR200 NVL72 rack validation on 1-Jun-2026 and booked initial Vera Rubin orders in its Q1-2026 quarter without disclosing price, and no official Rubin cloud rate card had been published as at Jun-2026. The $4.50\u20134.60 band is therefore a DERIVATION, and this is it: at IREN's own Rubin density of 4.23 kW/package it prices at $1.06\u20131.09 per kW-hr, i.e. 2\u20134% BELOW the $1.106/kW-hr the Microsoft GB300 print pays \u2014 a power-parity read, not a premium one. Cross-checks: $2.91 uplifted by the VR200/GB300 package power step (+64%) would be $4.78; the Nebius $3.97 comp plus the low end of the 30\u201350% first-availability premium the trade press expects on Blackwell NVL72 rates would be $5.16. Retail GB300 on-demand sits at $7.99\u20138.62/GPU-hr (July-2026), so five-year contract prints clear at 34\u201336% of on-demand; nothing in the model requires that ratio to hold for Rubin. The next-gen $6.40 is not a price observation at all \u2014 it is the Rubin $/kW-hr carried across the 6.30 kW next-gen package, so the density and rate links move together and neither is free. The blend rises on mix shift to costlier silicon plus vintage escalation, NOT price inflation on a fixed product.", "range": "printed vintages \u00b10; Rubin-class $2.90\u20135.95/GPU-hr (no power premium at all, up to the Nebius GB300 comp plus the top of the 30\u201350% first-availability premium); next-gen $5.35\u20137.55 (0.85\u20131.20 $/kW-hr on a 6.30 kW package)", "moves": "revenue directly, one-for-one. \u00b1$1.00/GPU-hr on the Rubin band alone is \u00b1$2.1bn on the $21.7bn CY2030 line (\u00b19.8%) and \u00b19.2% on exit ARR; a 20% Rubin re-price down is \u2212$1.9bn and \u22128.3%" }
+          {
+            "id": "secured",
+            "link": "secured power → monetised in-window",
+            "fn": "Σ tranche grossMW",
+            "value": "5,770 MW secured → 4,230 MW modelled (73%)",
+            "assumption": "1,540 MW net is secured but not monetised in-window. It is a RESIDUAL, not a rule: the far sites are heavily under-phased (Kiowa 36% of secured, Bundey 30%, Nostrum 48% — no disclosed schedules) while three campuses are phased ABOVE their secured figure (Childress 850 vs 750, Sweetwater 2,150 vs 2,000, BC 180 vs 130). The Childress excess is mostly a basis difference — the site list stores Horizon 1-4 at IT MW (200) where the tranches store gross (300) — not new megawatts; the Sweetwater and BC excesses are genuine over-phasing of ~150 MW and ~50 MW. Net-net the total is right for the wrong reasons and the per-campus reconciliation is published below rather than hidden.",
+            "range": "3,900–4,600 MW",
+            "moves": "fleet and revenue, proportionally, from the quarter each excluded block would have landed"
+          },
+          {
+            "id": "energise",
+            "link": "monetised MW → energised MW by quarter",
+            "fn": "step function on each tranche's energize quarter",
+            "value": "480 MW by YE-26, 1,210 MW by YE-27 (both COMPANY-DISCLOSED); thereafter 275 MW/qtr average and 369 MW/qtr peak (MODELLED)",
+            "assumption": "2028–30 cadence is an EXTRAPOLATION, and it asks more of IREN than its record shows: its best demonstrated four-quarter add is +550 MW (260→810 MW, H1-2024 to H1-2025) = 138 MW/qtr, so the model asks 2.0x that on average and 2.7x at peak — across five campuses on three continents, liquid-cooled, versus a record set on one campus with power already in the ground. Its delivery record is clean on air-cooled sheds and substations (median slip 0 quarters, n=8) but the single liquid-cooled AI hall it has delivered, Horizon 1, slipped two quarters on the hall and three on revenue. Kiowa held to 2029 on SPP queue entry (Mar-2026); Nostrum to 2029Q3 on absent Spanish schedule.",
+            "range": "±2 quarters per tranche beyond 2027",
+            "moves": "everything downstream, one quarter at a time"
+          },
+          {
+            "id": "derate",
+            "link": "gross MW → critical IT MW",
+            "fn": "itMW / grossMW, declared per tranche",
+            "value": "0.709 fleet-average (liquid 0.667, air 0.80–0.85)",
+            "assumption": "Liquid-cooled Horizon/Sweetwater at PUE ≈1.30 incl. electrical losses and ancillary load; air-cooled retrofits at PUE ≈1.20–1.25 (existing shells, lower density).",
+            "range": "0.66–0.76 fleet-average",
+            "moves": "GPU count and revenue by the same proportion"
+          },
+          {
+            "id": "density",
+            "link": "critical IT MW → GPU count",
+            "fn": "gpus = itMW ÷ (kW per GPU / 1000); GPU = PACKAGE (socket), never die — a VR200 NVL144 counts 72 packages per rack, not 144 dies",
+            "value": "fleet-weighted Hopper 1.60 kW (627/IT-MW), Blackwell 2.48 kW (404), Rubin-class 4.23 kW (236), next-gen 6.30 kW (159) — but gpus is a STORED field per tranche, not derived, and the per-tranche spread is wide: Hopper 625–633/IT-MW, Blackwell 340–564, Rubin 214–285, next-gen 158–159",
+            "assumption": "All-in at the IT boundary: accelerator + host CPU + memory + network + storage share, cooling already excluded by the derate. Anchored on IREN's disclosure of >19,000 GB300 per 50 MW-IT Horizon building (2.63 kW/GPU), which the Horizon tranches match exactly. THE LADDER IS PINNED TO SILICON, NOT TO TREND. Per-package accelerator TDP runs H100/H200 700 W → GB300 1,400 W → VR200 2,300 W (the raised VR200 spec reported Oct-2025, consistent with 72 packages in a 190–230 kW NVL72 rack), i.e. +100% then +64%; the modelled IT-boundary ladder steps +55% (Hopper→Blackwell) and +71% (Blackwell→Rubin), tracking the silicon to within 7 points. The next-gen rung is therefore set at 6.30 kW (+49% on Rubin), NOT the 4.91 kW (+16%) it previously carried: a +16% rung is supported by no roadmap point — Rubin Ultra alone puts 144 quad-die packages in a ~600 kW Kyber rack (4.17 kW/package at the rack boundary, +58% on VR200's 2.64–3.19) and the 2028 Feynman generation is briefed at ~2 kW per die in ~1 MW racks. HONEST CAVEAT: gpus is stored per tranche rather than derived from itMW, so this link DESCRIBES the data rather than generating it — the fleet averages above are outputs, and individual tranches sit up to 41% away from them. The density scenarios move the whole generation, so a tranche already at the top of its band (Sweetwater 1 initial is 285/IT-MW, above the +18% target) is pushed beyond it. DENSITY IS NOT A MONEY LEVER ON ITS OWN: revenue is IT-MW × $/kW-hr, so re-cutting next-gen from 4.91 to 6.30 kW moves the fleet headline (YE-30 748k → 724k live GPUs; next-gen nameplate 157,000 → 122,300) and leaves CY2030 revenue within 0.04% once the vintage rate is rebased with it.",
+            "range": "Blackwell 2.2–2.9, Rubin 3.5–4.7, next-gen 5.6–7.0 kW/GPU",
+            "moves": "fleet size inversely; revenue follows fleet"
+          },
+          {
+            "id": "hours",
+            "link": "GPUs → GPU-hours",
+            "fn": "live GPUs × 2,190 hr/qtr (8,760/yr)",
+            "value": "every GPU, contracted and uncontracted alike",
+            "assumption": "IREN's own ARR convention. Contracted GPUs genuinely bill take-or-pay. For UNCONTRACTED GPUs the ≈65% sold-utilisation is folded into the spot RATE, never into the hours — so the published blend is a billed-hours-equivalent rate, not a realised price.",
+            "range": "n/a — convention, not an estimate",
+            "moves": "nothing on its own; it is the unit the rate is quoted in"
+          },
+          {
+            "id": "ramp",
+            "link": "first revenue → full run-rate",
+            "fn": "linear over rampQtrs from the tranche's rev quarter",
+            "value": "contracted leg 1–3 quarters (2 typical); uncontracted leg 4–14 quarters after the 4.4× backtest calibration",
+            "assumption": "MODELLED. The backtest below measures this against IREN's own commissioning history and finds the observed ramp materially slower; the slow-ramp scenario carries it.",
+            "range": "contracted 1–6 quarters; uncontracted 4–20 quarters",
+            "moves": "the timing of revenue, not its steady state — it cuts the retrodicted quarters by 39% but the 2030 exit ARR by only 6.9%, so it is decisive for the near-term street comparison and nearly irrelevant to the terminal number"
+          },
+          {
+            "id": "rate",
+            "link": "GPU-hours → revenue",
+            "fn": "revenue = GPU-hours × (ctr × vintage rate + (1−ctr) × spot × gen multiplier)",
+            "value": "blend $2.66/GPU-hr (2026Q3) rising to $3.77 (2030Q4), out of nine vintage rates. PRINTED AND DATED: three rates, 13.2% of CY2030 modelled AI revenue. DERIVED, no counterparty and no print: six rates, 86.8% — including the 63.2% that prices off Rubin-class or later silicon, for which NO contract price has been disclosed by anyone as at 23-Jul-2026.",
+            "assumption": "Each vintage is a separate rate on a named tranche set, and only three of the nine come off a dated print. PRINTED. $2.91 — Horizon 1–4 (Microsoft GB300, 300 MW gross / 200 MW IT, 76,000 packages, first revenue 2026Q3–2027Q1): implied by the $9.7bn five-year contract in IREN's 8-K of 3-Nov-2025 and the ~$1.94bn annualised run-rate IREN attaches to it (1.94e9 ÷ (76,000 × 8,760) = $2.91). 8.9% of CY2030 revenue. $3.10 — NVIDIA 60 MW air Blackwell at Childress (25,000 packages, first revenue 2027Q1): the $3.4bn five-year contract announced 7-May-2026 carries ~$0.7bn ARR, which implies $3.20; the model runs 3% under the print. 3.1%. $2.48 — legacy H100/H200 and the Sep-2025 cohort: IREN's own disclosed ARR-implied rate (>$500m ARR on 23,000 GPUs). 1.2%. COMPARATOR, NOT OUR PRINT. $3.97 — Nebius/Microsoft, $17.4bn over five years on 100,000 GB300 (announced 8-Sep-2025, extended to $19.4bn Oct-2025). It bounds the GB300 vintage from above; IREN prints 27% below it. DERIVED, NO PRINT. $2.72 (Prince George / BC expansion) and $2.85 (50k B300, Mackenzie + Childress air) are the $2.91 GB300 print stepped for air-cooled, smaller-cluster and renewal terms — 6.2% of CY2030 revenue between them. $3.20 (Childress air retrofits 27a–c and the 2028 completion, 12.4%) and $3.70 (Horizon 5–6, 4.8%) are forward Blackwell vintages with no named counterparty and no signature. NO PRINT EXISTS FOR THE SILICON — RUBIN-CLASS AND LATER, 63.2% OF CY2030 REVENUE. $4.50 drives Sweetwater 1 initial and ramps a–c (900 MW gross, 159,000 packages, first revenue 2028Q1–2028Q4) = 26.1%. $4.60 drives Sweetwater 1 completion a–b, Sweetwater 2 phase 1, Kiowa phase 1, Bundey first halls and Nostrum first halls (1,200 MW gross, 186,000 packages, first revenue 2029Q2–2029Q4) = 26.2%. $6.40 drives the four 2030 waves (1,100 MW gross, 122,300 packages, first revenue 2030Q1–2030Q4) = 10.9%. As at 23-Jul-2026 nobody has disclosed a Rubin-class contract price: NVIDIA began VR200 production shipment to eight cloud partners (announced 27-Jun-2026), CoreWeave completed the first VR200 NVL72 rack validation on 1-Jun-2026 and booked initial Vera Rubin orders in its Q1-2026 quarter without disclosing price, and no official Rubin cloud rate card had been published as at Jun-2026. The $4.50–4.60 band is therefore a DERIVATION, and this is it: at IREN's own Rubin density of 4.23 kW/package it prices at $1.06–1.09 per kW-hr, i.e. 2–4% BELOW the $1.106/kW-hr the Microsoft GB300 print pays — a power-parity read, not a premium one. Cross-checks: $2.91 uplifted by the VR200/GB300 package power step (+64%) would be $4.78; the Nebius $3.97 comp plus the low end of the 30–50% first-availability premium the trade press expects on Blackwell NVL72 rates would be $5.16. Retail GB300 on-demand sits at $7.99–8.62/GPU-hr (July-2026), so five-year contract prints clear at 34–36% of on-demand; nothing in the model requires that ratio to hold for Rubin. The next-gen $6.40 is not a price observation at all — it is the Rubin $/kW-hr carried across the 6.30 kW next-gen package, so the density and rate links move together and neither is free. The blend rises on mix shift to costlier silicon plus vintage escalation, NOT price inflation on a fixed product.",
+            "range": "printed vintages ±0; Rubin-class $2.90–5.95/GPU-hr (no power premium at all, up to the Nebius GB300 comp plus the top of the 30–50% first-availability premium); next-gen $5.35–7.55 (0.85–1.20 $/kW-hr on a 6.30 kW package)",
+            "moves": "revenue directly, one-for-one. ±$1.00/GPU-hr on the Rubin band alone is ±$2.1bn on the $21.7bn CY2030 line (±9.8%) and ±9.2% on exit ARR; a 20% Rubin re-price down is −$1.9bn and −8.3%"
+          }
         ],
-        "calibration": { "rampMult": 4.4, "appliesTo": "the UNCONTRACTED share of each tranche only", "fittedOn": "2025Q3\u20132026Q1 reported AI-cloud revenue", "basis": "The commissioning ramp is the one link with an empirical test, and run uncalibrated the chain overstates every reported quarter (+41%, +90%, +64%; mean bias +65%). The correction is regime-aware, because two different things are being modelled: CONTRACTED GPUs bill take-or-pay from customer acceptance and reach full rate on the modelled ramp, whereas UNCONTRACTED capacity has to be SOLD DOWN, which is what the reported quarters actually measure \u2014 in 2025 only 11k of IREN's 23k GPUs were under contract. Fitting a single multiple on the uncontracted leg gives 4.4x and cuts mean absolute error to 11.0% with residuals \u221216%, +16%, \u22121%. A flat global multiple fits worse (14.1%) and has the wrong physics: it slows down take-or-pay contracts that bill on acceptance. The calibration is in the BASE case. Confound stated: the 23,000-GPU figure of Sep-2025 is announced-and-on-order, not installed-and-commissioned, so part of the miss is fleet timing rather than sell-down speed; both push revenue later and one multiple is the single-parameter expression of it.", "residuals": "\u221216%, +16%, \u22121% by quarter after calibration (11.0% mean absolute)" },
+        "calibration": {
+          "rampMult": 4.4,
+          "appliesTo": "the UNCONTRACTED share of each tranche only",
+          "fittedOn": "2025Q3–2026Q1 reported AI-cloud revenue",
+          "basis": "The commissioning ramp is the one link with an empirical test, and run uncalibrated the chain overstates every reported quarter (+41%, +90%, +64%; mean bias +65%). The correction is regime-aware, because two different things are being modelled: CONTRACTED GPUs bill take-or-pay from customer acceptance and reach full rate on the modelled ramp, whereas UNCONTRACTED capacity has to be SOLD DOWN, which is what the reported quarters actually measure — in 2025 only 11k of IREN's 23k GPUs were under contract. Fitting a single multiple on the uncontracted leg gives 4.4x and cuts mean absolute error to 11.0% with residuals −16%, +16%, −1%. A flat global multiple fits worse (14.1%) and has the wrong physics: it slows down take-or-pay contracts that bill on acceptance. The calibration is in the BASE case. Confound stated: the 23,000-GPU figure of Sep-2025 is announced-and-on-order, not installed-and-commissioned, so part of the miss is fleet timing rather than sell-down speed; both push revenue later and one multiple is the single-parameter expression of it.",
+          "residuals": "−16%, +16%, −1% by quarter after calibration (11.0% mean absolute)"
+        },
         "actualsSource": "Reported figures: IREN quarterly releases (Q1 FY26 06-Nov-2025, Q2 FY26 05-Feb-2026, Q3 FY26 07-May-2026) and the Bloomberg historical columns in the owner-supplied consensus pull (07-Jul-2026). aiRevM is the AI Cloud Services revenue line as reported. earningRate is IREN's OWN disclosed ARR-implied rate on the then-current fleet (>$500m ARR on 23k GPUs = $2.48/GPU-hr), used to convert reported revenue into an earning-GPU-equivalent.",
         "actuals": {
-          "2025Q3": { "aiRevM": 7.35, "totalRevM": 240.30, "fleetDisclosed": 1900 },
-          "2025Q4": { "aiRevM": 17.30, "totalRevM": 184.69, "fleetDisclosed": 23000 },
-          "2026Q1": { "aiRevM": 33.60, "totalRevM": 144.80, "fleetDisclosed": 23000 }
+          "2025Q3": {
+            "aiRevM": 7.35,
+            "totalRevM": 240.3,
+            "fleetDisclosed": 1900
+          },
+          "2025Q4": {
+            "aiRevM": 17.3,
+            "totalRevM": 184.69,
+            "fleetDisclosed": 23000
+          },
+          "2026Q1": {
+            "aiRevM": 33.6,
+            "totalRevM": 144.8,
+            "fleetDisclosed": 23000
+          }
         },
         "earningRate": 2.48,
         "scenarios": [
-          { "id": "base", "name": "Base", "note": "As modelled.", "d": {} },
-          { "id": "uncal", "name": "Uncalibrated ramp", "note": "The ramp as originally modelled, before the backtest \u2014 the path that overstates every reported quarter by a mean +65%. Shown as the upside bound, not as a forecast.", "d": { "cal": 1 } },
-          { "id": "flatrate", "name": "Flat vintages", "note": "No vintage escalation: every future tranche prices at today's signed level ($3.10/GPU-hr), spot flat at the 2026 level.", "d": { "rateCap": 3.10 } },
-          { "id": "decay", "name": "Price decay \u221220%", "note": "Compute prices fall: every vintage and spot rate 20% below base.", "d": { "rateMult": 0.8, "spotMult": 0.8 } },
-          { "id": "slip", "name": "Slip 2 quarters", "note": "Every tranche beyond the disclosed 2027 programme energises and earns two quarters later.", "d": { "slipQtrs": 2, "from": 8 } },
-          { "id": "leaseup", "name": "Lease-up at 50%", "note": "Uncontracted capacity contracts at half the modelled rate (ctr floored toward the signed book).", "d": { "ctrMult": 0.5 } },
-          { "id": "denselow", "name": "Rubin denser (+18%)", "note": "Datacentre-engineering reading: VR200 rack power and package count give ~279 GPU per IT-MW against a fleet-weighted 236 \u2014 the same megawatts carry more silicon. Applied as a uniform +18% to every Rubin tranche, which pushes tranches already at the top of the band (Sweetwater 1 initial, 285/IT-MW) past any defensible density; read it as an envelope, not a per-tranche claim.", "d": { "genDensity": { "rubin": 1.18 } } },
-          { "id": "densehigh", "name": "Next-gen thirstier (7.0 kW)", "note": "The base case now carries 6.30 kW per next-gen package. This is the top of the defensible band \u2014 7.0 kW, the Feynman-class reading of a ~1 MW rack \u2014 so the same megawatts carry 10% fewer GPUs at an unchanged vintage rate.", "d": {"genDensity": {"next": 0.9}} },
-          { "id": "recontract", "name": "Unsigned book re-prices \u221215%/yr", "note": "The uncontracted 79% of the 2030 fleet re-prices down 15% a year rather than holding its vintage rate.", "d": { "vintageDecay": 0.15 } },
-          { "id": "joint", "name": "Joint downside", "note": "The bear case: a further 50% slower ramp AND flat vintages AND two-quarter slip AND half lease-up, together. Each is individually defensible; the stack is the honest downside.", "d": { "rampMult": 1.5, "rateCap": 3.10, "slipQtrs": 2, "from": 8, "ctrMult": 0.5 } }
+          {
+            "id": "base",
+            "name": "Base",
+            "note": "As modelled.",
+            "d": {}
+          },
+          {
+            "id": "uncal",
+            "name": "Uncalibrated ramp",
+            "note": "The ramp as originally modelled, before the backtest — the path that overstates every reported quarter by a mean +65%. Shown as the upside bound, not as a forecast.",
+            "d": {
+              "cal": 1
+            }
+          },
+          {
+            "id": "flatrate",
+            "name": "Flat vintages",
+            "note": "No vintage escalation: every future tranche prices at today's signed level ($3.10/GPU-hr), spot flat at the 2026 level.",
+            "d": {
+              "rateCap": 3.1
+            }
+          },
+          {
+            "id": "decay",
+            "name": "Price decay −20%",
+            "note": "Compute prices fall: every vintage and spot rate 20% below base.",
+            "d": {
+              "rateMult": 0.8,
+              "spotMult": 0.8
+            }
+          },
+          {
+            "id": "slip",
+            "name": "Slip 2 quarters",
+            "note": "Every tranche beyond the disclosed 2027 programme energises and earns two quarters later.",
+            "d": {
+              "slipQtrs": 2,
+              "from": 8
+            }
+          },
+          {
+            "id": "leaseup",
+            "name": "Lease-up at 50%",
+            "note": "Uncontracted capacity contracts at half the modelled rate (ctr floored toward the signed book).",
+            "d": {
+              "ctrMult": 0.5
+            }
+          },
+          {
+            "id": "denselow",
+            "name": "Rubin denser (+18%)",
+            "note": "Datacentre-engineering reading: VR200 rack power and package count give ~279 GPU per IT-MW against a fleet-weighted 236 — the same megawatts carry more silicon. Applied as a uniform +18% to every Rubin tranche, which pushes tranches already at the top of the band (Sweetwater 1 initial, 285/IT-MW) past any defensible density; read it as an envelope, not a per-tranche claim.",
+            "d": {
+              "genDensity": {
+                "rubin": 1.18
+              }
+            }
+          },
+          {
+            "id": "densehigh",
+            "name": "Next-gen thirstier (7.0 kW)",
+            "note": "The base case now carries 6.30 kW per next-gen package. This is the top of the defensible band — 7.0 kW, the Feynman-class reading of a ~1 MW rack — so the same megawatts carry 10% fewer GPUs at an unchanged vintage rate.",
+            "d": {
+              "genDensity": {
+                "next": 0.9
+              }
+            }
+          },
+          {
+            "id": "recontract",
+            "name": "Unsigned book re-prices −15%/yr",
+            "note": "The uncontracted 79% of the 2030 fleet re-prices down 15% a year rather than holding its vintage rate.",
+            "d": {
+              "vintageDecay": 0.15
+            }
+          },
+          {
+            "id": "joint",
+            "name": "Joint downside",
+            "note": "The bear case: a further 50% slower ramp AND flat vintages AND two-quarter slip AND half lease-up, together. Each is individually defensible; the stack is the honest downside.",
+            "d": {
+              "rampMult": 1.5,
+              "rateCap": 3.1,
+              "slipQtrs": 2,
+              "from": 8,
+              "ctrMult": 0.5
+            }
+          }
         ],
-        "spot": { "2025": 2.5, "2026": 2.4, "2027": 2.3, "2028": 2.1, "2029": 1.95, "2030": 1.8 },
-        "spotMult": { "hopper": 1.0, "blackwell": 1.0, "rubin": 1.5, "next": 2.12 },
-        "mining": { "2026Q3": 95, "2026Q4": 75, "2027Q1": 50, "2027Q2": 30, "2027Q3": 15, "2027Q4": 5 },
+        "spot": {
+          "2025": 2.5,
+          "2026": 2.4,
+          "2027": 2.3,
+          "2028": 2.1,
+          "2029": 1.95,
+          "2030": 1.8
+        },
+        "spotMult": {
+          "hopper": 1.0,
+          "blackwell": 1.0,
+          "rubin": 1.5,
+          "next": 2.12
+        },
+        "mining": {
+          "2026Q3": 95,
+          "2026Q4": 75,
+          "2027Q1": 50,
+          "2027Q2": 30,
+          "2027Q3": 15,
+          "2027Q4": 5
+        },
         "consensusSource": "Bloomberg Company Financials consensus (Est Source: Consensus), pulled 2026-07-23, owner-provided; [total, AI-cloud] $M per calendar quarter. Far-out total line (2029Q3+) sits below its own AI-cloud product line — thin analyst pool; prefer AI column there.",
         "consensus": {
-          "2026Q3": [305, 257], "2026Q4": [587, 554], "2027Q1": [946, 953], "2027Q2": [1157, 1124],
-          "2027Q3": [1234, 1364], "2027Q4": [1452, 1572], "2028Q1": [1824, 1822], "2028Q2": [1966, 1960],
-          "2028Q3": [2221, 2271], "2028Q4": [2467, 2527], "2029Q1": [2788, 2781], "2029Q2": [3049, 3055],
-          "2029Q3": [2537, 2828], "2029Q4": [2800, 3113], "2030Q1": [3081, 3418], "2030Q2": [3256, 3638],
-          "2030Q3": [3409, 3409]
+          "2026Q3": [
+            305,
+            257
+          ],
+          "2026Q4": [
+            587,
+            554
+          ],
+          "2027Q1": [
+            946,
+            953
+          ],
+          "2027Q2": [
+            1157,
+            1124
+          ],
+          "2027Q3": [
+            1234,
+            1364
+          ],
+          "2027Q4": [
+            1452,
+            1572
+          ],
+          "2028Q1": [
+            1824,
+            1822
+          ],
+          "2028Q2": [
+            1966,
+            1960
+          ],
+          "2028Q3": [
+            2221,
+            2271
+          ],
+          "2028Q4": [
+            2467,
+            2527
+          ],
+          "2029Q1": [
+            2788,
+            2781
+          ],
+          "2029Q2": [
+            3049,
+            3055
+          ],
+          "2029Q3": [
+            2537,
+            2828
+          ],
+          "2029Q4": [
+            2800,
+            3113
+          ],
+          "2030Q1": [
+            3081,
+            3418
+          ],
+          "2030Q2": [
+            3256,
+            3638
+          ],
+          "2030Q3": [
+            3409,
+            3409
+          ]
         },
         "tranches": [
-          { "n": "Legacy H100/H200 fleet", "campus": "British Columbia", "grossMW": 4, "itMW": 3, "gpus": 1900, "gen": "hopper", "energize": "2025Q1", "rev": "2025Q2", "rampQtrs": 2, "ctr": 0.48, "rate": 2.48, "signed": 0.48 },
-          { "n": "Sep-2025 cohort (B300 / B200 / MI350X)", "campus": "British Columbia", "grossMW": 30, "itMW": 22, "gpus": 12400, "gen": "blackwell", "energize": "2025Q3", "rev": "2025Q4", "rampQtrs": 3, "ctr": 0.48, "rate": 2.48, "signed": 0.48 },
-          { "n": "Prince George / BC expansion", "campus": "British Columbia", "grossMW": 16, "itMW": 12, "gpus": 7500, "gen": "hopper", "energize": "2026Q1", "rev": "2026Q2", "rampQtrs": 2, "ctr": 0.85, "rate": 2.72, "signed": 0.85 },
-          { "n": "Horizon 1 (Microsoft GB300)", "campus": "Childress TX", "grossMW": 75, "itMW": 50, "gpus": 19000, "gen": "blackwell", "energize": "2026Q2", "rev": "2026Q3", "rampQtrs": 2, "ctr": 1.0, "rate": 2.91, "signed": 1.0 },
-          { "n": "Horizon 2 (Microsoft)", "campus": "Childress TX", "grossMW": 75, "itMW": 50, "gpus": 19000, "gen": "blackwell", "energize": "2026Q3", "rev": "2026Q4", "rampQtrs": 2, "ctr": 1.0, "rate": 2.91, "signed": 1.0 },
-          { "n": "Horizon 3 (Microsoft)", "campus": "Childress TX", "grossMW": 75, "itMW": 50, "gpus": 19000, "gen": "blackwell", "energize": "2026Q4", "rev": "2027Q1", "rampQtrs": 2, "ctr": 1.0, "rate": 2.91, "signed": 1.0 },
-          { "n": "Horizon 4 (Microsoft)", "campus": "Childress TX", "grossMW": 75, "itMW": 50, "gpus": 19000, "gen": "blackwell", "energize": "2026Q4", "rev": "2027Q1", "rampQtrs": 2, "ctr": 1.0, "rate": 2.91, "signed": 1.0 },
-          { "n": "50k B300 (Mackenzie + Childress air)", "campus": "British Columbia", "grossMW": 130, "itMW": 110, "gpus": 50000, "gen": "blackwell", "energize": "2026Q3", "rev": "2026Q4", "rampQtrs": 3, "ctr": 0.85, "rate": 2.85, "signed": 0.85 },
-          { "n": "NVIDIA 60MW air Blackwell", "campus": "Childress TX", "grossMW": 60, "itMW": 50, "gpus": 25000, "gen": "blackwell", "energize": "2027Q1", "rev": "2027Q1", "rampQtrs": 2, "ctr": 1.0, "rate": 3.1, "signed": 1.0 },
-          { "n": "Horizon 5", "campus": "Childress TX", "grossMW": 75, "itMW": 50, "gpus": 17000, "gen": "blackwell", "energize": "2027Q2", "rev": "2027Q3", "rampQtrs": 2, "ctr": 0.9, "rate": 3.7, "signed": 0 },
-          { "n": "Horizon 6", "campus": "Childress TX", "grossMW": 75, "itMW": 50, "gpus": 17000, "gen": "blackwell", "energize": "2027Q3", "rev": "2027Q4", "rampQtrs": 2, "ctr": 0.9, "rate": 3.7, "signed": 0 },
-          { "n": "Childress air retrofit 27a", "campus": "Childress TX", "grossMW": 70, "itMW": 56, "gpus": 23000, "gen": "blackwell", "energize": "2027Q2", "rev": "2027Q3", "rampQtrs": 2, "ctr": 0.8, "rate": 3.2, "signed": 0 },
-          { "n": "Childress air retrofit 27b", "campus": "Childress TX", "grossMW": 75, "itMW": 60, "gpus": 24000, "gen": "blackwell", "energize": "2027Q3", "rev": "2027Q4", "rampQtrs": 2, "ctr": 0.8, "rate": 3.2, "signed": 0 },
-          { "n": "Childress air retrofit 27c", "campus": "Childress TX", "grossMW": 75, "itMW": 60, "gpus": 24000, "gen": "blackwell", "energize": "2027Q4", "rev": "2028Q1", "rampQtrs": 2, "ctr": 0.8, "rate": 3.2, "signed": 0 },
-          { "n": "Sweetwater 1 initial (VR200, 200MW IT)", "campus": "Sweetwater TX", "grossMW": 300, "itMW": 200, "gpus": 57000, "gen": "rubin", "energize": "2027Q4", "rev": "2028Q1", "rampQtrs": 3, "ctr": 0.85, "rate": 4.5, "signed": 0 },
-          { "n": "Childress air completion", "campus": "Childress TX", "grossMW": 120, "itMW": 96, "gpus": 36000, "gen": "blackwell", "energize": "2028Q2", "rev": "2028Q3", "rampQtrs": 2, "ctr": 0.75, "rate": 3.2, "signed": 0 },
-          { "n": "Sweetwater 1 ramp a", "campus": "Sweetwater TX", "grossMW": 200, "itMW": 140, "gpus": 34000, "gen": "rubin", "energize": "2028Q1", "rev": "2028Q2", "rampQtrs": 2, "ctr": 0.8, "rate": 4.5, "signed": 0 },
-          { "n": "Sweetwater 1 ramp b", "campus": "Sweetwater TX", "grossMW": 200, "itMW": 140, "gpus": 34000, "gen": "rubin", "energize": "2028Q2", "rev": "2028Q3", "rampQtrs": 2, "ctr": 0.8, "rate": 4.5, "signed": 0 },
-          { "n": "Sweetwater 1 ramp c", "campus": "Sweetwater TX", "grossMW": 200, "itMW": 140, "gpus": 34000, "gen": "rubin", "energize": "2028Q3", "rev": "2028Q4", "rampQtrs": 2, "ctr": 0.8, "rate": 4.5, "signed": 0 },
-          { "n": "Nostrum first halls", "campus": "Spain (EU)", "grossMW": 100, "itMW": 70, "gpus": 17000, "gen": "rubin", "energize": "2029Q2", "rev": "2029Q3", "rampQtrs": 2, "ctr": 0.7, "rate": 4.6, "signed": 0 },
-          { "n": "Sweetwater 1 completion a", "campus": "Sweetwater TX", "grossMW": 250, "itMW": 175, "gpus": 39000, "gen": "rubin", "energize": "2029Q1", "rev": "2029Q2", "rampQtrs": 2, "ctr": 0.75, "rate": 4.6, "signed": 0 },
-          { "n": "Sweetwater 1 completion b", "campus": "Sweetwater TX", "grossMW": 250, "itMW": 175, "gpus": 38000, "gen": "rubin", "energize": "2029Q2", "rev": "2029Q3", "rampQtrs": 2, "ctr": 0.75, "rate": 4.6, "signed": 0 },
-          { "n": "Sweetwater 2 phase 1", "campus": "Sweetwater TX", "grossMW": 200, "itMW": 140, "gpus": 31000, "gen": "rubin", "energize": "2029Q2", "rev": "2029Q3", "rampQtrs": 2, "ctr": 0.7, "rate": 4.6, "signed": 0 },
-          { "n": "Kiowa phase 1", "campus": "Kiowa OK", "grossMW": 300, "itMW": 210, "gpus": 46000, "gen": "rubin", "energize": "2029Q3", "rev": "2029Q4", "rampQtrs": 2, "ctr": 0.7, "rate": 4.6, "signed": 0 },
-          { "n": "Bundey first halls", "campus": "S. Australia", "grossMW": 100, "itMW": 70, "gpus": 15000, "gen": "rubin", "energize": "2029Q3", "rev": "2029Q4", "rampQtrs": 2, "ctr": 0.7, "rate": 4.6, "signed": 0 },
-          { "n": "2030 wave a (Sweetwater 2)", "campus": "Sweetwater TX", "grossMW": 275, "itMW": 193, "gpus": 30600, "gen": "next", "energize": "2029Q4", "rev": "2030Q1", "rampQtrs": 2, "ctr": 0.7, "rate": 6.4, "signed": 0 },
-          { "n": "2030 wave b (Kiowa)", "campus": "Kiowa OK", "grossMW": 275, "itMW": 193, "gpus": 30600, "gen": "next", "energize": "2030Q1", "rev": "2030Q2", "rampQtrs": 2, "ctr": 0.7, "rate": 6.4, "signed": 0 },
-          { "n": "2030 wave c (Sweetwater)", "campus": "Sweetwater TX", "grossMW": 275, "itMW": 193, "gpus": 30600, "gen": "next", "energize": "2030Q2", "rev": "2030Q3", "rampQtrs": 2, "ctr": 0.7, "rate": 6.4, "signed": 0 },
-          { "n": "2030 wave d (Bundey / Nostrum)", "campus": "S. Australia / Spain", "grossMW": 275, "itMW": 192, "gpus": 30500, "gen": "next", "energize": "2030Q3", "rev": "2030Q4", "rampQtrs": 2, "ctr": 0.7, "rate": 6.4, "signed": 0 }
+          {
+            "n": "Legacy H100/H200 fleet",
+            "campus": "British Columbia",
+            "grossMW": 4,
+            "itMW": 3,
+            "gpus": 1900,
+            "gen": "hopper",
+            "energize": "2025Q1",
+            "rev": "2025Q2",
+            "rampQtrs": 2,
+            "ctr": 0.48,
+            "rate": 2.48,
+            "signed": 0.48
+          },
+          {
+            "n": "Sep-2025 cohort (B300 / B200 / MI350X)",
+            "campus": "British Columbia",
+            "grossMW": 30,
+            "itMW": 22,
+            "gpus": 12400,
+            "gen": "blackwell",
+            "energize": "2025Q3",
+            "rev": "2025Q4",
+            "rampQtrs": 3,
+            "ctr": 0.48,
+            "rate": 2.48,
+            "signed": 0.48
+          },
+          {
+            "n": "Prince George / BC expansion",
+            "campus": "British Columbia",
+            "grossMW": 16,
+            "itMW": 12,
+            "gpus": 7500,
+            "gen": "hopper",
+            "energize": "2026Q1",
+            "rev": "2026Q2",
+            "rampQtrs": 2,
+            "ctr": 0.85,
+            "rate": 2.72,
+            "signed": 0.85
+          },
+          {
+            "n": "Horizon 1 (Microsoft GB300)",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 50,
+            "gpus": 19000,
+            "gen": "blackwell",
+            "energize": "2026Q2",
+            "rev": "2026Q3",
+            "rampQtrs": 2,
+            "ctr": 1.0,
+            "rate": 2.91,
+            "signed": 1.0
+          },
+          {
+            "n": "Horizon 2 (Microsoft)",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 50,
+            "gpus": 19000,
+            "gen": "blackwell",
+            "energize": "2026Q3",
+            "rev": "2026Q4",
+            "rampQtrs": 2,
+            "ctr": 1.0,
+            "rate": 2.91,
+            "signed": 1.0
+          },
+          {
+            "n": "Horizon 3 (Microsoft)",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 50,
+            "gpus": 19000,
+            "gen": "blackwell",
+            "energize": "2026Q4",
+            "rev": "2027Q1",
+            "rampQtrs": 2,
+            "ctr": 1.0,
+            "rate": 2.91,
+            "signed": 1.0
+          },
+          {
+            "n": "Horizon 4 (Microsoft)",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 50,
+            "gpus": 19000,
+            "gen": "blackwell",
+            "energize": "2026Q4",
+            "rev": "2027Q1",
+            "rampQtrs": 2,
+            "ctr": 1.0,
+            "rate": 2.91,
+            "signed": 1.0
+          },
+          {
+            "n": "50k B300 (Mackenzie + Childress air)",
+            "campus": "British Columbia",
+            "grossMW": 130,
+            "itMW": 110,
+            "gpus": 50000,
+            "gen": "blackwell",
+            "energize": "2026Q3",
+            "rev": "2026Q4",
+            "rampQtrs": 3,
+            "ctr": 0.85,
+            "rate": 2.85,
+            "signed": 0.85
+          },
+          {
+            "n": "NVIDIA 60MW air Blackwell",
+            "campus": "Childress TX",
+            "grossMW": 60,
+            "itMW": 50,
+            "gpus": 25000,
+            "gen": "blackwell",
+            "energize": "2027Q1",
+            "rev": "2027Q1",
+            "rampQtrs": 2,
+            "ctr": 1.0,
+            "rate": 3.1,
+            "signed": 1.0
+          },
+          {
+            "n": "Horizon 5",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 50,
+            "gpus": 17000,
+            "gen": "blackwell",
+            "energize": "2027Q2",
+            "rev": "2027Q3",
+            "rampQtrs": 2,
+            "ctr": 0.9,
+            "rate": 3.7,
+            "signed": 0
+          },
+          {
+            "n": "Horizon 6",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 50,
+            "gpus": 17000,
+            "gen": "blackwell",
+            "energize": "2027Q3",
+            "rev": "2027Q4",
+            "rampQtrs": 2,
+            "ctr": 0.9,
+            "rate": 3.7,
+            "signed": 0
+          },
+          {
+            "n": "Childress air retrofit 27a",
+            "campus": "Childress TX",
+            "grossMW": 70,
+            "itMW": 56,
+            "gpus": 23000,
+            "gen": "blackwell",
+            "energize": "2027Q2",
+            "rev": "2027Q3",
+            "rampQtrs": 2,
+            "ctr": 0.8,
+            "rate": 3.2,
+            "signed": 0
+          },
+          {
+            "n": "Childress air retrofit 27b",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 60,
+            "gpus": 24000,
+            "gen": "blackwell",
+            "energize": "2027Q3",
+            "rev": "2027Q4",
+            "rampQtrs": 2,
+            "ctr": 0.8,
+            "rate": 3.2,
+            "signed": 0
+          },
+          {
+            "n": "Childress air retrofit 27c",
+            "campus": "Childress TX",
+            "grossMW": 75,
+            "itMW": 60,
+            "gpus": 24000,
+            "gen": "blackwell",
+            "energize": "2027Q4",
+            "rev": "2028Q1",
+            "rampQtrs": 2,
+            "ctr": 0.8,
+            "rate": 3.2,
+            "signed": 0
+          },
+          {
+            "n": "Sweetwater 1 initial (VR200, 200MW IT)",
+            "campus": "Sweetwater TX",
+            "grossMW": 300,
+            "itMW": 200,
+            "gpus": 57000,
+            "gen": "rubin",
+            "energize": "2027Q4",
+            "rev": "2028Q1",
+            "rampQtrs": 3,
+            "ctr": 0.85,
+            "rate": 4.5,
+            "signed": 0
+          },
+          {
+            "n": "Childress air completion",
+            "campus": "Childress TX",
+            "grossMW": 120,
+            "itMW": 96,
+            "gpus": 36000,
+            "gen": "blackwell",
+            "energize": "2028Q2",
+            "rev": "2028Q3",
+            "rampQtrs": 2,
+            "ctr": 0.75,
+            "rate": 3.2,
+            "signed": 0
+          },
+          {
+            "n": "Sweetwater 1 ramp a",
+            "campus": "Sweetwater TX",
+            "grossMW": 200,
+            "itMW": 140,
+            "gpus": 34000,
+            "gen": "rubin",
+            "energize": "2028Q1",
+            "rev": "2028Q2",
+            "rampQtrs": 2,
+            "ctr": 0.8,
+            "rate": 4.5,
+            "signed": 0
+          },
+          {
+            "n": "Sweetwater 1 ramp b",
+            "campus": "Sweetwater TX",
+            "grossMW": 200,
+            "itMW": 140,
+            "gpus": 34000,
+            "gen": "rubin",
+            "energize": "2028Q2",
+            "rev": "2028Q3",
+            "rampQtrs": 2,
+            "ctr": 0.8,
+            "rate": 4.5,
+            "signed": 0
+          },
+          {
+            "n": "Sweetwater 1 ramp c",
+            "campus": "Sweetwater TX",
+            "grossMW": 200,
+            "itMW": 140,
+            "gpus": 34000,
+            "gen": "rubin",
+            "energize": "2028Q3",
+            "rev": "2028Q4",
+            "rampQtrs": 2,
+            "ctr": 0.8,
+            "rate": 4.5,
+            "signed": 0
+          },
+          {
+            "n": "Nostrum first halls",
+            "campus": "Spain (EU)",
+            "grossMW": 100,
+            "itMW": 70,
+            "gpus": 17000,
+            "gen": "rubin",
+            "energize": "2029Q2",
+            "rev": "2029Q3",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 4.6,
+            "signed": 0
+          },
+          {
+            "n": "Sweetwater 1 completion a",
+            "campus": "Sweetwater TX",
+            "grossMW": 250,
+            "itMW": 175,
+            "gpus": 39000,
+            "gen": "rubin",
+            "energize": "2029Q1",
+            "rev": "2029Q2",
+            "rampQtrs": 2,
+            "ctr": 0.75,
+            "rate": 4.6,
+            "signed": 0
+          },
+          {
+            "n": "Sweetwater 1 completion b",
+            "campus": "Sweetwater TX",
+            "grossMW": 250,
+            "itMW": 175,
+            "gpus": 38000,
+            "gen": "rubin",
+            "energize": "2029Q2",
+            "rev": "2029Q3",
+            "rampQtrs": 2,
+            "ctr": 0.75,
+            "rate": 4.6,
+            "signed": 0
+          },
+          {
+            "n": "Sweetwater 2 phase 1",
+            "campus": "Sweetwater TX",
+            "grossMW": 200,
+            "itMW": 140,
+            "gpus": 31000,
+            "gen": "rubin",
+            "energize": "2029Q2",
+            "rev": "2029Q3",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 4.6,
+            "signed": 0
+          },
+          {
+            "n": "Kiowa phase 1",
+            "campus": "Kiowa OK",
+            "grossMW": 300,
+            "itMW": 210,
+            "gpus": 46000,
+            "gen": "rubin",
+            "energize": "2029Q3",
+            "rev": "2029Q4",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 4.6,
+            "signed": 0
+          },
+          {
+            "n": "Bundey first halls",
+            "campus": "S. Australia",
+            "grossMW": 100,
+            "itMW": 70,
+            "gpus": 15000,
+            "gen": "rubin",
+            "energize": "2029Q3",
+            "rev": "2029Q4",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 4.6,
+            "signed": 0
+          },
+          {
+            "n": "2030 wave a (Sweetwater 2)",
+            "campus": "Sweetwater TX",
+            "grossMW": 275,
+            "itMW": 193,
+            "gpus": 30600,
+            "gen": "next",
+            "energize": "2029Q4",
+            "rev": "2030Q1",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 6.4,
+            "signed": 0
+          },
+          {
+            "n": "2030 wave b (Kiowa)",
+            "campus": "Kiowa OK",
+            "grossMW": 275,
+            "itMW": 193,
+            "gpus": 30600,
+            "gen": "next",
+            "energize": "2030Q1",
+            "rev": "2030Q2",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 6.4,
+            "signed": 0
+          },
+          {
+            "n": "2030 wave c (Sweetwater)",
+            "campus": "Sweetwater TX",
+            "grossMW": 275,
+            "itMW": 193,
+            "gpus": 30600,
+            "gen": "next",
+            "energize": "2030Q2",
+            "rev": "2030Q3",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 6.4,
+            "signed": 0
+          },
+          {
+            "n": "2030 wave d (Bundey / Nostrum)",
+            "campus": "S. Australia / Spain",
+            "grossMW": 275,
+            "itMW": 192,
+            "gpus": 30500,
+            "gen": "next",
+            "energize": "2030Q3",
+            "rev": "2030Q4",
+            "rampQtrs": 2,
+            "ctr": 0.7,
+            "rate": 6.4,
+            "signed": 0
+          }
         ]
       },
       "model": "owner",
@@ -2364,7 +2981,7 @@
           "kind": "conversion",
           "signed": "2025-03",
           "effective": true,
-          "source": "Phase PRs: 133+260+133MW, 15yr + 2x5 opts; term-avg $2.06M (verifier)",
+          "source": "Phase PRs: 133+260+133MW, 15yr + 2x5 opts; term-avg $2.06M (verifier) || SA tape carries Helios at $20.1B TCV (their Ph2/3 values are visibly modeled — 11-decimal outputs); our $16.25B stays as the phase-PR figure pending re-verification",
           "totalRevM": 18000,
           "grossTotalM": 16250
         }
@@ -2486,7 +3103,7 @@
         "equityDiscount": "entity complexity — 55% consolidated ABTC (related-party, big minority interest) + SPV structures",
         "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses",
         "sites": "BP ph2 350 IT (AEP 1GW interconnect executed); RB ROFO: OWNER MANDATE 2026-07-08 — assume Fluidstack exercises: tranche 1 400MW graded ESTIMATED (Entergy power expansion pending → not disclosed), balance 600MW rumored; 7GW exclusivity/diligence funnel still NOT credited (attrition evidence)",
-        "tier": "ig — OWNER RULING 7/20/26: two 15-yr NNN leases at Beacon Point (704MW to one tenant, $19.6B campus) with the tenant COMPANY-DISCLOSED as 'high-investment-grade' in the 8-K exhibit (unnamed; lease not exhibited), plus Google-backstopped River Bend ($7.0B/245MW) and IG project debt on Ph1; company states 100% of contracted AI capacity is IG-leased or backstopped [edgar]. FALSIFIER: tenant identity revealing sub-IG credit, or exhibited lease terms diverging from the PR",
+        "tier": "ig — OWNER RULING 7/20/26: two 15-yr NNN leases at Beacon Point (704MW to one tenant, $19.6B campus) with the tenant COMPANY-DISCLOSED as 'high-investment-grade' in the 8-K exhibit (unnamed; lease not exhibited), plus Google-backstopped River Bend ($7.0B/245MW) and IG project debt on Ph1; company states 100% of contracted AI capacity is IG-leased or backstopped [edgar]. FALSIFIER: tenant identity revealing sub-IG credit, or exhibited lease terms diverging from the PR || 7/27/26: SA identifies the Beacon Point tenant as NVIDIA (Aa-grade) — owner adopted as probable; falsifier unchanged (identity disclosure)",
         "shares": "FD if-converted 133.7M, filing-derived 7/23/26: basic 123.19M as of 7/20/26 (buyback 8-K: 6,159,439 = 5.0% of current outstanding ×20; = 112.59M 5/4 cover + 9.72M Coatue conversion + ~0.9M ATM/RSU dribble) + 3.35M RSUs + 4.55M PSUs (at target) + 0.07M DSUs + 2.58M options TSM @$5.91 WAEP (all ITM at ~$109) + de-minimis warrants [edgar 10-Q acc 0001104659-26-055891 + 8-K acc 0001104659-26-084862]. Coatue $159.285M accreted principal converted (preferred reading — forced-redemption right live 6/28/26 at 6.6× conv price) → stripped from netDebt (85 → −74); FD identical under either reading. MS's 121M FSDO refuted: stale Q1 weighted-avg + no award overhang"
       },
       "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
@@ -2565,6 +3182,12 @@
       ],
       "log": [
         {
+          "d": "2026-07-27",
+          "t": "note",
+          "s": "[semianalysis] HPC tape",
+          "x": "SA identifies the Beacon Point tenant (both $9.8B leases) as NVIDIA — consistent with 'multi-trillion-cap', the zoning note, and NVIDIA's direct colo pattern elsewhere on the tape (Fleet DC Reno at $1.80-1.97M Y1/MW). Owner adopted as probable, attribution preserved; would CONFIRM the IG tier if disclosed. SA's Y1-NOI×3%-escalator math reconciles to our 1.856 term-avg exactly."
+        },
+        {
           "d": "2026-07-23",
           "t": "site",
           "s": "owner ruling",
@@ -2628,21 +3251,21 @@
         },
         {
           "id": "hut-beaconpoint",
-          "counterparty": "Undisclosed multi-trillion-cap tenant",
+          "counterparty": "NVIDIA (SA-identified; disclosed: high-IG multi-trillion-cap tenant)",
           "mw": 352,
           "termYrs": 15,
           "noiPerMWyr": 1.86,
           "kind": "build-to-spec",
           "signed": "2026-05",
           "effective": true,
-          "source": "PR: 352MW IT, 15yr; SPV bonds 6/9/26",
+          "source": "PR: 352MW IT, 15yr; SPV bonds 6/9/26 [semianalysis 7/27/26 tape — SA-identified, estimated ceiling; owner adopted 7/27]",
           "grossMW": 500,
           "totalRevM": 9800,
           "grossTotalM": 9800
         },
         {
           "id": "hut-beaconpoint2",
-          "counterparty": "Undisclosed multi-trillion-cap tenant (same as Ph1)",
+          "counterparty": "NVIDIA (SA-identified; disclosed: high-IG multi-trillion-cap tenant)",
           "mw": 352,
           "grossMW": 500,
           "termYrs": 15,
@@ -2651,7 +3274,7 @@
           "grossTotalM": 9800,
           "effective": true,
           "signed": "2026-07",
-          "source": "8-K 7/20/26 (acc. 0001104659-26-084862, Item 8.01, Ex-99.1): second 15yr NNN lease, 352MW IT / 500MW utility slice, $9.8B base-term (~$655M/yr avg NOI), 3.0% annual escalators, substantially Ph1 terms; three 5-yr renewal options (campus $50.2B all-in); first Ph2 data hall Q2-28, campus energization Q1-27; NVIDIA DSX architecture. Same tenant as Ph1 — company characterizes 'high-investment-grade'; lease NOT exhibited (Ph1 pattern)"
+          "source": "8-K 7/20/26 (acc. 0001104659-26-084862, Item 8.01, Ex-99.1): second 15yr NNN lease, 352MW IT / 500MW utility slice, $9.8B base-term (~$655M/yr avg NOI), 3.0% annual escalators, substantially Ph1 terms; three 5-yr renewal options (campus $50.2B all-in); first Ph2 data hall Q2-28, campus energization Q1-27; NVIDIA DSX architecture. Same tenant as Ph1 — company characterizes 'high-investment-grade'; lease NOT exhibited (Ph1 pattern) [semianalysis 7/27/26 tape — SA-identified, estimated ceiling; owner adopted 7/27]"
         }
       ],
       "contracts": [
@@ -2947,7 +3570,7 @@
           "kind": "build-to-spec",
           "signed": "2025-10",
           "effective": true,
-          "source": "8-K: 300MW gross/216 IT, 15yr",
+          "source": "8-K: 300MW gross/216 IT, 15yr || no SLAs (uptime/temp/humidity only) per Fitch via SA tape",
           "grossMW": 300,
           "grossTotalM": 5500
         },
@@ -2960,7 +3583,7 @@
           "kind": "build-to-spec",
           "signed": "2026-03",
           "effective": true,
-          "source": "Stingray notes deck 6/15/26: 100MW gross/70 IT",
+          "source": "Stingray notes deck 6/15/26: 100MW gross/70 IT || no SLAs (uptime/temp/humidity only) per Fitch via SA tape",
           "grossMW": 100,
           "grossTotalM": 2000
         }
@@ -3117,7 +3740,7 @@
           "yr": 2026,
           "mo": 3,
           "prov": "disclosed",
-          "leaseId": "corz-crwv-12yr"
+          "leaseId": "corz-crwv-denton"
         },
         {
           "n": "Denton, TX (CoreWeave) ph2",
@@ -3127,7 +3750,7 @@
           "yr": 2027,
           "mo": 1,
           "prov": "disclosed",
-          "leaseId": "corz-crwv-12yr"
+          "leaseId": "corz-crwv-denton"
         },
         {
           "n": "Dalton, GA (CoreWeave) ph1",
@@ -3137,7 +3760,7 @@
           "yr": 2026,
           "mo": 6,
           "prov": "disclosed",
-          "leaseId": "corz-crwv-12yr"
+          "leaseId": "corz-crwv-dalton"
         },
         {
           "n": "Dalton, GA (CoreWeave) ph2",
@@ -3147,7 +3770,7 @@
           "yr": 2027,
           "mo": 1,
           "prov": "disclosed",
-          "leaseId": "corz-crwv-12yr"
+          "leaseId": "corz-crwv-dalton"
         },
         {
           "n": "Muskogee, OK (CoreWeave)",
@@ -3157,7 +3780,7 @@
           "yr": 2026,
           "mo": 6,
           "prov": "disclosed",
-          "leaseId": "corz-crwv-12yr"
+          "leaseId": "corz-crwv-muskogee"
         },
         {
           "n": "Marble, NC (CoreWeave)",
@@ -3167,7 +3790,7 @@
           "yr": 2026,
           "mo": 9,
           "prov": "disclosed",
-          "leaseId": "corz-crwv-12yr"
+          "leaseId": "corz-crwv-marble"
         },
         {
           "n": "Austin, TX (CoreWeave)",
@@ -3286,7 +3909,14 @@
           "source": "PR 2026-03-05 + 8-K 2026-03-06"
         }
       ],
-      "log": [],
+      "log": [
+        {
+          "d": "2026-07-27",
+          "t": "lease",
+          "s": "[semianalysis] tape + owner ruling",
+          "x": "CoreWeave book split to per-campus lease records (Denton 262 / Dalton 175 / Muskogee 70 / Marble 65). SA's rent-credit flag CONFIRMED against the 4/21/26 8-K EX-99.2: ~$879M of credits (capex repayment $1.5M/MW at 50% of each monthly invoice ~29mo + $126M end-of-term) — term-avg NOI 1.20→1.07 (−11%), near-term NOI halved 2026-27. Credits = repayment of CRWV-funded conversion capex (interest-free vendor loan); deduction correct since we never charge CORZ that capex. Austin excluded (no credits, $115/kW, 3.0% esc, head-lease drag already in its 0.60)."
+        }
+      ],
       "btc": 547,
       "thesis": "Undervalued vs its CoreWeave colo book (~590 MW, 12-yr) plus ~1.3 GW of pipeline; the market discounts the single-tenant concentration. The CoreWeave relationship is both the value and the risk.",
       "verified": {
@@ -3294,19 +3924,6 @@
         "contracts": "2026-06-30"
       },
       "leases": [
-        {
-          "id": "corz-crwv-12yr",
-          "counterparty": "CoreWeave",
-          "mw": 570,
-          "termYrs": 12,
-          "noiPerMWyr": 1.2,
-          "kind": "conversion",
-          "signed": "2024-06",
-          "effective": true,
-          "source": "8-Ks Jun 2024–2025: ~$10B, ~570MW critical IT, ~12yr",
-          "totalRevM": 9925,
-          "grossTotalM": 10200
-        },
         {
           "id": "corz-crwv-austin",
           "counterparty": "CoreWeave",
@@ -3318,6 +3935,54 @@
           "effective": true,
           "source": "10-K: 8-yr head lease drags NOI (verifier 0.60)",
           "grossTotalM": 100
+        },
+        {
+          "counterparty": "CoreWeave",
+          "termYrs": 12,
+          "noiPerMWyr": 1.07,
+          "kind": "conversion",
+          "effective": true,
+          "signed": "2024-06",
+          "id": "corz-crwv-denton",
+          "mw": 262,
+          "grossTotalM": 4653,
+          "source": "Per-campus split 7/27/26 of the aggregate ~$10.2B/570MW/12yr CoreWeave book (8-Ks Jun 2024-2025) — Denton, TX; gross pro-rata by MW (SA's per-campus TCVs are modeled, not disclosed); SA: Y1 NOI $930k @3.5% esc ≈ our 1.2 term-avg (their 12yr avg factor 1.22 → 1.13, within 6%). CREDITS CONFIRMED (8-K 4/21/26 EX-99.2, sole disclosing filing): capex credit $1.5M/MW ex-Austin (~$754-859M) applied at 50% of EACH MONTHLY invoice until exhausted (~29 months per campus — rent literally halves for yrs 1-2.4) + End-of-Term credit $125.7M; total ~$879M ≈ 8.6% of the gross book. Term-avg NOI cut 1.20→1.07 (gross rent $1.46 × ~82% margin − $125k/MW·yr credit amortization). CORZ's own DSCR nets these repayments; its printed NOI is GROSS. Front-loading NOT representable in one term-avg: real shape 2026 −49%, 2027 −50%, 2028 −37%, 2029+ ~nil"
+        },
+        {
+          "counterparty": "CoreWeave",
+          "termYrs": 12,
+          "noiPerMWyr": 1.07,
+          "kind": "conversion",
+          "effective": true,
+          "signed": "2024-06",
+          "id": "corz-crwv-dalton",
+          "mw": 175,
+          "grossTotalM": 3132,
+          "source": "Per-campus split 7/27/26 of the aggregate ~$10.2B/570MW/12yr CoreWeave book (8-Ks Jun 2024-2025) — Dalton, GA; gross pro-rata by MW (SA's per-campus TCVs are modeled, not disclosed); SA: Y1 NOI $930k @3.5% esc ≈ our 1.2 term-avg (their 12yr avg factor 1.22 → 1.13, within 6%). CREDITS CONFIRMED (8-K 4/21/26 EX-99.2, sole disclosing filing): capex credit $1.5M/MW ex-Austin (~$754-859M) applied at 50% of EACH MONTHLY invoice until exhausted (~29 months per campus — rent literally halves for yrs 1-2.4) + End-of-Term credit $125.7M; total ~$879M ≈ 8.6% of the gross book. Term-avg NOI cut 1.20→1.07 (gross rent $1.46 × ~82% margin − $125k/MW·yr credit amortization). CORZ's own DSCR nets these repayments; its printed NOI is GROSS. Front-loading NOT representable in one term-avg: real shape 2026 −49%, 2027 −50%, 2028 −37%, 2029+ ~nil"
+        },
+        {
+          "counterparty": "CoreWeave",
+          "termYrs": 12,
+          "noiPerMWyr": 1.07,
+          "kind": "conversion",
+          "effective": true,
+          "signed": "2024-06",
+          "id": "corz-crwv-muskogee",
+          "mw": 70,
+          "grossTotalM": 1253,
+          "source": "Per-campus split 7/27/26 of the aggregate ~$10.2B/570MW/12yr CoreWeave book (8-Ks Jun 2024-2025) — Muskogee, OK; gross pro-rata by MW (SA's per-campus TCVs are modeled, not disclosed); SA: Y1 NOI $930k @3.5% esc ≈ our 1.2 term-avg (their 12yr avg factor 1.22 → 1.13, within 6%). CREDITS CONFIRMED (8-K 4/21/26 EX-99.2, sole disclosing filing): capex credit $1.5M/MW ex-Austin (~$754-859M) applied at 50% of EACH MONTHLY invoice until exhausted (~29 months per campus — rent literally halves for yrs 1-2.4) + End-of-Term credit $125.7M; total ~$879M ≈ 8.6% of the gross book. Term-avg NOI cut 1.20→1.07 (gross rent $1.46 × ~82% margin − $125k/MW·yr credit amortization). CORZ's own DSCR nets these repayments; its printed NOI is GROSS. Front-loading NOT representable in one term-avg: real shape 2026 −49%, 2027 −50%, 2028 −37%, 2029+ ~nil"
+        },
+        {
+          "counterparty": "CoreWeave",
+          "termYrs": 12,
+          "noiPerMWyr": 1.07,
+          "kind": "conversion",
+          "effective": true,
+          "signed": "2024-06",
+          "id": "corz-crwv-marble",
+          "mw": 65,
+          "grossTotalM": 1163,
+          "source": "Per-campus split 7/27/26 of the aggregate ~$10.2B/570MW/12yr CoreWeave book (8-Ks Jun 2024-2025) — Marble, NC; gross pro-rata by MW (SA's per-campus TCVs are modeled, not disclosed); SA: Y1 NOI $930k @3.5% esc ≈ our 1.2 term-avg (their 12yr avg factor 1.22 → 1.13, within 6%). CREDITS CONFIRMED (8-K 4/21/26 EX-99.2, sole disclosing filing): capex credit $1.5M/MW ex-Austin (~$754-859M) applied at 50% of EACH MONTHLY invoice until exhausted (~29 months per campus — rent literally halves for yrs 1-2.4) + End-of-Term credit $125.7M; total ~$879M ≈ 8.6% of the gross book. Term-avg NOI cut 1.20→1.07 (gross rent $1.46 × ~82% margin − $125k/MW·yr credit amortization). CORZ's own DSCR nets these repayments; its printed NOI is GROSS. Front-loading NOT representable in one term-avg: real shape 2026 −49%, 2027 −50%, 2028 −37%, 2029+ ~nil"
         }
       ],
       "sharesReported": 317.9
@@ -3435,7 +4100,7 @@
       ],
       "basis": {
         "plannedRaise": "Buildout is overwhelmingly debt/Google-backstopped (~$3.2B Google backstop, $3.2B WULF Compute senior secured notes, $2.5B converts); equity issuance is incremental ATM + acquisition stock (KY/MD deals) plus Google warrants for 32.5M shares, so realistic cumulative equity raise is modest vs ~$13.8B cap — est. ~$600M through 2028.",
-        "seniorClaims": "Hawesville Developer 6.8% NCI fixed-put ~$101M acquisition-date FV. NOTE: $3.2B Lake Mariner bond ALREADY in netDebt; Abernathy $1.3B JV notes off-BS (50.1% equity-method) — model credits 100% of Abernathy, a flagged over-credit",
+        "seniorClaims": "Century Aluminum: 6.8% NON-DILUTIVE interest in Raylan Data Holdings LLC (the Hawesville/Anthropic site SPV, all projects on the parcel) + a FIXED $300M PUT — charge = max($300M floor, 6.8% × Raylan equity); floats above $4.41B site equity ($300M÷6.8%). Replaces the stale $101M acquisition-date FV. NOT 6.8%×$19B TCV (~4x wrong). [edgar Century 8-K 2/2/26 Items 1.01/2.01 + WULF 10-Q VIE note; SA flagged, verify-confirmed 7/27/26]",
         "legacy": "$530M Abernathy JV exit receivable ($250M ~immediate, $150M by 12/31/26, ~$130M by 4/30/27) booked ~$500M; 1.18x invested capital"
       },
       "narrative": "TeraWulf is a Bitcoin miner that has pivoted decisively into AI/HPC colocation landlord — it builds powered data-center shells at Lake Mariner (NY) and Abernathy (TX) and leases them to tenants (Core42, Fluidstack) who bring their own GPUs, with Google backstopping ~$3.2B of Fluidstack's lease obligations and holding ~14% pro forma. In Q1 2026 HPC lease revenue ($21M) surpassed mining for the first time, and the company carries a large contracted book (~$12.8B incl. extensions) plus a ~2.2 GW owned, mostly-uncontracted pipeline (Muskie KY 1GW+, Lake Hawkeye, Chesapeake). The thesis is a re-rate from miner to long-duration power/colocation landlord, financed by debt rather than dilution.",
@@ -3523,6 +4188,12 @@
       ],
       "log": [
         {
+          "d": "2026-07-27",
+          "t": "capital",
+          "s": "[edgar] via [semianalysis] flag",
+          "x": "Century Aluminum's Hawesville consideration verified: $200M cash + 6.8% non-dilutive interest in Raylan Data Holdings (site SPV — rides ALL projects on the 750 acres, incl. beyond the Anthropic phase) WITH A FIXED $300M PUT SemiAnalysis missed. seniorClaims 101→300 (the put floor); floats up if Hawesville equity marks above $4.41B — live threshold given 401MW × top-of-tape NOI. WULF consolidates at 93.2%."
+        },
+        {
           "d": "2026-07-23",
           "t": "note",
           "s": "[sell-side] MS (Byrd)",
@@ -3536,7 +4207,7 @@
         }
       ],
       "thesis": "The Anthropic anchor changes the story: a direct 20-year, ~$19B lease on 401MW at Hawesville (IG-wrapped, reportedly by Google) prints at the top of the market — and the Abernathy JV was monetised at 1.18x to fund the wholly-owned build. Still capital-hungry (bridge to be termed out; Muskie's 1GW uncontracted), but the book is now anchored by the strongest counterparty print in the group.",
-      "seniorClaims": 101,
+      "seniorClaims": 300,
       "verified": {
         "capital": "2026-07-02",
         "contracts": "2026-07-06"
@@ -4344,8 +5015,8 @@
           "prov": "estimated"
         },
         {
-          "n": "Polaris Forge 2 expansion toward 1 GW (uncontracted)",
-          "mw": 300,
+          "n": "Polaris Forge 2 expansion toward 1 GW (uncontracted, net of Bldg-3 spec build)",
+          "mw": 200,
           "owned": true,
           "region": "cheap",
           "yr": 2029,
@@ -4360,6 +5031,15 @@
           "yr": 2030,
           "mo": 6,
           "prov": "rumored"
+        },
+        {
+          "n": "Polaris Forge 2 Bldg 3 — spec build, no tenant (SA: under construction)",
+          "mw": 100,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 3,
+          "prov": "estimated"
         }
       ],
       "basis": {
@@ -4508,6 +5188,12 @@
       ],
       "log": [
         {
+          "d": "2026-07-27",
+          "t": "note",
+          "s": "[semianalysis] HPC tape",
+          "x": "SA identifies APLD's tenants: PF2 = ORACLE, DF1/PF3/DF2 = META (owner adopted as probable, attribution preserved). SA notes STRINGENT SLAs with uncapped service credits on the IG book (vs CIFR's no-SLA AWS leases — Fitch) and that APLD is SPEC-BUILDING another 100MW IT at PF2 (site row added, expansion row trimmed to avoid double-count). SA carries APLD at 85% ownership (their Macquarie haircut; we charge seniorClaims instead — methodologically consistent)."
+        },
+        {
           "d": "2026-07-23",
           "t": "note",
           "s": "[sell-side] MS initiation (Byrd)",
@@ -4550,53 +5236,53 @@
         },
         {
           "id": "apld-igA-pf2",
-          "counterparty": "IG hyperscaler A",
+          "counterparty": "Oracle (SA-identified; disclosed: US IG hyperscaler)",
           "mw": 200,
           "termYrs": 15,
           "noiPerMWyr": 1.42,
           "kind": "build-to-spec",
           "signed": "2025-10",
           "effective": true,
-          "source": "PR/8-K 10/22/25: ~$5B/200MW/15yr; 85-86% NOI",
+          "source": "PR/8-K 10/22/25: ~$5B/200MW/15yr; 85-86% NOI [semianalysis 7/27/26 tape — SA-identified, estimated ceiling; owner adopted 7/27]; SA carries $4.8B vs our $5.0B PR figure — kept ours pending PR recheck",
           "totalRevM": 5000,
           "grossTotalM": 5000
         },
         {
           "id": "apld-igB-df1",
-          "counterparty": "High-IG hyperscaler B",
+          "counterparty": "Meta (SA-identified; disclosed: high-IG US hyperscaler)",
           "mw": 300,
           "termYrs": 15,
           "noiPerMWyr": 1.42,
           "kind": "build-to-spec",
           "signed": "2026-04",
           "effective": true,
-          "source": "PR 4/23/26: $7.5B/300MW/15yr",
+          "source": "PR 4/23/26: $7.5B/300MW/15yr [semianalysis 7/27/26 tape — SA-identified, estimated ceiling; owner adopted 7/27]; stringent SLAs with uncapped service credits (SA note)",
           "totalRevM": 7500,
           "grossTotalM": 7500
         },
         {
           "id": "apld-igB-pf3",
-          "counterparty": "High-IG hyperscaler B",
+          "counterparty": "Meta (SA-identified; disclosed: high-IG US hyperscaler)",
           "mw": 300,
           "termYrs": 15,
           "noiPerMWyr": 1.42,
           "kind": "build-to-spec",
           "signed": "2026-05",
           "effective": true,
-          "source": "PR 5/20/26: $7.5B/300MW/15yr take-or-pay",
+          "source": "PR 5/20/26: $7.5B/300MW/15yr take-or-pay [semianalysis 7/27/26 tape — SA-identified, estimated ceiling; owner adopted 7/27]; stringent SLAs with uncapped service credits (SA note)",
           "totalRevM": 7500,
           "grossTotalM": 7500
         },
         {
           "id": "apld-igB-df2",
-          "counterparty": "High-IG hyperscaler B",
+          "counterparty": "Meta (SA-identified; disclosed: high-IG US hyperscaler)",
           "mw": 210,
           "termYrs": 15,
           "noiPerMWyr": 1.4,
           "kind": "build-to-spec",
           "signed": "2026-06",
           "effective": true,
-          "source": "8-K 6/9/26: $5.2B/210MW/15yr",
+          "source": "8-K 6/9/26: $5.2B/210MW/15yr [semianalysis 7/27/26 tape — SA-identified, estimated ceiling; owner adopted 7/27]; stringent SLAs with uncapped service credits (SA note)",
           "totalRevM": 5200,
           "grossTotalM": 5200
         }
@@ -5247,8 +5933,13 @@
     },
     {
       "tk": "CRWV",
-      "note": "Verify pass 7/24: Galaxy PR says Helios Ph1 delivered 200MW GROSS / 133MW critical IT — our CRWV 'Helios Ph1' site row carries 200 (IT convention). Re-verify all Helios rows gross-vs-IT against the Galaxy lease PRs and re-date if needed; also July Form 4 wave (CEO ~$80M, CDO ~$43M, CFO $5.5M) + Q2 backlog restate ($33-35B signed in Q1, Jane St was April)",
+      "note": "RESOLVED 7/27/26: Helios rows set to 133/260/133 IT (Galaxy PR + SA tape, dual-corroborated). Remaining from 7/24: July Form 4 wave + Q2 backlog restate ($33-35B Q1, Jane St was April)",
       "added": "2026-07-24"
+    },
+    {
+      "tk": "WULF",
+      "note": "Century put-floor tripwire: seniorClaims = max($300M, 6.8% × Raylan Data Holdings equity). If our Hawesville site-level equity (Anthropic lease value net of project debt/capex) marks above ~$4.41B, the charge floats above the $300M floor — recompute at each sweep",
+      "added": "2026-07-27"
     }
   ],
   "outlook": {
