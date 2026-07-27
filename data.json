@@ -255,7 +255,7 @@
       "type": "commentary",
       "url": "https://www.agrippa.investments/",
       "provCeiling": "estimated",
-      "note": "Close-follower, pseudonymous (X @Agrippa_Inv) — IREN followed at extreme depth (site/deal detail, capital raises, exec comp; colo-vs-compute underwriting workbook behind the paid tier), NUAI recently added, CRWV/NBIS used as comps. Disclosed concentrated IREN/NUAI long — a well-modeled bull, not neutral coverage. Leads and deal detail; facts re-verified against filings."
+      "note": "Close-follower, pseudonymous (X @Agrippa_Inv) — IREN followed at extreme depth (site/deal detail, capital raises, exec comp; colo-vs-compute underwriting workbook behind the paid tier), NUAI recently added, CRWV/NBIS used as comps. Disclosed concentrated IREN/NUAI long — a well-modelled bull, not neutral coverage. Leads and deal detail; facts re-verified against filings."
     },
     {
       "id": "hypertech",
@@ -823,7 +823,7 @@
       "price": 240,
       "legacyEV": 5800,
       "finMix": "Prepayment + equity; convertibles; net cash",
-      "narrative": "A net-cash, prepayment-funded owner-operator that has flipped from spot-tilted scaler into a high-contracted, hyperscaler-anchored buildout. A ~$50B backlog (~92% Microsoft + Meta on ~5-year take-or-pay terms) sits over a smaller, fast-repricing enterprise tail — so ~half of realized revenue is enterprise (high revenue per MW, sub-1-yr), while ~80% of the contracted MW is locked to hyperscalers. Capital is structurally lighter than debt-heavy peers: ~$9.3B cash, low-coupon convertibles, ~$4.8B of customer prepayments funding ~90% of capex, plus a stake portfolio (ClickHouse ~$4.2B, Avride, Toloka, TripleTen) worth value outside the compute sites. The story is execution: only ~170 MW connected today against GW-scale owned campuses (Independence MO, Pennsylvania) that don't energize until late 2027+. Scale is modeled on its growth trajectory, not its (quieter) headline ambitions.",
+      "narrative": "A net-cash, prepayment-funded owner-operator that has flipped from spot-tilted scaler into a high-contracted, hyperscaler-anchored buildout. A ~$50B backlog (~92% Microsoft + Meta on ~5-year take-or-pay terms) sits over a smaller, fast-repricing enterprise tail — so ~half of realized revenue is enterprise (high revenue per MW, sub-1-yr), while ~80% of the contracted MW is locked to hyperscalers. Capital is structurally lighter than debt-heavy peers: ~$9.3B cash, low-coupon convertibles, ~$4.8B of customer prepayments funding ~90% of capex, plus a stake portfolio (ClickHouse ~$4.2B, Avride, Toloka, TripleTen) worth value outside the compute sites. The story is execution: only ~170 MW connected today against GW-scale owned campuses (Independence MO, Pennsylvania) that don't energize until late 2027+. Scale is modelled on its growth trajectory, not its (quieter) headline ambitions.",
       "bull": [
         "Net cash plus ~$4.8B customer prepayments fund ~90% of capex — far less dilution/leverage risk than debt-heavy peers",
         "~$50B backlog (~92% Microsoft + Meta, ~5yr take-or-pay) gives top-tier-credit, multi-year visibility",
@@ -1365,7 +1365,7 @@
       "price": 17.88,
       "legacyEV": 1340,
       "finMix": "Convertibles + ATM equity + BTC-collateralized loans; net debt",
-      "narrative": "A Bitcoin miner and ASIC designer pivoting into AI/HPC by converting power-rich crypto campuses to colocation, leasing capacity to AI tenants on landlord economics, alongside a small high-margin owner-operated GPU-cloud sleeve. The structural edge is owned cheap-to-mid power (Nordic hydro at Tydal, Columbia hydro at Wenatchee, ERCOT at Rockdale, TVA at Knoxville) and an unusually low ~6% blended cost of debt from a ~$1.4B cheap-convertible stack. Its flagship Tydal (Norway) campus has a signed colocation lease that is not yet effective — tenant unnamed, terms withheld. Beyond ~$69M of AI-cloud ARR, essentially nothing is firmly contracted: the GW-scale value drivers (Tydal, Clarington, Niles, Rockdale) are signed-but-conditional or in negotiation, so most modeled MW is owned and scheduled (high existence) but not yet leased. The question is execution — energizing the pipeline, clearing the Clarington litigation, and signing credible AI tenants while financing-funded cash burn and dilution continue.",
+      "narrative": "A Bitcoin miner and ASIC designer pivoting into AI/HPC by converting power-rich crypto campuses to colocation, leasing capacity to AI tenants on landlord economics, alongside a small high-margin owner-operated GPU-cloud sleeve. The structural edge is owned cheap-to-mid power (Nordic hydro at Tydal, Columbia hydro at Wenatchee, ERCOT at Rockdale, TVA at Knoxville) and an unusually low ~6% blended cost of debt from a ~$1.4B cheap-convertible stack. Its flagship Tydal (Norway) campus has a signed colocation lease that is not yet effective — tenant unnamed, terms withheld. Beyond ~$69M of AI-cloud ARR, essentially nothing is firmly contracted: the GW-scale value drivers (Tydal, Clarington, Niles, Rockdale) are signed-but-conditional or in negotiation, so most modelled MW is owned and scheduled (high existence) but not yet leased. The question is execution — energizing the pipeline, clearing the Clarington litigation, and signing credible AI tenants while financing-funded cash burn and dilution continue.",
       "bull": [
         "Owned cheap-to-mid-power campuses convertible to AI colocation — an RIOT-style structural edge",
         "Unusually low ~6% cost of debt from a ~$1.4B cheap-convertible stack (vs miner peers at 9-11%)",
@@ -1561,7 +1561,7 @@
           "d": "2026-06-18",
           "t": "earnings",
           "s": "6-K",
-          "x": "Bitdeer AI cloud: ARR $8M (Sep-25) → ~$69M (May-26); 4,248 GPUs (H100→GB300 NVL72), 90% utilization; mgmt: book shifted to 3-5yr terms, H100 rates +40% since late-25. NO named customers or per-contract disclosure — excluded from the contract registry until one prints."
+          "x": "Bitdeer AI cloud: ARR $8M (Sep-25) → ~$69M (May-26); 4,248 GPUs (H100→GB300 NVL72), 90% utilisation; mgmt: book shifted to 3-5yr terms, H100 rates +40% since late-25. NO named customers or per-contract disclosure — excluded from the contract registry until one prints."
         },
         {
           "d": "2026-06-29",
@@ -1573,7 +1573,7 @@
           "d": "2026-06-18",
           "t": "earnings",
           "s": "May production update (6-K)",
-          "x": "AI-cloud ARR ~$69M; 4,248 GPUs deployed (~90% utilization); 171 BTC held (near-zero treasury)."
+          "x": "AI-cloud ARR ~$69M; 4,248 GPUs deployed (~90% utilisation); 171 BTC held (near-zero treasury)."
         },
         {
           "d": "2026-06-01",
@@ -1620,7 +1620,7 @@
       "name": "IREN",
       "ramp": {
         "asOf": "2026-07-23",
-        "basis": "Quarterly GPU-ramp research overlay (owner-approved 7/25/26) \u2014 DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: three come off a dated print and cover 13.2% of CY2030 revenue \u2014 MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 against a $3.20 implied print (7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet (IREN's own ARR disclosure); Nebius-MSFT $3.97 is a comparator, not our print. The Rubin-class $4.50-4.60 and next-gen $6.40 vintages have NO contract print of any kind \u2014 they are derived at power parity on the Microsoft GB300 $/kW-hr, and the derivation and its counter-evidence are published in the rate link of the chain. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilization). Tranche gross MW sums to the ~4.2GW monetized in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference \u2014 skew later, not earlier.",
+        "basis": "Quarterly GPU-ramp research overlay (owner-approved 7/25/26) \u2014 DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: three come off a dated print and cover 13.2% of CY2030 revenue \u2014 MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 against a $3.20 implied print (7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet (IREN's own ARR disclosure); Nebius-MSFT $3.97 is a comparator, not our print. The Rubin-class $4.50-4.60 and next-gen $6.40 vintages have NO contract print of any kind \u2014 they are derived at power parity on the Microsoft GB300 $/kW-hr, and the derivation and its counter-evidence are published in the rate link of the chain. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference \u2014 skew later, not earlier.",
         "chain": [
           { "id": "secured", "link": "secured power \u2192 monetised in-window", "fn": "\u03a3 tranche grossMW", "value": "5,770 MW secured \u2192 4,230 MW modelled (73%)", "assumption": "1,540 MW net is secured but not monetised in-window. It is a RESIDUAL, not a rule: the far sites are heavily under-phased (Kiowa 36% of secured, Bundey 30%, Nostrum 48% \u2014 no disclosed schedules) while three campuses are phased ABOVE their secured figure (Childress 850 vs 750, Sweetwater 2,150 vs 2,000, BC 180 vs 130). The Childress excess is mostly a basis difference \u2014 the site list stores Horizon 1-4 at IT MW (200) where the tranches store gross (300) \u2014 not new megawatts; the Sweetwater and BC excesses are genuine over-phasing of ~150 MW and ~50 MW. Net-net the total is right for the wrong reasons and the per-campus reconciliation is published below rather than hidden.", "range": "3,900\u20134,600 MW", "moves": "fleet and revenue, proportionally, from the quarter each excluded block would have landed" },
           { "id": "energise", "link": "monetised MW \u2192 energised MW by quarter", "fn": "step function on each tranche's energize quarter", "value": "480 MW by YE-26, 1,210 MW by YE-27 (both COMPANY-DISCLOSED); thereafter 275 MW/qtr average and 369 MW/qtr peak (MODELLED)", "assumption": "2028\u201330 cadence is an EXTRAPOLATION, and it asks more of IREN than its record shows: its best demonstrated four-quarter add is +550 MW (260\u2192810 MW, H1-2024 to H1-2025) = 138 MW/qtr, so the model asks 2.0x that on average and 2.7x at peak \u2014 across five campuses on three continents, liquid-cooled, versus a record set on one campus with power already in the ground. Its delivery record is clean on air-cooled sheds and substations (median slip 0 quarters, n=8) but the single liquid-cooled AI hall it has delivered, Horizon 1, slipped two quarters on the hall and three on revenue. Kiowa held to 2029 on SPP queue entry (Mar-2026); Nostrum to 2029Q3 on absent Spanish schedule.", "range": "\u00b12 quarters per tranche beyond 2027", "moves": "everything downstream, one quarter at a time" },
@@ -1712,7 +1712,7 @@
       ],
       "bear": [
         "Backlog is overwhelmingly future: live AI-cloud revenue only ~$34M/qtr; even the ~$3.1B contracted ARR isn't revenue until GPUs commission",
-        "The GW-scale prize (Sweetwater ~2GW) is largely uncontracted — power secured, but tenants/utilization are not; big spec capex ahead of demand",
+        "The GW-scale prize (Sweetwater ~2GW) is largely uncontracted — power secured, but tenants/utilisation are not; big spec capex ahead of demand",
         "Heavy dilution to fund a ~$20B+ buildout: $6B ATM headroom + ~$6.7B converts + rising GPU debt — the headline target is pre-dilution",
         "Neocloud GPU rental rates down 60-75% from peak; uncontracted GPUs exposed to spot pricing and obsolescence"
       ],
@@ -1724,7 +1724,7 @@
       ],
       "risks": [
         "Lease-up risk on the uncontracted Sweetwater GW — large spec capex with cloud demand TBD",
-        "GPU economics & obsolescence — spot rate decline, utilization, depreciation on owned GPUs (an owner risk colos don't carry)",
+        "GPU economics & obsolescence — spot rate decline, utilisation, depreciation on owned GPUs (an owner risk colos don't carry)",
         "Financing / dilution — continued ATM issuance and convert dilution to fund the buildout",
         "Customer concentration — contracted ARR dominated by Microsoft + NVIDIA; a delay or renegotiation at one hits the book"
       ],
@@ -1986,7 +1986,7 @@
           "d": "2026-05-07",
           "t": "earnings",
           "s": "Q3 FY26",
-          "x": "AI-cloud revenue $33.6M (+94% q/q); ~$3.1B ARR contracted, ~$3.7B YE26 target; Sweetwater 1 substation energized; cash $2.6B."
+          "x": "AI-cloud revenue $33.6M (+94% q/q); ~$3.1B ARR contracted, ~$3.7B YE26 target; Sweetwater 1 substation energised; cash $2.6B."
         },
         {
           "d": "2025-11-03",
@@ -2306,7 +2306,7 @@
         "CoreWeave counterparty/financing stress would hit the entire contracted book given single-tenant concentration.",
         "Construction, transformer/interconnection delays push out Phase II/III energization and the uncontracted expansion.",
         "Crypto-market drawdown depresses the financial-services/treasury legacy value and overall liquidity.",
-        "Funding gap on the multi-GW buildout forces more debt or equity than modeled, increasing leverage/dilution."
+        "Funding gap on the multi-GW buildout forces more debt or equity than modelled, increasing leverage/dilution."
       ],
       "finMix": "Debt-led: $1.4B Helios project facility (80% LTC, 36mo) + $3.1B total notes payable (incl. ~$2.1B exchangeable notes) + $2.6B corporate cash/stablecoins + financial-services cash flow; buying back stock, minimal equity issuance.",
       "leaseQ": 3,
@@ -2586,7 +2586,7 @@
           "d": "2026-07-23",
           "t": "note",
           "s": "[sell-side] MS initiation (Byrd)",
-          "x": "MS initiates OW, PT $263 (their SOTP: signed 949MW at 'REIT endgame' 15x/8% ≈ $16.1B equity net of project debt — essentially IDENTICAL to our signed-book math at the 6.5% floor; + $11.6B for 2,680MW exclusivity pipeline at 50% energization ≈ $5.9/W; + $3.7B for energized BTC sites as converts at $11.7/W: Vega 205MW, Medicine Hat 67, Salt Creek 63, Drumheller 42, Batavia 50; excludes Alpha 50MW, NextEra-JV 280MW, and all 5,315MW under diligence). FACTS TO RE-VERIFY: MS uses 111M basic + 9.72M Coutue convert at $16.395 = ~121M FSDO vs our 132M FD / 123.2M buyback-implied — share-count reconciliation open. MS expects BP2 financed with ~$4.25B IG bond (HUTRBA/HUTBPA pattern, Jacobs construction guarantee is why HUT alone gets IG ratings) → committedDebt +$4.25B when it prints. Their bear case: -4%."
+          "x": "MS initiates OW, PT $263 (their SOTP: signed 949MW at 'REIT endgame' 15x/8% ≈ $16.1B equity net of project debt — essentially IDENTICAL to our signed-book math at the 6.5% floor; + $11.6B for 2,680MW exclusivity pipeline at 50% energization ≈ $5.9/W; + $3.7B for energised BTC sites as converts at $11.7/W: Vega 205MW, Medicine Hat 67, Salt Creek 63, Drumheller 42, Batavia 50; excludes Alpha 50MW, NextEra-JV 280MW, and all 5,315MW under diligence). FACTS TO RE-VERIFY: MS uses 111M basic + 9.72M Coutue convert at $16.395 = ~121M FSDO vs our 132M FD / 123.2M buyback-implied — share-count reconciliation open. MS expects BP2 financed with ~$4.25B IG bond (HUTRBA/HUTBPA pattern, Jacobs construction guarantee is why HUT alone gets IG ratings) → committedDebt +$4.25B when it prints. Their bear case: -4%."
         },
         {
           "d": "2026-07-20",
@@ -2664,7 +2664,7 @@
           "gen": "hopper",
           "inferredMW": true,
           "effective": true,
-          "source": "PR 9/26/24 + 10-K rev-rec: 1,000 H100 + 96 H200 owned cluster near Chicago; fixed fee + utilization revenue share; TCV INFERRED (~$9.2M FY25 rev × 5yr)",
+          "source": "PR 9/26/24 + 10-K rev-rec: 1,000 H100 + 96 H200 owned cluster near Chicago; fixed fee + utilisation revenue share; TCV INFERRED (~$9.2M FY25 rev × 5yr)",
           "gpuCount": 1096,
           "mw": 1.5
         }
@@ -2801,7 +2801,7 @@
         }
       ],
       "basis": {
-        "plannedRaise": "~$600M ATM registered + per-project equity slices (~$118M Fluidstack expansion; mgmt says it can fund the equity component of the 3rd campus); buildout is ~85% nonrecourse project-bond + convertible funded, so equity is a thin top-up — modeled ~$1.2B cumulative",
+        "plannedRaise": "~$600M ATM registered + per-project equity slices (~$118M Fluidstack expansion; mgmt says it can fund the equity component of the 3rd campus); buildout is ~85% nonrecourse project-bond + convertible funded, so equity is a thin top-up — modelled ~$1.2B cumulative",
         "tier": "IG — direct AWS 15-yr 300MW lease (~$5.5B) plus Google-backstopped Fluidstack book; ~$11.4B contracted revenue anchored by investment-grade counterparties",
         "equityDiscount": "",
         "committedDebt": "$3,531M escrowed construction proceeds (Barber Lake/Black Pearl SSNs, 10-Q 3/31/26) + $810M Stingray SSN (closed 6/15/26, AWS Andrews TX) — fund credited sites, absent from netDebt",
@@ -3535,7 +3535,7 @@
           "x": "Anthropic DIRECT 20-yr lease (2x 5-yr renewals): ~$19B total, ~401MW critical IT at Hawesville KY 'Justified Data' (phased 2H27→early 2028); IG credit support (reportedly Google). Simultaneously SOLD the 50.1% Abernathy JV stake to Fluidstack for ~$530M (~1.18x invested) — exits TX JV to fund wholly-owned KY. Implied year-1 NOI ~$1.5-1.6M/MW (top of market), term-avg ~$2.0M/MW."
         }
       ],
-      "thesis": "The Anthropic anchor changes the story: a direct 20-year, ~$19B lease on 401MW at Hawesville (IG-wrapped, reportedly by Google) prints at the top of the market — and the Abernathy JV was monetized at 1.18x to fund the wholly-owned build. Still capital-hungry (bridge to be termed out; Muskie's 1GW uncontracted), but the book is now anchored by the strongest counterparty print in the group.",
+      "thesis": "The Anthropic anchor changes the story: a direct 20-year, ~$19B lease on 401MW at Hawesville (IG-wrapped, reportedly by Google) prints at the top of the market — and the Abernathy JV was monetised at 1.18x to fund the wholly-owned build. Still capital-hungry (bridge to be termed out; Muskie's 1GW uncontracted), but the book is now anchored by the strongest counterparty print in the group.",
       "seniorClaims": 101,
       "verified": {
         "capital": "2026-07-02",
@@ -4140,7 +4140,7 @@
         "TSX uplisting (May 2026) plus any move toward longer-term / higher-credit AI contracts"
       ],
       "risks": [
-        "AI execution/ramp risk — delays or under-utilization on GB200/Tier III+ buildouts",
+        "AI execution/ramp risk — delays or under-utilisation on GB200/Tier III+ buildouts",
         "Funding risk: reliance on ATM equity and converts; further dilution if AI ARR lags capex",
         "GPU-rate and AI-demand softening hitting short-term, on-demand and re-contracting revenue",
         "Bitcoin price / mining economics drag on cash flow and the thin (~150 BTC) treasury; counterparty concentration on Bell/Cohere"
@@ -4511,7 +4511,7 @@
           "d": "2026-07-23",
           "t": "note",
           "s": "[sell-side] MS initiation (Byrd)",
-          "x": "MS initiates EQUAL-WEIGHT $36.50 — the one street voice BELOW us: penalizes APLD's sub-15% yields-on-capex vs the PSP cohort and assumes FULL Macquarie draw (+$4.9B beyond the $900M funded; 1.8x MOIC, 12.75% PIK from 2031, redeemable Apr-28, sale-process right Oct-32) — our seniorClaims carries only the accreted funded piece; if draws accelerate our claims line grows materially (existing watch item). Also: 96% ChronoScale stake with modeled 23% sell-down."
+          "x": "MS initiates EQUAL-WEIGHT $36.50 — the one street voice BELOW us: penalizes APLD's sub-15% yields-on-capex vs the PSP cohort and assumes FULL Macquarie draw (+$4.9B beyond the $900M funded; 1.8x MOIC, 12.75% PIK from 2031, redeemable Apr-28, sale-process right Oct-32) — our seniorClaims carries only the accreted funded piece; if draws accelerate our claims line grows materially (existing watch item). Also: 96% ChronoScale stake with modelled 23% sell-down."
         }
       ],
       "thesis": "Undervalued — ~1.4 GW of 15-yr triple-net leases to CoreWeave/Oracle (~$36B lease value) credited near-full while the market discounts execution and debt. One of the cleanest contracted-landlord books here.",
@@ -4759,9 +4759,9 @@
         "plannedRaise": "~$300M kept per owner ruling 7/14/26: mgmt anti-dilution; ~$2B Sandersville build expected project-financeable against the 20yr IG NNN lease — committedDebt when bonds/facility print (watch item)",
         "tier": "proven — OWNER RULING 7/14/26: stay Proven despite the IG anchor (one signed lease = 15% of book, entered on PR). Re-rate trigger going forward: 8-K-confirmed terms plus a second IG lease (e.g. the TX exclusivity converting). IG was quantified at +$4.20/sh and declined."
       },
-      "narrative": "CleanSpark is a top-tier U.S. Bitcoin miner (~50 EH/s, ~13,470 BTC treasury, 1.8 GW of contracted power across Georgia/Tennessee/Mississippi/Wyoming) executing a deliberate, capital-disciplined pivot into AI/HPC as a powered-shell LANDLORD — not a GPU owner-operator. Management is explicit: it will \"build the shell, slot in the reference architecture\" per tenant and sign long-term leases with \"Grade A credit quality\" tenants, owning the real estate and power, not the compute. The pivot is real but entirely pre-contract: the AI book has ZERO signed leases or LOIs as of mid-2026 — only basis-of-design negotiations, with Meta cited as the \"clear frontrunner\" for the 250 MW Sandersville, GA campus and advanced talks with an investment-grade hyperscaler. The land grab is genuine: two greenfield ERCOT campuses near Houston (Sealy/Austin County 285 MW, energizing ~207 MW H1 2027; Brazoria County 300 MW, expandable to 600 MW, ~late-2027/early-2028), both fee-simple land with secured/approved power, plus the existing energized Sandersville site being converted from mining to AI. Capital structure is now convert-heavy ($1.84B of 0% notes, ~$1.56B net debt excl. BTC) but un-diluted — mgmt repaid all BTC-backed lines and bought back $463M of stock, and intends to fund the ~$9-11M/MW buildout via project/high-yield debt against future IG leases rather than equity. The investable question is pure execution: can CLSK convert \"frontrunner\" talks into a signed IG anchor lease (the single re-rating event) before the speculative TX capex commits, and is the AI optionality already priced into a stock that has run on Meta headlines?",
+      "narrative": "CleanSpark is a top-tier U.S. Bitcoin miner (~50 EH/s, ~13,470 BTC treasury, 1.8 GW of contracted power across Georgia/Tennessee/Mississippi/Wyoming) executing a deliberate, capital-disciplined pivot into AI/HPC as a powered-shell LANDLORD — not a GPU owner-operator. Management is explicit: it will \"build the shell, slot in the reference architecture\" per tenant and sign long-term leases with \"Grade A credit quality\" tenants, owning the real estate and power, not the compute. The pivot is real but entirely pre-contract: the AI book has ZERO signed leases or LOIs as of mid-2026 — only basis-of-design negotiations, with Meta cited as the \"clear frontrunner\" for the 250 MW Sandersville, GA campus and advanced talks with an investment-grade hyperscaler. The land grab is genuine: two greenfield ERCOT campuses near Houston (Sealy/Austin County 285 MW, energizing ~207 MW H1 2027; Brazoria County 300 MW, expandable to 600 MW, ~late-2027/early-2028), both fee-simple land with secured/approved power, plus the existing energised Sandersville site being converted from mining to AI. Capital structure is now convert-heavy ($1.84B of 0% notes, ~$1.56B net debt excl. BTC) but un-diluted — mgmt repaid all BTC-backed lines and bought back $463M of stock, and intends to fund the ~$9-11M/MW buildout via project/high-yield debt against future IG leases rather than equity. The investable question is pure execution: can CLSK convert \"frontrunner\" talks into a signed IG anchor lease (the single re-rating event) before the speculative TX capex commits, and is the AI optionality already priced into a stock that has run on Meta headlines?",
       "bull": [
-        "Owns/controls 1.8 GW of power, fee-simple land and energized infrastructure — the scarce input for AI colo; ~900 MW of greenfield ERCOT (cheap-power) campuses already secured near Houston",
+        "Owns/controls 1.8 GW of power, fee-simple land and energised infrastructure — the scarce input for AI colo; ~900 MW of greenfield ERCOT (cheap-power) campuses already secured near Houston",
         "Meta is the named \"clear frontrunner\" for the 250 MW Sandersville site plus advanced talks with an IG hyperscaler — a single signed anchor would re-rate the whole book from mining to IG colo",
         "Genuinely capital-disciplined: $0 ATM in 15 months, $463M buyback (~20% fewer shares), all BTC-backed debt repaid — pivot funded by 0% converts + BTC cash flow, not dilution",
         "Asymmetric optionality: ~13,470 BTC treasury (live-marked) plus 50 EH/s mining cash flow underwrite the buildout while the landlord pivot is free-optioned on top"
@@ -4999,7 +4999,7 @@
       ],
       "risks": [
         "Lease slips past Oct 8 — facility conditions fail",
-        "JV terms land below the ~20% economics modeled",
+        "JV terms land below the ~20% economics modelled",
         "Hyperscaler chooses a competing site (CIFR Odessa is next door)",
         "Litigation / disclosure history resurfaces"
       ],
@@ -5262,14 +5262,14 @@
         "mwLo": 150,
         "mwHi": 400,
         "window": "Aug-Oct 2026, highest density at/around the Q2 print (now CONFIRMED Aug 18, 2026",
-        "site": "Helios Ph2 (Dickens Co, TX) — Galaxy has 526MW committed across 3 phases and Ph1 200MW energized 7/8/26; or Ellendale/Polaris Forge ELN-04 (150MW, financed by A",
+        "site": "Helios Ph2 (Dickens Co, TX) — Galaxy has 526MW committed across 3 phases and Ph1 200MW energised 7/8/26; or Ellendale/Polaris Forge ELN-04 (150MW, financed by A",
         "tenants": "Follow-on order from an existing anchor most likely: Anthropic expansion (added as customer Q1-26, initial deal undisclosed/multibillion, Claude inference ramping) or another Vera Rubin-generation order from OpenAI/Meta ",
         "drivers": [
           "Verbatim negotiation language, Q1-26 call 5/7/26 (Intrator): 'Our pipeline for additional capacity is extremely large. We're reviewing lots of different sites... lots of different deals that would allow us to continue our ramp'; (Agrawal): 'we remain largely sold out of our 2026 capacity, with prices increasing across the board... we have begun allocating capacity we expect to come online next year [2027]' — 2027 allocation talks are live now (FactSet CallStreet transcript, corrected).",
           "Signing cadence makes a new binding contract within 6 months the base case, not a call option: $40B+ of new commitments in Q1-26 alone (Meta $21B, Anthropic, Jane Street $6B, Hudson River Trading, initial Vera Rubin deals), backlog $99.4B +~50% QoQ (8-K + call, 5/7/26). CRWV has added material bookings every quarter as a public company.",
           "Financing tripwires signal deals: 5th DDTL priced 5/6/26, first syndicated in the public loan market, explicitly 'to finance contracts with OpenAI and Cohere,' priced 50bps inside talk; $8.5B DDTL <6%; $2B NVIDIA-linked equity; S&P outlook to positive. Agrawal doctrine: 'the capital we raise is tied to customer demand' — each new facility telegraphs a signed or imminent contract.",
           "Sellable inventory is staged: ~1.4GW of contracted-in power not yet customer-allocated (Northland's Chokshi math on the 5/7/26 call, accepted by Intrator: 'the word allocate is probably accurate'); Helios Ph1 200MW live 7/8/26 with 526MW committed over 3 phases (15-yr lease, Galaxy PR); ELN-04 150MW financed 6/18/26; Denton 260MW RFS H2-26 (CORZ PRs, $10B+/590MW total relationship).",
-          "execScore evidence (4/5): active power ~tripled since start-2025 to >1GW ('a milestone only a handful of cloud companies have ever achieved'), +2GW contracted power added in 12 months, powered-shell-to-revenue fit-out ~1-2 months with contribution margins normalizing mid-20s 'by month three' (Agrawal 5/7/26). Docked one point: CRWV rents most shells — the Nov-10-2025 FY25 guide trim on a third-party data-center developer delay showed announced-to-energized is partly hostage to landlords (APLD/CORZ/Galaxy), unlike true self-builders; self-build program only now starting ('a series of self-build data centers' — Intrator 5/7/26)."
+          "execScore evidence (4/5): active power ~tripled since start-2025 to >1GW ('a milestone only a handful of cloud companies have ever achieved'), +2GW contracted power added in 12 months, powered-shell-to-revenue fit-out ~1-2 months with contribution margins normalizing mid-20s 'by month three' (Agrawal 5/7/26). Docked one point: CRWV rents most shells — the Nov-10-2025 FY25 guide trim on a third-party data-center developer delay showed announced-to-energised is partly hostage to landlords (APLD/CORZ/Galaxy), unlike true self-builders; self-build program only now starting ('a series of self-build data centers' — Intrator 5/7/26)."
         ],
         "exec": 4,
         "sources": [
@@ -5331,7 +5331,7 @@
           "[verify-corrected] Tydal lease signed 6/29, conditions-precedent pending — and the PR guides EFFECTIVENESS \"within the next month\" (~end-July), a stronger forcing function than first read; company will announce terms upon effectiveness.",
           "[verify-corrected] Counterparty descriptor corrected UP: \"advanced stages of negotiations with a CREDIT-WORTHY colocation tenant for Tydal\" (Q1 results PR 5/14/26, verbatim).",
           "Rockdale \"several prospective colocation tenants\" + the FY26 project-debt financing plan are call-sourced (paraphrase-grade until the transcript is pulled — flagged, not assumed).",
-          "[verify-corrected] AI cloud: 4,248 GPUs deployed (June PR), ARR $8M→~$69M in 8 months, 90% utilization — execution evidence for the exec score."
+          "[verify-corrected] AI cloud: 4,248 GPUs deployed (June PR), ARR $8M→~$69M in 8 months, 90% utilisation — execution evidence for the exec score."
         ],
         "exec": 3,
         "sources": [
@@ -5347,7 +5347,7 @@
         "mwLo": 100,
         "mwHi": 300,
         "window": "Aug-Nov 2026",
-        "site": "Sweetwater 1 (TX) — 1.4GW substation energized 5/1/26, ~2GW secured, essentially uncontracted; near-term incremental cloud tranches sit on Childress Horizon 5-6",
+        "site": "Sweetwater 1 (TX) — 1.4GW substation energised 5/1/26, ~2GW secured, essentially uncontracted; near-term incremental cloud tranches sit on Childress Horizon 5-6",
         "tenants": "Most likely: (a) expansion by the unnamed 'leading AI developer' from the 7/20/26 8-K (identity still a watch item — PR lists Microsoft, NVIDIA, Perplexity, Figure AI, Together AI, Fluidstack, Fireworks, Fal, Hume + one ",
         "drivers": [
           "[verify-corrected] Two desk \"verbatim\" quotes were FABRICATED (not in the SEC-filed transcript) and are excluded. The real, stronger quote stands: Roberts — \"there's nothing stopping us contracting that capacity today. It just gets easier the closer we get.\" (8-K-filed FY-call transcript).",
@@ -5399,7 +5399,7 @@
           "Novogratz, 6/6/26 'All Things Markets' podcast (LEAD): Helios 1.6 GW is half leased and he 'expects the full 1.6 gigawatts to be spoken for by the end of summer' — management's own deadline lands Aug-Sep 2026, right on the 8/5 print.",
           "Capex ahead of contract: 'early-stage equipment procurement underway' for the 830 MW and 'not waiting on commercial structure to be finalized to proceed on development' (Q1 call) — they are spending as if a tenant is coming.",
           "Financing tripwire: $3.507B 9.875% senior secured notes (Galaxy Helios DC II LLC, priced 7/22/26, closes 7/28/26; MS/GS books; 8-K) fully fund the CONTRACTED Phase II ($10.4B minimum lease payments), freeing the $500M ATM (filed 5/8/26) and $2.6B corporate cash for the 830 MW; the next project-debt tranche wants a signed lease first — pattern says sign, then finance.",
-          "Site readiness: 830 MW ERCOT-approved with completed interconnection studies at an already-energized campus (Phase I 133 MW CIT delivered to CoreWeave, PR 7/6/26); up to 1.8 GW further under load study; Project Merlin (500 acres, McGregor TX, ~$400M initial, up to 8 buildings) approved 6/25/26 as campus #2 — the 'LOI stage' projects teased on the Q1 call materialized on schedule."
+          "Site readiness: 830 MW ERCOT-approved with completed interconnection studies at an already-energised campus (Phase I 133 MW CIT delivered to CoreWeave, PR 7/6/26); up to 1.8 GW further under load study; Project Merlin (500 acres, McGregor TX, ~$400M initial, up to 8 buildings) approved 6/25/26 as campus #2 — the 'LOI stage' projects teased on the Q1 call materialized on schedule."
         ],
         "exec": 3.5,
         "sources": [
@@ -5689,7 +5689,7 @@
         "drivers": [
           "FINANCING FORCING FUNCTION (fact): Q1-26 10-Q (filed 5/15/26) verbatim — 'if a data center lease is not executed within six months of the closing date [Apr 8 → Oct 8, 2026], or if aggregate loan drawings are less than $50 million, the lender may elect to require full prepayment or monthly repayment installments' on the $290M Macquarie facility; B. Riley's 7/7/26 Buy/$10 initiation is explicitly keyed to this 'embedded Macquarie covenant that ties credit facility availability to binding hyperscaler lease execution'",
           "NEGOTIATION LANGUAGE ARC (facts, quoted): 12/11/25 — 'in negotiations with a hyperscaler for a long-term lease'; Q1 call 5/18/26 — CFO Warner: 'I can't comment publicly on where we are on that front on that level of negotiation', CEO Gray: 'I wish I could announce who the prospective tenant is and I can't wait to announce it one day', Nelson: 'The lease remains the key commercial priority'; July 2026 coverage — 'negotiations with a leading hyperscaler on a long-term triple-net lease for a powered-shell deployment'. 7+ months of sustained engagement, no term-sheet/exclusivity disclosure yet — deep but unsigned",
-          "STREAM/APOLLO JV CO-CATALYST (fact): non-binding LOI 4/1/26; Q1 call 5/18/26 — Nelson: 'the JV docs are well underway. Multiple turns already with the lawyers'; institutional LP takes majority project equity + ~80% project debt, NUAI keeps GP/minority (~20% modeled). An Apollo platform company doesn't paper SPV docs without tenant visibility — but definitive agreement was still unsigned at last disclosure, and its close is itself a needed catalyst",
+          "STREAM/APOLLO JV CO-CATALYST (fact): non-binding LOI 4/1/26; Q1 call 5/18/26 — Nelson: 'the JV docs are well underway. Multiple turns already with the lawyers'; institutional LP takes majority project equity + ~80% project debt, NUAI keeps GP/minority (~20% modelled). An Apollo platform company doesn't paper SPV docs without tenant visibility — but definitive agreement was still unsigned at last disclosure, and its close is itself a needed catalyst",
           "PRE-SIGNATURE HOUSEKEEPING (facts): founder E. Will Gray II removed from CEO/Chairman/board effective 7/1/26 (8-K 7/6/26; demoted to 'President, Permian Basin'), operator C-suite installed (Nelson CEO ex-Sabey; Rodriguez COO ex-Microsoft/ByteDance DC ops); NM lawsuit claims vs company dismissed with final bankruptcy-court approval (PR 7/9/26, $1.0M payment); Conversant Capital LLC / Michael Simanovsky filed a 13G on 7/20/26 for 5,387,220 shares (~4.6% of 119.6M) — sophisticated real-asset money positioning ahead of the binary (stock +45% 7/20-7/21 on the print)",
           "COUNTERWEIGHTS: FID language slipped from 'by the end of Q1 2026' (12/11/25) to a '2026 investment decision' (July 2026 coverage); NUAI has never delivered a data center and TCDC Ph1 in-service is already 'second half of 27' (Nelson, 5/18/26 call); Macquarie's 7/17/26 Consent Letter (8-K 7/22/26) waived the missed $100M-ATM covenant — cooperative lender, but confirms covenant slippage; competing ready Odessa supply next door (CIFR); going-concern doubt retained in the Q1 10-Q even post-raise"
         ],
@@ -6111,7 +6111,7 @@
         "consensusRevM": null,
         "drivers": [
           "NO REAL CONSENSUS TO BEAT: 1 covering analyst (MarketBeat, 7/24/26); Q2 EPS 'consensus' $0.00–0.01 (MarketBeat; Reuters preview via TradingView: 'expected to post earnings of 1 cent a share'). No published Q2 revenue estimate (stockanalysis shows n/a across analyst fields). History is two straight big GAAP misses on BTC marks: Q1'26 EPS -$1.20 vs +$0.15 est on rev $62.1M vs $74.9M est; Q4'25 -$1.05 vs +$0.30 on rev $78.3M vs $79.6M (MarketBeat).",
-          "REVENUE LARGELY PREDICTABLE, SLIGHT UPSIDE ROOM: full quarter of ~25.0 EH/s operational (Drumheller fully energized 4/22/26 per Q1 PR) vs a ramping Q1 that produced a record 817 BTC — Q2 production plausibly ~850–950 BTC; but avg BTC realized falls again (~$63–70k vs ~$76k Q1, BTC halved from Oct-2025 peak per Bloomberg 7/22) → revenue ~flat, est $55–65M vs Q1 $62.1M. NOTE: ABTC publishes NO monthly production prints (unlike MARA/RIOT/CLSK), so modest residual production surprise exists; the balance-sheet datum was pre-disclosed anyway — treasury crossed 8,000 BTC ~7/6/26 (Bitcoin Magazine 2026-07-06, ~$525M).",
+          "REVENUE LARGELY PREDICTABLE, SLIGHT UPSIDE ROOM: full quarter of ~25.0 EH/s operational (Drumheller fully energised 4/22/26 per Q1 PR) vs a ramping Q1 that produced a record 817 BTC — Q2 production plausibly ~850–950 BTC; but avg BTC realized falls again (~$63–70k vs ~$76k Q1, BTC halved from Oct-2025 peak per Bloomberg 7/22) → revenue ~flat, est $55–65M vs Q1 $62.1M. NOTE: ABTC publishes NO monthly production prints (unlike MARA/RIOT/CLSK), so modest residual production surprise exists; the balance-sheet datum was pre-disclosed anyway — treasury crossed 8,000 BTC ~7/6/26 (Bitcoin Magazine 2026-07-06, ~$525M).",
           "GAAP WILL BE UGLY AND IT DOESN'T MATTER: FASB fair-value mark on ~7,500 BTC (Q2-end est) with BTC down through Q2 → another large non-cash loss (Q1: -$81.8M net on BTC -22% QoQ). The stock stopped trading on GAAP long ago.",
           "WHAT THE DRAWDOWN DE-RATED — SUB-NAV: $5.68 close 7/24 (52wk $5.04–$153.60, at/near ATL), ~$403M cap vs 8,000 BTC worth ~$509M mid-July (cryptotimes 7/13) → ~0.8x the BTC stack alone with the ~89k-rig / 28.1 EH/s fleet implicitly free. Caveats priced alongside: 3,090 BTC pledged to Bitmain (10-K, as of 3/25/26), $2.1B ATM overhang, 1-for-15 reverse split (7/2/26) done purely for Nasdaq min-bid compliance. Everything bad is in the price; there is no crowd left to disappoint.",
           "ACCUMULATION-STALL RISK (the bear card on the call): 7,021 BTC at 3/31 → ~7,500 pre-July-add (est; 8,000 on ~7/6 incl. ~500 added in July, reportedly after the BSTR-Cantor collapse — BSTR sourcing is a LEAD from coincu/coinedition, not filed) implies only ~+480 net BTC in Q2 vs +1,620 in Q1, i.e. net adds BELOW mined production — ATM issuance became value-destructive below NAV and Bitmain obligations may be consuming coins. Directly contradicts Eric Trump's Q1 line 'The compounding is accelerating' (Q1 PR, 5/6/26). Conversely: if ATM stopped, satoshis-per-share (~663 pre-split at 3/31) still grew — they will tout SPS."

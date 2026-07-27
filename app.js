@@ -290,7 +290,7 @@ function renderOutlook(){
         `<ul style="margin:0 0 8px 18px;font-size:11.5px;color:var(--ink-soft)">${(r.drivers||[]).map(d=>`<li>${d}</li>`).join('')}</ul>`+
         `<div style="font-size:10.5px;color:var(--ink-soft)">${(r.sources||[]).join(' · ')}</div>`+
         `<a class="clearfilter" href="#${r.tk}" style="font-size:11px">open ${r.tk} page →</a></div></td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>P(lease)</b> = our probability of the NEXT BINDING REVENUE COMMITMENT inside ~6 months — for <b>landlords</b> a colo lease (they own the shell, a tenant signs); for <b>owners</b> (CRWV/NBIS/IREN/HIVE) a take-or-pay <b>compute contract</b> (capacity sold, not property let — these names appear as TENANTS in other landlords' books) — judgement built from negotiation language in filings/calls, financing tripwires, exclusivities, site readiness and tenant-side signals. <b>Build speed</b> = differential execution (announced→energized track record vs peers). Click a row for the evidence.</div>`;
+    h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>P(lease)</b> = our probability of the NEXT BINDING REVENUE COMMITMENT inside ~6 months — for <b>landlords</b> a colo lease (they own the shell, a tenant signs); for <b>owners</b> (CRWV/NBIS/IREN/HIVE) a take-or-pay <b>compute contract</b> (capacity sold, not property let — these names appear as TENANTS in other landlords' books) — judgement built from negotiation language in filings/calls, financing tripwires, exclusivities, site readiness and tenant-side signals. <b>Build speed</b> = differential execution (announced→energised track record vs peers). Click a row for the evidence.</div>`;
   }else{
     let rows=(O.earnings||[]).map(r=>({...r}));
     const K={tk:r=>r.tk,date:r=>r.date||'9999',score:r=>r.score||0,dir:r=>r.direction||''};
@@ -409,12 +409,12 @@ function rampTrancheAt(R,t,s){   // {gpus,revM} of one tranche in quarter s
 function rampEvents(R,Q){
   const ev={};const add=(s,k,t)=>{if(s<RAMP_START||s>RAMP_END)return;(ev[s]=ev[s]||[]).push({k,t});};
   R.tranches.forEach(t=>{
-    add(RAMP_QS(t.energize),'power',`${t.n} energized — +${t.grossMW}MW at ${t.campus}`);
+    add(RAMP_QS(t.energize),'power',`${t.n} energised — +${t.grossMW}MW at ${t.campus}`);
     add(RAMP_QS(t.rev),'rev',`${t.n} starts earning — ${Math.round(t.gpus/1000)}k ${RAMP_GEN[t.gen].n} GPUs ramp over ${t.rampQtrs} qtr${t.rampQtrs>1?'s':''}${(t.signed||0)>0?'':' · uncontracted today'}`);});
   Q.forEach((q,i)=>{const p=i>0?Q[i-1]:null;
     const x=(f,lvl,txt)=>{if((p?p[f]:0)<lvl&&q[f]>=lvl)add(q.s,'mile',txt);};
-    x('grossMW',480,'480MW energized — the 2026 program lands (company target)');
-    x('grossMW',1210,'1,210MW energized — the 2027 program lands (company target)');
+    x('grossMW',480,'480MW energised — the 2026 program lands (company target)');
+    x('grossMW',1210,'1,210MW energised — the 2027 program lands (company target)');
     [[100000,'100k'],[250000,'250k'],[500000,'500k'],[750000,'750k']].forEach(([l,n])=>x('cum',l,`fleet passes ${n} revenue-generating GPUs`));
     if(p&&p.by.rubin<=0&&q.by.rubin>0)add(q.s,'mile','first Rubin-class silicon earns — the Sweetwater / 800V-DC era begins');
     if(p&&p.by.next<=0&&q.by.next>0)add(q.s,'mile','first next-generation silicon earns');
@@ -451,8 +451,9 @@ function rampGanttHTML(R,Q){
   const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
   let stat='',body='';
   stat+=`<defs><clipPath id="rampClipG"><rect id="rampClipGR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
+  stat+=`<text x="${ml-6}" y="${(mt-4).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">MW</text>`;
   for(let k=0;k<=4000;k+=1000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
-    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':(k/1000)+' GW'}</text>`;}
+    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':k.toLocaleString()}</text>`;}
   Q.forEach((q,i)=>{if(i%2)return;stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
   // the two company commitments, as labelled reference lines — the only disclosed points on the chart
   [[480,'480 MW · 2026'],[1210,'1,210 MW · 2027']].forEach(([v,lab])=>{
@@ -473,7 +474,7 @@ function rampGanttHTML(R,Q){
   Q.forEach((q,i)=>{const idle=q.itCom>0?(1-q.itMW/q.itCom)*100:0;
     const tip=`<b>${q.lbl}</b><br>energised ${Math.round(q.grossMW).toLocaleString()} MW gross<br>commissioned ${Math.round(q.itCom).toLocaleString()} MW critical IT<br>earning ${Math.round(q.itMW).toLocaleString()} MW critical IT<br><b>${Math.round(idle)}% of commissioned IT is idle</b><br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
     cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Energised gross MW, commissioned critical IT MW and earning critical IT MW by quarter">${stat}<rect id="rampHLG" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipG)">${body}</g>${cap}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Energised gross MW, commissioned critical IT MW and earning critical IT MW by quarter"><title>Capacity: energised, commissioned and earning megawatts by quarter</title><desc>Three nested step bands on one megawatt axis. Energised gross MW rises to 4,230 by 2030Q4; commissioned critical IT MW to 3,000; earning critical IT MW to 2,679. The gap between commissioned and earning is idle capacity — 79% at 2026Q3, 22% by 2029. Dashed reference lines mark the company-disclosed 480MW (2026) and 1,210MW (2027) programmes.</desc>${stat}<rect id="rampHLG" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipG)">${body}</g>${cap}</svg>`;
 }
 const RAMP_F={W:960,ml:54,mr:20,H:300,mt:16,mb:26};
 function rampFleetHTML(Q){
@@ -507,9 +508,9 @@ function rampFleetHTML(Q){
   body+=lbl('blackwell','BLACKWELL','var(--ink)')+lbl('rubin','RUBIN','var(--paper)')+lbl('next','NEXT','var(--ink)');
   body+=`<text x="${X(5).toFixed(1)}" y="${(Y(Q[5].signed)-7).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">contracted today (signed book)</text>`;
   let cap='';
-  Q.forEach((q,i)=>{const tip=`<b>${q.lbl}</b><br>fleet ${(q.cum/1000).toFixed(0)}k GPUs (+${(q.added/1000).toFixed(1)}k)<br>`+['hopper','blackwell','rubin','next'].filter(g=>q.by[g]>0).map(g=>`${RAMP_GEN[g].n} ${(q.by[g]/1000).toFixed(0)}k`).join(' · ')+`<br>signed today ${(q.signed/1000).toFixed(0)}k · modeled contracted ${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
+  Q.forEach((q,i)=>{const tip=`<b>${q.lbl}</b><br>fleet ${(q.cum/1000).toFixed(0)}k GPUs (+${(q.added/1000).toFixed(1)}k)<br>`+['hopper','blackwell','rubin','next'].filter(g=>q.by[g]>0).map(g=>`${RAMP_GEN[g].n} ${(q.by[g]/1000).toFixed(0)}k`).join(' · ')+`<br>signed today ${(q.signed/1000).toFixed(0)}k · modelled contracted ${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
     cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Revenue-generating GPUs by generation, quarterly">${stat}<rect id="rampHLF" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipF)">${body}</g><path id="rampSelF0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelF" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Revenue-generating GPUs by generation, quarterly"><title>Fleet of revenue-generating GPUs by silicon generation</title><desc>Stacked area of revenue-earning GPU packages by generation from 2026Q3 to 2030Q4, reaching about 724,000. Hopper gives way to Blackwell, then Rubin-class from 2028 and next-generation silicon from 2030. The dashed line marks the fleet covered by contracts signed today.</desc>${stat}<rect id="rampHLF" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipF)">${body}</g><path id="rampSelF0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelF" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
 }
 function rampRevHTML(Q,mode){
   const F=RAMP_F,W=F.W,ml=F.ml,mr=F.mr,H=310,mt=16,ph=H-mt-26;
@@ -601,7 +602,7 @@ function rampCoverageHTML(Q){
   s+=`<text x="${(X(Q.indexOf(f0))+9).toFixed(1)}" y="${(mt+11).toFixed(1)}" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${p0}% signed today</text>`;
   s+=`<text x="${(W-mr+5).toFixed(1)}" y="${(Y(f1.revS/f1.rev)+3).toFixed(1)}" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${p1}%</text>`;
   const defs=`<defs><pattern id="rampCovHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#E9E4DA"/><rect width="2.4" height="6" fill="#7D90A0"/></pattern></defs>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Share of the fleet under contract by quarter: signed today, modelled contracted, and uncontracted">${defs}${s}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Share of revenue under contract by quarter"><title>Contract coverage of modelled revenue, by quarter</title><desc>Stacked bands showing the share of each quarter's revenue that is under contract signed today (solid), modelled as contracted at commissioning (hatched), and uncontracted or spot (light). Signed-today coverage falls from 79% in 2026Q3 to 17% by 2030Q4, traced by the overlaid line.</desc>${defs}${s}</svg>`;
 }
 /* ---- backtest: the same chain run over reported quarters ---- */
 function rampBacktestHTML(bt,R){
@@ -703,8 +704,8 @@ function rampSelect(ti,noScroll){
     `<div class="cstep tot"><span>${t.n}</span><span class="cval">${t.campus}</span><span class="cnote"><a href="#ramp" onclick="rampSelect(${RAMP_SEL});return false" style="color:var(--indigo)">✕ clear spotlight</a></span></div>`+
     f('Generation',RAMP_GEN[t.gen].n)+f('Power',`${t.grossMW}MW gross · ${t.itMW}MW critical IT`)+
     f('Fleet',`${(t.gpus/1000).toFixed(0)}k GPUs`,`${((t.gpus/C.Q[C.Q.length-1].cum)*100).toFixed(0)}% of the YE-30 fleet`)+
-    f('Energized',t.energize)+f('First revenue',t.rev,`${t.rampQtrs}-quarter ramp to full`)+
-    f('Contract',(t.signed||0)>0?`signed today — ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`:`uncontracted today — modeled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`,(t.signed||0)>0?'take-or-pay, bills 8,760 hr/yr':'rest earns effective spot')+
+    f('Energised',t.energize)+f('First revenue',t.rev,`${t.rampQtrs}-quarter ramp to full`)+
+    f('Contract',(t.signed||0)>0?`signed today — ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`:`uncontracted today — modelled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`,(t.signed||0)>0?'take-or-pay, bills 8,760 hr/yr':'rest earns effective spot')+
     f('Peak quarter',`$${Math.round(peak)}M revenue`)+
     `</div>`;
   if(!noScroll)card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
@@ -784,8 +785,9 @@ function renderRamp(){
   h+=`<div class="rampanswer"><div class="rampanswer-n">$${(last.rev*4/1000).toFixed(1)}B<span>exit ARR 2030, base case</span></div>`+
      `<div class="rampanswer-b"><b>${jointARR?'$'+jointARR.toFixed(1)+'B':'—'}</b> on the joint downside · <b>${lastSignedPct}%</b> of 2030 revenue is covered by contracts signed today`+
      `${BT?` · retrodicts reported quarters to <b>${BT.mape.toFixed(0)}%</b> mean error`:''}</div></div>`;
-  h+=`<div class="ssummary" style="margin:4px 4px 12px"><span>secured power <b>${(secured/1000).toFixed(1)} GW</b></span><span>modeled in-window <b>${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)} GW</b></span><span>GPUs 26Q3 <b>${(Q[0].cum/1000).toFixed(1)}k</b> → YE-30 <b>~${Math.round(last.cum/1000)}k</b></span><span>signed book today <b>~${signedK}k GPUs</b></span><span>exit ARR 2030 <b>$${(last.rev*4/1000).toFixed(1)}B</b> @ $${last.blend.toFixed(2)}/GPU-hr</span></div>`;
+  h+=`<div class="ssummary" style="margin:4px 4px 12px"><span>secured power <b>${(secured/1000).toFixed(1)} GW</b></span><span>modelled in-window <b>${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)} GW</b></span><span>GPUs 26Q3 <b>${(Q[0].cum/1000).toFixed(1)}k</b> → YE-30 <b>~${Math.round(last.cum/1000)}k</b></span><span>signed book today <b>~${signedK}k GPUs</b></span><span>exit ARR 2030 <b>$${(last.rev*4/1000).toFixed(1)}B</b> @ $${last.blend.toFixed(2)}/GPU-hr</span></div>`;
   // the time machine
+  h+=`<div class="bo-head" style="margin:2px 4px 4px"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--indigo-soft);border-radius:50%;width:7px;height:7px"></i>power on</span><span class="bo-leg"><i style="background:var(--gold);border-radius:50%;width:7px;height:7px"></i>first revenue</span><span class="bo-leg"><i style="background:var(--clay);border-radius:50%;width:7px;height:7px"></i>milestone</span><span class="bo-leg" style="color:var(--ink-soft)">click a dot to jump the timeline</span></div></div>`;
   h+=`<div class="rampbar"><button class="rampplay" id="rampPlayBtn">${(RAMP_T==null||RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play'}</button><div class="ramptrack"><div class="rampflags">`+
     Object.keys(EV).map(s=>{const kinds=[...new Set(EV[s].map(e=>e.k))];const col=kinds.includes('mile')?'var(--clay)':kinds.includes('rev')?'var(--gold)':'var(--indigo-soft)';
       return `<i class="rampflag" style="left:${(((+s)-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%;background:${col}" title="${RAMP_QL(+s)}: ${rampTipEsc(EV[s].map(e=>e.t).join(' · '))}" onclick="rampSeek(${s})"></i>`;}).join('')+
@@ -793,7 +795,7 @@ function renderRamp(){
     [2027,2028,2029,2030].map(y=>`<span style="left:${(((y-2026)*4+1-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%">${y}</span>`).join('')+
     `</div></div><span class="qnow" id="rampQnow">${RAMP_QL(RAMP_END)}</span></div>`;
   // live state panel
-  h+=`<div class="rampstats">`+[['rs-gpu','GPUs earning'],['rs-mw','gross MW energized'],['rs-it','critical IT MW active'],['rs-rev','revenue / qtr'],['rs-blend','blend $/GPU-hr'],['rs-sign','fleet signed today'],['rs-street','vs street']].map(([id,lab])=>`<div class="rampstat"><span>${lab}</span><b id="${id}">—</b><i id="${id}-d"></i></div>`).join('')+`</div>`;
+  h+=`<div class="rampstats">`+[['rs-gpu','GPUs earning'],['rs-mw','gross MW energised'],['rs-it','critical IT MW active'],['rs-rev','revenue / qtr'],['rs-blend','blend $/GPU-hr'],['rs-sign','fleet signed today'],['rs-street','vs street']].map(([id,lab])=>`<div class="rampstat"><span>${lab}</span><b id="${id}">—</b><i id="${id}-d"></i></div>`).join('')+`</div>`;
   h+=`<div class="rampcall" id="rampCall"></div>`;
   h+=`<h4 class="sec">Coverage — how much of this is already sold</h4>`;
   h+=`<div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--indigo)"></i>signed today</span><span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>modelled contracted at commissioning</span><span class="bo-leg"><i style="background:var(--line)"></i>uncontracted / spot</span></div></div>`;
@@ -804,7 +806,7 @@ function renderRamp(){
   h+=`<h4 class="sec">01 · Concrete — power arriving, and how much of it earns</h4>
     <div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:rgba(55,73,91,.10);border:1px solid var(--indigo-soft)"></i>energised (gross MW)</span><span class="bo-leg"><i style="background:rgba(55,73,91,.30)"></i>commissioned (critical IT MW)</span><span class="bo-leg"><i style="background:var(--indigo)"></i>earning (critical IT MW)</span><span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed var(--indigo-soft)"></i>company commitments</span></div></div><div class="bo-wrap">${rampGanttHTML(R,Q)}<div class="bo-tip"></div></div>`;
   h+=`<div id="rampSelCard" style="display:none;margin:10px 4px 0"></div>`;
-  h+=`<div class="legend2" style="margin:6px 4px 0">Every quantity sits on one labelled megawatt axis — the gap between the bands IS the execution story: power energises first, commissions second, earns last. Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modeled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetized in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
+  h+=`<div class="legend2" style="margin:6px 4px 0">Every quantity sits on one labelled megawatt axis — the gap between the bands IS the execution story: power energises first, commissions second, earns last. Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modelled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetised in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
   h+=`<div class="rampnote"><span class="k">assumption</span><span>A building takes <b>12–16 months</b> from groundbreak to first power at a new campus, then <b>6–8 weeks</b> per extra 50MW-IT hall once the template exists. IREN's record: Childress 0→750MW in 33 months; best four-quarter add <b>+550MW</b> (138MW/qtr). <b>This model asks 275MW/qtr average, 369MW/qtr peak — 2.0× and 2.7× that record</b>, across five campuses on three continents.</span></div>`;
   h+=`<h4 class="sec">02 · Silicon — the fleet by generation</h4>
     <div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
@@ -974,7 +976,7 @@ function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierO
 function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);const v=value(c);const bz=c.basis||{};const owner=c.model!=='landlord';const holdco=c.model==='holdco';
   let stakeRow='';
   if(c.stake){const t=COMPANIES.find(x=>x.tk===c.stake.tk);const mkt=t?(c.stake.pct*t.shares*priceOf(t)):0;const cap=c.shares*priceOf(c);
-    stakeRow=f(`Stake: ${(c.stake.pct*100).toFixed(0)}% of ${c.stake.tk}`,`${fmtM(stakeValue(c))} (modeled value)`)+
+    stakeRow=f(`Stake: ${(c.stake.pct*100).toFixed(0)}% of ${c.stake.tk}`,`${fmtM(stakeValue(c))} (modelled value)`)+
       f(`↳ ${c.stake.tk} stake at market`,`${fmtM(mkt)} vs ${c.tk} mkt cap ${fmtM(cap)}${mkt>cap?' — stake alone > whole company':''}`);}
   const ethRow=c.eth?f('ETH treasury',`${c.eth.toLocaleString()} Ξ × $${Math.round(ethPrice()).toLocaleString()} = ${fmtM(c.eth*ethPrice()/1e6)}`):'';
   const btcRow=c.btc?f('BTC treasury',`${c.btc.toLocaleString()} ₿ × $${Math.round(btcPrice()).toLocaleString()} = ${fmtM(c.btc*btcPrice()/1e6)}`):'';
