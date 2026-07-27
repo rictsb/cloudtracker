@@ -2,12 +2,14 @@
   --paper:#EFEDE7; --card:#FBFAF7; --ink:#2A2722; --ink-soft:#716A5F;
   --line:#E3DED4; --indigo:#37495B; --indigo-soft:#7D90A0; --far:#BCBAB0;
   --pine:#5B7A5C; --clay:#AA6B4F; --gold:#B9A06A;
-  --pine-ink:#547355; --clay-ink:#9A5B3F;   /* text-only: AA on --paper (4.53 / 4.55) */
-  --gen-hopper:#eda100; --gen-blackwell:#1baf7a; --gen-rubin:#4a3aa7; --gen-next:#e87ba4;
+  --pine-ink:#547355; --clay-ink:#9A5B3F;
+  /* signed values diverge on indigo(+)/clay(-), never on green — green means Blackwell and nothing else */
+  --pos-ink:#2F5E86; --neg-ink:#9A5B3F;   /* text-only: AA on --paper (4.53 / 4.55) */
+  --gen-hopper:#b3864a; --gen-blackwell:#35895b; --gen-rubin:#00427f; --gen-next:#994468;
   /* UNCONTRACTED tints: each pinned to relative luminance 0.55 (solids sit at 0.07-0.44), so the hatched
      state is lighter than every solid state in greyscale — the contract encoding cannot invert on hue.
      Mixed against a NEUTRAL, not against paper, so each tint keeps its parent's hue angle exactly: no new hues. */
-  --gen-hopper-un:#edbd57; --gen-blackwell-un:#8fd1b9; --gen-rubin-un:#c5c1dc; --gen-next-un:#f0b3ca;
+  --gen-hopper-un:#ffedd3; --gen-blackwell-un:#d8f9e3; --gen-rubin-un:#e7f0ff; --gen-next-un:#ffe6f4;
   --serif:'Spectral',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
 }
 *{box-sizing:border-box}
@@ -97,10 +99,10 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
 /* one meaning per token — .prov is PROVENANCE only. Generation, instrument, contract kind and
    earnings lean get their own scales so a reader who learns the code on one screen can read every screen. */
 .gen{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--ink-soft)}
-.gen.hopper{color:#8a6100;border-color:#E4D6B2;background:#FAF4E6}
-.gen.blackwell{color:#0f6b4a;border-color:#BFE0D2;background:#EDF6F2}
-.gen.rubin{color:#3b2f85;border-color:#CBC6E6;background:#F1EFFA}
-.gen.next{color:#96305a;border-color:#EFCBD9;background:#FCF0F5}
+.gen.hopper{color:#7d5c2f;border-color:#E4D6B2;background:#FAF4E6}
+.gen.blackwell{color:#256040;border-color:#BFE0D2;background:#EDF6F2}
+.gen.rubin{color:#00427f;border-color:#C2D2E6;background:#EDF2F9}
+.gen.next{color:#7d3754;border-color:#EFCBD9;background:#FCF0F5}
 .gen.mixed{color:var(--ink-soft)}
 .inst{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--ink-soft)}
 .inst.debt{color:var(--indigo);border-color:#CBD6DE;background:#EEF3F6}

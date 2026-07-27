@@ -501,12 +501,17 @@ function rampFleetHTML(Q){
     base=tops;});
   body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(q.signed).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink);stroke-width:1.8;stroke-dasharray:6 4"/>`;
   const li=gk=>{let bi=-1,bv=0;Q.forEach((q,i)=>{if(q.by[gk]>bv){bv=q.by[gk];bi=i;}});return bi<0?bi:Math.min(bi,Q.length-3);};
-  const lbl=(gk,txt,fill)=>{const i=li(gk);if(i<0)return '';const q=Q[i];let b=0;for(const g of ['hopper','blackwell','rubin','next']){if(g===gk)break;b+=q.by[g];}
+  const lbl=(gk,txt)=>{const i=li(gk);if(i<0)return '';const q=Q[i];let base=0;
+    for(const g of ['hopper','blackwell','rubin','next']){if(g===gk)break;base+=q.by[g];}
     if(q.by[gk]<=60000)return '';
-    let cy=Y(b+q.by[gk]*0.5);const sy=Y(q.signed);if(Math.abs(cy-sy)<12)cy+=(cy>=sy?14:-14);
-    return `<text x="${X(i).toFixed(1)}" y="${(cy+4).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:${fill}">${txt}</text>`;};
-  body+=lbl('blackwell','BLACKWELL','var(--ink)')+lbl('rubin','RUBIN','var(--paper)')+lbl('next','NEXT','var(--ink)');
-  body+=`<text x="${X(5).toFixed(1)}" y="${(Y(Q[5].signed)-7).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">contracted today (signed book)</text>`;
+    let cy=Y(base+q.by[gk]*0.5);const sy=Y(q.signed);if(Math.abs(cy-sy)<14)cy+=(cy>=sy?16:-16);
+    const w=txt.length*6.4+10;
+    return `<rect x="${(X(i)-w/2).toFixed(1)}" y="${(cy-9).toFixed(1)}" width="${w.toFixed(1)}" height="13" rx="2" fill="var(--paper)" opacity="0.92"/>`+
+      `<text x="${X(i).toFixed(1)}" y="${(cy+1).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${txt}</text>`;};
+  body+=lbl('blackwell','BLACKWELL')+lbl('rubin','RUBIN')+lbl('next','NEXT');
+  {const cx=X(5),cy=Y(Q[5].signed)-8;
+   body+=`<rect x="${(cx-3).toFixed(1)}" y="${(cy-9).toFixed(1)}" width="152" height="13" rx="2" fill="var(--paper)" opacity="0.92"/>`+
+         `<text x="${cx.toFixed(1)}" y="${cy.toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">contracted today (signed book)</text>`;}
   let cap='';
   Q.forEach((q,i)=>{const tip=`<b>${q.lbl}</b><br>fleet ${(q.cum/1000).toFixed(0)}k GPUs (+${(q.added/1000).toFixed(1)}k)<br>`+['hopper','blackwell','rubin','next'].filter(g=>q.by[g]>0).map(g=>`${RAMP_GEN[g].n} ${(q.by[g]/1000).toFixed(0)}k`).join(' · ')+`<br>signed today ${(q.signed/1000).toFixed(0)}k · modelled contracted ${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
     cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
@@ -544,13 +549,13 @@ function rampRevHTML(Q,mode){
     if(consPts.length){
       // per-quarter deltas, every other consensus quarter
       consPts.forEach(([i,c],k)=>{if(k%2)return;const d=Q[i].rev/c-1;if(Math.abs(d)<0.005)return;
-        body+=rampPlaque(X(i),Math.min(Y(Q[i].rev),Y(c))-8,`${d>=0?'+':''}${Math.round(d*100)}%`,d>=0?'var(--pine-ink)':'var(--clay-ink)','middle',600);});
+        body+=rampPlaque(X(i),Math.min(Y(Q[i].rev),Y(c))-8,`${d>=0?'+':''}${Math.round(d*100)}%`,d>=0?'var(--pos-ink)':'var(--neg-ink)','middle',600);});
       const [li2,lc]=consPts[consPts.length-1];
       body+=rampPlaque(X(li2)+8,Y(lc)+4,'street','var(--ink-soft)','start');
       // cumulative wedge annotation, anchored inside the wedge opening (index-safe for shorter consensus runs)
       const wedge=consPts.filter(([i])=>Q[i].s<=RAMP_CONS_HARD).reduce((a,[i,c])=>a+(Q[i].rev-c),0);
       const kk=Math.min(13,consPts.length-1),[wi,wc]=consPts[kk];
-      body+=rampPlaque(X(Math.min(wi+1,Q.length-1)),(Y(Q[wi].rev)+Y(wc))/2,`the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street`,wedge>=0?'var(--pine-ink)':'var(--clay-ink)','middle');}
+      body+=rampPlaque(X(Math.min(wi+1,Q.length-1)),(Y(Q[wi].rev)+Y(wc))/2,`the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street`,wedge>=0?'var(--pos-ink)':'var(--neg-ink)','middle');}
     body+=rampPlaque(X(Q.length-1)-8,Y(Q[Q.length-1].rev)-8,'model','var(--indigo)','end',600);
   }else{
     Q.forEach((q,i)=>{let y0=mt+ph;
@@ -609,13 +614,13 @@ function rampBacktestHTML(bt,R){
   if(!bt)return '';
   const cal=(R.calibration&&R.calibration.rampMult)||1;
   const sign=v=>(v>=0?'+':'')+v.toFixed(0)+'%';
-  const col=v=>Math.abs(v)<=20?'var(--pine-ink)':Math.abs(v)<=40?'var(--gold)':'var(--clay-ink)';
+  const col=v=>Math.abs(v)<=20?'var(--ink-soft)':'var(--ink)';   // magnitude = ink weight, never hue
   let h=`<div class="rampbt"><div class="rampbt-hd"><b>The chain retrodicts to within ${bt.mape.toFixed(0)}% (mean absolute), bias ${sign(bt.bias)}.</b> Uncalibrated it missed by ${bt.rawMape.toFixed(0)}%, biased ${sign(bt.rawBias)} — high, every quarter.</div>`;
   h+=`<table class="stab nosort rampbt-t"><thead><tr><th>Reported quarter</th><th class="r">Reported AI cloud</th><th class="r">Model</th><th class="r">Error</th><th class="r">Uncalibrated</th><th class="r">Earning GPUs: model vs implied</th></tr></thead><tbody>`;
   bt.rows.forEach(r=>{
     h+=`<tr><td class="mono">${r.lbl}</td><td class="r mono">$${r.actRev.toFixed(2)}m</td><td class="r mono">$${r.modRev.toFixed(1)}m</td>`+
-       `<td class="r mono" style="color:${col(r.errPct)}"><b>${sign(r.errPct)}</b></td>`+
-       `<td class="r mono" style="color:var(--clay-ink)">${sign(r.rawErrPct)}</td>`+
+       `<td class="r mono" style="color:${col(r.errPct)};font-weight:${Math.abs(r.errPct)<=20?400:600}">${sign(r.errPct)}</td>`+
+       `<td class="r mono" style="color:var(--neg-ink)">${sign(r.rawErrPct)}</td>`+
        `<td class="r mono">${Math.round(r.modGpu).toLocaleString()} vs ${Math.round(r.actGpu).toLocaleString()}</td></tr>`;});
   h+=`</tbody></table>`;
   h+=`<div class="legend2" style="margin:8px 0 0"><b>How.</b> The forward chain is run backwards over every quarter IREN has reported, with no parameter free except one: a single global multiple of ${cal}× on the commissioning ramp, fitted to these three quarters. Reported revenue is converted to an <b>earning-GPU-equivalent</b> at IREN's own disclosed ARR rate ($${bt.rate.toFixed(2)}/GPU-hr on its 23k-GPU fleet) so fleet and revenue are testable separately. <b>The calibration is in the base case</b> — the headline path on this page is the retrodicted one; the uncalibrated column is what the model said before it was tested. ${R.calibration?R.calibration.basis.split('Confound stated:')[1]?'<b>Confound:</b>'+R.calibration.basis.split('Confound stated:')[1]:'':''}</div></div>`;
@@ -642,7 +647,7 @@ function rampSensHTML(R){
   rows.forEach(r=>{const isJoint=r.sc.id==='joint',isBase=r.sc.id==='base';
     h+=`<tr class="${isJoint?'rampsens-joint':''}"><td><b>${r.sc.name}</b></td><td style="color:var(--ink-soft)">${r.sc.note}</td>`+
        `<td class="r mono">${Math.round(r.fleet/1000)}k</td><td class="r mono"><b>$${r.arr.toFixed(1)}B</b></td>`+
-       `<td class="r mono" style="color:${isBase?'var(--ink-soft)':r.d<0?'var(--clay-ink)':'var(--pine-ink)'}">${isBase?'—':(r.d>=0?'+':'')+r.d.toFixed(0)+'%'}</td></tr>`;});
+       `<td class="r mono" style="color:${isBase?'var(--ink-soft)':r.d<0?'var(--neg-ink)':'var(--pos-ink)'}">${isBase?'—':(r.d>=0?'+':'')+r.d.toFixed(0)+'%'}</td></tr>`;});
   return h+`</tbody></table>`;
 }
 /* ---- interactions ---- */
@@ -743,7 +748,7 @@ function rampApply(){
   const qp=cur>RAMP_START?C.Q[cur-RAMP_START-1]:null;
   const D=(id,v,fmt)=>{const el=document.getElementById(id+'-d');if(!el)return;
     if(qp==null||v==null||Math.abs(v)<1e-9){el.textContent='';return;}
-    el.textContent=(v>0?'+':'−')+fmt(Math.abs(v))+' q/q';el.style.color=v>0?'var(--pine-ink)':'var(--clay-ink)';};
+    el.textContent=(v>0?'+':'−')+fmt(Math.abs(v))+' q/q';el.style.color=v>0?'var(--pos-ink)':'var(--neg-ink)';};
   D('rs-gpu',qp?q.cum-qp.cum:null,v=>(v/1000).toFixed(1)+'k');
   D('rs-mw',qp?q.grossMW-qp.grossMW:null,v=>Math.round(v).toLocaleString());
   D('rs-it',qp?q.itMW-qp.itMW:null,v=>Math.round(v).toLocaleString());
@@ -755,7 +760,7 @@ function rampApply(){
   S('rs-street',d==null?'—':(d>=0?'+':'')+Math.round(d*100)+'%'+(dLbl?'*':''));
   const stLab=document.querySelector('#rs-street')?.previousElementSibling;
   if(stLab)stLab.textContent=dLbl?`vs street (${dLbl})`:'vs street';
-  const rsEl=document.getElementById('rs-street');if(rsEl)rsEl.style.color=d==null?'':(d>=0?'var(--pine-ink)':'var(--clay-ink)');
+  const rsEl=document.getElementById('rs-street');if(rsEl)rsEl.style.color=d==null?'':(d>=0?'var(--pos-ink)':'var(--neg-ink)');
   // the dispatch
   const cc=document.getElementById('rampCall');
   if(cc){const evs=C.EV[cur]||[];const nxt=C.EV[cur+1]||[];
@@ -816,7 +821,7 @@ function renderRamp(){
   h+=`<div class="rampnote"><span class="k">assumption</span><span>Commissioning is <b>regime-split</b>: contracted GPUs bill take-or-pay from acceptance (<b>1–3 quarters</b>); uncontracted capacity must be <b>sold down</b>, which the backtest fits at <b>4.4× slower</b> (~9–14 quarters). Rates: <b>3 of 9 vintages come off a dated print</b> (13% of 2030 revenue). <b>63% prices off Rubin-class or later silicon that nobody has publicly priced.</b></span></div>`;
   h+=`<h4 class="sec">The quarterly table</h4><div style="overflow-x:auto"><table class="stab nosort"><thead><tr><th>Qtr</th><th class="r" title="Cumulative gross MW of every tranche whose energisation quarter has passed. A step function — it does not ramp.">Energised MW<br><span class="thsub">gross, step</span></th><th class="r" title="Critical IT MW actually serving revenue-generating GPUs: gross x the per-tranche derate (0.709 fleet-average) x the commissioning ramp. The ratio between this column and the one on its left is NOT the derate.">Critical IT MW<br><span class="thsub">ramp-weighted</span></th><th class="r">GPUs added</th><th class="r">GPUs cum</th><th class="r">Signed today</th><th class="r">Contracted (mod.)</th><th class="r" title="Revenue divided by (live GPUs x 8,760 hr). A billed-hours-equivalent rate on IREN's own ARR convention, not a realised market price: for uncontracted GPUs the ~65% sold-utilisation sits in the rate, not in the hours.">Blend $/GPU-hr<br><span class="thsub">billed-hours basis</span></th><th class="r">AI rev $M</th><th class="r">Total $M</th><th class="r" title="Bloomberg consensus AI Cloud Services line — the like-for-like comparator. The total-revenue line is not used: it still carries the street's mining assumption.">Consensus AI $M</th><th class="r" title="Model AI-cloud vs consensus AI-cloud. * marks quarters beyond 2029Q2 where the contributor panel thins to a handful and the comparison is indicative only.">Δ vs street</th></tr></thead><tbody>`;
   Q.forEach(q=>{const tot=q.rev+q.mining;
-    h+=`<tr class="srow ramprow${q.s%4===1?' yrb':''}${q.s>RAMP_CONS_HARD?' softcons':''}" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consAI!=null?Math.round(q.consAI).toLocaleString():'—'}</td><td class="r mono" style="${q.consAI?('color:'+((q.rev/q.consAI-1)>=0?'var(--pine-ink)':'var(--clay-ink)')):''}">${q.consAI?((q.rev/q.consAI-1)>=0?'+':'')+Math.round((q.rev/q.consAI-1)*100)+'%'+(q.s>RAMP_CONS_HARD?'*':''):'—'}</td></tr>`;});
+    h+=`<tr class="srow ramprow${q.s%4===1?' yrb':''}${q.s>RAMP_CONS_HARD?' softcons':''}" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consAI!=null?Math.round(q.consAI).toLocaleString():'—'}</td><td class="r mono" style="${q.consAI?('color:'+((q.rev/q.consAI-1)>=0?'var(--pos-ink)':'var(--neg-ink)')):''}">${q.consAI?((q.rev/q.consAI-1)>=0?'+':'')+Math.round((q.rev/q.consAI-1)*100)+'%'+(q.s>RAMP_CONS_HARD?'*':''):'—'}</td></tr>`;});
   h+=`</tbody></table></div>`;
   h+=`<h4 class="sec">The chain — every link, its transfer function and its marked assumption</h4>`;
   h+=rampChainHTML(R);
