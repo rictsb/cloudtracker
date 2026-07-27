@@ -439,7 +439,9 @@ function rampTip(e,html){const wrap=e.currentTarget&&e.currentTarget.closest?e.c
   if(x+t.offsetWidth>w.width-6)x=w.width-t.offsetWidth-6;if(x<2)x=2;t.style.left=x+'px';t.style.top=y+'px';}
 function rampTipHide(){if(RAMP_TIP_EL)RAMP_TIP_EL.style.display='none';}
 /* ---- chart builders: each emits a ghost layer (full picture, faint) + a reveal layer clipped at the scrub time ---- */
-const RAMP_GANTT={W:960,ml:54,mr:96};
+// one geometry for every panel on this screen: same width, margins, plot box, axis treatment
+const RAMP_GEO={W:960,ml:54,mr:96,H:300,mt:18,mb:28};
+const RAMP_GANTT=RAMP_GEO;
 function rampGanttHTML(R,Q){
   // Capacity as a STAIRCASE, not a Gantt. Gross MW sits on a labelled y-position axis; the old chart put it
   // on bar thickness as sqrt(MW) — a 75x quantity range drawn across 4.3x of pixels, which ranked 53% of
@@ -476,7 +478,7 @@ function rampGanttHTML(R,Q){
     cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Energised gross MW, commissioned critical IT MW and earning critical IT MW by quarter"><title>Capacity: energised, commissioned and earning megawatts by quarter</title><desc>Three nested step bands on one megawatt axis. Energised gross MW rises to 4,230 by 2030Q4; commissioned critical IT MW to 3,000; earning critical IT MW to 2,679. The gap between commissioned and earning is idle capacity — 79% at 2026Q3, 22% by 2029. Dashed reference lines mark the company-disclosed 480MW (2026) and 1,210MW (2027) programmes.</desc>${stat}<rect id="rampHLG" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipG)">${body}</g>${cap}</svg>`;
 }
-const RAMP_F={W:960,ml:54,mr:20,H:300,mt:16,mb:26};
+const RAMP_F={...RAMP_GEO};
 function rampFleetHTML(Q){
   const F=RAMP_F,W=F.W,ml=F.ml,mr=F.mr,H=F.H,mt=F.mt,ph=H-mt-F.mb;
   const max=Math.max(...Q.map(q=>q.cum))*1.06;
@@ -650,6 +652,49 @@ function rampSensHTML(R){
        `<td class="r mono" style="color:${isBase?'var(--ink-soft)':r.d<0?'var(--neg-ink)':'var(--pos-ink)'}">${isBase?'—':(r.d>=0?'+':'')+r.d.toFixed(0)+'%'}</td></tr>`;});
   return h+`</tbody></table>`;
 }
+
+/* ---- lag chart: the execution story, drawn. The capacity panel states that the gap between
+   energised and earning IS the story, then asks the reader to subtract two step curves by eye.
+   This puts that gap on length, zero-anchored at power-on, one row per tranche, chronological. ---- */
+function rampLagRows(R){
+  const cal=(R.calibration&&R.calibration.rampMult)||1;
+  return R.tranches.map(t=>{
+    const build=RAMP_QS(t.rev)-RAMP_QS(t.energize);
+    const nC=Math.max(1,Math.ceil(t.rampQtrs)),nU=Math.max(1,Math.ceil(t.rampQtrs*cal));
+    let sell=null;
+    for(let k=1;k<60;k++){const f=t.ctr*Math.min(k/nC,1)+(1-t.ctr)*Math.min(k/nU,1);if(f>=0.9){sell=k;break;}}
+    return {t,build,sell:sell||0,tot:build+(sell||0)};
+  }).sort((x,y)=>RAMP_QS(x.t.energize)-RAMP_QS(y.t.energize));
+}
+function rampLagHTML(R){
+  const rows=rampLagRows(R);
+  const W=RAMP_GEO.W,ml=196,mr=RAMP_GEO.mr,rowH=13,mt=30,mb=26,H=mt+rows.length*rowH+mb;
+  const maxQ=Math.max(...rows.map(r=>r.tot))+1;
+  const X=q=>ml+q*((W-ml-mr)/maxQ);
+  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
+  let s='';
+  for(let q=0;q<=maxQ;q+=2){s+=`<line x1="${X(q).toFixed(1)}" y1="${mt-6}" x2="${X(q).toFixed(1)}" y2="${H-mb+4}" style="stroke:var(--line);stroke-width:1"/>`+
+    `<text x="${X(q).toFixed(1)}" y="${H-mb+16}" text-anchor="middle" ${tx}>${q===0?'power on':q}</text>`;}
+  s+=`<text x="${X(maxQ).toFixed(1)}" y="${(mt-14).toFixed(1)}" text-anchor="end" ${tx}>quarters after power on</text>`;
+  let lastCamp=null;
+  rows.forEach((r,i)=>{
+    const y=mt+i*rowH, g=RAMP_GEN[r.t.gen];
+    const nm=r.t.n.replace(/\s*\([^)]*\)/,'');
+    s+=`<text x="${(ml-8).toFixed(1)}" y="${(y+8.5).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">${nm.length>30?nm.slice(0,29)+'\u2026':nm}</text>`;
+    if(r.t.campus!==lastCamp){lastCamp=r.t.campus;
+      s+=`<line x1="0" y1="${(y).toFixed(1)}" x2="${(W-mr).toFixed(1)}" y2="${(y).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`;}
+    s+=`<rect x="${X(0).toFixed(1)}" y="${(y+2).toFixed(1)}" width="${Math.max(X(r.build)-X(0),1.5).toFixed(1)}" height="7" fill="var(--ink-soft)"/>`;
+    s+=`<rect x="${X(r.build).toFixed(1)}" y="${(y+2).toFixed(1)}" width="${(X(r.tot)-X(r.build)).toFixed(1)}" height="7" fill="${g.c}" opacity="0.85"/>`;
+    s+=`<text x="${(X(r.tot)+5).toFixed(1)}" y="${(y+8.5).toFixed(1)}" ${tx}>${r.tot}q</text>`;
+    const tip=`<b>${r.t.n}</b><br>${r.t.campus} · ${g.n}<br>power on ${r.t.energize} → first revenue ${r.t.rev}<br><b>${r.build}q</b> to commission, <b>${r.sell}q</b> to reach 90% of run-rate<br>${Math.round(r.t.ctr*100)}% contracted at commissioning${(r.t.signed||0)>0?' · signed today':''}<br><span style="color:var(--ink-soft)">contracted capacity bills on acceptance; the rest must be sold down</span>`;
+    s+=`<rect x="${ml}" y="${y}" width="${W-ml-mr}" height="${rowH}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()" onclick="rampSelect(${R.tranches.indexOf(r.t)})"/>`;
+  });
+  const med=a2=>{const z=[...a2].sort((p,q)=>p-q);return z[Math.floor(z.length/2)];};
+  const early=med(rows.slice(0,10).map(r=>r.tot)),late=med(rows.slice(-10).map(r=>r.tot));
+  s+=`<line x1="${X(early).toFixed(1)}" y1="${mt}" x2="${X(early).toFixed(1)}" y2="${(mt+10*rowH).toFixed(1)}" style="stroke:var(--ink);stroke-width:1.4;stroke-dasharray:3 2"/>`;
+  s+=`<line x1="${X(late).toFixed(1)}" y1="${(H-mb-10*rowH).toFixed(1)}" x2="${X(late).toFixed(1)}" y2="${(H-mb).toFixed(1)}" style="stroke:var(--ink);stroke-width:1.4;stroke-dasharray:3 2"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarters from power on to 90% of run-rate, by tranche, in chronological order"><title>Execution lag by tranche</title><desc>Horizontal bars measuring quarters from energisation to 90 per cent of full run-rate, one row per tranche in chronological order. The dark segment is commissioning; the coloured segment is sell-down. Median lag rises from ${early} quarters for the first ten tranches to ${late} for the last ten, because later capacity is less contracted.</desc>${s}</svg>`;
+}
 /* ---- interactions ---- */
 function rampSeek(v,keepPlay){RAMP_T=Math.max(RAMP_START,Math.min(RAMP_END,+v));if(!keepPlay)rampStop();rampApply();}
 function rampSeekQ(i){rampSeek(RAMP_START+i);}
@@ -813,6 +858,10 @@ function renderRamp(){
   h+=`<div id="rampSelCard" style="display:none;margin:10px 4px 0"></div>`;
   h+=`<div class="legend2" style="margin:6px 4px 0">Every quantity sits on one labelled megawatt axis — the gap between the bands IS the execution story: power energises first, commissions second, earns last. Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modelled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetised in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
   h+=`<div class="rampnote"><span class="k">assumption</span><span>A building takes <b>12–16 months</b> from groundbreak to first power at a new campus, then <b>6–8 weeks</b> per extra 50MW-IT hall once the template exists. IREN's record: Childress 0→750MW in 33 months; best four-quarter add <b>+550MW</b> (138MW/qtr). <b>This model asks 275MW/qtr average, 369MW/qtr peak — 2.0× and 2.7× that record</b>, across five campuses on three continents.</span></div>`;
+  h+=`<h4 class="sec">Execution lag — power on to earning, tranche by tranche</h4>`;
+  h+=`<div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--ink-soft)"></i>commissioning</span><span class="bo-leg"><i style="background:var(--gen-blackwell)"></i>sell-down to 90% of run-rate</span><span class="bo-leg" style="color:var(--ink-soft)">bar colour = silicon generation · click a row to spotlight it</span></div></div>`;
+  h+=`<div class="bo-wrap">${rampLagHTML(R)}<div class="bo-tip"></div></div>`;
+  h+=`<div class="legend2" style="margin:6px 4px 0"><b>The lag gets worse, and not because building gets harder.</b> Median time from power on to 90% of run-rate rises from <b>${(()=>{const r=rampLagRows(R).slice(0,10).map(x=>x.tot).sort((p,q)=>p-q);return r[Math.floor(r.length/2)];})()} quarters</b> for the first ten tranches to <b>${(()=>{const r=rampLagRows(R).slice(-10).map(x=>x.tot).sort((p,q)=>p-q);return r[Math.floor(r.length/2)];})()} quarters</b> for the last ten. Commissioning is a flat one-quarter modelling convention throughout; every bit of the deterioration is <b>sell-down</b>, because later tranches carry less contracted capacity and uncontracted megawatts take 4.4x longer to reach full rate. This is the execution story the capacity panel above states in prose — drawn as length on a zero-anchored axis rather than left as a gap between two step curves.</div>`;
   h+=`<h4 class="sec">02 · Silicon — the fleet by generation</h4>
     <div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
   h+=`<div class="rampnote"><span class="k">assumption</span><span>GPUs per megawatt is set by silicon, not trend: <b>Hopper 1.60 kW</b> per package → <b>Blackwell 2.48</b> → <b>Rubin 4.23</b> → <b>next-gen 6.30</b> (+55%, +71%, +49%). Anchored on IREN's disclosed <b>&gt;19,000 GB300 per 50MW-IT</b> Horizon building. A GPU is a <b>package</b>, never a die — counting dies would inflate the Rubin fleet <b>2.4×</b>.</span></div>`;
