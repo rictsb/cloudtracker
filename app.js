@@ -695,6 +695,49 @@ function rampLagHTML(R){
   s+=`<line x1="${X(late).toFixed(1)}" y1="${(H-mb-10*rowH).toFixed(1)}" x2="${X(late).toFixed(1)}" y2="${(H-mb).toFixed(1)}" style="stroke:var(--ink);stroke-width:1.4;stroke-dasharray:3 2"/>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarters from power on to 90% of run-rate, by tranche, in chronological order"><title>Execution lag by tranche</title><desc>Horizontal bars measuring quarters from energisation to 90 per cent of full run-rate, one row per tranche in chronological order. The dark segment is commissioning; the coloured segment is sell-down. Median lag rises from ${early} quarters for the first ten tranches to ${late} for the last ten, because later capacity is less contracted.</desc>${s}</svg>`;
 }
+
+/* ---- bridge: what has to be true for the model and not the street. The page asserted a divergence
+   and displayed it; this decomposes it into named, separately-arguable components on one $ axis. ---- */
+function rampBridgeHTML(Q,R){
+  const hard=Q.filter(q=>q.consAI!=null&&q.s<=RAMP_CONS_HARD);
+  if(!hard.length)return '';
+  const q=hard[hard.length-1];                       // last quarter the panel is deep enough to compare
+  const signed=q.revS, ctr=q.revC-q.revS, spot=q.rev-q.revC, cons=q.consAI;
+  const steps=[
+    {k:'signed',   v:signed, lab:'signed today',        note:'contracts already inked'},
+    {k:'leaseup',  v:ctr,    lab:'+ modelled lease-up', note:'capacity this model assumes gets contracted'},
+    {k:'spot',     v:spot,   lab:'+ uncontracted / spot',note:'sold at the spot rate, 65% utilisation'},
+  ];
+  const {W,ml,mr}=RAMP_GEO,H=210,mt=34,mb=30,ph=H-mt-mb;
+  const max=Math.max(q.rev,cons)*1.15;
+  const n=steps.length+2, slot=(W-ml-mr)/n, bw=slot*0.55;
+  const X=i=>ml+i*slot+slot/2, Y=v=>mt+ph-(v/max)*ph;
+  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
+  let s='';
+  for(let k=0;k<=max;k+=1000){s+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
+    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+(k/1000).toFixed(0)+'B'}</text>`;}
+  let run=0;
+  steps.forEach((st,i)=>{
+    const y0=Y(run), y1=Y(run+st.v);
+    s+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${y1.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(y0-y1,1).toFixed(1)}" fill="${i===0?'var(--indigo)':i===1?'url(#rampBridgeHatch)':'var(--line)'}" style="stroke:var(--card);stroke-width:1"/>`;
+    if(i<steps.length-1)s+=`<line x1="${(X(i)+bw/2).toFixed(1)}" y1="${y1.toFixed(1)}" x2="${(X(i+1)-bw/2).toFixed(1)}" y2="${y1.toFixed(1)}" style="stroke:var(--ink-soft);stroke-width:1;stroke-dasharray:2 2"/>`;
+    s+=`<text x="${X(i).toFixed(1)}" y="${(y1-6).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">$${Math.round(st.v)}M</text>`;
+    s+=`<text x="${X(i).toFixed(1)}" y="${(H-mb+14).toFixed(1)}" text-anchor="middle" ${tx}>${st.lab}</text>`;
+    run+=st.v;
+  });
+  // model total, then the street beside it — the comparison as two bars on one zero-anchored axis
+  const iM=steps.length, iS=steps.length+1;
+  s+=`<rect x="${(X(iM)-bw/2).toFixed(1)}" y="${Y(run).toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(0)-Y(run)).toFixed(1)}" fill="var(--indigo)" opacity="0.55" style="stroke:var(--card);stroke-width:1"/>`;
+  s+=`<text x="${X(iM).toFixed(1)}" y="${(Y(run)-6).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">$${Math.round(run)}M</text>`;
+  s+=`<text x="${X(iM).toFixed(1)}" y="${(H-mb+14).toFixed(1)}" text-anchor="middle" ${tx}>model</text>`;
+  s+=`<rect x="${(X(iS)-bw/2).toFixed(1)}" y="${Y(cons).toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(0)-Y(cons)).toFixed(1)}" fill="var(--ink-soft)" opacity="0.45" style="stroke:var(--card);stroke-width:1"/>`;
+  s+=`<text x="${X(iS).toFixed(1)}" y="${(Y(cons)-6).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">$${Math.round(cons)}M</text>`;
+  s+=`<text x="${X(iS).toFixed(1)}" y="${(H-mb+14).toFixed(1)}" text-anchor="middle" ${tx}>street</text>`;
+  const d=(run/cons-1)*100;
+  s+=`<text x="${ml}" y="${(mt-16).toFixed(1)}" style="font-family:var(--mono);font-size:10px;fill:var(--ink)">${q.lbl} · model ${d>=0?'+':''}${d.toFixed(0)}% vs street</text>`;
+  const defs=`<defs><pattern id="rampBridgeHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#E9E4DA"/><rect width="2.4" height="6" fill="#7D90A0"/></pattern></defs>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Bridge from signed revenue to the street comparison"><title>What has to be true: signed revenue bridged to the model total and the street</title><desc>Waterfall for ${q.lbl}. Signed contracts $${Math.round(signed)}M, plus modelled lease-up $${Math.round(ctr)}M, plus uncontracted spot $${Math.round(spot)}M, gives a model total of $${Math.round(run)}M against a street AI-cloud consensus of $${Math.round(cons)}M.</desc>${defs}${s}</svg>`;
+}
 /* ---- interactions ---- */
 function rampSeek(v,keepPlay){RAMP_T=Math.max(RAMP_START,Math.min(RAMP_END,+v));if(!keepPlay)rampStop();rampApply();}
 function rampSeekQ(i){rampSeek(RAMP_START+i);}
@@ -868,6 +911,9 @@ function renderRamp(){
   h+=`<h4 class="sec">03 · Money — revenue vs the street</h4>
     <div class="bo-head"><div class="bo-toggle"><button class="bo-tog ${RAMP_REV_MODE==='gen'?'on':''}" data-rm="gen">by generation</button><button class="bo-tog ${RAMP_REV_MODE==='street'?'on':''}" data-rm="street">vs street</button></div><div class="bo-legend" id="rampRevLeg">${rampRevLegend(RAMP_REV_MODE)}</div></div><div class="bo-wrap" id="rampRevWrap">${rampRevHTML(Q,RAMP_REV_MODE)}<div class="bo-tip"></div></div>`;
   h+=`<div class="rampnote"><span class="k">assumption</span><span>Commissioning is <b>regime-split</b>: contracted GPUs bill take-or-pay from acceptance (<b>1–3 quarters</b>); uncontracted capacity must be <b>sold down</b>, which the backtest fits at <b>4.4× slower</b> (~9–14 quarters). Rates: <b>3 of 9 vintages come off a dated print</b> (13% of 2030 revenue). <b>63% prices off Rubin-class or later silicon that nobody has publicly priced.</b></span></div>`;
+  h+=`<h4 class="sec">What has to be true — signed revenue bridged to the street</h4>`;
+  h+=`<div class="bo-wrap">${rampBridgeHTML(Q,R)}<div class="bo-tip"></div></div>`;
+  h+=`<div class="legend2" style="margin:6px 4px 0">The divergence decomposed at the last quarter where the consensus panel is deep enough to compare. Only the first bar is <b>signed</b>. The second is capacity this model assumes gets contracted; the third is sold at spot. A reader who accepts the first bar and rejects the second two lands on the street number — that is the whole argument, in one frame.</div>`;
   h+=`<h4 class="sec">The quarterly table</h4><div style="overflow-x:auto"><table class="stab nosort"><thead><tr><th>Qtr</th><th class="r" title="Cumulative gross MW of every tranche whose energisation quarter has passed. A step function — it does not ramp.">Energised MW<br><span class="thsub">gross, step</span></th><th class="r" title="Critical IT MW actually serving revenue-generating GPUs: gross x the per-tranche derate (0.709 fleet-average) x the commissioning ramp. The ratio between this column and the one on its left is NOT the derate.">Critical IT MW<br><span class="thsub">ramp-weighted</span></th><th class="r">GPUs added</th><th class="r">GPUs cum</th><th class="r">Signed today</th><th class="r">Contracted (mod.)</th><th class="r" title="Revenue divided by (live GPUs x 8,760 hr). A billed-hours-equivalent rate on IREN's own ARR convention, not a realised market price: for uncontracted GPUs the ~65% sold-utilisation sits in the rate, not in the hours.">Blend $/GPU-hr<br><span class="thsub">billed-hours basis</span></th><th class="r">AI rev $M</th><th class="r">Total $M</th><th class="r" title="Bloomberg consensus AI Cloud Services line — the like-for-like comparator. The total-revenue line is not used: it still carries the street's mining assumption.">Consensus AI $M</th><th class="r" title="Model AI-cloud vs consensus AI-cloud. * marks quarters beyond 2029Q2 where the contributor panel thins to a handful and the comparison is indicative only.">Δ vs street</th></tr></thead><tbody>`;
   Q.forEach(q=>{const tot=q.rev+q.mining;
     h+=`<tr class="srow ramprow${q.s%4===1?' yrb':''}${q.s>RAMP_CONS_HARD?' softcons':''}" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consAI!=null?Math.round(q.consAI).toLocaleString():'—'}</td><td class="r mono" style="${q.consAI?('color:'+((q.rev/q.consAI-1)>=0?'var(--pos-ink)':'var(--neg-ink)')):''}">${q.consAI?((q.rev/q.consAI-1)>=0?'+':'')+Math.round((q.rev/q.consAI-1)*100)+'%'+(q.s>RAMP_CONS_HARD?'*':''):'—'}</td></tr>`;});
@@ -931,21 +977,41 @@ function renderChecks(){
 }
 // Value gauge: bar = our target value (split contracted-floor / expected / legacy), line = market price,
 // shaded gap = upside (green) or overvalued (red). Bar scaled per-row to max(price,target).
-function gaugeHTML(c,v){
-  const px=v.price,tgt=v.target,scale=Math.max(px,tgt,1e-9);
-  const barW=Math.min(100,tgt/scale*100),pPos=Math.min(100,px/scale*100),under=tgt>=px;
+function gaugeHTML(c,v,uniMax){
+  // Length must be comparable ROW TO ROW, so the track is our value as a MULTIPLE of today's price —
+  // not a per-share currency amount, which is an artefact of each company's share count. The market
+  // price therefore sits at the same x on every row (1.0x), and the gap to the bar end is the upside.
+  const px=v.price,tgt=v.target,mult=px>0?tgt/px:0;
+  const scale=Math.max(uniMax||mult,1.2);
+  const pPos=Math.min(100,1/scale*100), barW=Math.min(100,mult/scale*100), under=mult>=1;
   let cf=Math.max(0,v.contractedEV),eu=Math.max(0,v.expectedEV),lg=Math.max(0,legacyOf(c));
-  const s=cf+eu+lg||1;cf=cf/s*100;eu=eu/s*100;lg=lg/s*100;
+  const t=cf+eu+lg||1;cf=cf/t*100;eu=eu/t*100;lg=lg/t*100;
   const gap=under
-    ? `<div class="vg-gap up" style="left:${pPos.toFixed(2)}%;width:${Math.max(0,100-pPos).toFixed(2)}%"></div>`
-    : `<div class="vg-gap dn" style="left:${barW.toFixed(2)}%;width:${Math.max(0,100-barW).toFixed(2)}%"></div>`;
-  return `<div class="vg-track" title="Market ${fmtPrice(px)} vs our value $${tgt.toFixed(tgt<60?2:0)} — ${cf.toFixed(0)}% contracted floor · ${eu.toFixed(0)}% expected · ${lg.toFixed(0)}% legacy">
+    ? `<div class="vg-gap up" style="left:${pPos.toFixed(2)}%;width:${Math.max(0,barW-pPos).toFixed(2)}%"></div>`
+    : `<div class="vg-gap dn" style="left:${barW.toFixed(2)}%;width:${Math.max(0,pPos-barW).toFixed(2)}%"></div>`;
+  return `<div class="vg-track" title="${c.tk}: our value is ${mult.toFixed(2)}x today's price (${fmtPrice(px)} → $${tgt.toFixed(tgt<60?2:0)}) — ${cf.toFixed(0)}% contracted floor · ${eu.toFixed(0)}% expected · ${lg.toFixed(0)}% legacy">
     <div class="vg-bar" style="width:${barW.toFixed(2)}%"><i class="vg-seg cf" style="width:${cf.toFixed(2)}%"></i><i class="vg-seg eu" style="width:${eu.toFixed(2)}%"></i><i class="vg-seg lg" style="width:${lg.toFixed(2)}%"></i></div>
     ${gap}<div class="vg-price" style="left:${pPos.toFixed(2)}%"></div></div>`;
 }
 function renderCmp(){
   let rows=COMPANIES.map(c=>({c,v:value(c)}));
+  const UNIMAX=Math.max(...rows.map(r=>r.v.price>0?r.v.target/r.v.price:0));
   rows.sort((a,b)=>sortDir*(a.v.upside-b.v.upside));
+  (function answerLine(){
+    const el=document.getElementById('cmp-answer');if(!el)return;
+    const ups=rows.map(r=>r.v.upside).sort((x,y)=>x-y);
+    const med=ups.length?ups[Math.floor(ups.length/2)]:0;
+    const und=rows.filter(r=>r.v.upside>0).length;
+    const evTot=rows.reduce((a,r)=>a+r.v.contractedEV+r.v.expectedEV,0);
+    const cf=rows.reduce((a,r)=>a+r.v.contractedEV,0);
+    const mcap=rows.reduce((a,r)=>a+(r.c.sharesReported||r.c.shares)*priceOf(r.c),0);
+    const tgt=rows.reduce((a,r)=>a+r.v.target*r.v.fundedShares,0);
+    el.innerHTML=`<span>median upside <b>${(med*100>=0?'+':'')+(med*100).toFixed(0)}%</b></span>`+
+      `<span><b>${und}</b> of ${rows.length} names above market</span>`+
+      `<span>universe <b>${fmtM(mcap)}</b> market cap → <b>${fmtM(tgt)}</b> our value</span>`+
+      `<span><b>${(cf/(evTot||1)*100).toFixed(0)}%</b> of that value is contracted</span>`+
+      `<span style="font-style:italic">${PRICES_AT?'prices live':'prices manual'}</span>`;
+  })();
   const cont=document.getElementById('rows');const old={};if(!reduce)[...cont.children].forEach(ch=>old[ch.dataset.tk]=ch.getBoundingClientRect().top);
   cont.innerHTML='';
   rows.forEach((r,i)=>{const v=r.v,c=r.c;
@@ -953,7 +1019,7 @@ function renderCmp(){
     const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
     row.innerHTML=`<div class="rank">${i+1}</div>
       <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':c.model==='holdco'?'holdco / SOTP':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.model==='holdco'?'sum-of-the-parts':c.contractedPct+'% contracted · '+c.termYrs+'y term'}</span></div>
-      <div class="col-stack">${gaugeHTML(c,v)}</div>
+      <div class="col-stack">${gaugeHTML(c,v,UNIMAX)}</div>
       <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
       <div class="num"><div class="target">$${v.target.toFixed(v.target<60?2:0)}</div><div class="up ${upCls}">${upTxt}</div></div>`;
     row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});

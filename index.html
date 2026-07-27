@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=43">
+<link rel="stylesheet" href="styles.css?v=46">
 </head>
 <body>
 
@@ -53,7 +53,7 @@
           <div class="num">Price</div>
           <div class="num sortable" data-sort="upside">Target&nbsp;<span class="arr" id="ar-upside">▾</span></div>
         </div>
-        <div id="rows"></div>
+        <div class="ssummary" id="cmp-answer" style="margin:4px 14px 12px"></div>
         <div class="legend col-stack">
           <span><i style="background:var(--indigo)"></i>Contracted floor</span>
           <span><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 3px,transparent 3px 6px);border:1px solid var(--line)"></i>Expected / pipeline</span>
@@ -62,7 +62,9 @@
           <span><i style="background:rgba(91,122,92,.22);border:1px dashed var(--pine)"></i>Upside</span>
           <span><i style="background:rgba(170,107,79,.30);border:1px dashed var(--clay)"></i>Overvalued</span>
         </div>
-        <div class="legend2 col-stack">Bar = our value (the target), split by what backs it; the dark line is today's market price. The space between is <b>upside</b> (green) or <b>overvalued</b> (red). The more <b>hatched</b> the bar, the more value rests on uncontracted pipeline vs signed contracts.</div>
+        <div class="legend2 col-stack">Bar length = our value as a <b>multiple of today's price</b>, so rows are directly comparable; the dark line marks 1.0x (today's price) and sits at the same place on every row. The space between is <b>upside</b> (green) or <b>overvalued</b> (red). Segments split the value by what backs it — contracted floor, expected/pipeline, legacy — and the more <b>hatched</b> the bar, the more rests on uncontracted pipeline.</div>
+        <div id="rows"></div>
+        
       </section>
 
       <section id="view-leases" aria-labelledby="h2-leases" style="display:none">
@@ -122,11 +124,11 @@
 </div>
 
 <!-- bump ?v= together with meaningful JS/CSS changes — browsers cache these heuristically -->
-<script src="config.js?v=43"></script>
-<script src="checks-core.js?v=43"></script>
-<script src="engine.js?v=43"></script>
-<script src="portfolio-core.js?v=43"></script>
-<script src="app.js?v=43"></script>
-<script src="portfolio-ui.js?v=43"></script>
+<script src="config.js?v=46"></script>
+<script src="checks-core.js?v=46"></script>
+<script src="engine.js?v=46"></script>
+<script src="portfolio-core.js?v=46"></script>
+<script src="app.js?v=46"></script>
+<script src="portfolio-ui.js?v=46"></script>
 </body>
 </html>
