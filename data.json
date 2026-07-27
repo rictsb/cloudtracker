@@ -2320,15 +2320,15 @@
       "price": 45.91,
       "legacyEV": 1000,
       "finMix": "ATM equity ($6B program) + low-coupon converts + $3.65B IG GPU financing + Microsoft prepayment",
-      "narrative": "A former Bitcoin miner (Iris Energy) that has made a genuine owner-operator pivot into AI cloud — the rare name here that OWNS and runs its own GPUs (NVIDIA GB300/B300, ~$5.8B Dell buy, ~150k GPUs installed or on order) rather than leasing space to tenants. It sells GPU-as-a-service from data centers it owns on cheap power: Childress TX (750MW campus, ~3c/kWh ERCOT) and 100% hydro British Columbia. The book is anchored by two top-tier 5-year managed-cloud contracts — Microsoft (~$9.7B, 200MW across Childress Horizon 1-4, 20% prepaid) and NVIDIA (~$3.4B, plus a $2.1B equity right) — ~$3.1B ARR contracted against a ~$3.7-4.4B target, though live AI revenue is still small and the backlog is overwhelmingly future. The swing factor is a ~5.8 GW secured-power pipeline that dwarfs today's live base — Sweetwater TX (~2 GW) and Kiowa OK (1.6 GW), plus first international sites in Spain (Nostrum) and Australia (Bundey) — almost all uncontracted, so the book reads spot-tilted and the value hinges on lease-up. Most capacity operating today is still legacy Bitcoin mining being converted to AI. Legacy/non-core is small — a cash-positive but shrinking mining fleet, the Mirantis AI-cloud software stack (acquired in stock), and a ZERO Bitcoin treasury (mined coins sold daily), so no BTC-price bet. The crux: funding the ~5.8 GW build needs tens of billions on a small share base, so the model now charges that dilution explicitly (uncontracted capacity is raised as equity) — the per-share target is POST-dilution. The real question is whether IREN can contract and commission its pipeline faster than the equity raises dilute it.",
+      "narrative": "A former Bitcoin miner (Iris Energy) that has made a genuine owner-operator pivot into AI cloud — the rare name here that OWNS and runs its own GPUs (NVIDIA GB300/B300, ~$5.8B Dell buy, ~150k GPUs installed or on order) rather than leasing space to tenants. It sells GPU-as-a-service from data centers it owns on cheap power: Childress TX (750MW campus, ~3c/kWh ERCOT) and 100% hydro British Columbia. The book is anchored by two top-tier 5-year managed-cloud contracts — Microsoft (~$9.7B, 200MW across Childress Horizon 1-4, 20% prepaid) and NVIDIA (~$3.4B, plus a $2.1B equity right) — ~$3.4B ARR contracted against a $4bn+ YE-26 ARR target (~$4.4B once NVIDIA commissions in early 2027), though live AI revenue is still small and the backlog is overwhelmingly future. The swing factor is a ~5.8 GW secured-power pipeline that dwarfs today's live base — Sweetwater TX (~2 GW) and Kiowa OK (1.6 GW), plus first international sites in Spain (Nostrum) and Australia (Bundey) — almost all uncontracted, so the book reads spot-tilted and the value hinges on lease-up. Most capacity operating today is still legacy Bitcoin mining being converted to AI. Legacy/non-core is small — a cash-positive but shrinking mining fleet, the Mirantis AI-cloud software stack (acquired in stock), and a ZERO Bitcoin treasury (mined coins sold daily), so no BTC-price bet. The crux: funding the ~5.8 GW build needs tens of billions on a small share base, so the model now charges that dilution explicitly (uncontracted capacity is raised as equity) — the per-share target is POST-dilution. The real question is whether IREN can contract and commission its pipeline faster than the equity raises dilute it.",
       "bull": [
-        "Rare owner-operator AI cloud with two blue-chip 5yr contracts (Microsoft ~$9.7B + NVIDIA ~$3.4B) — ~$3.1B ARR contracted, near-zero counterparty risk, 20% Microsoft prepayment",
+        "Rare owner-operator AI cloud anchored by two blue-chip 5yr contracts (Microsoft ~$9.7B + NVIDIA ~$3.4B) with a ten-name customer base behind them — ~$3.4B of the $4bn+ YE-26 ARR target contracted, near-zero counterparty risk, ~45% prepayment on new GPU capex",
         "Massive owned, cheap, secured power (Childress 750MW + Sweetwater ~2GW + BC 160MW hydro) — the scarce AI input, mostly freehold",
         "NVIDIA is a strategic partner and equity holder (right to 30M sh @ $70), aligning the GPU supplier to IREN's ramp",
         "Low legacy/BTC risk: zero Bitcoin treasury (sells as mined) and a cash-positive mining fleet — value is core AI, not a BTC bet"
       ],
       "bear": [
-        "Backlog is overwhelmingly future: live AI-cloud revenue only ~$34M/qtr; even the ~$3.1B contracted ARR isn't revenue until GPUs commission",
+        "Backlog is overwhelmingly future: live AI-cloud revenue only ~$34M/qtr; even the ~$3.4B contracted ARR isn't revenue until GPUs commission — the ramp model has only ~60k of the 148k YE-26 GPUs earning at 31-Dec",
         "The GW-scale prize (Sweetwater ~2GW) is largely uncontracted — power secured, but tenants/utilisation are not; big spec capex ahead of demand",
         "Heavy dilution to fund a ~$20B+ buildout: $6B ATM headroom + ~$6.7B converts + rising GPU debt — the headline target is pre-dilution",
         "Neocloud GPU rental rates down 60-75% from peak; uncontracted GPUs exposed to spot pricing and obsolescence"
@@ -2337,7 +2337,7 @@
         "Childress Horizon 1-4 (200MW, Microsoft) commissioning through YE2026 — converting contracted ARR into live revenue",
         "First large Sweetwater anchor contract — the biggest re-rating event for the uncontracted GW pipeline",
         "NVIDIA Blackwell commissioning (early 2027, ARR target to $4.4B) and NVIDIA exercising its $2.1B equity right",
-        "Hitting the ~$3.7B YE2026 ARR / 150k-GPU milestone (vs ~74k deployed)"
+        "Hitting the $4bn+ YE2026 ARR / 150k-GPU milestone at ~85% contracted (vs ~74k deployed)"
       ],
       "risks": [
         "Lease-up risk on the uncontracted Sweetwater GW — large spec capex with cloud demand TBD",
@@ -2618,7 +2618,7 @@
         "signedRate": "$-weighted over the two DISCLOSED-MW contracts: (9700×9.70+3400×11.33)/13100 = $10.12M/MW·yr — the only owner book with contractual MW",
         "termYrs": "COMPANY-DISCLOSED: portfolio weighted-average contract term ~4yrs (8-K 7/20/26 note 4, ARR-weighted); replaces the 5yr TCV placeholder. TCV-weighted alt = 4.4 (±$0.30 on target) — owner ruled: use disclosed 4.0"
       },
-      "thesis": "The vertically-integrated AI cloud keeps compounding: $16.9B contracted TCV across Microsoft, NVIDIA and now a ten-name AI-developer cohort ($2.8B added 7/20), YE-26 ARR target $4bn+ at 85% contracted, and ~45% customer prepayments doing the financing the market once assumed dilution would. The 5.8GW global power book is the multiplier — 480MW delivering 2026, 1.2GW targeted 2027, priced up the gen-curve as it lands. Watch: $7.6bn cash vs the $8B assumed raise looks increasingly conservative; revisit at FY results.",
+      "thesis": "The vertically-integrated AI cloud keeps compounding: $16.9B contracted TCV across Microsoft, NVIDIA and now an eight-name AI-developer cohort ($2.8B added 7/20), YE-26 ARR target $4bn+ at 85% contracted, and ~45% customer prepayments doing the financing the market once assumed dilution would. The 5.8GW global power book is the multiplier — 480MW delivering 2026, 1.2GW targeted 2027, priced up the gen-curve as it lands. Watch: $7.6bn cash vs the $8B assumed raise looks increasingly conservative; revisit at FY results.",
       "verified": {
         "capital": "2026-06-30",
         "contracts": "2026-07-20"
@@ -2663,7 +2663,7 @@
         },
         {
           "id": "iren-aidev-2026",
-          "counterparty": "AI-developer cohort — Perplexity, Figure AI, Together AI, Fireworks AI, Fal AI, Hume AI + unnamed leading AI developer (aggregate)",
+          "counterparty": "AI-developer cohort — Perplexity, Figure AI, Together AI, Fluidstack, Fireworks AI, Fal AI, Hume AI + unnamed leading AI developer (aggregate)",
           "totalRevM": 2800,
           "termYrs": 2.53,
           "signed": "2026-07",
@@ -6039,7 +6039,7 @@
         "mwHi": 300,
         "window": "Aug-Nov 2026",
         "site": "Sweetwater 1 (TX) — 1.4GW substation energised 5/1/26, ~2GW secured, essentially uncontracted; near-term incremental cloud tranches sit on Childress Horizon 5-6",
-        "tenants": "Most likely: (a) expansion by the unnamed 'leading AI developer' from the 7/20/26 8-K (identity still a watch item — PR lists Microsoft, NVIDIA, Perplexity, Figure AI, Together AI, Fluidstack, Fireworks, Fal, Hume + one ",
+        "tenants": "Most likely: expansion by the unnamed 'leading AI developer' from the 7/20/26 8-K — identity still a watch item (PR lists Microsoft, NVIDIA, Perplexity, Figure AI, Together AI, Fluidstack, Fireworks, Fal, Hume + one unnamed).",
         "drivers": [
           "[verify-corrected] Two desk \"verbatim\" quotes were FABRICATED (not in the SEC-filed transcript) and are excluded. The real, stronger quote stands: Roberts — \"there's nothing stopping us contracting that capacity today. It just gets easier the closer we get.\" (8-K-filed FY-call transcript).",
           "Draper (CCO, one continuous answer, correctly attributed): capacity for '27 \"extremely scarce... continuing to push into '28\" — \"the ability to market those sites for '27 and '28 online dates\" while \"structuring the contracts in the right way\".",
