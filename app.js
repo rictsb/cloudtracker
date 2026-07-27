@@ -122,7 +122,7 @@ function renderLeases(){
     oc.forEach((r,i)=>{const x=r.x;const pend=x.effective===false;
       h+=`<tr class="ocrow srow${pend?' lpend':''}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
       `<td class="co">${r.c.tk}</td><td style="max-width:250px">${x.counterparty}${pend?' <span class="prov rumored">pending</span>':''}</td>`+
-      `<td><span class="prov ${x.gen==='vera-rubin'?'rumored':x.gen==='blackwell'?'disclosed':'estimated'}">${x.gen||'—'}</span></td>`+
+      `<td><span class="gen ${x.gen==='vera-rubin'?'rubin':x.gen==='blackwell'?'blackwell':x.gen==='hopper'?'hopper':'mixed'}">${x.gen||'—'}</span></td>`+
       `<td class="r mono">${x.totalRevM?'$'+(x.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
       `<td class="r mono">${x.mw?x.mw.toLocaleString()+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':''):'—'}</td>`+
       `<td class="r mono">${x.ratePerMWyr?('$'+x.ratePerMWyr.toFixed(1)+'M'+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':'')):'—'}</td></tr>`;
@@ -244,7 +244,7 @@ function renderRaises(){
     h+=`<tr class="rzrow srow${ok?'':' rzdim'}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
       `<td class="co">${c.tk}</td>`+
       `<td class="mono">${ev.d}${ev.ah?'<span style="color:var(--ink-soft)" title="announced after the close — day 0 is the next session"> ah</span>':''}</td>`+
-      `<td><span class="prov ${RZ_KIND_CLS[ev.kind]||'estimated'}">${ev.kind}</span></td>`+
+      `<td><span class="inst ${ev.kind}">${ev.kind}</span></td>`+
       `<td class="r mono">${ev.sizeM?fmtM(ev.sizeM):'—'}</td>`+
       `<td class="r mono">${ok?col(der.reaction,pc(der.reaction)):`<span style="color:var(--ink-soft)">${der.status==='pending'?'awaiting mark':'no price history'}</span>`}</td>`+
       `<td class="r mono">${wcell(der,5)}</td><td class="r mono">${wcell(der,15)}</td></tr>`;
@@ -280,7 +280,7 @@ function renderOutlook(){
     h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Company',''],['prob','P(lease, 6mo)','r'],['mw','Expected MW','r'],['window','Window',''],['exec','Build speed','r']].map(([k,lab,cl])=>`<th class="${cl}" data-ol="${k}">${lab}${olSort===k?' <span class="arr">'+(olDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
     rows.forEach((r,i)=>{
       const oc2=COMPANIES.find(c2=>c2.tk===r.tk);const isOwner=oc2&&(oc2.model==='owner');
-      h+=`<tr class="olrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td><td class="co">${r.tk} <span class="prov ${isOwner?'estimated':'disclosed'}" style="font-size:9px">${isOwner?'compute contract':'colo lease'}</span></td>`+
+      h+=`<tr class="olrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td><td class="co">${r.tk} <span class="kind ${isOwner?'compute':'colo'}">${isOwner?'compute contract':'colo lease'}</span></td>`+
         `<td class="r mono"><b>${r.prob}%</b></td>`+
         `<td class="r mono">${r.mwLo!=null?r.mwLo+'–'+r.mwHi:'—'}</td>`+
         `<td style="font-size:11.5px">${r.window||'—'}</td>`+
@@ -298,7 +298,7 @@ function renderOutlook(){
     rows.sort((x,y)=>{const a=kf(x),b=kf(y);return (typeof a==='string'?a.localeCompare(b):a-b)*oeDir;});
     h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Company',''],['date','Reports',''],['score','Surprise score','r'],['dir','Lean','']].map(([k,lab,cl])=>`<th class="${cl}" data-oe="${k}">${lab}${oeSort===k?' <span class="arr">'+(oeDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
     rows.forEach((r,i)=>{
-      const cls=r.direction==='upside'?'disclosed':r.direction==='downside'?'rumored':'estimated';
+      const cls=r.direction==='upside'?'upside':r.direction==='downside'?'downside':'flat';
       h+=`<tr class="oerow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td><td class="co">${r.tk}</td>`+
         `<td style="font-size:11.5px">${r.date||'TBC'}${r.session?' '+r.session:''}${r.confirmed?'':' <span style="color:var(--ink-soft)">(est.)</span>'}</td>`+
         `<td class="r mono"><b>${r.score>0?'+':''}${r.score}</b></td>`+
@@ -324,7 +324,9 @@ function renderOutlook(){
    Display-only; never a valuation input ---- */
 let rampCo='IREN';
 let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1,RAMP_REV_MODE='gen';
-const RAMP_GEN={hopper:{c:'var(--gen-hopper)',n:'Hopper'},blackwell:{c:'var(--gen-blackwell)',n:'Blackwell'},rubin:{c:'var(--gen-rubin)',n:'Rubin-class'},next:{c:'var(--gen-next)',n:'Next-gen'}};
+// u = the UNCONTRACTED tint. Every u is pinned to relative luminance 0.55, every solid hue sits at 0.07-0.44,
+// so a hatched bar is lighter than EVERY solid bar in greyscale, whatever its generation. Hue still names the silicon.
+const RAMP_GEN={hopper:{c:'var(--gen-hopper)',u:'var(--gen-hopper-un)',n:'Hopper'},blackwell:{c:'var(--gen-blackwell)',u:'var(--gen-blackwell-un)',n:'Blackwell'},rubin:{c:'var(--gen-rubin)',u:'var(--gen-rubin-un)',n:'Rubin-class'},next:{c:'var(--gen-next)',u:'var(--gen-next-un)',n:'Next-gen'}};
 const RAMP_QS=l=>{const y=+l.slice(0,4),q=+l.slice(5);return (y-2026)*4+q;};
 const RAMP_QL=s=>{const i=s-1;return `${2026+Math.floor(i/4)}Q${(((i%4)+4)%4)+1}`;};
 const RAMP_START=3,RAMP_END=20,RAMP_HIST=-1,RAMP_CONS_HARD=14;   // consensus is a hard comparator to 2029Q2 (serial 14); indicative beyond   // window 2026Q3..2030Q4; backtest runs from 2025Q3
@@ -365,12 +367,13 @@ function rampQuarters(R,sc,from,to){
       const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;
       revC+=live*t.ctr*vr*2190/1e6; revS+=live*(t.signed||0)*vr*2190/1e6;});
     const grossMW=TR.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
+    const itCom=TR.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.itMW,0);
     const itMW=TR.reduce((a,t)=>{const rs=RAMP_QS(t.rev),um=(d.rampMult||1)*cal;
       const ff=(k,n)=>Math.min(Math.max(k/n,0),1);
       const f=t.ctr*ff(s-rs+1,Math.max(1,Math.ceil(t.rampQtrs*(d.rampMult||1))))+(1-t.ctr)*ff(s-rs+1,Math.max(1,Math.ceil(t.rampQtrs*um)));
       return a+t.itMW*f;},0);
     const lbl=RAMP_QL(s);const cons=(R.consensus||{})[lbl]||null;
-    out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,revC,revS,grossMW,itMW,nCamps:Object.keys(camps).length,
+    out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,revC,revS,grossMW,itCom,itMW,nCamps:Object.keys(camps).length,
       mining:(R.mining||{})[lbl]||0,consTot:cons?cons[0]:null,consAI:cons?cons[1]:null,
       blend:cum>0?rev*1e6/(cum*2190):0});}
   return out;
@@ -419,6 +422,13 @@ function rampEvents(R,Q){
     if(p&&p.mining>0&&q.mining<=0)add(q.s,'mile','Bitcoin mining revenue reaches zero — the pivot completes');});
   return ev;
 }
+/* chart annotations get a plaque: a label must never inherit whatever fill it lands on.
+   9.5px IBM Plex Mono advances 0.6em = 5.7px/char; the plaque is that width + 5px padding each side. */
+function rampPlaque(x,y,txt,fill,anchor,weight){
+  const w=String(txt).length*5.7+10,h=13.5,ax=anchor==='middle'?x-w/2:anchor==='end'?x-w+5:x-5;
+  return `<rect x="${ax.toFixed(1)}" y="${(y-10.2).toFixed(1)}" width="${w.toFixed(1)}" height="${h}" rx="2" fill="var(--card)" opacity="0.93"/>`+
+    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}"${anchor&&anchor!=='start'?` text-anchor="${anchor}"`:''} style="font-family:var(--mono);font-size:9.5px;fill:${fill}${weight?';font-weight:'+weight:''}">${txt}</text>`;
+}
 let RAMP_TIP_EL=null;
 // two-layer escape for tip strings embedded in inline single-quoted handler attributes:
 // JS layer (backslash, then apostrophe) then HTML-attribute layer (& before ") — &#39; alone decodes back to ' and breaks the handler
@@ -429,46 +439,41 @@ function rampTip(e,html){const wrap=e.currentTarget&&e.currentTarget.closest?e.c
   if(x+t.offsetWidth>w.width-6)x=w.width-t.offsetWidth-6;if(x<2)x=2;t.style.left=x+'px';t.style.top=y+'px';}
 function rampTipHide(){if(RAMP_TIP_EL)RAMP_TIP_EL.style.display='none';}
 /* ---- chart builders: each emits a ghost layer (full picture, faint) + a reveal layer clipped at the scrub time ---- */
-const RAMP_GANTT={W:960,ml:150,mr:56,d0:2024.9,d1:2031.2};
-function rampGanttX(dec){const G=RAMP_GANTT;return G.ml+(dec-G.d0)*((G.W-G.ml-G.mr)/(G.d1-G.d0));}
-function rampGanttHTML(R){
-  const G=RAMP_GANTT,W=G.W;
-  const dec=l=>{const y=+l.slice(0,4),q=+l.slice(5);return y+(q-1)*0.25;};
-  const CAMPS=[...new Set([...R.tranches].sort((a,b)=>dec(a.energize)-dec(b.energize)).map(t=>t.campus))];
-  const rows=R.tranches.map((t,ti)=>({t,ti})).sort((a,b)=>(CAMPS.indexOf(a.t.campus)-CAMPS.indexOf(b.t.campus))||(dec(a.t.energize)-dec(b.t.energize)));
-  const rowH=22,top=44,H=top+rows.length*rowH+26;
-  const X=rampGanttX,tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
-  let stat='',bars='';
-  stat+='<defs>'+Object.entries(RAMP_GEN).map(([k,g])=>`<pattern id="rghx-${k}" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="${g.c}" opacity="0.3"/><rect width="2.2" height="5" fill="${g.c}" opacity="0.85"/></pattern>`).join('')+
-    `<clipPath id="rampClipG"><rect id="rampClipGR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
-  for(let yr=2026;yr<=2031;yr++){const x=X(yr);stat+=`<line x1="${x.toFixed(1)}" y1="18" x2="${x.toFixed(1)}" y2="${H-22}" style="stroke:var(--line);stroke-width:1"/><text x="${(x+4).toFixed(1)}" y="${H-8}" ${tx}>${yr}</text>`;}
-  const tn=X(NOW);
-  stat+=`<line x1="${tn.toFixed(1)}" y1="18" x2="${tn.toFixed(1)}" y2="${H-22}" style="stroke:var(--clay);stroke-width:1;stroke-dasharray:2 3"/><text x="${(tn-4).toFixed(1)}" y="${H-26}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--clay-ink)">TODAY</text>`;
-  // era bands: the three chapters of the calendar
-  const ERAS=[[2026,2027,'PROVE','480MW · 150k GPUs'],[2027,2028,'SCALE','the 1,210MW program'],[2028,2031.1,'COMPOUND','Sweetwater · Kiowa · EU / AU']];
-  ERAS.forEach(([a,b,nm,sub],i)=>{const x0=X(Math.max(a,G.d0)),x1=X(Math.min(b,G.d1));
-    stat+=`<rect x="${x0.toFixed(1)}" y="18" width="${(x1-x0).toFixed(1)}" height="${H-40}" fill="${i%2?'rgba(42,39,34,.028)':'transparent'}" style="pointer-events:none"/>`;
-    stat+=`<text x="${(x0+6).toFixed(1)}" y="30" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.14em;font-weight:500">${nm}</text><text x="${(x0+6).toFixed(1)}" y="40" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${sub}</text>`;});
-  stat+=`<rect x="${G.ml}" y="18" width="${W-G.ml-G.mr}" height="${H-40}" fill="transparent" style="cursor:crosshair" onclick="rampGanttSeek(event)"/>`;
-  let lastCamp=null;
-  rows.forEach(({t,ti},i)=>{const y=top+i*rowH;
-    if(t.campus!==lastCamp){lastCamp=t.campus;
-      const span=rows.filter(r=>r.t.campus===t.campus).length;
-      if(CAMPS.indexOf(t.campus)%2)stat+=`<rect x="0" y="${y-2}" width="${G.ml-8}" height="${span*rowH}" fill="rgba(55,73,91,.045)" style="pointer-events:none"/>`;
-      stat+=`<text x="4" y="${y+12}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.06em">${t.campus.toUpperCase()}</text>`;}
-    const th=Math.max(4,Math.sqrt(t.grossMW)*1.05),x0=X(dec(t.energize)),x1=X(2031.1);
-    const g=RAMP_GEN[t.gen],solid=(t.signed||0)>0;
-    const tip=`<b>${t.n}</b><br>${t.campus} · ${g.n}<br>${t.grossMW}MW gross · ${t.itMW}MW IT · ${(t.gpus/1000).toFixed(0)}k GPUs<br>energized ${t.energize} · first revenue ${t.rev} (${t.rampQtrs}q ramp)<br>${solid?`signed today (${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr)`:`uncontracted today · modeled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr at commissioning`}<br><span style="color:var(--ink-soft)">click to spotlight this tranche</span>`;
-    const rect=cls=>`<rect class="${cls}" data-ti="${ti}" x="${x0.toFixed(1)}" y="${(y+(rowH-4-th)/2).toFixed(1)}" width="${(x1-x0).toFixed(1)}" height="${th.toFixed(1)}" fill="${solid?g.c:`url(#rghx-${t.gen})`}"${solid?' opacity="0.9"':''}`;
-    bars+=rect('rampbarR')+` style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()" onclick="rampSelect(${ti})"/>`;
-    const rx=X(dec(t.rev));
-    bars+=`<path data-ti="${ti}" class="rampbarR" d="M ${rx.toFixed(1)} ${y+rowH/2-6} l 4.5 5 l -4.5 5 l -4.5 -5 z" fill="var(--ink)" opacity="0.85" style="pointer-events:none"/>`;
-    stat+=`<text x="${(X(2031.1)+3).toFixed(1)}" y="${y+rowH/2+3}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${t.grossMW}MW</text>`;});
-  const ghost=`<g class="rampghost" style="pointer-events:none">${bars.replace(/onmousemove="[^"]*" onmouseleave="[^"]*" onclick="[^"]*"/g,'')}</g>`;
-  const reveal=`<g clip-path="url(#rampClipG)">${bars}</g>`;
-  const sweep=`<g id="rampSweepG" style="pointer-events:none"><line id="rampSweepGL" x1="0" y1="18" x2="0" y2="${H-22}" style="stroke:var(--ink);stroke-width:1.5"/><g id="rampSweepChip"><rect id="rampSweepChipR" x="-26" y="2" width="52" height="15" rx="3" fill="var(--ink)"/><text id="rampSweepGT" x="0" y="13" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--paper);font-weight:600"></text></g></g>`;
-  const hl=`<rect id="rampHLG" y="18" height="${H-40}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Capacity tranches by campus: energization to first revenue; drag the timeline to replay">${stat}${hl}${ghost}${reveal}${sweep}</svg>`;
+const RAMP_GANTT={W:960,ml:54,mr:96};
+function rampGanttHTML(R,Q){
+  // Capacity as a STAIRCASE, not a Gantt. Gross MW sits on a labelled y-position axis; the old chart put it
+  // on bar thickness as sqrt(MW) — a 75x quantity range drawn across 4.3x of pixels, which ranked 53% of
+  // tranche pairs backwards — while bar LENGTH, the stronger channel, carried nothing at all.
+  const W=960,ml=54,mr=96,H=300,mt=16,mb=26,ph=H-mt-mb;
+  const maxMW=4400;
+  const X=i=>ml+i*((W-ml-mr)/(Q.length-1)), Y=v=>mt+ph-(v/maxMW)*ph;
+  RAMP_GANTT.X=X;RAMP_GANTT.Y=Y;
+  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
+  let stat='',body='';
+  stat+=`<defs><clipPath id="rampClipG"><rect id="rampClipGR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
+  for(let k=0;k<=4000;k+=1000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
+    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':(k/1000)+' GW'}</text>`;}
+  Q.forEach((q,i)=>{if(i%2)return;stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
+  // the two company commitments, as labelled reference lines — the only disclosed points on the chart
+  [[480,'480 MW · 2026'],[1210,'1,210 MW · 2027']].forEach(([v,lab])=>{
+    stat+=`<line x1="${ml}" y1="${Y(v).toFixed(1)}" x2="${W-mr}" y2="${Y(v).toFixed(1)}" style="stroke:var(--indigo-soft);stroke-width:1;stroke-dasharray:4 3"/>`+
+      `<text x="${(W-mr+4).toFixed(1)}" y="${(Y(v)+3).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--indigo)">${lab}</text>`;});
+  const step=(vals,fill,stroke,op)=>{let d=`M${ml.toFixed(1)},${Y(0).toFixed(1)}`;
+    vals.forEach((v,i)=>{d+=` L${X(i).toFixed(1)},${Y(vals[i>0?i-1:0]).toFixed(1)} L${X(i).toFixed(1)},${Y(v).toFixed(1)}`;});
+    d+=` L${X(vals.length-1).toFixed(1)},${Y(0).toFixed(1)} Z`;
+    return `<path d="${d}" fill="${fill}" ${stroke?`style="stroke:${stroke};stroke-width:1.6"`:''} ${op?`opacity="${op}"`:''}/>`;};
+  const gross=Q.map(q=>q.grossMW), itCom=Q.map(q=>q.itCom), itAct=Q.map(q=>q.itMW);
+  body+=step(gross,'rgba(55,73,91,.10)','var(--indigo-soft)');
+  body+=step(itCom,'rgba(55,73,91,.16)','');
+  body+=step(itAct,'var(--indigo)','',0.85);
+  const lab=(v,txt,dy)=>`<text x="${(W-mr+5).toFixed(1)}" y="${(Y(v)+dy).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">${txt}</text>`;
+  const L=Q[Q.length-1];
+  stat+=lab(L.grossMW,'energised',3)+lab(L.itCom,'commissioned',3)+lab(L.itMW,'earning',3);
+  let cap='';
+  Q.forEach((q,i)=>{const idle=q.itCom>0?(1-q.itMW/q.itCom)*100:0;
+    const tip=`<b>${q.lbl}</b><br>energised ${Math.round(q.grossMW).toLocaleString()} MW gross<br>commissioned ${Math.round(q.itCom).toLocaleString()} MW critical IT<br>earning ${Math.round(q.itMW).toLocaleString()} MW critical IT<br><b>${Math.round(idle)}% of commissioned IT is idle</b><br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
+    cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Energised gross MW, commissioned critical IT MW and earning critical IT MW by quarter">${stat}<rect id="rampHLG" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipG)">${body}</g>${cap}</svg>`;
 }
 const RAMP_F={W:960,ml:54,mr:20,H:300,mt:16,mb:26};
 function rampFleetHTML(Q){
@@ -533,19 +538,19 @@ function rampRevHTML(Q,mode){
     // the panel thins past 2029Q2 — shade it and say so, rather than drawing the same confident wedge
     const softI=Q.findIndex(q=>q.s>RAMP_CONS_HARD);
     if(softI>0){const sx=X(softI)-slot/2;
-      body+=`<rect x="${sx.toFixed(1)}" y="${mt}" width="${(W-mr-sx).toFixed(1)}" height="${ph}" fill="rgba(42,39,34,.045)"/>`;
-      body+=`<text x="${(sx+7).toFixed(1)}" y="${mt+12}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">thin panel \u2014 indicative only</text>`;}
+      stat+=`<rect x="${sx.toFixed(1)}" y="${mt}" width="${(W-mr-sx).toFixed(1)}" height="${ph}" fill="rgba(42,39,34,.045)"/>`;   // STATIC layer: the ghost pass would otherwise draw this wash twice
+      body+=rampPlaque(sx+7,mt+12,'thin panel \u2014 indicative only','var(--ink-soft)','start');}
     if(consPts.length){
       // per-quarter deltas, every other consensus quarter
       consPts.forEach(([i,c],k)=>{if(k%2)return;const d=Q[i].rev/c-1;if(Math.abs(d)<0.005)return;
-        body+=`<text x="${X(i).toFixed(1)}" y="${(Math.min(Y(Q[i].rev),Y(c))-8).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;font-weight:600;fill:${d>=0?'var(--pine-ink)':'var(--clay-ink)'}">${d>=0?'+':''}${Math.round(d*100)}%</text>`;});
+        body+=rampPlaque(X(i),Math.min(Y(Q[i].rev),Y(c))-8,`${d>=0?'+':''}${Math.round(d*100)}%`,d>=0?'var(--pine-ink)':'var(--clay-ink)','middle',600);});
       const [li2,lc]=consPts[consPts.length-1];
-      body+=`<text x="${(X(li2)+8).toFixed(1)}" y="${(Y(lc)+4).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">street</text>`;
+      body+=rampPlaque(X(li2)+8,Y(lc)+4,'street','var(--ink-soft)','start');
       // cumulative wedge annotation, anchored inside the wedge opening (index-safe for shorter consensus runs)
       const wedge=consPts.filter(([i])=>Q[i].s<=RAMP_CONS_HARD).reduce((a,[i,c])=>a+(Q[i].rev-c),0);
       const kk=Math.min(13,consPts.length-1),[wi,wc]=consPts[kk];
-      body+=`<text x="${X(Math.min(wi+1,Q.length-1)).toFixed(1)}" y="${((Y(Q[wi].rev)+Y(wc))/2).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:${wedge>=0?'var(--pine-ink)':'var(--clay-ink)'}">the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street</text>`;}
-    body+=`<text x="${(X(Q.length-1)-8).toFixed(1)}" y="${(Y(Q[Q.length-1].rev)-8).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--indigo);font-weight:600">model</text>`;
+      body+=rampPlaque(X(Math.min(wi+1,Q.length-1)),(Y(Q[wi].rev)+Y(wc))/2,`the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street`,wedge>=0?'var(--pine-ink)':'var(--clay-ink)','middle');}
+    body+=rampPlaque(X(Q.length-1)-8,Y(Q[Q.length-1].rev)-8,'model','var(--indigo)','end',600);
   }else{
     Q.forEach((q,i)=>{let y0=mt+ph;
       const parts=[['mining',q.mining,'var(--far)','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],RAMP_GEN[g].c,RAMP_GEN[g].n])];
@@ -642,10 +647,7 @@ function rampSensHTML(R){
 /* ---- interactions ---- */
 function rampSeek(v,keepPlay){RAMP_T=Math.max(RAMP_START,Math.min(RAMP_END,+v));if(!keepPlay)rampStop();rampApply();}
 function rampSeekQ(i){rampSeek(RAMP_START+i);}
-function rampGanttSeek(e){const svg=e.currentTarget.ownerSVGElement,r=svg.getBoundingClientRect();
-  const vx=(e.clientX-r.left)*(RAMP_GANTT.W/r.width);
-  const G=RAMP_GANTT,dec=G.d0+(vx-G.ml)/((G.W-G.ml-G.mr)/(G.d1-G.d0));
-  rampSeek((dec-2026)/0.25);}
+
 function rampRevMode(m){if(m===RAMP_REV_MODE)return;RAMP_REV_MODE=m;
   const holder=document.getElementById('rampRevWrap');if(!holder||!RAMP_CTX)return;
   holder.innerHTML=rampRevHTML(RAMP_CTX.Q,m)+'<div class="bo-tip"></div>';
@@ -678,8 +680,8 @@ function rampHoverQ(i){const C=RAMP_CTX;if(!C)return;const F=RAMP_F;
   const half=((F.W-F.ml-F.mr)/(C.Q.length-1))/2;
   set('rampHLF',F.X(i)-half,half*2);
   set('rampHLR',F.rX(i)-F.rslot/2,F.rslot);
-  const s=RAMP_START+i,x0=rampGanttX(2026+(s-1)*0.25),x1=rampGanttX(2026+s*0.25);
-  set('rampHLG',x0,x1-x0);}
+  const gw=(RAMP_GANTT.W-RAMP_GANTT.ml-RAMP_GANTT.mr)/(C.Q.length-1);
+  if(RAMP_GANTT.X)set('rampHLG',RAMP_GANTT.X(i)-gw/2,gw);}
 function rampHoverClear(){['rampHLF','rampHLR','rampHLG'].forEach(id=>{const el=document.getElementById(id);if(el)el.setAttribute('width',0);});}
 function rampSelect(ti,noScroll){
   const C=RAMP_CTX;if(!C)return;
@@ -711,7 +713,7 @@ function rampApply(){
   const C=RAMP_CTX;if(!C)return;
   const T=Math.max(RAMP_START,Math.min(RAMP_END,RAMP_T)),cur=Math.min(RAMP_END,Math.round(T)),q=C.Q[cur-RAMP_START];
   // every frame: clips, sweep, scrubber fill
-  const gx=rampGanttX(2026+T*0.25);
+  const gx=RAMP_GANTT.X?RAMP_GANTT.X(Math.max(0,T-RAMP_START)):0;
   const gr=document.getElementById('rampClipGR');if(gr)gr.setAttribute('width',gx.toFixed(1));
   const sl=document.getElementById('rampSweepGL');
   if(sl){sl.setAttribute('x1',gx.toFixed(1));sl.setAttribute('x2',gx.toFixed(1));}
@@ -772,7 +774,7 @@ function renderRamp(){
   const last=Q[Q.length-1],signedK=Math.round(R.tranches.reduce((a,t)=>a+t.gpus*(t.signed||0),0)/1000);
   const secured=(c.sites||[]).reduce((a,s)=>a+s.mw,0);
   const genLeg=Object.entries(RAMP_GEN).map(([k,g])=>`<span class="bo-leg"><i style="background:${g.c}"></i>${g.n}</span>`).join('');
-  const hatchLeg=`<span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--ink-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>hatched = uncontracted today</span>`;
+  const hatchLeg=`<span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--far) 0 2px,var(--paper) 2px 4px);border:1px solid var(--line)"></i>pale hatch = uncontracted today (always lighter than any solid bar)</span>`;
   const lineLeg=(col,lab)=>`<span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed ${col}"></i>${lab}</span>`;
   let h=`<div style="margin:0 4px 12px">${cos.map(x=>`<button class="tab ${x.tk===rampCo?'on':''}" data-rc="${x.tk}">${x.tk}</button>`).join(' ')}<span style="font-size:11px;color:var(--ink-soft);margin-left:10px">model as of ${R.asOf}</span></div>`;
   const jointSc=(R.scenarios||[]).find(x=>x.id==='joint');
@@ -796,13 +798,13 @@ function renderRamp(){
   h+=`<h4 class="sec">Coverage — how much of this is already sold</h4>`;
   h+=`<div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--indigo)"></i>signed today</span><span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>modelled contracted at commissioning</span><span class="bo-leg"><i style="background:var(--line)"></i>uncontracted / spot</span></div></div>`;
   h+=`<div class="bo-wrap">${rampCoverageHTML(Q)}<div class="bo-tip"></div></div>`;
-  h+=`<div class="legend2" style="margin:4px 4px 0">Measured as a share of <b>revenue</b>, not GPU count \u2014 the heading asks how much is <i>sold</i>, and revenue-weighting is the more conservative reading (21% of the 2030 fleet by count is 17% by revenue). Signed-today coverage falls from <b>${Q[0].rev>0?Math.round(Q[0].revS/Q[0].rev*100):0}%</b> to <b>${last.rev>0?Math.round(last.revS/last.rev*100):0}%</b> by 2030. Everything above the solid band is revenue this model assumes gets contracted but which carries no signature today \u2014 the largest single uncertainty on the page.</div>`;
+  h+=`<div class="legend2" style="margin:4px 4px 0">Measured as a share of <b>revenue</b>, not GPU count \u2014 the heading asks how much is <i>sold</i>, and revenue-weighting is the more conservative reading (${last.cum>0?Math.round(last.signed/last.cum*100):0}% of the 2030 fleet by count is ${lastSignedPct}% by revenue). Signed-today coverage falls from <b>${Q[0].rev>0?Math.round(Q[0].revS/Q[0].rev*100):0}%</b> to <b>${last.rev>0?Math.round(last.revS/last.rev*100):0}%</b> by 2030. Everything above the solid band is revenue this model assumes gets contracted but which carries no signature today \u2014 the largest single uncertainty on the page.</div>`;
   h+=`<h4 class="sec">Backtest — does the chain reproduce what IREN has already reported?</h4>`;
   h+=rampBacktestHTML(BT,R);
-  h+=`<h4 class="sec">01 · Concrete — capacity tranches</h4>
-    <div class="bo-head"><div class="bo-legend">${genLeg}${hatchLeg}<span class="bo-leg">◆ first revenue</span></div></div><div class="bo-wrap">${rampGanttHTML(R)}<div class="bo-tip"></div></div>`;
+  h+=`<h4 class="sec">01 · Concrete — power arriving, and how much of it earns</h4>
+    <div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:rgba(55,73,91,.10);border:1px solid var(--indigo-soft)"></i>energised (gross MW)</span><span class="bo-leg"><i style="background:rgba(55,73,91,.30)"></i>commissioned (critical IT MW)</span><span class="bo-leg"><i style="background:var(--indigo)"></i>earning (critical IT MW)</span><span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed var(--indigo-soft)"></i>company commitments</span></div></div><div class="bo-wrap">${rampGanttHTML(R,Q)}<div class="bo-tip"></div></div>`;
   h+=`<div id="rampSelCard" style="display:none;margin:10px 4px 0"></div>`;
-  h+=`<div class="legend2" style="margin:6px 4px 0">Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modeled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetized in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
+  h+=`<div class="legend2" style="margin:6px 4px 0">Every quantity sits on one labelled megawatt axis — the gap between the bands IS the execution story: power energises first, commissions second, earns last. Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modeled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetized in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
   h+=`<h4 class="sec">02 · Silicon — the fleet by generation</h4>
     <div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
   h+=`<h4 class="sec">03 · Money — revenue vs the street</h4>
