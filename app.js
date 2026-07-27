@@ -326,27 +326,72 @@ let rampCo='IREN';
 let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1,RAMP_REV_MODE='gen';
 const RAMP_GEN={hopper:{c:'var(--gen-hopper)',n:'Hopper'},blackwell:{c:'var(--gen-blackwell)',n:'Blackwell'},rubin:{c:'var(--gen-rubin)',n:'Rubin-class'},next:{c:'var(--gen-next)',n:'Next-gen'}};
 const RAMP_QS=l=>{const y=+l.slice(0,4),q=+l.slice(5);return (y-2026)*4+q;};
-const RAMP_QL=s=>`${2026+Math.floor((s-1)/4)}Q${((s-1)%4)+1}`;
-const RAMP_START=3,RAMP_END=20;   // 2026Q3 .. 2030Q4
-function rampQuarters(R){
+const RAMP_QL=s=>{const i=s-1;return `${2026+Math.floor(i/4)}Q${(((i%4)+4)%4)+1}`;};
+const RAMP_START=3,RAMP_END=20,RAMP_HIST=-1,RAMP_CONS_HARD=14;   // consensus is a hard comparator to 2029Q2 (serial 14); indicative beyond   // window 2026Q3..2030Q4; backtest runs from 2025Q3
+// apply a scenario delta to one tranche (pure; base returns the tranche unchanged)
+function rampApplySc(t,d){
+  if(!d||!Object.keys(d).length)return t;
+  const o={...t};
+  if(d.rampMult)o.rampQtrs=Math.max(1,Math.ceil(t.rampQtrs*d.rampMult));
+  if(d.rateCap!=null)o.rate=Math.min(t.rate,d.rateCap);
+  if(d.rateMult)o.rate=t.rate*d.rateMult;
+  if(d.genDensity&&d.genDensity[t.gen])o.gpus=Math.round(t.gpus*d.genDensity[t.gen]);
+  if(d.ctrMult!=null){const sg=t.signed||0;o.ctr=sg+(t.ctr-sg)*d.ctrMult;}
+  if(d.slipQtrs){const from=d.from!=null?d.from:-99;
+    if(RAMP_QS(t.energize)>=from){o.energize=RAMP_QL(RAMP_QS(t.energize)+d.slipQtrs);o.rev=RAMP_QL(RAMP_QS(t.rev)+d.slipQtrs);}}
+  return o;
+}
+function rampQuarters(R,sc,from,to){
+  const cal=(R.calibration&&R.calibration.rampMult)||1;
+  const d={...((sc&&sc.d)||{})};
   const YR=s=>2026+Math.floor((s-1)/4);   // serial 1 = 2026Q1 … 20 = 2030Q4
+  const spotOf=s=>{const base=R.spot[String(d.spotFlat?2026:YR(s))]||0;return base*(d.spotMult||1);};
+  const TR=R.tranches.map(t=>rampApplySc(t,d));
   const out=[];
-  for(let s=RAMP_START;s<=RAMP_END;s++){
+  const s0=from!=null?from:RAMP_START, s1=to!=null?to:RAMP_END;
+  for(let s=s0;s<=s1;s++){
     const by={hopper:0,blackwell:0,rubin:0,next:0},rv={hopper:0,blackwell:0,rubin:0,next:0},camps={};
     let cum=0,prev=0,signed=0,ctr=0,rev=0;
-    R.tranches.forEach(t=>{
-      const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1),f0=Math.min(Math.max((s-rs)/t.rampQtrs,0),1);
+    TR.forEach(t=>{
+      const rs=RAMP_QS(t.rev),um=(d.rampMult||1)*cal;
+      const ff=(k,n)=>Math.min(Math.max(k/n,0),1);
+      // contracted share bills from acceptance; uncontracted share ramps at the backtested (slower) rate
+      const mix=(k)=>t.ctr*ff(k,Math.max(1,Math.ceil(t.rampQtrs*(d.rampMult||1))))+(1-t.ctr)*ff(k,Math.max(1,Math.ceil(t.rampQtrs*um)));
+      const f=mix(s-rs+1),f0=mix(s-rs);
       if(f<=0)return;const live=t.gpus*f;
       by[t.gen]+=live;cum+=live;prev+=t.gpus*f0;signed+=live*(t.signed||0);ctr+=live*t.ctr;camps[t.campus]=1;
-      const er=t.ctr*t.rate+(1-t.ctr)*(R.spot[String(YR(s))]||0)*(R.spotMult[t.gen]||1);
+      let vr=t.rate;
+      if(d.vintageDecay){const age=Math.max(0,(s-RAMP_QS(t.rev))/4);vr=t.rate*Math.pow(1-d.vintageDecay,age);}
+      const er=t.ctr*vr+(1-t.ctr)*spotOf(s)*(R.spotMult[t.gen]||1);
       const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;});
-    const grossMW=R.tranches.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
-    const itMW=R.tranches.reduce((a,t)=>{const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);return a+t.itMW*f;},0);
+    const grossMW=TR.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
+    const itMW=TR.reduce((a,t)=>{const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);return a+t.itMW*f;},0);
     const lbl=RAMP_QL(s);const cons=(R.consensus||{})[lbl]||null;
     out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,grossMW,itMW,nCamps:Object.keys(camps).length,
       mining:(R.mining||{})[lbl]||0,consTot:cons?cons[0]:null,consAI:cons?cons[1]:null,
       blend:cum>0?rev*1e6/(cum*2190):0});}
   return out;
+}
+function rampBacktest(R){
+  const A=R.actuals||{}; const ks=Object.keys(A); if(!ks.length)return null;
+  const first=Math.min(...ks.map(RAMP_QS)), last=Math.max(...ks.map(RAMP_QS));
+  const Q=rampQuarters(R,null,first,last);
+  const Qu=rampQuarters({...R,calibration:{rampMult:1}},null,first,last);
+  const rate=R.earningRate||2.48;
+  const rows=Q.map((q,i)=>{const act=A[q.lbl]; if(!act)return null;
+    const qu=Qu[i];
+    const actGpu=act.aiRevM*1e6/(rate*2190);          // earning-GPU-equivalent implied by reported revenue
+    return {lbl:q.lbl, modRev:q.rev, actRev:act.aiRevM, errPct:(q.rev/act.aiRevM-1)*100,
+            rawRev:qu.rev, rawErrPct:(qu.rev/act.aiRevM-1)*100,
+            modGpu:q.cum, actGpu, gpuErrPct:(q.cum/actGpu-1)*100, fleet:act.fleetDisclosed};}).filter(Boolean);
+  const mape=rows.reduce((a,r)=>a+Math.abs(r.errPct),0)/rows.length;
+  const bias=rows.reduce((a,r)=>a+r.errPct,0)/rows.length;
+  const rawMape=rows.reduce((a,r)=>a+Math.abs(r.rawErrPct),0)/rows.length;
+  const rawBias=rows.reduce((a,r)=>a+r.rawErrPct,0)/rows.length;
+  // implied ramp multiple: how much slower the observed commissioning is than modelled
+  const impl=rows.map(r=>r.modGpu/Math.max(r.actGpu,1)).filter(x=>isFinite(x)&&x>0);
+  const rampMult=impl.length?impl.reduce((a,b)=>a+b,0)/impl.length:null;
+  return {rows,mape,bias,rawMape,rawBias,rampMult,rate};
 }
 function rampTrancheAt(R,t,s){   // {gpus,revM} of one tranche in quarter s
   const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);
@@ -395,12 +440,12 @@ function rampGanttHTML(R){
     `<clipPath id="rampClipG"><rect id="rampClipGR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
   for(let yr=2026;yr<=2031;yr++){const x=X(yr);stat+=`<line x1="${x.toFixed(1)}" y1="18" x2="${x.toFixed(1)}" y2="${H-22}" style="stroke:var(--line);stroke-width:1"/><text x="${(x+4).toFixed(1)}" y="${H-8}" ${tx}>${yr}</text>`;}
   const tn=X(NOW);
-  stat+=`<line x1="${tn.toFixed(1)}" y1="18" x2="${tn.toFixed(1)}" y2="${H-22}" style="stroke:var(--clay);stroke-width:1;stroke-dasharray:2 3"/><text x="${(tn-4).toFixed(1)}" y="${H-26}" text-anchor="end" style="font-family:var(--mono);font-size:9px;fill:var(--clay)">TODAY</text>`;
+  stat+=`<line x1="${tn.toFixed(1)}" y1="18" x2="${tn.toFixed(1)}" y2="${H-22}" style="stroke:var(--clay);stroke-width:1;stroke-dasharray:2 3"/><text x="${(tn-4).toFixed(1)}" y="${H-26}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--clay-ink)">TODAY</text>`;
   // era bands: the three chapters of the calendar
   const ERAS=[[2026,2027,'PROVE','480MW · 150k GPUs'],[2027,2028,'SCALE','the 1,210MW program'],[2028,2031.1,'COMPOUND','Sweetwater · Kiowa · EU / AU']];
   ERAS.forEach(([a,b,nm,sub],i)=>{const x0=X(Math.max(a,G.d0)),x1=X(Math.min(b,G.d1));
     stat+=`<rect x="${x0.toFixed(1)}" y="18" width="${(x1-x0).toFixed(1)}" height="${H-40}" fill="${i%2?'rgba(42,39,34,.028)':'transparent'}" style="pointer-events:none"/>`;
-    stat+=`<text x="${(x0+6).toFixed(1)}" y="30" style="font-family:var(--mono);font-size:9px;fill:var(--ink);letter-spacing:.14em;font-weight:500">${nm}</text><text x="${(x0+6).toFixed(1)}" y="40" style="font-family:var(--mono);font-size:8.5px;fill:var(--ink-soft)">${sub}</text>`;});
+    stat+=`<text x="${(x0+6).toFixed(1)}" y="30" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink);letter-spacing:.14em;font-weight:500">${nm}</text><text x="${(x0+6).toFixed(1)}" y="40" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${sub}</text>`;});
   stat+=`<rect x="${G.ml}" y="18" width="${W-G.ml-G.mr}" height="${H-40}" fill="transparent" style="cursor:crosshair" onclick="rampGanttSeek(event)"/>`;
   let lastCamp=null;
   rows.forEach(({t,ti},i)=>{const y=top+i*rowH;
@@ -415,7 +460,7 @@ function rampGanttHTML(R){
     bars+=rect('rampbarR')+` style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()" onclick="rampSelect(${ti})"/>`;
     const rx=X(dec(t.rev));
     bars+=`<path data-ti="${ti}" class="rampbarR" d="M ${rx.toFixed(1)} ${y+rowH/2-6} l 4.5 5 l -4.5 5 l -4.5 -5 z" fill="var(--ink)" opacity="0.85" style="pointer-events:none"/>`;
-    stat+=`<text x="${(X(2031.1)+3).toFixed(1)}" y="${y+rowH/2+3}" style="font-family:var(--mono);font-size:9px;fill:var(--ink-soft)">${t.grossMW}MW</text>`;});
+    stat+=`<text x="${(X(2031.1)+3).toFixed(1)}" y="${y+rowH/2+3}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${t.grossMW}MW</text>`;});
   const ghost=`<g class="rampghost" style="pointer-events:none">${bars.replace(/onmousemove="[^"]*" onmouseleave="[^"]*" onclick="[^"]*"/g,'')}</g>`;
   const reveal=`<g clip-path="url(#rampClipG)">${bars}</g>`;
   const sweep=`<g id="rampSweepG" style="pointer-events:none"><line id="rampSweepGL" x1="0" y1="18" x2="0" y2="${H-22}" style="stroke:var(--ink);stroke-width:1.5"/><g id="rampSweepChip"><rect id="rampSweepChipR" x="-26" y="2" width="52" height="15" rx="3" fill="var(--ink)"/><text id="rampSweepGT" x="0" y="13" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--paper);font-weight:600"></text></g></g>`;
@@ -435,7 +480,7 @@ function rampFleetHTML(Q){
   Q.forEach((q,i)=>{if(i%2)return;stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
   // era annotations: first Rubin quarter, first next-gen quarter
   const mark=(cond,txt)=>{const i=Q.findIndex(cond);if(i<0)return;
-    stat+=`<line x1="${X(i).toFixed(1)}" y1="${mt}" x2="${X(i).toFixed(1)}" y2="${mt+10}" style="stroke:var(--ink-soft);stroke-width:1"/><text x="${(X(i)+4).toFixed(1)}" y="${mt+8}" style="font-family:var(--mono);font-size:8.5px;fill:var(--ink-soft);letter-spacing:.08em">${txt}</text>`;};
+    stat+=`<line x1="${X(i).toFixed(1)}" y1="${mt}" x2="${X(i).toFixed(1)}" y2="${mt+10}" style="stroke:var(--ink-soft);stroke-width:1"/><text x="${(X(i)+4).toFixed(1)}" y="${mt+8}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft);letter-spacing:.08em">${txt}</text>`;};
   mark(q=>q.by.rubin>0,'SWEETWATER / RUBIN ERA');
   mark(q=>q.by.next>0,'NEXT-GEN');
   let base=Q.map(()=>0);
@@ -451,7 +496,7 @@ function rampFleetHTML(Q){
     if(q.by[gk]<=60000)return '';
     let cy=Y(b+q.by[gk]*0.5);const sy=Y(q.signed);if(Math.abs(cy-sy)<12)cy+=(cy>=sy?14:-14);
     return `<text x="${X(i).toFixed(1)}" y="${(cy+4).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:${fill}">${txt}</text>`;};
-  body+=lbl('blackwell','BLACKWELL','#fff')+lbl('rubin','RUBIN','#fff')+lbl('next','NEXT','#7c2c52');
+  body+=lbl('blackwell','BLACKWELL','var(--ink)')+lbl('rubin','RUBIN','var(--paper)')+lbl('next','NEXT','var(--ink)');
   body+=`<text x="${X(5).toFixed(1)}" y="${(Y(Q[5].signed)-7).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">contracted today (signed book)</text>`;
   let cap='';
   Q.forEach((q,i)=>{const tip=`<b>${q.lbl}</b><br>fleet ${(q.cum/1000).toFixed(0)}k GPUs (+${(q.added/1000).toFixed(1)}k)<br>`+['hopper','blackwell','rubin','next'].filter(g=>q.by[g]>0).map(g=>`${RAMP_GEN[g].n} ${(q.by[g]/1000).toFixed(0)}k`).join(' · ')+`<br>signed today ${(q.signed/1000).toFixed(0)}k · modeled contracted ${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
@@ -470,29 +515,34 @@ function rampRevHTML(Q,mode){
   stat+=`<defs><clipPath id="rampClipR"><rect id="rampClipRR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
   for(let k=0;k<max;k+=2000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+k/1000+'B'}</text>`;}
   Q.forEach((q,i)=>{if(i%2===0)stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
-  const consPts=Q.map((q,i)=>q.consTot!=null?[i,q.consTot]:null).filter(Boolean);
+  const consPts=Q.map((q,i)=>q.consAI!=null?[i,q.consAI]:null).filter(Boolean);
   if(mode==='street'){
     // the wedge: model total vs street, trapezoid-shaded by sign per quarter (empty-safe)
     for(let k=0;k<consPts.length-1;k++){
-      const [i0,c0]=consPts[k],[i1,c1]=consPts[k+1],t0=tots[i0],t1=tots[i1];
+      const [i0,c0]=consPts[k],[i1,c1]=consPts[k+1],t0=Q[i0].rev,t1=Q[i1].rev;
       const above=(t0-c0+t1-c1)/2>=0;
       body+=`<path d="M${X(i0).toFixed(1)},${Y(t0).toFixed(1)} L${X(i1).toFixed(1)},${Y(t1).toFixed(1)} L${X(i1).toFixed(1)},${Y(c1).toFixed(1)} L${X(i0).toFixed(1)},${Y(c0).toFixed(1)} Z" fill="${above?'rgba(91,122,92,.16)':'rgba(170,107,79,.16)'}"/>`;}
     if(consPts.length){
       body+=`<path d="M${consPts.map(([i,c])=>`${X(i).toFixed(1)},${Y(c).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
       consPts.forEach(([i,c])=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(c).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
-    body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(tots[i]).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--indigo);stroke-width:2.4"/>`;
-    Q.forEach((q,i)=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(tots[i]).toFixed(1)}" r="2.8" fill="var(--indigo)" style="stroke:var(--card);stroke-width:1.5"/>`;});
+    body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(q.rev).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--indigo);stroke-width:2.4"/>`;
+    Q.forEach((q,i)=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(q.rev).toFixed(1)}" r="2.8" fill="var(--indigo)" style="stroke:var(--card);stroke-width:1.5"/>`;});
+    // the panel thins past 2029Q2 — shade it and say so, rather than drawing the same confident wedge
+    const softI=Q.findIndex(q=>q.s>RAMP_CONS_HARD);
+    if(softI>0){const sx=X(softI)-slot/2;
+      body+=`<rect x="${sx.toFixed(1)}" y="${mt}" width="${(W-mr-sx).toFixed(1)}" height="${ph}" fill="rgba(42,39,34,.045)"/>`;
+      body+=`<text x="${(sx+7).toFixed(1)}" y="${mt+12}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">thin panel \u2014 indicative only</text>`;}
     if(consPts.length){
       // per-quarter deltas, every other consensus quarter
-      consPts.forEach(([i,c],k)=>{if(k%2)return;const d=tots[i]/c-1;if(Math.abs(d)<0.005)return;
-        body+=`<text x="${X(i).toFixed(1)}" y="${(Math.min(Y(tots[i]),Y(c))-8).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9px;font-weight:600;fill:${d>=0?'var(--pine)':'var(--clay)'}">${d>=0?'+':''}${Math.round(d*100)}%</text>`;});
+      consPts.forEach(([i,c],k)=>{if(k%2)return;const d=Q[i].rev/c-1;if(Math.abs(d)<0.005)return;
+        body+=`<text x="${X(i).toFixed(1)}" y="${(Math.min(Y(Q[i].rev),Y(c))-8).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;font-weight:600;fill:${d>=0?'var(--pine-ink)':'var(--clay-ink)'}">${d>=0?'+':''}${Math.round(d*100)}%</text>`;});
       const [li2,lc]=consPts[consPts.length-1];
       body+=`<text x="${(X(li2)+8).toFixed(1)}" y="${(Y(lc)+4).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">street</text>`;
       // cumulative wedge annotation, anchored inside the wedge opening (index-safe for shorter consensus runs)
-      const wedge=consPts.reduce((a,[i,c])=>a+(tots[i]-c),0);
+      const wedge=consPts.filter(([i])=>Q[i].s<=RAMP_CONS_HARD).reduce((a,[i,c])=>a+(Q[i].rev-c),0);
       const kk=Math.min(13,consPts.length-1),[wi,wc]=consPts[kk];
-      body+=`<text x="${X(Math.min(wi+1,Q.length-1)).toFixed(1)}" y="${((Y(tots[wi])+Y(wc))/2).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:${wedge>=0?'var(--pine)':'var(--clay)'}">the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street</text>`;}
-    body+=`<text x="${(X(Q.length-1)-8).toFixed(1)}" y="${(Y(tots[Q.length-1])-8).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--indigo);font-weight:600">model</text>`;
+      body+=`<text x="${X(Math.min(wi+1,Q.length-1)).toFixed(1)}" y="${((Y(Q[wi].rev)+Y(wc))/2).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:${wedge>=0?'var(--pine-ink)':'var(--clay-ink)'}">the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street</text>`;}
+    body+=`<text x="${(X(Q.length-1)-8).toFixed(1)}" y="${(Y(Q[Q.length-1].rev)-8).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--indigo);font-weight:600">model</text>`;
   }else{
     Q.forEach((q,i)=>{let y0=mt+ph;
       const parts=[['mining',q.mining,'var(--far)','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],RAMP_GEN[g].c,RAMP_GEN[g].n])];
@@ -503,9 +553,76 @@ function rampRevHTML(Q,mode){
   }
   Q.forEach((q,i)=>{
     const parts=[['mining',q.mining,'','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],'',RAMP_GEN[g].n])];
-    const tip=`<b>${q.lbl}</b><br>total $${Math.round(q.rev+q.mining)}M${q.consTot?` · consensus $${Math.round(q.consTot)}M (Δ ${Math.round(((q.rev+q.mining)/q.consTot-1)*100)}%)`:''}<br>`+parts.filter(p=>p[1]>=1).map(p=>`${p[3]} $${Math.round(p[1])}M`).join(' · ')+`<br>blend $${q.blend.toFixed(2)}/GPU-hr<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
+    const tip=`<b>${q.lbl}</b><br>total $${Math.round(q.rev+q.mining)}M${q.consAI?` · consensus AI $${Math.round(q.consAI)}M (Δ ${Math.round((q.rev/q.consAI-1)*100)}%${q.s>RAMP_CONS_HARD?', thin panel':''})`:''}<br>`+parts.filter(p=>p[1]>=1).map(p=>`${p[3]} $${Math.round(p[1])}M`).join(' · ')+`<br>blend $${q.blend.toFixed(2)}/GPU-hr<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
     cap+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarterly revenue ${mode==='street'?'model vs Bloomberg consensus':'by GPU generation vs Bloomberg consensus'}">${stat}<rect id="rampHLR" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipR)">${body}</g><path id="rampSelR0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelR" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
+}
+
+/* ---- coverage spine: what share of each quarter's revenue is already under contract ---- */
+function rampCoverageHTML(Q){
+  const W=960,ml=54,mr=20,H=86,mt=14,ph=H-mt-24;
+  const n=Q.length,slot=(W-ml-mr)/n,bw=slot*0.86;
+  const X=i=>ml+i*slot+slot/2;
+  let s='';
+  Q.forEach((q,i)=>{
+    const rev=q.rev+q.mining; if(rev<=0)return;
+    const sg=q.cum>0?q.signed/q.cum:0, ct=q.cum>0?q.ctr/q.cum:0;
+    const x=X(i)-bw/2; let y=mt;
+    const seg=(frac,fill,cls)=>{const h=ph*frac; if(h<=0.4)return; s+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" fill="${fill}" style="stroke:var(--card);stroke-width:1"/>`; y+=h;};
+    seg(sg,'var(--indigo)');
+    seg(Math.max(ct-sg,0),'url(#rampCovHatch)');
+    seg(Math.max(1-ct,0),'var(--line)');
+    const tip=`<b>${q.lbl}</b><br>signed today ${Math.round(sg*100)}% of the fleet<br>modelled contracted at commissioning ${Math.round(ct*100)}%<br>uncontracted / spot ${Math.round((1-ct)*100)}%<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
+    s+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;
+    if(i%4===0)s+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${q.lbl}</text>`;
+  });
+  const first=Q[0],last=Q[Q.length-1];
+  const s0=first.cum>0?Math.round(first.signed/first.cum*100):0, s1=last.cum>0?Math.round(last.signed/last.cum*100):0;
+  s+=`<text x="${ml-6}" y="${mt+10}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">100%</text>`;
+  s+=`<text x="${ml-6}" y="${mt+ph}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">0</text>`;
+  return `<defs><pattern id="rampCovHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="var(--indigo-soft)" opacity="0.30"/><rect width="2.2" height="5" fill="var(--indigo-soft)"/></pattern></defs>`+
+    `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Share of the fleet under contract, by quarter">${s}</svg>`;
+}
+/* ---- backtest: the same chain run over reported quarters ---- */
+function rampBacktestHTML(bt,R){
+  if(!bt)return '';
+  const cal=(R.calibration&&R.calibration.rampMult)||1;
+  const sign=v=>(v>=0?'+':'')+v.toFixed(0)+'%';
+  const col=v=>Math.abs(v)<=20?'var(--pine-ink)':Math.abs(v)<=40?'var(--gold)':'var(--clay-ink)';
+  let h=`<div class="rampbt"><div class="rampbt-hd"><b>The chain retrodicts to within ${bt.mape.toFixed(0)}% (mean absolute), bias ${sign(bt.bias)}.</b> Uncalibrated it missed by ${bt.rawMape.toFixed(0)}%, biased ${sign(bt.rawBias)} — high, every quarter.</div>`;
+  h+=`<table class="stab nosort rampbt-t"><thead><tr><th>Reported quarter</th><th class="r">Reported AI cloud</th><th class="r">Model</th><th class="r">Error</th><th class="r">Uncalibrated</th><th class="r">Earning GPUs: model vs implied</th></tr></thead><tbody>`;
+  bt.rows.forEach(r=>{
+    h+=`<tr><td class="mono">${r.lbl}</td><td class="r mono">$${r.actRev.toFixed(2)}m</td><td class="r mono">$${r.modRev.toFixed(1)}m</td>`+
+       `<td class="r mono" style="color:${col(r.errPct)}"><b>${sign(r.errPct)}</b></td>`+
+       `<td class="r mono" style="color:var(--clay-ink)">${sign(r.rawErrPct)}</td>`+
+       `<td class="r mono">${Math.round(r.modGpu).toLocaleString()} vs ${Math.round(r.actGpu).toLocaleString()}</td></tr>`;});
+  h+=`</tbody></table>`;
+  h+=`<div class="legend2" style="margin:8px 0 0"><b>How.</b> The forward chain is run backwards over every quarter IREN has reported, with no parameter free except one: a single global multiple of ${cal}× on the commissioning ramp, fitted to these three quarters. Reported revenue is converted to an <b>earning-GPU-equivalent</b> at IREN's own disclosed ARR rate ($${bt.rate.toFixed(2)}/GPU-hr on its 23k-GPU fleet) so fleet and revenue are testable separately. <b>The calibration is in the base case</b> — the headline path on this page is the retrodicted one; the uncalibrated column is what the model said before it was tested. ${R.calibration?R.calibration.basis.split('Confound stated:')[1]?'<b>Confound:</b>'+R.calibration.basis.split('Confound stated:')[1]:'':''}</div></div>`;
+  return h;
+}
+/* ---- the chain, declared link by link ---- */
+function rampChainHTML(R){
+  if(!R.chain)return '';
+  let h=`<table class="stab nosort rampchain"><thead><tr><th>Link</th><th>Transfer function</th><th>Value</th><th>Assumption — marked, with range</th></tr></thead><tbody>`;
+  R.chain.forEach(c=>{
+    h+=`<tr><td><b>${c.link}</b></td><td class="mono" style="font-size:11px;color:var(--ink-soft)">${c.fn}</td>`+
+       `<td class="mono" style="font-size:11px">${c.value}</td>`+
+       `<td >${c.assumption}<div class="rampchain-r">range <b>${c.range}</b> · moves ${c.moves}</div></td></tr>`;});
+  return h+`</tbody></table>`;
+}
+/* ---- sensitivity: every assumption, its range, and what it costs ---- */
+function rampSensHTML(R){
+  if(!R.scenarios)return '';
+  const base=rampQuarters(R,null);const bl=base[base.length-1];const bRev=(bl.rev+bl.mining)*4/1000;
+  const rows=R.scenarios.map(sc=>{const Q=rampQuarters(R,sc);const L=Q[Q.length-1];
+    const arr=(L.rev+L.mining)*4/1000;
+    return {sc,arr,fleet:L.cum,d:(arr/bRev-1)*100};});
+  let h=`<table class="stab nosort rampsens"><thead><tr><th>Scenario</th><th>What changes</th><th class="r">Fleet YE-30</th><th class="r">Exit ARR</th><th class="r">vs base</th></tr></thead><tbody>`;
+  rows.forEach(r=>{const isJoint=r.sc.id==='joint',isBase=r.sc.id==='base';
+    h+=`<tr class="${isJoint?'rampsens-joint':''}"><td><b>${r.sc.name}</b></td><td style="color:var(--ink-soft)">${r.sc.note}</td>`+
+       `<td class="r mono">${Math.round(r.fleet/1000)}k</td><td class="r mono"><b>$${r.arr.toFixed(1)}B</b></td>`+
+       `<td class="r mono" style="color:${isBase?'var(--ink-soft)':r.d<0?'var(--clay-ink)':'var(--pine-ink)'}">${isBase?'—':(r.d>=0?'+':'')+r.d.toFixed(0)+'%'}</td></tr>`;});
+  return h+`</tbody></table>`;
 }
 /* ---- interactions ---- */
 function rampSeek(v,keepPlay){RAMP_T=Math.max(RAMP_START,Math.min(RAMP_END,+v));if(!keepPlay)rampStop();rampApply();}
@@ -608,15 +725,15 @@ function rampApply(){
   const qp=cur>RAMP_START?C.Q[cur-RAMP_START-1]:null;
   const D=(id,v,fmt)=>{const el=document.getElementById(id+'-d');if(!el)return;
     if(qp==null||v==null||Math.abs(v)<1e-9){el.textContent='';return;}
-    el.textContent=(v>0?'+':'−')+fmt(Math.abs(v))+' q/q';el.style.color=v>0?'var(--pine)':'var(--clay)';};
+    el.textContent=(v>0?'+':'−')+fmt(Math.abs(v))+' q/q';el.style.color=v>0?'var(--pine-ink)':'var(--clay-ink)';};
   D('rs-gpu',qp?q.cum-qp.cum:null,v=>(v/1000).toFixed(1)+'k');
   D('rs-mw',qp?q.grossMW-qp.grossMW:null,v=>Math.round(v).toLocaleString());
   D('rs-it',qp?q.itMW-qp.itMW:null,v=>Math.round(v).toLocaleString());
   D('rs-rev',qp?(q.rev+q.mining)-(qp.rev+qp.mining):null,v=>'$'+Math.round(v).toLocaleString()+'M');
   D('rs-blend',qp?q.blend-qp.blend:null,v=>'$'+v.toFixed(2));
-  const d=q.consTot!=null?(q.rev+q.mining)/q.consTot-1:null;
+  const d=q.consAI!=null?q.rev/q.consAI-1:null;
   S('rs-street',d==null?'—':(d>=0?'+':'')+Math.round(d*100)+'%');
-  const rsEl=document.getElementById('rs-street');if(rsEl)rsEl.style.color=d==null?'':(d>=0?'var(--pine)':'var(--clay)');
+  const rsEl=document.getElementById('rs-street');if(rsEl)rsEl.style.color=d==null?'':(d>=0?'var(--pine-ink)':'var(--clay-ink)');
   // the dispatch
   const cc=document.getElementById('rampCall');
   if(cc){const evs=C.EV[cur]||[];const nxt=C.EV[cur+1]||[];
@@ -632,13 +749,20 @@ function renderRamp(){
   const cos=COMPANIES.filter(c=>c.ramp);
   if(!cos.length){body.innerHTML='<div class="legend2">no ramp models yet — built per GPU-cloud name from the quarterly research overlay</div>';RAMP_CTX=null;return;}
   const c=cos.find(x=>x.tk===rampCo)||cos[0];rampCo=c.tk;
-  const R=c.ramp,Q=rampQuarters(R),EV=rampEvents(R,Q);
+  const R=c.ramp,Q=rampQuarters(R),EV=rampEvents(R,Q),BT=rampBacktest(R);
   const last=Q[Q.length-1],signedK=Math.round(R.tranches.reduce((a,t)=>a+t.gpus*(t.signed||0),0)/1000);
   const secured=(c.sites||[]).reduce((a,s)=>a+s.mw,0);
   const genLeg=Object.entries(RAMP_GEN).map(([k,g])=>`<span class="bo-leg"><i style="background:${g.c}"></i>${g.n}</span>`).join('');
   const hatchLeg=`<span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--ink-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>hatched = uncontracted today</span>`;
   const lineLeg=(col,lab)=>`<span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed ${col}"></i>${lab}</span>`;
   let h=`<div style="margin:0 4px 12px">${cos.map(x=>`<button class="tab ${x.tk===rampCo?'on':''}" data-rc="${x.tk}">${x.tk}</button>`).join(' ')}<span style="font-size:11px;color:var(--ink-soft);margin-left:10px">model as of ${R.asOf}</span></div>`;
+  const jointSc=(R.scenarios||[]).find(x=>x.id==='joint');
+  const jl=jointSc?rampQuarters(R,jointSc).slice(-1)[0]:null;
+  const jointARR=jl?((jl.rev+jl.mining)*4/1000):null;
+  const lastSignedPct=last.cum>0?Math.round(last.signed/last.cum*100):0;
+  h+=`<div class="rampanswer"><div class="rampanswer-n">$${(last.rev*4/1000).toFixed(1)}B<span>exit ARR 2030, base case</span></div>`+
+     `<div class="rampanswer-b"><b>${jointARR?'$'+jointARR.toFixed(1)+'B':'—'}</b> on the joint downside · <b>${lastSignedPct}%</b> of the 2030 fleet is covered by contracts signed today`+
+     `${BT?` · retrodicts reported quarters to <b>${BT.mape.toFixed(0)}%</b> mean error`:''}</div></div>`;
   h+=`<div class="ssummary" style="margin:4px 4px 12px"><span>secured power <b>${(secured/1000).toFixed(1)} GW</b></span><span>modeled in-window <b>${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)} GW</b></span><span>GPUs 26Q3 <b>${(Q[0].cum/1000).toFixed(1)}k</b> → YE-30 <b>~${Math.round(last.cum/1000)}k</b></span><span>signed book today <b>~${signedK}k GPUs</b></span><span>exit ARR 2030 <b>$${(last.rev*4/1000).toFixed(1)}B</b> @ $${last.blend.toFixed(2)}/GPU-hr</span></div>`;
   // the time machine
   h+=`<div class="rampbar"><button class="rampplay" id="rampPlayBtn">${(RAMP_T==null||RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play'}</button><div class="ramptrack"><div class="rampflags">`+
@@ -650,6 +774,12 @@ function renderRamp(){
   // live state panel
   h+=`<div class="rampstats">`+[['rs-gpu','GPUs earning'],['rs-mw','gross MW energized'],['rs-it','critical IT MW active'],['rs-rev','revenue / qtr'],['rs-blend','blend $/GPU-hr'],['rs-sign','fleet signed today'],['rs-street','vs street']].map(([id,lab])=>`<div class="rampstat"><span>${lab}</span><b id="${id}">—</b><i id="${id}-d"></i></div>`).join('')+`</div>`;
   h+=`<div class="rampcall" id="rampCall"></div>`;
+  h+=`<h4 class="sec">Coverage — how much of this is already sold</h4>`;
+  h+=`<div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--indigo)"></i>signed today</span><span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>modelled contracted at commissioning</span><span class="bo-leg"><i style="background:var(--line)"></i>uncontracted / spot</span></div></div>`;
+  h+=`<div class="bo-wrap">${rampCoverageHTML(Q)}<div class="bo-tip"></div></div>`;
+  h+=`<div class="legend2" style="margin:4px 4px 0">Signed-today coverage falls from <b>${Q[0].cum>0?Math.round(Q[0].signed/Q[0].cum*100):0}%</b> of the fleet to <b>${lastSignedPct}%</b> by 2030. Everything above the solid band is capacity this model assumes gets contracted but which carries no signature today — it is the largest single uncertainty on the page.</div>`;
+  h+=`<h4 class="sec">Backtest — does the chain reproduce what IREN has already reported?</h4>`;
+  h+=rampBacktestHTML(BT,R);
   h+=`<h4 class="sec">01 · Concrete — capacity tranches</h4>
     <div class="bo-head"><div class="bo-legend">${genLeg}${hatchLeg}<span class="bo-leg">◆ first revenue</span></div></div><div class="bo-wrap">${rampGanttHTML(R)}<div class="bo-tip"></div></div>`;
   h+=`<div id="rampSelCard" style="display:none;margin:10px 4px 0"></div>`;
@@ -658,10 +788,15 @@ function renderRamp(){
     <div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
   h+=`<h4 class="sec">03 · Money — revenue vs the street</h4>
     <div class="bo-head"><div class="bo-toggle"><button class="bo-tog ${RAMP_REV_MODE==='gen'?'on':''}" data-rm="gen">by generation</button><button class="bo-tog ${RAMP_REV_MODE==='street'?'on':''}" data-rm="street">vs street</button></div><div class="bo-legend" id="rampRevLeg">${rampRevLegend(RAMP_REV_MODE)}</div></div><div class="bo-wrap" id="rampRevWrap">${rampRevHTML(Q,RAMP_REV_MODE)}<div class="bo-tip"></div></div>`;
-  h+=`<h4 class="sec">The quarterly table</h4><div style="overflow-x:auto"><table class="stab nosort"><thead><tr><th>Qtr</th><th class="r">Gross MW (cum)</th><th class="r">IT MW active</th><th class="r">GPUs added</th><th class="r">GPUs cum</th><th class="r">Signed today</th><th class="r">Contracted (mod.)</th><th class="r">Blend $/hr</th><th class="r">AI rev $M</th><th class="r">Total $M</th><th class="r">Consensus $M</th><th class="r">Δ</th></tr></thead><tbody>`;
+  h+=`<h4 class="sec">The quarterly table</h4><div style="overflow-x:auto"><table class="stab nosort"><thead><tr><th>Qtr</th><th class="r" title="Cumulative gross MW of every tranche whose energisation quarter has passed. A step function — it does not ramp.">Energised MW<br><span class="thsub">gross, step</span></th><th class="r" title="Critical IT MW actually serving revenue-generating GPUs: gross x the per-tranche derate (0.709 fleet-average) x the commissioning ramp. The ratio between this column and the one on its left is NOT the derate.">Critical IT MW<br><span class="thsub">ramp-weighted</span></th><th class="r">GPUs added</th><th class="r">GPUs cum</th><th class="r">Signed today</th><th class="r">Contracted (mod.)</th><th class="r" title="Revenue divided by (live GPUs x 8,760 hr). A billed-hours-equivalent rate on IREN's own ARR convention, not a realised market price: for uncontracted GPUs the ~65% sold-utilisation sits in the rate, not in the hours.">Blend $/GPU-hr<br><span class="thsub">billed-hours basis</span></th><th class="r">AI rev $M</th><th class="r">Total $M</th><th class="r" title="Bloomberg consensus AI Cloud Services line — the like-for-like comparator. The total-revenue line is not used: it still carries the street's mining assumption.">Consensus AI $M</th><th class="r" title="Model AI-cloud vs consensus AI-cloud. * marks quarters beyond 2029Q2 where the contributor panel thins to a handful and the comparison is indicative only.">Δ vs street</th></tr></thead><tbody>`;
   Q.forEach(q=>{const tot=q.rev+q.mining;
-    h+=`<tr class="srow ramprow${q.s%4===1?' yrb':''}" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consTot!=null?Math.round(q.consTot).toLocaleString():'—'}</td><td class="r mono" style="${q.consTot?('color:'+((tot/q.consTot-1)>=0?'var(--pine)':'var(--clay)')):''}">${q.consTot?((tot/q.consTot-1)>=0?'+':'')+Math.round((tot/q.consTot-1)*100)+'%':'—'}</td></tr>`;});
+    h+=`<tr class="srow ramprow${q.s%4===1?' yrb':''}${q.s>RAMP_CONS_HARD?' softcons':''}" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consAI!=null?Math.round(q.consAI).toLocaleString():'—'}</td><td class="r mono" style="${q.consAI?('color:'+((q.rev/q.consAI-1)>=0?'var(--pine-ink)':'var(--clay-ink)')):''}">${q.consAI?((q.rev/q.consAI-1)>=0?'+':'')+Math.round((q.rev/q.consAI-1)*100)+'%'+(q.s>RAMP_CONS_HARD?'*':''):'—'}</td></tr>`;});
   h+=`</tbody></table></div>`;
+  h+=`<h4 class="sec">The chain — every link, its transfer function and its marked assumption</h4>`;
+  h+=rampChainHTML(R);
+  h+=`<h4 class="sec">Sensitivity — what each assumption is worth</h4>`;
+  h+=rampSensHTML(R);
+  h+=`<div class="legend2" style="margin-top:10px">Each scenario re-runs the whole chain; only the named input changes. <b>Joint downside</b> is the honest bear case: the individually-defensible assumptions taken together, because they are not independent — a slower ramp, flatter pricing and weaker lease-up are the same demand environment. The answer is most sensitive to <b>pricing</b> and <b>lease-up</b>, not to construction.</div>`;
   h+=`<div class="legend2" style="margin-top:12px"><b>Basis.</b> ${R.basis}</div>`;
   h+=`<div class="legend2" style="margin-top:6px"><b>Consensus.</b> ${R.consensusSource}</div>`;
   body.innerHTML=h;

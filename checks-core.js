@@ -9,6 +9,7 @@
 
   const GROUPS = [
     { k: 'config',  name: 'Config integrity',       guards: 'every dial has a slider; provenance/regions complete; no dead constants; source registry typed with provenance ceilings' },
+    { k: 'ramp',    name: 'GPU-ramp overlay',       guards: 'chain invariants: MW/GPU sums, date order, coverage monotonicity, declared assumptions, backtest error within tolerance' },
     { k: 'schema',  name: 'Schema & types',         guards: 'required fields per model type; valid enums; no dead fields; holdco shape' },
     { k: 'sites',   name: 'Site schedules',         guards: 'energization dates & months in range; MW > 0; phased blocks ≤ ~800MW; no duplicates' },
     { k: 'prov',    name: 'Provenance consistency', guards: 'past capacity must be disclosed; 2031+ "disclosed" questioned; contracted% vs rumored-MW tension' },
@@ -92,6 +93,7 @@
     const tks = cos.map(c => c.tk);
     failIf('schema', null, new Set(tks).size !== tks.length, 'duplicate tickers');
     const REG = Object.keys(cfg.regions), PROV = ['disclosed','estimated','rumored'];
+    const RAMP_GENS = ['hopper','blackwell','rubin','next'];
     const DEAD = ['renewalProb','costOfDebt','legacyExBtc','confidence','dataGaps','mtm'];
     const RZ_KINDS = ['equity','atm','convert','debt','pref','other'];
     const LEDGER_START = (pf && pf.history && pf.history.meta && pf.history.meta.start) || '2025-06-26';
@@ -112,6 +114,48 @@
         if (c.model !== 'landlord') failIf('schema', id, !(c.termYrs > 0), 'owner/hybrid needs termYrs > 0');
       }
 
+      /* ---- GPU-ramp overlay (spec §6 screen 11): display-only, but its chain must hold ---- */
+      if (c.ramp) {
+        const R = c.ramp, T = R.tranches || [];
+        const qs = l => /^\d{4}Q[1-4]$/.test(l || '') ? (parseInt(l.slice(0, 4)) - 2026) * 4 + parseInt(l.slice(5)) : NaN;
+        failIf('ramp', id, !T.length, 'ramp present but no tranches');
+        failIf('ramp', id, !R.basis || R.basis.length < 40, 'ramp: basis note missing or too short to carry provenance');
+        failIf('ramp', id, !Array.isArray(R.chain) || !R.chain.length, 'ramp: no declared chain — every link must state its transfer function, assumption and range');
+        (R.chain || []).forEach(l => {
+          failIf('ramp', id, !l.fn || !l.assumption, `ramp chain '${l.id || '?'}': link without a transfer function or assumption`);
+          failIf('ramp', id, !l.range, `ramp chain '${l.id || '?'}': assumption without a stated range (unmarked assumption)`);
+        });
+        let gross = 0, itmw = 0, gpus = 0;
+        T.forEach(t => {
+          const tid = `ramp tranche '${(t.n || '?').slice(0, 34)}'`;
+          gross += t.grossMW || 0; itmw += t.itMW || 0; gpus += t.gpus || 0;
+          failIf('ramp', id, !(t.grossMW > 0 && t.itMW > 0 && t.gpus > 0), `${tid}: grossMW/itMW/gpus must all be > 0`);
+          failIf('ramp', id, t.itMW > t.grossMW, `${tid}: critical IT MW exceeds gross MW`);
+          failIf('ramp', id, isNaN(qs(t.energize)) || isNaN(qs(t.rev)), `${tid}: energize/rev must be YYYYQn`);
+          failIf('ramp', id, qs(t.energize) > qs(t.rev), `${tid}: first revenue precedes energisation`);
+          failIf('ramp', id, !(t.rampQtrs >= 1), `${tid}: rampQtrs must be >= 1`);
+          failIf('ramp', id, !(t.ctr >= 0 && t.ctr <= 1), `${tid}: contracted share out of [0,1]`);
+          failIf('ramp', id, !((t.signed || 0) >= 0 && (t.signed || 0) <= t.ctr + 1e-9), `${tid}: signed-today exceeds contracted share`);
+          failIf('ramp', id, !(t.rate > 0), `${tid}: rate must be > 0`);
+          failIf('ramp', id, !RAMP_GENS.includes(t.gen), `${tid}: unknown generation ${t.gen}`);
+          const kw = t.itMW * 1000 / t.gpus;
+          warnIf('ramp', id, kw < 1.0 || kw > 8.0, `${tid}: implied ${kw.toFixed(2)} kW/GPU outside the defensible 1.0-8.0 band`);
+        });
+        const camp = {}; T.forEach(t => { camp[t.campus] = (camp[t.campus] || 0) + t.grossMW; });
+        failIf('ramp', id, Math.abs(gross - Object.values(camp).reduce((a, b) => a + b, 0)) > 0.5, 'ramp: campus MW do not sum to tranche MW');
+        warnIf('ramp', id, gross > (c.sites || []).reduce((a, s2) => a + s2.mw, 0),
+          `ramp: modelled ${gross}MW exceeds secured ${(c.sites || []).reduce((a, s2) => a + s2.mw, 0)}MW`);
+        // backtest must exist and be within tolerance — a model that cannot retrodict has no business forecasting
+        const A = R.actuals || {};
+        failIf('ramp', id, !Object.keys(A).length, 'ramp: no reported actuals — the chain is untested');
+        failIf('ramp', id, !R.calibration || !R.calibration.basis, 'ramp: no calibration note for the backtest');
+        Object.entries(A).forEach(([q, a]) => {
+          failIf('ramp', id, isNaN(qs(q)), `ramp actual '${q}': not a valid quarter`);
+          failIf('ramp', id, !(a.aiRevM > 0), `ramp actual '${q}': aiRevM must be > 0`);
+        });
+        failIf('ramp', id, !Array.isArray(R.scenarios) || R.scenarios.length < 3, 'ramp: fewer than three scenarios — no sensitivity envelope');
+        failIf('ramp', id, !(R.scenarios || []).some(x => x.id === 'joint'), 'ramp: no joint-downside scenario — the bear case must be on the page');
+      }
       failIf('capital', id, !(c.shares > 0), 'shares must be > 0');
       failIf('capital', id, !(c.price > 0), 'price must be > 0');
       warnIf('capital', id, !(c.sharesReported > 0), 'no sharesReported (basic shares for the Coverage market cap)');
