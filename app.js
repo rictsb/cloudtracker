@@ -560,28 +560,37 @@ function rampRevHTML(Q,mode){
 
 /* ---- coverage spine: what share of each quarter's revenue is already under contract ---- */
 function rampCoverageHTML(Q){
-  const W=960,ml=54,mr=20,H=86,mt=14,ph=H-mt-24;
-  const n=Q.length,slot=(W-ml-mr)/n,bw=slot*0.86;
-  const X=i=>ml+i*slot+slot/2;
+  const W=960,ml=54,mr=54,H=132,mt=16,ph=H-mt-26;
+  const n=Q.length,slot=(W-ml-mr)/n,bw=slot*0.88;
+  const X=i=>ml+i*slot+slot/2, Y=f=>mt+ph-f*ph;
   let s='';
+  // gridlines first, so the bands sit on a readable scale
+  [0,0.25,0.5,0.75,1].forEach(g=>{s+=`<line x1="${ml}" y1="${Y(g).toFixed(1)}" x2="${W-mr}" y2="${Y(g).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
+    `<text x="${ml-6}" y="${(Y(g)+3).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${g*100}%</text>`;});
   Q.forEach((q,i)=>{
-    const rev=q.rev+q.mining; if(rev<=0)return;
-    const sg=q.cum>0?q.signed/q.cum:0, ct=q.cum>0?q.ctr/q.cum:0;
-    const x=X(i)-bw/2; let y=mt;
-    const seg=(frac,fill,cls)=>{const h=ph*frac; if(h<=0.4)return; s+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" fill="${fill}" style="stroke:var(--card);stroke-width:1"/>`; y+=h;};
-    seg(sg,'var(--indigo)');
-    seg(Math.max(ct-sg,0),'url(#rampCovHatch)');
-    seg(Math.max(1-ct,0),'var(--line)');
+    if(q.cum<=0)return;
+    const sg=q.signed/q.cum, ct=q.ctr/q.cum;
+    const x=X(i)-bw/2;
+    // three bands, separated by LIGHTNESS not pattern, so the collapse survives greyscale and small size
+    s+=`<rect x="${x.toFixed(1)}" y="${Y(1).toFixed(1)}" width="${bw.toFixed(1)}" height="${ph.toFixed(1)}" fill="var(--line)" style="stroke:var(--card);stroke-width:1"/>`;
+    s+=`<rect x="${x.toFixed(1)}" y="${Y(ct).toFixed(1)}" width="${bw.toFixed(1)}" height="${(ph*ct).toFixed(1)}" fill="url(#rampCovHatch)" style="stroke:var(--card);stroke-width:1"/>`;
+    s+=`<rect x="${x.toFixed(1)}" y="${Y(sg).toFixed(1)}" width="${bw.toFixed(1)}" height="${(ph*sg).toFixed(1)}" fill="var(--indigo)" style="stroke:var(--card);stroke-width:1"/>`;
     const tip=`<b>${q.lbl}</b><br>signed today ${Math.round(sg*100)}% of the fleet<br>modelled contracted at commissioning ${Math.round(ct*100)}%<br>uncontracted / spot ${Math.round((1-ct)*100)}%<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
     s+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;
     if(i%4===0)s+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${q.lbl}</text>`;
   });
-  const first=Q[0],last=Q[Q.length-1];
-  const s0=first.cum>0?Math.round(first.signed/first.cum*100):0, s1=last.cum>0?Math.round(last.signed/last.cum*100):0;
-  s+=`<text x="${ml-6}" y="${mt+10}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">100%</text>`;
-  s+=`<text x="${ml-6}" y="${mt+ph}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">0</text>`;
-  return `<defs><pattern id="rampCovHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="var(--indigo-soft)" opacity="0.30"/><rect width="2.2" height="5" fill="var(--indigo-soft)"/></pattern></defs>`+
-    `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Share of the fleet under contract, by quarter">${s}</svg>`;
+  // the decay of the signed book as a POSITION encoding — the eye reads a falling line, not stacked areas
+  const live=Q.filter(q=>q.cum>0);
+  const path=live.map((q,k)=>`${X(Q.indexOf(q)).toFixed(1)},${Y(q.signed/q.cum).toFixed(1)}`).join(' L');
+  s+=`<path d="M${path}" fill="none" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round"/>`;
+  const f0=live[0],f1=live[live.length-1];
+  const p0=Math.round(f0.signed/f0.cum*100),p1=Math.round(f1.signed/f1.cum*100);
+  s+=`<circle cx="${X(Q.indexOf(f0)).toFixed(1)}" cy="${Y(f0.signed/f0.cum).toFixed(1)}" r="3" fill="var(--ink)"/>`;
+  s+=`<circle cx="${X(Q.indexOf(f1)).toFixed(1)}" cy="${Y(f1.signed/f1.cum).toFixed(1)}" r="3" fill="var(--ink)"/>`;
+  s+=`<text x="${(X(Q.indexOf(f0))+9).toFixed(1)}" y="${(mt+11).toFixed(1)}" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${p0}% signed today</text>`;
+  s+=`<text x="${(W-mr+5).toFixed(1)}" y="${(Y(f1.signed/f1.cum)+3).toFixed(1)}" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${p1}%</text>`;
+  const defs=`<defs><pattern id="rampCovHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#E9E4DA"/><rect width="2.4" height="6" fill="#7D90A0"/></pattern></defs>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Share of the fleet under contract by quarter: signed today, modelled contracted, and uncontracted">${defs}${s}</svg>`;
 }
 /* ---- backtest: the same chain run over reported quarters ---- */
 function rampBacktestHTML(bt,R){
