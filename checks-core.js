@@ -155,6 +155,52 @@
         });
         failIf('ramp', id, !Array.isArray(R.scenarios) || R.scenarios.length < 3, 'ramp: fewer than three scenarios — no sensitivity envelope');
         failIf('ramp', id, !(R.scenarios || []).some(x => x.id === 'joint'), 'ramp: no joint-downside scenario — the bear case must be on the page');
+        failIf('ramp', id, !(R.calibration && R.calibration.rampMult > 0), 'ramp: calibration.rampMult missing or not positive');
+        failIf('ramp', id, !R.spot || !R.spotMult || !R.consensus, 'ramp: spot / spotMult / consensus missing — revenue and comparison cannot be derived');
+        failIf('ramp', id, !(R.earningRate > 0), 'ramp: earningRate missing — reported revenue cannot be converted to an earning-GPU-equivalent');
+        RAMP_GENS.forEach(g => failIf('ramp', id, T.some(t => t.gen === g) && !(R.spotMult[g] > 0), `ramp: generation ${g} used but has no spotMult`));
+        /* the gate re-derives the chain INDEPENDENTLY of app.js and binds the published backtest error.
+           A model that cannot retrodict has no business forecasting, so the tolerance is a hard failure. */
+        (function rampGate() {
+          const cal = R.calibration.rampMult, A2 = R.actuals || {};
+          const yr = q => 2026 + Math.floor((q - 1) / 4);
+          const ff = (k, n) => Math.min(Math.max(k / n, 0), 1);
+          const revAt = (q, d) => {
+            d = d || {}; let rev = 0, gpus = 0, itmw = 0;
+            for (const t of T) {
+              const rm = d.rampMult || 1, c2 = d.cal != null ? d.cal : cal;
+              const slip = (d.slipQtrs && qs(t.energize) >= (d.from != null ? d.from : -99)) ? d.slipQtrs : 0;
+              const rs = qs(t.rev) + slip;
+              const ctr = d.ctrMult != null ? (t.signed || 0) + (t.ctr - (t.signed || 0)) * d.ctrMult : t.ctr;
+              const gp = t.gpus * ((d.genDensity && d.genDensity[t.gen]) || 1);
+              const nC = Math.max(1, Math.ceil(t.rampQtrs * rm)), nU = Math.max(1, Math.ceil(t.rampQtrs * rm * c2));
+              const f = ctr * ff(q - rs + 1, nC) + (1 - ctr) * ff(q - rs + 1, nU);
+              if (f <= 0) continue;
+              const spot = (R.spot[String(d.spotFlat ? 2026 : yr(q))] || 0) * (d.spotMult || 1);
+              let rate = d.rateCap != null ? Math.min(t.rate, d.rateCap) : t.rate * (d.rateMult || 1);
+              if (d.vintageDecay) rate *= Math.pow(1 - d.vintageDecay, Math.max(0, (q - rs) / 4));
+              rev += gp * f * (ctr * rate + (1 - ctr) * spot * (R.spotMult[t.gen] || 1)) * 2190 / 1e6;
+              gpus += gp * f; itmw += t.itMW * f;
+            }
+            return { rev, gpus, itmw };
+          };
+          const errs = Object.entries(A2).map(([q, a]) => Math.abs(revAt(qs(q)).rev / a.aiRevM - 1));
+          const mape = errs.reduce((x, y) => x + y, 0) / (errs.length || 1);
+          failIf('ramp', id, !(mape <= 0.25), `ramp backtest: mean absolute error ${(mape * 100).toFixed(1)}% exceeds the 25% tolerance — the chain does not reproduce reported quarters`);
+          warnIf('ramp', id, mape > 0.15, `ramp backtest: mean absolute error ${(mape * 100).toFixed(1)}% above the 15% target`);
+          // critical IT MW and GPUs must ramp on the SAME fraction, or the two published columns divide to a false density
+          const last = revAt(20), kw = last.itmw * 1000 / last.gpus;
+          const nameplateKw = T.reduce((x, t) => x + t.itMW, 0) * 1000 / T.reduce((x, t) => x + t.gpus, 0);
+          failIf('ramp', id, Math.abs(kw / nameplateKw - 1) > 0.08,
+            `ramp: terminal IT-MW/GPU ratio ${kw.toFixed(2)} kW diverges >8% from the nameplate ${nameplateKw.toFixed(2)} kW — the two columns are on different ramps`);
+          // every scenario must actually move the answer, and the joint case must be the worst of them
+          const base = revAt(20).rev;
+          const outs = (R.scenarios || []).map(sc => ({ id: sc.id, rev: revAt(20, sc.d || {}).rev }));
+          outs.forEach(o => { if (o.id !== 'base') failIf('ramp', id, Math.abs(o.rev / base - 1) < 0.001, `ramp scenario '${o.id}': changes nothing — it is not a sensitivity`); });
+          const joint = outs.find(o => o.id === 'joint');
+          const worstSingle = Math.min(...outs.filter(o => !['base', 'joint', 'uncal', 'denselow'].includes(o.id)).map(o => o.rev));
+          if (joint) failIf('ramp', id, joint.rev > worstSingle + 1e-6, 'ramp: the joint downside is not worse than the worst single scenario — it is not a joint case');
+        })();
       }
       failIf('capital', id, !(c.shares > 0), 'shares must be > 0');
       failIf('capital', id, !(c.price > 0), 'price must be > 0');

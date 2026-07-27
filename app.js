@@ -332,7 +332,6 @@ const RAMP_START=3,RAMP_END=20,RAMP_HIST=-1,RAMP_CONS_HARD=14;   // consensus is
 function rampApplySc(t,d){
   if(!d||!Object.keys(d).length)return t;
   const o={...t};
-  if(d.rampMult)o.rampQtrs=Math.max(1,Math.ceil(t.rampQtrs*d.rampMult));
   if(d.rateCap!=null)o.rate=Math.min(t.rate,d.rateCap);
   if(d.rateMult)o.rate=t.rate*d.rateMult;
   if(d.genDensity&&d.genDensity[t.gen])o.gpus=Math.round(t.gpus*d.genDensity[t.gen]);
@@ -342,8 +341,8 @@ function rampApplySc(t,d){
   return o;
 }
 function rampQuarters(R,sc,from,to){
-  const cal=(R.calibration&&R.calibration.rampMult)||1;
   const d={...((sc&&sc.d)||{})};
+  const cal=d.cal!=null?d.cal:((R.calibration&&R.calibration.rampMult)||1);
   const YR=s=>2026+Math.floor((s-1)/4);   // serial 1 = 2026Q1 … 20 = 2030Q4
   const spotOf=s=>{const base=R.spot[String(d.spotFlat?2026:YR(s))]||0;return base*(d.spotMult||1);};
   const TR=R.tranches.map(t=>rampApplySc(t,d));
@@ -365,7 +364,10 @@ function rampQuarters(R,sc,from,to){
       const er=t.ctr*vr+(1-t.ctr)*spotOf(s)*(R.spotMult[t.gen]||1);
       const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;});
     const grossMW=TR.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
-    const itMW=TR.reduce((a,t)=>{const rs=RAMP_QS(t.rev),f=Math.min(Math.max((s-rs+1)/t.rampQtrs,0),1);return a+t.itMW*f;},0);
+    const itMW=TR.reduce((a,t)=>{const rs=RAMP_QS(t.rev),um=(d.rampMult||1)*cal;
+      const ff=(k,n)=>Math.min(Math.max(k/n,0),1);
+      const f=t.ctr*ff(s-rs+1,Math.max(1,Math.ceil(t.rampQtrs*(d.rampMult||1))))+(1-t.ctr)*ff(s-rs+1,Math.max(1,Math.ceil(t.rampQtrs*um)));
+      return a+t.itMW*f;},0);
     const lbl=RAMP_QL(s);const cons=(R.consensus||{})[lbl]||null;
     out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,grossMW,itMW,nCamps:Object.keys(camps).length,
       mining:(R.mining||{})[lbl]||0,consTot:cons?cons[0]:null,consAI:cons?cons[1]:null,
@@ -426,7 +428,7 @@ function rampTip(e,html){const wrap=e.currentTarget&&e.currentTarget.closest?e.c
   if(x+t.offsetWidth>w.width-6)x=w.width-t.offsetWidth-6;if(x<2)x=2;t.style.left=x+'px';t.style.top=y+'px';}
 function rampTipHide(){if(RAMP_TIP_EL)RAMP_TIP_EL.style.display='none';}
 /* ---- chart builders: each emits a ghost layer (full picture, faint) + a reveal layer clipped at the scrub time ---- */
-const RAMP_GANTT={W:960,ml:150,mr:56,d0:2025.6,d1:2031.2};
+const RAMP_GANTT={W:960,ml:150,mr:56,d0:2024.9,d1:2031.2};
 function rampGanttX(dec){const G=RAMP_GANTT;return G.ml+(dec-G.d0)*((G.W-G.ml-G.mr)/(G.d1-G.d0));}
 function rampGanttHTML(R){
   const G=RAMP_GANTT,W=G.W;
@@ -547,7 +549,10 @@ function rampRevHTML(Q,mode){
     Q.forEach((q,i)=>{let y0=mt+ph;
       const parts=[['mining',q.mining,'var(--far)','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],RAMP_GEN[g].c,RAMP_GEN[g].n])];
       parts.forEach(([g,v,col])=>{if(v<1)return;const h=(v/max)*ph;
-        body+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(h,0.5).toFixed(1)}" fill="${col}" style="stroke:var(--card);stroke-width:1.5"/>`;y0-=h;});});
+        body+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(h,0.5).toFixed(1)}" fill="${col}" style="stroke:var(--card);stroke-width:1.5"/>`;y0-=h;});
+      // the consensus line is AI-cloud only, so mark where AI ends on each bar — the line must never be read against a mining-inclusive top
+      if(q.mining>0&&q.consAI!=null){const yAI=Y(q.rev);
+        body+=`<line x1="${(X(i)-bw/2).toFixed(1)}" y1="${yAI.toFixed(1)}" x2="${(X(i)+bw/2).toFixed(1)}" y2="${yAI.toFixed(1)}" style="stroke:var(--ink);stroke-width:1.4;stroke-dasharray:3 2"/>`;}});
     if(consPts.length){body+=`<path d="M${consPts.map(([i,c])=>`${X(i).toFixed(1)},${Y(c).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
       consPts.forEach(([i,c])=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(c).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
   }
@@ -651,8 +656,8 @@ function rampRevLegend(m){
   const genLeg=Object.entries(RAMP_GEN).map(([k,g])=>`<span class="bo-leg"><i style="background:${g.c}"></i>${g.n}</span>`).join('');
   const lineLeg=(col,lab)=>`<span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed ${col}"></i>${lab}</span>`;
   return m==='street'
-    ?`<span class="bo-leg"><i style="height:2px;border-radius:0;background:var(--indigo)"></i>model (total)</span>${lineLeg('var(--ink-soft)','consensus (Bloomberg)')}<span class="bo-leg"><i style="background:rgba(91,122,92,.4)"></i>model above street</span><span class="bo-leg"><i style="background:rgba(170,107,79,.4)"></i>below</span>`
-    :`${genLeg}<span class="bo-leg"><i style="background:var(--far)"></i>BTC mining (residual)</span>${lineLeg('var(--ink-soft)','consensus (Bloomberg)')}`;}
+    ?`<span class="bo-leg"><i style="height:2px;border-radius:0;background:var(--indigo)"></i>model — AI cloud</span>${lineLeg('var(--ink-soft)','consensus — AI cloud (Bloomberg)')}<span class="bo-leg"><i style="background:rgba(91,122,92,.4)"></i>model above street</span><span class="bo-leg"><i style="background:rgba(170,107,79,.4)"></i>below</span>`
+    :`${genLeg}<span class="bo-leg"><i style="background:var(--far)"></i>BTC mining (residual)</span>${lineLeg('var(--ink-soft)','consensus — AI cloud (Bloomberg)')}`;}
 function rampStop(){if(RAMP_INTRO_TO){clearTimeout(RAMP_INTRO_TO);RAMP_INTRO_TO=0;}
   RAMP_PLAYING=false;if(RAMP_RAF)cancelAnimationFrame(RAMP_RAF);if(RAMP_IV)clearInterval(RAMP_IV);RAMP_RAF=0;RAMP_IV=null;
   const b=document.getElementById('rampPlayBtn');if(b)b.textContent=(RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play';}
@@ -740,8 +745,12 @@ function rampApply(){
   D('rs-it',qp?q.itMW-qp.itMW:null,v=>Math.round(v).toLocaleString());
   D('rs-rev',qp?(q.rev+q.mining)-(qp.rev+qp.mining):null,v=>'$'+Math.round(v).toLocaleString()+'M');
   D('rs-blend',qp?q.blend-qp.blend:null,v=>'$'+v.toFixed(2));
-  const d=q.consAI!=null?q.rev/q.consAI-1:null;
-  S('rs-street',d==null?'—':(d>=0?'+':'')+Math.round(d*100)+'%');
+  let d=q.consAI!=null?q.rev/q.consAI-1:null,dLbl=null;
+  if(d==null){const lastC=[...C.Q].reverse().find(x=>x.consAI!=null&&x.s<=cur);
+    if(lastC){d=lastC.rev/lastC.consAI-1;dLbl=lastC.lbl;}}
+  S('rs-street',d==null?'—':(d>=0?'+':'')+Math.round(d*100)+'%'+(dLbl?'*':''));
+  const stLab=document.querySelector('#rs-street')?.previousElementSibling;
+  if(stLab)stLab.textContent=dLbl?`vs street (${dLbl})`:'vs street';
   const rsEl=document.getElementById('rs-street');if(rsEl)rsEl.style.color=d==null?'':(d>=0?'var(--pine-ink)':'var(--clay-ink)');
   // the dispatch
   const cc=document.getElementById('rampCall');
