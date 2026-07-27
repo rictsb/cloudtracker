@@ -350,7 +350,7 @@ function rampQuarters(R,sc,from,to){
   const s0=from!=null?from:RAMP_START, s1=to!=null?to:RAMP_END;
   for(let s=s0;s<=s1;s++){
     const by={hopper:0,blackwell:0,rubin:0,next:0},rv={hopper:0,blackwell:0,rubin:0,next:0},camps={};
-    let cum=0,prev=0,signed=0,ctr=0,rev=0;
+    let cum=0,prev=0,signed=0,ctr=0,rev=0,revC=0,revS=0;
     TR.forEach(t=>{
       const rs=RAMP_QS(t.rev),um=(d.rampMult||1)*cal;
       const ff=(k,n)=>Math.min(Math.max(k/n,0),1);
@@ -362,14 +362,15 @@ function rampQuarters(R,sc,from,to){
       let vr=t.rate;
       if(d.vintageDecay){const age=Math.max(0,(s-RAMP_QS(t.rev))/4);vr=t.rate*Math.pow(1-d.vintageDecay,age);}
       const er=t.ctr*vr+(1-t.ctr)*spotOf(s)*(R.spotMult[t.gen]||1);
-      const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;});
+      const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;
+      revC+=live*t.ctr*vr*2190/1e6; revS+=live*(t.signed||0)*vr*2190/1e6;});
     const grossMW=TR.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
     const itMW=TR.reduce((a,t)=>{const rs=RAMP_QS(t.rev),um=(d.rampMult||1)*cal;
       const ff=(k,n)=>Math.min(Math.max(k/n,0),1);
       const f=t.ctr*ff(s-rs+1,Math.max(1,Math.ceil(t.rampQtrs*(d.rampMult||1))))+(1-t.ctr)*ff(s-rs+1,Math.max(1,Math.ceil(t.rampQtrs*um)));
       return a+t.itMW*f;},0);
     const lbl=RAMP_QL(s);const cons=(R.consensus||{})[lbl]||null;
-    out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,grossMW,itMW,nCamps:Object.keys(camps).length,
+    out.push({s,lbl,by,rv,cum,added:cum-prev,signed,ctr,rev,revC,revS,grossMW,itMW,nCamps:Object.keys(camps).length,
       mining:(R.mining||{})[lbl]||0,consTot:cons?cons[0]:null,consAI:cons?cons[1]:null,
       blend:cum>0?rev*1e6/(cum*2190):0});}
   return out;
@@ -573,27 +574,27 @@ function rampCoverageHTML(Q){
   [0,0.25,0.5,0.75,1].forEach(g=>{s+=`<line x1="${ml}" y1="${Y(g).toFixed(1)}" x2="${W-mr}" y2="${Y(g).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
     `<text x="${ml-6}" y="${(Y(g)+3).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${g*100}%</text>`;});
   Q.forEach((q,i)=>{
-    if(q.cum<=0)return;
-    const sg=q.signed/q.cum, ct=q.ctr/q.cum;
+    if(q.rev<=0)return;
+    const sg=q.rev>0?q.revS/q.rev:0, ct=q.rev>0?q.revC/q.rev:0;
     const x=X(i)-bw/2;
     // three bands, separated by LIGHTNESS not pattern, so the collapse survives greyscale and small size
     s+=`<rect x="${x.toFixed(1)}" y="${Y(1).toFixed(1)}" width="${bw.toFixed(1)}" height="${ph.toFixed(1)}" fill="var(--line)" style="stroke:var(--card);stroke-width:1"/>`;
     s+=`<rect x="${x.toFixed(1)}" y="${Y(ct).toFixed(1)}" width="${bw.toFixed(1)}" height="${(ph*ct).toFixed(1)}" fill="url(#rampCovHatch)" style="stroke:var(--card);stroke-width:1"/>`;
     s+=`<rect x="${x.toFixed(1)}" y="${Y(sg).toFixed(1)}" width="${bw.toFixed(1)}" height="${(ph*sg).toFixed(1)}" fill="var(--indigo)" style="stroke:var(--card);stroke-width:1"/>`;
-    const tip=`<b>${q.lbl}</b><br>signed today ${Math.round(sg*100)}% of the fleet<br>modelled contracted at commissioning ${Math.round(ct*100)}%<br>uncontracted / spot ${Math.round((1-ct)*100)}%<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
+    const tip=`<b>${q.lbl}</b><br><b>share of REVENUE</b><br>signed today ${Math.round(sg*100)}%<br>modelled contracted ${Math.round(ct*100)}%<br>uncontracted / spot ${Math.round((1-ct)*100)}%<br><span style="color:var(--ink-soft)">by GPU count: ${Math.round(q.signed/q.cum*100)}% signed \u2014 revenue-weighting is the more conservative measure</span><br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
     s+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;
     if(i%4===0)s+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">${q.lbl}</text>`;
   });
   // the decay of the signed book as a POSITION encoding — the eye reads a falling line, not stacked areas
-  const live=Q.filter(q=>q.cum>0);
-  const path=live.map((q,k)=>`${X(Q.indexOf(q)).toFixed(1)},${Y(q.signed/q.cum).toFixed(1)}`).join(' L');
+  const live=Q.filter(q=>q.rev>0);
+  const path=live.map((q,k)=>`${X(Q.indexOf(q)).toFixed(1)},${Y(q.revS/q.rev).toFixed(1)}`).join(' L');
   s+=`<path d="M${path}" fill="none" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round"/>`;
   const f0=live[0],f1=live[live.length-1];
-  const p0=Math.round(f0.signed/f0.cum*100),p1=Math.round(f1.signed/f1.cum*100);
-  s+=`<circle cx="${X(Q.indexOf(f0)).toFixed(1)}" cy="${Y(f0.signed/f0.cum).toFixed(1)}" r="3" fill="var(--ink)"/>`;
-  s+=`<circle cx="${X(Q.indexOf(f1)).toFixed(1)}" cy="${Y(f1.signed/f1.cum).toFixed(1)}" r="3" fill="var(--ink)"/>`;
+  const p0=Math.round(f0.revS/f0.rev*100),p1=Math.round(f1.revS/f1.rev*100);
+  s+=`<circle cx="${X(Q.indexOf(f0)).toFixed(1)}" cy="${Y(f0.revS/f0.rev).toFixed(1)}" r="3" fill="var(--ink)"/>`;
+  s+=`<circle cx="${X(Q.indexOf(f1)).toFixed(1)}" cy="${Y(f1.revS/f1.rev).toFixed(1)}" r="3" fill="var(--ink)"/>`;
   s+=`<text x="${(X(Q.indexOf(f0))+9).toFixed(1)}" y="${(mt+11).toFixed(1)}" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${p0}% signed today</text>`;
-  s+=`<text x="${(W-mr+5).toFixed(1)}" y="${(Y(f1.signed/f1.cum)+3).toFixed(1)}" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${p1}%</text>`;
+  s+=`<text x="${(W-mr+5).toFixed(1)}" y="${(Y(f1.revS/f1.rev)+3).toFixed(1)}" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">${p1}%</text>`;
   const defs=`<defs><pattern id="rampCovHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#E9E4DA"/><rect width="2.4" height="6" fill="#7D90A0"/></pattern></defs>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Share of the fleet under contract by quarter: signed today, modelled contracted, and uncontracted">${defs}${s}</svg>`;
 }
@@ -777,9 +778,9 @@ function renderRamp(){
   const jointSc=(R.scenarios||[]).find(x=>x.id==='joint');
   const jl=jointSc?rampQuarters(R,jointSc).slice(-1)[0]:null;
   const jointARR=jl?((jl.rev+jl.mining)*4/1000):null;
-  const lastSignedPct=last.cum>0?Math.round(last.signed/last.cum*100):0;
+  const lastSignedPct=last.rev>0?Math.round(last.revS/last.rev*100):0;
   h+=`<div class="rampanswer"><div class="rampanswer-n">$${(last.rev*4/1000).toFixed(1)}B<span>exit ARR 2030, base case</span></div>`+
-     `<div class="rampanswer-b"><b>${jointARR?'$'+jointARR.toFixed(1)+'B':'—'}</b> on the joint downside · <b>${lastSignedPct}%</b> of the 2030 fleet is covered by contracts signed today`+
+     `<div class="rampanswer-b"><b>${jointARR?'$'+jointARR.toFixed(1)+'B':'—'}</b> on the joint downside · <b>${lastSignedPct}%</b> of 2030 revenue is covered by contracts signed today`+
      `${BT?` · retrodicts reported quarters to <b>${BT.mape.toFixed(0)}%</b> mean error`:''}</div></div>`;
   h+=`<div class="ssummary" style="margin:4px 4px 12px"><span>secured power <b>${(secured/1000).toFixed(1)} GW</b></span><span>modeled in-window <b>${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)} GW</b></span><span>GPUs 26Q3 <b>${(Q[0].cum/1000).toFixed(1)}k</b> → YE-30 <b>~${Math.round(last.cum/1000)}k</b></span><span>signed book today <b>~${signedK}k GPUs</b></span><span>exit ARR 2030 <b>$${(last.rev*4/1000).toFixed(1)}B</b> @ $${last.blend.toFixed(2)}/GPU-hr</span></div>`;
   // the time machine
@@ -795,7 +796,7 @@ function renderRamp(){
   h+=`<h4 class="sec">Coverage — how much of this is already sold</h4>`;
   h+=`<div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--indigo)"></i>signed today</span><span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>modelled contracted at commissioning</span><span class="bo-leg"><i style="background:var(--line)"></i>uncontracted / spot</span></div></div>`;
   h+=`<div class="bo-wrap">${rampCoverageHTML(Q)}<div class="bo-tip"></div></div>`;
-  h+=`<div class="legend2" style="margin:4px 4px 0">Signed-today coverage falls from <b>${Q[0].cum>0?Math.round(Q[0].signed/Q[0].cum*100):0}%</b> of the fleet to <b>${lastSignedPct}%</b> by 2030. Everything above the solid band is capacity this model assumes gets contracted but which carries no signature today — it is the largest single uncertainty on the page.</div>`;
+  h+=`<div class="legend2" style="margin:4px 4px 0">Measured as a share of <b>revenue</b>, not GPU count \u2014 the heading asks how much is <i>sold</i>, and revenue-weighting is the more conservative reading (21% of the 2030 fleet by count is 17% by revenue). Signed-today coverage falls from <b>${Q[0].rev>0?Math.round(Q[0].revS/Q[0].rev*100):0}%</b> to <b>${last.rev>0?Math.round(last.revS/last.rev*100):0}%</b> by 2030. Everything above the solid band is revenue this model assumes gets contracted but which carries no signature today \u2014 the largest single uncertainty on the page.</div>`;
   h+=`<h4 class="sec">Backtest — does the chain reproduce what IREN has already reported?</h4>`;
   h+=rampBacktestHTML(BT,R);
   h+=`<h4 class="sec">01 · Concrete — capacity tranches</h4>
