@@ -1294,6 +1294,12 @@
       ],
       "log": [
         {
+          "d": "2026-07-28",
+          "t": "note",
+          "s": "[edgar] via CORZ 8-K",
+          "x": "AMD signed its big colo commitment with CORZ ($14B/530MW + exclusive reservation on 2GW more, direct-only expansion) — RIOT's Rockdale AMD relationship did NOT scale into the anchor; AMD expansion capacity is now contractually exclusive to CORZ. Corsicana's anchor field narrows (MS's 'lease this summer' call still unfilled). RIOT prints 7/29."
+        },
+        {
           "d": "2026-07-23",
           "t": "note",
           "s": "[sell-side] MS initiation (Byrd)",
@@ -3722,8 +3728,8 @@
       "tk": "CORZ",
       "name": "Core Scientific",
       "model": "landlord",
-      "tier": "proven",
-      "contractedPct": 26,
+      "tier": "ig",
+      "contractedPct": 50,
       "termYrs": 12,
       "netDebt": 3380,
       "shares": 455,
@@ -3803,34 +3809,7 @@
           "leaseId": "corz-crwv-austin"
         },
         {
-          "n": "Pecos, TX (legacy + ph1)",
-          "mw": 300,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2027,
-          "mo": 6,
-          "prov": "estimated"
-        },
-        {
-          "n": "Hunt County (Dallas), TX",
-          "mw": 285,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2028,
-          "mo": 6,
-          "prov": "estimated"
-        },
-        {
-          "n": "Other secured uncontracted leasable",
-          "mw": 200,
-          "owned": true,
-          "region": "mid",
-          "yr": 2027,
-          "mo": 6,
-          "prov": "estimated"
-        },
-        {
-          "n": "Muskogee, OK expansion to ~1.5GW",
+          "n": "Muskogee, OK expansion to ~1.5GW (AMD exclusive reservation)",
           "mw": 450,
           "owned": true,
           "region": "cheap",
@@ -3839,19 +3818,77 @@
           "prov": "rumored"
         },
         {
-          "n": "Pecos, TX expansion to ~1.5GW",
+          "n": "Pecos, TX expansion to ~1.5GW (AMD exclusive reservation)",
           "mw": 450,
           "owned": true,
           "region": "cheap",
           "yr": 2029,
           "mo": 6,
           "prov": "rumored"
+        },
+        {
+          "n": "Pecos AMD ph1 (lead site; ~MW inferred, 1H27)",
+          "mw": 185,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed",
+          "leaseId": "corz-amd-direct"
+        },
+        {
+          "n": "Pecos AMD ph2 (~MW inferred)",
+          "mw": 115,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 6,
+          "prov": "disclosed",
+          "leaseId": "corz-amd-direct"
+        },
+        {
+          "n": "Hunt AMD (~MW inferred)",
+          "mw": 80,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "disclosed",
+          "leaseId": "corz-amd-direct"
+        },
+        {
+          "n": "Auburn + Dalton Ph3 (neocloud, AMD credit support)",
+          "mw": 150,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "disclosed",
+          "leaseId": "corz-neocloud-amd"
+        },
+        {
+          "n": "Hunt balance (AMD exclusive reservation)",
+          "mw": 205,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2028,
+          "mo": 12,
+          "prov": "estimated"
+        },
+        {
+          "n": "Other secured leasable (net of Auburn/Dalton3)",
+          "mw": 50,
+          "owned": true,
+          "region": "cheap",
+          "yr": 2027,
+          "mo": 12,
+          "prov": "estimated"
         }
       ],
       "basis": {
         "plannedRaise": "~$600M: buildout is overwhelmingly debt- and tenant-funded. Closed a $3.3B 7.75% senior secured notes offering (May 2026), used partly to repay the $1.0B 364-day term loan; CoreWeave prepaid ~$750M of fit-out (~$1.5M/MW); ~$2B FY26 capex covered by notes proceeds + BTC liquidation. Equity issuance is therefore modest (top-up ATM for expansion land/power), not a primary funding lever.",
         "equityDiscount": "0.05: 10-Q/A restatement disclosed a material weakness in ICFR (assets-for-demolition impairment), disclosure controls deemed ineffective for 2024-2025; small governance/reporting-quality discount. No founder supervoting (clean one-share-one-vote, which is why the CoreWeave merger could be voted down).",
-        "tier": "proven: single-tenant (CoreWeave ~100% of HPC colocation revenue) take-or-pay book; not yet diversified IG income despite long term and strong anchor."
+        "tier": "ig — OWNER RULING 7/28/26: AMD is a NAMED, A-rated counterparty with direct NNN leases (380MW) AND full 15-yr credit support wrapping the neocloud slice (150MW), 8-K filed same day — the strongest IG case in the universe by the CLSK-precedent standard (named + filed + second lease structure). CoreWeave book (~46% of contracted MW) remains non-IG"
       },
       "narrative": "Core Scientific is a landlord: it builds powered data-center shells and leases them to CoreWeave, which brings its own GPUs (colocation), under a 12-year, $10B+ take-or-pay book (~$850M average annual rent, ~590 MW across Denton, Dalton, Muskogee, Marble and Austin, ~80-85% facility margin). The CoreWeave all-stock acquisition collapsed in October 2025 when shareholders rejected it as undervalued, so CORZ stays independent and is racing to convert a ~1.9 GW gross / 1.3 GW leasable footprint plus Pecos and Muskogee 1.5 GW expansions into a multi-GW colocation platform. Legacy self-mining is in deliberate runoff (mining assets written down ~$266M, substantially all BTC being sold in 2026 to fund the AI build), so the investable question is how fast it signs a second anchor tenant beyond CoreWeave and energizes the pipeline against a ~$4.4B debt stack.",
       "bull": [
@@ -3911,17 +3948,23 @@
       ],
       "log": [
         {
+          "d": "2026-07-28",
+          "t": "lease",
+          "s": "[edgar] 8-K + Q2 call",
+          "x": "THE AMD PARTNERSHIP: $14B+/530MW/15yr/2.5% esc across 5 campuses — 380MW direct NNN (Pecos lead 1H27, Hunt, Muskogee) + 150MW neocloud (Auburn/Dalton3) with FULL AMD 15-yr credit support, no equity step-in. AMD warrant (market strike). EXCLUSIVE reservation up to 2 GW more. Implied $1.76M/MW·yr avg revenue → ~1.44 NOI (no rent credits this time — self-funded build ~$6B via project bonds, ~$1B/$2M-per-MW already committed). Q2: colo revenue $137M, 437MW billing AHEAD of schedule, liquidity $1.8B, mining at 2 sites winding down. BTC 547→848 (BOUGHT 301 — reversal). Targets ~600MW/yr delivery cadence 2028; >2GW new-site pipeline late-2028-2030, new site to market ~YE26. Book now $24B/1.1GW two-customer. Owner rulings: book committed + tier proven→IG (named A-rated counterparty)."
+        },
+        {
           "d": "2026-07-27",
           "t": "lease",
           "s": "[semianalysis] tape + owner ruling",
           "x": "CoreWeave book split to per-campus lease records (Denton 262 / Dalton 175 / Muskogee 70 / Marble 65). SA's rent-credit flag CONFIRMED against the 4/21/26 8-K EX-99.2: ~$879M of credits (capex repayment $1.5M/MW at 50% of each monthly invoice ~29mo + $126M end-of-term) — term-avg NOI 1.20→1.07 (−11%), near-term NOI halved 2026-27. Credits = repayment of CRWV-funded conversion capex (interest-free vendor loan); deduction correct since we never charge CORZ that capex. Austin excluded (no credits, $115/kW, 3.0% esc, head-lease drag already in its 0.60)."
         }
       ],
-      "btc": 547,
-      "thesis": "Undervalued vs its CoreWeave colo book (~590 MW, 12-yr) plus ~1.3 GW of pipeline; the market discounts the single-tenant concentration. The CoreWeave relationship is both the value and the risk.",
+      "btc": 848,
+      "thesis": "Two 500MW+ anchor customers in 18 months: the CoreWeave book (590MW, credit-dragged early years) plus today's $14B/530MW AMD partnership — direct A-rated NNN leases, full credit support on the neocloud slice, and an exclusive AMD reservation over 2 more GW at Pecos/Hunt/Muskogee. The $24B contracted book now spans 1.1GW with 437MW already billing ahead of schedule, and mining is down to two sites on its way out. Execution risks: $6B of self-funded build ($11-12M/MW) still needs project bonds, and the AMD reservation locks the best expansion capacity to one buyer's timetable.",
       "verified": {
         "capital": "2026-06-30",
-        "contracts": "2026-06-30"
+        "contracts": "2026-07-28"
       },
       "leases": [
         {
@@ -3983,6 +4026,30 @@
           "mw": 65,
           "grossTotalM": 1163,
           "source": "Per-campus split 7/27/26 of the aggregate ~$10.2B/570MW/12yr CoreWeave book (8-Ks Jun 2024-2025) — Marble, NC; gross pro-rata by MW (SA's per-campus TCVs are modeled, not disclosed); SA: Y1 NOI $930k @3.5% esc ≈ our 1.2 term-avg (their 12yr avg factor 1.22 → 1.13, within 6%). CREDITS CONFIRMED (8-K 4/21/26 EX-99.2, sole disclosing filing): capex credit $1.5M/MW ex-Austin (~$754-859M) applied at 50% of EACH MONTHLY invoice until exhausted (~29 months per campus — rent literally halves for yrs 1-2.4) + End-of-Term credit $125.7M; total ~$879M ≈ 8.6% of the gross book. Term-avg NOI cut 1.20→1.07 (gross rent $1.46 × ~82% margin − $125k/MW·yr credit amortization). CORZ's own DSCR nets these repayments; its printed NOI is GROSS. Front-loading NOT representable in one term-avg: real shape 2026 −49%, 2027 −50%, 2028 −37%, 2029+ ~nil"
+        },
+        {
+          "id": "corz-amd-direct",
+          "counterparty": "AMD (direct, triple-net)",
+          "mw": 380,
+          "termYrs": 15,
+          "noiPerMWyr": 1.44,
+          "kind": "build-to-spec",
+          "grossTotalM": 10038,
+          "effective": true,
+          "signed": "2026-07",
+          "source": "8-K + Q2 call 7/28/26: $14B+ base contracted revenue total across 530MW/5 campuses, 15yr, 2.5% escalators; ~380MW DIRECT NNN across Pecos/Hunt/Muskogee (gross pro-rata by MW — allocation inferred); NOI 1.44 = $1.761M/MW·yr avg revenue × ~82% margin; NO CoreWeave-style capex credits (CORZ self-funds $11-12M/MW, ~$6B via project bonds). AMD warrant issued (market strike, vests on commercial conditions). AMD holds EXCLUSIVE RESERVATION on up to 2 ADDITIONAL GW at Pecos/Hunt/Muskogee — CORZ cannot market that capacity while reserved; future leases at substantially similar terms"
+        },
+        {
+          "id": "corz-neocloud-amd",
+          "counterparty": "Neocloud (undisclosed) · AMD full 15-yr credit support",
+          "mw": 150,
+          "termYrs": 15,
+          "noiPerMWyr": 1.44,
+          "kind": "build-to-spec",
+          "grossTotalM": 3962,
+          "effective": true,
+          "signed": "2026-07",
+          "source": "8-K + Q2 call 7/28/26: ~150MW modified gross lease across Auburn + Dalton Ph3; AMD provides FULL 15-yr credit support with NO equity step-in rights (mgmt contrast vs other market structures); economics 'in line with market'; Dalton and Auburn now fully leased. Gross pro-rata of the $14B"
         }
       ],
       "sharesReported": 317.9
@@ -5951,6 +6018,11 @@
       "tk": "APLD",
       "note": "MACQUARIE RE-MARK at FY26 10-K (filing ~this week): deck shows MAM 15% common in HPC TopCo 2 (our basis carried 10%/$130M) + liquidation pref = max(accreted+FMV common, 1.8x MOIC = $1.62B on $900M drawn) + $2.25M/MW future draw right. Verify TopCo-2 perimeter (PF1 only vs future campuses) and whether the MOIC floor or the 15% common FMV binds → seniorClaims 1,100 likely rises materially (MS's EW rests on full-draw math)",
       "added": "2026-07-27"
+    },
+    {
+      "tk": "CORZ",
+      "note": "AMD build financing: ~$6B project bonds planned (CoreWeave SPV pattern) → committedDebt as each prints; AMD warrant terms (market strike, commercial-condition vesting) → FD shares at the Q2 10-Q; the 2GW exclusive reservation blocks marketing that capacity — watch reservation windows/expiry in the filed agreement",
+      "added": "2026-07-28"
     }
   ],
   "outlook": {
