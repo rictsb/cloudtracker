@@ -5946,6 +5946,179 @@
       },
       "thesis": "The Bitfarms successor owns three zoned, power-secured campuses (478MW, all existence-derisked) with ~$920M of liquidity and zero leases — the market prices lease doubt, we credit the powered land. Three targeted YE26 leases are the catalysts; both converts are out-of-the-money, so dilution waits on success.",
       "sharesReported": 603.8
+    },
+    {
+      "tk": "SHAZ",
+      "name": "Sharon AI Holdings",
+      "model": "owner",
+      "tier": "proven",
+      "contractedPct": 85,
+      "termYrs": 5.5,
+      "leaseQ": 3,
+      "netDebt": -300,
+      "committedDebt": 0,
+      "seniorClaims": 0,
+      "shares": 38.1,
+      "sharesReported": 29.8,
+      "price": 45.85,
+      "legacyEV": 0,
+      "plannedRaise": 500,
+      "equityDiscount": 0.1,
+      "signedRate": 13.5,
+      "genAccess": 1.0,
+      "sites": [
+        {
+          "n": "NEXTDC M2 Melbourne — NV-backstop block (40MW leased colo)",
+          "mw": 40,
+          "owned": false,
+          "region": "au",
+          "yr": 2026,
+          "mo": 9,
+          "prov": "disclosed"
+        },
+        {
+          "n": "NEXTDC M3/S6/S3 ops clusters (Melb/Syd, active)",
+          "mw": 15,
+          "owned": false,
+          "region": "au",
+          "yr": 2026,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "GreenSquareDC (AU, leased colo)",
+          "mw": 15,
+          "owned": false,
+          "region": "au",
+          "yr": 2027,
+          "mo": 3,
+          "prov": "disclosed"
+        },
+        {
+          "n": "Undisclosed 3rd-party DCs (AU + NZ)",
+          "mw": 30,
+          "owned": false,
+          "region": "au",
+          "yr": 2027,
+          "mo": 6,
+          "prov": "disclosed"
+        },
+        {
+          "n": "2nd GB300 DC Australia — NV-backstop part 2",
+          "mw": 32,
+          "owned": false,
+          "region": "au",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "disclosed"
+        }
+      ],
+      "contracts": [
+        {
+          "id": "shaz-nvda-backstop",
+          "counterparty": "NVIDIA (6-yr revenue backstop — FLOOR, not target)",
+          "totalRevM": 4880,
+          "termYrs": 6,
+          "signed": "2026-06",
+          "gen": "blackwell",
+          "mw": 72,
+          "inferredMW": false,
+          "effective": true,
+          "source": "[semianalysis 8/3/26] $4.88B/6yr backstop on 40,000 GB300s/72MW — avg floor $2.32/GPU-hr ($3.65 Y1 → $0.99 Y6); NVIDIA takes an UNDISCLOSED revenue share above the floor (SA models 40-60%); Sharon free to rent at market on any tenor. NATURE: bankable downside floor enabling debt, not take-or-pay demand — 7.3% project IRR if floor-only, 22.8-30.5% at market placement. The only public Neocloud that is an NVIDIA Cloud Partner WITH a backstop"
+        },
+        {
+          "id": "shaz-ailab-nz",
+          "counterparty": "Global AI Lab (New Zealand)",
+          "totalRevM": 1300,
+          "termYrs": 5,
+          "signed": "2026-07",
+          "gen": "blackwell",
+          "mw": 14,
+          "inferredMW": true,
+          "effective": true,
+          "source": "[semianalysis] $1.3B/5yr, ~7,000 GPUs (GB300 inferred from 2.0kW/GPU), $18.9M/MW·yr implied, $4.31/hr, 44.8% project IRR"
+        },
+        {
+          "id": "shaz-esds",
+          "counterparty": "ESDS",
+          "totalRevM": 1300,
+          "termYrs": 5,
+          "signed": "2026-04",
+          "gen": "blackwell",
+          "mw": 15,
+          "inferredMW": false,
+          "effective": true,
+          "source": "[semianalysis] $1.3B/5yr, 8,208 B300, 15MW, $16.7M/MW·yr, $3.48/hr, 32.4% IRR"
+        },
+        {
+          "id": "shaz-globaltech",
+          "counterparty": "Global technology company (APAC presence, undisclosed)",
+          "totalRevM": 1000,
+          "termYrs": 5,
+          "signed": "2026-05",
+          "gen": "blackwell",
+          "mw": 10,
+          "inferredMW": true,
+          "effective": true,
+          "source": "[semianalysis] $1.0B/5yr, ~4,752 GB300 (residual inference), 10MW, $18.9M/MW·yr, $4.56/hr — the strongest print, 51.9% IRR"
+        },
+        {
+          "id": "shaz-shortbook",
+          "counterparty": "M3 Supercluster + Cisco Secure AI Factory (1-yr book, aggregate)",
+          "totalRevM": 150,
+          "termYrs": 2,
+          "signed": "2026-03",
+          "gen": "mixed",
+          "mw": 4,
+          "inferredMW": true,
+          "effective": true,
+          "source": "[semianalysis] ~$75M/yr short-tenor: M3 1,016 B200/H200 (~$36M/yr, $3.99/hr) + Cisco 1,024 B300 (~$39M/yr, $4.30/hr) — the flexible-tenor book the backstop model is built to serve"
+        }
+      ],
+      "basis": {
+        "tier": "proven — strong book but young: deSPAC Feb-26, sole-source entry (SA model, filings verification pending), NVIDIA floor is credit support on 57% of TCV but the backstop is a FLOOR not IG demand [semianalysis]",
+        "signedRate": "$-weighted from the registry: (4880+1300+1000+1300)÷(72×6+15×5+10×5+14×5) = $13.5M/MW·yr — GB300-era book, consistent with our gen ladder (HIVE 14.5 GB200-sovereign, IREN 10.1); SA's fleet average prints $13.9M/MW·yr [semianalysis]",
+        "plannedRaise": "~$500M equity slice of the $2.8B remaining funding gap ($5.15B full-build capex at $39M/MW less $2.35B raised); SA sizes up to $4.1B of secured GPU-backed debt available at 80% LTC/1.3x DSCR, so the equity need is the ~20% residual [semianalysis]",
+        "equityDiscount": "0.10 — deSPAC microcap: convert overhang ≈96% of common at full conversion, anchor-investor concentration (~$1.95B from a few institutions), USD.AI DeFi facility as a reported funding source, dual AU/US structure [semianalysis]",
+        "netDebt": "LOW CONFIDENCE −$300M net cash: converts kept as debt at $45.85 = $1,050M (2031s @$48.24 OTM by a hair + 2032s @$99.66; pre-existing $199M @~$24 ITM → converted into FD) less est. ~$1.35B remaining cash of the $2.35B raised (June $900M equity + $700M converts barely deployed; 34MW active). VERIFY at first consolidated filing — the single weakest input [semianalysis]"
+      },
+      "narrative": "Australia's listed Neocloud — the only public GPU cloud that is an NVIDIA Cloud Partner WITH an NVIDIA revenue backstop: 30x capacity growth in four quarters (4→132MW leased colo), 62,000 GPUs by mid-2027, and a contract book printing at the top of the GB300 ladder.",
+      "thesis": "The NVIDIA backstop ($4.88B floor on 40k GB300s) solved capital and offtake at once, letting a 4MW Australian cloud contract 132MW and an $8.6B book in four quarters — with third-party prints at $16.7-18.9M/MW·yr, the top of our gen ladder. The market prices the deSPAC wrapper and the ~96% convert overhang; the book prices like a top-quartile neocloud. Kill risks: $2.8B funding gap (financeable via GPU-secured debt but unraised), sole-source diligence pending first filings, and the floor-not-demand nature of 57% of the TCV.",
+      "bull": [
+        "Third-party contracts at $4.31-4.56/GPU-hr with 44-52% project IRRs — the best prints in the registry ladder",
+        "NVIDIA alignment: innermost partner pool (NCP + backstop) → allocation and go-to-market support",
+        "$4.1B of secured GPU-debt capacity vs a $2.8B gap — fundable without torching equity",
+        "Short-tenor compute is structurally undersupplied; the backstop makes serving it financeable"
+      ],
+      "bear": [
+        "Floor-only scenario = 7.3% project IRR ≈ breakeven after corporate costs on 57% of TCV",
+        "Full conversion nearly doubles the share count; June converts at $48-100 strikes cap upside psychology",
+        "Sole-source entry: every number here is SA-modeled until filings verify",
+        "NVIDIA's undisclosed revenue share (40-60% modeled) above the floor caps realized upside"
+      ],
+      "catalysts": [
+        "First consolidated filing (capital stack verification)",
+        "Placement of the 40k-GPU NVIDIA block on market-rate contracts (each $1/GPU-hr ≈ +$175M/yr retained)",
+        "Additional take-or-pay signings (mgmt stated intent)",
+        "62k-GPU fleet milestone mid-2027"
+      ],
+      "risks": [
+        "Funding gap execution in a rate-backup market",
+        "GPU-secured lending market depth (USD.AI dependence)",
+        "AU/NZ power and colo cost inflation",
+        "NUAI/TCDC divestiture trailing obligations"
+      ],
+      "finMix": "Converts ($1.25B, 5.2% blended) + June equity ($900M + pre-funded warrants) + planned GPU-secured project debt; customer prepays ~15%",
+      "log": [
+        {
+          "d": "2026-08-03",
+          "t": "contract",
+          "s": "[semianalysis] full model (Richard-forwarded)",
+          "x": "INITIAL ENTRY, sole-source SA model — filings verification queued. Book $8.63B TCV: NVIDIA backstop $4.88B/6yr/72MW FLOOR ($2.32/hr avg, share above floor undisclosed) + ESDS $1.3B/5yr + Global AI Lab NZ $1.3B/5yr + global tech $1.0B/5yr + $150M short book. 132MW leased colo (NEXTDC/GreenSquareDC/AU+NZ), 116MW offtake-contracted, 34MW active, 62k GPUs by mid-2027. Capital: $2.35B raised (incl. $74M TCDC stake sale TO NUAI), $2.8B gap at $39M/MW. FD 38.1M at $45.85 (2031 converts $48.24 OTM by a hair — FD jumps ~7.3M shares if price crosses; 2032s at $99.66). SA fleet model: $1.59B annual revenue at full deployment, 41.8% EBIT Y1."
+        }
+      ],
+      "raises": [],
+      "verified": {}
     }
   ],
   "watchItems": [
@@ -6023,6 +6196,16 @@
       "tk": "CORZ",
       "note": "AMD build financing: ~$6B project bonds planned (CoreWeave SPV pattern) → committedDebt as each prints; AMD warrant terms (market strike, commercial-condition vesting) → FD shares at the Q2 10-Q; the 2GW exclusive reservation blocks marketing that capacity — watch reservation windows/expiry in the filed agreement",
       "added": "2026-07-28"
+    },
+    {
+      "tk": "SHAZ",
+      "note": "SOLE-SOURCE ENTRY (SemiAnalysis 8/3/26) — verify at first consolidated filing: cash/netDebt (the −$300M is LOW confidence), convert terms (2031 $48.24 / 2032 $99.66 / pre-existing ~$24), pre-funded warrants 6.37M, NVIDIA backstop revenue-share %, USD.AI $500M facility reality; ALSO: $45.85 sits just under the $48.24 conversion strike — FD +7.3M shares and netDebt −$350M flip if it crosses",
+      "added": "2026-08-03"
+    },
+    {
+      "tk": "NUAI",
+      "note": "TCDC ownership re-verify: Sharon AI SOLD its 50% TCDC stake to NUAI for $74M (per SA 8/3/26) — our NUAI entry models ~20% JV economics under Apollo/Stream; if NUAI now holds Sharon's half too, its economic share (and capital need) changed materially. Reconcile at next NUAI filing",
+      "added": "2026-08-03"
     }
   ],
   "outlook": {
