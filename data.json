@@ -1371,7 +1371,7 @@
       "name": "Bitdeer",
       "model": "landlord",
       "tier": "proven",
-      "contractedPct": 5,
+      "contractedPct": 9,
       "termYrs": 10,
       "leaseQ": 3,
       "netDebt": 444,
@@ -1442,30 +1442,12 @@
           "prov": "disclosed"
         },
         {
-          "n": "Tydal NO ph.1",
-          "mw": 50,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2026,
-          "mo": 12,
-          "prov": "disclosed"
-        },
-        {
           "n": "Knoxville TN ph.2",
           "mw": 49,
           "owned": true,
           "region": "mid",
           "yr": 2027,
           "mo": 3,
-          "prov": "disclosed"
-        },
-        {
-          "n": "Tydal NO ph.2",
-          "mw": 175,
-          "owned": true,
-          "region": "cheap",
-          "yr": 2027,
-          "mo": 6,
           "prov": "disclosed"
         },
         {
@@ -1503,6 +1485,35 @@
           "yr": 2029,
           "mo": 6,
           "prov": "rumored"
+        },
+        {
+          "n": "Tydal Ph1 (Volta/AI lab — commencement 12/31/26)",
+          "mw": 60.5,
+          "owned": true,
+          "region": "eu",
+          "yr": 2026,
+          "mo": 12,
+          "prov": "disclosed",
+          "leaseId": "btdr-tydal"
+        },
+        {
+          "n": "Tydal Ph2 (Volta/AI lab — commencement 3/31/27)",
+          "mw": 60.5,
+          "owned": true,
+          "region": "eu",
+          "yr": 2027,
+          "mo": 3,
+          "prov": "disclosed",
+          "leaseId": "btdr-tydal"
+        },
+        {
+          "n": "Tydal expansion — 2 add'l halls, 47MW gross ≈ 43 IT (developing, 2H27, no tenant; campus 180 gross total)",
+          "mw": 43,
+          "owned": true,
+          "region": "eu",
+          "yr": 2027,
+          "mo": 9,
+          "prov": "disclosed"
         }
       ],
       "raises": [
@@ -1572,6 +1583,12 @@
       ],
       "log": [
         {
+          "d": "2026-08-04",
+          "t": "lease",
+          "s": "[edgar]/[company-ir] PR 8/4/26",
+          "x": "TYDAL EFFECTIVE: $4.7B/16yr modified gross with Volta (NCP; end customer = leading AI lab; Dell tech provider) — 121 IT/133 gross MW, $2.4M/MW·yr revenue, ~90% NOI = $2.16M/MW·yr NEW TOP PRINT (prior top: GLXY 2.06, WULF-Anthropic 2.01); 3% esc; 8-yr option to $8.0B (excluded); TENANT NO-FEE TERMINATION AT YR 10; ~$1.3B JPM-arranged LCs; Ph1 12/31/26, Ph2 3/31/27; +2 expansion halls 47MW gross (43 IT) developing 2H27 per owner instruction; ~$500M remaining capex ($4M/MW conversion); 100% BTDR-owned, zero equity issued; project financing in motion (MS/Barclays/Northland) — committedDebt when it prints. Replaces the June signed-not-effective placeholder (180MW/10yr/1.25 assumed)."
+        },
+        {
           "d": "2026-06-18",
           "t": "earnings",
           "s": "6-K",
@@ -1608,23 +1625,24 @@
         "plannedRaise": "ATM cut to $700M, converts preferred; Tydal lease → project debt",
         "equityDiscount": "Jihan Wu ~75% voting control + foreign-private-issuer + controlled-company + index exclusion"
       },
-      "thesis": "Cheap against its ~1.4 GW spec pipeline, but upside is gated by a 15% governance discount (Jihan Wu control) and a near-zero contracted book. Tydal becoming an effective lease is the catalyst.",
+      "thesis": "The catalyst landed 8/4/26: Tydal went effective at $4.7B/16yr with a 90% NOI margin — $2.16M/MW·yr, the top print on our entire tape — on ~$4M/MW of remaining conversion capex, an NOI-on-cost yield no US build can touch. The book jumps from zero to $4.7B against a ~$6B market cap, with Rockdale/Clarington/Niles (~1GW) still unleased behind it and Tydal financing expected to throw off excess capital. Watch: the tenant's no-fee termination right at year 10, Volta's own credit (LCs cover ~28% of TCV), and the 15% governance discount stays until the structure says otherwise.",
       "verified": {
         "capital": "2026-08-03",
-        "contracts": "2026-08-03"
+        "contracts": "2026-08-04"
       },
       "leases": [
         {
           "id": "btdr-tydal",
-          "counterparty": "Undisclosed",
-          "mw": 180,
-          "termYrs": 10,
-          "noiPerMWyr": 1.25,
+          "counterparty": "Volta (NCP platform) — end customer: leading AI lab; Dell tech provider; ~$1.3B JPM-arranged LCs",
+          "mw": 121,
+          "termYrs": 16,
+          "noiPerMWyr": 2.16,
           "kind": "conversion",
-          "signed": "2026-06",
-          "effective": false,
-          "source": "8-K 6/29/26: conditions precedent; NOT in engine until effective",
-          "grossMW": 225
+          "signed": "2026-08",
+          "effective": true,
+          "source": "PR + 6-K 8/4/26: $4.7B/16yr modified gross ($202/kW/mo avg 16yr, electricity pass-through), 121 IT/133 gross MW, $2.4M/MW·yr avg revenue × ~90% NOI margin = $2.16M NOI/MW·yr — NEW TOP PRINT on the registry tape; 3% escalators on lease AND services; 8-yr renewal option → $8.0B/24yr potential (EXCLUDED); TENANT NO-FEE TERMINATION RIGHT AT YEAR 10 (guaranteed-ish base ≈ $2.7B/10yr) — the offsetting protections: ~$1.3B Letters of Credit arranged by J.P. Morgan affiliates + another top-tier institution (~28% of TCV), BTDR termination right if backstop milestones missed. Ph1 commencement 12/31/26, Ph2 3/31/27. Remaining capex ~$500M (~$4.0M/IT MW — mining-conversion economics, vs $10-12M US builds); BTDR retains 100% of the campus; NO equity/warrants issued; debt financing being arranged (MS/Barclays/Northland advising) expected to generate excess capital",
+          "grossMW": 133,
+          "grossTotalM": 4700
         }
       ],
       "sharesReported": 243.3
@@ -6242,6 +6260,11 @@
       "tk": "NUAI",
       "note": "RESOLVED 8/3/26: the SA item was STALE — NUAI has owned 100% of TCDC since 1/16/26 (MIPA signed+closed same day; $70M = $10M cash + $10M stock + $50M conv note, fully settled 4/24/26; Sharon retains NO ownership/governance). Already embedded in our ~20%-under-Apollo/Stream model (LOI post-dates the buyout). Kept open items: ~20% share is UNVERIFIED INFERENCE (no filing discloses it); Oct-8 'deadline' is a DERIVED date and a lender ELECTION (prepay-or-amortize demand), not auto-failure — second trigger exists at <$50M aggregate drawings; ATM deadline EXTENDED by the 7/17/26 consent letter, ATM not yet established",
       "added": "2026-08-03"
+    },
+    {
+      "tk": "BTDR",
+      "note": "Tydal follow-ups: project financing → committedDebt when priced (expected 'significant excess capital'); the yr-10 no-fee termination right — model carries the full 16yr base per convention, guaranteed-ish value ≈ $2.7B/10yr if exercised; Volta credit vs the $1.3B LC backstop (LC milestones = BTDR termination right); end-customer AI lab identity; 6-K on EDGAR when furnished",
+      "added": "2026-08-04"
     }
   ],
   "outlook": {
