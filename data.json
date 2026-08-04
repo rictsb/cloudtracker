@@ -5973,7 +5973,7 @@
       "model": "owner",
       "tier": "proven",
       "contractedPct": 85,
-      "termYrs": 5.5,
+      "termYrs": 5.6,
       "leaseQ": 2.5,
       "netDebt": -600,
       "committedDebt": 0,
@@ -5984,7 +5984,7 @@
       "legacyEV": 0,
       "plannedRaise": 500,
       "equityDiscount": 0.1,
-      "signedRate": 13.5,
+      "signedRate": 16.8,
       "genAccess": 1,
       "sites": [
         {
@@ -6036,15 +6036,15 @@
       "contracts": [
         {
           "id": "shaz-nvda-backstop",
-          "counterparty": "NVIDIA (6-yr revenue backstop — FLOOR, not target)",
-          "totalRevM": 4880,
+          "counterparty": "NVIDIA block — valued at EXPECTED placement (owner ruling 8/3/26); contractual FLOOR $4.88B",
+          "totalRevM": 6900,
           "termYrs": 6,
           "signed": "2026-06",
           "gen": "blackwell",
           "mw": 72,
           "inferredMW": false,
           "effective": true,
-          "source": "[semianalysis 8/3/26] $4.88B/6yr backstop on 40,000 GB300s/72MW — avg floor $2.32/GPU-hr ($3.65 Y1 → $0.99 Y6); NVIDIA takes an UNDISCLOSED revenue share above the floor (SA models 40-60%); Sharon free to rent at market on any tenor. NATURE: bankable downside floor enabling debt, not take-or-pay demand — 7.3% project IRR if floor-only, 22.8-30.5% at market placement. The only public Neocloud that is an NVIDIA Cloud Partner WITH a backstop"
+          "source": "OWNER RULING 8/3/26: valued at ~$6.9B EXPECTED 6-yr revenue (SA mid scenario: block placed at market, 6-yr avg realized $3.29/GPU-hr after NVIDIA's ~50% share of the above-floor spread) instead of the $4.88B contractual FLOOR ($2.32/hr avg — the only SIGNED dollar figure; NVIDIA revenue-share % not disclosed in filings, SA models 40-60%). FIRST expected-value override in the registry — deliberate exception to signed-dollars-bind, loudly labeled. RE-MARK RULE: each actual placement/contract on the 40k-GB300 block replaces forecast with fact; REVERT to floor if placements print at/below the floor. Original terms: 6-yr backstop, 40,000 GB300s, 72MW [semianalysis 8/3/26 + 8-K 6/12/26]"
         },
         {
           "id": "shaz-ailab-nz",
@@ -6097,14 +6097,14 @@
       ],
       "basis": {
         "tier": "proven — strong book but young: deSPAC Feb-26, sole-source entry (SA model, filings verification pending), NVIDIA floor is credit support on 57% of TCV but the backstop is a FLOOR not IG demand [semianalysis]",
-        "signedRate": "$-weighted from the registry: (4880+1300+1000+1300)÷(72×6+15×5+10×5+14×5) = $13.5M/MW·yr — GB300-era book, consistent with our gen ladder (HIVE 14.5 GB200-sovereign, IREN 10.1); SA's fleet average prints $13.9M/MW·yr [semianalysis]",
+        "signedRate": "$-weighted from the registry with the NVIDIA block at EXPECTED $6.9B (owner ruling 8/3/26 — floor-based rate was 13.5): $10650M ÷ 635 MW·yr = $16.8M/MW·yr — consistent with the third-party prints ($16.7-18.9M) rather than dragged down by the floor [semianalysis]",
         "plannedRaise": "~$500M equity slice of the $2.8B remaining funding gap ($5.15B full-build capex at $39M/MW less $2.35B raised); SA sizes up to $4.1B of secured GPU-backed debt available at 80% LTC/1.3x DSCR, so the equity need is the ~20% residual [semianalysis]",
         "equityDiscount": "0.10 — deSPAC microcap: convert overhang ≈96% of common at full conversion, anchor-investor concentration (~$1.95B from a few institutions), USD.AI DeFi facility as a reported funding source, dual AU/US structure [semianalysis]",
         "netDebt": "MEDIUM confidence −$600M net cash: kept debt = 2032 notes $691.7M ONLY (filed principal — not $700M; conv $99.66 OTM; 2031s $350M @$48.24 ITM at $50.70 → converted into FD; pre-existing notes 94% ALREADY converted 6/11/26 at $12.53 — 7.65M shares inside the 35.67M Class A count, residual ~$8M trivial) less est. cash ~$1.3B (filed 3/31 cash $164.3M [10-Q] + $1.94B May/Jun raises − est. H1 GPU deployment). Q2 10-Q ~Aug 14 replaces the estimate [edgar + semianalysis]",
         "shares": "FD 50.6M at $50.70: 35.67M Class A FILED (S-1 7/31 — includes 7.65M June conversion shares + PIPE; SA's 23.46M was stale) + 6.375M pre-funded warrants + 7.256M from 2031s if-converted (ITM above $48.24 — KNIFE-EDGE: below the strike FD drops to ~43.3M and $350M returns to debt) + ~1.3M residual small notes [edgar S-1 7/31/26 + 8-K 6/12/26]"
       },
       "narrative": "Australia's listed Neocloud — the only public GPU cloud that is an NVIDIA Cloud Partner WITH an NVIDIA revenue backstop: 30x capacity growth in four quarters (4→132MW leased colo), 62,000 GPUs by mid-2027, and a contract book printing at the top of the GB300 ladder.",
-      "thesis": "The NVIDIA backstop ($4.88B floor on 40k GB300s) solved capital and offtake at once, letting a 4MW Australian cloud contract 132MW and an $8.6B book in four quarters — with third-party prints at $16.7-18.9M/MW·yr, the top of our gen ladder. The market prices the deSPAC wrapper and the ~96% convert overhang; the book prices like a top-quartile neocloud. Kill risks: $2.8B funding gap (financeable via GPU-secured debt but unraised), sole-source diligence pending first filings, and the floor-not-demand nature of 57% of the TCV.",
+      "thesis": "The NVIDIA backstop ($4.88B floor on 40k GB300s) solved capital and offtake at once — and per owner ruling the block is now valued at expected placement (~$6.9B), not the floor, putting the whole $10.7B book at the $16.7-18.9M/MW·yr third-party prints that top our gen ladder. The market prices the deSPAC wrapper and the convert overhang; the book prices like a top-quartile neocloud with NVIDIA in the innermost-partner pool. Kill risks: ESDS counterparty quality ($1.3B of book), the $2.8B funding gap, and placements printing below the floor scenario — which reverts the ruling.",
       "bull": [
         "Third-party contracts at $4.31-4.56/GPU-hr with 44-52% project IRRs — the best prints in the registry ladder",
         "NVIDIA alignment: innermost partner pool (NCP + backstop) → allocation and go-to-market support",
@@ -6131,6 +6131,12 @@
       ],
       "finMix": "Converts ($1.25B, 5.2% blended) + June equity ($900M + pre-funded warrants) + planned GPU-secured project debt; customer prepays ~15%",
       "log": [
+        {
+          "d": "2026-08-03",
+          "t": "note",
+          "s": "owner ruling",
+          "x": "NVIDIA block re-marked FLOOR→EXPECTED ($4.88B→$6.9B, SA 50%-share mid scenario): 'it should not be on the bare minimum.' signedRate 13.5→16.8, book $8.63B→$10.65B. First expected-value override in the registry — labeled on the record, re-mark rule attached (actual placements replace forecast; revert if prints at/below floor)."
+        },
         {
           "d": "2026-08-03",
           "t": "capital",
@@ -6229,7 +6235,7 @@
     },
     {
       "tk": "SHAZ",
-      "note": "Q2 10-Q (~Aug 14) replaces the LAST estimated input (cash/netDebt −600 medium-confidence) — everything else now filing-verified (Class A 35.67M, 2031s $48.24, 2032s $691.7M/$99.66, warrants 6.375M). KNIFE-EDGE: $50.70 vs $48.24 strike — FD 50.6M above / 43.3M below, re-mark on crossings. NVIDIA revenue-share % undisclosed in filings (SA models 40-60%). Earnings Aug 6 AMC confirmed",
+      "note": "Q2 10-Q (~Aug 14) replaces the LAST estimated input (cash/netDebt −600 medium-confidence) — everything else now filing-verified (Class A 35.67M, 2031s $48.24, 2032s $691.7M/$99.66, warrants 6.375M). KNIFE-EDGE: $50.70 vs $48.24 strike — FD 50.6M above / 43.3M below, re-mark on crossings. NVIDIA revenue-share % undisclosed in filings (SA models 40-60%). Earnings Aug 6 AMC confirmed; NVIDIA-block EXPECTED marking (owner 8/3): watch actual placements on the 40k-GB300 block — each real contract replaces the $6.9B forecast slice with fact, revert to $4.88B floor if placements print at/below floor",
       "added": "2026-08-03"
     },
     {
