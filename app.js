@@ -1024,7 +1024,8 @@ function gaugeHTML(c,v,uniMax){
 function renderCmp(){
   let rows=COMPANIES.map(c=>({c,v:value(c)}));
   const UNIMAX=Math.max(...rows.map(r=>r.v.price>0?r.v.target/r.v.price:0));
-  rows.sort((a,b)=>sortDir*(a.v.upside-b.v.upside));
+  const skey=r=>sortKey==='floor'?(r.v.price>0?(r.v.floorTarget||0)/r.v.price-1:-1):r.v.upside;
+  rows.sort((a,b)=>sortDir*(skey(a)-skey(b)));
   (function answerLine(){
     const el=document.getElementById('cmp-answer');if(!el)return;
     const ups=rows.map(r=>r.v.upside).sort((x,y)=>x-y);
@@ -1050,7 +1051,8 @@ function renderCmp(){
       <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':c.model==='holdco'?'holdco / SOTP':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.model==='holdco'?'sum-of-the-parts':c.contractedPct+'% contracted · '+c.termYrs+'y term'}</span></div>
       <div class="col-stack">${gaugeHTML(c,v,UNIMAX)}</div>
       <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
-      <div class="num"><div class="target">$${v.target.toFixed(v.target<60?2:0)}</div><div class="up ${upCls}">${upTxt}</div><div class="floorline ${v.floorTarget>=v.price?'pos':''}">floor $${v.floorTarget.toFixed(v.floorTarget<60&&v.floorTarget>0?2:0)} · ${v.price>0?((v.floorTarget/v.price-1)*100>=0?'+':'')+((v.floorTarget/v.price-1)*100).toFixed(0)+'%':'—'}</div></div>`;
+      <div class="num floorcol"><div class="floorval">$${(v.floorTarget||0).toFixed(v.floorTarget<60&&v.floorTarget>0?2:0)}</div><div class="up ${v.floorTarget>=v.price?'pos':'neg'}">${v.price>0?((v.floorTarget/v.price-1)*100>=0?'+':'')+((v.floorTarget/v.price-1)*100).toFixed(0)+'%':'—'}</div></div>
+      <div class="num"><div class="target">$${v.target.toFixed(v.target<60?2:0)}</div><div class="up ${upCls}">${upTxt}</div></div>`;
     row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});
     cont.appendChild(row);
     if(c.thesis){
@@ -1060,8 +1062,10 @@ function renderCmp(){
       cont.appendChild(tog);cont.appendChild(th);
     }});
   if(!reduce)[...cont.children].forEach(ch=>{const p=old[ch.dataset.tk];if(p==null)return;const dy=p-ch.getBoundingClientRect().top;if(dy){ch.style.transition='none';ch.style.transform=`translateY(${dy}px)`;requestAnimationFrame(()=>{ch.style.transition='';ch.style.transform='';});}});
-  document.getElementById('sortlabel').textContent='upside to target';
-  document.getElementById('ar-upside').textContent=sortDir<0?'▾':'▴';
+  document.getElementById('sortlabel').textContent=sortKey==='floor'?'floor vs price':'upside to target';
+  const au=document.getElementById('ar-upside'),af=document.getElementById('ar-floor');
+  if(au)au.textContent=sortKey==='upside'?(sortDir<0?'▾':'▴'):'';
+  if(af)af.textContent=sortKey==='floor'?(sortDir<0?'▾':'▴'):'';
 }
 function renderSites(){
   let all=[];

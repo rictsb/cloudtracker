@@ -55,8 +55,8 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
 .tab:hover{color:var(--ink)}
 
 /* comparison */
-.thead,.rowline{display:grid;grid-template-columns:26px 1.05fr 1.9fr 82px 104px;gap:14px;align-items:center}
-@media(max-width:560px){.thead,.rowline{grid-template-columns:22px 1fr 66px 80px}.col-stack{display:none}}
+.thead,.rowline{display:grid;grid-template-columns:26px 1.05fr 1.9fr 82px 96px 104px;gap:14px;align-items:center}
+@media(max-width:560px){.thead,.rowline{grid-template-columns:22px 1fr 66px 80px}.col-stack{display:none}.floorcol{display:none}}
 .thead{padding:0 14px 10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 .thead .sortable{cursor:pointer;user-select:none} .thead .sortable:hover{color:var(--indigo)} .thead .arr{color:var(--indigo);font-size:9px}
 .num{text-align:right;font-variant-numeric:tabular-nums}
@@ -344,3 +344,6 @@ tr.rampsens-joint td{background:rgba(154,91,63,.07)}
 .vg-floor{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--pine);opacity:.8;pointer-events:none}
 .floorline{font-size:10px;color:var(--ink-soft);margin-top:2px;white-space:nowrap}
 .floorline.pos{color:var(--pine);font-weight:600}
+
+/* floor column: mirrors the target cell — floor $ + downside% vs price */
+.floorval{font-family:var(--mono);font-size:13.5px;color:var(--ink)}
