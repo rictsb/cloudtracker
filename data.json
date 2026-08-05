@@ -7,7 +7,7 @@
       "mid": 2029
     },
     "dials": {
-      "rate": 8,
+      "rate": 13,
       "margin": 55,
       "multiple": 7,
       "capRate": 9,
@@ -190,7 +190,7 @@
     },
     "btcFallback": 60000,
     "ethFallback": 3000,
-    "verifiedPricing": "2026-08-03"
+    "verifiedPricing": "2026-08-05"
   },
   "sources": [
     {
