@@ -1019,7 +1019,7 @@ function gaugeHTML(c,v,uniMax){
     : `<div class="vg-gap dn" style="left:${barW.toFixed(2)}%;width:${Math.max(0,pPos-barW).toFixed(2)}%"></div>`;
   return `<div class="vg-track" title="${c.tk}: our value is ${mult.toFixed(2)}x today's price (${fmtPrice(px)} → $${tgt.toFixed(tgt<60?2:0)}) — ${cf.toFixed(0)}% contracted floor · ${eu.toFixed(0)}% expected · ${lg.toFixed(0)}% legacy">
     <div class="vg-bar" style="width:${barW.toFixed(2)}%"><i class="vg-seg cf" style="width:${cf.toFixed(2)}%"></i><i class="vg-seg eu" style="width:${eu.toFixed(2)}%"></i><i class="vg-seg lg" style="width:${lg.toFixed(2)}%"></i></div>
-    ${gap}<div class="vg-price" style="left:${pPos.toFixed(2)}%"></div></div>`;
+    ${gap}<div class="vg-price" style="left:${pPos.toFixed(2)}%"></div>${v.floorTarget>0?`<div class="vg-floor" style="left:${Math.min(100,(v.floorTarget/px)/scale*100).toFixed(2)}%" title="floor (signed only): $${v.floorTarget.toFixed(v.floorTarget<60?2:0)}"></div>`:''}</div>`;
 }
 function renderCmp(){
   let rows=COMPANIES.map(c=>({c,v:value(c)}));
@@ -1038,6 +1038,7 @@ function renderCmp(){
       `<span><b>${und}</b> of ${rows.length} names above market</span>`+
       `<span>universe <b>${fmtM(mcap)}</b> market cap → <b>${fmtM(tgt)}</b> our value</span>`+
       `<span><b>${(cf/(evTot||1)*100).toFixed(0)}%</b> of that value is contracted</span>`+
+      `<span>floor (signed only) <b>${fmtM(rows.reduce((a,r)=>a+(r.v.floorTarget||0)*r.v.fundedShares,0))}</b></span>`+
       `<span style="font-style:italic">${PRICES_AT?'prices live':'prices manual'}</span>`;
   })();
   const cont=document.getElementById('rows');const old={};if(!reduce)[...cont.children].forEach(ch=>old[ch.dataset.tk]=ch.getBoundingClientRect().top);
@@ -1049,7 +1050,7 @@ function renderCmp(){
       <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':c.model==='holdco'?'holdco / SOTP':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.model==='holdco'?'sum-of-the-parts':c.contractedPct+'% contracted · '+c.termYrs+'y term'}</span></div>
       <div class="col-stack">${gaugeHTML(c,v,UNIMAX)}</div>
       <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
-      <div class="num"><div class="target">$${v.target.toFixed(v.target<60?2:0)}</div><div class="up ${upCls}">${upTxt}</div></div>`;
+      <div class="num"><div class="target">$${v.target.toFixed(v.target<60?2:0)}</div><div class="up ${upCls}">${upTxt}</div><div class="floorline ${v.floorTarget>=v.price?'pos':''}">floor $${v.floorTarget.toFixed(v.floorTarget<60&&v.floorTarget>0?2:0)} · ${v.price>0?((v.floorTarget/v.price-1)*100>=0?'+':'')+((v.floorTarget/v.price-1)*100).toFixed(0)+'%':'—'}</div></div>`;
     row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});
     cont.appendChild(row);
     if(c.thesis){

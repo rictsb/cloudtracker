@@ -109,7 +109,11 @@
       const equityRaise=(c.plannedRaise||0)*(A.dilutionStress!=null?A.dilutionStress:1);
       const newShares=px>0?equityRaise/px:0, fundedShares=c.shares+newShares;
       const target=equity/fundedShares;
-      return{ev,equity,equityPre,claims,contractedEV:cEV,expectedEV:eEV,target,upside:target/px-1,price:px,segs,equityRaise,newShares,fundedShares};}
+      // Floor target: what the equity is worth if NOTHING more is ever signed — executed contracts + legacy only,
+      // net of the same claims, discount and dilution as the headline target (spec: the execution-visibility floor).
+      const floorEquity=Math.max(0,cEV+legacyOf(c)-claims)*(1-(c.equityDiscount||0));
+      const floorTarget=floorEquity/fundedShares;
+      return{ev,equity,equityPre,claims,contractedEV:cEV,expectedEV:eEV,target,floorTarget,upside:target/px-1,price:px,segs,equityRaise,newShares,fundedShares};}
 
     return { A, BASE, ctx, CFG, YEAR, NOW, HORIZON, SLIDERS, REGION, CONST, TIERS, PROV, PROV_OP, COMPANIES,
              priceOf, btcPrice, ethPrice, stakeValue, legacyOf, prevailingRate, ownerRate, effTrend, leaseUp,

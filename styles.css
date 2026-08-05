@@ -339,3 +339,8 @@ tr.softcons td{opacity:.72}
 .rampchain td,.rampsens td{vertical-align:top;padding:8px 10px;border-top:1px solid var(--line)}
 .rampchain-r{font-family:var(--mono);font-size:10px;color:var(--ink-soft);margin-top:4px}
 tr.rampsens-joint td{background:rgba(154,91,63,.07)}
+
+/* execution floor (option B): dashed tick = value of signed paper alone; floorline under the target */
+.vg-floor{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--pine);opacity:.8;pointer-events:none}
+.floorline{font-size:10px;color:var(--ink-soft);margin-top:2px;white-space:nowrap}
+.floorline.pos{color:var(--pine);font-weight:600}
