@@ -1185,11 +1185,11 @@
    "contractedPct": 20,
    "termYrs": 10,
    "leaseQ": 3.8,
-   "netDebt": 294,
+   "netDebt": -290,
    "shares": 422,
    "price": 20.86,
    "legacyEV": 250,
-   "finMix": "0.75% converts + BTC-backed credit facility ($200M, 5,821 BTC collateral) + MS $573M interim project facility (frontier lease; tenant-secured; IG backstop takeout in finalization) + BTC-treasury recycling; no common issued Q2",
+   "finMix": "IF-CONVERTED: $594.4M 0.75% converts (2030, deep ITM, convertible NOW, stock-settled) counted in FD shares NOT netDebt; other debt $259M ($200M Coinbase BTC-backed drawn @6.15% + $54M revolvers + $5M note) vs $549M cash -> ~$290M NET CASH; MS $573M interim project facility at Riot DC Logistics LLC (non-recourse to parent, SOFR+2.75%, matures 10/15/26, tenant-secured) funds frontier build; no ATM sales H1-26",
    "narrative": "A Bitcoin miner executing the pivot into AI/HPC data-center landlording on ~2.0 GW of owned, approved power (Rockdale ~700MW + Corsicana ~1.0 GW in Texas; Kentucky 300MW mining). The book is now real: two signed leases at Rockdale — AMD (50 MW IT, 10-yr, ~$51M NOI/yr) and a leading frontier AI lab (191 MW IT, 20-yr, $9.1B initial-term revenue, ~$388M NOI/yr mid, Ph1 rent Dec-2027) — ~$9.8B contracted revenue, $416-462M average annual NOI across 241 IT MW. Corsicana, the bigger prize (1 GW power / 756 MW critical IT ceiling), is now under a nonbinding full-campus LOI with a single tenant (>$1B/yr rent at full deployment per mgmt); conversion is the defining catalyst. Legacy assets — 11,380 BTC (shrinking: treasury funds the equity slice of data-center capex) and an FCF-negative mining fleet whose power/land feed the conversion. Execution now has proof: AMD 25MW delivered on time; the frontier build (capex $2.1-2.3B) is financed via MS interim + planned IG-backstopped project debt.",
    "bull": [
     "Two signed leases with top-tier AI counterparties: $9.8B contracted revenue / $416-462M avg annual NOI across 241 IT MW — execution proven with AMD delivered on schedule",
@@ -1385,7 +1385,7 @@
     },
     {
      "id": "riot-frontier",
-     "counterparty": "Leading frontier AI lab (undisclosed; Yates Construction GC has direct development experience with this tenant)",
+     "counterparty": "Leading frontier AI lab — undisclosed in filings; Bloomberg 8/11/26 reports ANTHROPIC per people familiar (REPORTED, NOT CONFIRMED; Riot declined comment). Yates Construction GC per earnings call",
      "mw": 191,
      "termYrs": 20,
      "noiPerMWyr": 2.03,
@@ -1394,10 +1394,10 @@
      "effective": true,
      "totalRevM": 9100,
      "grossTotalM": 9100,
-     "source": "8-K/PR + Q2-26 call 8/10/26: $9.1B total contract revenue, 191 MW critical IT at Rockdale (2nd lease at site), 20-yr initial term from full deployment Jun-2028 with annual base-rent escalators; Ph1 96MW Dec-2027 RENT COMMENCING, Ph2 95MW Jun-2028; avg annual rev ~$457M, NOI margin 80-90% -> avg annual NOI $365-411M (mid $388M = $2.03M/MW-yr on 191 IT MW); two 5-yr extensions -> ~$16.1B all-in (EXCLUDED per registry convention); capex $11-12M/IT MW = $2.1-2.3B, MS interim facility up to $573M secured by tenant credit support from day 1, IG or IG-equivalent backstop takeout in finalization ($1.7-2.1B at 80-90% LTC); custom Tier 3, tenant basis-of-design finalized, transformers already secured"
+     "source": "8-K/PR + Q2-26 call 8/10/26: $9.1B total contract revenue, 191 MW critical IT at Rockdale (2nd lease at site), 20-yr initial term from full deployment Jun-2028 with annual base-rent escalators; Ph1 96MW Dec-2027 RENT COMMENCING, Ph2 95MW Jun-2028; avg annual rev ~$457M, NOI margin 80-90% -> avg annual NOI $365-411M (mid $388M = $2.03M/MW-yr on 191 IT MW); two 5-yr extensions -> ~$16.1B all-in (EXCLUDED per registry convention); capex $11-12M/IT MW = $2.1-2.3B, MS interim facility up to $573M secured by tenant credit support from day 1, IG or IG-equivalent backstop takeout in finalization ($1.7-2.1B at 80-90% LTC); custom Tier 3, tenant basis-of-design finalized, transformers already secured | VERIFIED vs 8-K acc. 0001104659-26-093406 (Ex-99.1 PR + Ex-99.2 deck) and Q2 10-Q Note 3 8/11/26: all terms confirmed; 'Data Center Lease and Services Agreement'; term runs through June 2048; MS facility at Riot DC Logistics LLC, non-recourse to parent"
     }
    ],
-   "sharesReported": 378.1
+   "sharesReported": 375.3
   },
   {
    "tk": "BTDR",
@@ -4391,7 +4391,7 @@
    "termYrs": 20,
    "netDebt": 178,
    "shares": 640.5,
-   "price": 6.18,
+   "price": 5.88,
    "legacyEV": 0,
    "plannedRaise": 3500,
    "equityDiscount": 0.15,
@@ -4568,7 +4568,7 @@
      "signed": "2026-08",
      "effective": true,
      "grossTotalM": 6500,
-     "source": "PR 8/10/26 (corrected): FIRST binding customer lease at Project Matador — Fermi Campus 1 LLC / TensorWave TEX1 LLC; 222 MW TOTAL FACILITY POWER (IT MW not disclosed; ~185 IT at PUE~1.2), turnkey — Fermi develops/constructs/delivers, behind-the-meter self-gen power; ~$6.5B contracted revenue over initial 15-yr term = $1.95M/MW-yr gross on facility basis (~$2.3M/IT MW-yr — at the registry tape); NOI margin NOT DISCLOSED — ESTIMATED 75% (fuel-inclusive turnkey; band 70-85% -> $1.37-1.66M NOI/MW-yr); phased delivery beginning 2H-2027, term runs from final-phase commencement; two 5-yr renewals + expansion rights to two more DCs (>650 MW partnership) — EXCLUDED; CONDITIONS: receipt of requisite project guaranties AND financing (real gating items — revert row if they fail); designed for tens of thousands of AMD Instinct GPUs"
+     "source": "PR 8/10/26 (corrected): FIRST binding customer lease at Project Matador — Fermi Campus 1 LLC / TensorWave TEX1 LLC; 222 MW TOTAL FACILITY POWER (IT MW not disclosed; ~185 IT at PUE~1.2), turnkey — Fermi develops/constructs/delivers, behind-the-meter self-gen power; ~$6.5B contracted revenue over initial 15-yr term = $1.95M/MW-yr gross on facility basis (~$2.3M/IT MW-yr — at the registry tape); NOI margin NOT DISCLOSED — ESTIMATED 75% (fuel-inclusive turnkey; band 70-85% -> $1.37-1.66M NOI/MW-yr); phased delivery beginning 2H-2027, term runs from final-phase commencement; two 5-yr renewals + expansion rights to two more DCs (>650 MW partnership) — EXCLUDED; CONDITIONS: receipt of requisite project guaranties AND financing (real gating items — revert row if they fail); designed for tens of thousands of AMD Instinct GPUs | PR also states Fermi 'expects certain of the obligations under the lease to be guaranteed by one of the global leaders in AI' — guarantor UNNAMED (AMD is inference only), guarantee NOT confirmed signed | NO 8-K on EDGAR as of 8/11 (window ~8/14; Q2 results 8/13) — press-release-only; verify terms on filing"
     }
    ]
   },
@@ -6325,7 +6325,7 @@
   },
   {
    "tk": "RIOT",
-   "note": "Frontier-lease project financing: MS $573M interim facility (tenant-secured, drawing for long-lead procurement) -> IG-backstopped takeout $1.7-2.1B at 80-90% LTC expected 'near term' — move to committedDebt as facilities draw/close; tenant identity still undisclosed",
+   "note": "Frontier-lease project financing: $573M MS interim facility at Riot DC Logistics LLC (NON-RECOURSE to parent, tenant-secured, SOFR+2.75%, matures 10/15/26) -> IG-backstopped takeout $1.7-2.1B at 80-90% LTC expected near term; non-recourse project debt stays OFF corporate claims — revisit if recourse changes; tenant identity: Bloomberg says Anthropic (unconfirmed)",
    "added": "2026-08-11"
   },
   {
@@ -6335,7 +6335,7 @@
   },
   {
    "tk": "FRMI",
-   "note": "TensorWave lease CONDITIONS: requisite project guaranties AND financing not yet received — floor rests on this clearing; REVERT frmi-tensorwave row (and floor) if conditions fail; NOI margin is our 75% ESTIMATE (band 70-85%), replace on disclosure",
+   "note": "TensorWave lease CONDITIONS: requisite project guaranties AND financing not yet received — floor rests on this clearing; REVERT frmi-tensorwave row (and floor) if conditions fail; NOI margin is our 75% ESTIMATE (band 70-85%), replace on disclosure; 8-K not yet filed (due ~8/14, Q2 results 8/13) — re-verify all terms + look for IT MW / rent structure / guarantor disclosure on filing",
    "added": "2026-08-11"
   }
  ],
