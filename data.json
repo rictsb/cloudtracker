@@ -1687,7 +1687,7 @@
    "name": "IREN",
    "ramp": {
     "asOf": "2026-08-18",
-    "basis": "Quarterly GPU-ramp research overlay (owner-approved 8/18/26) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: IREN's own dated prints anchor the signed book — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 (8-K 7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet from IREN's own ARR disclosure. THE UNSIGNED BOOK IS MARKED TO DATED THIRD-PARTY CONTRACT PRINTS for the same SKU and tenor (SemiAnalysis 18-Aug-2026: GB300 five-year $4.40-4.80, VR NVL72 five-year $7.50-8.00), taken at the LOW end — liquid Blackwell $4.40, air-cooled Childress retrofits $3.81 holding the existing air/liquid spread since the note prints liquid NVL72 SKUs only, Rubin-class and next-gen $7.50. Those are market prints for the SILICON, not IREN counterparty contracts: 70.9% of CY2030 revenue still carries no signature. IREN's signed book sits 33-46% below those prints — what it traded for anchor-tenant financing, and the reason the unsigned book is not marked at the signed level. Spot held FLAT from 2027 at $2.40: prior-generation cards recontract at or above prior rates (CoreWeave A100s signed out to 2029), so no decay is applied to installed silicon. A 5% attach for storage, CPU, networking and the managed layer applies to UNSIGNED tranches only. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier.",
+    "basis": "Quarterly GPU-ramp research overlay (owner-approved 8/18/26) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED and reaffirmed verbatim 13-Aug-2026; Horizon 1 DELIVERED TO AND ACCEPTED BY MICROSOFT 13-Aug-2026, which confirms first revenue in 2026Q3 as modelled and makes Horizon 1 the only tranche in the book whose acceptance is a fact rather than a schedule; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: IREN's own dated prints anchor the signed book — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 (8-K 7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet from IREN's own ARR disclosure. THE UNSIGNED BOOK IS MARKED TO DATED THIRD-PARTY CONTRACT PRINTS for the same SKU and tenor (SemiAnalysis 18-Aug-2026: GB300 five-year $4.40-4.80, VR NVL72 five-year $7.50-8.00), taken at the LOW end — liquid Blackwell $4.40, air-cooled Childress retrofits $3.81 holding the existing air/liquid spread since the note prints liquid NVL72 SKUs only, Rubin-class and next-gen $7.50. Those are market prints for the SILICON, not IREN counterparty contracts: 70.9% of CY2030 revenue still carries no signature. IREN's signed book sits 33-46% below those prints — what it traded for anchor-tenant financing, and the reason the unsigned book is not marked at the signed level. Spot held FLAT from 2027 at $2.40: prior-generation cards recontract at or above prior rates (CoreWeave A100s signed out to 2029), so no decay is applied to installed silicon. A 5% attach for storage, CPU, networking and the managed layer applies to UNSIGNED tranches only. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier.",
     "chain": [
      {
       "id": "secured",
@@ -2379,7 +2379,7 @@
    "termYrs": 4,
    "leaseQ": 4.8,
    "netDebt": 3100,
-   "shares": 427,
+   "shares": 439.6,
    "price": 45.91,
    "legacyEV": 1000,
    "finMix": "ATM equity ($6B program) + low-coupon converts + $3.65B IG GPU financing + Microsoft prepayment",
@@ -2639,6 +2639,18 @@
    ],
    "log": [
     {
+     "d": "2026-08-13",
+     "t": "contract",
+     "s": "[edgar] 8-K Ex-99.1",
+     "x": "Horizon 1 DELIVERED TO AND ACCEPTED BY MICROSOFT — the first of four 50MW-IT direct-to-chip liquid-cooled deployments at Childress under the five-year $9.7bn contract; Horizons 2-4 targeted for delivery later this year. Acceptance is the revenue trigger, and it lands in 2026Q3, confirming the tranche schedule. NVIDIA Exemplar Cloud status achieved on GB300 NVL72 following NVIDIA testing at Horizon 1. 480MW (gross) 2026 and 1.2GW (gross) 2027 both reaffirmed verbatim. >3,000 people on the site team."
+    },
+    {
+     "d": "2026-08-03",
+     "t": "capital",
+     "s": "[edgar] 8-K Ex-99.1 + 424B7",
+     "x": "Mirantis, Inc. acquisition CLOSED (merger agreement 4-May-2026): ~12.6m ordinary shares fixed at signing plus ~$40m of cash, RSUs and other consideration. Adds the AI workload orchestration, monitoring and support layer — k0rdent AI, inaugural NVIDIA AI Cloud Ready partner, 1,500+ enterprise customers — and IREN states it has ALREADY facilitated several announced and prospective AI Cloud contracts. Supports the managed-services leg of the ramp overlay's attach line: IREN now owns rather than licenses that layer. shares 427->439.6M."
+    },
+    {
      "d": "2026-07-20",
      "t": "contract",
      "s": "[edgar] 8-K Ex-99.1",
@@ -2680,11 +2692,11 @@
     "plannedRaise": "~$4.9B undrawn of $6B ATM + future programs; MSFT prepay + $3.65B GPU debt + converts carry ~90%",
     "signedRate": "$-weighted over the two DISCLOSED-MW contracts: (9700×9.70+3400×11.33)/13100 = $10.12M/MW·yr — the only owner book with contractual MW",
     "termYrs": "COMPANY-DISCLOSED: portfolio weighted-average contract term ~4yrs (8-K 7/20/26 note 4, ARR-weighted); replaces the 5yr TCV placeholder. TCV-weighted alt = 4.4 (±$0.30 on target) — owner ruled: use disclosed 4.0",
-    "shares": "409M carried forward plus the Co-CEO RSU grant: 8-K filed 2026-07-01 — the board approved on 6/30/26 a grant of 9,099,328 RSUs to EACH Co-CEO (William and Daniel Roberts) = 18,198,656 units, granted on or about 7/1/26 under the 2025 Omnibus Plan, 4-yr ratable vest + 2-yr post-vest hold, with no further Co-CEO equity grant until FY2031. ~+4.4% to fully-diluted. AS-OF CAVEAT: board approval 6/30/26 is inside the capital date, grant date 7/1/26 is outside; and the prior 409 build is not reconstructable from disclosure, so some award overhang may already sit inside it. Re-derive cleanly at the FY26 10-K [edgar]"
+    "shares": "409M carried forward plus the Co-CEO RSU grant: 8-K filed 2026-07-01 — the board approved on 6/30/26 a grant of 9,099,328 RSUs to EACH Co-CEO (William and Daniel Roberts) = 18,198,656 units, granted on or about 7/1/26 under the 2025 Omnibus Plan, 4-yr ratable vest + 2-yr post-vest hold, with no further Co-CEO equity grant until FY2031. ~+4.4% to fully-diluted. AS-OF CAVEAT: board approval 6/30/26 is inside the capital date, grant date 7/1/26 is outside; and the prior 409 build is not reconstructable from disclosure, so some award overhang may already sit inside it. Re-derive cleanly at the FY26 10-K [edgar] PLUS the Mirantis consideration: the Kube Merger Sub / Mirantis, Inc. merger (agreement 4-May-2026) CLOSED 3-Aug-2026 for ~12.6m ordinary shares fixed at signing, plus cash, RSUs and other consideration of ~$40m at closing (8-K Ex-99.1 4-Aug-2026); 11,981,668 of those shares are registered for resale on the 424B7 of 4-Aug-2026 (Reg. No. 333-284369), and the Form D of 18-Aug-2026 is the Rule 506(b) notice for the same equity leg. The RSU and cash legs are NOT in this count."
    },
    "thesis": "The vertically-integrated AI cloud keeps compounding: $16.9B contracted TCV across Microsoft, NVIDIA and now an eight-name AI-developer cohort ($2.8B added 7/20), YE-26 ARR target $4bn+ at 85% contracted, and ~45% customer prepayments doing the financing the market once assumed dilution would. The 5.8GW global power book is the multiplier — 480MW delivering 2026, 1.2GW targeted 2027, priced up the gen-curve as it lands. Watch: $7.6bn cash vs the $8B assumed raise looks increasingly conservative; revisit at FY results.",
    "verified": {
-    "capital": "2026-08-03",
+    "capital": "2026-08-18",
     "contracts": "2026-08-03"
    },
    "contracts": [
@@ -7245,9 +7257,9 @@
    },
    {
     "tk": "IREN",
-    "date": "2026-08-28",
-    "session": null,
-    "confirmed": false,
+    "date": "2026-08-27",
+    "session": "AMC",
+    "confirmed": true,
     "score": 2,
     "direction": "upside",
     "keyNumber": "NOT GAAP revenue. (a) Exit ARR progress against the $4bn+ YE-26 target and the 85%-contracted claim; (b) the 6/30 balance sheet finally putting a FILED borrowings figure against the $7.6bn cash; (c) the FY27 capex/funding plan, which is the plannedRaise input.",
