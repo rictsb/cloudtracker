@@ -7,7 +7,7 @@
    "mid": 2029
   },
   "dials": {
-   "rate": 13,
+   "rate": 14,
    "margin": 55,
    "multiple": 7,
    "capRate": 9,
@@ -190,7 +190,7 @@
   },
   "btcFallback": 60000,
   "ethFallback": 3000,
-  "verifiedPricing": "2026-08-05"
+  "verifiedPricing": "2026-08-18"
  },
  "sources": [
   {
@@ -305,7 +305,7 @@
    "model": "owner",
    "tier": "proven",
    "contractedPct": 95,
-   "termYrs": 6,
+   "termYrs": 5,
    "leaseQ": 4.3,
    "netDebt": 22900,
    "shares": 610,
@@ -457,7 +457,7 @@
     },
     {
      "n": "Other contracted DCs — 2026",
-     "mw": 500,
+     "mw": 900,
      "owned": false,
      "region": "cheap",
      "yr": 2026,
@@ -691,12 +691,13 @@
    "plannedRaise": 15000,
    "basis": {
     "plannedRaise": "~10-12% equity slice of $31-35B/yr FY26 capex; ~84% DDTL-debt funded, equity opportunistic (NVIDIA/Jane Street)",
-    "signedRate": "fleet-blended inference: $99.4B backlog ÷ implied MW-yrs at ~$9.3M/MW·yr (CRWV discloses dollars+term only — MW/GPU never disclosed; registry reconciles to the reported backlog)"
+    "signedRate": "fleet-blended inference: ~$104B 2Q backlog (+246% y/y; excl. >$25B net-new signed early 3Q) ÷ implied MW-yrs ≈ $9.7M/MW·yr (CRWV discloses dollars+term only — MW/GPU never disclosed; registry reconciles to reported backlog; SA 8/18: +25% SKU repricing applies to renewals AND net-new per owner)",
+    "termYrs": "5yr blended — SA 8/18 + DDTL 5.5 collateral: underlying contracts avg ~3yr, anchor book 4-5yr take-or-pay; was 6, shortened per owner ruling 8/18 (faster roll into prevailing)"
    },
    "thesis": "The market models CRWV's blended $/MW flat while its book re-signs up the Hopper→Blackwell→Vera Rubin ladder — the signed rate already runs ~$9.3M vs the $8M market dial, backlog is $99.4B, and NVIDIA contractually backstops unsold capacity through 2032. The argument has moved to the financing cost of that growth: the GPU-backed debt curve INVERTED in July, with the newest DDTL clearing at 10.44% (S+550/OID 97, 1.35x DSCR maintenance covenant) after pricing sub-6% in March. Q2 net interest expense is guided $650-730M against ~$21M of Q1 adjusted operating income.",
    "verified": {
     "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "contracts": "2026-08-18"
    },
    "contracts": [
     {
@@ -813,7 +814,7 @@
      "source": "Residual reconciling named records to the $99.4B 3/31/26 revenue backlog ($98.8B RPO + $0.6B)"
     }
    ],
-   "signedRate": 9.3,
+   "signedRate": 9.7,
    "sharesReported": 545.6
   },
   {
@@ -821,7 +822,7 @@
    "name": "Nebius",
    "model": "owner",
    "tier": "proven",
-   "contractedPct": 80,
+   "contractedPct": 85,
    "termYrs": 5,
    "leaseQ": 4.4,
    "netDebt": -9280,
@@ -1116,12 +1117,13 @@
    "basis": {
     "plannedRaise": "NVIDIA $2B + ~$2.5B ATM + 1-2 follow-ons; prepayments fund ~60% of capex",
     "signedRate": "MSFT-deal inference ~$11.6M/MW·yr $-weighted across the firm book (~$34.2B ≈ the $33.6B 3/31/26 RPO); NBIS discloses no MW",
-    "committedDebt": "First senior secured debt facility, ~$775M, 6-K EX-99.1 dated 2026-07-17: matures 2030-10-31, priced SOFR+2.50%, MUFG-led and significantly oversubscribed, backed by deployed GPU infrastructure and contracted cash flows from an investment-grade customer whose contract is already in servicing phase; together with the customer cash flows it covers >100% of the capex on the underlying GPUs. Asset-level project debt per the house rule, so committedDebt not netDebt. Management frames it as 'a repeatable financing framework for more than $40 billion of additional customer commitments' — watch for a second facility at the 2026-08-12 print [edgar, company-ir]"
+    "committedDebt": "First senior secured debt facility, ~$775M, 6-K EX-99.1 dated 2026-07-17: matures 2030-10-31, priced SOFR+2.50%, MUFG-led and significantly oversubscribed, backed by deployed GPU infrastructure and contracted cash flows from an investment-grade customer whose contract is already in servicing phase; together with the customer cash flows it covers >100% of the capex on the underlying GPUs. Asset-level project debt per the house rule, so committedDebt not netDebt. Management frames it as 'a repeatable financing framework for more than $40 billion of additional customer commitments' — watch for a second facility at the 2026-08-12 print [edgar, company-ir]",
+    "contractedPct": "85 — 2Q26: four landmark deals >$1B TCV each (Reflection, Cohere, unnamed US frontier lab, large US quant firm) added to the MSFT-anchored book; ARR $3.0B, exit ARR $7-9B reaffirmed; 70% of 2Q deals carried 50-60% capex prepayments (SA 8/18)"
    },
    "thesis": "Roughly fair — the 80%-contracted hyperscaler book and $5.8B of non-core stakes are largely priced in, leaving modest upside from the 6.5 GW ramp. Net-cash balance sheet is the cushion.",
    "verified": {
     "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "contracts": "2026-08-18"
    },
    "contracts": [
     {
@@ -6337,6 +6339,16 @@
    "tk": "FRMI",
    "note": "TensorWave lease CONDITIONS: requisite project guaranties AND financing not yet received — floor rests on this clearing; REVERT frmi-tensorwave row (and floor) if conditions fail; NOI margin is our 75% ESTIMATE (band 70-85%), replace on disclosure; 8-K not yet filed (due ~8/14, Q2 results 8/13) — re-verify all terms + look for IT MW / rent structure / guarantor disclosure on filing",
    "added": "2026-08-11"
+  },
+  {
+   "tk": "CRWV",
+   "note": "Q2-26 balance sheet reconcile pending: DDTL 5.5 $2.6B closed 8/10 (Ba2/BB+, SOFR+550, TLB, 5yr tenor > 3yr contract tenor — delayed-draw: move to committedDebt as drawn); confirm mid-June HY notes ($1.25B 9.625% 2032 + EUR2.0B 8.5% 2032) inside netDebt 22,900; sharesReported vs 10-Q cover",
+   "added": "2026-08-18"
+  },
+  {
+   "tk": "NBIS",
+   "note": "2Q RPO/backlog dollar figure not in shareholder letter (ARR $3.0B only) — re-infer signedRate 11.5 when RPO prints; watch identity of 'unnamed US frontier lab' >$1B deal; >$9B FY26 prepayments expected (SA 8/18)",
+   "added": "2026-08-18"
   }
  ],
  "outlook": {
