@@ -363,9 +363,14 @@ function rampQuarters(R,sc,from,to){
       by[t.gen]+=live;cum+=live;prev+=t.gpus*f0;signed+=live*(t.signed||0);ctr+=live*t.ctr;camps[t.campus]=1;
       let vr=t.rate;
       if(d.vintageDecay){const age=Math.max(0,(s-RAMP_QS(t.rev))/4);vr=t.rate*Math.pow(1-d.vintageDecay,age);}
-      const er=t.ctr*vr+(1-t.ctr)*spotOf(s)*(R.spotMult[t.gen]||1);
+      // Storage / CPU / networking / managed layer rides on top of the GPU hour. UNSIGNED tranches only:
+      // their rates are market GPU-RENTAL prints so attach is additive, whereas every signed rate was
+      // back-solved from ALL-IN contract dollars and already contains it. Applying it to signed capacity
+      // would double-count and would break the retrodiction.
+      const at=(t.signed>0)?1:1+(R.attach||0);
+      const er=(t.ctr*vr+(1-t.ctr)*spotOf(s)*(R.spotMult[t.gen]||1))*at;
       const rq=live*er*2190/1e6;rv[t.gen]+=rq;rev+=rq;
-      revC+=live*t.ctr*vr*2190/1e6; revS+=live*(t.signed||0)*vr*2190/1e6;});
+      revC+=live*t.ctr*vr*at*2190/1e6; revS+=live*(t.signed||0)*vr*2190/1e6;});
     const grossMW=TR.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.grossMW,0);
     const itCom=TR.filter(t=>RAMP_QS(t.energize)<=s).reduce((a,t)=>a+t.itMW,0);
     const itMW=TR.reduce((a,t)=>{const rs=RAMP_QS(t.rev),um=(d.rampMult||1)*cal;
