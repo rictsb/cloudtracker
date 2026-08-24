@@ -316,7 +316,7 @@
    "bull": [
     "~98% take-or-pay book and ~$99B backlog de-risk near-term cash flows",
     "Hyperscaler anchors (Microsoft, Meta, Anthropic) plus capacity-constrained demand",
-    "Capacity is sold before it is built and financed against signed contracts — the 7/31/26 $2.6B DDTL names Anthropic, Jane Street, Midjourney, Hudson River Trading and Anysphere as the take-or-pay book it funds, so each new facility telegraphs a contract. Offset: that facility had to flex 100-125bp wider and concede maintenance covenants to clear.",
+    "Capacity is sold before it is built and financed against signed contracts — each new GPU facility telegraphs a contract. CORRECTED 2026-08-24: the $2.6B DDTL 5.5 credit agreement is dated 2026-08-07 (closed 8/10), NOT 7/31/26 — CoreWeave filed no 8-K at all in July — and the closing release names NO customers, describing only 'a diverse group of leading AI, financial services and technology customers'. The prior wording named Anthropic, Jane Street, Midjourney, Hudson River Trading and Anysphere; no filing supports that. Offset: the facility flexed 100-125bp wider and conceded a 1.35x DSCR maintenance covenant to clear.",
     "Diversifying off Microsoft as the backlog lengthens toward 7 years"
    ],
    "bear": [
@@ -696,8 +696,8 @@
    },
    "thesis": "The market models CRWV's blended $/MW flat while its book re-signs up the Hopper→Blackwell→Vera Rubin ladder — the signed rate already runs ~$9.3M vs the $8M market dial, backlog is $99.4B, and NVIDIA contractually backstops unsold capacity through 2032. The argument has moved to the financing cost of that growth: the GPU-backed debt curve INVERTED in July, with the newest DDTL clearing at 10.44% (S+550/OID 97, 1.35x DSCR maintenance covenant) after pricing sub-6% in March. Q2 net interest expense is guided $650-730M against ~$21M of Q1 adjusted operating income.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-18"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "contracts": [
     {
@@ -825,7 +825,7 @@
    "contractedPct": 85,
    "termYrs": 5,
    "leaseQ": 4.4,
-   "netDebt": -9280,
+   "netDebt": -9038,
    "shares": 341,
    "price": 210.19,
    "legacyEV": 5800,
@@ -839,9 +839,9 @@
    ],
    "bear": [
     "Overwhelmingly a future-MW story: ~170 MW connected vs GW-scale targets — heavy back-end execution risk",
-    "Vineland NJ (the Microsoft site) has an NJDEP permit on hold and is barely live — key near-term risk",
-    "Thin net-cash cushion (~$848M) flips to net debt as the ~$20-25B 2026 capex deploys",
-    "Convertibles defer cash interest but carry equity dilution; Nvidia warrants + converts lift the share count"
+    "Vineland NJ: the municipal hold cleared (Planning Board approved the ~588,000 sq ft Phase 2 site plan on 2026-08-17) but the NJDEP AIR PERMIT is still outstanding — the binding constraint moved, it did not go away",
+    "Two unnamed 'Pipeline 2030/2031 (growth)' rows carry 3,000MW and ~26% of site EV with no site, counterparty or schedule behind them",
+    "Convertible stack now ~$13.5B face and the August notes ACCRETE — the 2030s to 110% and the 2034s to 125%, a $5.8B claim on $5.0B raised"
    ],
    "catalysts": [
     "Connected-power step-up through H2 2026 toward the 800MW-1GW year-end target",
@@ -1116,14 +1116,15 @@
    "plannedRaise": 10000,
    "basis": {
     "plannedRaise": "NVIDIA $2B + ~$2.5B ATM + 1-2 follow-ons; prepayments fund ~60% of capex",
-    "signedRate": "MSFT-deal inference ~$11.6M/MW·yr $-weighted across the firm book (~$34.2B ≈ the $33.6B 3/31/26 RPO); NBIS discloses no MW",
+    "signedRate": "13.5 (was 11.5), owner-approved 2026-08-24. The old 11.5 was back-solved from the Sept-2025 Microsoft contract alone (~$11.6M/MW·yr) and had become a stale vintage average. Nebius's Q2 shareholder letter now discloses its own three-tier ACV ladder directly: 2026 INSTALLED BASE ~$12M/MW·yr, Q2 NEW SIGNINGS >$20M/MW·yr, Q3 SHORT-DURATION >$40M/MW·yr. Verbatim on the middle tier, stated twice independently: 'Deals saw an average yield of more than $20 million per megawatt' and 'The average TCV for these deals was greater than $1 billion, with annual contract value of $20-25 million per MW.' Blending the legacy book against the four 2Q deals — (17,400 x 11.6 + ~4,000 x 22.5) / 21,400 = $13.64M/MW·yr — supports 13.5 within 1%. Registry reconciliation holds: 13.5 vs the $11.60 $-weighted registry rate is a 16.4% gap, inside the 20% warn threshold. NOT set to 20: the >$20M figure describes MARGINAL 2Q signings, not the book, which is still dominated by the $32.3B Microsoft+Meta stack. The $40-50M/MW short-duration band is explicitly EXCLUDED — the letter frames it as 'a price opportunity in the $40-50 million per MW range and we signed our first one this week', i.e. N=1, price undisclosed, 3-6 month duration; a scarcity print, not a book rate [edgar 6-K 2026-08-12 EX-99.2 shareholder letter; sell-side GS 2026-08-24 corroborating]",
     "committedDebt": "First senior secured debt facility, ~$775M, 6-K EX-99.1 dated 2026-07-17: matures 2030-10-31, priced SOFR+2.50%, MUFG-led and significantly oversubscribed, backed by deployed GPU infrastructure and contracted cash flows from an investment-grade customer whose contract is already in servicing phase; together with the customer cash flows it covers >100% of the capex on the underlying GPUs. Asset-level project debt per the house rule, so committedDebt not netDebt. Management frames it as 'a repeatable financing framework for more than $40 billion of additional customer commitments' — watch for a second facility at the 2026-08-12 print [edgar, company-ir]",
-    "contractedPct": "85 — 2Q26: four landmark deals >$1B TCV each (Reflection, Cohere, unnamed US frontier lab, large US quant firm) added to the MSFT-anchored book; ARR $3.0B, exit ARR $7-9B reaffirmed; 70% of 2Q deals carried 50-60% capex prepayments (SA 8/18)"
+    "contractedPct": "85 — 2Q26: four landmark deals >$1B TCV each (Reflection, Cohere, an unnamed US AI neolab, a large US quant trading firm) added to the MSFT-anchored book; ARR $3.0B, exit ARR $7-9B reaffirmed; ~70% of 2Q deals carried customer prepayments (an all-time high) covering 50-60% of the associated capex; expected payback on Q2 deals cut to 1yr 10mo from a historical 2-3yr range. CONTRACTED-POWER TARGET RAISED 2026-08-12, confirmed verbatim in the shareholder letter: 'ending 2026 with 5 GW of contracted power, up from the +4 GW' indicated last quarter — the ladder runs >1GW Aug-25, >2.5GW Nov-25, >3GW Feb-26, >4GW May-26, 5GW now. UNIT FLAG: Nebius states contracted POWER (gross), not critical IT MW [edgar 6-K 2026-08-12 EX-99.2]",
+    "netDebt": "-9,038 as of 2026-06-30, rolled for the August convert. Balance sheet (6-K EX-99.1, 2026-08-12): cash and cash equivalents $8,042.1M + restricted cash $1,056.0M = $9,098.1M; Debt current $46.7M + Debt non-current $8,499.0M = $8,545.7M total debt, which is substantially all convertible notes and is carried OFF net debt under the house if-converted convention (the legacy converts sit in the FD share count instead). ROLL: + ~$4,940M net proceeds of the 2026-08-19 convertible offering (settled 2026-08-24) takes cash to ~$14,038M; the NEW notes are OUT OF THE MONEY (initial conversion prices ~$313.46 for the 2030s and ~$324.65 for the 2034s, struck off the $223.90 close of 2026-08-19) so their $5,000M principal STAYS AS DEBT and adds no shares. Net: 5,000 - 14,038 = -9,038. ACCRETION FLAG: these notes accrete to 110% (2030s) and 125% (2034s) of original principal, so the claim at maturity is $5,800M, not $5,000M, and both the redemption and fundamental-change repurchase prices are the accreted amount — netDebt carries principal per convention, with the $800M gap tracked as a watch item [edgar 6-K 2026-08-12; company pricing release 2026-08-19]"
    },
-   "thesis": "Roughly fair — the 80%-contracted hyperscaler book and $5.8B of non-core stakes are largely priced in, leaving modest upside from the 6.5 GW ramp. Net-cash balance sheet is the cushion.",
+   "thesis": "Materially undervalued on our marks, but the gap is concentrated in unsigned capacity rather than the contracted book. Nebius's own Q2 disclosure repriced the story — new signings now yield $20-25M/MW against a ~$12M installed base, and contracted power guidance stepped to 5GW — while a $5.0B August convertible keeps the balance sheet in a ~$9B net-cash position. The swing factor is whether 3,000MW of unnamed placeholder pipeline is real and whether Nebius owns its economics at all under the new asset-light partnership model.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-18"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "contracts": [
     {
@@ -1175,8 +1176,8 @@
      "source": "Q1-26 ARR $1.92B — aggregate short-duration book, not a single TCV"
     }
    ],
-   "signedRate": 11.5,
-   "sharesReported": 256,
+   "signedRate": 13.5,
+   "sharesReported": 271.9,
    "committedDebt": 775
   },
   {
@@ -1368,8 +1369,8 @@
    },
    "thesis": "Owned, powered ~1 GW Corsicana (IG-re-rated on the AMD lease) is credited, but it's ~95% unleased so the market discounts the lease-up. Re-rates as Corsicana signs tenants.",
    "verified": {
-    "capital": "2026-08-11",
-    "contracts": "2026-08-11"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -1409,7 +1410,7 @@
    "contractedPct": 9,
    "termYrs": 10,
    "leaseQ": 3,
-   "netDebt": 444,
+   "netDebt": 1345,
    "shares": 350,
    "price": 11.48,
    "legacyEV": 1340,
@@ -1655,15 +1656,15 @@
     }
    ],
    "equityDiscount": 0.15,
-   "plannedRaise": 575,
+   "plannedRaise": 1000,
    "basis": {
     "plannedRaise": "ATM cut to $700M, converts preferred; Tydal lease → project debt",
     "equityDiscount": "Jihan Wu ~75% voting control + foreign-private-issuer + controlled-company + index exclusion"
    },
    "thesis": "The catalyst landed 8/4/26: Tydal went effective at $4.7B/16yr with a 90% NOI margin — $2.16M/MW·yr, the top print on our entire tape — on ~$4M/MW of remaining conversion capex, an NOI-on-cost yield no US build can touch. The book jumps from zero to $4.7B against a ~$6B market cap, with Rockdale/Clarington/Niles (~1GW) still unleased behind it and Tydal financing expected to throw off excess capital. Watch: the tenant's no-fee termination right at year 10, Volta's own credit (LCs cover ~28% of TCV), and the 15% governance discount stays until the structure says otherwise.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-04"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -1680,7 +1681,7 @@
      "grossTotalM": 4700
     }
    ],
-   "sharesReported": 243.3
+   "sharesReported": 271.78
   },
   {
    "tk": "IREN",
@@ -2696,8 +2697,8 @@
    },
    "thesis": "The vertically-integrated AI cloud keeps compounding: $16.9B contracted TCV across Microsoft, NVIDIA and now an eight-name AI-developer cohort ($2.8B added 7/20), YE-26 ARR target $4bn+ at 85% contracted, and ~45% customer prepayments doing the financing the market once assumed dilution would. The 5.8GW global power book is the multiplier — 480MW delivering 2026, 1.2GW targeted 2027, priced up the gen-curve as it lands. Watch: $7.6bn cash vs the $8B assumed raise looks increasingly conservative; revisit at FY results.",
    "verified": {
-    "capital": "2026-08-18",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "contracts": [
     {
@@ -2760,8 +2761,8 @@
    "tier": "proven",
    "contractedPct": 5,
    "termYrs": 5,
-   "netDebt": -58,
-   "shares": 160,
+   "netDebt": -80.3,
+   "shares": 244.59,
    "price": 1.18,
    "legacyEV": 80,
    "plannedRaise": 750,
@@ -2797,7 +2798,8 @@
    ],
    "basis": {
     "plannedRaise": "$500M ATM (H.C. Wainwright) + warrants; sub-$2 micro-cap funds buildout ~entirely by dilution → share count 3-4x",
-    "equityDiscount": "going-concern flags, ~$34M Series A preferred arrears, sub-$2 Nasdaq-compliance risk"
+    "equityDiscount": "going-concern flags, ~$34M Series A preferred arrears, sub-$2 Nasdaq-compliance risk",
+    "seniorClaims": "~$158M of Series A preferred ahead of common: 4,920,045 shares of 9.0% Series A Cumulative Perpetual Preferred (SLNHP) outstanding at 6/30/26 at a $25.00 liquidation preference = $123.0M, PLUS approximately $35.1M of dividends in arrears through 6/30/26 — no Series A dividend has been declared since October 2022, so the arrears compound ahead of common. Series B is fully converted. Q2 10-Q [edgar]"
    },
    "narrative": "Soluna is a renewable-powered colocation landlord, not a GPU cloud: it builds wind/solar-co-located data-center shells in Texas (plus a Kentucky site), hosts third-party Bitcoin miners who bring their own ASICs, and is pivoting the same powered-land model to AI/HPC. Today ~123 MW is operating (all Bitcoin hosting/prop-mining) and 83 MW (Kati 1) is energizing/under construction; the AI story rests on Project Kati 2 (Metrobloks JV, 350+ MW roadmap where Soluna contributes site/power/electrical and Metrobloks leads leasing to neocloud tenants) and Project Dorothy 3 (300+ MW, now backstopped by the April 2026 $53M Briscoe Wind Farm purchase giving owned generation and a power cost edge). The whole AI book is pre-tenant — a vertically integrated, cheap-power optionality bet on a tiny (~$220M), heavily diluting, going-concern-flagged balance sheet.",
    "bull": [
@@ -2885,10 +2887,11 @@
    "log": [],
    "thesis": "A distressed micro-cap option: ~280 MW of mostly pre-tenant AI capacity on cheap renewable power, nearly offset by the ~3-4x dilution needed to fund it. Binary on landing a JV/anchor before the going-concern clock.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
-   "sharesReported": 157.8
+   "sharesReported": 244.59,
+   "seniorClaims": 158
   },
   {
    "tk": "GLXY",
@@ -3045,8 +3048,8 @@
    "log": [],
    "thesis": "The 15-yr CoreWeave Helios lease (526 MW) is priced in at the WRONG level — the first primary print of Phase II economics (term-average NOI $2.42M/MW·yr, ~91% margin, 13.7% starting yield on cost, 3-5% escalators) runs ~29% above what we carried and corroborates the SemiAnalysis TCV tape. The option you are buying is ~0.83 GW gross / ~0.54 GW IT of approved, interconnected, unleased Helios capacity — a third of the '1.6 GW pipeline' framing — now with a second campus at McGregor TX behind it. Offsetting both: $3.5B of 9.875% project debt now sits ahead of the common.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -3077,7 +3080,7 @@
    "shares": 133.7,
    "price": 80.64,
    "legacyEV": 0,
-   "btc": 5600,
+   "btc": 9314,
    "plannedRaise": 500,
    "equityDiscount": 0.05,
    "sites": [
@@ -3182,7 +3185,8 @@
     "committedDebt": "River Bend $3.25B (BBB−, closed 4/30/26, 245MW Fluidstack/Google) + Beacon Point $4.25B (Baa2, closed 6/9/26, 352MW) — nonrecourse SPV bonds funding credited campuses",
     "sites": "BP ph2 350 IT (AEP 1GW interconnect executed); RB ROFO: OWNER MANDATE 2026-07-08 — assume Fluidstack exercises: tranche 1 400MW graded ESTIMATED (Entergy power expansion pending → not disclosed), balance 600MW rumored; 7GW exclusivity/diligence funnel still NOT credited (attrition evidence)",
     "tier": "ig — OWNER RULING 7/20/26: two 15-yr NNN leases at Beacon Point (704MW to one tenant, $19.6B campus) with the tenant COMPANY-DISCLOSED as 'high-investment-grade' in the 8-K exhibit (unnamed; lease not exhibited), plus Google-backstopped River Bend ($7.0B/245MW) and IG project debt on Ph1; company states 100% of contracted AI capacity is IG-leased or backstopped [edgar]. FALSIFIER: tenant identity revealing sub-IG credit, or exhibited lease terms diverging from the PR || 7/27/26: SA identifies the Beacon Point tenant as NVIDIA (Aa-grade) — owner adopted as probable; falsifier unchanged (identity disclosure)",
-    "shares": "FD if-converted 133.7M, filing-derived 7/23/26: basic 123.19M as of 7/20/26 (buyback 8-K: 6,159,439 = 5.0% of current outstanding ×20; = 112.59M 5/4 cover + 9.72M Coatue conversion + ~0.9M ATM/RSU dribble) + 3.35M RSUs + 4.55M PSUs (at target) + 0.07M DSUs + 2.58M options TSM @$5.91 WAEP (all ITM at ~$109) + de-minimis warrants [edgar 10-Q acc 0001104659-26-055891 + 8-K acc 0001104659-26-084862]. Coatue $159.285M accreted principal converted (preferred reading — forced-redemption right live 6/28/26 at 6.6× conv price) → stripped from netDebt (85 → −74); FD identical under either reading. MS's 121M FSDO refuted: stale Q1 weighted-avg + no award overhang"
+    "shares": "FD if-converted 133.7M, filing-derived 7/23/26: basic 123.19M as of 7/20/26 (buyback 8-K: 6,159,439 = 5.0% of current outstanding ×20; = 112.59M 5/4 cover + 9.72M Coatue conversion + ~0.9M ATM/RSU dribble) + 3.35M RSUs + 4.55M PSUs (at target) + 0.07M DSUs + 2.58M options TSM @$5.91 WAEP (all ITM at ~$109) + de-minimis warrants [edgar 10-Q acc 0001104659-26-055891 + 8-K acc 0001104659-26-084862]. Coatue $159.285M accreted principal converted (preferred reading — forced-redemption right live 6/28/26 at 6.6× conv price) → stripped from netDebt (85 → −74); FD identical under either reading. MS's 121M FSDO refuted: stale Q1 weighted-avg + no award overhang",
+    "seniorClaims": "Non-controlling interests $311.4M at 6/30/26 (from $267.5M at 12/31/25) — the American Bitcoin (ABTC) minority. NCI sits ahead of common per house convention, so it belongs in seniorClaims rather than netDebt. Note ABTC's own Class A ATM issuance during H1 2026 (7,755,671 shares, $144.7M gross) dilutes Hut 8's ownership percentage, so this line drifts with ABTC issuance. Q2 10-Q balance sheet [edgar]"
    },
    "narrative": "Hut 8 has pivoted decisively from BTC miner to power-first AI data-center LANDLORD: it builds greenfield, owned, NVIDIA-DSX-spec shells and signs 15-year triple-net leases to tenants who bring their own GPUs. Two anchor leases are signed — River Bend (245 MW IT, Louisiana, leased to Fluidstack with a Google payment backstop under a multi-GW Anthropic partnership) and Beacon Point Ph1 (352 MW IT, Texas, to an undisclosed high-IG tenant) — totaling ~597 MW contracted and ~$16.8B base-term value (~$1.1B stabilized annual NOI). Both are funded with IG non-recourse project bonds ($3.25B + $4.25B), keeping the parent low-recourse, while the legacy mining business is carved into separately-listed, ~80%-owned American Bitcoin (ABTC).",
    "bull": [
@@ -3309,8 +3313,8 @@
    "thesis": "Beacon Point is fully commercialized: 949MW of contracted IT across two 15-yr NNN leases to an unnamed high-IG tenant (704MW, $19.6B campus, 3% escalators) plus Google-backstopped River Bend — $26.6B base-term value, >$1.75B average annual NOI, 100% IG-leased or backstopped per the company. Remaining upside is the River Bend ROFO (exercise assumed — mid-2027 falsifier) and Vega; the market's discount is the unnamed tenant and unexhibited leases. Watch the $7.5B committed project debt grow when Ph2 financing prints.",
    "committedDebt": 7500,
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -3370,7 +3374,8 @@
      "mw": 1.5
     }
    ],
-   "sharesReported": 123.2
+   "sharesReported": 123.2,
+   "seniorClaims": 311
   },
   {
    "tk": "CIFR",
@@ -3379,11 +3384,11 @@
    "tier": "ig",
    "contractedPct": 16,
    "termYrs": 13,
-   "netDebt": 965,
-   "shares": 577,
+   "netDebt": 1456,
+   "shares": 478,
    "price": 15.54,
    "legacyEV": 300,
-   "btc": 1116,
+   "btc": 646,
    "plannedRaise": 1200,
    "equityDiscount": 0,
    "sites": [
@@ -3506,7 +3511,7 @@
     "tier": "IG — direct AWS 15-yr 300MW lease (~$5.5B) plus Google-backstopped Fluidstack book; ~$11.4B contracted revenue anchored by investment-grade counterparties",
     "equityDiscount": "",
     "committedDebt": "$3,531M escrowed construction proceeds (Barber Lake/Black Pearl SSNs, 10-Q 3/31/26) + $810M Stingray SSN (closed 6/15/26, AWS Andrews TX) — fund credited sites, absent from netDebt",
-    "seniorClaims": "~24% Colchis LLC minority (redeemable NCI, 10-Q)"
+    "seniorClaims": "~24% Colchis LLC minority (redeemable NCI $25,679k at 6/30/26, from $30,319k at 12/31/25). Basis refined 2026-08-24: Cipher bought 53% of Colchis LLC in Oct-2025 and capital contributions during 1H26 took it to 76%, so the redeemable minority is now 24% [edgar: Q2 10-Q]"
    },
    "narrative": "A former Bitcoin miner (Cipher Mining, rebranded Cipher Digital in early 2026) executing one of the cleaner BTC-to-AI landlord pivots: it builds powered data-center shells on owned, cheap-ERCOT Texas land and leases them to hyperscale tenants who bring their own compute. Unlike most peers it has already signed a genuinely investment-grade book — AWS direct (300 MW gross / 216 MW critical IT, 15-yr, ~$5.5B at Black Pearl) and Fluidstack at Barber Lake (207 MW critical IT, 10-yr, Google backstopping ~$333M of obligations), plus a third undisclosed IG-hyperscaler campus — totaling ~$11.4B contracted revenue and ~$787M average annualized NOI. The capital stack is mostly nonrecourse project debt (a $2.0B Black Pearl bond at 6.125%, a $1.7B Cipher Compute/Barber Lake note at 7.125%) plus low-coupon converts, leaving only ~$960M net debt and ~$4.2B cash. The story is execution and lease-up: ~700 MW of HPC is contracted and energizing through late 2026, but the GW-scale prize (McLennan, Mikeska, Colchis, Ulysses) — toward a ~4.2 GW 2030+ ambition — is owned and scheduled but largely uncontracted.",
    "bull": [
@@ -3606,11 +3611,11 @@
     }
    ],
    "thesis": "Undervalued — 700 MW of signed hyperscaler colo plus a ~2 GW queued pipeline credited near-full while the market still treats it as a miner. Re-rates as Barber Lake energizes and the pipeline contracts.",
-   "committedDebt": 4341,
-   "seniorClaims": 26,
+   "committedDebt": 3728,
+   "seniorClaims": 25.7,
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -3666,7 +3671,7 @@
      "grossTotalM": 2000
     }
    ],
-   "sharesReported": 409
+   "sharesReported": 415
   },
   {
    "tk": "MARA",
@@ -3675,11 +3680,11 @@
    "tier": "proven",
    "contractedPct": 0,
    "termYrs": 10,
-   "netDebt": 1938,
-   "shares": 381,
+   "netDebt": 1996,
+   "shares": 381.888,
    "price": 11.61,
    "legacyEV": 1400,
-   "btc": 36303,
+   "btc": 35577,
    "plannedRaise": 1500,
    "equityDiscount": 0,
    "sites": [
@@ -3739,7 +3744,8 @@
     }
    ],
    "basis": {
-    "plannedRaise": "~$1.5B: $2B ATM facility established Mar 2025, ~$2.5B equity raised across 2024-25; BTC sales + Barclays bridge + ~$785M assumed Long Ridge debt carry most buildout capex, but a spec-heavy multi-GW pivot with no signed AI leases will lean on the ATM at the margin."
+    "plannedRaise": "~$1.5B: $2B ATM facility established Mar 2025, ~$2.5B equity raised across 2024-25; BTC sales + Barclays bridge + ~$785M assumed Long Ridge debt carry most buildout capex, but a spec-heavy multi-GW pivot with no signed AI leases will lean on the ATM at the margin.",
+    "seniorClaims": "$98.8M: redeemable non-controlling interest $82.461M (mezzanine, from the Exaion majority acquisition) plus non-controlling interests $16.385M in equity, both at 6/30/26. No preferred stock is outstanding (50,000,000 authorized, none issued). Q2 10-Q [edgar]"
    },
    "narrative": "MARA Holdings is a top-tier Bitcoin miner (~72 EH/s, ~1.9 GW of power across 19 sites, 36,303 BTC) repositioning its power-rich, largely-owned portfolio into an AI/HPC landlord — building powered data-center shells (Long Ridge OH 505MW gas plant + up to 600MW DC; MPLX West Texas 400MW→1.5GW; a Starwood JV targeting ~1GW near-term to >2.5GW) to lease to investment-grade AI/IT tenants while flexing workloads back to mining when economics favor it. The investable question is execution and contracting: the AI book has zero signed leases today (only \"inbound interest\"), buildout starts in 2027 with first power around mid-2028, and most of the multi-GW pipeline is announced rather than secured. Capital structure is heavy — ~$2.3B converts post-Q1 buyback plus the ~$1.5B Long Ridge bridge — partly offset by a still-large but shrinking BTC treasury that management is now selling to cut debt.",
    "bull": [
@@ -3791,10 +3797,11 @@
    "log": [],
    "thesis": "Looks cheap because the model credits ~2.5 GW of owned power, but nearly all is mining/spec with zero signed AI leases (real AI-leasable ~200 MW). Needs an actual AI conversion, not just owned megawatts.",
    "verified": {
-    "capital": "2026-06-30",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
-   "sharesReported": 381.3
+   "sharesReported": 381.888,
+   "seniorClaims": 98.8
   },
   {
    "tk": "CORZ",
@@ -3803,8 +3810,8 @@
    "tier": "ig",
    "contractedPct": 50,
    "termYrs": 12,
-   "netDebt": 1495,
-   "shares": 445,
+   "netDebt": 1819,
+   "shares": 439,
    "price": 17.67,
    "legacyEV": 150,
    "plannedRaise": 600,
@@ -4037,8 +4044,8 @@
    "btc": 848,
    "thesis": "Two 500MW+ anchor customers in 18 months: the CoreWeave book (590MW, credit-dragged early years) plus today's $14B/530MW AMD partnership — direct A-rated NNN leases, full credit support on the neocloud slice, and an exclusive AMD reservation over 2 more GW at Pecos/Hunt/Muskogee. The $24B contracted book now spans 1.1GW with 437MW already billing ahead of schedule, and mining is down to two sites on its way out. Execution risks: $6B of self-funded build ($11-12M/MW) still needs project bonds, and the AMD reservation locks the best expansion capacity to one buyer's timetable.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -4126,7 +4133,7 @@
      "source": "8-K + Q2 call 7/28/26: ~150MW modified gross lease across Auburn + Dalton Ph3; AMD provides FULL 15-yr credit support with NO equity step-in rights (mgmt contrast vs other market structures); economics 'in line with market'; Dalton and Auburn now fully leased. Gross pro-rata of the $14B"
     }
    ],
-   "sharesReported": 317.9
+   "sharesReported": 321.34
   },
   {
    "tk": "WULF",
@@ -4241,7 +4248,7 @@
    ],
    "basis": {
     "plannedRaise": "Buildout is overwhelmingly debt/Google-backstopped (~$3.2B Google backstop, $3.2B WULF Compute senior secured notes, $2.5B converts); equity issuance is incremental ATM + acquisition stock (KY/MD deals) plus Google warrants for 32.5M shares, so realistic cumulative equity raise is modest vs ~$13.8B cap — est. ~$600M through 2028.",
-    "seniorClaims": "Century Aluminum's 6.8% minority in Raylan Data Holdings carries a put whose charge = max($300M floor, 6.8% x Raylan equity) [Century 8-K 2026-02-02 Items 1.01/2.01 + WULF 10-Q VIE note]. TRIPWIRE FIRED at the 2026-08-03 sweep: the two Hawesville rows mark at ~$10.21B of discounted site EV (Ph A $5.17B + Ph B $5.04B, ppm ~$30.9M/MW at the 6.5% cap floor on the 2.01 term-avg NOI); net of the ~$3.5-3.8B of KY project debt and remaining capex the campus must absorb, Raylan equity is ~$6.4-6.7B, above the ~$4.41B threshold at which 6.8% overtakes the floor. 6.8% x $6.4-6.7B = $435-456M; carrying the conservative ~$450M. THIS IS MODEL-DERIVED, NOT DISCLOSED — it moves with the capRate/discount dials, so it is estimated-grade, and the netting basis is a judgement rather than a filed number (the no-netting upper bound is 6.8% x $10.21B = $694M). Recompute every sweep; once the ~$3.5B KY financing prints, the netting becomes a fact and this can move to a firmer basis [edgar + engine]",
+    "seniorClaims": "FIXED $300.0M, not a formula. CORRECTED 2026-08-24: our prior basis carried max($300M floor, 6.8% x Raylan equity) and re-computed the floating leg each sweep. Century Aluminum's own Q2 10-Q states the right is to require the majority holder to purchase the Minority Interest for $300.0 million, starting on the first anniversary of the data center delivering at least 375 MW of critical IT load to customers. There is no equity-linked leg — the put is a fixed dollar amount, so seniorClaims 450 -> 300 and the recompute-each-sweep instruction is retired [edgar: Century Aluminum Q2 10-Q; WULF Q2 10-Q VIE note]",
     "legacy": "$530M Abernathy JV exit receivable ($250M ~immediate, $150M by 12/31/26, ~$130M by 4/30/27) booked ~$500M; 1.18x invested capital"
    },
    "narrative": "TeraWulf is a Bitcoin miner that has pivoted decisively into AI/HPC colocation landlord — it builds powered data-center shells at Lake Mariner (NY) and Abernathy (TX) and leases them to tenants (Core42, Fluidstack) who bring their own GPUs, with Google backstopping ~$3.2B of Fluidstack's lease obligations and holding ~14% pro forma. In Q1 2026 HPC lease revenue ($21M) surpassed mining for the first time, and the company carries a large contracted book (~$12.8B incl. extensions) plus a ~2.2 GW owned, mostly-uncontracted pipeline (Muskie KY 1GW+, Lake Hawkeye, Chesapeake). The thesis is a re-rate from miner to long-duration power/colocation landlord, financed by debt rather than dilution.",
@@ -4255,7 +4262,7 @@
     "~$2.7B net debt and a capital-intensive buildout; revenue ramp is back-end-loaded (most contracted MW energize H2-2026, Muskie not until 2028-2030)",
     "Heavy customer concentration in Fluidstack — a thinly-capitalized neocloud whose lease credit leans on Google's backstop rather than its own balance sheet",
     "~2.2 GW of pipeline (Muskie Ph II, Lake Hawkeye, Chesapeake) is uncontracted and partly speculative; leasing risk on the back half of the stack",
-    "Legacy Bitcoin mining is being wound down/impaired; BTC treasury (13,099 BTC) injects price volatility and quarterly mark-to-market noise"
+    "Legacy Bitcoin mining is being wound down and the fleet curtailed; the BTC treasury is now immaterial (~2 coins, $133k at 6/30/26 — the prior 13,099 BTC bear point is dead), so the equity story rests entirely on landlord execution"
    ],
    "catalysts": [
     "CB-3/CB-4/CB-5 energization and rent commencement through H2-2026 (Fluidstack ~300MW going live)",
@@ -4348,10 +4355,10 @@
     }
    ],
    "thesis": "The Anthropic anchor changes the story: a direct 20-year, ~$19B lease on 401MW at Hawesville (IG-wrapped, reportedly by Google) prints at the top of the market — and the Abernathy JV was monetised at 1.18x to fund the wholly-owned build. Still capital-hungry (bridge to be termed out; Muskie's 1GW uncontracted), but the book is now anchored by the strongest counterparty print in the group.",
-   "seniorClaims": 450,
+   "seniorClaims": 300,
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -4396,7 +4403,7 @@
      "grossTotalM": 19000
     }
    ],
-   "sharesReported": 495.5
+   "sharesReported": 499
   },
   {
    "tk": "FRMI",
@@ -4405,7 +4412,7 @@
    "tier": "proven",
    "contractedPct": 11,
    "termYrs": 20,
-   "netDebt": 178,
+   "netDebt": 428,
    "shares": 640.5,
    "price": 5.66,
    "legacyEV": 0,
@@ -4569,8 +4576,8 @@
    ],
    "thesis": "The firm gas power (final 6GW TCEQ air permit, 3xF-class + 6xSGT-800 turbines secured and landed, 200MW grid ESA) roughly supports the price; the 11-17GW ambition and OpenAI-anchor optionality are credited at ~zero. The binary is now LIVE AND UNMET: management’s own 90-day clock expires ~Aug 10-12 with nothing signed, and without a >=400MW lease by ~Nov 10 the MUFG facility doubles amortization and can market the turbines. The guide is cut to ~1.5GW through 2027 with capital deployment explicitly matched to commercial progress — the gas-phase schedule is now a tenant-contingent option, not a construction plan — and governance risk rose rather than fell when the Neugebauer designee quit 7/10 over the financing governance that produced the $431M convert.",
    "verified": {
-    "capital": "2026-08-11",
-    "contracts": "2026-08-11"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "sharesReported": 640.5,
    "leases": [
@@ -4595,8 +4602,8 @@
    "tier": "proven",
    "contractedPct": 25,
    "termYrs": 9,
-   "netDebt": -63,
-   "shares": 50.5,
+   "netDebt": 259,
+   "shares": 45.1,
    "price": 21.32,
    "legacyEV": 230,
    "plannedRaise": 150,
@@ -4761,8 +4768,8 @@
    "log": [],
    "thesis": "Undervalued AI hybrid (GPU cloud + colo to Nscale/Cerebras), but a single-tenant, single-site, thin-float bet — concentration is the thesis. Its value also drives BTBT's look-through.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -4887,7 +4894,7 @@
      "gpuCount": 2048
     }
    ],
-   "sharesReported": 38.6
+   "sharesReported": 45.1
   },
   {
    "tk": "HIVE",
@@ -4896,12 +4903,12 @@
    "tier": "proven",
    "contractedPct": 10,
    "termYrs": 2,
-   "netDebt": -55,
-   "shares": 327,
+   "netDebt": -47,
+   "shares": 319.07,
    "price": 2.98,
    "legacyEV": 320,
-   "btc": 150,
-   "plannedRaise": 250,
+   "btc": 190,
+   "plannedRaise": 300,
    "equityDiscount": 0.1,
    "sites": [
     {
@@ -4965,7 +4972,7 @@
    ],
    "bear": [
     "Sub-scale neocloud (~5,500 GPUs) competing against CoreWeave/IREN-class operators with far deeper hyperscaler relationships",
-    "Short AI contract terms (6–24 mo) against a non-IG anchor (Cohere) — low revenue durability vs take-or-pay peers",
+    "Counterparty quality improved 2026-08-17 — BUZZ signed a five-year, ~$350M GPU-cloud agreement with an INVESTMENT-GRADE enterprise customer (2,016 GB300), the first IG name in the book, which retires the old 'non-IG anchor' bear point. Residual risk is that 'investment-grade' is the company's own unaudited characterisation and the customer is unnamed",
     "Heavy serial ATM dilution (~76% share growth YoY) and high beta (~3.7); equity is the primary funding source",
     "Most disclosed MW is still BTC mining; AI footprint is small and much of the GPU-cloud pipeline is rumored/early"
    ],
@@ -5022,8 +5029,8 @@
    ],
    "thesis": "The GPU-cloud pivot just got its anchor: a signed $220M/3yr sovereign-AI contract (Bell pays, Cohere operates, GB200 at ~$14.7M/MW·yr — top of the gen ladder) puts BUZZ past its $100M ARR target, against a small credited footprint. Still mostly a miner by MW; the GTA pipeline and the federal sovereign-compute award are the next legs.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-06-30"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "contracts": [
     {
@@ -5054,7 +5061,7 @@
     }
    ],
    "signedRate": 14.5,
-   "sharesReported": 267.4
+   "sharesReported": 274.28
   },
   {
    "tk": "APLD",
@@ -5211,7 +5218,7 @@
     "plannedRaise": "~$1B judgmental: APLD funds buildout via $2.15B PF2 senior secured notes (6.75% '31), Macquarie $5B perpetual preferred ($2.25M/MW, 12.75%) + ~$900M NCI + converts; telegraphs minimal common-equity/ATM issuance",
     "tier": "IG — ~1.2 GW under 15-yr take-or-pay, ~65% of revenue backed by U.S. investment-grade hyperscalers (Polaris Forge 2/3, Delta Forge 1); CoreWeave book de-risked to A3 via springing guarantee",
     "committedDebt": "ComputeCo-2 $2.15B (closed 3/10/26, PF2 200MW; escrow released 6/17/26) + ComputeCo-3 $1.59B (closed 6/16/26, ELN-04) — funded paper only, $430M FNBO revolver capacity excluded",
-    "seniorClaims": "Carried at the 1.80x MOIC LIQUIDATION FLOOR = $3,285M on the $1.825B MAM has funded (owner ruling 2026-08-03: the contractual claim, not the accounting one, is what stands ahead of common). The floor is INCLUSIVE of common-unit value and rises to 2.00x on an IPO or drag-along sale; it binds on any redemption from 2028-04-06 (MOIC + 120% of common FMV to 10/6/29, +112.5% to 10/6/30, then the greater of accreted+FMV-common or MOIC), and MIP may force a marketed sale process if still outstanding at 2032-10-06. BOOK ALTERNATIVE, superseded but recorded: redeemable NCI carrying value $1,956M at 5/31/26 per the FY26 10-K balance sheet (= $1,896M contributions net of costs + $62.7M PIK dividends - $2.7M loss attribution) — the floor exceeds book today and book accretes toward it at 12.75% PIK compounding semi-annually (stepping +87.5bp on 10/7/30 and 10/7/31, +200bp from 10/7/35 to a 16.75% cap, plus a spread bump if weighted-average all-in debt cost exceeds 8.75%). FUNDING: $1.825B across four closings to 5/31/26 — 10/6/25 $112.5M (75,000 common units, 7.5%), 11/25/25 $450.0M (no common), 12/9/25 $337.5M (+27,778 common), 5/29/26 $925.0M (+41,815 common); MIP holds 13.5% of TopCo 2 fully-diluted common (APLD 86.5%). THE FLOOR GROWS WITH EACH DRAW: ~$3.2B of the $5.0B programme is undrawn at $2.25M/MW (~1.4GW more North Dakota capacity), and a fully-drawn programme carries a 1.80x floor of $9.0B — re-mark every quarter. PERIMETER: TopCo 2 exists for NORTH DAKOTA data centers and owns ComputeCo (PF1 ELN-02/03) and ComputeCo 2 (PF2); Delta Forge 1 and 2 sit OUTSIDE. Equity split: APLD funds $750k/MW, MAM $2.25M/MW (three-quarters of project equity) [edgar]",
+    "seniorClaims": "$3,348M = the $3,285M Macquarie floor CONFIRMED at the FY26 10-K, plus $62.8M of corporate-level redeemable preferred. RESOLVED 2026-08-24: MAM has funded $1,825.0M across four closings (10/6/25 $112.5M + 11/25/25 $450.0M + 12/9/25 $337.5M + 5/29/26 $925.0M); the 1.80x minimum MOIC floor is therefore $3,285M and our carried figure was right. MAM holds 13.5% of TopCo 2 fully-diluted common (NOT the 15% the June deck showed, nor the 10%/$130M our older basis carried). PERIMETER ANSWERED: TopCo 2 wholly owns APLD ComputeCo (ELN-02/03 = Polaris Forge 1) AND APLD ComputeCo 2 (FAR-01/02 = Polaris Forge 2) — so PF1 and PF2, with Delta Forge outside; PF3's inclusion is unconfirmed. WHICH LEG BINDS: on liquidation the 1.80x is expressly INCLUSIVE of common-unit value so common does not stack on top, but on a REDEMPTION available from 4/6/2028 the price is MOIC PLUS 120% of common FMV — so $3,285M is a FLOOR, not a cap. Book redeemable NCI is $1,956.3M and accretes toward the floor at 12.75%. Every incremental MAM dollar under the remaining $4.9B program grows the floor by $1.80. Corporate leg: Series E $6.306M + Series E-1 $56.460M = $62.8M of 9.0% cumulative redeemable preferred in temporary equity at 5/31/26 [edgar: FY26 10-K filed 2026-07-29]",
     "legacy": "includes $229M capped-call intrinsic value (strike $9.752/cap $14.72, covers the full 46.1M convert shares; stock far above cap so value is fixed; Ex 10.2 unwind terms preserve it on redemption/early conversion)",
     "netDebt": "Restated to the FY26 10-K's single as-of date, 5/31/26 (ComputeCo-2 and ComputeCo-3 bonds sit in committedDebt; the convert's $450M principal is removed because its 46.1M if-converted shares are inside fully-diluted shares). Borrowings in netDebt = $2,350.0M (2030 9.250% ComputeCo 1 notes) + $300.0M GS bridge + $56.7M other (Starion Ellendale $8.1M, Cornerstone $9.9M, Starion Term $3.9M, other/SAFE $34.8M) = $2,706.7M; less cash $1,592.0M; less non-ComputeCo-2 restricted cash $411.4M = $703.3M. JUDGEMENT FLAG: the 10-K does not disaggregate restricted cash, so the ~$2,150M ComputeCo-2 escrow allocation (released 6/18/26) is an inference — netting ALL restricted cash gives -$1,447M, netting none gives $1,115M. Post-FYE for the next as-of date: SAFEs repaid 6/2/26 (-$13.3M), the $300M bridge refinanced 6/16/26 by ComputeCo 3 (already in committedDebt), Texas Capital Bank $58.5M term note 6/30/26, revolver upsized to $430M committed with only $65M of standby LCs and no cash borrowings [edgar]"
    },
@@ -5375,10 +5382,10 @@
    ],
    "thesis": "Undervalued — ~1.41 GW of 15-yr triple-net leases (~$36B) credited near-full while the market discounts execution and the capital stack. The counterparty mix has shifted: 810 MW / ~$20B (Delta Forge 1, Polaris Forge 3, Delta Forge 2) now sits with a single high-IG hyperscaler, alongside CoreWeave (400 MW, A3 springing guarantee) and Oracle (200 MW). The common is struck behind a Macquarie preferred carried at its 1.80x MOIC floor of $3.3B on $1.825B funded — above the $2.0B book value, and growing with every draw against the $5B programme.",
    "committedDebt": 3740,
-   "seniorClaims": 3285,
+   "seniorClaims": 3348,
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "leases": [
     {
@@ -5541,8 +5548,8 @@
    "log": [],
    "thesis": "A BTC treasury/miner (Hut 8-controlled), tracked mainly so HUT marks its stake live; screens near BTC NAV. Not an AI bet — pure Bitcoin and dilution exposure.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "sharesReported": 72.82
   },
@@ -5553,11 +5560,11 @@
    "tier": "proven",
    "contractedPct": 15,
    "termYrs": 12,
-   "netDebt": 909,
+   "netDebt": 1580,
    "shares": 327,
    "price": 12.4,
    "legacyEV": 450,
-   "btc": 13470,
+   "btc": 13924,
    "plannedRaise": 300,
    "equityDiscount": 0,
    "sites": [
@@ -5687,10 +5694,10 @@
    ],
    "thesis": "The first anchor landed 7/14/26: a 20-year, $6.6B NNN lease (175MW, ~$1.89M/MW·yr NOI — top of the build-to-spec tape) from a high-IG global tech tenant, converting the miner into a contracted AI landlord. The same tenant holds an executed LOI and exclusivity over the entire 885MW Texas portfolio — the pipeline now has a named buyer, though the tenant itself is still unnamed in the filing — and the ~13.9k-BTC treasury still backs the balance sheet. Execution risk: a ~$2B build to Q4-27 first delivery with financing not yet in place, and milestone slippage able to trigger rent abatement or lease termination.",
    "verified": {
-    "capital": "2026-06-30",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
-   "sharesReported": 255.6,
+   "sharesReported": 256.8,
    "leases": [
     {
      "id": "clsk-sandersville",
@@ -5717,7 +5724,7 @@
    "shares": 349,
    "price": 1.58,
    "legacyEV": 30,
-   "eth": 162081,
+   "eth": 164310.5,
    "plannedRaise": 0,
    "equityDiscount": 0,
    "sites": [],
@@ -5728,7 +5735,8 @@
    "basis": {
     "plannedRaise": "holdco — buildout funded at the WhiteFiber (WYFI) level; minimal BTBT-level equity",
     "stake": "27,043,750 WhiteFiber shares held at 3/31/26 per BTBT's own 10-Q, reaffirmed as 'approximately 27.0 million WhiteFiber (WYFI) shares (~70%)' in the 5/31/26 monthly PR (the ~70% is against WYFI's ~38.6M basic). Diluted-through per the tracker's convention: 27,043,750 / 50.5M WYFI FD = 53.5%. The prior basis assumed ~29.1M held, which no disclosure supports and which was the source of the error. RE-DERIVE EVERY SWEEP against WYFI's FD count, not just the held count — WYFI issued converts in Q1-26 and drew new facilities in April/May [edgar, company-ir]",
-    "eth": "Company's own May 2026 monthly PR (published 2026-06-26): ~162,080.6 ETH at 5/31/26, market value ~$324.8M at $2,004/ETH, average acquisition cost ~$3,008/ETH; ~15,252.2 ETH in an externally managed fund, ~66,191.9 in LsETH, 74,163 (~46%) natively staked, down from ~62% in March. The prior 158,461 is the figure third-party trackers carry and is not the company's last primary number. CAVEAT: 9 weeks stale — the monthly PR cadence has LAPSED (no June or July report as of 2026-08-03, breaking a Jan/Feb/Mar/May run) and BTBT bought ~$20M of ETH in late May, so the Q2 10-Q is the next hard mark [company-ir]"
+    "eth": "Company's own May 2026 monthly PR (published 2026-06-26): ~162,080.6 ETH at 5/31/26, market value ~$324.8M at $2,004/ETH, average acquisition cost ~$3,008/ETH; ~15,252.2 ETH in an externally managed fund, ~66,191.9 in LsETH, 74,163 (~46%) natively staked, down from ~62% in March. The prior 158,461 is the figure third-party trackers carry and is not the company's last primary number. CAVEAT: 9 weeks stale — the monthly PR cadence has LAPSED (no June or July report as of 2026-08-03, breaking a Jan/Feb/Mar/May run) and BTBT bought ~$20M of ETH in late May, so the Q2 10-Q is the next hard mark [company-ir]",
+    "seniorClaims": "$9.05M: 1,000,000 preference shares issued and outstanding at 6/30/26, carried at $9.050M (and carrying 50 million votes per the AGM results). The separate $136.969M of non-controlling interests is predominantly the WhiteFiber minority, which the SOTP already handles through the stake — NOT added here, to avoid double-counting. Q2 10-Q [edgar]"
    },
    "narrative": "Bit Digital (NASDAQ:BTBT) — a holdco whose dominant asset is a ~70% stake in separately-listed WhiteFiber (WYFI: AI cloud + colo), plus a ~158k-ETH treasury and a small legacy BTC-mining fleet. It trades at a deep sum-of-the-parts discount — the WhiteFiber stake alone is worth ~1.5x BTBT's entire market cap. Valued here as SOTP: live look-through to WhiteFiber + ETH marked live − net debt, not as a developer.",
    "bull": [
@@ -5786,10 +5794,11 @@
    "log": [],
    "thesis": "Deep holdco discount — its 70% WhiteFiber stake alone is ~1.5x the whole company's market cap, plus a 158k-ETH treasury. Upside is the SOTP closing and WhiteFiber re-rating; risk is the discount persisting.",
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
-   "sharesReported": 353.4
+   "sharesReported": 362,
+   "seniorClaims": 9.05
   },
   {
    "tk": "NUAI",
@@ -5799,7 +5808,7 @@
    "contractedPct": 0,
    "termYrs": 15,
    "netDebt": -49,
-   "shares": 115.9,
+   "shares": 121.8,
    "price": 4.82,
    "legacyEV": 0,
    "plannedRaise": 100,
@@ -5924,11 +5933,11 @@
     }
    ],
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "thesis": "A single-lease binary: a top-4 hyperscaler is described as in advanced talks on TCDC/Odessa against a hard Oct-8 financing deadline, but NUAI keeps only ~20% of the project under the Apollo/Stream JV. The governance discount now rests on a formal Item 4.02 non-reliance restatement (filed 7/30/26, effect on net loss, assets, liabilities and equity still unquantified) layered on an existing material weakness — not on the prior CEO, who left 7/1/26 — and Macquarie already granted one covenant waiver in July, a negative tell on the same bridge. Sign the lease and it re-rates; miss the date and the bridge wobbles.",
-   "sharesReported": 101.3
+   "sharesReported": 106.56
   },
   {
    "tk": "KEEL",
@@ -5937,11 +5946,11 @@
    "tier": "proven",
    "contractedPct": 0,
    "termYrs": 15,
-   "netDebt": 330,
-   "shares": 626,
+   "netDebt": 310,
+   "shares": 617.57,
    "price": 3.37,
    "legacyEV": 150,
-   "btc": 2469,
+   "btc": 1861,
    "plannedRaise": 0,
    "equityDiscount": 0,
    "sites": [
@@ -6052,11 +6061,11 @@
    ],
    "log": [],
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    },
    "thesis": "The Bitfarms successor owns three zoned, power-secured campuses (478MW, all existence-derisked) with ~$920M of liquidity and zero leases — the market prices lease doubt, we credit the powered land. Three targeted YE26 leases are the catalysts; both converts are out-of-the-money, so dilution waits on success.",
-   "sharesReported": 603.8
+   "sharesReported": 617.57
   },
   {
    "tk": "SHAZ",
@@ -6066,11 +6075,11 @@
    "contractedPct": 85,
    "termYrs": 5.6,
    "leaseQ": 2.5,
-   "netDebt": -600,
+   "netDebt": -1157,
    "committedDebt": 0,
    "seniorClaims": 0,
-   "shares": 50.6,
-   "sharesReported": 42,
+   "shares": 49.9,
+   "sharesReported": 35.8,
    "price": 58.51,
    "legacyEV": 0,
    "plannedRaise": 500,
@@ -6243,8 +6252,8 @@
    ],
    "raises": [],
    "verified": {
-    "capital": "2026-08-03",
-    "contracts": "2026-08-03"
+    "capital": "2026-08-24",
+    "contracts": "2026-08-24"
    }
   }
  ],
@@ -6265,29 +6274,14 @@
    "added": "2026-07-02"
   },
   {
-   "tk": "WULF",
-   "note": "KY permanent project financing to term out the $500M Morgan Stanley bridge — becomes committedDebt when issued (watch size/coupon); Century Aluminum 6.8% Raylan minority already in seniorClaims",
-   "added": "2026-07-06"
-  },
-  {
    "tk": "HUT",
    "note": "RB ROFO exercise ASSUMED by owner mandate (400MW estimated + 600MW rumored). Watch: Entergy power expansion filings / Fluidstack-Anthropic expansion announcements. Falsifier: silence through mid-2027 → regrade",
    "added": "2026-07-08"
   },
   {
-   "tk": "CRWV",
-   "note": "Apr-Jun 2026 debt wave (~$2.75B 9.75% notes + $3.1B DDTL 5.0 + $1.25B/€2B notes) not yet in netDebt ($22.9B is Feb-era) — re-verify capital structure; also pin Anthropic contract value ($6B is a bounded estimate)",
-   "added": "2026-07-09"
-  },
-  {
    "tk": "FRMI",
    "note": "TENANT TRIPWIRES (10-Q): ≥400MW Phase-1 lease by ~Nov 10 2026 or MUFG amortization doubles + agent may market the turbines; Keystone mandatory prepayment + TTU notice-to-proceed both need a customer by Dec 31 2026. Mgmt targets binding lease ~mid-Aug. A signed anchor re-rates; a missed deadline is the falsifier for the whole gas-phase schedule",
    "added": "2026-07-06"
-  },
-  {
-   "tk": "CLSK",
-   "note": "Sandersville anchor entered on PR 7/14/26 — 8-K PENDING: verify term/value/escalators/termination on filing; tenant identity (Meta was rumored frontrunner); ~$2B build financing → committedDebt when project debt prints; TX exclusivity LOI (885MW, same tenant) → watch conversion to signed leases",
-   "added": "2026-07-14"
   },
   {
    "tk": "IREN",
@@ -6300,39 +6294,9 @@
    "added": "2026-07-20"
   },
   {
-   "tk": "HUT",
-   "note": "RESOLVED 7/23/26 (shares 133.7 FD / 123.19 basic; Coatue stripped from netDebt) — remaining confirmation: Q2 2026 10-Q (~Aug) must show the Coatue conversion and ~123.2M outstanding; if not, revert basic display to ~113.5M and re-add $159.3M to the convert line (FD unchanged)",
-   "added": "2026-07-23"
-  },
-  {
    "tk": "CRWV",
    "note": "RESOLVED 7/27/26: Helios rows set to 133/260/133 IT (Galaxy PR + SA tape, dual-corroborated). Remaining from 7/24: July Form 4 wave + Q2 backlog restate ($33-35B Q1, Jane St was April)",
    "added": "2026-07-24"
-  },
-  {
-   "tk": "WULF",
-   "note": "Century put-floor tripwire: seniorClaims = max($300M, 6.8% × Raylan Data Holdings equity). If our Hawesville site-level equity (Anthropic lease value net of project debt/capex) marks above ~$4.41B, the charge floats above the $300M floor — recompute at each sweep",
-   "added": "2026-07-27"
-  },
-  {
-   "tk": "APLD",
-   "note": "MACQUARIE RE-MARK at FY26 10-K (filing ~this week): deck shows MAM 15% common in HPC TopCo 2 (our basis carried 10%/$130M) + liquidation pref = max(accreted+FMV common, 1.8x MOIC = $1.62B on $900M drawn) + $2.25M/MW future draw right. Verify TopCo-2 perimeter (PF1 only vs future campuses) and whether the MOIC floor or the 15% common FMV binds → seniorClaims 1,100 likely rises materially (MS's EW rests on full-draw math)",
-   "added": "2026-07-27"
-  },
-  {
-   "tk": "CORZ",
-   "note": "AMD build financing: ~$6B project bonds planned (CoreWeave SPV pattern) → committedDebt as each prints; AMD warrant terms (market strike, commercial-condition vesting) → FD shares at the Q2 10-Q; the 2GW exclusive reservation blocks marketing that capacity — watch reservation windows/expiry in the filed agreement",
-   "added": "2026-07-28"
-  },
-  {
-   "tk": "SHAZ",
-   "note": "Q2 10-Q (~Aug 14) replaces the LAST estimated input (cash/netDebt −600 medium-confidence) — everything else now filing-verified (Class A 35.67M, 2031s $48.24, 2032s $691.7M/$99.66, warrants 6.375M). KNIFE-EDGE: $50.70 vs $48.24 strike — FD 50.6M above / 43.3M below, re-mark on crossings. NVIDIA revenue-share % undisclosed in filings (SA models 40-60%). Earnings Aug 6 AMC confirmed; NVIDIA-block EXPECTED marking (owner 8/3): watch actual placements on the 40k-GB300 block — each real contract replaces the $6.9B forecast slice with fact, revert to $4.88B floor if placements print at/below floor",
-   "added": "2026-08-03"
-  },
-  {
-   "tk": "NUAI",
-   "note": "RESOLVED 8/3/26: the SA item was STALE — NUAI has owned 100% of TCDC since 1/16/26 (MIPA signed+closed same day; $70M = $10M cash + $10M stock + $50M conv note, fully settled 4/24/26; Sharon retains NO ownership/governance). Already embedded in our ~20%-under-Apollo/Stream model (LOI post-dates the buyout). Kept open items: ~20% share is UNVERIFIED INFERENCE (no filing discloses it); Oct-8 'deadline' is a DERIVED date and a lender ELECTION (prepay-or-amortize demand), not auto-failure — second trigger exists at <$50M aggregate drawings; ATM deadline EXTENDED by the 7/17/26 consent letter, ATM not yet established",
-   "added": "2026-08-03"
   },
   {
    "tk": "BTDR",
@@ -6350,11 +6314,6 @@
    "added": "2026-08-11"
   },
   {
-   "tk": "FRMI",
-   "note": "TensorWave lease CONDITIONS: requisite project guaranties AND financing not yet received — floor rests on this clearing; REVERT frmi-tensorwave row (and floor) if conditions fail; NOI margin is our 75% ESTIMATE (band 70-85%), replace on disclosure; 8-K not yet filed (due ~8/14, Q2 results 8/13) — re-verify all terms + look for IT MW / rent structure / guarantor disclosure on filing",
-   "added": "2026-08-11"
-  },
-  {
    "tk": "CRWV",
    "note": "Q2-26 balance sheet reconcile pending: DDTL 5.5 $2.6B closed 8/10 (Ba2/BB+, SOFR+550, TLB, 5yr tenor > 3yr contract tenor — delayed-draw: move to committedDebt as drawn); confirm mid-June HY notes ($1.25B 9.625% 2032 + EUR2.0B 8.5% 2032) inside netDebt 22,900; sharesReported vs 10-Q cover",
    "added": "2026-08-18"
@@ -6363,6 +6322,91 @@
    "tk": "NBIS",
    "note": "2Q RPO/backlog dollar figure not in shareholder letter (ARR $3.0B only) — re-infer signedRate 11.5 when RPO prints; watch identity of 'unnamed US frontier lab' >$1B deal; >$9B FY26 prepayments expected (SA 8/18)",
    "added": "2026-08-18"
+  },
+  {
+   "tk": "NBIS",
+   "note": "ASSET-LIGHT PERIMETER — owner ruling needed. GS (24-Aug) reports a new partnership model where partners finance, build and OPERATE infrastructure while Nebius supplies platform and demand. Our engine values all 6,460 MW at OWNER economics (margin 55% + owned bonus x multiple 7) and has no asset-light mode; setting owned:false is far too weak (only +5 -> -3 on site margin, worth ~$18/sh). $38B of EV sits in the two unnamed Pipeline 2030/2031 (growth) rows. Sensitivity: pipelineCredit 1.0->0.5 takes the target $419->$351; ->0 takes it to $283; upgrading rumored <=300MW rows to estimated takes it to $473. Falsifier: disclosure of how much future MW is partner-owned and on what revenue share. Options if it becomes material: new assetLight site flag, route to the landlord branch, or hold at pipelineCredit [sell-side]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "NBIS",
+   "note": "ACCRETING CONVERTS — the August 2026 notes accrete to 110% (2030s) and 125% (2034s) of original principal, so the maturity claim is $5.8B against $5.0B issued and ~$4.94B of cash raised. Redemption and fundamental-change repurchase prices are both the Accreted Principal Amount, not par. netDebt carries the $5,000M principal per convention — the $800M gap is a real claim ahead of common that the model does not price. Also open: the $750M greenshoe (13-day window running past 8/24, nothing filed yet) [edgar; company pricing release 2026-08-19]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "NBIS",
+   "note": "FD SHARE COUNT CANNOT BE REBUILT — shares 341 is CARRIED FORWARD UNVERIFIED. Filed facts: 271.9M outstanding at 6/30/26 (238,400,165 Class A + 33,455,053 Class B), plus 21,065,936 NVIDIA pre-funded warrants exercisable for nominal consideration = ~292.9M basic-equivalent, plus ~15.8M shares from the 8/19 exchange of $400M of 2.00% 2029s and $400M of 3.00% 2031s. That is ~308.7M before any remaining legacy converts. The conversion prices and remaining principal of the legacy 2029/2031/2030/2032 series are NOT disclosed in the Q2 6-K or the pricing release, so the if-converted add is unknown — the implied ~32M in our 341 could be materially too low if those series convert near the ~$50.6/share exchange ratio. Resolve at the 20-F or a convert-terms filing [edgar]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "FRMI",
+   "note": "TENSORWAVE LEASE IS NOT EFFECTIVE — do not mark it so. Signed 2026-08-09 (not 8/10) by Fermi Campus 1 LLC with TensorWave TEX1 LLC. NO Item 1.01 8-K was ever filed and the lease is not an exhibit anywhere; the only disclosure is narrative inside the 10-Q filed 2026-08-14. Effectiveness is conditioned on board approvals, work letters, the guaranties and the LANDLORD obtaining project-level financing, at a closing expected on or before 2026-09-30 (extendable), with either party free to terminate if conditions fail. The 222 MW is TOTAL FACILITY POWER (gross) — critical IT MW is never disclosed. The 'global leader in AI' rent guarantee is still only BEING NEGOTIATED; the sole signed guaranty is from TensorWave Inc., the tenant's own parent. Delivery slipped to end-2027 through Feb-2028, with the 15-year term starting at FINAL-phase commencement. FALSIFIER: no closing 8-K by 2026-09-30 -> revert the row and the floor [edgar 10-Q 2026-08-14]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "KEEL",
+   "note": "PENNSYLVANIA EXECUTIVE ORDER — Governor Shapiro signed an executive order bearing on HPC/AI data-centre development in PA, which is where Panther Creek, Scrubgrass and Sharon all sit. Surfaced by [zeiner] and independently confirmed on pa.gov. Compounding: Panther Creek's land-development approval is CONDITIONAL and no environmental permit has been issued at any of the three priority sites; the three-signed-leases-by-YE26 target was NOT restated in either the Q2 release or the 10-Q (language moved to 'active negotiations at three sites'). Also open: a $60.8M further letter of credit due by 2027-01-31 on top of the $40.0M already posted [zeiner, edgar, pa.gov]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "CLSK",
+   "note": "TEXAS INTERCONNECTION AUDIT — the 10-Q discloses a 2026-08-03 letter from Governor Abbott to ERCOT and the PUCT directing a comprehensive verification and audit of ALL data centers advancing through the Texas interconnection process before they are approved. CleanSpark is evaluating scope and enforceability. Direct hit on the 885MW Texas exclusivity LOI (271 acres / ~300MW Sealy + 447 acres Brazoria) and, by extension, on every ERCOT-queued site we credit across CIFR, CORZ, MARA and RIOT. Watch for ERCOT/PUCT implementation and any queue re-sequencing [edgar 10-Q]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "CLSK",
+   "note": "SANDERSVILLE ECONOMICS ARE PRESS-RELEASE ONLY. The 8-K (accession 0001193125-26-302448, filed 2026-07-14) exists but was filed under Items 7.01/8.01, NOT Item 1.01, and the lease is NOT an exhibit. The $6.6B/$11.6B contract value, ~100% NOI contribution margin, ~$330M average annual NOI and $10-12M/MW landlord cost appear ONLY in the furnished EX-99.1 and are repeated nowhere in the 10-Q. The FILED portion supports: 175 MW of CRITICAL IT load, triple-net, 20-year initial term, entered 2026-07-10. Tenant is 'the Tenant' / 'a leading global technology company with a high investment grade credit profile' — unnamed; META HAS ZERO FILING SUPPORT. The ~$2B build financing has NOT printed [edgar]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "CRWV",
+   "note": "NARRATIVE CLAIMS CORRECTED 2026-08-24, and a lesson: two statements in our CRWV record had no filing behind them — (1) that the $2.6B DDTL 'names Anthropic, Jane Street, Midjourney, Hudson River Trading and Anysphere' (the closing release names no customers at all), and (2) a '7/31/26' facility date (the credit agreement is dated 2026-08-07, closed 8/10; CoreWeave filed no 8-K in July 2026). Both traced to press/LCD sourcing that was never confirmed. STILL OPEN: DDTL 5.5 is unconditionally guaranteed by CoreWeave, Inc. under a Parent Guarantee, so it is a CORPORATE claim, not non-recourse SPV debt — netDebt 22,900 is Feb-era and must be rebuilt from the Q2 10-Q. Also: the company says customer contracts now average ~3 years, against our termYrs 5 [edgar]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "HUT",
+   "note": "BEACON POINT PH1 DATE BASIS — our site row carries 2027-03, but the company states 'initial energization in the first quarter of 2027 and initial data hall delivery in the THIRD quarter of 2027'. Q1 is substation energization, not revenue capacity: a two-quarter effective slip that the row does not reflect. Separately the RIVER BEND ROFO IS STILL UNEXERCISED and explicitly conditioned on site power expansion — the 10-Q pipeline footnote EXCLUDES the 1,000MW, which gives our owner-mandated 'exercise assumed' (400MW estimated + 600MW rumored) no support this quarter. Energy Capacity Under Exclusivity FELL to 1,880MW from 2,040MW a year ago, refuting the 2,680MW sell-side figure logged 7/23 [edgar 10-Q + 8-K 2026-08-04]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "CORZ",
+   "note": "AMD ITEMS RESOLVED 2026-08-24 — reservation is 1,925 MW of CRITICAL IT expiring 2028-12-28 (our 'up to 2 GW' was right in spirit, and it is critical IT not gross); warrant is 30,000,000 shares at $23.47 (5-day VWAP prior to lease execution, market strike confirmed), vesting 12,222 shares per MW of critical IT, ~6.5M vested on the 529 MW signed, terminating 2031-07-27. STILL OPEN: the ~$6B of AMD-related project bonds have NOT printed — nothing on the docket 7/28-8/24 — so committedDebt stays 0. ALSO: filed per-site MW now contradicts our site rows (Pecos ~185, Auburn ~32, Dalton ~120, Muskogee ~82, Hunt ~110) and needs a rebuild [edgar]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "SHAZ",
+   "note": "NVIDIA BLOCK STILL UNCORROBORATED — the owner's expected-value override ($4.88B floor -> $6.9B) is not supported by any filing. The company still describes the arrangement as a '$4.9bn, six-year strategic compute collaboration with NVIDIA for up to 40,000 GB300 GPUs' — the floor, rounded. The 2026-08-04 $373M contract is 2,048 B300 (Blackwell Ultra), NOT GB300, and is presented as separate. So no placement against the 40,000-GB300 block has printed. Q2 10-Q resolved the last estimated input in our favour (cash $1,861.3M filed vs ~$1,300M assumed). Corrections: the 2032 notes are $700.0M principal, not $691.7M ($691.7M was the amount registered for resale); the ~1.3M 'residual small notes' in our FD build is unsupported. Capacity 132 -> 212 MW secured [edgar]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "BTDR",
+   "note": "TYDAL LANGUAGE QUALIFIERS — neither the 2026-08-04 press release nor the 2026-08-10 Q2 release ever uses the word 'effective'; the language is 'has executed'. No filing states that the conditions precedent flagged in the June-2026 6-K have been satisfied. The ~$1.3B J.P. Morgan-arranged letters of credit are 'ANTICIPATED to be arranged... subject to customary conditions', NOT confirmed as issued — and the LC milestones are a BTDR termination right. Project financing has not priced, so committedDebt stays 0. Site slips: Knoxville redesigned and pushed to Q3'27 (~3 quarters), Wenatchee and Clarington both now 'to be updated' with no date — Clarington gated on litigation from American Heavy Plate Solutions [edgar 6-K 2026-08-05]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "WYFI",
+   "note": "NC-1 WAS NOT BILLING IN Q2 — our site rows show Phase 1 (20MW) energized 2026-05 and Phase 2 2026-09, but colocation revenue was $4.726M, essentially flat on Q1's $4.774M, and the 10-Q says billing 'is expected to commence during the third quarter'. Initial billing had commenced by 8/12 with full 40MW contracted IT run-rate 'expected later this month'. The rows overstate the ramp by roughly a quarter. Also open: the 2026-05-26 Bit Digital DDTL draws ($20M + $30M, 90-day tenor, effective rate 50.6%) matured ~2026-08-24 with no disclosure of repayment or extension; and NC-1 permanent financing is in lender EXCLUSIVITY, unsigned [edgar 10-Q 2026-08-12]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "GLXY",
+   "note": "SENIORCLAIMS DOUBLE-COUNT RULING NEEDED — non-controlling interest is $896.7M at 6/30/26 (the GDH LP units held by Class B holders). Convention says NCI goes to seniorClaims, but our 418M FD share count may ALREADY gross up for those LP units, in which case adding $897M charges the same economics twice. NOT APPLIED pending a ruling on what the 418M comprises. Separately: the $3.507B of 9.875% notes were ISSUED AND SOLD 2026-07-28 (so committedDebt 3507 is now FUNDED, not committed) and carry an UNCAPPED GDH LP completion guarantee, so they are not cleanly non-recourse. And three post-quarter Texas campuses (Merlin ~74MW initial of a potential 500MW, Caspian, Selene) take the pipeline past 5.7GW — none are in our site list [edgar 10-Q + 8-K]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "APLD",
+   "note": "NON-RECOURSE FRAMING ANOMALY — the FY26 10-K VIE note states verbatim: 'The creditors of TopCo 2 have recourse to the Company's assets and general credits.' Read literally that cuts against holding the ComputeCo / ComputeCo 2 project notes off corporate claims under spec 5, and would move ~$3.7B of committedDebt onto the corporate stack. It may be a drafting error — the standard formulation is that creditors have NO recourse — but it is what is filed. NOT ACTED ON pending a ruling. Also new: CoreWeave assigned ALL rights and obligations under the ELN-03 lease to CoreWeave Compute Acquisition Co. VIII LLC on 2026-03-30 and WAS RELEASED — an obligor substitution our lease record does not carry [edgar FY26 10-K]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "MARA",
+   "note": "STARWOOD JV IS PRE-DEVELOPMENT — the Q2 10-Q states ALL sites continue to be deemed held and used by MARA because none has advanced beyond the pre-development phase and the contribution conditions have not been satisfied, with explicit uncertainty on timing and on MARA's resulting retained ownership. Our 400MW + 500MW Starwood rows imply far more progress than that. contractedPct 0 CONFIRMED — zero signed AI/HPC leases; the strongest language on Long Ridge is 'formal indications of interest from investment-grade hyperscale tenants'. Long Ridge is still UNCLOSED (FERC pending). New site Matagorda County TX closed 7/2/26 (>1,200 acres, utility letter agreement for up to 2,000 MW, up to $600M of contingent milestone payments) is not in our site list. Company now guides to ~4.8 GW of gross/nameplate power — NOT critical IT and not AI-leasable [edgar 10-Q]",
+   "added": "2026-08-24"
+  },
+  {
+   "tk": "SLNH",
+   "note": "KATI 2 IS A JV, NOT A TENANT LEASE — resolved 2026-08-24 in an unexpected direction. What was signed on 2026-06-03 is the LLC agreement of Soluna MB KK II JVCo LLC with DC Kati Venture LLC (a Metrobloks affiliate); Soluna holds 100% of the Class A interests and is sole manager, Metrobloks holds a zero-capital non-voting Class B profits interest. Phase I is ~100 MW of CRITICAL IT. There is no tenant, no counterparty name and no lease economics — the AI book remains 100% pre-tenant. NEW CREDIT STRESS: Soluna failed the Generate financial covenants, borrowings were reclassified to current at 6/30/26, and a 2026-08-07 Limited Waiver required a $19.1M prepayment. Proxy for a 2026-10-16 vote seeks to raise authorized common from 375M to 1,000M shares [edgar]",
+   "added": "2026-08-24"
   }
  ],
  "outlook": {
