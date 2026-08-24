@@ -2,6 +2,15 @@
 
 The single record of what changed. One line per change, newest first.
 
+- 2026-08-24 — OUTLOOK REGENERATED (spec §6 screen 8), asOf 2026-08-03 -> 2026-08-24; it had gone 21 days stale against an 8-day cadence and the entire earnings block had been overtaken by the Q2 wave. All 22 lease rows re-scored on this sweep filings, all 22 earnings rows rewritten (21 as retrospectives, IREN 2026-08-27 the only forward event — date corrected from an unconfirmed 8/28). PROBABILITY MOVES >20pts, each justified in the row own drivers: SLNH 65->35 (the Kati 2 item resolved as a JOINT VENTURE with a Metrobloks affiliate, not a tenant lease — Soluna holds 100% of Class A and is sole manager, Metrobloks holds a zero-capital non-voting profits interest; no tenant, no counterparty name, no lease economics, so the AI book is 100% pre-tenant); HUT 45->25 (the 10-Q pipeline footnote EXCLUDES the 1,000MW River Bend ROFO capacity and states the power-expansion conditionality explicitly, giving our owner-mandated exercise-assumed treatment no support, while Energy Capacity Under Exclusivity FELL to 1,880MW from 2,040MW a year ago); KEEL 50->25 (management stopped restating its own three-leases-by-YE26 target — the language moved to active negotiations at three sites — compounded by the Pennsylvania executive order and conditional-only permitting at all three priority sites); NBIS 75->88 (four ># Changelog
+
+The single record of what changed. One line per change, newest first.
+
+B TCV deals in Q2, TCV up ~4x QoQ, new-customer TCV up >9x, and a first short-duration deal already signed in Q3 — signing is now the run-rate, not an event); WYFI 55->70 (four new cloud service orders we did not carry, including the first Vera Rubin deployment at ~# Changelog
+
+The single record of what changed. One line per change, newest first.
+
+08.2M, against $635.8M of new contracted revenue signed in H1 plus through the 10-Q date). Smaller moves: CRWV 95->92, BTDR 65->55, GLXY 80->70, CIFR 72->65, MARA 18->12, CORZ 50->45, WULF 30->40, FRMI 30->45, HIVE 60->70, APLD 78->70, CLSK 60->55, NUAI 30->22, RIOT 50->55; IREN 85, SHAZ 80, ABTC 2, BTBT 5 unchanged. QUOTE DISCIPLINE HELD: every quoted figure traces to a filing or furnished exhibit; the [mcnallie-money] interviews contributed NO sourced management statements because no transcript was retrievable, and that limitation is recorded in the rows rather than papered over. checks 5,262, 0 FAIL, warns 22->21 (outlook-staleness cleared). Outlook is judgement and never feeds the engine.
 - 2026-08-24 — Q2-2026 EARNINGS WAVE DIGESTED (16 of 22 names reported 8/4-8/18; only CRWV/NBIS/IREN/RIOT had post-8/11 stamps, MARA and CLSK capital structures were 55 days stale). Research by 10-agent sweep, every input filing-sourced. CAPITAL STRUCTURE (50 fields): BTDR netDebt 444->1345 + sharesReported 243.3->271.78 + plannedRaise 575->1000 (new # Changelog
 
 The single record of what changed. One line per change, newest first.
