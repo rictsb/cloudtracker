@@ -1688,7 +1688,7 @@
    "name": "IREN",
    "ramp": {
     "asOf": "2026-08-18",
-    "basis": "Quarterly GPU-ramp research overlay (owner-approved 8/18/26) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED and reaffirmed verbatim 13-Aug-2026; Horizon 1 DELIVERED TO AND ACCEPTED BY MICROSOFT 13-Aug-2026, which confirms first revenue in 2026Q3 as modelled and makes Horizon 1 the only tranche in the book whose acceptance is a fact rather than a schedule; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: IREN's own dated prints anchor the signed book — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 (8-K 7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet from IREN's own ARR disclosure. THE UNSIGNED BOOK IS MARKED TO DATED THIRD-PARTY CONTRACT PRINTS for the same SKU and tenor (SemiAnalysis 18-Aug-2026: GB300 five-year $4.40-4.80, VR NVL72 five-year $7.50-8.00), taken at the LOW end — liquid Blackwell $4.40, air-cooled Childress retrofits $3.81 holding the existing air/liquid spread since the note prints liquid NVL72 SKUs only, Rubin-class and next-gen $7.50. Those are market prints for the SILICON, not IREN counterparty contracts: 87.2% of CY2030 revenue carries no signature (only $3.98bn of $31.10bn is covered by contracts signed today). Separately, 70.9% of CY2030 revenue prices off Rubin-class or later silicon — a different cut, and the two must not be conflated. IREN's signed book sits 33-46% below those prints — what it traded for anchor-tenant financing, and the reason the unsigned book is not marked at the signed level. Spot held FLAT from 2027 at $2.40: prior-generation cards recontract at or above prior rates (CoreWeave A100s signed out to 2029), so no decay is applied to installed silicon. A 5% attach for storage, CPU, networking and the managed layer applies to UNSIGNED tranches only. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier.",
+    "basis": "Quarterly GPU-ramp research overlay (owner-approved 8/18/26) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED and reaffirmed verbatim 13-Aug-2026; Horizon 1 DELIVERED TO AND ACCEPTED BY MICROSOFT 13-Aug-2026, which confirms first revenue in 2026Q3 as modelled and makes Horizon 1 the only tranche in the book whose acceptance is a fact rather than a schedule; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: IREN's own dated prints anchor the signed book — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 (8-K 7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet from IREN's own ARR disclosure. THE UNSIGNED BOOK IS MARKED PER MEGAWATT, at $20.0M per critical IT-MW-yr — the LOW end of the band Nebius is signing new capacity at (AIDC 27-Aug-2026: $20-25bn ARR per GW on Q2-26 signings, against a $12bn/GW installed base; SemiAnalysis 18-Aug-2026 has Nebius new deals through 2027 above $20M/MW versus a $12M/MW 2026 base). Air-cooled Childress retrofits hold their existing 13.4% discount to liquid, at $17.3M/IT-MW-yr, since the market prints are for liquid NVL72 SKUs. Pricing PER MEGAWATT rather than per GPU is deliberate: the megawatt is the scarce input, and a flat $/GPU-hr across generations silently prices thirstier silicon cheaper per MW — at a flat $7.50 the 2030 next-gen vintage came out at $10.4M/IT-MW-yr, BELOW the Nov-2025 Microsoft print. CAVEAT, stated not buried: $20M/IT-MW-yr sits ABOVE the SemiAnalysis five-year contract prints (GB300 $15.6-17.0M, VR NVL72 $15.5-16.5M per IT-MW-yr) and at the bottom of the Nebius new-signing band. The two sources disagree; the reconciliation is most likely tenor and attach mix, and this deck takes the Nebius read. Those are market prints for the SILICON, not IREN counterparty contracts: 87.2% of CY2030 revenue carries no signature (only $3.98bn of $31.10bn is covered by contracts signed today). Separately, 70.9% of CY2030 revenue prices off Rubin-class or later silicon — a different cut, and the two must not be conflated. IREN's signed book sits 33-46% below those prints — what it traded for anchor-tenant financing, and the reason the unsigned book is not marked at the signed level. Spot held FLAT from 2027 at $2.40: prior-generation cards recontract at or above prior rates (CoreWeave A100s signed out to 2029), so no decay is applied to installed silicon. A 5% attach for storage, CPU, networking and the managed layer applies to UNSIGNED tranches only. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier.",
     "chain": [
      {
       "id": "secured",
@@ -1748,7 +1748,7 @@
       "id": "rate",
       "link": "GPU-hours → revenue",
       "fn": "revenue = GPU-hours × (ctr × vintage rate + (1−ctr) × spot × gen multiplier)",
-      "value": "blend $2.67/GPU-hr (2026Q3) rising to $5.38 (2030Q4), out of nine vintage rates. OFF IREN'S OWN DATED CONTRACTS: three rates covering the signed book. MARKED TO DATED THIRD-PARTY CONTRACT PRINTS for the same SKU and tenor (SemiAnalysis 18-Aug-2026): the unsigned book — 70.9% of CY2030 modelled AI revenue prices off Rubin-class or later silicon for which IREN holds no contract of any kind, now marked at the market rather than derived at power parity.",
+      "value": "blend $2.67/GPU-hr (2026Q3) rising to $5.38 (2030Q4), out of nine vintage rates. OFF IREN'S OWN DATED CONTRACTS: three rates covering the signed book. MARKED TO DATED THIRD-PARTY CONTRACT PRINTS for the same SKU and tenor (SemiAnalysis 18-Aug-2026): the unsigned book — 70.9% of CY2030 modelled AI revenue prices off Rubin-class or later silicon for which IREN holds no contract of any kind, now marked PER MEGAWATT at the low end of the Nebius new-signing band rather than at a flat $/GPU-hr.",
       "assumption": "Each vintage is a separate rate on a named tranche set, and only three of the nine come off a dated print. PRINTED. $2.91 — Horizon 1–4 (Microsoft GB300, 300 MW gross / 200 MW IT, 76,000 packages, first revenue 2026Q3–2027Q1): implied by the $9.7bn five-year contract in IREN's 8-K of 3-Nov-2025 and the ~$1.94bn annualised run-rate IREN attaches to it (1.94e9 ÷ (76,000 × 8,760) = $2.91). 8.9% of CY2030 revenue. $3.10 — NVIDIA 60 MW air Blackwell at Childress (25,000 packages, first revenue 2027Q1): the $3.4bn five-year contract announced 7-May-2026 carries ~$0.7bn ARR, which implies $3.20; the model runs 3% under the print. 3.1%. $2.48 — legacy H100/H200 and the Sep-2025 cohort: IREN's own disclosed ARR-implied rate (>$500m ARR on 23,000 GPUs). 1.2%. COMPARATOR, NOT OUR PRINT. $3.97 — Nebius/Microsoft, $17.4bn over five years on 100,000 GB300 (announced 8-Sep-2025, extended to $19.4bn Oct-2025). It bounds the GB300 vintage from above; IREN prints 27% below it. DERIVED, NO PRINT. $2.72 (Prince George / BC expansion) and $2.85 (50k B300, Mackenzie + Childress air) are the $2.91 GB300 print stepped for air-cooled, smaller-cluster and renewal terms — 6.2% of CY2030 revenue between them. $3.20 (Childress air retrofits 27a–c and the 2028 completion, 12.4%) and $3.70 (Horizon 5–6, 4.8%) are forward Blackwell vintages with no named counterparty and no signature. NO PRINT EXISTS FOR THE SILICON — RUBIN-CLASS AND LATER, 63.2% OF CY2030 REVENUE. $4.50 drives Sweetwater 1 initial and ramps a–c (900 MW gross, 159,000 packages, first revenue 2028Q1–2028Q4) = 26.1%. $4.60 drives Sweetwater 1 completion a–b, Sweetwater 2 phase 1, Kiowa phase 1, Bundey first halls and Nostrum first halls (1,200 MW gross, 186,000 packages, first revenue 2029Q2–2029Q4) = 26.2%. $6.40 drives the four 2030 waves (1,100 MW gross, 122,300 packages, first revenue 2030Q1–2030Q4) = 10.9%. As at 23-Jul-2026 nobody has disclosed a Rubin-class contract price: NVIDIA began VR200 production shipment to eight cloud partners (announced 27-Jun-2026), CoreWeave completed the first VR200 NVL72 rack validation on 1-Jun-2026 and booked initial Vera Rubin orders in its Q1-2026 quarter without disclosing price, and no official Rubin cloud rate card had been published as at Jun-2026. The $4.50–4.60 band is therefore a DERIVATION, and this is it: at IREN's own Rubin density of 4.23 kW/package it prices at $1.06–1.09 per kW-hr, i.e. 2–4% BELOW the $1.106/kW-hr the Microsoft GB300 print pays — a power-parity read, not a premium one. Cross-checks: $2.91 uplifted by the VR200/GB300 package power step (+64%) would be $4.78; the Nebius $3.97 comp plus the low end of the 30–50% first-availability premium the trade press expects on Blackwell NVL72 rates would be $5.16. Retail GB300 on-demand sits at $7.99–8.62/GPU-hr (July-2026), so five-year contract prints clear at 34–36% of on-demand; nothing in the model requires that ratio to hold for Rubin. The next-gen $6.40 is not a price observation at all — it is the Rubin $/kW-hr carried across the 6.30 kW next-gen package, so the density and rate links move together and neither is free. The blend rises on mix shift to costlier silicon plus vintage escalation, NOT price inflation on a fixed product.",
       "range": "printed vintages ±0; Rubin-class $2.90–5.95/GPU-hr (no power premium at all, up to the Nebius GB300 comp plus the top of the 30–50% first-availability premium); next-gen $5.35–7.55 (0.85–1.20 $/kW-hr on a 6.30 kW package)",
       "moves": "revenue directly, one-for-one. ±$1.00/GPU-hr on the Rubin band alone is ±$2.1bn on the $21.7bn CY2030 line (±9.8%) and ±9.2% on exit ARR; a 20% Rubin re-price down is −$1.9bn and −8.3%"
@@ -2101,7 +2101,7 @@
       "rev": "2027Q3",
       "rampQtrs": 2,
       "ctr": 0.9,
-      "rate": 4.4,
+      "rate": 6.72,
       "signed": 0
      },
      {
@@ -2115,7 +2115,7 @@
       "rev": "2027Q4",
       "rampQtrs": 2,
       "ctr": 0.9,
-      "rate": 4.4,
+      "rate": 6.72,
       "signed": 0
      },
      {
@@ -2129,7 +2129,7 @@
       "rev": "2027Q3",
       "rampQtrs": 2,
       "ctr": 0.8,
-      "rate": 3.81,
+      "rate": 4.81,
       "signed": 0
      },
      {
@@ -2143,7 +2143,7 @@
       "rev": "2027Q4",
       "rampQtrs": 2,
       "ctr": 0.8,
-      "rate": 3.81,
+      "rate": 4.94,
       "signed": 0
      },
      {
@@ -2157,7 +2157,7 @@
       "rev": "2028Q1",
       "rampQtrs": 2,
       "ctr": 0.8,
-      "rate": 3.81,
+      "rate": 4.94,
       "signed": 0
      },
      {
@@ -2171,7 +2171,7 @@
       "rev": "2028Q1",
       "rampQtrs": 3,
       "ctr": 0.85,
-      "rate": 7.5,
+      "rate": 8.01,
       "signed": 0
      },
      {
@@ -2185,7 +2185,7 @@
       "rev": "2028Q3",
       "rampQtrs": 2,
       "ctr": 0.75,
-      "rate": 3.81,
+      "rate": 5.27,
       "signed": 0
      },
      {
@@ -2199,7 +2199,7 @@
       "rev": "2028Q2",
       "rampQtrs": 2,
       "ctr": 0.8,
-      "rate": 7.5,
+      "rate": 9.4,
       "signed": 0
      },
      {
@@ -2213,7 +2213,7 @@
       "rev": "2028Q3",
       "rampQtrs": 2,
       "ctr": 0.8,
-      "rate": 7.5,
+      "rate": 9.4,
       "signed": 0
      },
      {
@@ -2227,7 +2227,7 @@
       "rev": "2028Q4",
       "rampQtrs": 2,
       "ctr": 0.8,
-      "rate": 7.5,
+      "rate": 9.4,
       "signed": 0
      },
      {
@@ -2241,7 +2241,7 @@
       "rev": "2029Q3",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 9.4,
       "signed": 0
      },
      {
@@ -2255,7 +2255,7 @@
       "rev": "2029Q2",
       "rampQtrs": 2,
       "ctr": 0.75,
-      "rate": 7.5,
+      "rate": 10.24,
       "signed": 0
      },
      {
@@ -2269,7 +2269,7 @@
       "rev": "2029Q3",
       "rampQtrs": 2,
       "ctr": 0.75,
-      "rate": 7.5,
+      "rate": 10.51,
       "signed": 0
      },
      {
@@ -2283,7 +2283,7 @@
       "rev": "2029Q3",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 10.31,
       "signed": 0
      },
      {
@@ -2297,7 +2297,7 @@
       "rev": "2029Q4",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 10.42,
       "signed": 0
      },
      {
@@ -2311,7 +2311,7 @@
       "rev": "2029Q4",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 10.65,
       "signed": 0
      },
      {
@@ -2325,7 +2325,7 @@
       "rev": "2030Q1",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 14.4,
       "signed": 0
      },
      {
@@ -2339,7 +2339,7 @@
       "rev": "2030Q2",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 14.4,
       "signed": 0
      },
      {
@@ -2353,7 +2353,7 @@
       "rev": "2030Q3",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 14.4,
       "signed": 0
      },
      {
@@ -2367,7 +2367,7 @@
       "rev": "2030Q4",
       "rampQtrs": 2,
       "ctr": 0.7,
-      "rate": 7.5,
+      "rate": 14.37,
       "signed": 0
      }
     ],
