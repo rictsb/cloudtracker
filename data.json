@@ -2394,7 +2394,7 @@
    "termYrs": 4,
    "leaseQ": 4.8,
    "netDebt": 1941,
-   "shares": 439.6,
+   "shares": 394.1,
    "price": 41.09,
    "legacyEV": 1000,
    "finMix": "ATM equity ($6B program) + low-coupon converts + $3.65B IG GPU financing + Microsoft prepayment",
@@ -2495,6 +2495,15 @@
      "yr": 2028,
      "mo": 9,
      "prov": "estimated"
+    },
+    {
+     "n": "Canal Flats BC",
+     "mw": 30,
+     "owned": true,
+     "region": "cheap",
+     "yr": 2027,
+     "mo": 10,
+     "prov": "disclosed"
     },
     {
      "n": "Prince George BC (H200 / Blackwell)",
