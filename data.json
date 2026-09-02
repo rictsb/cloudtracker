@@ -1688,7 +1688,7 @@
    "name": "IREN",
    "ramp": {
     "asOf": "2026-08-18",
-    "basis": "Quarterly GPU-ramp research overlay (owner-approved 8/27/26 post-FY26-print) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED and reaffirmed verbatim 13-Aug-2026; Horizon 1 DELIVERED TO AND ACCEPTED BY MICROSOFT 13-Aug-2026, which confirms first revenue in 2026Q3 as modelled and makes Horizon 1 the only tranche in the book whose acceptance is a fact rather than a schedule; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: IREN's own dated prints anchor the signed book — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 (8-K 7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet from IREN's own ARR disclosure. THE UNSIGNED BOOK IS MARKED PER MEGAWATT, at $20.0M per critical IT-MW-yr — the LOW end of the band Nebius is signing new capacity at (AIDC 27-Aug-2026: $20-25bn ARR per GW on Q2-26 signings, against a $12bn/GW installed base; SemiAnalysis 18-Aug-2026 has Nebius new deals through 2027 above $20M/MW versus a $12M/MW 2026 base). Air-cooled Childress retrofits hold their existing 13.4% discount to liquid, at $17.3M/IT-MW-yr, since the market prints are for liquid NVL72 SKUs. Pricing PER MEGAWATT rather than per GPU is deliberate: the megawatt is the scarce input, and a flat $/GPU-hr across generations silently prices thirstier silicon cheaper per MW — at a flat $7.50 the 2030 next-gen vintage came out at $10.4M/IT-MW-yr, BELOW the Nov-2025 Microsoft print. CAVEAT, stated not buried: $20M/IT-MW-yr sits ABOVE the SemiAnalysis five-year contract prints (GB300 $15.6-17.0M, VR NVL72 $15.5-16.5M per IT-MW-yr) and at the bottom of the Nebius new-signing band. The two sources disagree; the reconciliation is most likely tenor and attach mix, and this deck takes the Nebius read. Those are market prints for the SILICON, not IREN counterparty contracts: 87.2% of CY2030 revenue carries no signature (only $3.98bn of $31.10bn is covered by contracts signed today). Separately, 70.9% of CY2030 revenue prices off Rubin-class or later silicon — a different cut, and the two must not be conflated. IREN's signed book sits 33-46% below those prints — what it traded for anchor-tenant financing, and the reason the unsigned book is not marked at the signed level. Spot held FLAT from 2027 at $2.40: prior-generation cards recontract at or above prior rates (CoreWeave A100s signed out to 2029), so no decay is applied to installed silicon. A 5% attach for storage, CPU, networking and the managed layer applies to UNSIGNED tranches only. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier. FY26 PRINT (27-Aug-2026) RECONCILIATION: gross MW schedule CONFIRMED EXACTLY — company 2026 build is Childress 300 liquid + Childress 50 air + Mackenzie 80 + Prince George 50 = 480MW, and 2027 adds Childress 250 air + Childress 150 liquid + Sweetwater 1 300 + Canal Flats 30 = 730MW for 1,210MW cumulative; both tie to this schedule tranche for tranche. TIMING CORRECTED off 'phased commissioning of air-cooled capacity from Q1 2027 and liquid-cooled capacity from Q4 2027': Childress air 27a pulled to 2027Q1, Horizon 5 and 6 pushed from 2027Q2/Q3 to 2027Q4. Canal Flats added (30MW gross, whole site converting to liquid for GB300). IT DERATE FLAGGED NOT CHANGED: ours is 0.723, company states 0.5GW gross / 0.3GW IT for 2026 and 1.2/0.8 for 2027, i.e. 0.60 and 0.667 — but a one-decimal disclosure admits 0.455-0.778 and 0.600-0.739 respectively, so ours sits INSIDE both bands. Our IT total is at the top of what the disclosure can mean and may be up to ~16% high; it cannot be proven wrong on this data. RATES VALIDATED: the company's own contract-economics chart runs from ~$10m per IT-MW-yr in Nov-25 (ties to the Microsoft print at $9.70m) to ~$17m on 5-year and ~$23m on 3-year contracts today, with recent 3-year signings >$20m and active discussions ~$25m — the $20.0m this deck carries sits between the two tenors and at the floor of recent signings. OUT-OF-SAMPLE: 2026Q2 modelled $66.3m against $70.5m reported, -5.9%, a quarter the 4.4x calibration never saw.",
+    "basis": "Quarterly GPU-ramp research overlay (owner-approved 8/27/26 post-FY26-print) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED and reaffirmed verbatim 13-Aug-2026; Horizon 1 DELIVERED TO AND ACCEPTED BY MICROSOFT 13-Aug-2026, which confirms first revenue in 2026Q3 as modelled and makes Horizon 1 the only tranche in the book whose acceptance is a fact rather than a schedule; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: IREN's own dated prints anchor the signed book — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 (8-K 7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet from IREN's own ARR disclosure. THE UNSIGNED BOOK IS MARKED PER MEGAWATT, at $20.0M per critical IT-MW-yr on 2026-27 vintages, ESCALATING +8%/yr for 2028+ vintages (owner-directed 2026-09-02: dollars per megawatt rise with density as tokens per MW rise — the same +8%/yr the engine already carries in gpuTrend; $20.0M -> $21.6M 2028 -> $23.3M 2029 -> $25.2M 2030). UNCONTRACTED capacity earns REALISED SPOT of $35M/IT-MW-yr from 2027 (spot $11.70/GPU-hr x spotMult by generation; owner-directed 2026-09-02 off the Sep-2026 rate sweep: neocloud HGX B300 on-demand $7.85 = ~$30M/MW at 65% utilisation, CoreWeave GB200 NVL72 $10.50, Nebius \">$40M per MW\" on short-term paper), and the CONTRACTED SHARE of every unsigned tranche is cut to 0.7x its prior value (0.90 -> 0.63, 0.80 -> 0.56, 0.70 -> 0.49) so more of the book sells at spot. Spot for 2025-26 is unchanged at $2.50/$2.40 (Hopper-era, inside the calibration window); the retrodiction is unaffected (MAPE 11.0195%, verified by running rampBacktest on the old and new ramp). The three 2026-09-02 changes together lift the 2030Q4 run-rate from $45.4bn to $70.6bn and drop the contracted share of 2030 revenue from 90% to 44%. — the LOW end of the band Nebius is signing new capacity at (AIDC 27-Aug-2026: $20-25bn ARR per GW on Q2-26 signings, against a $12bn/GW installed base; SemiAnalysis 18-Aug-2026 has Nebius new deals through 2027 above $20M/MW versus a $12M/MW 2026 base). Air-cooled Childress retrofits hold their existing 13.4% discount to liquid, at $17.3M/IT-MW-yr, since the market prints are for liquid NVL72 SKUs. Pricing PER MEGAWATT rather than per GPU is deliberate: the megawatt is the scarce input, and a flat $/GPU-hr across generations silently prices thirstier silicon cheaper per MW — at a flat $7.50 the 2030 next-gen vintage came out at $10.4M/IT-MW-yr, BELOW the Nov-2025 Microsoft print. CAVEAT, stated not buried: $20M/IT-MW-yr sits ABOVE the SemiAnalysis five-year contract prints (GB300 $15.6-17.0M, VR NVL72 $15.5-16.5M per IT-MW-yr) and at the bottom of the Nebius new-signing band. The two sources disagree; the reconciliation is most likely tenor and attach mix, and this deck takes the Nebius read. Those are market prints for the SILICON, not IREN counterparty contracts: 87.2% of CY2030 revenue carries no signature (only $3.98bn of $31.10bn is covered by contracts signed today). Separately, 70.9% of CY2030 revenue prices off Rubin-class or later silicon — a different cut, and the two must not be conflated. IREN's signed book sits 33-46% below those prints — what it traded for anchor-tenant financing, and the reason the unsigned book is not marked at the signed level. Spot held FLAT from 2027 at $2.40: prior-generation cards recontract at or above prior rates (CoreWeave A100s signed out to 2029), so no decay is applied to installed silicon. A 5% attach for storage, CPU, networking and the managed layer applies to UNSIGNED tranches only. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier. FY26 PRINT (27-Aug-2026) RECONCILIATION: gross MW schedule CONFIRMED EXACTLY — company 2026 build is Childress 300 liquid + Childress 50 air + Mackenzie 80 + Prince George 50 = 480MW, and 2027 adds Childress 250 air + Childress 150 liquid + Sweetwater 1 300 + Canal Flats 30 = 730MW for 1,210MW cumulative; both tie to this schedule tranche for tranche. TIMING CORRECTED off 'phased commissioning of air-cooled capacity from Q1 2027 and liquid-cooled capacity from Q4 2027': Childress air 27a pulled to 2027Q1, Horizon 5 and 6 pushed from 2027Q2/Q3 to 2027Q4. Canal Flats added (30MW gross, whole site converting to liquid for GB300). IT DERATE FLAGGED NOT CHANGED: ours is 0.723, company states 0.5GW gross / 0.3GW IT for 2026 and 1.2/0.8 for 2027, i.e. 0.60 and 0.667 — but a one-decimal disclosure admits 0.455-0.778 and 0.600-0.739 respectively, so ours sits INSIDE both bands. Our IT total is at the top of what the disclosure can mean and may be up to ~16% high; it cannot be proven wrong on this data. RATES VALIDATED: the company's own contract-economics chart runs from ~$10m per IT-MW-yr in Nov-25 (ties to the Microsoft print at $9.70m) to ~$17m on 5-year and ~$23m on 3-year contracts today, with recent 3-year signings >$20m and active discussions ~$25m — the $20.0m this deck carries sits between the two tenors and at the floor of recent signings. OUT-OF-SAMPLE: 2026Q2 modelled $66.3m against $70.5m reported, -5.9%, a quarter the 4.4x calibration never saw.",
     "chain": [
      {
       "id": "secured",
@@ -1873,10 +1873,10 @@
     "spot": {
      "2025": 2.5,
      "2026": 2.4,
-     "2027": 2.4,
-     "2028": 2.4,
-     "2029": 2.4,
-     "2030": 2.4
+     "2027": 11.7,
+     "2028": 11.7,
+     "2029": 11.7,
+     "2030": 11.7
     },
     "spotMult": {
      "hopper": 1,
@@ -2100,7 +2100,7 @@
       "energize": "2027Q4",
       "rev": "2028Q1",
       "rampQtrs": 2,
-      "ctr": 0.9,
+      "ctr": 0.63,
       "rate": 6.72,
       "signed": 0
      },
@@ -2114,7 +2114,7 @@
       "energize": "2027Q4",
       "rev": "2028Q1",
       "rampQtrs": 2,
-      "ctr": 0.9,
+      "ctr": 0.63,
       "rate": 6.72,
       "signed": 0
      },
@@ -2128,7 +2128,7 @@
       "energize": "2027Q1",
       "rev": "2027Q2",
       "rampQtrs": 2,
-      "ctr": 0.8,
+      "ctr": 0.56,
       "rate": 4.81,
       "signed": 0
      },
@@ -2142,7 +2142,7 @@
       "energize": "2027Q3",
       "rev": "2027Q4",
       "rampQtrs": 2,
-      "ctr": 0.8,
+      "ctr": 0.56,
       "rate": 4.94,
       "signed": 0
      },
@@ -2156,7 +2156,7 @@
       "energize": "2027Q4",
       "rev": "2028Q1",
       "rampQtrs": 2,
-      "ctr": 0.8,
+      "ctr": 0.56,
       "rate": 4.94,
       "signed": 0
      },
@@ -2170,7 +2170,7 @@
       "energize": "2027Q4",
       "rev": "2028Q1",
       "rampQtrs": 3,
-      "ctr": 0.85,
+      "ctr": 0.595,
       "rate": 8.01,
       "signed": 0
      },
@@ -2184,8 +2184,8 @@
       "energize": "2028Q2",
       "rev": "2028Q3",
       "rampQtrs": 2,
-      "ctr": 0.75,
-      "rate": 5.27,
+      "ctr": 0.525,
+      "rate": 5.69,
       "signed": 0
      },
      {
@@ -2198,8 +2198,8 @@
       "energize": "2028Q1",
       "rev": "2028Q2",
       "rampQtrs": 2,
-      "ctr": 0.8,
-      "rate": 9.4,
+      "ctr": 0.56,
+      "rate": 10.15,
       "signed": 0
      },
      {
@@ -2212,8 +2212,8 @@
       "energize": "2028Q2",
       "rev": "2028Q3",
       "rampQtrs": 2,
-      "ctr": 0.8,
-      "rate": 9.4,
+      "ctr": 0.56,
+      "rate": 10.15,
       "signed": 0
      },
      {
@@ -2226,8 +2226,8 @@
       "energize": "2028Q3",
       "rev": "2028Q4",
       "rampQtrs": 2,
-      "ctr": 0.8,
-      "rate": 9.4,
+      "ctr": 0.56,
+      "rate": 10.15,
       "signed": 0
      },
      {
@@ -2240,8 +2240,8 @@
       "energize": "2029Q2",
       "rev": "2029Q3",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 9.4,
+      "ctr": 0.49,
+      "rate": 10.96,
       "signed": 0
      },
      {
@@ -2254,8 +2254,8 @@
       "energize": "2029Q1",
       "rev": "2029Q2",
       "rampQtrs": 2,
-      "ctr": 0.75,
-      "rate": 10.24,
+      "ctr": 0.525,
+      "rate": 11.94,
       "signed": 0
      },
      {
@@ -2268,8 +2268,8 @@
       "energize": "2029Q2",
       "rev": "2029Q3",
       "rampQtrs": 2,
-      "ctr": 0.75,
-      "rate": 10.51,
+      "ctr": 0.525,
+      "rate": 12.26,
       "signed": 0
      },
      {
@@ -2282,8 +2282,8 @@
       "energize": "2029Q2",
       "rev": "2029Q3",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 10.31,
+      "ctr": 0.49,
+      "rate": 12.03,
       "signed": 0
      },
      {
@@ -2296,8 +2296,8 @@
       "energize": "2029Q3",
       "rev": "2029Q4",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 10.42,
+      "ctr": 0.49,
+      "rate": 12.15,
       "signed": 0
      },
      {
@@ -2310,8 +2310,8 @@
       "energize": "2029Q3",
       "rev": "2029Q4",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 10.65,
+      "ctr": 0.49,
+      "rate": 12.42,
       "signed": 0
      },
      {
@@ -2324,8 +2324,8 @@
       "energize": "2029Q4",
       "rev": "2030Q1",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 14.4,
+      "ctr": 0.49,
+      "rate": 16.8,
       "signed": 0
      },
      {
@@ -2338,8 +2338,8 @@
       "energize": "2030Q1",
       "rev": "2030Q2",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 14.4,
+      "ctr": 0.49,
+      "rate": 18.14,
       "signed": 0
      },
      {
@@ -2352,8 +2352,8 @@
       "energize": "2030Q2",
       "rev": "2030Q3",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 14.4,
+      "ctr": 0.49,
+      "rate": 18.14,
       "signed": 0
      },
      {
@@ -2366,8 +2366,8 @@
       "energize": "2030Q3",
       "rev": "2030Q4",
       "rampQtrs": 2,
-      "ctr": 0.7,
-      "rate": 14.37,
+      "ctr": 0.49,
+      "rate": 18.1,
       "signed": 0
      },
      {
@@ -2380,7 +2380,7 @@
       "energize": "2027Q4",
       "rev": "2028Q1",
       "rampQtrs": 2,
-      "ctr": 0.7,
+      "ctr": 0.49,
       "rate": 6.72,
       "signed": 0
      }
