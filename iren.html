@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>:root{color-scheme:light dark}body{margin:0}</style>
+<title>IREN Value Path</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#ECEFF2; --card:#F8FAFB; --sunk:#E2E7EB;
+  --ink:#111619; --soft:#5A6672; --faint:#8A959F; --line:#D3DAE0; --grid:#E6EAEE;
+  --accent:#2a78d6;
+  --s1:#2a78d6; --s1u:#86b6ef; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --pos:#2C6349; --neg:#93402F;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0D1115; --card:#161C22; --sunk:#11161B;
+  --ink:#E5EAEE; --soft:#8B98A5; --faint:#65727E; --line:#252E37; --grid:#1F272F;
+  --accent:#3987e5;
+  --s1:#3987e5; --s1u:#1c5cab; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --pos:#71C098; --neg:#DB8A75;
+}}
+:root[data-theme="dark"]{
+  --paper:#0D1115; --card:#161C22; --sunk:#11161B;
+  --ink:#E5EAEE; --soft:#8B98A5; --faint:#65727E; --line:#252E37; --grid:#1F272F;
+  --accent:#3987e5;
+  --s1:#3987e5; --s1u:#1c5cab; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --pos:#71C098; --neg:#DB8A75;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:Archivo,system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.5;margin:0;padding:36px 20px 72px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.mono{font-family:"JetBrains Mono",monospace}
+
+header{display:flex;flex-direction:column;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:18px}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+h1{font-size:38px;font-weight:700;letter-spacing:-.022em;margin:0;line-height:1.05;text-wrap:balance}
+.sub{color:var(--soft);font-size:15px;max-width:60ch;margin:0}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.fact .l{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.fact .v{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.fact .n{font-size:12px;color:var(--faint)}
+
+.step{display:grid;grid-template-columns:52px 1fr;gap:0 18px;position:relative}
+.rail{display:flex;flex-direction:column;align-items:center;gap:8px}
+.rail .num{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:var(--card);background:var(--ink);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.rail .bar{width:2px;flex:1;background:var(--line)}
+.step:last-of-type .rail .bar{background:transparent}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px 18px;display:flex;flex-direction:column;gap:16px;margin-bottom:22px;min-width:0}
+.head{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end}
+.head h2{font-size:22px;font-weight:600;letter-spacing:-.015em;margin:0;line-height:1.15;text-wrap:balance}
+.head .q{font-size:13px;color:var(--soft);margin:3px 0 0}
+.hero{text-align:right;line-height:1}
+.hero .v{font-size:44px;font-weight:700;letter-spacing:-.03em}
+.hero .u{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-top:6px}
+figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+figure .cap{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--soft);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+.scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:Archivo,system-ui,sans-serif;fill:var(--ink)}
+svg .m{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+svg .soft{fill:var(--soft)}
+svg .faint{fill:var(--faint)}
+svg .grid{stroke:var(--grid);stroke-width:1}
+svg .axis{stroke:var(--line);stroke-width:1}
+svg .sep{stroke:var(--card);stroke-width:2}
+svg rect.hit{fill:transparent;cursor:default}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.note{font-size:13.5px;line-height:1.45;color:var(--ink);border-top:2px solid var(--line);padding-top:8px}
+.note b{font-weight:600}
+.note .src{display:block;font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--faint);margin-top:4px;letter-spacing:.02em}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{background:var(--sunk);border-radius:6px;padding:10px 12px}
+.tile .l{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.tile .v{font-size:22px;font-weight:600;letter-spacing:-.01em;margin-top:2px}
+.tile .n{font-size:12px;color:var(--faint)}
+details{font-size:12.5px;color:var(--soft)}
+summary{cursor:pointer;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+table{border-collapse:collapse;width:100%;margin-top:8px;font-variant-numeric:tabular-nums}
+th,td{text-align:right;padding:4px 8px;border-bottom:1px solid var(--line);font-size:12px}
+th:first-child,td:first-child{text-align:left}
+th{font-family:"JetBrains Mono",monospace;font-weight:500;color:var(--soft);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--card);font-family:"JetBrains Mono",monospace;font-size:11.5px;padding:6px 9px;border-radius:4px;white-space:nowrap;z-index:9;display:none;line-height:1.4}
+.ledger{font-family:"JetBrains Mono",monospace;font-size:13px;display:grid;grid-template-columns:1fr auto;gap:3px 18px;font-variant-numeric:tabular-nums}
+.ledger .k{color:var(--soft)}
+.ledger .t{border-top:1px solid var(--ink);padding-top:5px;margin-top:3px;font-weight:700}
+.ledger-wrap table{margin-top:0;min-width:1900px}
+.ledger-wrap th,.ledger-wrap td{white-space:nowrap;padding:3px 8px;font-size:11.5px;font-family:"JetBrains Mono",monospace;line-height:1.35;text-align:right}
+.ledger-wrap th{position:sticky;top:0;background:var(--card);z-index:2;font-size:10.5px;line-height:1.2;vertical-align:bottom;color:var(--soft)}
+.ledger-wrap th:first-child,.ledger-wrap td:first-child{position:sticky;left:0;background:var(--card);z-index:1;text-align:left;font-family:Archivo,system-ui,sans-serif;font-size:12px;min-width:236px}
+.ledger-wrap th:first-child{z-index:3}
+.ledger-wrap th.ye{color:var(--ink);font-weight:700}.ledger-wrap td.ye{font-weight:600}
+.ledger-wrap .past{color:var(--faint)}
+.ledger-wrap tr.sec td{position:static;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding:10px 8px 2px;border-bottom:none;text-align:left}
+.ledger-wrap td.pos{color:var(--pos)}.ledger-wrap td.neg{color:var(--neg)}
+footer{border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--faint);line-height:1.6}
+footer b{color:var(--soft);font-weight:600}
+footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+@media (max-width:720px){
+  h1{font-size:30px}.facts,.tiles{grid-template-columns:1fr 1fr}.notes,.two{grid-template-columns:1fr}
+  .step{grid-template-columns:36px 1fr;gap:0 10px}.rail .num{width:26px;height:26px;font-size:11px}
+  .head{grid-template-columns:1fr}.hero{text-align:left}.hero .v{font-size:36px}.card{padding:16px 14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">IREN · NASDAQ · from the FY26 10-K and the 27 Aug call · 2 Sep 2026</div>
+  <h1>From megawatts to a share price</h1>
+  <p class="sub">Power comes first. GPUs fill it. Contracts price the hours. Customers and lenders fund the build. Then the cash economics of one megawatt set what a dollar of revenue is worth.</p>
+  <div class="facts">
+    <div class="fact"><span class="l">Share price</span><span class="v" id="fPx"></span><span class="n">Finnhub, 2 Sep</span></div>
+    <div class="fact"><span class="l">Shares out</span><span class="v">394.1m</span><span class="n">10-K cover, 14 Aug</span></div>
+    <div class="fact"><span class="l">Net debt</span><span class="v">$1.94bn</span><span class="n">$7.8bn debt − $5.9bn cash</span></div>
+    <div class="fact"><span class="l">Contracted ARR</span><span class="v">$4.0bn</span><span class="n">for 2026 capacity</span></div>
+  </div>
+</header>
+
+<!-- 1 POWER -->
+<section class="step">
+  <div class="rail"><div class="num">1</div><div class="bar"></div></div>
+  <div class="card">
+    <div class="head">
+      <div><h2>How much power is real</h2><p class="q">Announced, energised, and actually earning</p></div>
+      <div class="hero"><div class="v">2,310</div><div class="u">MW with substations energised</div></div>
+    </div>
+    <figure><div class="scroll" id="gCap"></div></figure>
+    <figure>
+      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>signed</span><span><i class="sw" style="background:var(--s1u)"></i>unsigned</span><span>▲ substation live</span><span>bar = energise → full commissioning · label = IT&nbsp;MW</span></div>
+      <div class="scroll" id="gGantt"></div>
+      <details><summary>Table</summary><div id="tGantt"></div></details>
+    </figure>
+    <div class="notes">
+      <div class="note"><b>5,610 MW announced</b> across nine sites. Land cost $139m — $25k per MW. The value is in the grid connections, not the dirt.<span class="src">10-K Item 2 · Note 14</span></div>
+      <div class="note"><b>Sweetwater 1’s substation energised 1 May 2026</b> — three months before ERCOT froze the queue. Power ramps with construction; 1.4 GW sits inside the moat.<span class="src">8-K 7 May · Governor’s directive 3 Aug</span></div>
+      <div class="note"><b>~90 MW earning today.</b> ~40 MW at 30 June (basis not stated) plus Horizon 1 (50 MW IT) accepted by Microsoft on 13 Aug.<span class="src">10-K · 8-K 13 Aug</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 BUILD -->
+<section class="step">
+  <div class="rail"><div class="num">2</div><div class="bar"></div></div>
+  <div class="card">
+    <div class="head">
+      <div><h2>How fast the GPUs go in</h2><p class="q">Commissioned fleet by generation, quarter by quarter</p></div>
+      <div class="hero"><div class="v">757k</div><div class="u">GPUs commissioned by end-2030</div></div>
+    </div>
+    <figure>
+      <div class="cap"><span><i class="sw" style="background:var(--s4)"></i>Hopper</span><span><i class="sw" style="background:var(--s1)"></i>Blackwell</span><span><i class="sw" style="background:var(--s2)"></i>Rubin</span><span><i class="sw" style="background:var(--s3)"></i>Next-gen</span><span>labels = IT MW live</span></div>
+      <div class="scroll" id="gBuild"></div>
+      <details><summary>Table</summary><div id="tBuild"></div></details>
+    </figure>
+    <div class="notes">
+      <div class="note"><b>60k GPUs by Dec 2026</b> on 480 MW gross. The 2026 build ties to the company’s own schedule tranche for tranche.<span class="src">FY26 deck</span></div>
+      <div class="note"><b>198k by Dec 2027</b> on 1,210 MW. Air-cooled Childress from Q1, liquid Childress + Sweetwater 1 from Q4.<span class="src">FY26 call · release</span></div>
+      <div class="note"><b>Density rises</b>: 2.9 kW per GB300 package, 3.5–4.7 kW Rubin, 6.3 kW next-gen. Same megawatt, fewer chips, same dollars per MW.<span class="src">model tranches</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 BILL -->
+<section class="step">
+  <div class="rail"><div class="num">3</div><div class="bar"></div></div>
+  <div class="card">
+    <div class="head">
+      <div><h2>What an hour sells for, and what that adds up to</h2><p class="q">Quarterly revenue — contracted and still-to-sell</p></div>
+      <div class="hero"><div class="v">$62.8bn</div><div class="u">run-rate revenue · Q4 2030</div></div>
+    </div>
+    <div class="two">
+      <div class="ledger">
+        <span class="k">Microsoft · GB300 · signed</span><span>$2.91 / GPU-hr</span>
+        <span class="k">NVIDIA · Blackwell · signed</span><span>$3.10 / GPU-hr</span>
+        <span class="k">Nov-25 pricing, per IT MW-yr</span><span>~$10m</span>
+        <span class="k">3-yr contracts today</span><span>&gt;$20m</span>
+        <span class="k">Active discussions</span><span>~$25m</span>
+        <span class="k t">Unsigned capacity modelled at</span><span class="t">$20m / IT MW-yr</span>
+      </div>
+      <div class="ledger">
+        <span class="k">1 IT MW × 8,760 h, 2026–27 vintage</span><span>$20.0m / yr</span>
+        <span class="k">÷ GB300 packages per MW (340)</span><span>$6.72 / GPU-hr</span>
+        <span class="k">Contract $/MW, 2028+ vintages</span><span>+2% / yr</span>
+        <span class="k">10% uncontracted, at realised spot</span><span>$35m / IT MW-yr</span>
+        <span class="k">Uncontracted GPUs sell down</span><span>4.4× slower</span>
+        <span class="k t">Fleet blend, Q4 2030</span><span class="t">$9.46 / GPU-hr</span>
+      </div>
+    </div>
+    <figure>
+      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>contracted</span><span><i class="sw" style="background:var(--s1u)"></i>uncontracted</span><span>◆ exit ARR — capacity energised by year-end, at contract rate + realised spot</span><span>$m per quarter</span></div>
+      <div class="scroll" id="gRev"></div>
+      <details><summary>Table</summary><div id="tRev"></div></details>
+    </figure>
+    <div class="notes">
+      <div class="note"><b>Two ARRs.</b> The company’s ARR is price × 8,760 h × GPUs commissioned <i>and</i> under contract; revenue bills one to two quarters later. YE-2026: company “$4bn+” (ex-NVIDIA), model $4.1bn — the 2026 air-cooled book priced at the ~$20m/MW its own $4bn implies. YE-2027: $17.3bn energised ($13.7bn under contract); billing runs at $12bn from Q1 2028.<span class="src">FY26 release fn.1 · CFO: revenue “predominantly in the March quarter”</span></div>
+      <div class="note"><b>The model held out of sample.</b> Q2 2026 modelled $66.3m, reported $70.5m — a quarter the calibration never saw.<span class="src">−5.9%</span></div>
+      <div class="note"><b>2028 onward is 9–20% signed.</b> The model contracts 90% of unsigned capacity at $20m+ (vintage-priced) and keeps 10% for spot at $35m. Spot sells down 4.4× slower, so it adds rate, not speed.<span class="src">contracted share of revenue: 76 · 79 · 81 · 82%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 FUND -->
+<section class="step">
+  <div class="rail"><div class="num">4</div><div class="bar"></div></div>
+  <div class="card">
+    <div class="head">
+      <div><h2>Who pays for it</h2><p class="q">Customer prepayments and GPU debt do most of the work — on contracted capacity</p></div>
+      <div class="hero"><div class="v">16%</div><div class="u">of last year’s $19bn was equity</div></div>
+    </div>
+    <div class="tiles">
+      <div class="tile"><div class="l">Cash</div><div class="v">$5.9bn</div><div class="n">+ $1.7bn restricted</div></div>
+      <div class="tile"><div class="l">Debt</div><div class="v">$7.8bn</div><div class="n">$6.75bn converts, 0–3.5%</div></div>
+      <div class="tile"><div class="l">Committed capex</div><div class="v">$13.8bn</div><div class="n">$13.6bn due within 12 mo</div></div>
+      <div class="tile"><div class="l">FY27 capex guide</div><div class="v">$25–30bn</div><div class="n">CFO, 27 Aug</div></div>
+    </div>
+    <figure>
+      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>customer prepayment</span><span><i class="sw" style="background:var(--s2)"></i>GPU financing</span><span><i class="sw" style="background:var(--s3)"></i>data-centre debt</span><span><i class="sw" style="background:var(--s4)"></i>equity</span><span>per IT MW · $m</span></div>
+      <div class="scroll" id="gFund"></div>
+    </figure>
+    <figure>
+      <div class="cap"><span>FY27 bridge · $bn</span><span><i class="sw" style="background:var(--s1)"></i>secured</span><span><i class="sw" style="background:var(--s2)"></i>targeted</span><span><i class="sw" style="background:var(--sunk);border:1px solid var(--line)"></i>DC financing, cash flow, corporate</span></div>
+      <div class="scroll" id="gBridge"></div>
+    </figure>
+    <div class="notes">
+      <div class="note"><b>“Recent customer prepayments represent 45–55% of GPU capex.”</b> On Microsoft, prepayments plus $3.6bn of investment-grade debt funded ~96% of the GPUs. The ATM has $3.5bn unused of a $6bn programme — nothing issued since 30 June.<span class="src">8-K EX-99.1 · 10-K Note 24</span></div>
+      <div class="note"><b>“Our entire data center portfolio is unencumbered today, including Horizons One through four.”</b> Lenders hold the GPUs ($1.49bn pledged, non-recourse) and the Microsoft receivables — not the land, buildings or substations.<span class="src">A. Lewis, CFO, FY26 call · 10-K Note 23</span></div>
+      <div class="note"><b>The catch:</b> prepayments and 90% gearing exist only on <b>signed</b> capacity. Unsigned capacity needs ~$18m of equity per IT MW — or is simply not built.<span class="src">SOW §3.2 · funding stack above</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 ECONOMICS -->
+<section class="step">
+  <div class="rail"><div class="num">5</div><div class="bar"></div></div>
+  <div class="card">
+    <div class="head">
+      <div><h2>What one megawatt earns</h2><p class="q">Revenue to owner cash — and why the GPUs get replaced</p></div>
+      <div class="hero"><div class="v">$3.91</div><div class="u">what $1 of ARR is worth</div></div>
+    </div>
+    <div class="two">
+      <figure>
+        <div class="cap"><span>one IT MW · one year · $m</span></div>
+        <div class="scroll" id="gWater"></div>
+      </figure>
+      <figure>
+        <div class="cap"><span>$1 of ARR, by pricing and replacement regime</span></div>
+        <div class="scroll" id="gLife"></div>
+      </figure>
+    </div>
+    <div class="notes">
+      <div class="note"><b>Costs are tiny.</b> Power at $35/MWh is 1.8% of revenue — IREN owns the substations. Gross margin ~94%; 65% EBITDA after overhead.<span class="src">10,512 MWh per IT MW-yr at PUE 1.2</span></div>
+      <div class="note"><b>Capex ~$36m per IT MW</b>, corroborated three ways: balance-sheet GPU fleet, rack build-up, and the FY27 guide ÷ 2028 build.<span class="src">$27.5bn ÷ 762 IT MW = $36.1m</span></div>
+      <div class="note"><b>Maintenance, not replacement.</b> The refresh is a tray swap — racks, liquid loop and power stay — at ~55% of GPU cost every four years, plus 3%/yr on failures and spares: $4.7m per MW-yr, the same cash as a full six-year replace. Never refreshing (3.03×) sits under the base (3.91×). Book life: IREN 5 yr; CoreWeave, MSFT, GOOG 6.<span class="src">10-K Note 2 · peer 10-Ks</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 VALUE -->
+<section class="step">
+  <div class="rail"><div class="num">6</div><div class="bar"></div></div>
+  <div class="card">
+    <div class="head">
+      <div><h2>What it is worth, per share</h2><p class="q">2030 run-rate × what $1 of ARR is worth, discounted, less the debt and dilution that built it</p></div>
+      <div class="hero"><div class="v" id="hEV"></div><div class="u">EV / ARR today</div></div>
+    </div>
+    <figure>
+      <div class="cap"><span>$ per share · by pricing and maintenance regime · 522m shares after a $9.6bn raise, $53bn debt</span><span>│ market</span></div>
+      <div class="scroll" id="gValue"></div>
+    </figure>
+    <div class="two">
+      <div class="ledger" id="lBridge"></div>
+      <div class="ledger" id="lEps"></div>
+    </div>
+    <div class="notes">
+      <div class="note"><b>Some equity, not none.</b> The flywheel could cover the build, but the company raised 16% of last year’s funding in equity and keeps the ATM live. Base: 10% of the 2027–30 build, $9.6bn, at an assumed $75 — +128m shares to 522m. At today’s $37.74 the same raise costs 254m shares and ~$30 a share.<span class="src">FY26 call · 10-K Note 24</span></div>
+      <div class="note"><b>The regime is the swing, not the ARR.</b> Same $62.8bn, same balance sheet: $134 if the fleet is never refreshed, $160 at flat $/MW, $203 with market $/MW +2%/yr captured at each renewal. Signed contracts never escalate; they reprice when they end.<span class="src">contracted 3-yr at 10.5% · spot at 13%</span></div>
+      <div class="note"><b>EPS is the long-run anchor.</b> 2030 net income ≈ $13.1bn at IREN’s 5-year book ($25.2 a share on 522m), ≈ $15.0bn ($28.8) depreciated over six like CoreWeave. Pick your multiple.<span class="src">after the raise</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 LEDGER -->
+<section class="step">
+  <div class="rail"><div class="num">7</div><div class="bar"></div></div>
+  <div class="card">
+    <div class="head">
+      <div><h2>The whole thing, quarter by quarter</h2><p class="q">Power → GPUs → hours → dollars → cash → value. Every number above comes from a row here.</p></div>
+      <div class="hero"><div class="v" id="hLedger"></div><div class="u">per share, from the last row</div></div>
+    </div>
+    <figure>
+      <div class="cap"><span>quarters across · $m unless stated · bold columns = year-end · greyed = reported quarters · PV at 10.5%/yr from Q3 2026</span></div>
+      <div class="scroll ledger-wrap" id="gLedger"></div>
+    </figure>
+    <div class="two">
+      <div class="ledger" id="lBuild"></div>
+      <div class="ledger" id="lTie"></div>
+    </div>
+    <div class="notes">
+      <div class="note"><b>Read it left to right.</b> Megawatts get energised, GPUs get commissioned, hours get sold at a rate, revenue follows a quarter or two behind, 65% of it is cash. Utilisation is earning MW over energised MW — the commissioning lag and the spot sell-down in one number.<span class="src">model tranches · calibrated ramp</span></div>
+      <div class="note"><b>The build eats the cash.</b> Capex runs ahead of EBITDA every year to 2029; the gap is what prepayments, GPU financing and the equity raise fund. The debt that is left at 2030 is what comes off the value.<span class="src">$36m per IT MW · funding as step 4</span></div>
+      <div class="note"><b>Then one multiple.</b> Q4-2030 run-rate × what $1 of ARR is worth (step 5), discounted back, less that debt, over the diluted share count — the same $203 as step 6.<span class="src">3.91× · 10.5% · 4.3 yr</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>Sources.</b> FY26 10-K (filed 27 Aug 2026; balance sheet tied line-by-line to XBRL), FY26 results 8-K, 8-Ks of 20 Jul, 4 Aug, 13 Aug; FY26 Q4 earnings call, 27 Aug (transcripts: stockanalysis.com, investing.com, benzinga.com); Microsoft Partner SOW (EX-10.3, 10-Q Feb 2026); Common Terms Agreement (EX-10.37); CoreWeave FY25 10-K and Q2-26 call (peer GPU life).
+  <b>Model.</b> Compute/Value tracker, IREN ramp as of 18 Aug 2026, repriced 27 Aug. Ramp: contracts $20m per IT MW-yr on 2026–27 vintages, +2%/yr from 2028; 10% of unsigned capacity kept for spot at $35m realised from 2027, 90% contracted. Steady-state: $22.5m revenue per IT MW-yr today, 65% EBITDA, $36m capex ($24m GPU + $12m shell), 21% tax, 10.5% WACC; market $/MW +2%/yr for ten years then flat; contracted MW reprice only at renewal (3-yr terms), spot MW at market every year discounted at 13%; refresh as a tray swap at 55% of GPU cost every four years plus 3%/yr on failures and spares; 10% of the 2027–30 build funded in equity at an assumed $75.
+  <b>Snapshot.</b> This page is a dated cut of the tracker’s IREN ramp as of 2 Sep 2026 and does not update with the model; the live model, scenarios and backtest are on the <a href="/">tracker’s GPU RAMP tab</a>. <b>Not advice.</b> A first-principles model of what the assets earn — not a price target.
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+(function(){
+const PX=37.74, SH=394.1, ND=1.941;
+document.getElementById('fPx').textContent='$'+PX.toFixed(2);
+const fmt=n=>n.toLocaleString('en-US');
+const tip=document.getElementById('tip');
+function hover(el,html){el.addEventListener('mousemove',e=>{tip.innerHTML=html;tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY-10)+'px';});el.addEventListener('mouseleave',()=>tip.style.display='none');}
+const NS='http://www.w3.org/2000/svg';
+function svg(w,h){const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 '+w+' '+h);s.setAttribute('width',w);s.setAttribute('height',h);return s;}
+function el(t,a,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;}
+function table(host,head,rows){const t=document.createElement('table');t.innerHTML='<thead><tr>'+head.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(i?fmt(c):c)+'</td>').join('')+'</tr>').join('')+'</tbody>';document.getElementById(host).appendChild(t);}
+
+/* ---- quarterly ramp: [lbl, rev, revC, revS, itMW, grossMW, gpus, byGen{hopper,blackwell,rubin,next}] ---- */
+const Q=[
+["2026Q3",149.3,118.5,118.5,52,330,25490,{hopper:8196,blackwell:17294,rubin:0,next:0}],
+["2026Q4",423.2,379.1,379.1,135,480,59888,{hopper:8430,blackwell:51457,rubin:0,next:0}],
+["2027Q1",1064.5,785.1,785.1,269,610,116285,{hopper:8665,blackwell:107620,rubin:0,next:0}],
+["2027Q2",1608.7,1236.1,1130.6,403,610,173789,{hopper:8900,blackwell:164889,rubin:0,next:0}],
+["2027Q3",1758.3,1348.5,1137.4,431,685,185516,{hopper:9025,blackwell:176491,rubin:0,next:0}],
+["2027Q4",1919.9,1471.1,1144.2,462,1240,197959,{hopper:9150,blackwell:188809,rubin:0,next:0}],
+["2028Q1",2891.5,2253.5,1151.1,637,1440,257421,{hopper:9275,blackwell:230639,rubin:17507,next:0}],
+["2028Q2",4098.1,3236.6,1157.9,849,1760,321760,{hopper:9400,blackwell:261668,rubin:50692,next:0}],
+["2028Q3",5468.8,4354.0,1164.1,1089,1960,389453,{hopper:9400,blackwell:280498,rubin:99555,next:0}],
+["2028Q4",6496.1,5195.4,1170.3,1271,1960,440423,{hopper:9400,blackwell:299328,rubin:131695,next:0}],
+["2029Q1",6934.4,5553.2,1176.5,1346,2210,459893,{hopper:9400,blackwell:301957,rubin:148536,next:0}],
+["2029Q2",7468.9,6002.4,1181.5,1439,2760,481586,{hopper:9400,blackwell:304126,rubin:168060,next:0}],
+["2029Q3",9033.0,7321.9,1186.5,1708,3160,542679,{hopper:9400,blackwell:306040,rubin:227239,next:0}],
+["2029Q4",10887.4,8889.0,1191.6,2028,3435,614349,{hopper:9400,blackwell:307953,rubin:296996,next:0}],
+["2030Q1",12248.6,10039.4,1196.6,2262,3710,661163,{hopper:9400,blackwell:309600,rubin:328053,next:14110}],
+["2030Q2",13388.7,11002.9,1196.6,2457,3985,693390,{hopper:9400,blackwell:310000,rubin:331660,next:42330}],
+["2030Q3",14540.7,11977.9,1196.6,2652,4260,725580,{hopper:9400,blackwell:310400,rubin:334890,next:70890}],
+["2030Q4",15688.3,12949.4,1196.6,2846,4260,757285,{hopper:9400,blackwell:310400,rubin:337741,next:99744}]];
+const short=l=>l.replace('20','’').replace('Q',' Q');
+
+/* ---- 1a capacity ---- */
+(function(){
+  const W=880,H=118,L=190,R=70;const rows=[['Announced',5610,'nine sites'],['Substation energised',2310,'Childress · Sweetwater 1 · BC — delivery ramps with construction'],['Gross MW built by end-2027',1240,'company schedule'],['IT MW earning today',90,'~40 + Horizon 1']];
+  const s=svg(W,H);const x=v=>L+v/5610*(W-L-R);
+  rows.forEach((r,i)=>{const y=10+i*27;s.appendChild(el('text',{x:L-10,y:y+13,'text-anchor':'end','font-size':13},r[0]));
+    s.appendChild(el('rect',{x:L,y,width:W-L-R,height:16,fill:'var(--sunk)'}));
+    const b=el('rect',{x:L,y,width:Math.max(4,x(r[1])-L),height:16,fill:i===3?'var(--s1)':'var(--s1u)'});s.appendChild(b);
+    s.appendChild(el('text',{x:x(r[1])+8,y:y+13,'font-size':13,'font-weight':600,class:'m'},fmt(r[1])+(i===3?' IT':' MW')));
+    hover(b,r[0]+': '+fmt(r[1])+' — '+r[2]);});
+  document.getElementById('gCap').appendChild(s);
+})();
+
+/* ---- 1b site phasing ---- */
+const T=[
+['Childress, TX',750,[['Horizon 1 · MSFT',50,'2026Q2','2026Q3',2,1],['Horizon 2 · MSFT',50,'2026Q3','2026Q4',2,1],['Horizon 3–4 · MSFT',100,'2026Q4','2027Q1',2,1],['NVIDIA 60 MW air',50,'2027Q1','2027Q1',2,1],['air retrofit 27a',56,'2027Q1','2027Q2',2,0],['air retrofit 27b',60,'2027Q3','2027Q4',2,0],['Horizon 5–6 + 27c',160,'2027Q4','2028Q1',2,0],['air completion',96,'2028Q2','2028Q3',2,0]],'2025Q1'],
+['British Columbia',160,[['Prince George · Mackenzie',122,'2026Q1','2026Q4',3,1],['Canal Flats liquid',20,'2027Q4','2028Q1',2,0]],'2025Q1'],
+['Sweetwater 1, TX',1400,[['initial · VR200',200,'2027Q4','2028Q1',3,0],['ramp a',140,'2028Q1','2028Q2',2,0],['ramp b',140,'2028Q2','2028Q3',2,0],['ramp c',140,'2028Q3','2028Q4',2,0],['completion a',175,'2029Q1','2029Q2',2,0],['completion b',175,'2029Q2','2029Q3',2,0]],'2026Q2'],
+['Sweetwater 2, TX',600,[['phase 1',140,'2029Q2','2029Q3',2,0]],null],
+['Kiowa, OK',1600,[['phase 1',210,'2029Q3','2029Q4',2,0]],null],
+['Badajoz, ES',300,[['first halls',70,'2029Q2','2029Q3',2,0]],null],
+['Bundey, AU',800,[['first halls',70,'2029Q3','2029Q4',2,0]],null],
+['2030 wave (allocated)',1100,[['wave a',193,'2029Q4','2030Q1',2,0],['wave b',193,'2030Q1','2030Q2',2,0],['wave c',193,'2030Q2','2030Q3',2,0],['wave d',192,'2030Q3','2030Q4',2,0]],null]];
+(function(){
+  const qs=l=>(+l.slice(0,4)-2026)*4+(+l.slice(5));
+  const W=880,L=196,R=118,top=22,rh=30,H=top+T.length*rh+8;const s=svg(W,H);
+  const x=q=>L+(q-1)/20*(W-L-R);
+  for(let y=2026;y<=2030;y++){const q=(y-2026)*4+1;s.appendChild(el('line',{x1:x(q),x2:x(q),y1:top-6,y2:H-8,class:'grid'}));s.appendChild(el('text',{x:x(q)+3,y:12,'font-size':11,class:'m soft'},y));}
+  const rows=[];
+  T.forEach((c,i)=>{const y=top+i*rh;const it=c[2].reduce((a,t)=>a+t[1],0);
+    s.appendChild(el('text',{x:L-10,y:y+15,'text-anchor':'end','font-size':13,'font-weight':500},c[0]));
+    s.appendChild(el('text',{x:W-R+8,y:y+15,'font-size':11.5,class:'m soft'},fmt(c[1])+' · '+fmt(it)+' IT'));
+    if(c[3]){const q=Math.max(1,qs(c[3]));s.appendChild(el('path',{d:'M'+(x(q)-4)+' '+(y+24)+' l4 -6 l4 6 z',fill:'var(--ink)'}));}
+    c[2].forEach(t=>{const a=Math.max(1,qs(t[2])),b=Math.min(21,qs(t[3])+t[4]);const w=x(b)-x(a);
+      const r=el('rect',{x:x(a),y:y+3,width:Math.max(3,w-2),height:16,fill:t[5]?'var(--s1)':'var(--s1u)'});s.appendChild(r);
+      if(w>34)s.appendChild(el('text',{x:x(a)+5,y:y+15,'font-size':10.5,class:'m',fill:t[5]?'#fff':'var(--ink)'},t[1]));
+      hover(r,c[0]+' — '+t[0]+'<br>'+t[1]+' IT MW · energise '+t[2]+' · revenue '+t[3]+' · '+(t[5]?'signed':'unsigned'));
+      rows.push([c[0]+' — '+t[0],t[1],t[2],t[3],t[5]?'signed':'unsigned']);});});
+  document.getElementById('gGantt').appendChild(s);
+  const tb=document.createElement('table');tb.innerHTML='<thead><tr><th>tranche</th><th>IT MW</th><th>energise</th><th>revenue</th><th>status</th></tr></thead><tbody>'+rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>').join('')+'</tbody>';document.getElementById('tGantt').appendChild(tb);
+})();
+
+/* ---- 2 build: stacked GPUs by generation ---- */
+(function(){
+  const W=880,H=250,L=58,R=16,top=16,bot=34;const s=svg(W,H);const n=Q.length,bw=(W-L-R)/n,max=750000;
+  const y=v=>top+(H-top-bot)*(1-v/max);
+  [0,250000,500000,750000].forEach(v=>{s.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'grid'}));s.appendChild(el('text',{x:L-8,y:y(v)+4,'text-anchor':'end','font-size':11,class:'m soft'},v?(v/1000)+'k':'0'));});
+  const gens=[['hopper','var(--s4)'],['blackwell','var(--s1)'],['rubin','var(--s2)'],['next','var(--s3)']];
+  Q.forEach((q,i)=>{let acc=0;const cx=L+i*bw+bw/2;const w=Math.min(24,bw-6);
+    gens.forEach(([g,c])=>{const v=q[7][g];if(!v)return;const r=el('rect',{x:cx-w/2,y:y(acc+v),width:w,height:Math.max(0,y(acc)-y(acc+v)-2),fill:c});s.appendChild(r);hover(r,q[0]+' · '+g+': '+fmt(v)+' GPUs<br>fleet '+fmt(q[6])+' · '+fmt(q[4])+' IT MW');acc+=v;});
+    if(/Q4/.test(q[0])){s.appendChild(el('text',{x:cx,y:y(acc)-6,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},fmt(q[4])+' MW'));}
+    if(/Q2|Q4/.test(q[0]))s.appendChild(el('text',{x:cx,y:H-14,'text-anchor':'middle','font-size':10.5,class:'m soft'},short(q[0])));});
+  document.getElementById('gBuild').appendChild(s);
+  table('tBuild',['quarter','IT MW','gross MW','GPUs','Hopper','Blackwell','Rubin','Next'],Q.map(q=>[q[0],q[4],q[5],q[6],q[7].hopper,q[7].blackwell,q[7].rubin,q[7].next]));
+})();
+
+/* ---- 3 revenue: contracted vs uncontracted ---- */
+(function(){
+  // exit ARR the company's way: capacity ENERGISED by year-end x contract rate x 8,760 h, at the model's contracted share
+  const X={'2026Q4':[347,4.44,4.11],'2027Q4':[893,17.33,13.67],'2028Q4':[1409,28.96,23.37],'2029Q4':[2442,52.80,43.68],'2030Q4':[3020,66.38,55.27]};
+  const W=880,H=272,L=58,R=16,top=34,bot=34;const s=svg(W,H);const n=Q.length,bw=(W-L-R)/n,max=21000;
+  const y=v=>top+(H-top-bot)*(1-v/max);
+  [0,5000,10000,15000,20000].forEach(v=>{s.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'grid'}));s.appendChild(el('text',{x:L-8,y:y(v)+4,'text-anchor':'end','font-size':11,class:'m soft'},v?'$'+(v/1000)+'bn':'0'));});
+  Q.forEach((q,i)=>{const cx=L+i*bw+bw/2,w=Math.min(24,bw-6);const c=q[2],u=q[1]-q[2];
+    const r1=el('rect',{x:cx-w/2,y:y(c),width:w,height:Math.max(0,y(0)-y(c)),fill:'var(--s1)'});s.appendChild(r1);
+    const r2=el('rect',{x:cx-w/2,y:y(c+u),width:w,height:Math.max(0,y(c)-y(c+u)-2),fill:'var(--s1u)'});s.appendChild(r2);
+    const xa=X[q[0]];
+    [r1,r2].forEach(r=>hover(r,q[0]+'<br>revenue $'+fmt(Math.round(q[1]))+'m · contracted $'+fmt(Math.round(c))+'m<br>run-rate $'+(q[1]*4/1000).toFixed(1)+'bn'+(xa?'<br>exit ARR on '+fmt(xa[0])+' IT MW energised: $'+xa[1].toFixed(1)+'bn':'')));
+    if(/Q4/.test(q[0])){s.appendChild(el('text',{x:cx,y:y(q[1])-6,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'$'+(q[1]*4/1000).toFixed(1)+'bn'));
+      const yd=y(xa[1]*1000/4);const dm=el('path',{d:'M'+cx+' '+(yd-6)+' L'+(cx+6)+' '+yd+' L'+cx+' '+(yd+6)+' L'+(cx-6)+' '+yd+' Z',fill:'var(--ink)',stroke:'var(--card)','stroke-width':2});s.appendChild(dm);hover(dm,q[0]+' exit ARR: '+fmt(xa[0])+' IT MW energised × contract rate = $'+xa[1].toFixed(1)+'bn');
+      if(y(q[1])-yd>16)s.appendChild(el('text',{x:cx,y:yd-10,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'◆ $'+xa[1].toFixed(1)+'bn'));
+      else if(Math.abs(xa[1]*250-q[1])/q[1]>0.03)s.appendChild(el('text',{x:cx+10,y:yd+4,'text-anchor':'start','font-size':11,'font-weight':600,class:'m'},'◆ $'+xa[1].toFixed(1)+'bn'));}
+    if(/Q2|Q4/.test(q[0]))s.appendChild(el('text',{x:cx,y:H-14,'text-anchor':'middle','font-size':10.5,class:'m soft'},short(q[0])));});
+  s.appendChild(el('text',{x:L,y:12,'font-size':10.5,class:'m soft'},'$bn labels = Q4 revenue × 4 (bars) and ◆ exit ARR on energised capacity'));
+  document.getElementById('gRev').appendChild(s);
+  table('tRev',['quarter','revenue $m','contracted $m','signed $m','run-rate $bn','IT MW energised','exit ARR $bn','of which contracted $bn'],Q.map(q=>[q[0],Math.round(q[1]),Math.round(q[2]),Math.round(q[3]),+(q[1]*4/1000).toFixed(1),X[q[0]]?X[q[0]][0]:'',X[q[0]]?X[q[0]][1]:'',X[q[0]]?X[q[0]][2]:'']));
+})();
+
+/* ---- 4a funding stack per IT MW ---- */
+(function(){
+  const W=880,H=112,L=150,R=40,COST=36;const s=svg(W,H);const x=v=>L+v/48*(W-L-R);
+  const rows=[['Contracted capacity',[[12,'var(--s1)','prepay 50% of GPU'],[21.6,'var(--s2)','GPU debt at 90%'],[7.8,'var(--s3)','DC debt at 65%']]],['Unsigned capacity',[[12,'var(--s2)','GPU debt at 50%'],[6,'var(--s3)','DC debt at 50%'],[18,'var(--s4)','equity']]]];
+  rows.forEach((r,i)=>{const y=14+i*40;let acc=0;s.appendChild(el('text',{x:L-10,y:y+15,'text-anchor':'end','font-size':13,'font-weight':500},r[0]));
+    r[1].forEach(seg=>{const b=el('rect',{x:x(acc),y,width:x(acc+seg[0])-x(acc)-2,height:20,fill:seg[1]});s.appendChild(b);hover(b,r[0]+' — '+seg[2]+': $'+seg[0]+'m');
+      if(seg[0]>=6)s.appendChild(el('text',{x:x(acc)+6,y:y+14,'font-size':11,class:'m',fill:'#fff'},'$'+seg[0]+'m'));acc+=seg[0];});
+    s.appendChild(el('text',{x:x(acc)+8,y:y+14,'font-size':12,'font-weight':600,class:'m'},'$'+acc.toFixed(1)+'m'));});
+  s.appendChild(el('line',{x1:x(COST),x2:x(COST),y1:6,y2:H-14,stroke:'var(--ink)','stroke-width':1.5}));
+  s.appendChild(el('text',{x:x(COST),y:H-2,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'cost $36m'));
+  document.getElementById('gFund').appendChild(s);
+})();
+
+/* ---- 4b FY27 bridge ---- */
+(function(){
+  const W=880,H=96,L=150,R=40;const s=svg(W,H);const x=v=>L+v/32*(W-L-R);
+  s.appendChild(el('text',{x:L-10,y:25,'text-anchor':'end','font-size':13,'font-weight':500},'FY27 capex guide'));
+  const g=el('rect',{x:x(0),y:10,width:x(25)-x(0),height:20,fill:'var(--ink)'});s.appendChild(g);hover(g,'“approximately $25 billion to $30 billion” — A. Lewis, CFO');
+  s.appendChild(el('rect',{x:x(25),y:10,width:x(30)-x(25),height:20,fill:'var(--ink)',opacity:.35}));
+  s.appendChild(el('text',{x:x(30)+8,y:24,'font-size':12,'font-weight':600,class:'m'},'$25–30bn'));
+  s.appendChild(el('text',{x:L-10,y:65,'text-anchor':'end','font-size':13,'font-weight':500},'Funded by'));
+  const segs=[[14,'var(--s1)','cash + committed GPU financing + prepayments'],[8,'var(--s2)','additional GPU financing + prepayments, targeted'],[6,'var(--sunk)','DC financing, operating cash flow, corporate']];let acc=0;
+  segs.forEach(sg=>{const b=el('rect',{x:x(acc),y:50,width:x(acc+sg[0])-x(acc)-2,height:20,fill:sg[1],stroke:sg[1]==='var(--sunk)'?'var(--line)':'none'});s.appendChild(b);hover(b,sg[2]+': ~$'+sg[0]+'bn');
+    s.appendChild(el('text',{x:x(acc)+6,y:64,'font-size':11,class:'m',fill:sg[1]==='var(--sunk)'?'var(--ink)':'#fff'},'$'+sg[0]+'bn'));acc+=sg[0];});
+  s.appendChild(el('text',{x:x(acc)+8,y:64,'font-size':12,'font-weight':600,class:'m'},'≈ $28bn'));
+  document.getElementById('gBridge').appendChild(s);
+})();
+
+/* ---- 5a one-megawatt waterfall ---- */
+(function(){
+  const steps=[['Revenue',22.5,'total'],['Running costs',-7.88,'d'],['Cash profit',14.63,'sub'],['GPU refresh + spares',-4.69,'d'],['Shell 25-yr',-0.32,'d'],['Tax 21%',-2.02,'d'],['Owner keeps',7.60,'total']];
+  const W=430,H=250,L=8,R=8,top=22,bot=62;const s=svg(W,H);const n=steps.length,bw=(W-L-R)/n,max=24;
+  const y=v=>top+(H-top-bot)*(1-v/max);let run=0;
+  steps.forEach((st,i)=>{const cx=L+i*bw+bw/2,w=Math.min(26,bw-10);let a,b,fill;
+    if(st[2]==='d'){a=run;b=run+st[1];run=b;fill='var(--s2)';}else{a=0;b=st[1];run=b;fill=i===n-1?'var(--s1)':'var(--s1u)';}
+    const r=el('rect',{x:cx-w/2,y:y(Math.max(a,b)),width:w,height:Math.max(1,Math.abs(y(a)-y(b))),fill});s.appendChild(r);hover(r,st[0]+': '+(st[1]>0?'+':'')+'$'+st[1].toFixed(2)+'m');
+    s.appendChild(el('text',{x:cx,y:y(Math.max(a,b))-6,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},(st[1]<0?'−':'')+'$'+Math.abs(st[1]).toFixed(st[1]%1?2:1)+'m'));
+    const lab=st[0].split(' ');s.appendChild(el('text',{x:cx,y:H-38,'text-anchor':'middle','font-size':10.5,class:'soft'},lab.slice(0,2).join(' ')));
+    if(lab.length>2)s.appendChild(el('text',{x:cx,y:H-25,'text-anchor':'middle','font-size':10.5,class:'soft'},lab.slice(2).join(' ')));});
+  s.appendChild(el('text',{x:W-R,y:H-4,'text-anchor':'end','font-size':11,class:'m soft'},'$7.60m today · market +2%/yr, repriced at renewal: worth $88m = 3.91×'));
+  document.getElementById('gWater').appendChild(s);
+})();
+
+/* ---- 5b GPU life ---- */
+(function(){
+  // market $/MW +2%/yr for 10 yr then flat. Contracted MW reprice only at renewal; spot MW at market every year, discounted at 13% (no term).
+  // maintenance: tray swap at 55% of GPU cost every 4 yr (racks, loop and power stay) + 3%/yr of GPU cost on failures and spares.
+  const rows=[['Blend: 90% contracted, 10% spot',3.91,'base'],['Contracted, 3-yr terms',3.98,''],['Spot only, 13% discount',3.28,''],['Flat $/MW, no density pricing',3.37,''],['Never refresh, −5%/yr',3.03,'']];const W=430,H=196,L=196,R=52;const s=svg(W,H);const x=v=>L+v/4.4*(W-L-R);
+  rows.forEach((r,i)=>{const y=10+i*31;s.appendChild(el('text',{x:L-10,y:y+14,'text-anchor':'end','font-size':12},r[0]));
+    const b=el('rect',{x:L,y,width:x(r[1])-L,height:20,fill:r[2]==='base'?'var(--s1)':'var(--s1u)'});s.appendChild(b);hover(b,r[0]+' → $'+r[1].toFixed(2)+' per $1 of ARR');
+    s.appendChild(el('text',{x:x(r[1])+8,y:y+14,'font-size':13,'font-weight':600,class:'m'},r[1].toFixed(2)+'×'));});
+  s.appendChild(el('text',{x:L,y:H-4,'font-size':11,class:'m soft'},'contracts reprice at renewal, not annually · IREN trades '+((SH*PX/1000+ND)/4).toFixed(2)+'×'));
+  document.getElementById('gLife').appendChild(s);
+})();
+
+/* ---- 6 value path ---- */
+(function(){
+  const EV=SH*PX/1000+ND;document.getElementById('hEV').textContent=(EV/4).toFixed(2)+'×';
+  const MULT=3.91,W=.105,ARR=62.75,pv=ARR*MULT/Math.pow(1+W,4.33);
+  // funding: 10% of the 2027-30 build ($9.6bn) in equity at an assumed $75 (+128m shares); prepayments + GPU financing cover the rest; $53bn of debt by 2030
+  const SHD=522.1,DEBT=53.4;
+  const regimes=[['Blend: 90% contracted, 10% spot',3.91,'base'],['Contracted, 3-yr terms',3.98,''],['Spot only, 13% discount',3.28,''],['Flat $/MW, no density pricing',3.37,''],['Never refresh, −5%/yr',3.03,'']];
+  const rows=regimes.map(c=>{const ev=ARR*c[1],pvv=ev/Math.pow(1+W,4.33);return [c[0],(pvv-DEBT)*1000/SHD,c[1],pvv,c[2]];});
+  const Wd=880,H=222,L=236,R=60;const s=svg(Wd,H);const x=v=>L+v/240*(Wd-L-R);
+  rows.forEach((r,i)=>{const y=14+i*36;s.appendChild(el('text',{x:L-10,y:y+15,'text-anchor':'end','font-size':13,'font-weight':500},r[0]));
+    const b=el('rect',{x:L,y,width:x(r[1])-L,height:22,fill:r[4]==='base'?'var(--s1)':'var(--s1u)'});s.appendChild(b);
+    hover(b,r[0]+'<br>$'+ARR.toFixed(1)+'bn × '+r[2]+' = $'+(ARR*r[2]).toFixed(0)+'bn EV → PV $'+r[3].toFixed(0)+'bn − debt $'+DEBT+'bn<br>÷ '+SHD+'m shares → $'+r[1].toFixed(0));
+    s.appendChild(el('text',{x:x(r[1])+8,y:y+15,'font-size':14,'font-weight':700,class:'m'},'$'+r[1].toFixed(0)));
+    s.appendChild(el('text',{x:x(r[1])+52,y:y+15,'font-size':11,class:'m soft'},r[2].toFixed(2)+'×'));});
+  s.appendChild(el('line',{x1:x(PX),x2:x(PX),y1:6,y2:H-18,stroke:'var(--ink)','stroke-width':1.5,'stroke-dasharray':'3 3'}));
+  s.appendChild(el('text',{x:x(PX),y:H-4,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'market $'+PX.toFixed(2)));
+  document.getElementById('gValue').appendChild(s);
+  const lb=document.getElementById('lBridge');lb.innerHTML=[['2030 run-rate revenue','$'+ARR.toFixed(1)+'bn'],['× $3.91 per $1','$'+(ARR*MULT).toFixed(0)+'bn EV'],['discount 4.3 yr at 10.5%','$'+pv.toFixed(0)+'bn today'],['− debt at 2030','$53bn'],['= equity','$'+(pv-53.4).toFixed(0)+'bn'],['÷ 522m shares, after $9.6bn raised at $75','$'+((pv-53.4)*1000/522.1).toFixed(0)+' / share']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
+  const le=document.getElementById('lEps');le.innerHTML=[['2030 revenue','$55.9bn'],['EBITDA 65%','$36.3bn'],['− D&A at IREN’s 5-yr book','−$15.9bn'],['− interest, $53bn at 7%','−$3.7bn'],['− tax 21%','−$3.5bn'],['= net income','$13.1bn'],['÷ 522m shares','$25.2 EPS']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
+})();
+})();
+</script>
+<script>
+(function(){
+/* ---- 7 the ledger: [q, gross MW energised, IT MW energised, IT MW earning, GPUs installed, GPUs commissioned, GPUs signed, rev, revC, revS, $/GPU-hr blend, -, actual, street, mining] ---- */
+const L=[["2025Q2",4,3,0.9,1900,566,272,3.1,1.5,1.5,2.49,null,null,null],["2025Q3",34,25,1.8,14300,1132,543,6.2,2.9,2.9,2.49,12.2,7.35,null],["2025Q4",34,25,6.3,14300,3686,1769,20.1,9.6,9.6,2.49,null,17.3,null],["2026Q1",50,37,10.8,21800,6240,2995,33.3,16.3,16.3,2.44,14.9,33.6,null],["2026Q2",125,87,20.6,40800,12107,7037,66.3,39.7,39.7,2.5,9.7,70.5,null],["2026Q3",330,247,51.9,109800,25490,19626,149.3,118.5,118.5,2.67,16.8,null,257],["2026Q4",480,347,135.4,147800,59888,51503,423.2,379.1,379.1,3.23,9.7,null,554],["2027Q1",610,453,269,195800,116285,105381,1064.5,785.1,785.1,4.18,16.0,null,953],["2027Q2",610,453,403.3,195800,173789,149758,1608.7,1236.1,1130.6,4.23,null,null,1124],["2027Q3",685,513,431.4,219800,185516,150540,1758.3,1348.5,1137.4,4.33,18.2,null,1364],["2027Q4",1240,893,461.8,340800,197959,151323,1919.9,1471.1,1144.2,4.43,20.4,null,1572],["2028Q1",1440,1033,636.8,374800,257421,152106,2891.5,2253.5,1151.1,5.13,21.4,null,1822],["2028Q2",1760,1269,849.2,444800,321760,152888,4098.1,3236.6,1157.9,5.82,20.2,null,1960],["2028Q3",1960,1409,1089.3,478800,389453,153565,5468.8,4354,1164.1,6.41,21.4,null,2271],["2028Q4",1960,1409,1271,478800,440423,154241,6496.1,5195.4,1170.3,6.74,null,null,2527],["2029Q1",2210,1584,1346.4,517800,459893,154918,6934.4,5553.2,1176.5,6.89,21.8,null,2781],["2029Q2",2760,1969,1438.7,603800,481586,155373,7468.9,6002.4,1181.5,7.08,21.9,null,3055],["2029Q3",3160,2249,1708,664800,542679,155828,9033,7321.9,1186.5,7.6,21.8,null,2828],["2029Q4",3435,2442,2027.5,695400,614349,156284,10887.4,8889,1191.6,8.09,21.9,null,3113],["2030Q1",3710,2635,2262.2,726000,661163,156739,12248.6,10039.4,1196.6,8.46,22.3,null,3418],["2030Q2",3985,2828,2456.7,756600,693390,156739,13388.7,11002.9,1196.6,8.82,22.3,null,3638],["2030Q3",4260,3020,2651.8,787100,725580,156739,14540.7,11977.9,1196.6,9.15,22.3,null,3409],["2030Q4",4260,3020,2845.9,787100,757285,156739,15688.3,12949.4,1196.6,9.46,null,null,null]];
+const CX=36,GPU=24,DC=12,M=.65,W=.105,MULT=3.91,SH0=394.1,PX=37.74,EQ_SHARE=.10,EQ_PX=75;
+const qs=l=>(+l.slice(0,4)-2026)*4+(+l.slice(5));const T0=3; // 2026Q3 = today
+const f0=n=>n==null?'':Math.round(n).toLocaleString('en-US'),f1=n=>n==null?'':n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1}),pct=n=>n==null?'':(n*100).toFixed(0)+'%';
+let prevIT=0,cumPV=0;
+const C=L.map((r,i)=>{const [q,g,it,itE,gi,gc,gs,rev,revC,revS,bl,vint,act,st]=r;const add=i?it-prevIT:it;prevIT=it;
+  const util=it>0?itE/it:0,sg=rev>0?revS/rev:0,cs=rev>0?revC/rev:0,perMW=itE>0?rev*4/itE:0,eb=rev*M,capex=add*CX,cbf=eb-capex;
+  const t=(qs(q)-T0)/4,past=qs(q)<T0,df=past?null:Math.pow(1+W,-t),pv=df?eb*df:0;if(!past)cumPV+=pv;
+  return {q,g,it,add,itE,util,gi,gc,vint,sg,cs,bl,perMW,rev,act,dl:act!=null?rev/act-1:null,st,rr:rev*4/1000,eb,capex,cbf,df,pv,cum:past?null:cumPV/1000,past,ye:/Q4$/.test(q)};});
+const ROWS=[['sec','Power'],['Gross MW energised',c=>f0(c.g)],['IT MW energised',c=>f0(c.it)],['+ IT MW in the quarter',c=>f0(c.add)],
+ ['sec','Use'],['IT MW earning',c=>f1(c.itE)],['Utilisation — earning ÷ energised',c=>pct(c.util)],
+ ['sec','GPUs'],['Installed',c=>f0(c.gi)],['Commissioned',c=>f0(c.gc)],
+ ['sec','Rate'],['Contract $m per IT MW-yr — vintage energised',c=>c.vint==null?'—':f1(c.vint)],['Signed, % of revenue',c=>pct(c.sg)],['Contracted, % of revenue',c=>pct(c.cs)],['$ per GPU-hr, fleet blend',c=>c.bl.toFixed(2)],['$m per IT MW-yr, fleet blend',c=>c.itE>0?f1(c.perMW):'—'],
+ ['sec','Revenue'],['Model, $m',c=>f1(c.rev)],['Actual, $m',c=>c.act!=null?f1(c.act):''],['Model vs actual',c=>c.dl!=null?(c.dl>0?'+':'')+(c.dl*100).toFixed(0)+'%':''],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
+ ['sec','Cash'],['EBITDA at 65%, $m',c=>f0(c.eb)],['Capex — $36m × IT MW added',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':''],
+ ['sec','Value'],['Discount factor at 10.5%',c=>c.df?c.df.toFixed(3):''],['PV of EBITDA, $m',c=>c.df?f0(c.pv):''],['Cumulative PV, $bn',c=>c.cum!=null?c.cum.toFixed(1):'']];
+const qh=q=>'’'+q.slice(2,4)+'<br>Q'+q.slice(5);
+let html='<table><thead><tr><th></th>'+C.map(c=>'<th class="'+(c.ye?'ye ':'')+(c.past?'past':'')+'">'+qh(c.q)+'</th>').join('')+'</tr></thead><tbody>';
+ROWS.forEach(r=>{if(r[0]==='sec'){html+='<tr class="sec"><td colspan="'+(C.length+1)+'">'+r[1]+'</td></tr>';return;}
+  html+='<tr><td>'+r[0]+'</td>'+C.map(c=>'<td class="'+(c.ye?'ye ':'')+(c.past?'past ':'')+(r[2]?r[2](c):'')+'">'+r[1](c)+'</td>').join('')+'</tr>';});
+html+='</tbody></table>';document.getElementById('gLedger').innerHTML=html;
+const rowsOut=C.map(c=>({q:c.q,it:c.it,add:c.add,cs:c.cs,rev:c.rev,eb:c.eb,capex:c.capex,past:c.past}));
+/* build & funding, annual buckets — the same model as step 6 */
+const yrs={};rowsOut.filter(r=>!r.past).forEach(r=>{const y=r.q.slice(0,4);(yrs[y]=yrs[y]||{add:0,capex:0,eb:0,rev:0,revC:0,it:0}).add+=r.add;yrs[y].capex+=r.capex;yrs[y].eb+=r.eb;yrs[y].rev+=r.rev;yrs[y].revC+=r.rev*r.cs;yrs[y].it=r.it;});
+const cF=(0.5*GPU)+(0.9*GPU)+(0.65*DC),uF=(0.5*GPU)+(0.5*DC);
+let capexT=0,ebT=0,preT=0,debt=7.7,eqNeed=0;
+Object.keys(yrs).sort().forEach(y=>{const v=yrs[y],p=v.revC/v.rev,cap=v.capex/1000,av=(p*cF+(1-p)*uF)/CX;capexT+=cap;ebT+=v.eb/1000;preT+=v.add*p*0.5*GPU/1000;eqNeed+=cap*Math.max(0,1-av);debt+=cap*Math.min(av,1)-v.add*p*0.5*GPU/1000-debt*0.16;});
+const capex2730=Object.keys(yrs).filter(y=>+y>=2027).reduce((a,y)=>a+yrs[y].capex/1000,0);const eqRaise=EQ_SHARE*capex2730,newSh=eqRaise*1000/EQ_PX,SH=SH0+newSh;debt-=eqRaise;
+const rr=L[L.length-1][7]*4/1000,ev=rr*MULT,df=Math.pow(1+W,4.33),pv=ev/df,eq=pv-debt,ps=eq*1000/SH;
+document.getElementById('hLedger').textContent='$'+ps.toFixed(0);
+const row=(k,v,t)=>'<span class="k'+(t?' t':'')+'">'+k+'</span><span'+(t?' class="t"':'')+'>'+v+'</span>';
+document.getElementById('lBuild').innerHTML=[['<b>Build &amp; funding, Q3 2026 → Q4 2030</b>',''],['IT MW energised','+'+f0(L[L.length-1][2]-L[5][2]+L[5][2]-87)+' MW'],['Capex at $36m per IT MW','$'+capexT.toFixed(0)+'bn'],['EBITDA over the period','$'+ebT.toFixed(0)+'bn'],['Customer prepayments (50% of GPU, contracted)','$'+preT.toFixed(0)+'bn'],['Equity: 10% of the 2027–30 build at $'+EQ_PX,'$'+eqRaise.toFixed(1)+'bn → +'+newSh.toFixed(0)+'m shares'],['GPU + shell financing, net of amortisation','balance'],['Debt outstanding at Q4 2030','$'+debt.toFixed(0)+'bn',1]].map(r=>row(r[0],r[1],r[2])).join('');
+document.getElementById('lTie').innerHTML=[['<b>Valuation</b>',''],['Q4 2030 run-rate revenue','$'+rr.toFixed(1)+'bn'],['× what $1 of ARR is worth (step 5)','× '+MULT.toFixed(2)],['= enterprise value at 2030','$'+ev.toFixed(0)+'bn'],['÷ (1.105)^4.33 → today','$'+pv.toFixed(0)+'bn'],['− debt at 2030','−$'+debt.toFixed(0)+'bn'],['= equity','$'+eq.toFixed(0)+'bn'],['÷ '+SH.toFixed(0)+'m shares','$'+ps.toFixed(0)+' per share',1],['market','$'+PX.toFixed(2)]].map(r=>row(r[0],r[1],r[2])).join('');
+})();
+</script>
+
+</body>
+</html>
