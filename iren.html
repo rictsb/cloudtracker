@@ -273,7 +273,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <div class="hero"><div class="v" id="hEV"></div><div class="u">EV / ARR today</div></div>
     </div>
     <figure>
-      <div class="cap"><span>$ per share · by pricing and maintenance regime · 522m shares after a $9.6bn raise, $53bn debt</span><span>│ market</span></div>
+      <div class="cap"><span>$ per share · by pricing and maintenance regime · 526m shares after a $9.9bn raise, $7.6bn net debt</span><span>│ market</span></div>
       <div class="scroll" id="gValue"></div>
     </figure>
     <div class="two">
@@ -281,9 +281,9 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <div class="ledger" id="lEps"></div>
     </div>
     <div class="notes">
-      <div class="note"><b>Some equity, not none.</b> The flywheel could cover the build, but the company raised 16% of last year’s funding in equity and keeps the ATM live. Base: 10% of the 2027–30 build, $9.6bn, at an assumed $75 — +128m shares to 522m. At today’s $37.74 the same raise costs 254m shares and ~$30 a share.<span class="src">FY26 call · 10-K Note 24</span></div>
-      <div class="note"><b>The regime is the swing, not the ARR.</b> Same $62.8bn, same balance sheet: $134 if the fleet is never refreshed, $160 at flat $/MW, $203 with market $/MW +2%/yr captured at each renewal. Signed contracts never escalate; they reprice when they end.<span class="src">contracted 3-yr at 10.5% · spot at 13%</span></div>
-      <div class="note"><b>EPS is the long-run anchor.</b> 2030 net income ≈ $13.1bn at IREN’s 5-year book ($25.2 a share on 522m), ≈ $15.0bn ($28.8) depreciated over six like CoreWeave. Pick your multiple.<span class="src">after the raise</span></div>
+      <div class="note"><b>Some equity, not none.</b> The flywheel could cover the build, but the company raised 16% of last year’s funding in equity and keeps the ATM live. Base: 10% of the 2027–30 build, $9.9bn, at an assumed $75 — +132m shares to 526m. At today’s price the same raise costs ~260m shares and ~$55 a share.<span class="src">FY26 call · 10-K Note 24</span></div>
+      <div class="note"><b>The regime is the swing, not the ARR.</b> Same $62.8bn, same balance sheet: $220 if the fleet is never refreshed, $246 at flat $/MW, $288 with market $/MW +2%/yr captured at each renewal. Signed contracts never escalate; they reprice when they end.<span class="src">contracted 3-yr at 10.5% · spot at 13%</span></div>
+      <div class="note"><b>EPS is the long-run anchor.</b> 2030 net income ≈ $14.8bn at IREN’s 5-year book ($28.1 a share on 526m), ≈ $16.7bn ($31.7) depreciated over six like CoreWeave. Pick your multiple.<span class="src">after the raise</span></div>
     </div>
   </div>
 </section>
@@ -306,7 +306,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
 
 <footer>
   <b>Sources.</b> FY26 10-K (filed 27 Aug 2026; balance sheet tied line-by-line to XBRL), FY26 results 8-K, 8-Ks of 20 Jul, 4 Aug, 13 Aug; FY26 Q4 earnings call, 27 Aug (transcripts: stockanalysis.com, investing.com, benzinga.com); Microsoft Partner SOW (EX-10.3, 10-Q Feb 2026); Common Terms Agreement (EX-10.37); CoreWeave FY25 10-K and Q2-26 call (peer GPU life).
-  <b>Model.</b> Compute/Value tracker, IREN ramp as of 18 Aug 2026, repriced 27 Aug. Ramp: contracts $20m per IT MW-yr on 2026–27 vintages, +2%/yr from 2028; 10% of unsigned capacity kept for spot at $35m realised from 2027, 90% contracted. Steady-state: $22.5m revenue per IT MW-yr today, 65% EBITDA, $36m capex ($24m GPU + $12m shell), 21% tax, 10.5% WACC; market $/MW +2%/yr for ten years then flat; contracted MW reprice only at renewal (3-yr terms), spot MW at market every year discounted at 13%; refresh as a tray swap at 55% of GPU cost every four years plus 3%/yr on failures and spares; 10% of the 2027–30 build funded in equity at an assumed $75.
+  <b>Model.</b> Compute/Value tracker, IREN ramp as of 18 Aug 2026, repriced 27 Aug. Ramp: contracts $20m per IT MW-yr on 2026–27 vintages, +2%/yr from 2028; 10% of unsigned capacity kept for spot at $35m realised from 2027, 90% contracted. Steady-state: $22.5m revenue per IT MW-yr today, 65% EBITDA, $36m capex ($24m GPU + $12m shell), 21% tax, 10.5% WACC; market $/MW +2%/yr for ten years then flat; contracted MW reprice only at renewal (3-yr terms), spot MW at market every year discounted at 13%; refresh as a tray swap at 55% of GPU cost every four years plus 3%/yr on failures and spares; 10% of the 2027–30 build funded in equity at an assumed $75; operating cash funds the build first, prepayments next, debt for the shortfall within lenders’ cover, equity for the rest, surplus repays debt; value struck on net debt at 2030.
   <b>Snapshot.</b> This page is a dated cut of the tracker’s IREN ramp as of 2 Sep 2026 and does not update with the model; the live model, scenarios and backtest are on the <a href="/">tracker’s GPU RAMP tab</a>. <b>Not advice.</b> A first-principles model of what the assets earn — not a price target.
 </footer>
 </div>
@@ -483,7 +483,7 @@ const T=[
   const evf=px=>{document.getElementById('hEV').textContent=((SH*px/1000+ND)/4).toFixed(2)+'×';};evf(PX);window.PX_HOOKS.push(evf);
   const MULT=3.91,W=.105,ARR=62.75,pv=ARR*MULT/Math.pow(1+W,4.33);
   // funding: 10% of the 2027-30 build ($9.6bn) in equity at an assumed $75 (+128m shares); prepayments + GPU financing cover the rest; $53bn of debt by 2030
-  const SHD=522.1,DEBT=53.4;
+  const SHD=526,DEBT=7.6;   // diluted shares and NET debt at 2030, from the quarterly cash waterfall in the summary table
   const regimes=[['Blend: 90% contracted, 10% spot',3.91,'base'],['Contracted, 3-yr terms',3.98,''],['Spot only, 13% discount',3.28,''],['Flat $/MW, no density pricing',3.37,''],['Never refresh, −5%/yr',3.03,'']];
   const rows=regimes.map(c=>{const ev=ARR*c[1],pvv=ev/Math.pow(1+W,4.33);return [c[0],(pvv-DEBT)*1000/SHD,c[1],pvv,c[2]];});
   const Wd=880,H=222,L=236,R=60;const s=svg(Wd,H);const x=v=>L+v/240*(Wd-L-R);
@@ -496,8 +496,8 @@ const T=[
   const mt=el('text',{x:x(PX),y:H-4,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'market $'+PX.toFixed(2));s.appendChild(mt);
   window.PX_HOOKS.push(px=>{ml.setAttribute('x1',x(px));ml.setAttribute('x2',x(px));mt.setAttribute('x',x(px));mt.textContent='market $'+px.toFixed(2);});
   document.getElementById('gValue').appendChild(s);
-  const lb=document.getElementById('lBridge');lb.innerHTML=[['2030 run-rate revenue','$'+ARR.toFixed(1)+'bn'],['× $3.91 per $1','$'+(ARR*MULT).toFixed(0)+'bn EV'],['discount 4.3 yr at 10.5%','$'+pv.toFixed(0)+'bn today'],['− debt at 2030','$53bn'],['= equity','$'+(pv-53.4).toFixed(0)+'bn'],['÷ 522m shares, after $9.6bn raised at $75','$'+((pv-53.4)*1000/522.1).toFixed(0)+' / share']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
-  const le=document.getElementById('lEps');le.innerHTML=[['2030 revenue','$55.9bn'],['EBITDA 65%','$36.3bn'],['− D&A at IREN’s 5-yr book','−$15.9bn'],['− interest, $53bn at 7%','−$3.7bn'],['− tax 21%','−$3.5bn'],['= net income','$13.1bn'],['÷ 522m shares','$25.2 EPS']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
+  const lb=document.getElementById('lBridge');lb.innerHTML=[['2030 run-rate revenue','$'+ARR.toFixed(1)+'bn'],['× $3.91 per $1','$'+(ARR*MULT).toFixed(0)+'bn EV'],['discount 4.3 yr at 10.5%','$'+pv.toFixed(0)+'bn today'],['− net debt at 2030','$7.6bn'],['= equity','$'+(pv-7.6).toFixed(0)+'bn'],['÷ 526m shares, after $9.9bn raised at $75','$'+((pv-7.6)*1000/526).toFixed(0)+' / share']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
+  const le=document.getElementById('lEps');le.innerHTML=[['2030 revenue','$55.9bn'],['EBITDA 65%','$36.3bn'],['− D&A at IREN’s 5-yr book','−$15.9bn'],['− interest, ~$20bn average debt at 7%','−$1.7bn'],['− tax 21%','−$3.9bn'],['= net income','$14.8bn'],['÷ 526m shares','$28.1 EPS']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
 })();
 })();
 </script>
@@ -505,7 +505,7 @@ const T=[
 (function(){
 /* ---- 7 the ledger: [q, gross MW energised, IT MW energised, IT MW earning, GPUs installed, GPUs commissioned, GPUs signed, rev, revC, revS, $/GPU-hr blend, -, actual, street, mining] ---- */
 const L=[["2025Q2",4,3,0.9,1900,566,272,3.1,1.5,1.5,2.49,null,null,null],["2025Q3",34,25,1.8,14300,1132,543,6.2,2.9,2.9,2.49,12.2,7.35,null],["2025Q4",34,25,6.3,14300,3686,1769,20.1,9.6,9.6,2.49,null,17.3,null],["2026Q1",50,37,10.8,21800,6240,2995,33.3,16.3,16.3,2.44,14.9,33.6,null],["2026Q2",125,87,20.6,40800,12107,7037,66.3,39.7,39.7,2.5,9.7,70.5,null],["2026Q3",330,247,51.9,109800,25490,19626,149.3,118.5,118.5,2.67,16.8,null,257],["2026Q4",480,347,135.4,147800,59888,51503,423.2,379.1,379.1,3.23,9.7,null,554],["2027Q1",610,453,269,195800,116285,105381,1064.5,785.1,785.1,4.18,16.0,null,953],["2027Q2",610,453,403.3,195800,173789,149758,1608.7,1236.1,1130.6,4.23,null,null,1124],["2027Q3",685,513,431.4,219800,185516,150540,1758.3,1348.5,1137.4,4.33,18.2,null,1364],["2027Q4",1240,893,461.8,340800,197959,151323,1919.9,1471.1,1144.2,4.43,20.4,null,1572],["2028Q1",1440,1033,636.8,374800,257421,152106,2891.5,2253.5,1151.1,5.13,21.4,null,1822],["2028Q2",1760,1269,849.2,444800,321760,152888,4098.1,3236.6,1157.9,5.82,20.2,null,1960],["2028Q3",1960,1409,1089.3,478800,389453,153565,5468.8,4354,1164.1,6.41,21.4,null,2271],["2028Q4",1960,1409,1271,478800,440423,154241,6496.1,5195.4,1170.3,6.74,null,null,2527],["2029Q1",2210,1584,1346.4,517800,459893,154918,6934.4,5553.2,1176.5,6.89,21.8,null,2781],["2029Q2",2760,1969,1438.7,603800,481586,155373,7468.9,6002.4,1181.5,7.08,21.9,null,3055],["2029Q3",3160,2249,1708,664800,542679,155828,9033,7321.9,1186.5,7.6,21.8,null,2828],["2029Q4",3435,2442,2027.5,695400,614349,156284,10887.4,8889,1191.6,8.09,21.9,null,3113],["2030Q1",3710,2635,2262.2,726000,661163,156739,12248.6,10039.4,1196.6,8.46,22.3,null,3418],["2030Q2",3985,2828,2456.7,756600,693390,156739,13388.7,11002.9,1196.6,8.82,22.3,null,3638],["2030Q3",4260,3020,2651.8,787100,725580,156739,14540.7,11977.9,1196.6,9.15,22.3,null,3409],["2030Q4",4260,3020,2845.9,787100,757285,156739,15688.3,12949.4,1196.6,9.46,null,null,null]];
-const CX=36,GPU=24,DC=12,M=.65,W=.105,MULT=3.91,SH0=394.1,PX=37.74,EQ_SHARE=.10,EQ_PX=75;
+const CX=36,GPU=24,DC=12,M=.65,W=.105,MULT=3.91,SH0=394.1,PX=37.74,EQ_SHARE=.10,EQ_PX=75,DEBT0=7.7,CASH0=5.896,RATE=.07,TAX=.21,MINCASH=3;
 const qs=l=>(+l.slice(0,4)-2026)*4+(+l.slice(5));const T0=3; // 2026Q3 = today
 const f0=n=>n==null?'':Math.round(n).toLocaleString('en-US'),f1=n=>n==null?'':n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1}),pct=n=>n==null?'':(n*100).toFixed(0)+'%';
 let prevIT=0,cumPV=0;
@@ -513,25 +513,28 @@ const C=L.map((r,i)=>{const [q,g,it,itE,gi,gc,gs,rev,revC,revS,bl,vint,act,st]=r
   const util=it>0?itE/it:0,sg=rev>0?revS/rev:0,cs=rev>0?revC/rev:0,perMW=itE>0?rev*4/itE:0,eb=rev*M,capex=add*CX,cbf=eb-capex;
   const t=(qs(q)-T0)/4,past=qs(q)<T0,df=past?null:Math.pow(1+W,-t),pv=df?eb*df:0;if(!past)cumPV+=pv;
   return {q,g,it,add,itE,util,gi,gc,vint,sg,cs,bl,perMW,rev,act,dl:act!=null?rev/act-1:null,st,rr:rev*4/1000,eb,capex,cbf,df,pv,cum:past?null:cumPV/1000,past,ye:/Q4$/.test(q)};});
+/* quarterly cash waterfall: operating cash funds the build first, then prepayments, then debt for the shortfall (within what lenders will advance), equity for the rest; any surplus repays debt. */
+const cF=(0.5*GPU)+(0.9*GPU)+(0.65*DC),uF=(0.5*GPU)+(0.5*DC),AM=1-Math.pow(0.84,0.25);
+const rd={debt:DEBT0,cash:CASH0,sh:SH0,gpu:0,shell:0};
+C.forEach(c=>{if(c.past){c.r=null;return;}const capex=c.capex/1000,eb=c.eb/1000,pre=c.add*c.cs*0.5*GPU/1000,yr=+c.q.slice(0,4),eqPol=yr>=2027?EQ_SHARE*capex:0;
+  rd.gpu+=c.add*GPU/1000;rd.shell+=c.add*DC/1000;const da=rd.gpu/5/4+rd.shell/25/4,intr=rd.debt*RATE/4,tax=Math.max(0,eb-da-intr)*TAX,op=eb-intr-tax,amort=rd.debt*AM;
+  const need=capex+amort-op-pre-eqPol-(rd.cash-MINCASH),cap=Math.max(0,capex*Math.min((c.cs*cF+(1-c.cs)*uF)/CX,1)-pre);let draw=0,eqRes=0;if(need>0){draw=Math.min(need,cap);eqRes=need-draw;}
+  rd.debt+=draw-amort;rd.cash+=op-capex+pre+draw-amort+eqPol+eqRes;if(need<0){const rp=Math.min(-need,rd.debt);rd.debt-=rp;rd.cash-=rp;}
+  rd.sh+=(eqPol+eqRes)*1000/EQ_PX;c.r={pre:pre*1000,eq:(eqPol+eqRes)*1000,draw:draw*1000,intr:intr*1000,tax:tax*1000,debt:rd.debt,cash:rd.cash,nd:rd.debt-rd.cash,sh:rd.sh};});
 const ROWS=[['sec','Power'],['Gross MW energised',c=>f0(c.g)],['IT MW energised',c=>f0(c.it)],['+ IT MW in the quarter',c=>f0(c.add)],
  ['sec','Use'],['IT MW earning',c=>f1(c.itE)],['Utilisation — earning ÷ energised',c=>pct(c.util)],
  ['sec','GPUs'],['Installed',c=>f0(c.gi)],['Commissioned',c=>f0(c.gc)],
  ['sec','Rate'],['Contract $m per IT MW-yr — vintage energised',c=>c.vint==null?'—':f1(c.vint)],['Signed, % of revenue',c=>pct(c.sg)],['Contracted, % of revenue',c=>pct(c.cs)],['$ per GPU-hr, fleet blend',c=>c.bl.toFixed(2)],['$m per IT MW-yr, fleet blend',c=>c.itE>0?f1(c.perMW):'—'],
  ['sec','Revenue'],['Model, $m',c=>f1(c.rev)],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
- ['sec','Cash'],['EBITDA at 65%, $m',c=>f0(c.eb)],['Capex — $36m × IT MW added',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':'']];
+ ['sec','Cash'],['EBITDA at 65%, $m',c=>f0(c.eb)],['Capex — $36m × IT MW added',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':''],['Customer prepayments received',c=>c.r?f0(c.r.pre):''],['Equity raised',c=>c.r?f0(c.r.eq):''],['Debt drawn',c=>c.r?f0(c.r.draw):''],['Interest at 7%',c=>c.r?f0(c.r.intr):''],['Cash tax at 21%',c=>c.r?f0(c.r.tax):''],
+ ['sec','Balance sheet'],['Debt, $bn',c=>c.r?c.r.debt.toFixed(1):''],['Cash, $bn',c=>c.r?c.r.cash.toFixed(1):''],['Net debt, $bn',c=>c.r?c.r.nd.toFixed(1):'',c=>c.r&&c.r.nd<0?'pos':''],['Shares outstanding, m',c=>c.r?f0(c.r.sh):'']];
 const qh=q=>'’'+q.slice(2,4)+'<br>Q'+q.slice(5);
 let html='<table><thead><tr><th></th>'+C.map(c=>'<th class="'+(c.ye?'ye ':'')+(c.past?'past':'')+'">'+qh(c.q)+'</th>').join('')+'</tr></thead><tbody>';
 ROWS.forEach(r=>{if(r[0]==='sec'){html+='<tr class="sec"><td colspan="'+(C.length+1)+'">'+r[1]+'</td></tr>';return;}
   html+='<tr><td>'+r[0]+'</td>'+C.map(c=>'<td class="'+(c.ye?'ye ':'')+(c.past?'past ':'')+(r[2]?r[2](c):'')+'">'+r[1](c)+'</td>').join('')+'</tr>';});
 html+='</tbody></table>';document.getElementById('gLedger').innerHTML=html;
-const rowsOut=C.map(c=>({q:c.q,it:c.it,add:c.add,cs:c.cs,rev:c.rev,eb:c.eb,capex:c.capex,past:c.past}));
-/* build & funding, annual buckets — the same model as step 6 */
-const yrs={};rowsOut.filter(r=>!r.past).forEach(r=>{const y=r.q.slice(0,4);(yrs[y]=yrs[y]||{add:0,capex:0,eb:0,rev:0,revC:0,it:0}).add+=r.add;yrs[y].capex+=r.capex;yrs[y].eb+=r.eb;yrs[y].rev+=r.rev;yrs[y].revC+=r.rev*r.cs;yrs[y].it=r.it;});
-const cF=(0.5*GPU)+(0.9*GPU)+(0.65*DC),uF=(0.5*GPU)+(0.5*DC);
-let capexT=0,ebT=0,preT=0,debt=7.7,eqNeed=0;
-Object.keys(yrs).sort().forEach(y=>{const v=yrs[y],p=v.revC/v.rev,cap=v.capex/1000,av=(p*cF+(1-p)*uF)/CX;capexT+=cap;ebT+=v.eb/1000;preT+=v.add*p*0.5*GPU/1000;eqNeed+=cap*Math.max(0,1-av);debt+=cap*Math.min(av,1)-v.add*p*0.5*GPU/1000-debt*0.16;});
-const capex2730=Object.keys(yrs).filter(y=>+y>=2027).reduce((a,y)=>a+yrs[y].capex/1000,0);const eqRaise=EQ_SHARE*capex2730,newSh=eqRaise*1000/EQ_PX,SH=SH0+newSh;debt-=eqRaise;
-const rr=L[L.length-1][7]*4/1000,ev=rr*MULT,df=Math.pow(1+W,4.33),pv=ev/df,eq=pv-debt,ps=eq*1000/SH;
+/* the tie-out: Q4-2030 run-rate x the step-5 multiple, discounted, less NET debt at 2030, over the diluted count — both from the last column */
+const last=C[C.length-1].r,rr=L[L.length-1][7]*4/1000,ev=rr*MULT,pv=ev/Math.pow(1+W,4.33),ps=(pv-last.nd)*1000/last.sh;
 document.getElementById('hLedger').textContent='$'+ps.toFixed(0);document.getElementById('fVal').textContent='$'+ps.toFixed(0);const vnf=px=>{document.getElementById('fValN').textContent='per share, base case · '+(ps/px).toFixed(1)+'× the market';};vnf(PX);(window.PX_HOOKS=window.PX_HOOKS||[]).push(vnf);
 const row=(k,v,t)=>'<span class="k'+(t?' t':'')+'">'+k+'</span><span'+(t?' class="t"':'')+'>'+v+'</span>';
 })();
