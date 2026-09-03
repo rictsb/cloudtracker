@@ -90,6 +90,13 @@ th{font-family:"JetBrains Mono",monospace;font-weight:500;color:var(--soft);font
 .ledger{font-family:"JetBrains Mono",monospace;font-size:13px;display:grid;grid-template-columns:1fr auto;gap:3px 18px;font-variant-numeric:tabular-nums}
 .ledger .k{color:var(--soft)}
 .ledger .t{border-top:1px solid var(--ink);padding-top:5px;margin-top:3px;font-weight:700}
+.fold{align-self:start}
+.fold[open]{display:flex;flex-direction:column-reverse;gap:6px}
+.fold summary{display:grid;grid-template-columns:1fr auto;gap:3px 18px;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;text-transform:none;letter-spacing:0;color:var(--ink);border-top:1px solid var(--ink);padding-top:5px;cursor:pointer;list-style:none}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary .k{color:var(--soft)}.fold summary .k::before{content:"▸ ";color:var(--faint);font-weight:400}.fold[open] summary .k::before{content:"▾ "}
+.fold summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fold .ledger{padding-bottom:4px}
 .ledger-wrap table{margin-top:0;min-width:1900px}
 .ledger-wrap th,.ledger-wrap td{white-space:nowrap;padding:3px 8px;font-size:11.5px;font-family:"JetBrains Mono",monospace;line-height:1.35;text-align:right}
 .ledger-wrap th{position:sticky;top:0;background:var(--card);z-index:2;font-size:10.5px;line-height:1.2;vertical-align:bottom;color:var(--soft)}
@@ -115,7 +122,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
 <div class="wrap">
 <header>
   <div class="kicker">IREN · NASDAQ · from the FY26 10-K and the 27 Aug call · 2 Sep 2026</div>
-  <h1>From megawatts to a share price</h1>
+  <h1>$IREN: from MW to $</h1>
   <p class="sub">Power › GPUs › CapEx › ARR › Funding › Value</p>
   <div class="facts">
     <div class="fact base"><span class="l">Base-case value</span><span class="v" id="fVal"></span><span class="n" id="fValN">per share</span></div>
@@ -178,22 +185,26 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <div class="hero"><div class="v">$62.8bn</div><div class="u">run-rate revenue · Q4 2030</div></div>
     </div>
     <div class="two">
-      <div class="ledger">
-        <span class="k">Microsoft · GB300 · signed</span><span>$2.91 / GPU-hr</span>
-        <span class="k">NVIDIA · Blackwell · signed</span><span>$3.10 / GPU-hr</span>
-        <span class="k">Nov-25 pricing, per IT MW-yr</span><span>~$10m</span>
-        <span class="k">3-yr contracts today</span><span>&gt;$20m</span>
-        <span class="k">Active discussions</span><span>~$25m</span>
-        <span class="k t">Unsigned capacity modelled at</span><span class="t">$20m / IT MW-yr</span>
-      </div>
-      <div class="ledger">
-        <span class="k">1 IT MW × 8,760 h, 2026–27 vintage</span><span>$20.0m / yr</span>
-        <span class="k">÷ GB300 packages per MW (340)</span><span>$6.72 / GPU-hr</span>
-        <span class="k">Contract $/MW, 2028+ vintages</span><span>+2% / yr</span>
-        <span class="k">10% uncontracted, at realised spot</span><span>$35m / IT MW-yr</span>
-        <span class="k">Uncontracted GPUs sell down</span><span>4.4× slower</span>
-        <span class="k t">Fleet blend, Q4 2030</span><span class="t">$9.46 / GPU-hr</span>
-      </div>
+      <details class="fold">
+        <summary><span class="k">Unsigned capacity modelled at</span><span>$20m / IT MW-yr</span></summary>
+        <div class="ledger">
+          <span class="k">Microsoft · GB300 · signed</span><span>$2.91 / GPU-hr</span>
+          <span class="k">NVIDIA · Blackwell · signed</span><span>$3.10 / GPU-hr</span>
+          <span class="k">Nov-25 pricing, per IT MW-yr</span><span>~$10m</span>
+          <span class="k">3-yr contracts today</span><span>&gt;$20m</span>
+          <span class="k">Active discussions</span><span>~$25m</span>
+        </div>
+      </details>
+      <details class="fold">
+        <summary><span class="k">Fleet blend, Q4 2030</span><span>$9.46 / GPU-hr</span></summary>
+        <div class="ledger">
+          <span class="k">1 IT MW × 8,760 h, 2026–27 vintage</span><span>$20.0m / yr</span>
+          <span class="k">÷ GB300 packages per MW (340)</span><span>$6.72 / GPU-hr</span>
+          <span class="k">Contract $/MW, 2028+ vintages</span><span>+2% / yr</span>
+          <span class="k">10% uncontracted, at realised spot</span><span>$35m / IT MW-yr</span>
+          <span class="k">Uncontracted GPUs sell down</span><span>4.4× slower</span>
+        </div>
+      </details>
     </div>
     <figure>
       <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>contracted</span><span><i class="sw" style="background:var(--s1u)"></i>uncontracted</span><span>◆ exit ARR — capacity energised by year-end, at contract rate + realised spot</span><span>$m per quarter</span></div>
