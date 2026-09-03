@@ -109,6 +109,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<script src="config.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -321,7 +322,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
 
 <script>
 (function(){
-const PX=37.74, SH=394.1, ND=1.941;
+let PX=37.74; const SH=394.1, ND=1.941; window.PX_HOOKS=window.PX_HOOKS||[];
 document.getElementById('fPx').textContent='$'+PX.toFixed(2);
 const fmt=n=>n.toLocaleString('en-US');
 const tip=document.getElementById('tip');
@@ -481,13 +482,13 @@ const T=[
   rows.forEach((r,i)=>{const y=10+i*31;s.appendChild(el('text',{x:L-10,y:y+14,'text-anchor':'end','font-size':12},r[0]));
     const b=el('rect',{x:L,y,width:x(r[1])-L,height:20,fill:r[2]==='base'?'var(--s1)':'var(--s1u)'});s.appendChild(b);hover(b,r[0]+' → $'+r[1].toFixed(2)+' per $1 of ARR');
     s.appendChild(el('text',{x:x(r[1])+8,y:y+14,'font-size':13,'font-weight':600,class:'m'},r[1].toFixed(2)+'×'));});
-  s.appendChild(el('text',{x:L,y:H-4,'font-size':11,class:'m soft'},'contracts reprice at renewal, not annually · IREN trades '+((SH*PX/1000+ND)/4).toFixed(2)+'×'));
+  const lt=el('text',{x:L,y:H-4,'font-size':11,class:'m soft'},'');s.appendChild(lt);const ltf=px=>{lt.textContent='contracts reprice at renewal, not annually · IREN trades '+((SH*px/1000+ND)/4).toFixed(2)+'×';};ltf(PX);window.PX_HOOKS.push(ltf);
   document.getElementById('gLife').appendChild(s);
 })();
 
 /* ---- 6 value path ---- */
 (function(){
-  const EV=SH*PX/1000+ND;document.getElementById('hEV').textContent=(EV/4).toFixed(2)+'×';
+  const evf=px=>{document.getElementById('hEV').textContent=((SH*px/1000+ND)/4).toFixed(2)+'×';};evf(PX);window.PX_HOOKS.push(evf);
   const MULT=3.91,W=.105,ARR=62.75,pv=ARR*MULT/Math.pow(1+W,4.33);
   // funding: 10% of the 2027-30 build ($9.6bn) in equity at an assumed $75 (+128m shares); prepayments + GPU financing cover the rest; $53bn of debt by 2030
   const SHD=522.1,DEBT=53.4;
@@ -499,8 +500,9 @@ const T=[
     hover(b,r[0]+'<br>$'+ARR.toFixed(1)+'bn × '+r[2]+' = $'+(ARR*r[2]).toFixed(0)+'bn EV → PV $'+r[3].toFixed(0)+'bn − debt $'+DEBT+'bn<br>÷ '+SHD+'m shares → $'+r[1].toFixed(0));
     s.appendChild(el('text',{x:x(r[1])+8,y:y+15,'font-size':14,'font-weight':700,class:'m'},'$'+r[1].toFixed(0)));
     s.appendChild(el('text',{x:x(r[1])+52,y:y+15,'font-size':11,class:'m soft'},r[2].toFixed(2)+'×'));});
-  s.appendChild(el('line',{x1:x(PX),x2:x(PX),y1:6,y2:H-18,stroke:'var(--ink)','stroke-width':1.5,'stroke-dasharray':'3 3'}));
-  s.appendChild(el('text',{x:x(PX),y:H-4,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'market $'+PX.toFixed(2)));
+  const ml=el('line',{x1:x(PX),x2:x(PX),y1:6,y2:H-18,stroke:'var(--ink)','stroke-width':1.5,'stroke-dasharray':'3 3'});s.appendChild(ml);
+  const mt=el('text',{x:x(PX),y:H-4,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'market $'+PX.toFixed(2));s.appendChild(mt);
+  window.PX_HOOKS.push(px=>{ml.setAttribute('x1',x(px));ml.setAttribute('x2',x(px));mt.setAttribute('x',x(px));mt.textContent='market $'+px.toFixed(2);});
   document.getElementById('gValue').appendChild(s);
   const lb=document.getElementById('lBridge');lb.innerHTML=[['2030 run-rate revenue','$'+ARR.toFixed(1)+'bn'],['× $3.91 per $1','$'+(ARR*MULT).toFixed(0)+'bn EV'],['discount 4.3 yr at 10.5%','$'+pv.toFixed(0)+'bn today'],['− debt at 2030','$53bn'],['= equity','$'+(pv-53.4).toFixed(0)+'bn'],['÷ 522m shares, after $9.6bn raised at $75','$'+((pv-53.4)*1000/522.1).toFixed(0)+' / share']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
   const le=document.getElementById('lEps');le.innerHTML=[['2030 revenue','$55.9bn'],['EBITDA 65%','$36.3bn'],['− D&A at IREN’s 5-yr book','−$15.9bn'],['− interest, $53bn at 7%','−$3.7bn'],['− tax 21%','−$3.5bn'],['= net income','$13.1bn'],['÷ 522m shares','$25.2 EPS']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');
@@ -539,12 +541,16 @@ let capexT=0,ebT=0,preT=0,debt=7.7,eqNeed=0;
 Object.keys(yrs).sort().forEach(y=>{const v=yrs[y],p=v.revC/v.rev,cap=v.capex/1000,av=(p*cF+(1-p)*uF)/CX;capexT+=cap;ebT+=v.eb/1000;preT+=v.add*p*0.5*GPU/1000;eqNeed+=cap*Math.max(0,1-av);debt+=cap*Math.min(av,1)-v.add*p*0.5*GPU/1000-debt*0.16;});
 const capex2730=Object.keys(yrs).filter(y=>+y>=2027).reduce((a,y)=>a+yrs[y].capex/1000,0);const eqRaise=EQ_SHARE*capex2730,newSh=eqRaise*1000/EQ_PX,SH=SH0+newSh;debt-=eqRaise;
 const rr=L[L.length-1][7]*4/1000,ev=rr*MULT,df=Math.pow(1+W,4.33),pv=ev/df,eq=pv-debt,ps=eq*1000/SH;
-document.getElementById('hLedger').textContent='$'+ps.toFixed(0);document.getElementById('fVal').textContent='$'+ps.toFixed(0);document.getElementById('fValN').textContent='per share, base case · '+(ps/PX).toFixed(1)+'× the market';
+document.getElementById('hLedger').textContent='$'+ps.toFixed(0);document.getElementById('fVal').textContent='$'+ps.toFixed(0);const vnf=px=>{document.getElementById('fValN').textContent='per share, base case · '+(ps/px).toFixed(1)+'× the market';};vnf(PX);(window.PX_HOOKS=window.PX_HOOKS||[]).push(vnf);
 const row=(k,v,t)=>'<span class="k'+(t?' t':'')+'">'+k+'</span><span'+(t?' class="t"':'')+'>'+v+'</span>';
 document.getElementById('lBuild').innerHTML=[['<b>Build &amp; funding, Q3 2026 → Q4 2030</b>',''],['IT MW energised','+'+f0(L[L.length-1][2]-L[5][2]+L[5][2]-87)+' MW'],['Capex at $36m per IT MW','$'+capexT.toFixed(0)+'bn'],['EBITDA over the period','$'+ebT.toFixed(0)+'bn'],['Customer prepayments (50% of GPU, contracted)','$'+preT.toFixed(0)+'bn'],['Equity: 10% of the 2027–30 build at $'+EQ_PX,'$'+eqRaise.toFixed(1)+'bn → +'+newSh.toFixed(0)+'m shares'],['GPU + shell financing, net of amortisation','balance'],['Debt outstanding at Q4 2030','$'+debt.toFixed(0)+'bn',1]].map(r=>row(r[0],r[1],r[2])).join('');
 document.getElementById('lTie').innerHTML=[['<b>Valuation</b>',''],['Q4 2030 run-rate revenue','$'+rr.toFixed(1)+'bn'],['× what $1 of ARR is worth (step 5)','× '+MULT.toFixed(2)],['= enterprise value at 2030','$'+ev.toFixed(0)+'bn'],['÷ (1.105)^4.33 → today','$'+pv.toFixed(0)+'bn'],['− debt at 2030','−$'+debt.toFixed(0)+'bn'],['= equity','$'+eq.toFixed(0)+'bn'],['÷ '+SH.toFixed(0)+'m shares','$'+ps.toFixed(0)+' per share',1],['market','$'+PX.toFixed(2)]].map(r=>row(r[0],r[1],r[2])).join('');
 })();
 </script>
-
+<script>
+(function(){const tok=window.FINNHUB_TOKEN||'';const el=document.getElementById('fPx'),note=el.nextElementSibling;
+async function refresh(){if(!tok)return;try{const r=await fetch('https://finnhub.io/api/v1/quote?symbol=IREN&token='+encodeURIComponent(tok),{cache:'no-store'});const j=await r.json();const px=+j.c;if(!(px>0))return;el.textContent='$'+px.toFixed(2);note.textContent='Finnhub, live · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' · refreshes every 15 min';(window.PX_HOOKS||[]).forEach(h=>{try{h(px);}catch(e){}});}catch(e){}}
+refresh();setInterval(refresh,15*60*1000);})();
+</script>
 </body>
 </html>
