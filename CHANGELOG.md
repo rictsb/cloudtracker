@@ -2,6 +2,7 @@
 
 The single record of what changed. One line per change, newest first.
 
+- iren.html: header subheading replaced with the chain 'Power › GPUs › CapEx › ARR › Funding › Value' (owner-directed 2026-09-02). Nothing else changed.
 - IREN log: 2026-09-02 Childress construction read from ground footage (owner-subscribed secondary source, F. Bakker on X) recorded against the tranche schedule — H2 in burn-in on chiller trucks (on track for Q4 acceptance; CUP2 chemical exposure a watch item), H3 ~60% mechanical (Q4 energise / Q1 billing), H4 earliest-stage (Q1 acceptance as modelled), DC36 air hall no visible progress (Childress 50MW slice may run a quarter late, ~$0.1bn ARR Q4->Q1). NO TRANCHE DATES CHANGED (owner: "record it - don't necessarily change anything"). checks 0 FAIL.
 - iren.html: grey sub-lines under all seven headings removed; a BASE-CASE VALUE tile added first in the header strip ($203 per share, base case, 5.4x the market), filled by the summary table's own tie-out so it cannot disagree with steps 6 and 7 (owner-directed 2026-09-02). Numbers unchanged.
 - iren.html section headings renamed (owner-directed 2026-09-02): 1 Announced, energised, and earning · 2 Commissioned GPU fleet by generation, quarterly · 3 Quarterly ARR · 4 CapEx · 5 What one megawatt earns · 6 Valuation · 7 Summary table. Sub-lines adjusted so none repeats its heading. Content and numbers unchanged.
