@@ -2,6 +2,7 @@
 
 The single record of what changed. One line per change, newest first.
 
+- iren.html summary table: the build-and-funding and valuation ledgers beneath it removed (owner-directed 2026-09-02). The tie-out arithmetic still runs and still feeds the base-case tile and the step-7 headline; only the display is gone.
 - iren.html summary table: the three explainer notes beneath it removed (owner-directed 2026-09-02); the build-and-funding and valuation tie-outs stay.
 - iren.html summary table: the Value band removed — discount factor, PV of EBITDA and cumulative PV rows (owner-directed 2026-09-02). The valuation tie-out beneath the table is unchanged and still closes to the base case.
 - iren.html summary table: 'Actual, $m' and 'Model vs actual' rows removed (owner-directed 2026-09-02); the reported quarters stay greyed. Numbers unchanged.
