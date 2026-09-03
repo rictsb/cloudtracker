@@ -297,7 +297,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <div class="hero"><div class="v" id="hLedger"></div><div class="u">per share, from the last row</div></div>
     </div>
     <figure>
-      <div class="cap"><span>quarters across · $m unless stated · bold columns = year-end · greyed = reported quarters · PV at 10.5%/yr from Q3 2026</span></div>
+      <div class="cap"><span>quarters across · $m unless stated · bold columns = year-end · greyed = quarters already reported · PV at 10.5%/yr from Q3 2026</span></div>
       <div class="scroll ledger-wrap" id="gLedger"></div>
     </figure>
     <div class="two">
@@ -525,7 +525,7 @@ const ROWS=[['sec','Power'],['Gross MW energised',c=>f0(c.g)],['IT MW energised'
  ['sec','Use'],['IT MW earning',c=>f1(c.itE)],['Utilisation — earning ÷ energised',c=>pct(c.util)],
  ['sec','GPUs'],['Installed',c=>f0(c.gi)],['Commissioned',c=>f0(c.gc)],
  ['sec','Rate'],['Contract $m per IT MW-yr — vintage energised',c=>c.vint==null?'—':f1(c.vint)],['Signed, % of revenue',c=>pct(c.sg)],['Contracted, % of revenue',c=>pct(c.cs)],['$ per GPU-hr, fleet blend',c=>c.bl.toFixed(2)],['$m per IT MW-yr, fleet blend',c=>c.itE>0?f1(c.perMW):'—'],
- ['sec','Revenue'],['Model, $m',c=>f1(c.rev)],['Actual, $m',c=>c.act!=null?f1(c.act):''],['Model vs actual',c=>c.dl!=null?(c.dl>0?'+':'')+(c.dl*100).toFixed(0)+'%':''],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
+ ['sec','Revenue'],['Model, $m',c=>f1(c.rev)],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
  ['sec','Cash'],['EBITDA at 65%, $m',c=>f0(c.eb)],['Capex — $36m × IT MW added',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':''],
  ['sec','Value'],['Discount factor at 10.5%',c=>c.df?c.df.toFixed(3):''],['PV of EBITDA, $m',c=>c.df?f0(c.pv):''],['Cumulative PV, $bn',c=>c.cum!=null?c.cum.toFixed(1):'']];
 const qh=q=>'’'+q.slice(2,4)+'<br>Q'+q.slice(5);
