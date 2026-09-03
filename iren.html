@@ -181,8 +181,8 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
   <div class="rail"><div class="num">3</div><div class="bar"></div></div>
   <div class="card">
     <div class="head">
-      <div><h2>Quarterly ARR</h2></div>
-      <div class="hero"><div class="v">$62.8bn</div><div class="u">run-rate revenue · Q4 2030</div></div>
+      <div><h2>ARR</h2></div>
+      <div class="hero"><div class="v">$55.3bn</div><div class="u">contracted ARR · end-2030</div></div>
     </div>
     <div class="two">
       <details class="fold">
@@ -207,14 +207,14 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       </details>
     </div>
     <figure>
-      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>contracted</span><span><i class="sw" style="background:var(--s1u)"></i>uncontracted</span><span>◆ exit ARR — capacity energised by year-end, at contract rate + realised spot</span><span>$m per quarter</span></div>
+      <div class="cap"><span>contracted ARR, $bn — IREN’s definition: GPU/hour price × 8,760 h on energised capacity under contract, incl. storage and ancillaries · spot excluded</span></div>
       <div class="scroll" id="gRev"></div>
       <details><summary>Table</summary><div id="tRev"></div></details>
     </figure>
     <div class="notes">
-      <div class="note"><b>Two ARRs.</b> The company’s ARR is price × 8,760 h × GPUs commissioned <i>and</i> under contract; revenue bills one to two quarters later. YE-2026: company “$4bn+” (ex-NVIDIA), model $4.1bn — the 2026 air-cooled book priced at the ~$20m/MW its own $4bn implies. YE-2027: $17.3bn energised ($13.7bn under contract); billing runs at $12bn from Q1 2028.<span class="src">FY26 release fn.1 · CFO: revenue “predominantly in the March quarter”</span></div>
+      <div class="note"><b>IREN’s definition.</b> Price × 8,760 h × commissioned GPUs under contract, plus storage and ancillaries — counted here as capacity is energised, which is how the company’s “$4bn for 2026 capacity” reconciles: $4.1bn at Dec 2026. Billing follows one to two quarters behind; the summary table carries both.<span class="src">FY26 release fn.1</span></div>
       <div class="note"><b>The model held out of sample.</b> Q2 2026 modelled $66.3m, reported $70.5m — a quarter the calibration never saw.<span class="src">−5.9%</span></div>
-      <div class="note"><b>2028 onward is 9–20% signed.</b> The model contracts 90% of unsigned capacity at $20m+ (vintage-priced) and keeps 10% for spot at $35m. Spot sells down 4.4× slower, so it adds rate, not speed.<span class="src">contracted share of revenue: 76 · 79 · 81 · 82%</span></div>
+      <div class="note"><b>Signed vs contracted.</b> Signed ARR flattens at $4.8bn from 2027 — Microsoft, NVIDIA and the 2026 book. Everything above that is capacity the model assumes signs 3-year take-or-pay at $20m+ per MW as it energises; the 10% kept for spot is not counted here.<span class="src">90% of unsigned capacity contracted</span></div>
     </div>
   </div>
 </section>
@@ -234,7 +234,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <div class="tile"><div class="l">FY27 capex guide</div><div class="v">$25–30bn</div><div class="n">CFO, 27 Aug</div></div>
     </div>
     <figure>
-      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>customer prepayment</span><span><i class="sw" style="background:var(--s2)"></i>GPU financing</span><span><i class="sw" style="background:var(--s3)"></i>data-centre debt</span><span><i class="sw" style="background:var(--s4)"></i>equity</span><span>per IT MW · $m</span></div>
+      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>customer prepayment</span><span><i class="sw" style="background:var(--s2)"></i>GPU financing</span><span><i class="sw" style="background:var(--s3)"></i>data-centre debt</span><span><i class="sw" style="background:var(--s4)"></i>equity</span><span>how ONE IT megawatt of new build is paid for · $m per MW, against $36m of cost</span></div>
       <div class="scroll" id="gFund"></div>
     </figure>
     <figure>
@@ -412,38 +412,32 @@ const T=[
   table('tBuild',['quarter','IT MW','gross MW','GPUs','Hopper','Blackwell','Rubin','Next'],Q.map(q=>[q[0],q[4],q[5],q[6],q[7].hopper,q[7].blackwell,q[7].rubin,q[7].next]));
 })();
 
-/* ---- 3 revenue: contracted vs uncontracted ---- */
+/* ---- 3 ARR: contracted ARR on energised capacity — IREN's definition (price x 8,760 h x GPUs under contract, incl. storage/ancillaries); spot excluded ---- */
 (function(){
-  // exit ARR the company's way: capacity ENERGISED by year-end x contract rate x 8,760 h, at the model's contracted share
-  const X={'2026Q4':[347,4.44,4.11],'2027Q4':[893,17.33,13.67],'2028Q4':[1409,28.96,23.37],'2029Q4':[2442,52.80,43.68],'2030Q4':[3020,66.38,55.27]};
-  const W=880,H=272,L=58,R=16,top=34,bot=34;const s=svg(W,H);const n=Q.length,bw=(W-L-R)/n,max=21000;
+  const A=[["2025Q2",0.02,0.02],["2025Q3",0.15,0.15],["2025Q4",0.15,0.15],["2026Q1",0.30,0.30],["2026Q2",0.79,0.79],["2026Q3",3.14,3.14],["2026Q4",4.11,4.11],["2027Q1",5.70,4.79],["2027Q2",5.70,4.79],["2027Q3",6.68,4.79],["2027Q4",13.67,4.79],["2028Q1",16.37,4.79],["2028Q2",20.67,4.79],["2028Q3",23.37,4.79],["2028Q4",23.37,4.79],["2029Q1",26.81,4.79],["2029Q2",34.38,4.79],["2029Q3",39.88,4.79],["2029Q4",43.68,4.79],["2030Q1",47.55,4.79],["2030Q2",51.42,4.79],["2030Q3",55.27,4.79],["2030Q4",55.27,4.79]];window.ARRC=Object.fromEntries(A.map(r=>[r[0],r[1]]));
+  const rows=A.filter(r=>((+r[0].slice(0,4)-2026)*4+(+r[0].slice(5)))>=3);
+  const W=880,H=260,L=58,R=16,top=28,bot=34;const s=svg(W,H);const n=rows.length,bw=(W-L-R)/n,max=60;
   const y=v=>top+(H-top-bot)*(1-v/max);
-  [0,5000,10000,15000,20000].forEach(v=>{s.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'grid'}));s.appendChild(el('text',{x:L-8,y:y(v)+4,'text-anchor':'end','font-size':11,class:'m soft'},v?'$'+(v/1000)+'bn':'0'));});
-  Q.forEach((q,i)=>{const cx=L+i*bw+bw/2,w=Math.min(24,bw-6);const c=q[2],u=q[1]-q[2];
-    const r1=el('rect',{x:cx-w/2,y:y(c),width:w,height:Math.max(0,y(0)-y(c)),fill:'var(--s1)'});s.appendChild(r1);
-    const r2=el('rect',{x:cx-w/2,y:y(c+u),width:w,height:Math.max(0,y(c)-y(c+u)-2),fill:'var(--s1u)'});s.appendChild(r2);
-    const xa=X[q[0]];
-    [r1,r2].forEach(r=>hover(r,q[0]+'<br>revenue $'+fmt(Math.round(q[1]))+'m · contracted $'+fmt(Math.round(c))+'m<br>run-rate $'+(q[1]*4/1000).toFixed(1)+'bn'+(xa?'<br>exit ARR on '+fmt(xa[0])+' IT MW energised: $'+xa[1].toFixed(1)+'bn':'')));
-    if(/Q4/.test(q[0])){s.appendChild(el('text',{x:cx,y:y(q[1])-6,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'$'+(q[1]*4/1000).toFixed(1)+'bn'));
-      const yd=y(xa[1]*1000/4);const dm=el('path',{d:'M'+cx+' '+(yd-6)+' L'+(cx+6)+' '+yd+' L'+cx+' '+(yd+6)+' L'+(cx-6)+' '+yd+' Z',fill:'var(--ink)',stroke:'var(--card)','stroke-width':2});s.appendChild(dm);hover(dm,q[0]+' exit ARR: '+fmt(xa[0])+' IT MW energised × contract rate = $'+xa[1].toFixed(1)+'bn');
-      if(y(q[1])-yd>16)s.appendChild(el('text',{x:cx,y:yd-10,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'◆ $'+xa[1].toFixed(1)+'bn'));
-      else if(Math.abs(xa[1]*250-q[1])/q[1]>0.03)s.appendChild(el('text',{x:cx+10,y:yd+4,'text-anchor':'start','font-size':11,'font-weight':600,class:'m'},'◆ $'+xa[1].toFixed(1)+'bn'));}
-    if(/Q2|Q4/.test(q[0]))s.appendChild(el('text',{x:cx,y:H-14,'text-anchor':'middle','font-size':10.5,class:'m soft'},short(q[0])));});
-  s.appendChild(el('text',{x:L,y:12,'font-size':10.5,class:'m soft'},'$bn labels = Q4 revenue × 4 (bars) and ◆ exit ARR on energised capacity'));
+  [0,15,30,45,60].forEach(v=>{s.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),class:'grid'}));s.appendChild(el('text',{x:L-8,y:y(v)+4,'text-anchor':'end','font-size':11,class:'m soft'},v?'$'+v+'bn':'0'));});
+  rows.forEach((r,i)=>{const cx=L+i*bw+bw/2,w=Math.min(24,bw-6);const q=Q.find(x=>x[0]===r[0]);
+    const b=el('rect',{x:cx-w/2,y:y(r[1]),width:w,height:Math.max(0,y(0)-y(r[1])),fill:'var(--s1)'});s.appendChild(b);
+    hover(b,r[0]+'<br>contracted ARR $'+r[1].toFixed(1)+'bn · of which signed today $'+r[2].toFixed(1)+'bn'+(q?'<br>billing run-rate $'+(q[1]*4/1000).toFixed(1)+'bn':''));
+    if(/Q4/.test(r[0]))s.appendChild(el('text',{x:cx,y:y(r[1])-6,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'$'+r[1].toFixed(1)+'bn'));
+    if(/Q2|Q4/.test(r[0]))s.appendChild(el('text',{x:cx,y:H-14,'text-anchor':'middle','font-size':10.5,class:'m soft'},short(r[0])));});
   document.getElementById('gRev').appendChild(s);
-  table('tRev',['quarter','revenue $m','contracted $m','signed $m','run-rate $bn','IT MW energised','exit ARR $bn','of which contracted $bn'],Q.map(q=>[q[0],Math.round(q[1]),Math.round(q[2]),Math.round(q[3]),+(q[1]*4/1000).toFixed(1),X[q[0]]?X[q[0]][0]:'',X[q[0]]?X[q[0]][1]:'',X[q[0]]?X[q[0]][2]:'']));
+  table('tRev',['quarter','contracted ARR $bn','of which signed $bn','billing run-rate $bn','revenue $m'],rows.map(r=>{const q=Q.find(x=>x[0]===r[0]);return [r[0],r[1],r[2],q?+(q[1]*4/1000).toFixed(1):'',q?Math.round(q[1]):''];}));
 })();
 
 /* ---- 4a funding stack per IT MW ---- */
 (function(){
   const W=880,H=112,L=150,R=40,COST=36;const s=svg(W,H);const x=v=>L+v/48*(W-L-R);
-  const rows=[['Contracted capacity',[[12,'var(--s1)','prepay 50% of GPU'],[21.6,'var(--s2)','GPU debt at 90%'],[7.8,'var(--s3)','DC debt at 65%']]],['Unsigned capacity',[[12,'var(--s2)','GPU debt at 50%'],[6,'var(--s3)','DC debt at 50%'],[18,'var(--s4)','equity']]]];
+  const rows=[['Contracted MW',[[12,'var(--s1)','customer prepayment, 50% of the GPU cost'],[21.6,'var(--s2)','GPU financing at 90% of the GPU cost'],[7.8,'var(--s3)','shell debt at 65% of the shell cost']]],['Unsigned MW',[[12,'var(--s2)','GPU financing at 50%'],[6,'var(--s3)','shell debt at 50%'],[18,'var(--s4)','equity — the gap to $36m']]]];
   rows.forEach((r,i)=>{const y=14+i*40;let acc=0;s.appendChild(el('text',{x:L-10,y:y+15,'text-anchor':'end','font-size':13,'font-weight':500},r[0]));
-    r[1].forEach(seg=>{const b=el('rect',{x:x(acc),y,width:x(acc+seg[0])-x(acc)-2,height:20,fill:seg[1]});s.appendChild(b);hover(b,r[0]+' — '+seg[2]+': $'+seg[0]+'m');
+    r[1].forEach(seg=>{const b=el('rect',{x:x(acc),y,width:x(acc+seg[0])-x(acc)-2,height:20,fill:seg[1]});s.appendChild(b);hover(b,r[0]+' — '+seg[2]+': $'+seg[0]+'m per IT MW');
       if(seg[0]>=6)s.appendChild(el('text',{x:x(acc)+6,y:y+14,'font-size':11,class:'m',fill:'#fff'},'$'+seg[0]+'m'));acc+=seg[0];});
-    s.appendChild(el('text',{x:x(acc)+8,y:y+14,'font-size':12,'font-weight':600,class:'m'},'$'+acc.toFixed(1)+'m'));});
+    s.appendChild(el('text',{x:x(acc)+8,y:y+14,'font-size':12,'font-weight':600,class:'m'},'$'+acc.toFixed(1)+'m per MW'));});
   s.appendChild(el('line',{x1:x(COST),x2:x(COST),y1:6,y2:H-14,stroke:'var(--ink)','stroke-width':1.5}));
-  s.appendChild(el('text',{x:x(COST),y:H-2,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'cost $36m'));
+  s.appendChild(el('text',{x:x(COST),y:H-2,'text-anchor':'middle','font-size':11,'font-weight':600,class:'m'},'cost $36m per MW'));
   document.getElementById('gFund').appendChild(s);
 })();
 
@@ -523,7 +517,7 @@ let prevIT=0,cumPV=0;
 const C=L.map((r,i)=>{const [q,g,it,itE,gi,gc,gs,rev,revC,revS,bl,vint,act,st]=r;const add=i?it-prevIT:it;prevIT=it;
   const util=it>0?itE/it:0,sg=rev>0?revS/rev:0,cs=rev>0?revC/rev:0,perMW=itE>0?rev*4/itE:0,eb=rev*M,capex=add*CX,cbf=eb-capex;
   const t=(qs(q)-T0)/4,past=qs(q)<T0,df=past?null:Math.pow(1+W,-t),pv=df?eb*df:0;if(!past)cumPV+=pv;
-  return {q,g,it,add,itE,util,gi,gc,vint,sg,cs,bl,perMW,rev,act,dl:act!=null?rev/act-1:null,st,rr:rev*4/1000,eb,capex,cbf,df,pv,cum:past?null:cumPV/1000,past,ye:/Q4$/.test(q)};});
+  return {q,g,it,add,itE,util,gi,gc,vint,sg,cs,bl,perMW,rev,act,dl:act!=null?rev/act-1:null,st,rr:rev*4/1000,arrc:(window.ARRC||{})[q],eb,capex,cbf,df,pv,cum:past?null:cumPV/1000,past,ye:/Q4$/.test(q)};});
 /* quarterly cash waterfall: operating cash funds the build first, then prepayments, then debt for the shortfall (within what lenders will advance), equity for the rest; any surplus repays debt. */
 const cF=(0.5*GPU)+(0.9*GPU)+(0.65*DC),uF=(0.5*GPU)+(0.5*DC),AM=1-Math.pow(0.84,0.25);
 const rd={debt:DEBT0,cash:CASH0,sh:SH0,gpu:0,shell:0};
@@ -536,7 +530,7 @@ const ROWS=[['sec','Power'],['Gross MW energised',c=>f0(c.g)],['IT MW energised'
  ['sec','Use'],['IT MW earning',c=>f1(c.itE)],['Utilisation — earning ÷ energised',c=>pct(c.util)],
  ['sec','GPUs'],['Installed',c=>f0(c.gi)],['Commissioned',c=>f0(c.gc)],
  ['sec','Rate'],['Contract $m per IT MW-yr — vintage energised',c=>c.vint==null?'—':f1(c.vint)],['Signed, % of revenue',c=>pct(c.sg)],['Contracted, % of revenue',c=>pct(c.cs)],['$ per GPU-hr, fleet blend',c=>c.bl.toFixed(2)],['$m per IT MW-yr, fleet blend',c=>c.itE>0?f1(c.perMW):'—'],
- ['sec','Revenue'],['Model, $m',c=>f1(c.rev)],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
+ ['sec','Revenue'],['Contracted ARR — IREN definition, $bn',c=>c.arrc!=null?c.arrc.toFixed(1):''],['Model, $m',c=>f1(c.rev)],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
  ['sec','Cash'],['EBITDA at 65%, $m',c=>f0(c.eb)],['Capex — $36m × IT MW added',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':''],['Customer prepayments received',c=>c.r?f0(c.r.pre):''],['Equity raised',c=>c.r?f0(c.r.eq):''],['Debt drawn',c=>c.r?f0(c.r.draw):''],['Interest at 7%',c=>c.r?f0(c.r.intr):''],['Cash tax at 21%',c=>c.r?f0(c.r.tax):''],
  ['sec','Balance sheet'],['Debt, $bn',c=>c.r?c.r.debt.toFixed(1):''],['Cash, $bn',c=>c.r?c.r.cash.toFixed(1):''],['Net debt, $bn',c=>c.r?c.r.nd.toFixed(1):'',c=>c.r&&c.r.nd<0?'pos':''],['Shares outstanding, m',c=>c.r?f0(c.r.sh):'']];
 const qh=q=>'’'+q.slice(2,4)+'<br>Q'+q.slice(5);
