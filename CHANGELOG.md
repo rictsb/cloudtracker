@@ -2,6 +2,7 @@
 
 The single record of what changed. One line per change, newest first.
 
+- iren.html summary table: the Value band removed — discount factor, PV of EBITDA and cumulative PV rows (owner-directed 2026-09-02). The valuation tie-out beneath the table is unchanged and still closes to the base case.
 - iren.html summary table: 'Actual, $m' and 'Model vs actual' rows removed (owner-directed 2026-09-02); the reported quarters stay greyed. Numbers unchanged.
 - iren.html: share price now LIVE — fetched from Finnhub (the tracker's own token via config.js) on load and every 15 minutes (owner-directed 2026-09-02). Every price-dependent element re-renders on each tick through a hook list: the share-price tile (with a 'Finnhub, live · HH:MM' stamp), the EV/ARR headline, the base-case tile's 'N× the market', the market line on the per-share chart, and the 'IREN trades N×' footer. Per-share values do not depend on the price and are unchanged. If the fetch fails the snapshot price and its date stay. The claude.ai artifact copy carries the same code but its sandbox blocks outside requests, so it remains a dated snapshot. Verified on the local server: live quote $40.17 rendered through all four hooks, no console errors.
 - iren.html: header subheading replaced with the chain 'Power › GPUs › CapEx › ARR › Funding › Value' (owner-directed 2026-09-02). Nothing else changed.
