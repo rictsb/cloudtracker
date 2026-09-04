@@ -2,6 +2,7 @@
 
 The single record of what changed. One line per change, newest first.
 
+- iren.html summary table, Cash band: 'Cash tax at 21%' row removed from display (owner-directed 2026-09-02); tax still runs inside the waterfall. Numbers unchanged.
 - iren.html summary table, Cash band: '$m per IT MW built, vintage' row removed (owner-directed 2026-09-02). Numbers unchanged.
 - iren.html summary table, Rate band: the vintage contract-rate, signed-% and contracted-% rows removed (owner-directed 2026-09-02); the two fleet-blend rows stay. Numbers unchanged.
 - iren.html rebuilt on the honest base (owner-directed 2026-09-02): capex by energisation vintage in the summary table and the cash waterfall (new rows: GPUs+ancillaries, shell, total, $m per IT MW built) — $44M/IT-MW today rising to ~$60M, $156bn build to 2030; funding stack per MW re-based on the 2027 liquid vintage ($34M GPU + $15M shell = $49M; contracted MW attracts $57M of prepay + financing, unsigned needs ~$25M of equity); one-megawatt economics at the new cost (refresh + spares $5.7M/yr, owner keeps $6.58M) with market $/MW +6%/yr captured at renewal -> $1 of ARR = 5.05x (contracted 5.13x, spot 4.26x, flat 2.97x, never-refresh 2.91x); ARR (IREN definition) $58.0bn end-2030; valuation on the 2030 run-rate $65.0bn: net debt $32bn, 592m shares after $14.8bn raised, base $306 per share ($312 contracted / $250 spot / $158 flat / $153 never), 2030 EPS $12.3 at the 5-yr book ($17.5 at six). Tie-out reproduces $306 from the table's last column. Verified locally: 38 rows, no console errors.
