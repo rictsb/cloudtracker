@@ -527,14 +527,15 @@ C.forEach(c=>{if(c.past){c.r=null;return;}const G=c.capG/1000,S=c.capS/1000,cape
   rd.gpu+=G;rd.shell+=S;const da=rd.gpu/5/4+rd.shell/25/4,intr=rd.debt*RATE/4,tax=Math.max(0,eb-da-intr)*TAX,op=eb-intr-tax,amort=rd.debt*AM;
   const need=capex+amort-op-pre-eqPol-(rd.cash-MINCASH),cap=Math.max(0,Math.min(c.cs*(0.5*G+0.9*G+0.65*S)+(1-c.cs)*(0.5*G+0.5*S),capex)-pre);let draw=0,eqRes=0;if(need>0){draw=Math.min(need,cap);eqRes=need-draw;}
   rd.debt+=draw-amort;rd.cash+=op-capex+pre+draw-amort+eqPol+eqRes;if(need<0){const rp=Math.min(-need,rd.debt);rd.debt-=rp;rd.cash-=rp;}
-  rd.sh+=(eqPol+eqRes)*1000/EQ_PX;c.r={pre:pre*1000,eq:(eqPol+eqRes)*1000,draw:draw*1000,intr:intr*1000,tax:tax*1000,debt:rd.debt,cash:rd.cash,nd:rd.debt-rd.cash,sh:rd.sh};});
+  rd.sh+=(eqPol+eqRes)*1000/EQ_PX;const ni=eb-da-intr-tax;c.r={pre:pre*1000,eq:(eqPol+eqRes)*1000,draw:draw*1000,intr:intr*1000,tax:tax*1000,da:da*1000,ni:ni*1000,eps:ni*1000/rd.sh,debt:rd.debt,cash:rd.cash,nd:rd.debt-rd.cash,sh:rd.sh};});
 const ROWS=[['sec','Power'],['Gross MW energised',c=>f0(c.g)],['IT MW energised',c=>f0(c.it)],['+ IT MW in the quarter',c=>f0(c.add)],
  ['sec','Use'],['IT MW earning',c=>f1(c.itE)],['Utilisation — earning ÷ energised',c=>pct(c.util)],
  ['sec','GPUs'],['Installed',c=>f0(c.gi)],['Commissioned',c=>f0(c.gc)],
  ['sec','Rate'],['$ per GPU-hr, fleet blend',c=>c.bl.toFixed(2)],['$m per IT MW-yr, fleet blend',c=>c.itE>0?f1(c.perMW):'—'],
  ['sec','Revenue'],['Contracted ARR — IREN definition, $bn',c=>c.arrc!=null?c.arrc.toFixed(1):''],['Model, $m',c=>f1(c.rev)],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
  ['sec','Cash'],['EBITDA at 65%, $m',c=>f0(c.eb)],['Capex — GPUs + ancillaries, by vintage',c=>f0(c.capG)],['Capex — shell',c=>f0(c.capS)],['Capex, total',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':''],['Customer prepayments received',c=>c.r?f0(c.r.pre):''],['Equity raised',c=>c.r?f0(c.r.eq):''],['Debt drawn',c=>c.r?f0(c.r.draw):''],['Interest at 7%',c=>c.r?f0(c.r.intr):''],
- ['sec','Balance sheet'],['Debt, $bn',c=>c.r?c.r.debt.toFixed(1):''],['Cash, $bn',c=>c.r?c.r.cash.toFixed(1):''],['Net debt, $bn',c=>c.r?c.r.nd.toFixed(1):'',c=>c.r&&c.r.nd<0?'pos':''],['Shares outstanding, m',c=>c.r?f0(c.r.sh):'']];
+ ['sec','Balance sheet'],['Debt, $bn',c=>c.r?c.r.debt.toFixed(1):''],['Cash, $bn',c=>c.r?c.r.cash.toFixed(1):''],['Net debt, $bn',c=>c.r?c.r.nd.toFixed(1):'',c=>c.r&&c.r.nd<0?'pos':''],['Shares outstanding, m',c=>c.r?f0(c.r.sh):''],
+ ['sec','Earnings'],['D&A — GPUs over 5 yr, shell over 25, $m',c=>c.r?f0(c.r.da):''],['Net income, $m',c=>c.r?f0(c.r.ni):'',c=>c.r&&c.r.ni<0?'neg':''],['EPS, quarter',c=>c.r?'$'+c.r.eps.toFixed(2):'',c=>c.r&&c.r.eps<0?'neg':''],['EPS, annualised × 4',c=>c.r?'$'+(c.r.eps*4).toFixed(2):'',c=>c.r&&c.r.eps<0?'neg':'']];
 const qh=q=>'’'+q.slice(2,4)+'<br>Q'+q.slice(5);
 let html='<table><thead><tr><th></th>'+C.map(c=>'<th class="'+(c.ye?'ye ':'')+(c.past?'past':'')+'">'+qh(c.q)+'</th>').join('')+'</tr></thead><tbody>';
 ROWS.forEach(r=>{if(r[0]==='sec'){html+='<tr class="sec"><td colspan="'+(C.length+1)+'">'+r[1]+'</td></tr>';return;}
