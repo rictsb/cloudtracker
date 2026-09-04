@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>:root{color-scheme:light dark}body{margin:0}</style>
-<title>IREN Value Path</title>
+<title>__TITLE__</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
 :root{
@@ -116,20 +116,18 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-<script src="config.js"></script>
+__CONFIG__
 </head>
 <body>
 <div class="wrap">
 <header>
-  <div class="kicker">IREN · NASDAQ · from the FY26 10-K and the 27 Aug call · 4 Sept 2026</div>
-  <h1>IREN: from MW to $</h1>
-  <p class="sub">Power › GPUs › CapEx › ARR › Funding › Value</p>
+  <div class="kicker">__KICKER__</div>
+  <h1>__H1__</h1>
+  <p class="sub">__SUB__</p>
   <div class="facts">
     <div class="fact base"><span class="l">Base-case value</span><span class="v" id="fVal"></span><span class="n" id="fValN">per share</span></div>
-    <div class="fact"><span class="l">Share price</span><span class="v" id="fPx"></span><span class="n">Finnhub, 4 Sep</span></div>
-    <div class="fact"><span class="l">Shares out</span><span class="v">394.1m</span><span class="n">10-K cover, 14 Aug</span></div>
-    <div class="fact"><span class="l">Net debt</span><span class="v">$1.94bn</span><span class="n">$7.8bn debt − $5.9bn cash</span></div>
-    <div class="fact"><span class="l">Contracted ARR</span><span class="v">$4.0bn</span><span class="n">for 2026 capacity</span></div>
+    <div class="fact"><span class="l">Share price</span><span class="v" id="fPx"></span><span class="n">__PXNOTE__</span></div>
+__FACTS__
   </div>
 </header>
 
@@ -139,7 +137,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
   <div class="card">
     <div class="head">
       <div><h2>Announced, energised, and earning</h2></div>
-      <div class="hero"><div class="v">2,310</div><div class="u">MW with substations energised</div></div>
+      <div class="hero"><div class="v">__HERO1V__</div><div class="u">__HERO1U__</div></div>
     </div>
     <figure><div class="scroll" id="gCap"></div></figure>
     <figure>
@@ -148,9 +146,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <details><summary>Table</summary><div id="tGantt"></div></details>
     </figure>
     <div class="notes">
-      <div class="note"><b>5,610 MW announced</b> across nine sites. Land cost $139m — $25k per MW. The value is in the grid connections, not the dirt.<span class="src">10-K Item 2 · Note 14</span></div>
-      <div class="note"><b>Sweetwater 1’s substation energised 1 May 2026</b> — three months before ERCOT froze the queue. Power ramps with construction; 1.4 GW sits inside the moat.<span class="src">8-K 7 May · Governor’s directive 3 Aug</span></div>
-      <div class="note"><b>~90 MW earning today.</b> ~40 MW at 30 June (basis not stated) plus Horizon 1 (50 MW IT) accepted by Microsoft on 13 Aug.<span class="src">10-K · 8-K 13 Aug</span></div>
+__NOTES_1__
     </div>
   </div>
 </section>
@@ -161,7 +157,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
   <div class="card">
     <div class="head">
       <div><h2>Commissioned GPU fleet by generation, quarterly</h2></div>
-      <div class="hero"><div class="v">757k</div><div class="u">GPUs commissioned by end-2030</div></div>
+      <div class="hero"><div class="v">__HERO2V__</div><div class="u">__HERO2U__</div></div>
     </div>
     <figure>
       <div class="cap"><span><i class="sw" style="background:var(--s4)"></i>Hopper</span><span><i class="sw" style="background:var(--s1)"></i>Blackwell</span><span><i class="sw" style="background:var(--s2)"></i>Rubin</span><span><i class="sw" style="background:var(--s3)"></i>Next-gen</span><span>labels = IT MW live</span></div>
@@ -169,9 +165,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <details><summary>Table</summary><div id="tBuild"></div></details>
     </figure>
     <div class="notes">
-      <div class="note"><b>60k GPUs by Dec 2026</b> on 480 MW gross. The 2026 build ties to the company’s own schedule tranche for tranche.<span class="src">FY26 deck</span></div>
-      <div class="note"><b>198k by Dec 2027</b> on 1,210 MW. Air-cooled Childress from Q1, liquid Childress + Sweetwater 1 from Q4.<span class="src">FY26 call · release</span></div>
-      <div class="note"><b>Density rises</b>: 2.9 kW per GB300 package, 3.5–4.7 kW Rubin, 6.3 kW next-gen. Same megawatt, fewer chips, same dollars per MW.<span class="src">model tranches</span></div>
+__NOTES_2__
     </div>
   </div>
 </section>
@@ -182,39 +176,18 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
   <div class="card">
     <div class="head">
       <div><h2>ARR</h2></div>
-      <div class="hero"><div class="v">$55.4bn</div><div class="u">contracted ARR · end-2030</div></div>
+      <div class="hero"><div class="v">__HERO3V__</div><div class="u">__HERO3U__</div></div>
     </div>
     <div class="two">
-      <details class="fold">
-        <summary><span class="k">Unsigned capacity modelled at</span><span>$20m / IT MW-yr</span></summary>
-        <div class="ledger">
-          <span class="k">Microsoft · GB300 · signed</span><span>$2.91 / GPU-hr</span>
-          <span class="k">NVIDIA · Blackwell · signed</span><span>$3.10 / GPU-hr</span>
-          <span class="k">Nov-25 pricing, per IT MW-yr</span><span>~$10m</span>
-          <span class="k">3-yr contracts today</span><span>&gt;$20m</span>
-          <span class="k">Active discussions</span><span>~$25m</span>
-        </div>
-      </details>
-      <details class="fold">
-        <summary><span class="k">Fleet blend, Q4 2030</span><span>$9.38 / GPU-hr</span></summary>
-        <div class="ledger">
-          <span class="k">1 IT MW × 8,760 h, 2026–27 vintage</span><span>$20.0m / yr</span>
-          <span class="k">÷ GB300 packages per MW (340)</span><span>$6.72 / GPU-hr</span>
-          <span class="k">Contract $/MW, 2028+ vintages</span><span>holds a ~2-yr GPU payback (≈+6% / yr)</span>
-          <span class="k">10% uncontracted, at realised spot</span><span>$35m / IT MW-yr</span>
-          <span class="k">Uncontracted GPUs sell down</span><span>4.4× slower</span>
-        </div>
-      </details>
+__FOLDS__
     </div>
     <figure>
-      <div class="cap"><span>contracted ARR, $bn — IREN’s definition: GPU/hour price × 8,760 h on energised capacity under contract, incl. storage and ancillaries · spot excluded</span></div>
+      <div class="cap"><span>__ARRCAP__</span></div>
       <div class="scroll" id="gRev"></div>
       <details><summary>Table</summary><div id="tRev"></div></details>
     </figure>
     <div class="notes">
-      <div class="note"><b>IREN’s definition.</b> Price × 8,760 h × commissioned GPUs under contract, plus storage and ancillaries — counted here as capacity is energised, which is how the company’s “$4bn for 2026 capacity” reconciles: $4.1bn at Dec 2026. Billing follows one to two quarters behind; the summary table carries both.<span class="src">FY26 release fn.1</span></div>
-      <div class="note"><b>The model held out of sample.</b> Q2 2026 modelled $66.3m, reported $70.5m — a quarter the calibration never saw.<span class="src">−5.9%</span></div>
-      <div class="note"><b>Signed vs contracted.</b> Signed ARR flattens at $4.8bn from 2027 — Microsoft, NVIDIA and the 2026 book. Everything above that is capacity the model assumes signs 3-year take-or-pay at $20m+ per MW as it energises; the 10% kept for spot is not counted here.<span class="src">90% of unsigned capacity contracted</span></div>
+__NOTES_3__
     </div>
   </div>
 </section>
@@ -225,26 +198,21 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
   <div class="card">
     <div class="head">
       <div><h2>CapEx</h2></div>
-      <div class="hero"><div class="v">16%</div><div class="u">of last year’s $19bn was equity</div></div>
+      <div class="hero"><div class="v">__HERO4V__</div><div class="u">__HERO4U__</div></div>
     </div>
     <div class="tiles">
-      <div class="tile"><div class="l">Cash</div><div class="v">$5.9bn</div><div class="n">+ $1.7bn restricted</div></div>
-      <div class="tile"><div class="l">Debt</div><div class="v">$7.8bn</div><div class="n">$6.75bn converts, 0–3.5%</div></div>
-      <div class="tile"><div class="l">Committed capex</div><div class="v">$13.8bn</div><div class="n">$13.6bn due within 12 mo</div></div>
-      <div class="tile"><div class="l">FY27 capex guide</div><div class="v">$25–30bn</div><div class="n">CFO, 27 Aug</div></div>
+__TILES__
     </div>
     <figure>
-      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>customer prepayment</span><span><i class="sw" style="background:var(--s2)"></i>GPU financing</span><span><i class="sw" style="background:var(--s3)"></i>data-centre debt</span><span><i class="sw" style="background:var(--s4)"></i>equity</span><span>how ONE IT megawatt of new build is paid for · $m per MW, against $49m of cost (2027 liquid vintage: $34m GPUs + $15m shell)</span></div>
+      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>customer prepayment</span><span><i class="sw" style="background:var(--s2)"></i>GPU financing</span><span><i class="sw" style="background:var(--s3)"></i>data-centre debt</span><span><i class="sw" style="background:var(--s4)"></i>equity</span><span>__FUNDCAP__</span></div>
       <div class="scroll" id="gFund"></div>
     </figure>
     <figure>
-      <div class="cap"><span>FY27 bridge · $bn</span><span><i class="sw" style="background:var(--s1)"></i>secured</span><span><i class="sw" style="background:var(--s2)"></i>targeted</span><span><i class="sw" style="background:var(--sunk);border:1px solid var(--line)"></i>DC financing, cash flow, corporate</span></div>
+      <div class="cap"><span>__BRIDGECAP__</span><span><i class="sw" style="background:var(--s1)"></i>secured</span><span><i class="sw" style="background:var(--s2)"></i>targeted</span><span><i class="sw" style="background:var(--sunk);border:1px solid var(--line)"></i>DC financing, cash flow, corporate</span></div>
       <div class="scroll" id="gBridge"></div>
     </figure>
     <div class="notes">
-      <div class="note"><b>“Recent customer prepayments represent 45–55% of GPU capex.”</b> On Microsoft, prepayments plus $3.6bn of investment-grade debt funded ~96% of the GPUs. The ATM has $3.5bn unused of a $6bn programme — nothing issued since 30 June.<span class="src">8-K EX-99.1 · 10-K Note 24</span></div>
-      <div class="note"><b>“Our entire data center portfolio is unencumbered today, including Horizons One through four.”</b> Lenders hold the GPUs ($1.49bn pledged, non-recourse) and the Microsoft receivables — not the land, buildings or substations.<span class="src">A. Lewis, CFO, FY26 call · 10-K Note 23</span></div>
-      <div class="note"><b>The catch:</b> prepayments and 90% gearing exist only on <b>signed</b> capacity. Unsigned capacity needs ~$25m of equity per IT MW — or is simply not built.<span class="src">SOW §3.2 · funding stack above</span></div>
+__NOTES_4__
     </div>
   </div>
 </section>
@@ -255,7 +223,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
   <div class="card">
     <div class="head">
       <div><h2>What one megawatt earns</h2></div>
-      <div class="hero"><div class="v">$4.06</div><div class="u">what $1 of ARR is worth</div></div>
+      <div class="hero"><div class="v">__HERO5V__</div><div class="u">__HERO5U__</div></div>
     </div>
     <div class="two">
       <figure>
@@ -268,9 +236,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       </figure>
     </div>
     <div class="notes">
-      <div class="note"><b>Costs are tiny.</b> Power at $35/MWh is 1.8% of revenue — IREN owns the substations. Gross margin ~94%; 65% EBITDA after overhead.<span class="src">10,512 MWh per IT MW-yr at PUE 1.2</span></div>
-      <div class="note"><b>Capex is $44m per IT MW today and rising.</b> $29m of GPUs and ancillaries on the Microsoft/Dell order plus IREN’s own $15m shell; 15–20% more on 2027 orders (CFO), ~$40m of silicon for Rubin, ~$45m after. Pricing is set so IREN’s ~2-year GPU payback holds on each vintage.<span class="src">8-K 3-Nov-25 · Nov-25 deck · FY26 call</span></div>
-      <div class="note"><b>Maintenance, not replacement.</b> The refresh is a tray swap — racks, liquid loop and power stay — at ~55% of GPU cost every four years, plus 3%/yr on failures and spares: $5.7m per MW-yr on $34m of silicon. Never refreshing (2.91×) sits well under the base (4.06×) once pricing rises with cost. Book life: IREN 5 yr; CoreWeave, MSFT, GOOG 6.<span class="src">10-K Note 2 · peer 10-Ks</span></div>
+__NOTES_5__
     </div>
   </div>
 </section>
@@ -284,7 +250,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <div class="hero"><div class="v" id="hEV"></div><div class="u">EV / ARR today</div></div>
     </div>
     <figure>
-      <div class="cap"><span>$ per share · by pricing and maintenance regime · 757m diluted shares after a $14.6bn raise at $55 and the converts, $43bn net debt, $27bn of prepayments owed</span><span>│ market</span></div>
+      <div class="cap"><span>__VALUECAP__</span><span>│ market</span></div>
       <div class="scroll" id="gValue"></div>
     </figure>
     <div class="two">
@@ -292,9 +258,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
       <div class="ledger" id="lEps"></div>
     </div>
     <div class="notes">
-      <div class="note"><b>Some equity, not none.</b> The flywheel could cover the build, but the company raised 16% of last year’s funding in equity and keeps the ATM live. Base: 10% of the 2027–30 build plus the residual the flywheel cannot cover, $14.6bn, at an assumed $55 — +265m shares, 757m diluted once the converts are counted. At today’s price the same raise costs ~390m shares and about $22 a share.<span class="src">FY26 call · 10-K Note 24</span></div>
-      <div class="note"><b>The regime is the swing, not the ARR.</b> Same $62.3bn, same balance sheet: $95 if the fleet is never refreshed, $98 at flat $/MW, $156 with pricing that keeps IREN’s two-year GPU payback on rising silicon cost for five years, then flat. Signed contracts never escalate; they reprice when they end.<span class="src">contracted 3-yr at 10.5% · spot at 13%</span></div>
-      <div class="note"><b>EPS is the long-run anchor.</b> <span id="nEps"></span> A $150bn fleet on a five-year book is what holds earnings down while value holds up. Pick your multiple.<span class="src">after the raise</span></div>
+__NOTES_6__
     </div>
   </div>
 </section>
@@ -316,110 +280,17 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
 </section>
 
 <footer>
-  <b>Sources.</b> FY26 10-K (filed 27 Aug 2026; balance sheet tied line-by-line to XBRL), FY26 results 8-K, 8-Ks of 20 Jul, 4 Aug, 13 Aug; FY26 Q4 earnings call, 27 Aug (transcripts: stockanalysis.com, investing.com, benzinga.com); Microsoft Partner SOW (EX-10.3, 10-Q Feb 2026); Common Terms Agreement (EX-10.37); CoreWeave FY25 10-K and Q2-26 call (peer GPU life).
-  <b>Model.</b> Compute/Value tracker, IREN ramp as of 18 Aug 2026, repriced 27 Aug. Ramp: contracts $20m per IT MW-yr on 2026–27 vintages, then priced by vintage so IREN’s ~2-year GPU payback holds on the rising cost of silicon ($20.8m 2028, $21.8m 2029, $24.0m 2030); 10% of unsigned capacity kept for spot at $35m realised from 2027, 90% contracted. Capex by vintage: GPUs and ancillaries $29m per IT MW on the Nov-25 Microsoft order and ~$31m air-cooled, +15–20% on 2027 orders, ~$40m Rubin, ~$45m next-gen; shell $15m liquid new-build, $5m air retrofit. Steady-state: $22.5m revenue per IT MW-yr today, 65% EBITDA, the 2027 marginal MW at $34m GPU + $15m shell, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice only at renewal (3-yr terms), spot MW at market every year discounted at 13%; refresh as a tray swap at 55% of GPU cost every four years plus 3%/yr on failures and spares; 10% of the 2027–30 build funded in equity at an assumed $55; operating cash funds the build first, prepayments next, debt for the shortfall within lenders’ cover, equity for the rest, surplus repays debt. Honest-base items: prepayments are timing, not funding — credited back against fees after month 24 to the end of term, Microsoft’s filed mechanism, with the balance still owed at 2030 deducted at PV; the $6.7bn of convertible notes are equity at the model’s own 2030 price (six series, capped calls netted, ~112m shares) and carry their ~0.9% coupon meanwhile; Microsoft’s $1.93bn upfront at its filed size and timing; restricted cash counted against the debt it secures. Value = 2030 EV less net debt ex converts and prepayments owed, discounted to today, over the diluted count.
-  <b>Snapshot.</b> This page is a dated cut of the tracker’s IREN ramp as of 4 Sept 2026 and does not update with the model; the live model, scenarios and backtest are on the <a href="/">tracker’s GPU RAMP tab</a>. <b>Not advice.</b> A first-principles model of what the assets earn — not a price target.
+  <b>Sources.</b> __FOOT_SOURCES__
+  <b>Model.</b> __FOOT_MODEL__
+  <b>Snapshot.</b> __FOOT_SNAPSHOT__
 </footer>
 </div>
 <div class="tip" id="tip"></div>
 
-<script>/* Research one-pager math — ONE source of truth for the quarterly cash waterfall, the tie-out and the
-   standard sensitivities (spec §6e), run by both:
-   - the generated pages (inlined by onepager.js, browser)
-   - onepager.js --check / --sens (node)
-   Never fork it. Inputs are plain data: the ledger rows L, capex by quarter CAPQ, the finance block F and
-   the contracted-ARR series ARRC; everything else on the page is presentation. */
-(function (root, factory) {
-  const m = factory();
-  if (typeof module === 'object' && module.exports) module.exports = m;
-  else root.OnePager = m;
-})(typeof self !== 'undefined' ? self : this, function () {
-  const QS = l => (+l.slice(0, 4) - 2026) * 4 + (+l.slice(5));
-
-  /* L rows: [q, grossMW energised, IT MW energised, IT MW earning, GPUs installed, GPUs commissioned, GPUs signed,
-              rev $m, revC $m, revS $m, $/GPU-hr blend, vintage $m per IT MW-yr, actual $m, street $m]
-     CAPQ: {q:[GPUs+ancillaries $m, shell $m]}   F: finance block (see onepager.js / spec §6e)   ARRC: {q: contracted ARR $bn} */
-  function waterfall(L, CAPQ, F, ARRC, o) {
-    o = o || {};
-    const M = F.M, W = F.W, MULT = F.MULT, SH0 = F.SH0, EQ_SHARE = F.EQ_SHARE, EQ_PX = o.eqPx != null ? o.eqPx : F.EQ_PX,
-      DEBT0 = F.DEBT0, CASH0 = F.CASH0, RATE = o.rate != null ? o.rate : F.RATE, TAX = F.TAX, MINCASH = F.MINCASH,
-      CONV = F.CONV || 0, CONV_RATE = o.convAsDebt ? RATE : (F.CONV_RATE || 0), CASH_R = o.noRestricted ? 0 : (F.CASH_R || 0), FWD = F.FWD || 0,
-      SERIES = F.SERIES || [], T0 = QS(F.T0 || '2026Q3'), HZ = F.HORIZON || 4.33, AM = 1 - Math.pow(1 - (F.AMORT || 0.16), 0.25),
-      PP = F.prepay || {}, ratio = PP.ratio != null ? PP.ratio : 0.5, startQ = PP.startQ != null ? PP.startQ : 8, termQ = PP.termQ || 4,
-      termOv = PP.termQOverride || {}, already = PP.alreadyReceived || {}, special = PP.special || {}, creditsFixed = PP.credits || [],
-      CV = F.cover || { ctrPre: .5, ctrGpu: .9, ctrShell: .65, spotGpu: .5, spotShell: .5 }, revScale = o.revScale || 1, mult = o.mult != null ? o.mult : MULT;
-    let cumPV = 0, prevIT = 0;
-    const C = L.map((r, i) => {
-      const [q, g, it, itE, gi, gc, gs, rev0, revC0, revS0, bl, vint, act, st] = r; const rev = rev0 * revScale, revC = revC0 * revScale, revS = revS0 * revScale;
-      const add = i ? it - prevIT : it; prevIT = it;
-      const util = it > 0 ? itE / it : 0, sg = rev > 0 ? revS / rev : 0, cs = rev > 0 ? revC / rev : 0, perMW = itE > 0 ? rev * 4 / itE : 0, eb = rev * M,
-        cq = CAPQ[q] || [0, 0], capG = cq[0], capS = cq[1], capex = capG + capS, cbf = eb - capex;
-      const t = (QS(q) - T0) / 4, past = QS(q) < T0, df = past ? null : Math.pow(1 + W, -t), pv = df ? eb * df : 0; if (!past) cumPV += pv;
-      return { q, g, it, add, itE, util, gi, gc, vint, sg, cs, bl, perMW, rev, act, dl: act != null ? rev / act - 1 : null, st, rr: rev * 4 / 1000,
-        arrc: (ARRC || {})[q], eb, capG, capS, capex, cbf, df, pv, cum: past ? null : cumPV / 1000, past, ye: /Q4$/.test(q) };
-    });
-    const N = C.length, CR = new Array(N + 24).fill(0), qi = q => C.findIndex(x => x.q === q);
-    creditsFixed.forEach(c => { const i0 = qi(c.from); if (i0 < 0) return; for (let k = 0; k < c.n; k++) CR[i0 + k] += c.amt / c.n; });
-    const rd = { debt: DEBT0 - CONV, cash: CASH0 + CASH_R, sh: SH0, gpu: 0, shell: 0, owed: PP.openingOwed || 0 };
-    let eqTot = 0;
-    C.forEach((c, i) => {
-      if (c.past) { c.r = null; return; }
-      const G = c.capG / 1000, S = c.capS / 1000, capex = G + S, eb = c.eb / 1000, yr = +c.q.slice(0, 4), eqPol = yr >= (F.EQ_FROM || 2027) ? EQ_SHARE * capex : 0;
-      const sp = special[c.q] || {};
-      const preOth = c.cs * ratio * (G - (sp.replaceG || 0)), nq = termOv[c.q] || termQ;
-      if (!o.noCredit) for (let k = 0; k < nq; k++) CR[i + startQ + k] += preOth / nq;
-      const pre = preOth + (sp.upfront || 0) - (already[c.q] || 0), cred = o.noCredit ? 0 : CR[i];
-      rd.gpu += G; rd.shell += S;
-      const da = rd.gpu / (F.GPU_LIFE || 5) / 4 + rd.shell / (F.SHELL_LIFE || 25) / 4, intr = rd.debt * RATE / 4 + CONV * CONV_RATE / 4,
-        tax = Math.max(0, eb - da - intr) * TAX, op = eb - intr - tax - cred, amort = rd.debt * AM;
-      const need = capex + amort - op - pre - eqPol - (rd.cash - MINCASH),
-        cap = Math.max(0, Math.min(c.cs * (CV.ctrPre * G + CV.ctrGpu * G + CV.ctrShell * S) + (1 - c.cs) * (CV.spotGpu * G + CV.spotShell * S), capex) - pre);
-      let draw = 0, eqRes = 0; if (need > 0) { draw = Math.min(need, cap); eqRes = need - draw; }
-      rd.debt += draw - amort; rd.cash += op - capex + pre + draw - amort + eqPol + eqRes;
-      if (need < 0) { const rp = Math.min(-need, rd.debt); rd.debt -= rp; rd.cash -= rp; }
-      rd.sh += (eqPol + eqRes) * 1000 / EQ_PX; rd.owed += pre - cred; eqTot += eqPol + eqRes;
-      const ni = eb - da - intr - tax;
-      c.r = { eb: eb * 1000, dag: rd.gpu / (F.GPU_LIFE || 5) / 4 * 1000, pre: pre * 1000, cred: cred * 1000, owed: rd.owed, eq: (eqPol + eqRes) * 1000, draw: draw * 1000,
-        intr: intr * 1000, tax: tax * 1000, da: da * 1000, ni: ni * 1000, debt: rd.debt, cash: rd.cash, nd: rd.debt - rd.cash, sh: rd.sh };
-    });
-    /* tie-out: horizon run-rate x multiple, less net debt ex converts and prepayments still owed at PV, over the diluted count;
-       the converts become shares at the model's own horizon price with the capped calls netted */
-    const last = C[N - 1].r, rr = L[N - 1][7] * revScale * 4 / 1000, ev = rr * mult, DF = Math.pow(1 + W, HZ);
-    let liab = 0; for (let k = N; k < CR.length; k++) liab += CR[k] / Math.pow(1 + W, (k - N + 1) / 4);
-    const sh30 = last.sh - FWD; let S = 0, convSh = 0;
-    if (o.convAsDebt) { S = (ev - (last.nd + CONV) - liab) / sh30 * 1000; }
-    else for (let it = 0; it < 40; it++) { S = (ev - last.nd - liab) / (sh30 + convSh) * 1000; convSh = SERIES.reduce((a, s) => a + s[0] / s[1] * 1000 * (1 - Math.max(0, Math.min(s[2] || Infinity, S) - s[1]) / S), 0); }
-    const dil = sh30 + convSh, ps = S / DF, addb = o.convAsDebt ? 0 : CONV * CONV_RATE * (1 - TAX) * 1000;
-    C.forEach(c => { if (!/Q4$/.test(c.q)) return; const ys = C.filter(x => x.q.slice(0, 4) === c.q.slice(0, 4) && x.r);
-      if (ys.length === 4) c.epsYE = (ys.reduce((s, x) => s + x.r.ni, 0) + addb) / (c.r.sh + convSh - (c.q.slice(0, 4) === L[N - 1][0].slice(0, 4) ? FWD : 0)); });
-    const hy = L[N - 1][0].slice(0, 4), Y = C.filter(x => x.q.startsWith(hy) && x.r), S30 = k => Y.reduce((s, x) => s + x.r[k], 0) / 1000;
-    const pl = { rev: S30('eb') / M, eb: S30('eb'), da: S30('da'), intr: S30('intr'), tax: S30('tax'), ni: S30('ni'), dag: S30('dag'), debtAvg: Y.reduce((s, x) => s + x.r.debt, 0) / Math.max(1, Y.length) };
-    return { C, N, last, rr, ev, DF, liab, sh30, S, convSh, dil, ps, addb, pl, eqTot, issued: last.sh - SH0, year: hy, ndc: last.nd + (o.convAsDebt ? CONV : 0) };
-  }
-
-  /* the standard sensitivities every page shows the same way */
-  function sensitivities(L, CAPQ, F, ARRC, PX) {
-    const base = waterfall(L, CAPQ, F, ARRC).ps;
-    const S = [
-      ['Base', {}],
-      ['Debt at 8% instead of ' + Math.round(F.RATE * 100) + '%', { rate: .08 }],
-      ['Equity raised at today’s price, not $' + F.EQ_PX, { eqPx: PX }],
-      ['Prepayments kept as funding, never credited back', { noCredit: true }],
-      ['Converts carried as debt, not converted', { convAsDebt: true }],
-      ['Restricted cash excluded', { noRestricted: true }],
-      ['Revenue −10% every quarter', { revScale: .9 }],
-      ['Multiple −0.5×', { mult: F.MULT - .5 }],
-      ['Multiple +0.5×', { mult: F.MULT + .5 }],
-    ];
-    return S.map(([n, o]) => { const r = waterfall(L, CAPQ, F, ARRC, o); return { name: n, ps: r.ps, delta: r.ps - base, nd: r.ndc, sh: r.dil, eq: r.eqTot }; });
-  }
-
-  return { waterfall, sensitivities, QS };
-});
-</script>
+<script>/*__CORE__*/</script>
 <script>
 (function(){
-const P=window.P={"tk":"IREN","name":"IREN","asOf":"2026-09-04","kicker":"IREN · NASDAQ · from the FY26 10-K and the 27 Aug call","title":"IREN: from MW to $","sub":"Power › GPUs › CapEx › ARR › Funding › Value","px":{"v":44.68,"note":"Finnhub, 4 Sep"},"evArr":{"sh":394.1,"nd":1.941,"arr":4},"arrLabel":"IREN definition","capacity":{"rows":[["Announced",5610,"nine sites"],["Substation energised",2310,"Childress · Sweetwater 1 · BC — delivery ramps with construction"],["Gross MW built by end-2027",1240,"company schedule"],["IT MW earning today",90,"~40 + Horizon 1"]],"max":5610},"gantt":[["Childress, TX",750,[["Horizon 1 · MSFT",50,"2026Q2","2026Q3",2,1],["Horizon 2 · MSFT",50,"2026Q3","2026Q4",2,1],["Horizon 3–4 · MSFT",100,"2026Q4","2027Q1",2,1],["NVIDIA 60 MW air",50,"2027Q1","2027Q1",2,1],["air retrofit 27a",56,"2027Q1","2027Q2",2,0],["air retrofit 27b",60,"2027Q3","2027Q4",2,0],["Horizon 5–6 + 27c",160,"2027Q4","2028Q1",2,0],["air completion",96,"2028Q2","2028Q3",2,0]],"2025Q1"],["British Columbia",160,[["Prince George · Mackenzie",122,"2026Q1","2026Q4",3,1],["Canal Flats liquid",20,"2027Q4","2028Q1",2,0]],"2025Q1"],["Sweetwater 1, TX",1400,[["initial · VR200",200,"2027Q4","2028Q1",3,0],["ramp a",140,"2028Q1","2028Q2",2,0],["ramp b",140,"2028Q2","2028Q3",2,0],["ramp c",140,"2028Q3","2028Q4",2,0],["completion a",175,"2029Q1","2029Q2",2,0],["completion b",175,"2029Q2","2029Q3",2,0]],"2026Q2"],["Sweetwater 2, TX",600,[["phase 1",140,"2029Q2","2029Q3",2,0]],null],["Kiowa, OK",1600,[["phase 1",210,"2029Q3","2029Q4",2,0]],null],["Badajoz, ES",300,[["first halls",70,"2029Q2","2029Q3",2,0]],null],["Bundey, AU",800,[["first halls",70,"2029Q3","2029Q4",2,0]],null],["2030 wave (allocated)",1100,[["wave a",193,"2029Q4","2030Q1",2,0],["wave b",193,"2030Q1","2030Q2",2,0],["wave c",193,"2030Q2","2030Q3",2,0],["wave d",192,"2030Q3","2030Q4",2,0]],null]],"Q":[["2026Q3",149.3,118.5,118.5,52,330,25490,{"hopper":8196,"blackwell":17294,"rubin":0,"next":0}],["2026Q4",423.2,379.1,379.1,135,480,59888,{"hopper":8430,"blackwell":51457,"rubin":0,"next":0}],["2027Q1",1064.5,785.1,785.1,269,610,116285,{"hopper":8665,"blackwell":107620,"rubin":0,"next":0}],["2027Q2",1602.3,1231.1,1130.6,403,610,173789,{"hopper":8900,"blackwell":164889,"rubin":0,"next":0}],["2027Q3",1745.5,1338.5,1137.4,431,685,185516,{"hopper":9025,"blackwell":176491,"rubin":0,"next":0}],["2027Q4",1900.2,1455.5,1144.2,462,1240,197959,{"hopper":9150,"blackwell":188809,"rubin":0,"next":0}],["2028Q1",2826.3,2201,1151.1,637,1440,257421,{"hopper":9275,"blackwell":230639,"rubin":17507,"next":0}],["2028Q2",3982,3143.5,1157.9,849,1760,321760,{"hopper":9400,"blackwell":261668,"rubin":50692,"next":0}],["2028Q3",5303.5,4223.3,1164.1,1089,1960,389453,{"hopper":9400,"blackwell":280498,"rubin":99555,"next":0}],["2028Q4",6298,5040.5,1170.3,1271,1960,440423,{"hopper":9400,"blackwell":299328,"rubin":131695,"next":0}],["2029Q1",6722.4,5387.7,1176.5,1346,2210,459893,{"hopper":9400,"blackwell":301957,"rubin":148536,"next":0}],["2029Q2",7250.3,5834.4,1181.5,1439,2760,481586,{"hopper":9400,"blackwell":304126,"rubin":168060,"next":0}],["2029Q3",8798.5,7149.4,1186.5,1708,3160,542679,{"hopper":9400,"blackwell":306040,"rubin":227239,"next":0}],["2029Q4",10634.4,8711.7,1191.6,2028,3435,614349,{"hopper":9400,"blackwell":307953,"rubin":296996,"next":0}],["2030Q1",11981.8,9858.1,1196.6,2262,3710,661163,{"hopper":9400,"blackwell":309600,"rubin":328053,"next":14110}],["2030Q2",13145.5,10853.7,1196.6,2457,3985,693390,{"hopper":9400,"blackwell":310000,"rubin":331660,"next":42330}],["2030Q3",14356.8,11896.4,1196.6,2652,4260,725580,{"hopper":9400,"blackwell":310400,"rubin":334890,"next":70890}],["2030Q4",15564.6,12936.5,1196.6,2846,4260,757285,{"hopper":9400,"blackwell":310400,"rubin":337741,"next":99744}]],"A":[["2025Q2",0.02,0.02],["2025Q3",0.15,0.15],["2025Q4",0.15,0.15],["2026Q1",0.3,0.3],["2026Q2",0.79,0.79],["2026Q3",3.14,3.14],["2026Q4",4.11,4.11],["2027Q1",5.66,4.79],["2027Q2",5.66,4.79],["2027Q3",6.59,4.79],["2027Q4",13.25,4.79],["2028Q1",15.87,4.79],["2028Q2",20.05,4.79],["2028Q3",22.67,4.79],["2028Q4",22.67,4.79],["2029Q1",26.1,4.79],["2029Q2",33.65,4.79],["2029Q3",39.15,4.79],["2029Q4",42.93,4.79],["2030Q1",47.1,4.79],["2030Q2",51.27,4.79],["2030Q3",55.42,4.79],["2030Q4",55.42,4.79]],"L":[["2025Q2",4,3,0.9,1900,566,272,3.1,1.5,1.5,2.49,null,null,null],["2025Q3",34,25,1.8,14300,1132,543,6.2,2.9,2.9,2.49,12.2,7.35,null],["2025Q4",34,25,6.3,14300,3686,1769,20.1,9.6,9.6,2.49,null,17.3,null],["2026Q1",50,37,10.8,21800,6240,2995,33.3,16.3,16.3,2.44,14.9,33.6,null],["2026Q2",125,87,20.6,40800,12107,7037,66.3,39.7,39.7,2.5,9.7,70.5,null],["2026Q3",330,247,51.9,109800,25490,19626,149.3,118.5,118.5,2.67,16.8,null,257],["2026Q4",480,347,135.4,147800,59888,51503,423.2,379.1,379.1,3.23,9.7,null,554],["2027Q1",610,453,269,195800,116285,105381,1064.5,785.1,785.1,4.18,15.5,null,953],["2027Q2",610,453,403.3,195800,173789,149758,1602.3,1231.1,1130.6,4.21,null,null,1124],["2027Q3",685,513,431.4,219800,185516,150540,1745.5,1338.5,1137.4,4.3,17.3,null,1364],["2027Q4",1240,893,461.8,340800,197959,151323,1900.2,1455.5,1144.2,4.38,19.5,null,1572],["2028Q1",1440,1033,636.8,374800,257421,152106,2826.3,2201,1151.1,5.01,20.8,null,1822],["2028Q2",1760,1269,849.2,444800,321760,152888,3982,3143.5,1157.9,5.65,19.7,null,1960],["2028Q3",1960,1409,1089.3,478800,389453,153565,5303.5,4223.3,1164.1,6.22,20.8,null,2271],["2028Q4",1960,1409,1271,478800,440423,154241,6298,5040.5,1170.3,6.53,null,null,2527],["2029Q1",2210,1584,1346.4,517800,459893,154918,6722.4,5387.7,1176.5,6.67,21.8,null,2781],["2029Q2",2760,1969,1438.7,603800,481586,155373,7250.3,5834.4,1181.5,6.87,21.8,null,3055],["2029Q3",3160,2249,1708,664800,542679,155828,8798.5,7149.4,1186.5,7.4,21.8,null,2828],["2029Q4",3435,2442,2027.6,695400,614349,156284,10634.4,8711.7,1191.6,7.9,21.8,null,3113],["2030Q1",3710,2635,2262.2,726000,661163,156739,11981.8,9858.1,1196.6,8.27,24,null,3418],["2030Q2",3985,2828,2456.7,756600,693390,156739,13145.5,10853.7,1196.6,8.66,24,null,3638],["2030Q3",4260,3020,2651.8,787100,725580,156739,14356.8,11896.4,1196.6,9.04,24,null,3409],["2030Q4",4260,3020,2845.9,787100,757285,156739,15564.6,12936.5,1196.6,9.38,null,null,null]],"CAPQ":{"2025Q3":[682,110],"2026Q1":[300,60],"2026Q2":[1450,750],"2026Q3":[4860,1300],"2026Q4":[2900,1500],"2027Q1":[3816,530],"2027Q3":[2160,300],"2027Q4":[14080,4900],"2028Q1":[5460,2100],"2028Q2":[8916,2580],"2028Q3":[5460,2100],"2029Q1":[7175,2625],"2029Q2":[15785,5775],"2029Q3":[11480,4200],"2029Q4":[8685,2895],"2030Q1":[8685,2895],"2030Q2":[8685,2895],"2030Q3":[8640,2880]},"ARRC":{"2025Q2":0.02,"2025Q3":0.15,"2025Q4":0.15,"2026Q1":0.3,"2026Q2":0.79,"2026Q3":3.14,"2026Q4":4.11,"2027Q1":5.66,"2027Q2":5.66,"2027Q3":6.59,"2027Q4":13.25,"2028Q1":15.87,"2028Q2":20.05,"2028Q3":22.67,"2028Q4":22.67,"2029Q1":26.1,"2029Q2":33.65,"2029Q3":39.15,"2029Q4":42.93,"2030Q1":47.1,"2030Q2":51.27,"2030Q3":55.42,"2030Q4":55.42},"fund":{"cost":49,"max":66,"rows":[["Contracted MW",[[17,"var(--s1)","customer prepayment, 50% of the GPU cost"],[30.6,"var(--s2)","GPU financing at 90% of the GPU cost"],[9.75,"var(--s3)","shell debt at 65% of the shell cost"]]],["Unsigned MW",[[17,"var(--s2)","GPU financing at 50%"],[7.5,"var(--s3)","shell debt at 50%"],[24.5,"var(--s4)","equity — the gap to $49m"]]]],"cap":"how ONE IT megawatt of new build is paid for · $m per MW, against $49m of cost (2027 liquid vintage: $34m GPUs + $15m shell)"},"bridge":{"label":"FY27 capex guide","lo":25,"hi":30,"max":32,"range":"$25–30bn","quote":"“approximately $25 billion to $30 billion” — A. Lewis, CFO","segs":[[14,"var(--s1)","cash + committed GPU financing + prepayments"],[8,"var(--s2)","additional GPU financing + prepayments, targeted"],[6,"var(--sunk)","DC financing, operating cash flow, corporate"]],"total":"≈ $28bn","cap":"FY27 bridge · $bn"},"steady":{"steps":[["Revenue",22.5,"total"],["Running costs",-7.88,"d"],["Cash profit",14.63,"sub"],["GPU refresh + spares",-5.7,"d"],["Shell 25-yr",-0.6,"d"],["Tax 21%",-1.75,"d"],["Owner keeps",6.58,"total"]],"stepsMax":24,"footer":"$6.58m today · market +6%/yr for five years, repriced at renewal: worth $91m = 4.06×","regimes":[["Blend: 90% contracted, 10% spot",4.06,"base"],["Contracted, 3-yr terms",4.12,""],["Spot only, 13% discount",3.5,""],["Flat $/MW, no density pricing",2.97,""],["Never refresh, −5%/yr",2.91,""]],"regimesMax":4.6},"finance":{"M":0.65,"W":0.105,"MULT":4.06,"SH0":394.1,"EQ_SHARE":0.1,"EQ_PX":55,"DEBT0":7.7,"CASH0":5.896,"RATE":0.07,"TAX":0.21,"MINCASH":3,"CONV":6.746,"CONV_RATE":0.009,"CASH_R":1.724,"FWD":14.5,"SERIES":[[0.212,16.81,25.86],[0.233,13.64,20.98],[1,85.63,120.18],[1.15,51.4,82.24],[1.15,51.4,82.24],[3,73.07,110.3]],"T0":"2026Q3","HORIZON":4.33,"AMORT":0.16,"EQ_FROM":2027,"GPU_LIFE":5,"SHELL_LIFE":25,"prepay":{"ratio":0.5,"startQ":8,"termQ":4,"termQOverride":{"2027Q1":12},"alreadyReceived":{"2027Q1":0.83},"special":{"2026Q3":{"replaceG":1.45,"upfront":0.483},"2026Q4":{"replaceG":2.9,"upfront":0.483}},"credits":[{"from":"2028Q3","n":12,"amt":0.966},{"from":"2028Q4","n":12,"amt":0.966}],"openingOwed":1.843,"basis":"50% of GPU capex on contracted capacity (FY26 release fn.4: 45-55%), credited back after month 24 to the end of term (Microsoft SOW EX-10.3 s3.2.a.iii mechanism); Microsoft $1.933bn = $483m per Horizon, $1.013bn (H1-2) and $0.83bn of other prepayments in June-26 cash (10-K Note 20 deferred revenue $1.84bn), H3-4 arrive 2026Q3-Q4, credited over months 25-60"},"cover":{"ctrPre":0.5,"ctrGpu":0.9,"ctrShell":0.65,"spotGpu":0.5,"spotShell":0.5},"basis":"debt 7% (converts 0.9% cash coupon, 10-K Note 23), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $55 plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, capped calls, 10-K Notes 17/23) convert at the model 2030 price; restricted cash $1.724bn counted; prepaid forwards 14.5m shares returned Dec-29/Jun-30"},"rr":62.2584,"year":"2030","gpuMax":1000000,"arrMax":60,"hero":{"power":["2,310","MW with substations energised"],"capex":["16%","of last year’s $19bn was equity"]}};let PX=P.px.v; const SH=P.evArr.sh, ND=P.evArr.nd, ARR0=P.evArr.arr; window.PX_HOOKS=window.PX_HOOKS||[];
+const P=window.P=__PAGE__;let PX=P.px.v; const SH=P.evArr.sh, ND=P.evArr.nd, ARR0=P.evArr.arr; window.PX_HOOKS=window.PX_HOOKS||[];
 document.getElementById('fPx').textContent='$'+PX.toFixed(2);
 const fmt=n=>n.toLocaleString('en-US');
 const tip=document.getElementById('tip');
@@ -601,7 +472,7 @@ const ps=R.ps;document.getElementById('hLedger').textContent='$'+ps.toFixed(0);d
 </script>
 <script>
 (function(){const tok=window.FINNHUB_TOKEN||'';const el=document.getElementById('fPx'),note=el.nextElementSibling;
-async function refresh(){if(!tok)return;try{const r=await fetch('https://finnhub.io/api/v1/quote?symbol=IREN&token='+encodeURIComponent(tok),{cache:'no-store'});const j=await r.json();const px=+j.c;if(!(px>0))return;el.textContent='$'+px.toFixed(2);note.textContent='Finnhub, live · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' · refreshes every 15 min';(window.PX_HOOKS||[]).forEach(h=>{try{h(px);}catch(e){}});}catch(e){}}
+async function refresh(){if(!tok)return;try{const r=await fetch('https://finnhub.io/api/v1/quote?symbol=__TK__&token='+encodeURIComponent(tok),{cache:'no-store'});const j=await r.json();const px=+j.c;if(!(px>0))return;el.textContent='$'+px.toFixed(2);note.textContent='Finnhub, live · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' · refreshes every 15 min';(window.PX_HOOKS||[]).forEach(h=>{try{h(px);}catch(e){}});}catch(e){}}
 refresh();setInterval(refresh,15*60*1000);})();
 </script>
 </body>
