@@ -2,6 +2,7 @@
 
 The single record of what changed. One line per change, newest first.
 
+- IREN ramp: storage/ancillary attach on unsigned tranches 0.05 -> 0 (owner-directed 2026-09-02, base 'A'). IREN defines its per-MW pricing on an ARR that 'includes annualized revenue for storage and ancillaries' and credits managed services for the '>$20m per MW' figure, so the $20.0M/IT-MW-yr mark is already all-in and a further 5% double-counted (flagged by the Sep-2026 rate sweep). Effect: unsigned revenue -4.8% (1/1.05); 2030Q4 run-rate $65.0 -> ~$62bn; contracted ARR (IREN definition) end-2030 ~$55bn. Signed tranches unaffected; RETRODICTION UNCHANGED (attach never applied inside the calibration window); checks 0 FAIL. Engine untouched.
 - iren.html summary table, Cash band: 'Cash tax at 21%' row removed from display (owner-directed 2026-09-02); tax still runs inside the waterfall. Numbers unchanged.
 - iren.html summary table, Cash band: '$m per IT MW built, vintage' row removed (owner-directed 2026-09-02). Numbers unchanged.
 - iren.html summary table, Rate band: the vintage contract-rate, signed-% and contracted-% rows removed (owner-directed 2026-09-02); the two fleet-blend rows stay. Numbers unchanged.

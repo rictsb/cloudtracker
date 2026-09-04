@@ -2387,8 +2387,8 @@
       "signed": 0
      }
     ],
-    "attach": 0.05,
-    "attachBasis": "Storage, CPU, networking and managed-services revenue earned alongside GPU hours. Applied ONLY to tranches with signed=0: their rates are market GPU-RENTAL prints, so attach is additive. Signed tranches are excluded because every rate in that book was back-solved from ALL-IN contract dollars (Microsoft $9.7bn/5yr over 76,000 GPUs; the legacy $2.48 came out of IREN's own ARR, which by its own footnote already includes storage and ancillaries) — an uplift there would double-count. Sized on CoreWeave's disclosure: storage + CPU + networking above $400M ARR against a ~$10.3bn revenue run-rate (3.9%), plus managed inference reaching >=$250M by exit-2026 against $18.5-19.5bn exit ARR (1.3%). IREN closed the Mirantis AI-cloud software stack 4-Aug-2026, so it owns rather than licenses the managed layer."
+    "attach": 0,
+    "attachBasis": "Storage, CPU, networking and managed-services revenue earned alongside GPU hours — NOT applied (0). IREN's contract pricing is quoted per IT megawatt on its ARR definition, which by the FY26 release footnote 'includes annualized revenue for storage and ancillaries', and Roberts credits 'what we attach on top in managed services' for the '>$20m per MW' figure; the $20.0M/IT-MW-yr the unsigned book is marked at is therefore already all-in, and an uplift on top double-counts (found by the Sep-2026 rate sweep, adopted 2026-09-02). The 5% previously carried was sized on CoreWeave's disclosure (storage + CPU + networking above $400M ARR against a ~$10.3bn run-rate, plus managed inference >=$250M by exit-2026) and remains the right order of magnitude for what the attach IS — it is simply inside the per-MW price, not additional to it. Signed tranches were never uplifted (their rates are back-solved from all-in contract dollars)."
    },
    "model": "owner",
    "tier": "proven",
