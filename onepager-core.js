@@ -89,5 +89,25 @@
     return S.map(([n, o]) => { const r = waterfall(L, CAPQ, F, ARRC, o); return { name: n, ps: r.ps, delta: r.ps - base, nd: r.ndc, sh: r.dil, eq: r.eqTot }; });
   }
 
-  return { waterfall, sensitivities, QS };
+  /* the steady-state per-MW DCF that yields the EV/ARR multiple (spec §6e step 5).
+     p: {rev, M, gpu, shell, shellLife, swap, life, fail, tax, W, g, gY, term, spotW, spotShare, H}
+     rev $m per IT MW-yr today; M EBITDA margin; gpu/shell $m per IT MW for the marginal MW; swap = refresh cost as a share of gpu every `life` years;
+     fail = spares as a share of gpu per year; market $/MW grows g for gY years then flat; contracted MW reprice every `term` years, spot MW every year at W+spotW */
+  function steadyValue(p, term, Wd) {
+    const H = p.H || 60, sh = (p.shell || 0) / (p.shellLife || 25); let pv = 0, rate = p.rev;
+    for (let y = 1; y <= H; y++) {
+      const market = p.rev * Math.pow(1 + (p.g || 0), Math.min(y, p.gY || 0));
+      if (term === 1) rate = market; else if ((y - 1) % term === 0 && y > 1) rate = market;
+      const eb = rate * p.M, dep = p.gpu * p.swap / p.life + sh, tax = Math.max(0, eb - dep) * p.tax;
+      let fcf = eb - sh - tax - (p.fail || 0) * p.gpu; if (y % p.life === 0) fcf -= p.gpu * p.swap;
+      pv += fcf / Math.pow(1 + Wd, y);
+    }
+    return pv / p.rev;
+  }
+  function steadyMultiple(p) {
+    const c = steadyValue(p, p.term || 3, p.W), s = steadyValue(p, 1, p.W + (p.spotW || .025)), ss = p.spotShare != null ? p.spotShare : .1;
+    return { blend: (1 - ss) * c + ss * s, contracted: c, spot: s };
+  }
+
+  return { waterfall, sensitivities, steadyMultiple, steadyValue, QS };
 });

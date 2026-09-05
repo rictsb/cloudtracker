@@ -204,7 +204,7 @@ __NOTES_3__
 __TILES__
     </div>
     <figure>
-      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>customer prepayment</span><span><i class="sw" style="background:var(--s2)"></i>GPU financing</span><span><i class="sw" style="background:var(--s3)"></i>data-centre debt</span><span><i class="sw" style="background:var(--s4)"></i>equity</span><span>__FUNDCAP__</span></div>
+      <div class="cap"><span><i class="sw" style="background:var(--s1)"></i>customer prepayment</span><span><i class="sw" style="background:var(--s2)"></i>GPU financing</span><span><i class="sw" style="background:var(--s3)"></i>__SHELLDEBT__</span><span><i class="sw" style="background:var(--s4)"></i>equity</span><span>__FUNDCAP__</span></div>
       <div class="scroll" id="gFund"></div>
     </figure>
     <figure>
@@ -290,7 +290,7 @@ __NOTES_6__
 <script>/*__CORE__*/</script>
 <script>
 (function(){
-const P=window.P=__PAGE__;let PX=P.px.v; const SH=P.evArr.sh, ND=P.evArr.nd, ARR0=P.evArr.arr; window.PX_HOOKS=window.PX_HOOKS||[];
+const P=window.P=__PAGE__;P.labels=Object.assign({shell:'shell',shellRow:'Capex — shell',shellDebt:'data-centre debt',debt:'Debt',energised:'energised'},P.labels||{});let PX=P.px.v; const SH=P.evArr.sh, ND=P.evArr.nd, ARR0=P.evArr.arr; window.PX_HOOKS=window.PX_HOOKS||[];
 document.getElementById('fPx').textContent='$'+PX.toFixed(2);
 const fmt=n=>n.toLocaleString('en-US');
 const tip=document.getElementById('tip');
@@ -451,15 +451,15 @@ const F=P.finance,L=P.L,CAPQ=P.CAPQ,CONV=F.CONV||0;
 const f0=n=>n==null?'':Math.round(n).toLocaleString('en-US'),f1=n=>n==null?'':n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1}),pct=n=>n==null?'':(n*100).toFixed(0)+'%';
 const R=OnePager.waterfall(L,CAPQ,F,window.ARRC),C=R.C,dil=R.dil,pl=R.pl,addb=R.addb;
 const row=(r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>';
-document.getElementById('lEps').innerHTML=[[P.year+' revenue','$'+pl.rev.toFixed(1)+'bn'],['EBITDA '+pct(F.M),'$'+pl.eb.toFixed(1)+'bn'],['− D&A — GPUs over '+(F.GPU_LIFE||5)+' yr, shell over '+(F.SHELL_LIFE||25),'−$'+pl.da.toFixed(1)+'bn'],['− interest: ~$'+pl.debtAvg.toFixed(0)+'bn of debt at '+pct(F.RATE)+(CONV?', $'+CONV.toFixed(1)+'bn of converts at '+(F.CONV_RATE*100).toFixed(1)+'%':''),'−$'+pl.intr.toFixed(1)+'bn'],['− tax '+pct(F.TAX),'−$'+pl.tax.toFixed(1)+'bn'],['= net income','$'+pl.ni.toFixed(1)+'bn'],['÷ '+dil.toFixed(0)+'m diluted shares'+(CONV?', converts in':''),'$'+((pl.ni*1000+addb)/dil).toFixed(1)+' EPS']].map(row).join('');
+document.getElementById('lEps').innerHTML=[[P.year+' revenue','$'+pl.rev.toFixed(1)+'bn'],['EBITDA '+pct(F.M),'$'+pl.eb.toFixed(1)+'bn'],['− D&A — GPUs over '+(F.GPU_LIFE||5)+' yr, '+P.labels.shell+' over '+(F.SHELL_LIFE||25),'−$'+pl.da.toFixed(1)+'bn'],['− interest: ~$'+pl.debtAvg.toFixed(0)+'bn of debt at '+pct(F.RATE)+(CONV?', $'+CONV.toFixed(1)+'bn of converts at '+(F.CONV_RATE*100).toFixed(1)+'%':''),'−$'+pl.intr.toFixed(1)+'bn'],['− tax '+pct(F.TAX),'−$'+pl.tax.toFixed(1)+'bn'],['= net income','$'+pl.ni.toFixed(1)+'bn'],['÷ '+dil.toFixed(0)+'m diluted shares'+(CONV?', converts in':''),'$'+((pl.ni*1000+addb)/dil).toFixed(1)+' EPS']].map(row).join('');
 const ni6=pl.ni+pl.dag/6*(1-F.TAX);document.getElementById('nEps').textContent=P.year+' net income ≈ $'+pl.ni.toFixed(1)+'bn at '+P.tk+'’s '+(F.GPU_LIFE||5)+'-year book ($'+((pl.ni*1000+addb)/dil).toFixed(1)+' a share on '+dil.toFixed(0)+'m diluted), ≈ $'+ni6.toFixed(1)+'bn ($'+((ni6*1000+addb)/dil).toFixed(1)+') depreciated over six like CoreWeave.';
-const ROWS=[['sec','Power'],['Gross MW energised',c=>f0(c.g)],['IT MW energised',c=>f0(c.it)],['+ IT MW in the quarter',c=>f0(c.add)],
- ['sec','Use'],['IT MW earning',c=>f1(c.itE)],['Utilisation — earning ÷ energised',c=>pct(c.util)],
+const ROWS=[['sec','Power'],['Gross MW '+P.labels.energised,c=>f0(c.g)],['IT MW '+P.labels.energised,c=>f0(c.it)],['+ IT MW in the quarter',c=>f0(c.add)],
+ ['sec','Use'],['IT MW earning',c=>f1(c.itE)],['Utilisation — earning ÷ '+P.labels.energised,c=>pct(c.util)],
  ['sec','GPUs'],['Installed',c=>f0(c.gi)],['Commissioned',c=>f0(c.gc)],
  ['sec','Rate'],['$ per GPU-hr, fleet blend',c=>c.bl.toFixed(2)],['$m per IT MW-yr, fleet blend',c=>c.itE>0?f1(c.perMW):'—'],
  ['sec','Revenue'],['Contracted ARR — '+P.arrLabel+', $bn',c=>c.arrc!=null?c.arrc.toFixed(1):''],['Model, $m',c=>f1(c.rev)],['Street, $m',c=>c.st!=null?f0(c.st):''],['Run-rate, $bn',c=>c.rr.toFixed(1)],
- ['sec','Cash'],['EBITDA at '+pct(F.M)+', $m',c=>f0(c.eb)],['Capex — GPUs + ancillaries, by vintage',c=>f0(c.capG)],['Capex — shell',c=>f0(c.capS)],['Capex, total',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':''],['Customer prepayments received',c=>c.r?f0(c.r.pre):''],['Prepayments credited against fees',c=>c.r?f0(-c.r.cred):'',c=>c.r&&c.r.cred>0?'neg':''],['Equity raised',c=>c.r?f0(c.r.eq):''],['Debt drawn',c=>c.r?f0(c.r.draw):''],['Interest — debt at '+pct(F.RATE)+(CONV?', converts at '+(F.CONV_RATE*100).toFixed(1)+'%':''),c=>c.r?f0(c.r.intr):''],
- ['sec','Balance sheet'],['Debt'+(CONV?' ex converts':'')+', $bn',c=>c.r?c.r.debt.toFixed(1):''],CONV?['Convertible notes, $bn — equity at the tie-out',c=>c.r?CONV.toFixed(1):'']:null,['Cash, $bn',c=>c.r?c.r.cash.toFixed(1):''],['Net debt'+(CONV?' ex converts':'')+', $bn',c=>c.r?c.r.nd.toFixed(1):'',c=>c.r&&c.r.nd<0?'pos':''],['Prepayments owed to customers, $bn',c=>c.r?c.r.owed.toFixed(1):''],['Shares outstanding, m'+(CONV?' — before the converts':''),c=>c.r?f0(c.r.sh):''],
+ ['sec','Cash'],['EBITDA at '+pct(F.M)+', $m',c=>f0(c.eb)],['Capex — GPUs + ancillaries, by vintage',c=>f0(c.capG)],[P.labels.shellRow,c=>f0(c.capS)],['Capex, total',c=>f0(c.capex)],['Cash before financing',c=>f0(c.cbf),c=>c.cbf<0?'neg':c.cbf>0?'pos':''],['Customer prepayments received',c=>c.r?f0(c.r.pre):''],['Prepayments credited against fees',c=>c.r?f0(-c.r.cred):'',c=>c.r&&c.r.cred>0?'neg':''],['Equity raised',c=>c.r?f0(c.r.eq):''],['Debt drawn',c=>c.r?f0(c.r.draw):''],['Interest — debt at '+pct(F.RATE)+(CONV?', converts at '+(F.CONV_RATE*100).toFixed(1)+'%':''),c=>c.r?f0(c.r.intr):''],
+ ['sec','Balance sheet'],[P.labels.debt+(CONV?' ex converts':'')+', $bn',c=>c.r?c.r.debt.toFixed(1):''],CONV?['Convertible notes, $bn — equity at the tie-out',c=>c.r?CONV.toFixed(1):'']:null,['Cash, $bn',c=>c.r?c.r.cash.toFixed(1):''],['Net debt'+(CONV?' ex converts':'')+', $bn',c=>c.r?c.r.nd.toFixed(1):'',c=>c.r&&c.r.nd<0?'pos':''],['Prepayments owed to customers, $bn',c=>c.r?c.r.owed.toFixed(1):''],['Shares outstanding, m'+(CONV?' — before the converts':''),c=>c.r?f0(c.r.sh):''],
  ['sec','Earnings'],['Net income, $m',c=>c.r?f0(c.r.ni):'',c=>c.r&&c.r.ni<0?'neg':''],['EPS, calendar year'+(CONV?' — converts in':''),c=>c.epsYE!==undefined?'$'+c.epsYE.toFixed(2):'',c=>c.epsYE!==undefined&&c.epsYE<0?'neg':'']].filter(Boolean);
 const qh=q=>'’'+q.slice(2,4)+'<br>Q'+q.slice(5);
 let html='<table><thead><tr><th></th>'+C.map(c=>'<th class="'+(c.ye?'ye ':'')+(c.past?'past':'')+'">'+qh(c.q)+'</th>').join('')+'</tr></thead><tbody>';
