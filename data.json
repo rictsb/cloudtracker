@@ -815,7 +815,996 @@
     }
    ],
    "signedRate": 9.7,
-   "sharesReported": 545.6
+   "sharesReported": 545.6,
+   "ramp": {
+    "asOf": "2026-09-04",
+    "tranches": [
+     {
+      "n": "2023 fleet (H100, Microsoft)",
+      "campus": "Leased DCs — 2023",
+      "grossMW": 91,
+      "itMW": 70,
+      "gpus": 49000,
+      "gen": "hopper",
+      "energize": "2023Q4",
+      "rev": "2024Q1",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 1.71,
+      "signed": 1
+     },
+     {
+      "n": "2024 adds Q2",
+      "campus": "Leased DCs — 2024",
+      "grossMW": 117,
+      "itMW": 90,
+      "gpus": 63000,
+      "gen": "hopper",
+      "energize": "2024Q2",
+      "rev": "2024Q2",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 1.63,
+      "signed": 1
+     },
+     {
+      "n": "2024 adds Q3",
+      "campus": "Leased DCs — 2024",
+      "grossMW": 130,
+      "itMW": 100,
+      "gpus": 70000,
+      "gen": "hopper",
+      "energize": "2024Q3",
+      "rev": "2024Q3",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 1.63,
+      "signed": 1
+     },
+     {
+      "n": "2024 adds Q4",
+      "campus": "Leased DCs — 2024",
+      "grossMW": 130,
+      "itMW": 100,
+      "gpus": 70000,
+      "gen": "hopper",
+      "energize": "2024Q4",
+      "rev": "2024Q4",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 1.63,
+      "signed": 1
+     },
+     {
+      "n": "2025 Q1 (H200)",
+      "campus": "Leased DCs — 2025",
+      "grossMW": 78,
+      "itMW": 60,
+      "gpus": 42000,
+      "gen": "hopper",
+      "energize": "2025Q1",
+      "rev": "2025Q1",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 1.55,
+      "signed": 1
+     },
+     {
+      "n": "2025 Q2 (H200/GB200)",
+      "campus": "Leased DCs — 2025",
+      "grossMW": 65,
+      "itMW": 50,
+      "gpus": 35000,
+      "gen": "hopper",
+      "energize": "2025Q2",
+      "rev": "2025Q2",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 1.55,
+      "signed": 1
+     },
+     {
+      "n": "2025 Q3 (GB200)",
+      "campus": "Leased DCs — 2025",
+      "grossMW": 156,
+      "itMW": 120,
+      "gpus": 48000,
+      "gen": "blackwell",
+      "energize": "2025Q3",
+      "rev": "2025Q3",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 2.71,
+      "signed": 1
+     },
+     {
+      "n": "2025 Q4 (GB200, Denton, Chester)",
+      "campus": "Leased DCs — 2025",
+      "grossMW": 338,
+      "itMW": 260,
+      "gpus": 104000,
+      "gen": "blackwell",
+      "energize": "2025Q4",
+      "rev": "2025Q4",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 2.71,
+      "signed": 1
+     },
+     {
+      "n": "2026 Q1 (Denton, Dalton, Ellendale)",
+      "campus": "Leased DCs — 2026",
+      "grossMW": 260,
+      "itMW": 200,
+      "gpus": 80000,
+      "gen": "blackwell",
+      "energize": "2026Q1",
+      "rev": "2026Q1",
+      "rampQtrs": 3,
+      "ctr": 1,
+      "rate": 2.85,
+      "signed": 1
+     },
+     {
+      "n": "2026 Q2 (+~500 MW, >300 in June)",
+      "campus": "Leased DCs — 2026",
+      "grossMW": 585,
+      "itMW": 450,
+      "gpus": 180000,
+      "gen": "blackwell",
+      "energize": "2026Q2",
+      "rev": "2026Q3",
+      "rampQtrs": 3,
+      "ctr": 1,
+      "rate": 2.85,
+      "signed": 1
+     },
+     {
+      "n": "2026 Q3 (Helios 1, Ellendale 2, Muskogee)",
+      "campus": "Leased DCs — 2026",
+      "grossMW": 260,
+      "itMW": 200,
+      "gpus": 80000,
+      "gen": "blackwell",
+      "energize": "2026Q3",
+      "rev": "2026Q3",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 2.85,
+      "signed": 1
+     },
+     {
+      "n": "2026 Q4",
+      "campus": "Leased DCs — 2026",
+      "grossMW": 195,
+      "itMW": 150,
+      "gpus": 60000,
+      "gen": "blackwell",
+      "energize": "2026Q4",
+      "rev": "2026Q4",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 2.85,
+      "signed": 1
+     },
+     {
+      "n": "2027 Q1 (Helios 2, Ellendale 3)",
+      "campus": "Leased DCs — 2027",
+      "grossMW": 325,
+      "itMW": 250,
+      "gpus": 100000,
+      "gen": "blackwell",
+      "energize": "2027Q1",
+      "rev": "2027Q1",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 4,
+      "signed": 1
+     },
+     {
+      "n": "2027 Q2 (Kenilworth, CORZ Dalton/Marble)",
+      "campus": "Leased DCs — 2027",
+      "grossMW": 390,
+      "itMW": 300,
+      "gpus": 120000,
+      "gen": "blackwell",
+      "energize": "2027Q2",
+      "rev": "2027Q2",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 4,
+      "signed": 1
+     },
+     {
+      "n": "2027 Q3 (Lancaster, Chicago)",
+      "campus": "Leased DCs — 2027",
+      "grossMW": 390,
+      "itMW": 300,
+      "gpus": 120000,
+      "gen": "blackwell",
+      "energize": "2027Q3",
+      "rev": "2027Q3",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 4,
+      "signed": 1
+     },
+     {
+      "n": "2027 Q4 (Vera Rubin: Meta, Jane Street)",
+      "campus": "Leased DCs — 2027",
+      "grossMW": 390,
+      "itMW": 300,
+      "gpus": 75000,
+      "gen": "rubin",
+      "energize": "2027Q4",
+      "rev": "2027Q4",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 6.39,
+      "signed": 1
+     },
+     {
+      "n": "2028 Q1 (contracted footprint to 4.2 GW)",
+      "campus": "Contracted DCs — 2028",
+      "grossMW": 390,
+      "itMW": 300,
+      "gpus": 75000,
+      "gen": "rubin",
+      "energize": "2028Q1",
+      "rev": "2028Q1",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 7.08,
+      "signed": 1
+     },
+     {
+      "n": "2028 Q2 (contracted footprint to 4.2 GW)",
+      "campus": "Contracted DCs — 2028",
+      "grossMW": 390,
+      "itMW": 300,
+      "gpus": 75000,
+      "gen": "rubin",
+      "energize": "2028Q2",
+      "rev": "2028Q2",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 7.08,
+      "signed": 1
+     },
+     {
+      "n": "2028 Q3 (contracted footprint to 4.2 GW)",
+      "campus": "Contracted DCs — 2028",
+      "grossMW": 390,
+      "itMW": 300,
+      "gpus": 75000,
+      "gen": "rubin",
+      "energize": "2028Q3",
+      "rev": "2028Q3",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 7.08,
+      "signed": 1
+     },
+     {
+      "n": "2028 Q4 (contracted footprint to 4.2 GW)",
+      "campus": "Contracted DCs — 2028",
+      "grossMW": 390,
+      "itMW": 300,
+      "gpus": 75000,
+      "gen": "rubin",
+      "energize": "2028Q4",
+      "rev": "2028Q4",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 7.08,
+      "signed": 1
+     },
+     {
+      "n": "2029 Q1 (options / LOIs)",
+      "campus": "Options + LOIs — 2029",
+      "grossMW": 488,
+      "itMW": 375,
+      "gpus": 93750,
+      "gen": "rubin",
+      "energize": "2029Q1",
+      "rev": "2029Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 7.53,
+      "signed": 0
+     },
+     {
+      "n": "2029 Q2 (options / LOIs)",
+      "campus": "Options + LOIs — 2029",
+      "grossMW": 488,
+      "itMW": 375,
+      "gpus": 93750,
+      "gen": "rubin",
+      "energize": "2029Q2",
+      "rev": "2029Q2",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 7.53,
+      "signed": 0
+     },
+     {
+      "n": "2029 Q3 (options / LOIs)",
+      "campus": "Options + LOIs — 2029",
+      "grossMW": 488,
+      "itMW": 375,
+      "gpus": 93750,
+      "gen": "rubin",
+      "energize": "2029Q3",
+      "rev": "2029Q3",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 7.53,
+      "signed": 0
+     },
+     {
+      "n": "2029 Q4 (options / LOIs)",
+      "campus": "Options + LOIs — 2029",
+      "grossMW": 488,
+      "itMW": 375,
+      "gpus": 93750,
+      "gen": "rubin",
+      "energize": "2029Q4",
+      "rev": "2029Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 7.53,
+      "signed": 0
+     },
+     {
+      "n": "2030 Q1 (pipeline, rumored)",
+      "campus": "Pipeline — 2030",
+      "grossMW": 423,
+      "itMW": 325,
+      "gpus": 65000,
+      "gen": "next",
+      "energize": "2030Q1",
+      "rev": "2030Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.99,
+      "signed": 0
+     },
+     {
+      "n": "2030 Q2 (pipeline, rumored)",
+      "campus": "Pipeline — 2030",
+      "grossMW": 423,
+      "itMW": 325,
+      "gpus": 65000,
+      "gen": "next",
+      "energize": "2030Q2",
+      "rev": "2030Q2",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.99,
+      "signed": 0
+     },
+     {
+      "n": "2030 Q3 (pipeline, rumored)",
+      "campus": "Pipeline — 2030",
+      "grossMW": 423,
+      "itMW": 325,
+      "gpus": 65000,
+      "gen": "next",
+      "energize": "2030Q3",
+      "rev": "2030Q3",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.99,
+      "signed": 0
+     },
+     {
+      "n": "2030 Q4 (pipeline, rumored)",
+      "campus": "Pipeline — 2030",
+      "grossMW": 423,
+      "itMW": 325,
+      "gpus": 65000,
+      "gen": "next",
+      "energize": "2030Q4",
+      "rev": "2030Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.99,
+      "signed": 0
+     }
+    ],
+    "spot": {
+     "2024": 2.5,
+     "2025": 2.5,
+     "2026": 2.4,
+     "2027": 11.7,
+     "2028": 11.7,
+     "2029": 11.7,
+     "2030": 11.7
+    },
+    "spotMult": {
+     "hopper": 0.21,
+     "blackwell": 0.35,
+     "rubin": 0.55,
+     "next": 0.7
+    },
+    "attach": 0,
+    "earningRate": 1.5,
+    "actuals": {
+     "2024Q1": {
+      "aiRevM": 188.7
+     },
+     "2024Q2": {
+      "aiRevM": 395.4
+     },
+     "2024Q3": {
+      "aiRevM": 583.9
+     },
+     "2024Q4": {
+      "aiRevM": 747
+     },
+     "2025Q1": {
+      "aiRevM": 981.6
+     },
+     "2025Q2": {
+      "aiRevM": 1212.8
+     },
+     "2025Q3": {
+      "aiRevM": 1364.7
+     },
+     "2025Q4": {
+      "aiRevM": 1572
+     },
+     "2026Q1": {
+      "aiRevM": 2078
+     },
+     "2026Q2": {
+      "aiRevM": 2575
+     }
+    },
+    "consensus": {
+     "2026Q3": [
+      3520,
+      3520
+     ],
+     "2026Q4": [
+      4100,
+      4100
+     ]
+    },
+    "calibration": {
+     "rampMult": 1,
+     "appliesTo": "the uncontracted share of each tranche only",
+     "fittedOn": "2024Q1-2026Q2 reported revenue (ten quarters)",
+     "basis": "Ten reported quarters retrodicted with rampMult 1: MAPE 8.0%, bias -3.1%. There is no sell-down leg to calibrate — 98% of revenue is take-or-pay and bills on acceptance — so the observed lag between active power and revenue (the 2026Q1-Q2 additions bill over three quarters, >300 MW energised in June 2026 alone) is carried on the tranches directly as rampQtrs 2-3, not as a multiplier. Vintage rates were set so the retrodiction holds: $10.5m/$10m per active MW-yr on 2023-24, $9.5m on 2025, $10m on 2026."
+    },
+    "basis": "Quarterly GPU-ramp overlay for CoreWeave (owner-approved playbook §6e, drafted 2026-09-04) — DISPLAY ONLY. 'Active power' as reported by the company is treated as billing IT MW. History from company-reported active power (70 MW Dec-23, >360 Dec-24, 420/470/590/850 MW through 2025, >1 GW Mar-26, 1.5 GW Jun-26; 10-K FY25, 10-Q Q2-26, calls) and AI-cloud revenue by quarter; 2026H2 to the >1.85 GW year-end guide (11 Aug 2026); 2027 to the >3 GW active-by-YE27 framing on the Q2-26 call (Helios 393 MW undelivered, Applied Digital 225 MW, Lancaster, Kenilworth, Core Scientific Dalton/Marble/Muskogee, Chicago); 2028 the 4.2 GW contracted footprint fully active; 2029 the >1.5 GW of options and LOIs, unsigned (ctr 0.9); 2030 the tracker's rumored pipeline (1.3 GW) — 7.0 GW at 2030Q4 against the company's >=8 GW objective, the gap left unmodelled. Rates per active MW-yr by vintage: 2023-24 $10.5-10m (H100-era hyperscaler contracts), 2025 $9.5m, 2026 $10m (exit-2026 ARR $18.5-19.5bn on >1.85 GW), 2027 $14m, 2028 $15.5m, 2029 $16.5m, 2030 $17.5m (July-2026 ~25% list repricing; Blackwell/Vera Rubin at new highs; still below IREN's $20-24m owner-operator marks because CoreWeave's book is hyperscaler-anchored). GPU density per active MW: Hopper 700, Blackwell 400, Rubin 250, next-gen 200. Contracted share 1.0 on signed capacity (98% take-or-pay), 0.9 on unsigned; spot from 2027 as IREN. Backtest on ten reported quarters: MAPE 8.0%, bias -3.1%.",
+    "actualsSource": "AI-cloud revenue by quarter: 10-K FY25 and 10-Qs (2024 quarters from prior-year comparatives in the 2025 releases)",
+    "consensusSource": "company guidance: Q3-26 revenue $3.45-3.6bn (11 Aug 2026)",
+    "chain": [
+     {
+      "id": "secured",
+      "link": "contracted power → monetised in-window",
+      "fn": "Σ tranche itMW (active) · gross = active × 1.3",
+      "value": "4.2 GW contracted + >1.5 GW options/LOIs + 1.3 GW rumored pipeline → 7.0 GW active modelled by 2030Q4 (9.1 GW gross)",
+      "assumption": "CoreWeave reports active and contracted power only; both are read as critical IT MW and gross is derived at PUE ~1.3. The company objective is >=8 GW by 2030; the last ~1 GW is not modelled.",
+      "range": "6-8 GW active by 2030; gross/active 1.2-1.4",
+      "moves": "run-rate and capex in proportion"
+     },
+     {
+      "id": "energise",
+      "link": "monetised MW → active MW by quarter",
+      "fn": "step function on each tranche energize quarter",
+      "value": ">1.85 GW YE26 (GUIDED 11 Aug 2026), ~3.0 GW YE27 (call framing), 4.2 GW YE28 (contracted footprint), 5.7 GW YE29 (options), 7.0 GW YE30 (pipeline)",
+      "assumption": "2027 onward follows management framing and lessor schedules (Helios 393 MW undelivered for 2026/2028, Applied Digital 225 MW, Lancaster, Kenilworth, Core Scientific Dalton/Marble/Muskogee). The 2025 target slipped 50 MW on one lessor; powered shell is the binding constraint.",
+      "range": "±2 quarters on every tranche after 2026",
+      "moves": "one quarter of slip on 2027-28 tranches ≈ -$2bn of 2028 revenue"
+     },
+     {
+      "id": "derate",
+      "link": "gross MW → critical IT MW",
+      "fn": "active power taken as IT MW (definition)",
+      "value": "1.0 by definition; gross shown at 1.3×",
+      "assumption": "If reported active power were gross rather than critical, per-MW revenue would be ~25% higher and MW ~20% lower — value-neutral to first order, but capex per MW would be understated.",
+      "range": "0.77-1.0",
+      "moves": "capex per active MW"
+     },
+     {
+      "id": "density",
+      "link": "critical IT MW → GPU count",
+      "fn": "gpus = itMW × GPUs per MW by generation",
+      "value": "Hopper 700 (1.43 kW), Blackwell 400 (2.5 kW), Rubin 250 (4.0 kW), next-gen 200 (5.0 kW) per active MW",
+      "assumption": "Company discloses >250k GPUs on 360 MW at end-2024 (~700/MW, Hopper-era); later generations at NVL72 rack densities. Rates are set per MW, so density only changes the displayed $/GPU-hr, not revenue.",
+      "range": "±20% per generation",
+      "moves": "displayed $/GPU-hr only"
+     },
+     {
+      "id": "hours",
+      "link": "GPUs → GPU-hours",
+      "fn": "live GPUs × 2,190 hr/qtr",
+      "value": "every reserved GPU bills whether or not it is used",
+      "assumption": "Committed contracts are take-or-pay on reserved GPUs (98% of revenue); the 2% on-demand slice is folded into the spot rate.",
+      "range": "n/a — hours are contractual",
+      "moves": "nothing"
+     },
+     {
+      "id": "ramp",
+      "link": "first revenue → full run-rate",
+      "fn": "linear over rampQtrs from the tranche rev quarter",
+      "value": "1-3 quarters (fit-out 1-2 months, then billing on acceptance)",
+      "assumption": "MODELLED off the reported lag: the 2026Q1-Q2 additions (650 MW) bill over three quarters. No sell-down leg: the book is contracted.",
+      "range": "1-4 quarters",
+      "moves": "timing only"
+     },
+     {
+      "id": "rate",
+      "link": "GPU-hours → revenue",
+      "fn": "revenue = GPU-hours × (ctr × vintage rate + (1-ctr) × spot × gen multiplier)",
+      "value": "$10m per active MW-yr on the signed book (exit-2026 run-rate $18.5-19.5bn on >1.85 GW), $14m on 2027 vintages rising to $17.5m by 2030; spot $35m realised from 2027 on 10% of unsigned capacity",
+      "assumption": "Signed hyperscaler contracts (Microsoft 67% of FY25 revenue, OpenAI, Meta) were struck at Hopper-era prices; new Blackwell/Rubin SKUs are at new highs after the July-2026 ~25% list repricing. 2027+ marks sit below IREN owner-operator marks ($20-24m) because the tenant book is hyperscaler-anchored and price-taking.",
+      "range": "$12-20m per active MW-yr on 2027+ vintages",
+      "moves": "±$1m per MW-yr on 2027+ vintages ≈ ±$4bn of 2030 run-rate"
+     }
+    ],
+    "scenarios": [
+     {
+      "id": "base",
+      "name": "Base",
+      "note": "As modelled.",
+      "d": {}
+     },
+     {
+      "id": "slip",
+      "name": "Slip 2 quarters",
+      "note": "Every tranche beyond 2027Q4 energises and earns two quarters later — the lessor-delay pattern of Q3-25 repeated at scale.",
+      "d": {
+       "slipQtrs": 2,
+       "from": 8
+      }
+     },
+     {
+      "id": "flatrate",
+      "name": "Flat vintages",
+      "note": "No repricing: every future tranche prices at the 2026 Blackwell level ($2.85/GPU-hr, $10m per active MW-yr) and spot falls back to 2026 levels.",
+      "d": {
+       "rateCap": 2.85,
+       "spotMult": 0.205
+      }
+     },
+     {
+      "id": "decay",
+      "name": "Price decay -20%",
+      "note": "Compute prices fall: every vintage and spot rate 20% below base.",
+      "d": {
+       "rateMult": 0.8,
+       "spotMult": 0.8
+      }
+     },
+     {
+      "id": "leaseup",
+      "name": "Lease-up at 50%",
+      "note": "The 2029-30 options and pipeline contract at half the modelled share (ctr 0.9 -> 0.45); the downside is funding (no 90% gearing on the spot slice), not revenue.",
+      "d": {
+       "ctrMult": 0.5
+      }
+     },
+     {
+      "id": "joint",
+      "name": "Joint downside",
+      "note": "The bear case: 50% slower ramp AND flat vintages with spot at 2026 levels AND two-quarter slip AND half lease-up, together.",
+      "d": {
+       "rampMult": 1.5,
+       "rateCap": 2.85,
+       "spotMult": 0.205,
+       "slipQtrs": 2,
+       "from": 8,
+       "ctrMult": 0.5
+      }
+     }
+    ]
+   },
+   "page": {
+    "asOf": "2026-09-04",
+    "kicker": "CoreWeave · NASDAQ · from the Q2-26 10-Q and the 11 Aug call",
+    "title": "CoreWeave: from MW to $",
+    "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
+    "px": {
+     "v": 89.36,
+     "note": "Finnhub, 4 Sep"
+    },
+    "evArr": {
+     "sh": 551.5,
+     "nd": 30.0,
+     "arr": 19
+    },
+    "facts": [
+     [
+      "Shares out",
+      "551.5m",
+      "10-Q cover, 31 Jul"
+     ],
+     [
+      "Net debt",
+      "$30.0bn",
+      "$35.6bn debt − $5.5bn cash"
+     ],
+     [
+      "Backlog",
+      "$104bn",
+      "RPO $103.7bn, 30 Jun"
+     ]
+    ],
+    "hero": {
+     "power": [
+      "1,500",
+      "MW active at 30 June · 4.2 GW contracted"
+     ],
+     "capex": [
+      "$35–39bn",
+      "2026 capex guide, 11 Aug"
+     ]
+    },
+    "capacity": {
+     "rows": [
+      [
+       "Objective by 2030",
+       8000,
+       "“at least 8 GW” — 11 Aug 2026"
+      ],
+      [
+       "Contracted power",
+       4200,
+       "11 Aug 2026 · plus >1.5 GW of powered land, options and LOIs"
+      ],
+      [
+       "Active by end-2027",
+       3000,
+       "“more than 3 gigawatts of active power by the end of next year”"
+      ],
+      [
+       "Active today",
+       1500,
+       "30 June · billing on take-or-pay"
+      ]
+     ],
+     "max": 8000
+    },
+    "arrLabel": "contracted run-rate",
+    "fromQ": "2024Q1",
+    "prints": {},
+    "arr": {
+     "cap": "contracted run-rate, $bn — contracted GPUs on active capacity × the contract rate × 8,760 h · CoreWeave reports backlog and RPO, not ARR; this is the model’s equivalent",
+     "folds": [
+      {
+       "summary": [
+        "Unsigned capacity modelled at",
+        "$14–17.5m / active MW-yr"
+       ],
+       "rows": [
+        [
+         "Backlog, 30 June",
+         "$104bn · RPO $103.7bn"
+        ],
+        [
+         "Exit-2026 run-rate, guided",
+         "$18.5–19.5bn on >1.85 GW"
+        ],
+        [
+         "Exit-2027 run-rate, guided",
+         ">$30bn on ~3 GW"
+        ],
+        [
+         "Implied on the book today",
+         "~$10m per active MW-yr"
+        ],
+        [
+         "New SKUs, July 2026",
+         "list prices +25%; Blackwell and Rubin “at new highs”"
+        ]
+       ]
+      },
+      {
+       "summary": [
+        "Fleet blend, Q4 2030",
+        "$5.03 / GPU-hr"
+       ],
+       "rows": [
+        [
+         "Hyperscaler book (Microsoft, OpenAI, Meta)",
+         "~$10m per MW-yr"
+        ],
+        [
+         "2027-30 vintages",
+         "$14m → $17.5m per MW-yr"
+        ],
+        [
+         "÷ GPUs per active MW",
+         "700 Hopper · 400 Blackwell · 250 Rubin · 200 next"
+        ],
+        [
+         "10% of 2029-30 capacity at spot",
+         "$35m / MW-yr"
+        ],
+        [
+         "Contracted share of unsigned tranches",
+         "90%"
+        ]
+       ]
+      }
+     ]
+    },
+    "tiles": [
+     [
+      "Cash",
+      "$5.5bn",
+      "+ $1.4bn restricted"
+     ],
+     [
+      "Debt",
+      "$35.6bn",
+      "$6.6bn converts at 1.75%"
+     ],
+     [
+      "Lease commitments",
+      "$35.5bn",
+      "signed, not yet commenced"
+     ],
+     [
+      "2026 capex guide",
+      "$35–39bn",
+      "CFO, 11 Aug"
+     ]
+    ],
+    "fund": {
+     "cost": 33,
+     "max": 45,
+     "rows": [
+      [
+       "Contracted MW",
+       [
+        [
+         6,
+         "var(--s1)",
+         "customer prepayment — 15–25% of TCV, ~18% of the GPU cost"
+        ],
+        [
+         27,
+         "var(--s2)",
+         "GPU financing at 90% loan-to-cost (DDTL 4.0 template)"
+        ]
+       ]
+      ],
+      [
+       "Unsigned MW",
+       [
+        [
+         16.5,
+         "var(--s2)",
+         "GPU financing at 50%"
+        ],
+        [
+         16.5,
+         "var(--s4)",
+         "equity — the gap to $33m"
+        ]
+       ]
+      ]
+     ],
+     "cap": "how ONE active megawatt of new build is paid for · $m per MW, against $33m of GPU cost (2027 vintage) · the shell is leased from Core Scientific, Applied Digital, Galaxy and others, rent inside EBITDA"
+    },
+    "bridge": {
+     "label": "2026 capex guide",
+     "lo": 35,
+     "hi": 39,
+     "max": 42,
+     "range": "$35–39bn",
+     "quote": "“$35 billion to $39 billion” — N. Agrawal, CFO, 11 Aug 2026",
+     "segs": [
+      [
+       16.2,
+       "var(--s1)",
+       "H1-26 capex already spent (management definition, incl. finance leases and OEM-financed equipment)"
+      ],
+      [
+       13,
+       "var(--s2)",
+       "H2-26: DDTL 5.0 and 5.5, OEM financing, customer prepayments"
+      ],
+      [
+       8,
+       "var(--sunk)",
+       "senior notes, converts, corporate"
+      ]
+     ],
+     "total": "≈ $37bn",
+     "cap": "2026 bridge · $bn"
+    },
+    "steady": {
+     "steps": [
+      [
+       "Revenue",
+       14,
+       "total"
+      ],
+      [
+       "Running costs incl. rent",
+       -5.6,
+       "d"
+      ],
+      [
+       "Cash profit",
+       8.4,
+       "sub"
+      ],
+      [
+       "GPU refresh + spares",
+       -5.53,
+       "d"
+      ],
+      [
+       "Tax 21%",
+       -0.81,
+       "d"
+      ],
+      [
+       "Owner keeps",
+       2.06,
+       "total"
+      ]
+     ],
+     "stepsMax": 16,
+     "footer": "$2.06m today · market +6%/yr for five years, repriced at renewal: worth $39m = 2.75×",
+     "regimes": [
+      [
+       "Blend: 95% contracted, 5% spot",
+       2.75,
+       "base"
+      ],
+      [
+       "Contracted, 5-yr terms",
+       2.77,
+       ""
+      ],
+      [
+       "Spot only, 13% discount",
+       2.53,
+       ""
+      ],
+      [
+       "Flat $/MW, no density pricing",
+       1.83,
+       ""
+      ],
+      [
+       "Mature contracts at 70% EBITDA",
+       3.65,
+       ""
+      ]
+     ],
+     "regimesMax": 3.6,
+     "basis": "per active MW: $14m revenue (2027 vintage), 60% EBITDA after rent and power (reported 57-59%; mature contracts ~70%), GPUs + ancillaries $33m, no shell (leased), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 5-yr renewals, spot at 13%; 95/5 blend"
+    },
+    "finance": {
+     "M": 0.6,
+     "W": 0.105,
+     "MULT": 2.75,
+     "SH0": 608.5,
+     "EQ_SHARE": 0.1,
+     "EQ_PX": 90,
+     "DEBT0": 35.55,
+     "CASH0": 5.524,
+     "RATE": 0.08,
+     "TAX": 0.21,
+     "MINCASH": 3,
+     "CONV": 6.5875,
+     "CONV_RATE": 0.0175,
+     "CASH_R": 1.4,
+     "FWD": 0,
+     "SERIES": [
+      [
+       2.5875,
+       107.8,
+       215.6
+      ],
+      [
+       4.0,
+       119.6,
+       230.0
+      ]
+     ],
+     "T0": "2026Q3",
+     "HORIZON": 4.33,
+     "AMORT": 0.16,
+     "EQ_FROM": 2027,
+     "GPU_LIFE": 6,
+     "SHELL_LIFE": 25,
+     "prepay": {
+      "ratio": 0.18,
+      "startQ": 16,
+      "termQ": 4,
+      "openingOwed": 9.7,
+      "credits": [
+       {
+        "from": "2028Q1",
+        "n": 12,
+        "amt": 4.85
+       },
+       {
+        "from": "2031Q1",
+        "n": 8,
+        "amt": 4.85
+       }
+      ],
+      "basis": "weighted-average prepayment 15-25% of TCV (424B4/10-K), credited against billings in the final months of the contract; on a 5-yr contract at $14m per MW-yr that is ~18% of the $33m GPU cost; deferred revenue $9.7bn at 30-Jun-26 (10-Q) is the opening balance, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32)"
+     },
+     "cover": {
+      "ctrPre": 0.18,
+      "ctrGpu": 0.9,
+      "ctrShell": 0,
+      "spotGpu": 0.5,
+      "spotShell": 0
+     },
+     "basis": "debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75%), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $90 plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230) convert at the model 2030 price; restricted cash $1.4bn counted; fully diluted count before converts 608.5m = 551.5m basic (31 Jul 26) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs"
+    },
+    "capexRules": {
+     "gpu": {
+      "hopper": 25,
+      "blackwell": 30,
+      "rubin": 38,
+      "next": 45
+     },
+     "inflate": {
+      "2027": 1.1
+     },
+     "shell": {
+      "liquid": 0,
+      "air": 0
+     }
+    },
+    "capexBasis": "GPUs + ancillaries per active MW by vintage: $30m Blackwell (derived $25-37m from management capex ÷ active MW added, FY25 and H1-26), +10% on 2027 orders, Rubin ~$38m, next-gen ~$45m; no shell capex — every data centre is leased (10-K: “we lease all of our existing data centers”; $35.5bn of signed-not-commenced leases at 30-Jun-26)",
+    "labels": {
+     "shell": "lease",
+     "shellRow": "Capex — shell (leased; rent inside EBITDA)",
+     "shellDebt": "lease-funded shell",
+     "debt": "Debt",
+     "energised": "active"
+    },
+    "notes": [
+     [
+      "<b>4.2 GW contracted, 1.5 GW active.</b> Fifty-one leased data centres; no single provider delivers more than 17% of active power. Every site is rented — Core Scientific (590 MW), Applied Digital (400 MW), Galaxy Helios (525 MW), Chirisa, TierPoint, Flexential.<span class=\"src\">Q2-26 10-Q · 11 Aug call</span>",
+      "<b>The bottleneck is powered shell, not GPUs or grid.</b> One lessor running late cost the 2025 active-power target 50 MW and cut FY25 capex from $20–23bn to $12–14bn; the delayed sites landed in Q1-26.<span class=\"src\">Q3-25 and Q4-25 calls</span>",
+      "<b>2030: “at least 8 GW”.</b> Contracted 4.2 GW plus >1.5 GW of powered land, options and LOIs is ~6 GW; the model carries 7 GW by end-2030 and leaves the rest unmodelled.<span class=\"src\">Q2-26 call · tracker pipeline</span>"
+     ],
+     [
+      "<b>~850k GPUs by Dec 2026</b> on 1.85 GW active. The company reported >250k GPUs at end-2024 on 360 MW; density per MW falls as Blackwell and Rubin racks replace Hopper.<span class=\"src\">10-K FY25 · model densities</span>",
+      "<b>Six-year book life.</b> Technology equipment is depreciated over six years (five before 2023); management points to A100s re-contracted into 2029 and H100 pricing within 10% of a year earlier.<span class=\"src\">10-K Note 2 · Q4-25 and Q2-26 calls</span>",
+      "<b>Vera Rubin from Q4-27.</b> Meta’s $21bn order and Jane Street’s $6bn commitment are the first Vera Rubin deployments; CoreWeave took delivery of the first VR NVL72 rack in June 2026.<span class=\"src\">8-K 9 Apr 2026 · 8-K 15 Apr 2026</span>"
+     ],
+     [
+      "<b>Backlog, not ARR.</b> CoreWeave reports revenue backlog — RPO plus other committed amounts — $104bn at 30 June, 41% recognised within 24 months, >$25bn more signed in early Q3. The chart converts the same contracts into a run-rate on active capacity.<span class=\"src\">Q2-26 10-Q · 11 Aug call</span>",
+      "<b>The book prices below the market.</b> Exit-2026 run-rate of $18.5–19.5bn on >1.85 GW is ~$10m per active MW-yr — half IREN’s $20m owner-operator marks — because Microsoft (67% of FY25 revenue), OpenAI and Meta signed at Hopper-era prices. New Blackwell and Rubin SKUs are “at new highs” after a ~25% July repricing.<span class=\"src\">Q2-26 call · 10-K concentration table</span>",
+      "<b>Signed vs contracted.</b> Signed run-rate reaches ~$46bn by end-2028 when the 4.2 GW contracted footprint is active. Everything after is options, LOIs and pipeline the model assumes signs 5-year take-or-pay at $16.5–17.5m per MW as it energises, 10% kept for spot.<span class=\"src\">90% of unsigned capacity contracted</span>"
+     ],
+     [
+      "<b>Success-based capex.</b> Contracted revenue more than covers capex within the contract term; each deployment is financed by a self-amortising delayed-draw term loan plus prepayments. DDTL 4.0 ($8.5bn, SOFR+225 / 5.9% fixed, non-recourse, A3) advances 90% of cost; DDTL 5.5 ($2.6bn, SOFR+550) finances 3-year contracts.<span class=\"src\">8-Ks 30 Mar, 15 May, 7 Aug 2026</span>",
+      "<b>“Weighted-average cost of debt down almost 300 bps in a year.”</b> $35.6bn of debt at 30 June: DDTLs $13.6bn, senior notes $10.0bn at 9–9.75%, converts $6.6bn at 1.75%, OEM financing $4.8bn. Interest ran $640m in Q2 against $1.51bn of adjusted EBITDA.<span class=\"src\">Q2-26 10-Q Note 8 · 11 Aug call</span>",
+      "<b>The catch:</b> prepayments are 15–25% of contract value and lenders advance 90% only against signed take-or-pay. Unsigned capacity needs ~$16.5m of equity per MW — or, as in 2025, the NVIDIA backstop and equity placements ($2bn at $87.20, $1bn at $109).<span class=\"src\">424B4 · 8-Ks 23 Jan, 15 Apr 2026</span>"
+     ],
+     [
+      "<b>Rent is the cost.</b> Adjusted EBITDA margin 57–59% after rent, power and data-centre staff; management says mature contracts run ~70%. Core Scientific charges ~$120/kW-month ($1.4m per MW-yr), Applied Digital ~$150 ($1.8m).<span class=\"src\">Q2-26 release · lessor filings</span>",
+      "<b>Capex is $30–33m per active MW and rising.</b> Management capex ÷ active MW added gives $30m for FY25 and $25m for H1-26; component inflation is passed through in contract pricing since Q1-26.<span class=\"src\">10-K FY25 · Q1-26 and Q2-26 calls</span>",
+      "<b>Maintenance, not replacement.</b> Refresh as a tray swap at ~55% of GPU cost every four years plus 3%/yr spares: $5.5m per MW-yr on $33m of silicon. A tenant keeps $2m of every $14m today; the multiple is what the market’s +6%/yr does to that over five years.<span class=\"src\">model · peer 10-Ks</span>"
+     ],
+     [
+      "<b>Some equity, not none.</b> $3bn of placements in 2026 against $37bn of capex. Base: 10% of the 2027–30 build plus the residual the flywheel cannot cover, at an assumed $90 — the bridge shows the count; the summary table shows the quarters.<span class=\"src\">8-Ks · 11 Aug call</span>",
+      "<b>The multiple is the swing.</b> At $14m per MW and 60% after rent, $1 of run-rate is worth ~2.75× — well under IREN’s 4.06× because the tenant pays rent and earns half the revenue per MW on the same silicon. Signed contracts never escalate; they reprice when they end.<span class=\"src\">contracted 5-yr at 10.5% · spot at 13%</span>",
+      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> A six-year book flatters CoreWeave’s earnings relative to IREN’s five. Pick your multiple.<span class=\"src\">after the raise</span>"
+     ]
+    ],
+    "footer": {
+     "sources": "Q2-26 10-Q (filed 12 Aug 2026), Q1-26 10-Q, FY25 10-K (2 Mar 2026), IPO 424B4; 8-Ks for DDTL 3.0/4.0/5.0/5.5, both convertible issues, the senior notes, the NVIDIA and Jane Street placements, the OpenAI, Meta and NVIDIA order forms; FactSet corrected transcripts Q1-25 to Q2-26 (IR CDN); Core Scientific, Applied Digital and Galaxy filings for lease terms; Epoch AI satellite site assessments; SemiAnalysis ClusterMAX and public GPU index.",
+     "model": "Compute/Value tracker, CoreWeave ramp drafted 4 Sep 2026 by the §6e playbook. Ramp: company-reported active power as billing IT MW; 2026 to the >1.85 GW guide, 2027 to >3 GW, 2028 the 4.2 GW contracted footprint, 2029 options and LOIs, 2030 rumored pipeline to 7 GW; rates per active MW-yr $10m on the signed book rising to $17.5m on 2030 vintages, 10% of unsigned capacity at $35m spot, 90% contracted. Capex per active MW: $30m Blackwell, +10% on 2027 orders, $38m Rubin, $45m next-gen; no shell — every site is leased with rent inside the 60% EBITDA margin. Steady-state: $14m revenue per active MW-yr, 60% EBITDA, $33m GPUs, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 5-yr renewals, spot at 13%; refresh 55% of GPU cost every four years plus 3%/yr; 10% of the 2027–30 build in equity at $90; operating cash funds the build first, prepayments next, debt within lenders’ cover, equity for the rest. Honest-base items: prepayments credited back in the final year of each contract with the balance owed at 2030 deducted at PV; the $6.6bn of converts as equity at the model’s 2030 price with capped calls netted; restricted cash counted. Value = 2030 EV less net debt ex converts and prepayments owed, discounted to today, over the diluted count."
+    }
+   }
   },
   {
    "tk": "NBIS",

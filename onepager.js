@@ -37,7 +37,7 @@ function assemble(c) {
     return Object.entries(by).map(([campus, rows]) => [campus, R.tranches.filter(t => t.campus === campus).reduce((a, t) => a + t.grossMW, 0), rows, null]); })();
   /* capex by energisation quarter: an override in page.capexQ (verified numbers), else rules per generation and build type */
   const CAPQ = pg.capexQ || (() => { const out = {}, ru = pg.capexRules; R.tranches.forEach(t => { const air = /air|retrofit/i.test(t.n) || (t.air === true); const g = (ru.gpu[air ? t.gen + '-air' : t.gen] || ru.gpu[t.gen]) * (ru.inflate[t.energize.slice(0, 4)] || 1);
-    const sh = air ? ru.shell.air : ru.shell.liquid; const o = out[t.energize] = out[t.energize] || [0, 0]; o[0] += Math.round(g * t.itMW); o[1] += Math.round(sh * t.itMW); }); return out; })();
+    const sh = t.shellPerMW != null ? t.shellPerMW : (air ? ru.shell.air : ru.shell.liquid); const o = out[t.energize] = out[t.energize] || [0, 0]; o[0] += Math.round(g * t.itMW); o[1] += Math.round(sh * t.itMW); }); return out; })();
   const rr = L[L.length - 1][7] * 4 / 1000, year = L[L.length - 1][0].slice(0, 4);
   const W = OP.waterfall(L, CAPQ, F, ARRC);
   return { Q, L, A, ARRC, gantt, CAPQ, rr, year, W, F, pg, R };
