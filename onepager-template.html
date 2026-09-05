@@ -426,13 +426,13 @@ const T=P.gantt;
 (function(){
   const evf=px=>{document.getElementById('hEV').textContent=((SH*px/1000+ND)/ARR0).toFixed(2)+'×';};evf(PX);window.PX_HOOKS.push(evf);
   const MULT=P.finance.MULT,W=P.finance.W,ARR=P.rr,HZ=P.finance.HORIZON,FI=P.finance;
-  window.renderValue=function(V){const df=Math.pow(1+W,HZ),DEBT=V.nd+V.liab,SHD=V.sh;   // net debt ex converts + prepayments owed at PV; diluted shares, from the summary-table waterfall
+  window.renderValue=function(V){const df=Math.pow(1+W,HZ),NC=V.nc||0,DEBT=V.nd+V.liab-NC,SHD=V.sh;   // net debt ex converts + prepayments owed at PV; diluted shares, from the summary-table waterfall
   const regimes=P.steady.regimes;
   const rows=regimes.map(c=>{const ev=ARR*c[1],eq=(ev-DEBT)/df;return [c[0],eq*1000/SHD,c[1],ev,c[2]];});
   const Wd=880,H=222,L=236,R=60;const s=svg(Wd,H);const x=v=>L+v/250*(Wd-L-R);
   rows.forEach((r,i)=>{const y=14+i*36;s.appendChild(el('text',{x:L-10,y:y+15,'text-anchor':'end','font-size':13,'font-weight':500},r[0]));
     const b=el('rect',{x:L,y,width:x(r[1])-L,height:22,fill:r[4]==='base'?'var(--s1)':'var(--s1u)'});s.appendChild(b);
-    hover(b,r[0]+'<br>$'+ARR.toFixed(1)+'bn × '+r[2]+' = $'+r[3].toFixed(0)+'bn EV − net debt $'+V.nd.toFixed(0)+'bn − prepayments owed $'+V.liab.toFixed(0)+'bn, discounted '+HZ.toFixed(1)+' yr<br>÷ '+SHD.toFixed(0)+'m diluted shares → $'+r[1].toFixed(0));
+    hover(b,r[0]+'<br>$'+ARR.toFixed(1)+'bn × '+r[2]+' = $'+r[3].toFixed(0)+'bn EV − net debt $'+V.nd.toFixed(0)+'bn − prepayments owed $'+V.liab.toFixed(0)+'bn'+(NC?' + non-core $'+NC.toFixed(1)+'bn':'')+', discounted '+HZ.toFixed(1)+' yr<br>÷ '+SHD.toFixed(0)+'m diluted shares → $'+r[1].toFixed(0));
     s.appendChild(el('text',{x:x(r[1])+8,y:y+15,'font-size':14,'font-weight':700,class:'m'},'$'+r[1].toFixed(0)));
     s.appendChild(el('text',{x:x(r[1])+52,y:y+15,'font-size':11,class:'m soft'},r[2].toFixed(2)+'×'));});
   const ml=el('line',{x1:x(PX),x2:x(PX),y1:6,y2:H-18,stroke:'var(--ink)','stroke-width':1.5,'stroke-dasharray':'3 3'});s.appendChild(ml);
@@ -440,7 +440,7 @@ const T=P.gantt;
   window.PX_HOOKS.push(px=>{ml.setAttribute('x1',x(px));ml.setAttribute('x2',x(px));mt.setAttribute('x',x(px));mt.textContent='market $'+px.toFixed(2);});
   const g=document.getElementById('gValue');g.innerHTML='';g.appendChild(s);
   const eq30=ARR*MULT-DEBT;
-  const lb=document.getElementById('lBridge');lb.innerHTML=[[P.year+' run-rate revenue','$'+ARR.toFixed(1)+'bn'],['× $'+MULT.toFixed(2)+' per $1','$'+(ARR*MULT).toFixed(0)+'bn EV at '+P.year],['− net debt at '+P.year+(FI.CONV?', converts excluded':''),'−$'+V.nd.toFixed(0)+'bn'],['− prepayments still owed to customers, at PV','−$'+V.liab.toFixed(0)+'bn'],['= equity at '+P.year,'$'+eq30.toFixed(0)+'bn'],['discount '+HZ.toFixed(1)+' yr at '+(W*100).toFixed(1)+'%','$'+(eq30/df).toFixed(0)+'bn today'],['÷ '+SHD.toFixed(0)+'m diluted shares: '+FI.SH0.toFixed(0)+'m + '+V.issued.toFixed(0)+'m issued at $'+FI.EQ_PX+' for $'+V.raised.toFixed(1)+'bn'+(FI.CONV?' + '+V.conv.toFixed(0)+'m from the converts':'')+(FI.FWD?' − '+(FI.FWD%1?FI.FWD.toFixed(1):FI.FWD.toFixed(0))+'m prepaid forwards':''),'$'+((eq30/df)*1000/SHD).toFixed(0)+' / share']].map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');};
+  const lb=document.getElementById('lBridge');lb.innerHTML=[[P.year+' run-rate revenue','$'+ARR.toFixed(1)+'bn'],['× $'+MULT.toFixed(2)+' per $1','$'+(ARR*MULT).toFixed(0)+'bn EV at '+P.year],['− net debt at '+P.year+(FI.CONV?', converts excluded':''),'−$'+V.nd.toFixed(0)+'bn'],['− prepayments still owed to customers, at PV','−$'+V.liab.toFixed(0)+'bn']].concat(NC?[['+ non-core stakes at the tracker mark','+$'+NC.toFixed(1)+'bn']]:[]).concat([['= equity at '+P.year,'$'+eq30.toFixed(0)+'bn'],['discount '+HZ.toFixed(1)+' yr at '+(W*100).toFixed(1)+'%','$'+(eq30/df).toFixed(0)+'bn today'],['÷ '+SHD.toFixed(0)+'m diluted shares: '+FI.SH0.toFixed(0)+'m + '+V.issued.toFixed(0)+'m issued at $'+FI.EQ_PX+' for $'+V.raised.toFixed(1)+'bn'+(FI.CONV?' + '+V.conv.toFixed(0)+'m from the converts':'')+(FI.FWD?' − '+(FI.FWD%1?FI.FWD.toFixed(1):FI.FWD.toFixed(0))+'m prepaid forwards':''),'$'+((eq30/df)*1000/SHD).toFixed(0)+' / share']]).map((r,i,a)=>'<span class="k'+(i===a.length-1?' t':'')+'">'+r[0]+'</span><span'+(i===a.length-1?' class="t"':'')+'>'+r[1]+'</span>').join('');};
 })();
 })();
 </script>
@@ -466,7 +466,7 @@ let html='<table><thead><tr><th></th>'+C.map(c=>'<th class="'+(c.ye?'ye ':'')+(c
 ROWS.forEach(r=>{if(r[0]==='sec'){html+='<tr class="sec"><td colspan="'+(C.length+1)+'">'+r[1]+'</td></tr>';return;}
   html+='<tr><td>'+r[0]+'</td>'+C.map(c=>'<td class="'+(c.ye?'ye ':'')+(c.past?'past ':'')+(r[2]?r[2](c):'')+'">'+r[1](c)+'</td>').join('')+'</tr>';});
 html+='</tbody></table>';document.getElementById('gLedger').innerHTML=html;
-window.renderValue({nd:R.last.nd,liab:R.liab,sh:dil,conv:R.convSh,issued:R.issued,raised:R.eqTot});
+window.renderValue({nd:R.last.nd,liab:R.liab,sh:dil,conv:R.convSh,issued:R.issued,raised:R.eqTot,nc:F.NONCORE||0});
 const ps=R.ps;document.getElementById('hLedger').textContent='$'+ps.toFixed(0);document.getElementById('fVal').textContent='$'+ps.toFixed(0);const vnf=px=>{document.getElementById('fValN').textContent='per share, base case · '+(ps/px).toFixed(1)+'× the market';};vnf(P.px.v);(window.PX_HOOKS=window.PX_HOOKS||[]).push(vnf);
 })();
 </script>

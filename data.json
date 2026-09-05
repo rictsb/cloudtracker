@@ -2167,7 +2167,1074 @@
    ],
    "signedRate": 13.5,
    "sharesReported": 271.9,
-   "committedDebt": 775
+   "committedDebt": 775,
+   "ramp": {
+    "asOf": "2026-09-04",
+    "tranches": [
+     {
+      "n": "Mäntsälä H100/H200 (2024, on-demand)",
+      "campus": "Finland (owned)",
+      "grossMW": 30,
+      "itMW": 25,
+      "gpus": 17500,
+      "gen": "hopper",
+      "energize": "2024Q2",
+      "rev": "2024Q3",
+      "rampQtrs": 2,
+      "ctr": 0.5,
+      "rate": 0.98,
+      "signed": 0.5,
+      "shellPerMW": 8
+     },
+     {
+      "n": "Paris · Iceland · Kansas City (H200)",
+      "campus": "Co-location (leased)",
+      "grossMW": 24,
+      "itMW": 20,
+      "gpus": 14000,
+      "gen": "hopper",
+      "energize": "2025Q1",
+      "rev": "2025Q1",
+      "rampQtrs": 2,
+      "ctr": 0.8,
+      "rate": 1.47,
+      "signed": 0.8,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Mäntsälä expansion a (B200)",
+      "campus": "Finland (owned)",
+      "grossMW": 36,
+      "itMW": 30,
+      "gpus": 12000,
+      "gen": "blackwell",
+      "energize": "2025Q2",
+      "rev": "2025Q2",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 2.57,
+      "signed": 0.9,
+      "shellPerMW": 8
+     },
+     {
+      "n": "Mäntsälä expansion b (B300)",
+      "campus": "Finland (owned)",
+      "grossMW": 30,
+      "itMW": 25,
+      "gpus": 10000,
+      "gen": "blackwell",
+      "energize": "2025Q3",
+      "rev": "2025Q3",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 2.57,
+      "signed": 0.9,
+      "shellPerMW": 8
+     },
+     {
+      "n": "Vineland tranche 1 · Microsoft GB300 (Nov-25)",
+      "campus": "Vineland NJ (build-to-suit)",
+      "grossMW": 30,
+      "itMW": 25,
+      "gpus": 10000,
+      "gen": "blackwell",
+      "energize": "2025Q4",
+      "rev": "2025Q4",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 2.57,
+      "signed": 1,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Israel · UK Longcross (B200/B300)",
+      "campus": "Co-location (leased)",
+      "grossMW": 30,
+      "itMW": 25,
+      "gpus": 10000,
+      "gen": "blackwell",
+      "energize": "2025Q4",
+      "rev": "2026Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 2.57,
+      "signed": 0.9,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Vineland tranches 2-3 · Microsoft",
+      "campus": "Vineland NJ (build-to-suit)",
+      "grossMW": 60,
+      "itMW": 50,
+      "gpus": 20000,
+      "gen": "blackwell",
+      "energize": "2026Q1",
+      "rev": "2026Q1",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 3.57,
+      "signed": 1,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Vineland tranches 4-5 · Microsoft",
+      "campus": "Vineland NJ (build-to-suit)",
+      "grossMW": 60,
+      "itMW": 50,
+      "gpus": 20000,
+      "gen": "blackwell",
+      "energize": "2026Q2",
+      "rev": "2026Q2",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 3.57,
+      "signed": 1,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Kansas City · Meta #1 clusters",
+      "campus": "Co-location (leased)",
+      "grossMW": 48,
+      "itMW": 40,
+      "gpus": 16000,
+      "gen": "blackwell",
+      "energize": "2026Q2",
+      "rev": "2026Q2",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 3.57,
+      "signed": 1,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Vineland tranches 6-9 · Microsoft (all delivered Aug-26)",
+      "campus": "Vineland NJ (build-to-suit)",
+      "grossMW": 120,
+      "itMW": 100,
+      "gpus": 40000,
+      "gen": "blackwell",
+      "energize": "2026Q3",
+      "rev": "2026Q3",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 3.57,
+      "signed": 1,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Q3-26 step-up: UK 65, Israel 80, Estonia 22, Bethune (FR)",
+      "campus": "Co-location (leased)",
+      "grossMW": 120,
+      "itMW": 100,
+      "gpus": 40000,
+      "gen": "blackwell",
+      "energize": "2026Q3",
+      "rev": "2026Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 3.57,
+      "signed": 0.5,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Q4-26: Bethune, Spain, Minnesota, Alabama first halls",
+      "campus": "Co-location (leased)",
+      "grossMW": 216,
+      "itMW": 180,
+      "gpus": 72000,
+      "gen": "blackwell",
+      "energize": "2026Q4",
+      "rev": "2027Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 3.57,
+      "signed": 0.4,
+      "shellPerMW": 0
+     },
+     {
+      "n": "Lappeenranta first halls · Meta #2 Vera Rubin",
+      "campus": "Finland (owned)",
+      "grossMW": 180,
+      "itMW": 150,
+      "gpus": 37500,
+      "gen": "rubin",
+      "energize": "2027Q1",
+      "rev": "2027Q2",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 8.22,
+      "signed": 1,
+      "shellPerMW": 8
+     },
+     {
+      "n": "Alabama phase 1",
+      "campus": "Alabama (owned)",
+      "grossMW": 180,
+      "itMW": 150,
+      "gpus": 37500,
+      "gen": "rubin",
+      "energize": "2027Q2",
+      "rev": "2027Q3",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.22,
+      "signed": 0.5,
+      "shellPerMW": 8
+     },
+     {
+      "n": "Independence MO phase 1 (250 MW, Oct-27)",
+      "campus": "Independence MO (owned)",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2027Q4",
+      "rev": "2028Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.22,
+      "signed": 0.4,
+      "shellPerMW": 8
+     },
+     {
+      "n": "Pennsylvania phase 1 (250-300 MW by YE27)",
+      "campus": "Pennsylvania (owned)",
+      "grossMW": 330,
+      "itMW": 275,
+      "gpus": 68750,
+      "gen": "rubin",
+      "energize": "2027Q4",
+      "rev": "2028Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.22,
+      "signed": 0.4,
+      "shellPerMW": 8
+     },
+     {
+      "n": "Bethune to 240 · Vineland phase 2",
+      "campus": "Co-location (leased)",
+      "grossMW": 180,
+      "itMW": 150,
+      "gpus": 37500,
+      "gen": "rubin",
+      "energize": "2027Q3",
+      "rev": "2027Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.22,
+      "signed": 0.4,
+      "shellPerMW": 0
+     },
+     {
+      "n": "2028 Q1 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+      "campus": "Owned campuses — 2028",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2028Q1",
+      "rev": "2028Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.68,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2028 Q2 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+      "campus": "Owned campuses — 2028",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2028Q2",
+      "rev": "2028Q2",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.68,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2028 Q3 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+      "campus": "Owned campuses — 2028",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2028Q3",
+      "rev": "2028Q3",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.68,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2028 Q4 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+      "campus": "Owned campuses — 2028",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2028Q4",
+      "rev": "2028Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.68,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2029 Q1 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+      "campus": "Owned campuses — 2029",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2029Q1",
+      "rev": "2029Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.13,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2029 Q2 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+      "campus": "Owned campuses — 2029",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2029Q2",
+      "rev": "2029Q2",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.13,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2029 Q3 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+      "campus": "Owned campuses — 2029",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2029Q3",
+      "rev": "2029Q3",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.13,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2029 Q4 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+      "campus": "Owned campuses — 2029",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 62500,
+      "gen": "rubin",
+      "energize": "2029Q4",
+      "rev": "2029Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 9.13,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2030 Q1 (to the 5 GW contracted book)",
+      "campus": "Owned campuses — 2030",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 50000,
+      "gen": "next",
+      "energize": "2030Q1",
+      "rev": "2030Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 11.99,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2030 Q2 (to the 5 GW contracted book)",
+      "campus": "Owned campuses — 2030",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 50000,
+      "gen": "next",
+      "energize": "2030Q2",
+      "rev": "2030Q2",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 11.99,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2030 Q3 (to the 5 GW contracted book)",
+      "campus": "Owned campuses — 2030",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 50000,
+      "gen": "next",
+      "energize": "2030Q3",
+      "rev": "2030Q3",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 11.99,
+      "signed": 0,
+      "shellPerMW": 8
+     },
+     {
+      "n": "2030 Q4 (to the 5 GW contracted book)",
+      "campus": "Owned campuses — 2030",
+      "grossMW": 300,
+      "itMW": 250,
+      "gpus": 50000,
+      "gen": "next",
+      "energize": "2030Q4",
+      "rev": "2030Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 11.99,
+      "signed": 0,
+      "shellPerMW": 8
+     }
+    ],
+    "spot": {
+     "2024": 2.5,
+     "2025": 2.5,
+     "2026": 2.4,
+     "2027": 11.7,
+     "2028": 11.7,
+     "2029": 11.7,
+     "2030": 11.7
+    },
+    "spotMult": {
+     "hopper": 0.21,
+     "blackwell": 0.35,
+     "rubin": 0.55,
+     "next": 0.7
+    },
+    "attach": 0,
+    "earningRate": 1.5,
+    "actuals": {
+     "2024Q3": {
+      "aiRevM": 27.1
+     },
+     "2024Q4": {
+      "aiRevM": 29
+     },
+     "2025Q1": {
+      "aiRevM": 41.4
+     },
+     "2025Q2": {
+      "aiRevM": 93.7
+     },
+     "2025Q3": {
+      "aiRevM": 131.1
+     },
+     "2025Q4": {
+      "aiRevM": 214.2
+     },
+     "2026Q1": {
+      "aiRevM": 389.7
+     },
+     "2026Q2": {
+      "aiRevM": 574.9
+     }
+    },
+    "consensus": {
+     "2026Q3": [
+      900,
+      900
+     ],
+     "2026Q4": [
+      1300,
+      1300
+     ]
+    },
+    "calibration": {
+     "rampMult": 1,
+     "appliesTo": "the uncontracted share of each tranche only",
+     "fittedOn": "2024Q3-2026Q2 reported AI-cloud revenue (eight quarters)",
+     "basis": "Eight reported quarters retrodicted with rampMult 1: errors -1% to +20% from 2024Q4 on (the first quarter, 2024Q3, is a partial and misses by half). The lag between connected power and revenue is 6-12 weeks per management, carried as rampQtrs 2. Vintage rates were set so the retrodiction holds: $6m per MW-yr on the 2024 on-demand fleet, $9m on 2025, $12.5m on 2026."
+    },
+    "basis": "Quarterly GPU-ramp overlay for Nebius (owner-approved playbook §6e, drafted 2026-09-04) — DISPLAY ONLY. Nebius reports contracted, connected and active power; active/connected MW are read as billing IT MW. History from the letters (~25 MW connected end-2024; ~170 MW active end-2025 against a 100 MW target; Microsoft Vineland tranches from Nov-25, all nine delivered by Aug-26; Finland 75 MW complete early 2026) and Nebius AI-cloud segment revenue by quarter; 2026H2 the guided step-up (800 MW–1 GW connected by year-end; UK 65 MW, Israel 80, Estonia 22, Bethune, Meta #1 clusters); 2027 the owned greenfields (Lappeenranta first halls with Meta #2 Vera Rubin from early 2027, Alabama, Independence MO phase 1 250 MW by Oct-27, Pennsylvania 250-300 MW by YE27, Bethune to 240, Vineland phase 2); 2028-30 the 5 GW contracted book online over 3-3.5 years (Q2-26 call), ~1 GW a year of owned campuses (Missouri to 1.1 GW by Dec-29, Pennsylvania ~300 MW/yr) — 4.7 GW at 2030Q4. Rates per MW-yr by vintage: 2024 $6m (on-demand Hopper), 2025 $9m, 2026 $12.5m (the '$12m 2026 base' on the Q2-26 letter chart; Microsoft $17.4bn/5yr on ~250 MW ≈ $14m), 2027 $18m, 2028 $19m, 2029 $20m, 2030 $21m (Q2-26 landmark deals at $20-25m per MW, 1-3 yr; short-term $40-50m). Owned sites (Finland, Missouri, Pennsylvania, Alabama, >75% of contracted power) carry $8m shell per MW; co-location sites none. Density per MW: Hopper 700, Blackwell 400, Rubin 250, next-gen 200. Contracted share 1.0 on Microsoft/Meta tranches, 0.9 on the rest; spot from 2027 as IREN. Backtest on eight reported quarters: MAPE ~13% excluding the first partial quarter.",
+    "actualsSource": "Nebius AI-cloud segment revenue by quarter: 20-F FY25 and the Q3-24 to Q2-26 results releases (restated ex-Toloka)",
+    "consensusSource": "PLACEHOLDER — 2026 revenue guidance $3.0-3.4bn spread H2-weighted; replace with Bloomberg consensus when pulled",
+    "chain": [
+     {
+      "id": "secured",
+      "link": "contracted power → monetised in-window",
+      "fn": "Σ tranche itMW · gross = IT × 1.2",
+      "value": "5 GW contracted guided for YE26 (>75% owned) → 4.7 GW active modelled by 2030Q4 (5.6 GW gross)",
+      "assumption": "Management: nearly all 5 GW online over ~3-3.5 years from Aug-26; the model lands 4.7 GW by 2030Q4 and nothing beyond the contracted book. Gross derived at PUE ~1.2 (Finland PUE 1.13).",
+      "range": "4-5.5 GW active by 2030; gross/IT 1.15-1.3",
+      "moves": "run-rate and capex in proportion"
+     },
+     {
+      "id": "energise",
+      "link": "monetised MW → active MW by quarter",
+      "fn": "step function on each tranche energize quarter",
+      "value": "~670 MW YE26 (guide: 800 MW-1 GW CONNECTED), ~1.7 GW YE27 (Independence Ph1 Oct-27, Pennsylvania YE27, Lappeenranta, Alabama), 2.7 GW YE28, 3.7 GW YE29, 4.7 GW YE30",
+      "assumption": "Owned-campus schedules from the Independence groundbreaking (May-26; first phase Q2-27, full 2029), the Pennsylvania announcement (May-26; phased from 2027, ~300 MW/yr) and the letters. The 2025 connected-power target (220 MW) was never reported against; 2025 capex came in 19% under the Nov-25 guide.",
+      "range": "±2 quarters on every tranche after 2026; Missouri/Pennsylvania ±1 year",
+      "moves": "one quarter of slip on 2027-28 tranches ≈ -$1.5bn of 2028 revenue"
+     },
+     {
+      "id": "derate",
+      "link": "gross MW → critical IT MW",
+      "fn": "active/connected power taken as IT MW (definition)",
+      "value": "1.0 by definition; gross shown at 1.2×",
+      "assumption": "Nebius defines connected power as active plus fully provisioned; both are IT-side metrics. Owned greenfield PUE ~1.13-1.2.",
+      "range": "0.85-1.0",
+      "moves": "capex per MW"
+     },
+     {
+      "id": "density",
+      "link": "critical IT MW → GPU count",
+      "fn": "gpus = itMW × GPUs per MW by generation",
+      "value": "Hopper 700, Blackwell 400, Rubin 250, next-gen 200 per MW",
+      "assumption": "Finland 75 MW / up to 60,000 GPUs (Oct-24 announcement) ≈ 800 per MW on Hopper; NVL72 rack densities for later generations. Rates are set per MW, so density only changes the displayed $/GPU-hr.",
+      "range": "±20% per generation",
+      "moves": "displayed $/GPU-hr only"
+     },
+     {
+      "id": "hours",
+      "link": "GPUs → GPU-hours",
+      "fn": "live GPUs × 2,190 hr/qtr",
+      "value": "contracted GPUs bill 8,760 h; on-demand capacity earns effective spot (headline × utilisation)",
+      "assumption": "Microsoft and Meta are take-or-pay irrespective of utilisation; the mid-term 1-3 yr book is reserved; the 10% short-term slice earns the spot rate.",
+      "range": "n/a — hours are contractual on 90%",
+      "moves": "nothing"
+     },
+     {
+      "id": "ramp",
+      "link": "first revenue → full run-rate",
+      "fn": "linear over rampQtrs from the tranche rev quarter",
+      "value": "2 quarters (6-12 weeks from connected to revenue per the Q3-25 call)",
+      "assumption": "MODELLED off management commentary and the 2025-26 retrodiction.",
+      "range": "1-3 quarters",
+      "moves": "timing only"
+     },
+     {
+      "id": "rate",
+      "link": "GPU-hours → revenue",
+      "fn": "revenue = GPU-hours × (ctr × vintage rate + (1-ctr) × spot × gen multiplier)",
+      "value": "$12.5m per MW-yr on 2026 vintages ($12m base on the Q2-26 chart; Microsoft ~$14m at 250 MW), $18m on 2027 rising to $21m by 2030 (Q2-26 landmark deals $20-25m, 1-3 yr; short-term $40-50m); spot $35m realised on 10% of unsigned capacity",
+      "assumption": "Nebius repriced from ~$12m to $20-25m per MW between the 2026 base and Q2-26 signings and sold out every quarter of 2025-26; the model marks 2027+ vintages at the low end of that band and does not carry the short-term premium beyond the 10% spot slice.",
+      "range": "$15-25m per MW-yr on 2027+ vintages",
+      "moves": "±$1m per MW-yr on 2027+ vintages ≈ ±$3.5bn of 2030 run-rate"
+     }
+    ],
+    "scenarios": [
+     {
+      "id": "base",
+      "name": "Base",
+      "note": "As modelled.",
+      "d": {}
+     },
+     {
+      "id": "slip",
+      "name": "Slip 2 quarters",
+      "note": "Every tranche beyond 2027Q4 energises and earns two quarters later — the greenfields (Missouri, Pennsylvania) run a half-year late.",
+      "d": {
+       "slipQtrs": 2,
+       "from": 8
+      }
+     },
+     {
+      "id": "flatrate",
+      "name": "Flat vintages",
+      "note": "No repricing: every future tranche prices at the 2026 Blackwell level ($3.57/GPU-hr, $12.5m per MW-yr) and spot falls back to 2026 levels.",
+      "d": {
+       "rateCap": 3.57,
+       "spotMult": 0.205
+      }
+     },
+     {
+      "id": "decay",
+      "name": "Price decay -20%",
+      "note": "Compute prices fall: every vintage and spot rate 20% below base.",
+      "d": {
+       "rateMult": 0.8,
+       "spotMult": 0.8
+      }
+     },
+     {
+      "id": "leaseup",
+      "name": "Lease-up at 50%",
+      "note": "Unsigned owned capacity contracts at half the modelled share (ctr 0.9 -> 0.45); the downside is funding (no prepayment, no 90% gearing on the spot slice), not revenue.",
+      "d": {
+       "ctrMult": 0.5
+      }
+     },
+     {
+      "id": "joint",
+      "name": "Joint downside",
+      "note": "The bear case: 50% slower ramp AND flat vintages with spot at 2026 levels AND two-quarter slip AND half lease-up, together.",
+      "d": {
+       "rampMult": 1.5,
+       "rateCap": 3.57,
+       "spotMult": 0.205,
+       "slipQtrs": 2,
+       "from": 8,
+       "ctrMult": 0.5
+      }
+     }
+    ]
+   },
+   "page": {
+    "asOf": "2026-09-04",
+    "kicker": "Nebius · NASDAQ · from the FY25 20-F, the Q2-26 6-K and the 12 Aug letter",
+    "title": "Nebius: from MW to $",
+    "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
+    "px": {
+     "v": 226.39,
+     "note": "Finnhub, 4 Sep"
+    },
+    "evArr": {
+     "sh": 287.7,
+     "nd": 2.3,
+     "arr": 8
+    },
+    "facts": [
+     [
+      "Shares out",
+      "287.7m",
+      "271.9m at 30 Jun + 15.8m Aug exchange"
+     ],
+     [
+      "Net debt",
+      "$2.3bn",
+      "$15.8bn converts and secured − $13.5bn cash, pro forma Aug"
+     ],
+     [
+      "RPO",
+      "$37.5bn",
+      "30 Jun · >$40bn of commitments"
+     ]
+    ],
+    "hero": {
+     "power": [
+      "5 GW",
+      "contracted power guided for end-2026 · ~170 MW active at end-2025"
+     ],
+     "capex": [
+      "$20–25bn",
+      "2026 capex guide, 13 May"
+     ]
+    },
+    "capacity": {
+     "rows": [
+      [
+       "Contracted power, YE26 guide",
+       5000,
+       "12 Aug 2026 — was >1 GW in Aug 2025, >2.5 GW Nov-25, >3 GW Feb-26, >4 GW May-26"
+      ],
+      [
+       "Owned campuses",
+       3000,
+       "Finland, Independence MO, Pennsylvania, Alabama — >75% of contracted power"
+      ],
+      [
+       "Connected by end-2026",
+       900,
+       "800 MW–1 GW guided"
+      ],
+      [
+       "Active at end-2025",
+       170,
+       "vs 100 MW target · 220 MW connected target never reported against"
+      ]
+     ],
+     "max": 5000
+    },
+    "arrLabel": "contracted run-rate",
+    "fromQ": "2024Q3",
+    "prints": {},
+    "arr": {
+     "cap": "contracted run-rate, $bn — contracted GPUs on connected capacity × the contract rate × 8,760 h · Nebius reports ARR as the last month’s AI-cloud revenue × 12 ($1.25bn Dec-25; $7–9bn guided for Dec-26)",
+     "folds": [
+      {
+       "summary": [
+        "Unsigned capacity modelled at",
+        "$18–21m / MW-yr"
+       ],
+       "rows": [
+        [
+         "2026 installed base (Q2-26 letter)",
+         "~$12m per MW-yr"
+        ],
+        [
+         "Q2-26 landmark deals",
+         "$20–25m per MW-yr, 1–3 yr"
+        ],
+        [
+         "Short-term auction, Q3-26",
+         "$40–50m per MW-yr, 3–6 months"
+        ],
+        [
+         "Microsoft, Vineland",
+         "$17.4bn / 5 yr — ~$14m per MW at 250 MW"
+        ],
+        [
+         "Meta #2, Vera Rubin",
+         "$12bn firm / 5 yr from early 2027, +$15bn backstop"
+        ]
+       ]
+      },
+      {
+       "summary": [
+        "Fleet blend, Q4 2030",
+        "$7.70 / GPU-hr"
+       ],
+       "rows": [
+        [
+         "2025-26 vintages",
+         "$9m → $12.5m per MW-yr"
+        ],
+        [
+         "2027-30 vintages",
+         "$18m → $21m per MW-yr"
+        ],
+        [
+         "÷ GPUs per MW",
+         "700 Hopper · 400 Blackwell · 250 Rubin · 200 next"
+        ],
+        [
+         "10% of unsigned capacity at spot",
+         "$35m / MW-yr"
+        ],
+        [
+         "Contracted share of unsigned tranches",
+         "90%"
+        ]
+       ]
+      }
+     ]
+    },
+    "tiles": [
+     [
+      "Cash",
+      "~$13.5bn",
+      "~$7.9bn at 30 Jun (est.) + $5.75bn Aug converts"
+     ],
+     [
+      "Converts",
+      "$15.0bn",
+      "0.5–4.5% coupons, accreting principal"
+     ],
+     [
+      "Prepayments received",
+      "$6.0bn",
+      "deferred revenue, 30 Jun"
+     ],
+     [
+      "2026 capex guide",
+      "$20–25bn",
+      "13 May · reaffirmed 12 Aug"
+     ]
+    ],
+    "fund": {
+     "cost": 38,
+     "max": 50,
+     "rows": [
+      [
+       "Contracted MW",
+       [
+        [
+         13.5,
+         "var(--s1)",
+         "customer prepayment — 50–60% of capex on ~70% of deals (~45% of the GPU cost)"
+        ],
+        [
+         27,
+         "var(--s2)",
+         "GPU financing at 90% (first $775m facility, SOFR+250)"
+        ],
+        [
+         5.2,
+         "var(--s3)",
+         "data-centre debt at 65% of the owned shell"
+        ]
+       ]
+      ],
+      [
+       "Unsigned MW",
+       [
+        [
+         15,
+         "var(--s2)",
+         "GPU financing at 50%"
+        ],
+        [
+         4,
+         "var(--s3)",
+         "shell debt at 50%"
+        ],
+        [
+         19,
+         "var(--s4)",
+         "equity — the gap to $38m"
+        ]
+       ]
+      ]
+     ],
+     "cap": "how ONE megawatt of new owned build is paid for · $m per MW, against $38m of cost ($30m GPUs, $8m shell) · leased sites carry no shell"
+    },
+    "bridge": {
+     "label": "2026 capex guide",
+     "lo": 20,
+     "hi": 25,
+     "max": 27,
+     "range": "$20–25bn",
+     "quote": "“$20 billion to $25 billion” — Q1-26 letter, reaffirmed 12 Aug 2026",
+     "segs": [
+      [
+       8.1,
+       "var(--s1)",
+       "H1-26 capex spent"
+      ],
+      [
+       9,
+       "var(--s2)",
+       "customer prepayments (>$9bn expected in 2026) and the $775m secured facility"
+      ],
+      [
+       5.4,
+       "var(--sunk)",
+       "converts, ATM, cash"
+      ]
+     ],
+     "total": "≈ $22.5bn",
+     "cap": "2026 bridge · $bn"
+    },
+    "steady": {
+     "steps": [
+      [
+       "Revenue",
+       20,
+       "total"
+      ],
+      [
+       "Running costs",
+       -9,
+       "d"
+      ],
+      [
+       "Cash profit",
+       11,
+       "sub"
+      ],
+      [
+       "GPU refresh + spares",
+       -5.03,
+       "d"
+      ],
+      [
+       "Shell 25-yr",
+       -0.24,
+       "d"
+      ],
+      [
+       "Tax 21%",
+       -1.39,
+       "d"
+      ],
+      [
+       "Owner keeps",
+       4.34,
+       "total"
+      ]
+     ],
+     "stepsMax": 22,
+     "footer": "$4.34m today · market +6%/yr for five years, repriced at renewal: worth $67m = 3.34×",
+     "regimes": [
+      [
+       "Blend: 90% contracted, 10% short-term",
+       3.34,
+       "base"
+      ],
+      [
+       "Contracted, 2-yr terms",
+       3.4,
+       ""
+      ],
+      [
+       "Short-term only, 13% discount",
+       2.83,
+       ""
+      ],
+      [
+       "Flat $/MW, no density pricing",
+       2.31,
+       ""
+      ],
+      [
+       "Owner-operator margin 65%",
+       4.27,
+       ""
+      ]
+     ],
+     "regimesMax": 4.4,
+     "basis": "per MW: $20m revenue (2027 vintage, the low end of Q2-26 signings), 55% EBITDA (AI cloud 50% in Q2-26, rising as owned campuses replace co-location), GPUs + ancillaries $30m, shell $6m blended (75% owned at $8m), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals (1-3 yr mid-term book), short-term at 13%; 90/10 blend"
+    },
+    "finance": {
+     "M": 0.55,
+     "W": 0.105,
+     "MULT": 3.34,
+     "SH0": 321.7,
+     "EQ_SHARE": 0.1,
+     "EQ_PX": 250,
+     "DEBT0": 15.77,
+     "CASH0": 13.5,
+     "RATE": 0.07,
+     "TAX": 0.21,
+     "MINCASH": 3,
+     "CONV": 14.99,
+     "CONV_RATE": 0.015,
+     "CASH_R": 1.1,
+     "FWD": 0,
+     "NONCORE": 5.8,
+     "SERIES": [
+      [
+       0.1875,
+       51.45,
+       null
+      ],
+      [
+       0.2125,
+       51.45,
+       null
+      ],
+      [
+       1.58125,
+       138.75,
+       null
+      ],
+      [
+       1.58125,
+       138.75,
+       null
+      ],
+      [
+       2.5875,
+       183.22,
+       null
+      ],
+      [
+       1.75,
+       180.31,
+       null
+      ],
+      [
+       3.45,
+       313.46,
+       null
+      ],
+      [
+       2.3,
+       324.65,
+       null
+      ]
+     ],
+     "T0": "2026Q3",
+     "HORIZON": 4.33,
+     "AMORT": 0.16,
+     "EQ_FROM": 2027,
+     "GPU_LIFE": 5,
+     "SHELL_LIFE": 25,
+     "prepay": {
+      "ratio": 0.45,
+      "startQ": 0,
+      "termQ": 8,
+      "openingOwed": 5.98,
+      "credits": [
+       {
+        "from": "2026Q3",
+        "n": 20,
+        "amt": 5.98
+       }
+      ],
+      "basis": "~70% of Q2-26 deals carried prepayments covering 50-60% of associated capex (Q2-26 letter) → 45% of GPU cost on contracted capacity; Microsoft prepaid $6.96bn of $17.39bn (40% of TCV, 20-F), credited through reduced monthly instalments from the start of each tranche → credited pro rata from month 1 over 2 years on mid-term deals (termQ 8, startQ 0); deferred revenue $5.98bn at 30-Jun-26 is the opening balance, credited over 20 quarters (Microsoft-weighted)"
+     },
+     "cover": {
+      "ctrPre": 0.45,
+      "ctrGpu": 0.9,
+      "ctrShell": 0.65,
+      "spotGpu": 0.5,
+      "spotShell": 0.5
+     },
+     "basis": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $250 plus the residual; eight convertible series (post-Aug-26 exchange: 2029/2031 $0.4bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Aug-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.5bn = ~$7.9bn at 30 Jun (estimated from the Mar-26 balance, Q2 capex, ATM and prepayments) + $5.75bn August converts"
+    },
+    "capexRules": {
+     "gpu": {
+      "hopper": 25,
+      "blackwell": 30,
+      "rubin": 38,
+      "next": 45
+     },
+     "inflate": {
+      "2027": 1.1
+     },
+     "shell": {
+      "liquid": 8,
+      "air": 0
+     }
+    },
+    "capexBasis": "GPUs + ancillaries per MW by vintage: $30m Blackwell (derived: 2026 capex guide $20-25bn against ~700 MW added; management: GPUs ~80% of total capex), +10% on 2027 orders, Rubin ~$38m, next-gen ~$45m; shell $8m per MW on owned campuses (management: data-centre build 18-20% of capex), none on co-location",
+    "labels": {
+     "shell": "shell",
+     "shellRow": "Capex — shell (owned campuses)",
+     "shellDebt": "data-centre debt",
+     "debt": "Debt",
+     "energised": "connected"
+    },
+    "notes": [
+     [
+      "<b>5 GW contracted, >75% owned.</b> Guidance stepped from >1 GW (Aug-25) to 5 GW (Aug-26) in a year. Owned greenfields: Mäntsälä and Lappeenranta (Finland, 455 MW), Independence MO (1.2 GW, groundbreaking May-26), Pennsylvania (1.2 GW, from 2027), Alabama. Leased: Vineland build-to-suit (Microsoft, 300 MW), Paris, Iceland, Kansas City, UK, Israel, Estonia, France, Spain.<span class=\"src\">Q2-26 letter · 20-F · site releases</span>",
+      "<b>Connected lags contracted by ~3 years.</b> Nearly all 5 GW is expected online over 3–3.5 years; 800 MW–1 GW connected by end-2026. The 2025 targets: 100 MW active was beaten (~170 MW), 220 MW connected was never reported against.<span class=\"src\">Q2-26 call · Q4-25 letter</span>",
+      "<b>Power is behind the meter at Vineland.</b> Bloom Energy fuel cells (~250 MW guaranteed for 2026) and, per a thermal-drone investigation, dozens of gas generators running since Oct-25; Phase 2 approved Aug-26 lifts the campus to ~350 MW.<span class=\"src\">Bloom partnership May-26 · Floodlight/Guardian 27 Aug · Vineland Planning Board 18 Aug</span>"
+     ],
+     [
+      "<b>~270k GPUs by Dec 2026</b> on ~670 MW active. Finland’s 75 MW hosts Europe’s first GB300 NVL72; Microsoft’s nine Vineland tranches are GB300.<span class=\"src\">Q1-26 letter · Microsoft 6-K</span>",
+      "<b>Five-year book life.</b> Servers were depreciated over four years until Jan-26 (“conservative”), then five; the change cut H1-26 depreciation by $86m.<span class=\"src\">20-F FY25 · Q2-26 6-K</span>",
+      "<b>Vera Rubin from early 2027.</b> Meta’s $12bn dedicated capacity is one of the first large-scale Vera Rubin deployments, delivery H1-27; the $15bn backstop lets Nebius sell that capacity to others with Meta taking what is unsold.<span class=\"src\">6-K 16 Mar 2026 · Q1-26 letter</span>"
+     ],
+     [
+      "<b>ARR on Nebius’s definition.</b> Last month’s AI-cloud revenue × 12: $1.25bn at Dec-25 (guide $0.9–1.1bn), $7–9bn guided for Dec-26. RPO $37.5bn at 30 June, 36% within 24 months; >$40bn of commitments in total. The chart is the model’s contracted run-rate on connected capacity, which runs ahead of the ARR print by one to two quarters.<span class=\"src\">Q2-26 6-K · 12 Aug letter</span>",
+      "<b>The book repriced in a year.</b> 2026 base ~$12m per MW; Q2-26 landmark deals (Reflection, Cohere, a US neolab, a quant firm) at $20–25m on 1–3 yr terms; the first capacity auction cleared 15% above any prior Blackwell price; short-term 3–6 month deals at $40–50m. Older-generation pricing rose >30% in the quarter.<span class=\"src\">Q2-26 letter and call</span>",
+      "<b>Signed vs contracted.</b> Microsoft ($17.4bn), Meta ($2.9bn + $12bn firm) and the 2026 enterprise book are signed; every owned megawatt from 2027 is assumed to sign at $18–21m per MW as it connects, 10% kept for short-term.<span class=\"src\">90% of unsigned capacity contracted</span>"
+     ],
+     [
+      "<b>Prepayments do the funding.</b> ~70% of Q2-26 deals carried prepayments covering 50–60% of capex; >$9bn expected in 2026; Microsoft prepaid $6.96bn of $17.4bn. Deferred revenue $6.0bn at 30 June.<span class=\"src\">Q2-26 letter · 20-F Note on Microsoft</span>",
+      "<b>Converts, then secured debt.</b> Four convertible raises in 14 months — $1.0bn (Jun-25), $3.16bn (Sep-25), $4.34bn (Mar-26), $5.75bn (Aug-26) — plus NVIDIA’s $2bn pre-funded warrant, a $1.15bn follow-on at $92.50 and $2.8bn of ATM at $223.60. The first secured GPU facility ($775m, SOFR+250) closed July-26; management expects “mid-single-digit billions” more against >$40bn of IG-backed contracts.<span class=\"src\">6-Ks · 17 Jul 2026 release</span>",
+      "<b>The catch:</b> prepayments and gearing follow signed contracts; the owned greenfields ($8m shell per MW) are built ahead of signing. Unsigned capacity needs ~$19m of equity per MW, and the ATM has 12.3m shares left.<span class=\"src\">funding stack above · Q2-26 6-K</span>"
+     ],
+     [
+      "<b>Margins are still climbing.</b> AI-cloud adjusted EBITDA margin 19% (Q3-25) → 24% → 45% → 50% (Q2-26) as co-location and lease costs fall as a share of revenue; group guide ~40% for 2026. Owned campuses at Finland-style PUE 1.13 should take it toward the owner-operator 65%.<span class=\"src\">quarterly 6-Ks · Q4-25 call</span>",
+      "<b>Capex is $30m of GPUs per MW plus $8m of shell on owned sites.</b> Management’s split: land and power ~1%, data-centre build 18–20%, GPUs ~80%; 2026 guide $20–25bn (raised from $16–20bn in May); H1-26 spent $8.1bn.<span class=\"src\">Q3-25 call · Q1-26 and Q2-26 letters</span>",
+      "<b>Payback 1 year 10 months</b> on Q2-26 deals (was 2–3 years), on prepayments of 50–60% of capex. Maintenance as a tray swap at 55% of GPU cost every four years plus 3%/yr spares: $5.0m per MW-yr on $30m of silicon.<span class=\"src\">Q2-26 letter · model</span>"
+     ],
+     [
+      "<b>Some equity, not none.</b> $6.9bn of equity-linked capital in 2026 (NVIDIA warrant, ATM) against $20–25bn of capex. Base: 10% of the 2027–30 build plus the residual the flywheel cannot cover, at an assumed $250 — the bridge shows the count.<span class=\"src\">6-Ks · 12 Aug letter</span>",
+      "<b>The multiple is the swing.</b> At $20m per MW and 55% EBITDA, $1 of run-rate is worth ~3.3× — between CoreWeave’s tenant 2.75× and IREN’s owner-operator 4.06×, because Nebius owns most of its shell but pays more for silicon per dollar of revenue on shorter contracts. Signed contracts never escalate; they reprice when they end.<span class=\"src\">contracted 2-yr at 10.5% · short-term at 13%</span>",
+      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> Non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) are added to equity at the tracker’s $5.8bn mark, not to EV. Pick your multiple.<span class=\"src\">after the raise</span>"
+     ]
+    ],
+    "footer": {
+     "sources": "FY25 20-F (filed 30 Apr 2026, with the Meta agreements Ex-4.2/4.3 and Microsoft SOW Ex-4.4/4.5), Q1-26 and Q2-26 6-K interim statements, every shareholder letter Q3-24 to Q2-26 (assets.nebius.com), 6-Ks for the Microsoft, Meta, convertible-note and secured-facility announcements, AGM materials Aug-26; Q1-26 and Q2-26 call transcripts (investing.com, Motley Fool); Vineland Planning Board, City of Independence, Floodlight/Guardian and trade-press site reports; SemiAnalysis ClusterMAX and the public GPU index; Know Your Investments, MVC Investing and Northwise for site-by-site tallies.",
+     "model": "Compute/Value tracker, Nebius ramp drafted 4 Sep 2026 by the §6e playbook. Ramp: connected/active power as billing IT MW; 2026 to the connected guide, 2027 the owned greenfields, 2028-30 the 5 GW contracted book at ~1 GW a year to 4.7 GW; rates $12.5m per MW-yr on 2026 vintages rising to $21m on 2030, 10% of unsigned capacity at $35m spot, 90% contracted. Capex per MW: $30m Blackwell, +10% on 2027 orders, $38m Rubin, $45m next-gen; shell $8m on owned campuses, none on co-location. Steady-state: $20m revenue per MW-yr, 55% EBITDA, $30m GPUs + $6m blended shell, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals, short-term at 13%; refresh 55% of GPU cost every four years plus 3%/yr; 10% of the 2027–30 build in equity at $250; operating cash funds the build first, prepayments next, debt within lenders’ cover, equity for the rest. Honest-base items: prepayments credited pro rata through reduced instalments with the balance owed at 2030 deducted at PV; eight convertible series as equity at the model’s 2030 price (no capped calls); restricted cash counted; non-core stakes at the tracker mark. Value = 2030 EV less net debt ex converts and prepayments owed, plus non-core, discounted to today, over the diluted count."
+    }
+   }
   },
   {
    "tk": "RIOT",
