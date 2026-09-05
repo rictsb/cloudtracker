@@ -2652,12 +2652,28 @@
     },
     "consensus": {
      "2026Q3": [
-      900,
-      900
+      907,
+      907
      ],
      "2026Q4": [
-      1300,
-      1300
+      1455,
+      1455
+     ],
+     "2027Q1": [
+      2300,
+      2300
+     ],
+     "2027Q2": [
+      2750,
+      2750
+     ],
+     "2027Q3": [
+      3200,
+      3200
+     ],
+     "2027Q4": [
+      3720,
+      3720
      ]
     },
     "calibration": {
@@ -2668,7 +2684,7 @@
     },
     "basis": "Quarterly GPU-ramp overlay for Nebius (owner-approved playbook §6e, drafted 2026-09-04) — DISPLAY ONLY. Nebius reports contracted, connected and active power; active/connected MW are read as billing IT MW. History from the letters (~25 MW connected end-2024; ~170 MW active end-2025 against a 100 MW target; Microsoft Vineland tranches from Nov-25, all nine delivered by Aug-26; Finland 75 MW complete early 2026) and Nebius AI-cloud segment revenue by quarter; 2026H2 the guided step-up (800 MW–1 GW connected by year-end; UK 65 MW, Israel 80, Estonia 22, Bethune, Meta #1 clusters); 2027 the owned greenfields (Lappeenranta first halls with Meta #2 Vera Rubin from early 2027, Alabama, Independence MO phase 1 250 MW by Oct-27, Pennsylvania 250-300 MW by YE27, Bethune to 240, Vineland phase 2); 2028-30 the 5 GW contracted book online over 3-3.5 years (Q2-26 call), ~1 GW a year of owned campuses (Missouri to 1.1 GW by Dec-29, Pennsylvania ~300 MW/yr) — 4.7 GW at 2030Q4. Rates per MW-yr by vintage: 2024 $6m (on-demand Hopper), 2025 $9m, 2026 $12.5m (the '$12m 2026 base' on the Q2-26 letter chart; Microsoft $17.4bn/5yr on ~250 MW ≈ $14m), 2027 $18m, 2028 $19m, 2029 $20m, 2030 $21m (Q2-26 landmark deals at $20-25m per MW, 1-3 yr; short-term $40-50m). Owned sites (Finland, Missouri, Pennsylvania, Alabama, >75% of contracted power) carry $8m shell per MW; co-location sites none. Density per MW: Hopper 700, Blackwell 400, Rubin 250, next-gen 200. Contracted share 1.0 on Microsoft/Meta tranches, 0.9 on the rest; spot from 2027 as IREN. Backtest on eight reported quarters: MAPE ~13% excluding the first partial quarter.",
     "actualsSource": "Nebius AI-cloud segment revenue by quarter: 20-F FY25 and the Q3-24 to Q2-26 results releases (restated ex-Toloka)",
-    "consensusSource": "PLACEHOLDER — 2026 revenue guidance $3.0-3.4bn spread H2-weighted; replace with Bloomberg consensus when pulled",
+    "consensusSource": "Q3-26 $907m (TipRanks, 25 Aug 2026); Q4-26 as the residual of the FY26 street mean $3.34bn (stockanalysis.com, 17 analysts, 26 Aug 2026) after reported H1 and Q3; 2027 quarters = the FY27 street mean $11.97bn spread on a rising quarterly shape (2.30/2.75/3.20/3.72bn)",
     "chain": [
      {
       "id": "secured",
@@ -2802,7 +2818,7 @@
     },
     "evArr": {
      "sh": 287.7,
-     "nd": 2.3,
+     "nd": 0.46,
      "arr": 8
     },
     "facts": [
@@ -2813,8 +2829,8 @@
      ],
      [
       "Net debt",
-      "$2.3bn",
-      "$15.8bn converts and secured − $13.5bn cash, pro forma Aug"
+      "$0.5bn",
+      "$14.2bn converts and secured − $13.8bn cash, pro forma Aug"
      ],
      [
       "RPO",
@@ -2924,13 +2940,13 @@
     "tiles": [
      [
       "Cash",
-      "~$13.5bn",
-      "~$7.9bn at 30 Jun (est.) + $5.75bn Aug converts"
+      "$13.8bn",
+      "$8.0bn at 30 Jun + $5.75bn Aug converts · $1.1bn restricted"
      ],
      [
       "Converts",
-      "$15.0bn",
-      "0.5–4.5% coupons, accreting principal"
+      "$13.4bn",
+      "eight series, 0.5–4.5% coupons, accreting to $15.7bn"
      ],
      [
       "Prepayments received",
@@ -3094,24 +3110,24 @@
      "SH0": 321.7,
      "EQ_SHARE": 0.1,
      "EQ_PX": 250,
-     "DEBT0": 15.77,
-     "CASH0": 13.5,
+     "DEBT0": 14.25,
+     "CASH0": 13.79,
      "RATE": 0.07,
      "TAX": 0.21,
      "MINCASH": 3,
-     "CONV": 14.99,
+     "CONV": 13.425,
      "CONV_RATE": 0.015,
-     "CASH_R": 1.1,
+     "CASH_R": 1.056,
      "FWD": 0,
      "NONCORE": 5.8,
      "SERIES": [
       [
-       0.1875,
+       0.0875,
        51.45,
        null
       ],
       [
-       0.2125,
+       0.0875,
        51.45,
        null
       ],
@@ -3173,7 +3189,7 @@
       "spotGpu": 0.5,
       "spotShell": 0.5
      },
-     "basis": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $250 plus the residual; eight convertible series (post-Aug-26 exchange: 2029/2031 $0.4bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Aug-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.5bn = ~$7.9bn at 30 Jun (estimated from the Mar-26 balance, Q2 capex, ATM and prepayments) + $5.75bn August converts"
+     "basis": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $250 plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Aug-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets)"
     },
     "capexRules": {
      "gpu": {
@@ -3216,7 +3232,7 @@
      ],
      [
       "<b>Prepayments do the funding.</b> ~70% of Q2-26 deals carried prepayments covering 50–60% of capex; >$9bn expected in 2026; Microsoft prepaid $6.96bn of $17.4bn. Deferred revenue $6.0bn at 30 June.<span class=\"src\">Q2-26 letter · 20-F Note on Microsoft</span>",
-      "<b>Converts, then secured debt.</b> Four convertible raises in 14 months — $1.0bn (Jun-25), $3.16bn (Sep-25), $4.34bn (Mar-26), $5.75bn (Aug-26) — plus NVIDIA’s $2bn pre-funded warrant, a $1.15bn follow-on at $92.50 and $2.8bn of ATM at $223.60. The first secured GPU facility ($775m, SOFR+250) closed July-26; management expects “mid-single-digit billions” more against >$40bn of IG-backed contracts.<span class=\"src\">6-Ks · 17 Jul 2026 release</span>",
+      "<b>Converts, then secured debt.</b> Four convertible raises in 14 months — $1.0bn (Jun-25), $3.16bn (Sep-25), $4.34bn (Mar-26), $5.75bn (Aug-26); $13.4bn outstanding at original principal, accreting to $15.7bn, no capped calls — plus NVIDIA’s $2bn pre-funded warrant, a $1.15bn follow-on at $92.50 and $2.8bn of ATM at $223.60. The first secured GPU facility ($775m, SOFR+250) closed July-26; management expects “mid-single-digit billions” more against >$40bn of IG-backed contracts.<span class=\"src\">6-Ks · 17 Jul 2026 release</span>",
       "<b>The catch:</b> prepayments and gearing follow signed contracts; the owned greenfields ($8m shell per MW) are built ahead of signing. Unsigned capacity needs ~$19m of equity per MW, and the ATM has 12.3m shares left.<span class=\"src\">funding stack above · Q2-26 6-K</span>"
      ],
      [

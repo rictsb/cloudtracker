@@ -389,7 +389,7 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
     const sh30 = last.sh - FWD; let S = 0, convSh = 0;
     const NC = F.NONCORE || 0;   // non-core stakes and assets, $bn at the horizon (added to equity, not to EV)
     if (o.convAsDebt) { S = (ev - (last.nd + CONV) - liab + NC) / sh30 * 1000; }
-    else for (let it = 0; it < 40; it++) { S = (ev - last.nd - liab + NC) / (sh30 + convSh) * 1000; convSh = SERIES.reduce((a, s) => a + s[0] / s[1] * 1000 * (1 - Math.max(0, Math.min(s[2] || Infinity, S) - s[1]) / S), 0); }
+    else for (let it = 0; it < 40; it++) { S = (ev - last.nd - liab + NC) / (sh30 + convSh) * 1000; convSh = SERIES.reduce((a, s) => a + s[0] / s[1] * 1000 * (S > s[1] ? 1 : 0) * (s[2] ? (1 - Math.max(0, Math.min(s[2], S) - s[1]) / S) : 1), 0); }   // a series converts only when the horizon price clears its conversion price; a capped call (s[2]) nets the shares between strike and cap
     const dil = sh30 + convSh, ps = S / DF, addb = o.convAsDebt ? 0 : CONV * CONV_RATE * (1 - TAX) * 1000;
     C.forEach(c => { if (!/Q4$/.test(c.q)) return; const ys = C.filter(x => x.q.slice(0, 4) === c.q.slice(0, 4) && x.r);
       if (ys.length === 4) c.epsYE = (ys.reduce((s, x) => s + x.r.ni, 0) + addb) / (c.r.sh + convSh - (c.q.slice(0, 4) === L[N - 1][0].slice(0, 4) ? FWD : 0)); });
