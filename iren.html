@@ -424,8 +424,9 @@ footer a{color:var(--accent);text-decoration:underline;text-underline-offset:2px
     for (let y = 1; y <= H; y++) {
       const market = p.rev * Math.pow(1 + (p.g || 0), Math.min(y, p.gY || 0));
       if (term === 1) rate = market; else if ((y - 1) % term === 0 && y > 1) rate = market;
-      const eb = rate * p.M, dep = p.gpu * p.swap / p.life + sh, tax = Math.max(0, eb - dep) * p.tax;
-      let fcf = eb - sh - tax - (p.fail || 0) * p.gpu; if (y % p.life === 0) fcf -= p.gpu * p.swap;
+      const gpuY = p.gpu * Math.pow(1 + (p.costG || 0), Math.min(y, p.gY || 0));   // costG: the refresh buys the then-current generation at the then-current cost per MW
+      const eb = rate * p.M, dep = gpuY * p.swap / p.life + sh, tax = Math.max(0, eb - dep) * p.tax;
+      let fcf = eb - sh - tax - (p.fail || 0) * gpuY; if (y % p.life === 0) fcf -= gpuY * p.swap;
       pv += fcf / Math.pow(1 + Wd, y);
     }
     return pv / p.rev;
