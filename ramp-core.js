@@ -42,6 +42,7 @@ function rampQuarters(R,sc,from,to){
       if(f<=0)return;const live=t.gpus*f;
       by[t.gen]+=live;cum+=live;prev+=t.gpus*f0;signed+=live*(t.signed||0);ctr+=live*t.ctr;camps[t.campus]=1;
       let vr=t.rate;
+      if(t.renew&&t.renew.q&&s>=RAMP_QS(t.renew.q)&&!(d&&d.noRenew))vr=t.renew.rate;   // optional re-contracting at the end of the original term
       if(d.vintageDecay){const age=Math.max(0,(s-RAMP_QS(t.rev))/4);vr=t.rate*Math.pow(1-d.vintageDecay,age);}
       // Storage / CPU / networking / managed layer rides on top of the GPU hour. UNSIGNED tranches only:
       // their rates are market GPU-RENTAL prints so attach is additive, whereas every signed rate was
