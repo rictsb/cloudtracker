@@ -10185,5 +10185,204 @@
     ]
    }
   ]
+ },
+ "compare": {
+  "asOf": "2026-09-08",
+  "kicker": "IREN · CoreWeave · Nebius · from the three research pages",
+  "title": "The same megawatt, three balance sheets",
+  "sub": "Cost of capital › Power › Contracts › Pricing › What a megawatt keeps › Value",
+  "names": [
+   "IREN",
+   "CRWV",
+   "NBIS"
+  ],
+  "factors": [
+   {
+    "f": "Business model and power",
+    "src": "10-K Item 2 · Q2-26 10-Q and call · Q1/Q2-26 letters",
+    "v": {
+     "IREN": "Owner-operator: 5.8 GW of secured power on owned land and substations (Childress, Sweetwater, Kiowa, BC, Spain, Australia).",
+     "CRWV": "Tenant: 51 leased data centres, 4.2 GW contracted through Core Scientific, Applied Digital, Galaxy and others; no provider over 17% of active power.",
+     "NBIS": "Hybrid: 5 GW contracted guided for end-2026, more than 75% on owned campuses (Finland, Missouri 1.2 GW, Pennsylvania 1.2 GW, Alabama); co-location elsewhere."
+    },
+    "trend": "structural"
+   },
+   {
+    "f": "Cost of the shell",
+    "src": "Nov-25 deck · lessor filings, 10-Q Note 8 · Q3-25 call",
+    "v": {
+     "IREN": "$14–16m per MW of capex on a liquid-cooled new build, $5m on an air retrofit; 25-year life.",
+     "CRWV": "Rent of ~$1.4–1.8m per MW-yr on 7–16 year leases ($120–150 per kW-month); $35.5bn of leases signed and not yet started.",
+     "NBIS": "~$8m per MW on owned campuses (data-centre build is 18–20% of capex); rent on co-location sites."
+    },
+    "trend": "structural — but priced alike: rent ≈ a $15m shell financed at ~10%"
+   },
+   {
+    "f": "Power price",
+    "src": "10-K · Rittenhouse model in the CRWV pack · letters",
+    "v": {
+     "IREN": "~$35/MWh at its own substations (ERCOT West Texas, BC hydro) ≈ $0.4m per IT MW-yr, under 2% of revenue.",
+     "CRWV": "Market power passed through in contracts; ~$75/MWh at PUE 1.4 ≈ $0.8m per MW-yr inside cost of revenue.",
+     "NBIS": "Finland PUE 1.13 on hydro; Vineland behind the meter on Bloom fuel cells; co-location power in cost of revenue."
+    },
+    "trend": "structural"
+   },
+   {
+    "f": "GPUs and ancillaries per MW",
+    "src": "8-K 3-Nov-25, FY26 call · 10-K/10-Q derived · letters",
+    "v": {
+     "IREN": "$29m on the Nov-25 Dell order, +15–20% on 2027 orders (~$34m), Rubin ~$40m.",
+     "CRWV": "~$30m derived (FY25 management capex ÷ MW added); $25m H1-26; $37m implied by the 2026 guide.",
+     "NBIS": "~$30m (GPUs are ~80% of capex; 2026 guide $20–25bn on ~700 MW added)."
+    },
+    "trend": "converging — the same silicon from the same vendors"
+   },
+   {
+    "f": "GPU book life",
+    "src": "10-K Note 2 · 10-K · 20-F",
+    "v": {
+     "IREN": "5 years.",
+     "CRWV": "6 years (5 before 2023).",
+     "NBIS": "5 years from Jan-26 (4 before)."
+    },
+    "trend": "converging on 5–6"
+   },
+   {
+    "f": "Contract length",
+    "src": "10-K · 424B4, 10-K · Q2-26 letter",
+    "v": {
+     "IREN": "5 years with Microsoft and NVIDIA; 3 years on enterprise deals; no expansion options granted.",
+     "CRWV": "~5 years weighted (range 1–6), up from ~4 at Dec-24; DDTL 5.5 finances 3-year paper.",
+     "NBIS": "5 years with Microsoft and Meta; 1–3 years on the mid-term core; 3–6 months short-term."
+    },
+    "trend": "converging on 3–5 years take-or-pay for new capacity"
+   },
+   {
+    "f": "Take-or-pay and prepayments",
+    "src": "FY26 release fn.4, SOW EX-10.3 · 424B4/10-K · Q2-26 letter, 20-F",
+    "v": {
+     "IREN": "Take-or-pay; recent prepayments 45–55% of GPU capex; Microsoft 20% of contract value, credited after month 24.",
+     "CRWV": "98% of revenue take-or-pay; prepayments 15–25% of contract value, credited in the final months.",
+     "NBIS": "Microsoft and Meta take-or-pay; ~70% of Q2-26 deals prepaid 50–60% of capex; Microsoft 40% of contract value."
+    },
+    "trend": "converging — prepayment is now market standard"
+   },
+   {
+    "f": "Customer mix and credit",
+    "src": "FY26 release · 10-Q concentration table · 20-F, Q2-26 6-K",
+    "v": {
+     "IREN": "Microsoft ~$1.9bn ARR, NVIDIA ~$0.7bn, an eight-name AI-developer cohort; 87% of 2030 revenue unsigned today.",
+     "CRWV": "Microsoft 36% of Q2-26 revenue (67% in FY25), OpenAI, Meta, Anthropic, Jane Street; more than 60% of backlog investment-grade.",
+     "NBIS": "Microsoft and Meta about 86% of RPO; the enterprise tail reprices fastest."
+    },
+    "trend": "converging — all three are hyperscaler-anchored with an enterprise tail"
+   },
+   {
+    "f": "Price per MW-yr by tenor",
+    "src": "8-K 3-Nov-25, FY26 call · Q2-26 call, rate card · Q2-26 letter",
+    "v": {
+     "IREN": "5-yr $9.7m (Microsoft, Nov-25); 3-yr above $20m; discussions ~$25m.",
+     "CRWV": "Book ~$10m (exit-26 run-rate ÷ active MW); new Blackwell and Rubin “at new highs” after a ~25% July list rise; on-demand GB200 $10.50/GPU-hr ≈ $31m.",
+     "NBIS": "2026 base ~$12m; 1–3 yr $20–25m; 3–6 month $40–50m; Microsoft ~$14m."
+    },
+    "trend": "converging by tenor — same tenor and SKU, same band"
+   },
+   {
+    "f": "Cost of investment-grade-backed GPU debt",
+    "src": "FY26 release · 8-K 30 Mar 2026 · 17 Jul 2026 release",
+    "v": {
+     "IREN": "6.0% blended on the $3.6bn Microsoft facility.",
+     "CRWV": "SOFR+225 / 5.9% fixed on the $8.5bn DDTL 4.0 (A3).",
+     "NBIS": "SOFR+250 on the $775m secured facility."
+    },
+    "trend": "converged at ~6%"
+   },
+   {
+    "f": "Cost of non-investment-grade GPU debt",
+    "src": "10-K Item 9B · 8-Ks 15 May, 7 Aug 2026",
+    "v": {
+     "IREN": "9.0% fixed, 30-month paper (Blue Owl / PIMCO, $2.4bn).",
+     "CRWV": "SOFR+450 to +550 (DDTL 5.0 / 5.5), roughly 9–9.6%.",
+     "NBIS": "None yet."
+    },
+    "trend": "converged at ~9%"
+   },
+   {
+    "f": "Corporate debt and converts",
+    "src": "10-K Note 23 · 10-Q debt table · 6-Ks",
+    "v": {
+     "IREN": "Converts $6.75bn at 0–3.5%; no straight bonds.",
+     "CRWV": "Senior notes $10bn at 9.0–9.75%; converts $6.6bn at 1.75%; OEM financing $4.8bn.",
+     "NBIS": "Converts $13.4bn at 0.5–4.5%, accreting to $15.7bn; no straight bonds."
+    },
+    "trend": "structural for now — only CoreWeave carries high-yield bonds"
+   },
+   {
+    "f": "Equity issuance record",
+    "src": "10-K Note 24 · 8-Ks · 6-Ks",
+    "v": {
+     "IREN": "~$11bn of equity and converts in FY26; $6bn ATM with $3.5bn unused.",
+     "CRWV": "IPO $1.4bn at $40; NVIDIA $2bn at $87.20; Jane Street $1bn at $109; no ATM.",
+     "NBIS": "$700m at $21; $1.15bn at $92.50; NVIDIA $2bn warrant; ATM $2.8bn at $223.60."
+    },
+    "trend": "converging — converts plus strategic placements everywhere"
+   },
+   {
+    "f": "EBITDA margin",
+    "src": "FY26 results · Q2-26 release and call · Q2-26 6-K",
+    "v": {
+     "IREN": "65% modelled (AI-cloud gross margin ~87%).",
+     "CRWV": "57–59% adjusted, after rent and power; management puts scaled contracts near 70%.",
+     "NBIS": "AI cloud 50% in Q2-26 (19% a year earlier); group guide ~40% for 2026."
+    },
+    "trend": "converging toward 55–65% as scale and owned share rise; rent is the persistent wedge"
+   },
+   {
+    "f": "Stated payback on GPUs",
+    "src": "FY26 release fn.3 · 424B4, calls · Q2-26 letter",
+    "v": {
+     "IREN": "~2 years after direct costs on recent contracts.",
+     "CRWV": "~2.5-year cash payback at IPO; contract revenue more than covers capex within the term.",
+     "NBIS": "1 year 10 months on Q2-26 deals (2–3 years historically)."
+    },
+    "trend": "converged at ~2 years"
+   },
+   {
+    "f": "Capacity: today and 2030 (model)",
+    "src": "the three pages",
+    "v": {
+     "IREN": "~90 MW IT earning today; 5.8 GW secured; 3.0 GW active by 2030.",
+     "CRWV": "1.5 GW active; 4.2 GW contracted + 1.5 GW options; 7.0 GW by 2030.",
+     "NBIS": "~170 MW active at end-2025; 5 GW contracted; 4.65 GW by 2030."
+    },
+    "trend": "structural — who controls the megawatt"
+   }
+  ],
+  "notes": {
+   "factors": [
+    "<b>Three ways to reach the same megawatt.</b> IREN buys the land and substation and waits for power; CoreWeave rents a finished hall and pays for it monthly for 7–16 years; Nebius does both. Everything downstream — silicon, contracts, customers, debt — is bought in the same market from the same vendors and lenders.<span class=\"src\">sections 1–2 of each page</span>",
+    "<b>Where they already meet.</b> Investment-grade-backed GPU debt prices at ~6% for all three, non-IG at ~9%, prepayments have become standard on new deals, silicon costs the same per MW, and new capacity is signing on 3–5 year take-or-pay at $20m+ per MW whoever the landlord is.<span class=\"src\">rows 4, 7, 9–11, 15</span>",
+    "<b>Where they will not.</b> The shell is either $15m of capex or $1.5m+ a year of rent; power is either $35/MWh at your own substation or a market price passed through; and the customer book is either two hyperscalers or a broader tail. Those are choices, not stages.<span class=\"src\">rows 1–3, 8, 12</span>"
+   ],
+   "economics": [
+    "<b>Read the waterfall per megawatt, not in total.</b> CoreWeave’s 2030 EBITDA is larger because it runs 7 GW to IREN’s 3 GW, not because a rented megawatt earns more. Per megawatt-year IREN earns about $14.6m of EBITDA and keeps $6.6m; CoreWeave earns $8.4m and keeps $2.1m; Nebius earns $11.0m and keeps $4.3m.<span class=\"src\">chart above · page §5 of each</span>",
+    "<b>Rent hides inside EBITDA; the shell hides inside capex.</b> A tenant’s building cost is a running cost, so its margin is lower but its capex per MW is $33m instead of $49m. The like-for-like test is cash kept on the capital the company itself deploys: IREN 13%, Nebius 12%, CoreWeave 6%.<span class=\"src\">table above</span>",
+    "<b>Renting is faster, not richer.</b> The landlord’s capital plus 20% prepayments plus 90% GPU financing let CoreWeave add more than twice IREN’s megawatts with less equity per MW. The price is rent for 7–16 years whether or not the racks are full, 9–9.75% senior notes, and half the revenue per MW on a hyperscaler-anchored book.<span class=\"src\">page §4 of each</span>"
+   ],
+   "picture": [
+    "<b>Scale is the tenant’s answer.</b> On the pages as they stand, CoreWeave reaches $103bn of run-rate on 7 GW, Nebius $84bn on 4.65 GW, IREN $62bn on 3 GW. CoreWeave gets there with the most debt and the most prepayments still owed; IREN with the most equity per megawatt.<span class=\"src\">table above</span>",
+    "<b>The multiple does the rest.</b> $1 of run-rate is worth 4.06× to IREN, 3.34× to Nebius, 2.75× to CoreWeave, so IREN’s smaller book is worth more per share of ARR. Whether density pricing continues after 2030, and whether the refresh cost rises with it, is the open method question on all three pages.<span class=\"src\">page §5–6 of each</span>",
+    "<b>Against the market.</b> IREN trades at a fraction of its base; CoreWeave and Nebius trade near or above theirs. Either the market prices IREN’s unsigned 87% of 2030 revenue at close to zero, or it prices the tenants’ scale at more than the rented megawatt keeps.<span class=\"src\">bars above</span>"
+   ],
+   "convergence": [
+    "<b>What is converging (evidence to date).</b> The cost of GPU debt by credit tier (6% IG-backed, 9% non-IG at all three by mid-2026); the silicon bill per MW; prepayment as a standard term; contract length on new capacity (3–5 years); and price per MW-yr by tenor, where IREN’s 3-year enterprise deals, Nebius’s mid-term deals and CoreWeave’s new Blackwell/Rubin pricing sit in the same $20m+ band. A convergence research round is verifying each of these with dated prints and will replace this note.<span class=\"src\">research in progress, 8 Sep 2026</span>",
+    "<b>What is structural.</b> Owning versus renting the shell, the power price that comes with it, the GPU book life each company has chosen, and the customer concentration each started with. These set the margin wedge (65% vs 57%) and the capital per MW ($49m vs $33m), and they do not close with time; they are the strategy.<span class=\"src\">rows marked structural</span>",
+    "<b>How the models treat it.</b> From 2027 the three pages already price new capacity from one market: the same spot rate, the same silicon-cost curve, the same lender advance rates and the same steady-state method. What stays company-specific is the signed book each carries into 2027 and the three structural rows. CoreWeave’s legacy book now has a re-contracting mechanism available for when its 2023–25 terms end.<span class=\"src\">ramp-core renew · playbook §6e</span>"
+   ]
+  },
+  "footer": {
+   "sources": "The three research pages and their research packs (IREN FY26 10-K and 27 Aug call; CoreWeave Q2-26 10-Q, FY25 10-K, 424B4 and the Q1-25 to Q2-26 transcripts; Nebius FY25 20-F, Q2-26 6-K and the shareholder letters), lessor filings (Core Scientific, Applied Digital, Galaxy), SemiAnalysis public posts and index.",
+   "model": "Compute/Value tracker, playbook §6e. Each column is the same quarterly cash waterfall and the same steady-state per-MW DCF run on that company’s page and ramp blocks in data.json; the comparison page computes nothing of its own."
+  }
  }
 }
