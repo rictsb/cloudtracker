@@ -1277,7 +1277,7 @@
      "fittedOn": "2024Q1-2026Q2 reported revenue (ten quarters)",
      "basis": "Ten reported quarters retrodicted with rampMult 1: MAPE 8.0%, bias -3.1%. There is no sell-down leg to calibrate — 98% of revenue is take-or-pay and bills on acceptance — so the observed lag between active power and revenue (the 2026Q1-Q2 additions bill over three quarters, >300 MW energised in June 2026 alone) is carried on the tranches directly as rampQtrs 2-3, not as a multiplier. Vintage rates were set so the retrodiction holds: $10.5m/$10m per active MW-yr on 2023-24, $9.5m on 2025, $10m on 2026."
     },
-    "basis": "Quarterly GPU-ramp overlay for CoreWeave (owner-approved playbook §6e, drafted 2026-09-04) — DISPLAY ONLY. 'Active power' as reported by the company is treated as billing IT MW. History from company-reported active power (70 MW Dec-23, >360 Dec-24, 420/470/590/850 MW through 2025, >1 GW Mar-26, 1.5 GW Jun-26; 10-K FY25, 10-Q Q2-26, calls) and AI-cloud revenue by quarter; 2026H2 to the >1.85 GW year-end guide (11 Aug 2026); 2027 to the >3 GW active-by-YE27 framing on the Q2-26 call (Helios 393 MW undelivered, Applied Digital 225 MW, Lancaster, Kenilworth, Core Scientific Dalton/Marble/Muskogee, Chicago); 2028 most of the contracted footprint, the last 300 MW in 2029Q1 (10-Q Note 8: leases not yet commenced begin between 2026 and 2029); 2029 the >1.5 GW of options and LOIs, unsigned (ctr 0.9); 2030 the tracker's rumored pipeline (1.3 GW) — 7.0 GW at 2030Q4 against the company's >=8 GW objective, the gap left unmodelled. Rates per active MW-yr by vintage: 2023-24 $10.5-10m (H100-era hyperscaler contracts), 2025 $9.5m, 2026 $10m (exit-2026 ARR $18.5-19.5bn on >1.85 GW), then the evidence-weighted path from the pricing-trajectory research of 8 Sep 2026: 2027 $11.5m (>75% of exit-27 pre-sold at pre-July prices; the >$30bn exit-27 guide back-solves to $9.5-12m), 2028 $13.5m, 2029 $14.5m, 2030 $15m (the July-2026 ~25% list step and the IREN/Nscale ~$16.5m per IT-MW 5-yr prints after a ~20% IT-to-gross haircut, since CoreWeave's 'active power' reads as gross). The cohort on these rates reproduces exit-27 ~$31bn, FY27 $25.5bn vs street $26.5bn, FY28 $42.5bn vs street $42.0bn. The former 14/15.5/16.5/17.5 ladder is the HIGH case ($157/share), conditional on active MW being IT load and 5-yr Rubin paper holding >=$16m per IT-MW-yr; legacy re-contracting (~360 MW, ~240 MW of it in 2028, at ~1.0x original) is immaterial (+/-$0.3m per MW-yr on the average). GPU density per active MW: Hopper 700, Blackwell 400, Rubin 250, next-gen 200. Contracted share 1.0 on signed capacity (98% take-or-pay), 0.9 on unsigned; spot from 2027 as IREN. Backtest on ten reported quarters: MAPE 8.0%, bias -3.1%.",
+    "basis": "Quarterly GPU-ramp overlay for CoreWeave (owner-approved playbook §6e, drafted 2026-09-04) — DISPLAY ONLY. 'Active power' and 'contracted power' as reported by the company are critical-IT MW (parity research 10 Sep 2026: the 10-Q lease note tracks Galaxy Helios's critical-IT figures 133/393/525 MW at every filing; the 424B4 counts Core Scientific at its 500/70 MW critical IT, not its 700-840 MW gross; the 4 Aug 2026 Indonesia release says '360 megawatts of contracted IT power'; no filing defines the term) — conversion to IT MW 1.0, range 0.9-1.0; gross is a site attribute (1.36-1.5x at Core Scientific and Galaxy), shown at 1.3x as a display assumption. History from company-reported active power (70 MW Dec-23, >360 Dec-24, 420/470/590/850 MW through 2025, >1 GW Mar-26, 1.5 GW Jun-26; 10-K FY25, 10-Q Q2-26, calls) and AI-cloud revenue by quarter; 2026H2 to the >1.85 GW year-end guide (11 Aug 2026); 2027 to the >3 GW active-by-YE27 framing on the Q2-26 call (Helios 393 MW undelivered, Applied Digital 225 MW, Lancaster, Kenilworth, Core Scientific Dalton/Marble/Muskogee, Chicago); 2028 most of the contracted footprint, the last 300 MW in 2029Q1 (10-Q Note 8: leases not yet commenced begin between 2026 and 2029); 2029 the >1.5 GW of options and LOIs, unsigned (ctr 0.9); 2030 the tracker's rumored pipeline (1.3 GW) — 7.0 GW at 2030Q4 against the company's >=8 GW objective, the gap left unmodelled. Rates per active MW-yr by vintage: 2023-24 $10.5-10m (H100-era hyperscaler contracts), 2025 $9.5m, 2026 $10m (exit-2026 ARR $18.5-19.5bn on >1.85 GW), then the evidence-weighted path from the pricing-trajectory research of 8 Sep 2026: 2027 $11.5m (>75% of exit-27 pre-sold at pre-July prices; the >$30bn exit-27 guide back-solves to $9.5-12m), 2028 $13.5m, 2029 $14.5m, 2030 $15m (the July-2026 ~25% list step, capped by the 5-yr Rubin evidence per critical-IT MW: SemiAnalysis VR 5-yr cost-plus floor $4.92/GPU-hr x 250 = $10.8m, Nscale-Anthropic $12.4-16.3m depending on whether its 460 MW is rack or IT power, 5-yr GB300 ~$14m; no basis haircut — the earlier '~20% IT-to-gross' reading was dropped on 10 Sep 2026). The cohort on these rates reproduces exit-27 ~$31bn, FY27 $25.5bn vs street $26.5bn, FY28 $42.5bn vs street $42.0bn. The former 14/15.5/16.5/17.5 ladder is the HIGH case ($157/share), conditional on 5-yr Rubin paper holding >=$16m per IT-MW-yr; the owner's parity thesis (2027-30 vintages at the IREN/Nebius per-IT-MW ladders, $12.5/19/20/21.5m) is the 'parity' scenario ($177/share) and even there the 2030 fleet average lands ~85-90% of the peers' because of the locked 2025-26 book; legacy re-contracting (~360 MW, ~240 MW of it in 2028, at ~1.0x original) is immaterial (+/-$0.3m per MW-yr on the average). GPU density per active MW: Hopper 700, Blackwell 400, Rubin 250, next-gen 200. Contracted share 1.0 on signed capacity (98% take-or-pay), 0.9 on unsigned; spot from 2027 as IREN. Backtest on ten reported quarters: MAPE 8.0%, bias -3.1%.",
     "actualsSource": "AI-cloud revenue by quarter: 10-K FY25 and 10-Qs (2024 quarters from prior-year comparatives in the 2025 releases)",
     "consensusSource": "company guidance: Q3-26 revenue $3.45-3.6bn (11 Aug 2026)",
     "chain": [
@@ -1286,7 +1286,7 @@
       "link": "contracted power → monetised in-window",
       "fn": "Σ tranche itMW (active) · gross = active × 1.3",
       "value": "4.2 GW contracted + >1.5 GW options/LOIs + 1.3 GW rumored pipeline → 7.0 GW active modelled by 2030Q4 (9.1 GW gross)",
-      "assumption": "CoreWeave reports active and contracted power only; both are read as critical IT MW and gross is derived at PUE ~1.3. The company objective is >=8 GW by 2030; the last ~1 GW is not modelled.",
+      "assumption": "CoreWeave reports active and contracted power only; both are critical IT MW (lessor tie-outs and the company's own 'contracted IT power' wording; parity research 10 Sep 2026) and gross is derived at 1.3x as a display assumption (Core Scientific 1.36-1.43x, Galaxy 1.5x on their own filings). The company objective is >=8 GW by 2030; the last ~1 GW is not modelled.",
       "range": "6-8 GW active by 2030; gross/active 1.2-1.4",
       "moves": "run-rate and capex in proportion"
      },
@@ -1302,11 +1302,11 @@
      {
       "id": "derate",
       "link": "gross MW → critical IT MW",
-      "fn": "active power taken as IT MW (definition)",
-      "value": "1.0 by definition; gross shown at 1.3×",
-      "assumption": "If reported active power were gross rather than critical, per-MW revenue would be ~25% higher and MW ~20% lower — value-neutral to first order, but capex per MW would be understated.",
-      "range": "0.77-1.0",
-      "moves": "capex per active MW"
+      "fn": "active power = critical IT MW (lessor tie-outs)",
+      "value": "1.0 (range 0.9-1.0); gross shown at 1.3x as a display assumption",
+      "assumption": "The lease note's undelivered-power figures track Galaxy Helios's critical-IT load at every 10-Q (133/393/525/393 MW), the 424B4 counts Core Scientific at 500 + 70 MW critical IT rather than 700-840 MW gross, and the 4 Aug 2026 Indonesia release reads '360 megawatts of contracted IT power'; CoreWeave says 'gross' when it means gross ('~840 existing gross MW', 7 Jul 2025). The 0.9 floor covers the <1 GW (Lancaster, Kenilworth, Nordic, DCSP) whose basis is unstated. No filing defines the term; an IR confirmation would close it.",
+      "range": "0.9-1.0",
+      "moves": "MW count and capex per MW by up to 10%; value-neutral to first order"
      },
      {
       "id": "density",
@@ -1340,8 +1340,8 @@
       "link": "GPU-hours → revenue",
       "fn": "revenue = GPU-hours × (ctr × vintage rate + (1-ctr) × spot × gen multiplier)",
       "value": "$10m per active MW-yr on the signed book (exit-2026 run-rate $18.5-19.5bn on >1.85 GW), $11.5m on 2027 vintages rising to $15m by 2030 (evidence-weighted base; the 14-17.5m ladder is the high case); spot $35m realised from 2027 on 10% of unsigned capacity",
-      "assumption": "Tenor, not generation, sets the price: the same Blackwell MW clears at $9.7-16.5m on 5-yr paper, $20-25m on 1-3 yr and $40-50m on 3-6 months, and 98% of CoreWeave revenue is 5-yr fixed take-or-pay, the cheapest tenor. Pricing is cost-plus to a target margin (mid-20s contribution, +5-10 pts on Q2-26 signings). Rubin earns more per GPU-hour but carries fewer GPUs per MW, so per-MW prints (Anthropic-Nscale ~$16.3m/6 yr; IREN 5-yr ~$16.5m per IT-MW) sit at parity with late-2026 GB300 paper.",
-      "range": "$10-19m per active MW-yr on 2027-30 vintages (research low $10/11/11.5/12m = $79/share; high $13.5/16/18/19m = $157)",
+      "assumption": "Tenor, not generation, sets the price: the same Blackwell MW clears at $9.7-16.5m on 5-yr paper, $20-25m on 1-3 yr and $40-50m on 3-6 months, and 98% of CoreWeave revenue is 5-yr fixed take-or-pay, the cheapest tenor. Pricing is cost-plus to a target margin (mid-20s contribution, +5-10 pts on Q2-26 signings). Rubin earns more per GPU-hour but carries fewer GPUs per MW, so 5-yr Rubin paper per critical-IT MW ($10.8m at SemiAnalysis's $4.92 cost-plus floor; Nscale-Anthropic $12.4-16.3m depending on whether its 460 MW is rack or IT power) sits at or below late-2026 GB300 paper (~$14m). New-contract price at equal tenor and generation is at parity with IREN and Nebius within a +/-15-30% band; the per-MW gap is tenor mix (~90/10 5-yr/short here vs ~60/40 at IREN, ~50/50 at Nebius) and the locked 2025-26 book, not the megawatt.",
+      "range": "$10-21.5m per active MW-yr on 2027-30 vintages (research low $10/11/11.5/12m = $79/share; research high $13.5/16/18/19m = $157; owner parity thesis $12.5/19/20/21.5m = $177, see the 'parity' scenario). Open upward items from the 10 Sep critic: 5-6 yr Rubin prints at $7.4-8.0/GPU-hr (SemiAnalysis Jul-26, Nscale-Anthropic conventional reading) and Oracle-OpenAI would lift the 2028-30 rungs 10-30%.",
       "moves": "±$1m per MW-yr on 2027+ vintages ≈ ±$4bn of 2030 run-rate"
      }
     ],
@@ -1385,6 +1385,30 @@
       "note": "The 2029-30 options and pipeline contract at half the modelled share (ctr 0.9 -> 0.45); the downside is funding (no 90% gearing on the spot slice), not revenue.",
       "d": {
        "ctrMult": 0.5
+      }
+     },
+     {
+      "id": "parity",
+      "name": "Parity (owner thesis)",
+      "note": "CoreWeave's 2027-30 vintages priced at the IREN/Nebius per-IT-MW ladders and the peers' tenor mix: $12.5 / 19 / 20 / 21.5m per MW-yr (MW basis already common, conversion 1.0). Even here the 2030 fleet average is ~85-90% of the peers' because 1.5 GW of 2025-26 paper at ~$10m runs to 2030-31.",
+      "d": {
+       "vintageMult": {
+        "2027": 1.087,
+        "2028": 1.407,
+        "2029": 1.379,
+        "2030": 1.433
+       }
+      }
+     },
+     {
+      "id": "rubinpergpu",
+      "name": "Rubin priced per GPU",
+      "note": "Unsigned Rubin and next-gen capacity priced per GPU at 5-yr cost-plus ($5.40 / $6.00 per GPU-hr: SemiAnalysis VR 5-yr floor $4.92, Nscale-Anthropic ~$5.85) — $10.5-13.5m per MW-yr, below GB300 paper. The bear for every per-MW ladder; smallest here.",
+      "d": {
+       "genRateCap": {
+        "rubin": 5.4,
+        "next": 6.0
+       }
       }
      },
      {
@@ -1681,7 +1705,7 @@
       ]
      ],
      "regimesMax": 3.6,
-     "basis": "per active MW: $14m revenue (2027 vintage), 60% EBITDA after rent and power (reported 57-59%; mature contracts ~70%), GPUs + ancillaries $33m, no shell (leased), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 5-yr renewals, spot at 13%; 95/5 blend"
+     "basis": "per active MW (= critical IT MW): $14m revenue (between the 2028 and 2029 vintages; the 2030 fleet average is $13.3m), 60% EBITDA after rent and power (reported 57-59%; mature contracts ~70%), GPUs + ancillaries $33m, no shell (leased), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 5-yr renewals, spot at 13%; 95/5 blend"
     },
     "finance": {
      "M": 0.57,
@@ -2119,16 +2143,16 @@
    "contracts": [
     {
      "id": "nbis-msft",
-     "counterparty": "Microsoft (Vineland, +$2B option)",
+     "counterparty": "Microsoft (Vineland, +$2B option; >100k GB300)",
      "totalRevM": 17400,
      "termYrs": 5,
      "signed": "2025-09",
      "gen": "blackwell",
      "inferredMW": true,
      "effective": true,
-     "source": "firm $17.4B (to $19.4B w/ option); MW never disclosed",
-     "ratePerMWyr": 11.6,
-     "mw": 300
+     "source": "firm $17.4B (to $19.4B w/ option) over 5 yrs; MW not disclosed — >100,000 GB300 (Bloomberg 2 Oct 2025) at 380-400 per IT MW ≈ 250-263 MW IT → $13.1-13.9M per IT-MW·yr (parity research 10 Sep 2026)",
+     "ratePerMWyr": 13.5,
+     "mw": 255
     },
     {
      "id": "nbis-meta-1",
@@ -2710,7 +2734,7 @@
       "link": "gross MW → critical IT MW",
       "fn": "active/connected power taken as IT MW (definition)",
       "value": "1.0 by definition; gross shown at 1.2×",
-      "assumption": "Nebius defines connected power as active plus fully provisioned; both are IT-side metrics. Owned greenfield PUE ~1.13-1.2.",
+      "assumption": "Nebius defines active power as capacity consumed by IT equipment (20-F); connected power is the feed into fully built and equipped halls, IT-side language but up to one PUE above IT (Finland 'as low as 1.1'; New Jersey not disclosed), so the 800 MW-1 GW YE26 connected guide is 0.87-1.0x IT. Gross at 1.2x for the owned Nordic sites is a display assumption; US build-to-suit gross is not disclosed (parity research 10 Sep 2026).",
       "range": "0.85-1.0",
       "moves": "capex per MW"
      },
@@ -2791,6 +2815,17 @@
       "note": "Unsigned owned capacity contracts at half the modelled share (ctr 0.9 -> 0.45); the downside is funding (no prepayment, no 90% gearing on the spot slice), not revenue.",
       "d": {
        "ctrMult": 0.5
+      }
+     },
+     {
+      "id": "rubinpergpu",
+      "name": "Rubin priced per GPU",
+      "note": "Unsigned Rubin and next-gen capacity priced per GPU at 5-yr cost-plus ($5.40 / $6.00 per GPU-hr) — $10.5-13.5m per MW-yr against the $19-21m ladder. Signed Meta Rubin tranches keep their contract rate.",
+      "d": {
+       "genRateCap": {
+        "rubin": 5.4,
+        "next": 6.0
+       }
       }
      },
      {
@@ -3102,7 +3137,7 @@
       ]
      ],
      "regimesMax": 4.4,
-     "basis": "per MW: $20m revenue (2027 vintage, the low end of Q2-26 signings), 55% EBITDA (AI cloud 50% in Q2-26; a flat 55% from 2026H2 in the quarterly table overstates the next four quarters by ~$1/share against the ~40% group guide, and is kept for simplicity), GPUs + ancillaries $30m, shell $6m blended (75% owned at $8m), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals (1-3 yr mid-term book), short-term at 13%; 90/10 blend"
+     "basis": "per IT MW: $20m revenue (the 2029 vintage; the ramp's 2027 vintage is $18m and the 2030 fleet average $18.0m; $20m is the low end of Q2-26 signings), 55% EBITDA (AI cloud 50% in Q2-26; a flat 55% from 2026H2 in the quarterly table overstates the next four quarters by ~$1/share against the ~40% group guide, and is kept for simplicity), GPUs + ancillaries $30m, shell $6m blended (75% owned at $8m), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals (1-3 yr mid-term book), short-term at 13%; 90/10 blend"
     },
     "finance": {
      "M": 0.55,
@@ -3795,7 +3830,7 @@
       "link": "critical IT MW → GPU count",
       "fn": "gpus = itMW ÷ (kW per GPU / 1000); GPU = PACKAGE (socket), never die — a VR200 NVL144 counts 72 packages per rack, not 144 dies",
       "value": "fleet-weighted Hopper 1.60 kW (627/IT-MW), Blackwell 2.48 kW (404), Rubin-class 4.23 kW (236), next-gen 6.30 kW (159) — but gpus is a STORED field per tranche, not derived, and the per-tranche spread is wide: Hopper 625–633/IT-MW, Blackwell 340–564 (that spread is COOLING, not noise: liquid GB300 NVL72 ~2.63 kW/GPU, air-cooled B200/B300 in converted shells ~1.77–2.20), Rubin 214–285, next-gen 158–159",
-      "assumption": "All-in at the IT boundary: accelerator + host CPU + memory + network + storage share, cooling already excluded by the derate. Anchored on IREN's disclosure of >19,000 GB300 per 50 MW-IT Horizon building (2.63 kW/GPU), which the Horizon tranches match exactly. THE LADDER IS PINNED TO SILICON, NOT TO TREND. Per-package accelerator TDP runs H100/H200 700 W → GB300 1,400 W → VR200 2,300 W (the raised VR200 spec reported Oct-2025, consistent with 72 packages in a 190–230 kW NVL72 rack), i.e. +100% then +64%; the modelled IT-boundary ladder steps +55% (Hopper→Blackwell) and +71% (Blackwell→Rubin), tracking the silicon to within 7 points. The next-gen rung is therefore set at 6.30 kW (+49% on Rubin), NOT the 4.91 kW (+16%) it previously carried: a +16% rung is supported by no roadmap point — Rubin Ultra alone puts 144 quad-die packages in a ~600 kW Kyber rack (4.17 kW/package at the rack boundary, +58% on VR200's 2.64–3.19) and the 2028 Feynman generation is briefed at ~2 kW per die in ~1 MW racks. HONEST CAVEAT: gpus is stored per tranche rather than derived from itMW, so this link DESCRIBES the data rather than generating it — the fleet averages above are outputs, and individual tranches sit up to 41% away from them. The density scenarios move the whole generation, so a tranche already at the top of its band (Sweetwater 1 initial is 285/IT-MW, above the +18% target) is pushed beyond it. DENSITY IS NOT A MONEY LEVER ON ITS OWN: revenue is IT-MW × $/kW-hr, so re-cutting next-gen from 4.91 to 6.30 kW moves the fleet headline (YE-30 748k → 724k live GPUs; next-gen nameplate 157,000 → 122,300) and leaves CY2030 revenue within 0.04% once the vintage rate is rebased with it.",
+      "assumption": "All-in at the IT boundary: accelerator + host CPU + memory + network + storage share, cooling already excluded by the derate. Anchored on IREN's disclosure of >19,000 GB300 per 50 MW-IT Horizon building (2.63 kW/GPU), which the Horizon tranches match exactly. THE LADDER IS PINNED TO SILICON, NOT TO TREND. Per-package accelerator TDP runs H100/H200 700 W → GB300 1,400 W → VR200 2,300 W (the raised VR200 spec reported Oct-2025, consistent with 72 packages in a 190–230 kW NVL72 rack), i.e. +100% then +64%; the modelled IT-boundary ladder steps +55% (Hopper→Blackwell) and +71% (Blackwell→Rubin), tracking the silicon to within 7 points. The next-gen rung is therefore set at 6.30 kW (+49% on Rubin), NOT the 4.91 kW (+16%) it previously carried: a +16% rung is supported by no roadmap point — Rubin Ultra alone puts 144 quad-die packages in a ~600 kW Kyber rack (4.17 kW/package at the rack boundary, +58% on VR200's 2.64–3.19) and the 2028 Feynman generation is briefed at ~2 kW per die in ~1 MW racks. HONEST CAVEAT: gpus is stored per tranche rather than derived from itMW, so this link DESCRIBES the data rather than generating it — the fleet averages above are outputs, and individual tranches sit up to 41% away from them. The density scenarios move the whole generation, so a tranche already at the top of its band (Sweetwater 1 initial is 285/IT-MW, above the +18% target) is pushed beyond it. DENSITY IS NOT A MONEY LEVER ON ITS OWN: revenue is IT-MW × $/kW-hr, so re-cutting next-gen from 4.91 to 6.30 kW moves the fleet headline (YE-30 748k → 724k live GPUs; next-gen nameplate 157,000 → 122,300) and leaves CY2030 revenue within 0.04% once the vintage rate is rebased with it. CROSS-PAGE NOTE (parity research 10 Sep 2026): this next-gen rung (6.30 kW, 159/IT-MW) is a Feynman-class reading one generation later than the CoreWeave and Nebius 'next' (Rubin Ultra NVL576, ~200/MW), so $/GPU-hr comparisons across the three pages on the last vintage are not like-for-like; revenue per IT MW is.",
       "range": "Blackwell 2.2–2.9, Rubin 3.5–4.7, next-gen 5.6–7.0 kW/GPU",
       "moves": "fleet size inversely; revenue follows fleet"
      },
@@ -3929,6 +3964,17 @@
       "note": "The uncontracted 79% of the 2030 fleet re-prices down 15% a year rather than holding its vintage rate.",
       "d": {
        "vintageDecay": 0.15
+      }
+     },
+     {
+      "id": "rubinpergpu",
+      "name": "Rubin priced per GPU",
+      "note": "Unsigned Rubin and next-gen capacity priced per GPU at 5-yr cost-plus ($5.40 / $6.00 per GPU-hr: SemiAnalysis VR 5-yr floor $4.92, Nscale-Anthropic ~$5.85) — $8.4-13.5m per IT MW-yr at IREN's densities against the $20.8-24m constant-payback ladder. The largest single exposure in the three ladders.",
+      "d": {
+       "genRateCap": {
+        "rubin": 5.4,
+        "next": 6.0
+       }
       }
      },
      {
@@ -4822,16 +4868,16 @@
     },
     {
      "id": "iren-nvda",
-     "counterparty": "NVIDIA (Blackwell, 60MW — MW DISCLOSED)",
+     "counterparty": "NVIDIA (Blackwell, 60MW gross ≈ 50MW IT)",
      "totalRevM": 3400,
      "termYrs": 5,
      "signed": "2026-05",
      "gen": "blackwell",
-     "inferredMW": false,
+     "inferredMW": true,
      "effective": true,
-     "source": "$3.4B/5yr/60MW + $2.1B equity right",
-     "ratePerMWyr": 11.33,
-     "mw": 60
+     "source": "$3.4B/5yr 'within 60MW of existing data centers at Childress' (8-K 7 May 2026; air-cooled capacity IREN quotes gross) ≈ 50 MW IT → $13.6M per IT-MW·yr ($11.3M per gross MW) + $2.1B equity right",
+     "ratePerMWyr": 13.6,
+     "mw": 50
     },
     {
      "id": "iren-cloud",
@@ -10279,13 +10325,13 @@
    },
    {
     "f": "Price per MW-yr by tenor",
-    "src": "8-K 3-Nov-25, FY26 call · Q2-26 call, rate card · Q2-26 letter",
+    "src": "FY26 call and slides 27–28 Aug 2026 · Q2-26 call 11 Aug 2026 · Q2-26 letter, Bloomberg 2 Oct 2025 · parity research 10 Sep 2026",
     "v": {
-     "IREN": "5-yr $9.7m (Microsoft, Nov-25), 5-yr pricing “up ~70%” since ≈ $16.5m; NVIDIA 5-yr managed $11–14m; 3-yr above $20m, discussions ~$25m.",
-     "CRWV": "Book ~$10m per active MW (exit-26 run-rate ÷ MW); committed floor ~$20m (“up to 60% off” list); on-demand GB200 $10.50/GPU-hr ≈ $34–37m at 385–400 GPUs per MW; list +25% in July.",
-     "NBIS": "2026 base ~$12m; Microsoft 5-yr $12–17m depending on the MW; 1–3 yr $20–25m; 3–6 month $40–50m."
+     "IREN": "5-yr Microsoft $9.7m (Nov-25 anchor); 5-yr stated ~$19m on the FY26 slide (unprinted); NVIDIA 5-yr $13.6m per IT MW (60 MW gross); 3-yr above $20m, discussions ~$25m.",
+     "CRWV": "Book ~$10m per active MW = per IT MW (active is critical IT); 5-yr H2-26 paper $10–14.5m (the only company datum, >$25bn on ~500 MW, is ~$10m); no 3-yr print; list +25% in July; on-demand GB200 $10.50/GPU-hr.",
+     "NBIS": "Microsoft 5-yr $13.1–13.9m per IT MW (>100k GB300, ~250–263 MW); 2026 base ~$12m; 1–3 yr $20–25m; 3–6 month $40–50m (basis undefined, IT implied)."
     },
-    "trend": "converging by tenor — 3-yr $20–25m at all three; 5-yr ≈ 0.7× and short paper ≈ 2× of 3-yr; the residuals are vintage, attach and prepayment, not owner vs tenant"
+    "trend": "converging by tenor — 3-yr $20–25m at IREN and Nebius; 5-yr $13–14m at the market and Nebius level with IREN stated higher; CoreWeave at or below par on 5-yr and barely sells shorter paper"
    },
    {
     "f": "Cost of investment-grade-backed GPU debt",
@@ -10378,7 +10424,7 @@
     "<b>Read the waterfall per megawatt, not in total.</b> CoreWeave’s 2030 EBITDA is larger because it runs 7 GW to IREN’s 3 GW, not because a rented megawatt earns more. Per megawatt-year IREN earns about $14.6m of EBITDA and keeps $6.6m; CoreWeave earns $8.4m and keeps $2.1m; Nebius earns $11.0m and keeps $4.3m.<span class=\"src\">chart above · page §5 of each</span>",
     "<b>Rent hides inside EBITDA; the shell hides inside capex.</b> A tenant’s building cost is a running cost, so its margin is lower but its capex per MW is $33m instead of $49m. The like-for-like test is cash kept on the capital the company itself deploys: IREN 13%, Nebius 11%, CoreWeave 6%.<span class=\"src\">table above</span>",
     "<b>Renting is faster, not richer.</b> The landlord’s capital plus 20% prepayments plus 90% GPU financing let CoreWeave add more than twice IREN’s megawatts with less equity per MW. The price is rent for 7–16 years whether or not the racks are full, 9–9.75% senior notes, and half the revenue per MW on a hyperscaler-anchored book.<span class=\"src\">page §4 of each</span>",
-    "<b>Most of the per-MW gap is a price assumption.</b> Hold IREN’s 65% margin and put it on CoreWeave’s $14m: it keeps $2.0m, the same as CoreWeave. Restate CoreWeave’s active power per IT megawatt and its $14m becomes $17.5m and its keep $2.6m. The rest of IREN’s $6.6m is the 3-year enterprise price ($22.5m) assumed on the 87% of its 2030 book that is unsigned; its own signed 5-year Microsoft print ($9.7m) keeps about nothing after a four-year refresh. The like-for-like row (costs held in dollars) flips the order, which says the running-cost lines are not yet comparable: IREN’s 65% implies $7.9m per MW of costs against a filed 87% gross margin.<span class=\"src\">rows above · CoreWeave pricing research, 8 Sep 2026</span>"
+    "<b>Most of the per-MW gap is tenor and vintage, not the megawatt.</b> All three count the same megawatt (the power reaching the computers), so CoreWeave’s $14m and IREN’s $22.5m are like for like on the megawatt. Hold IREN’s 65% margin and put it on CoreWeave’s $14m: it keeps $2.0m, the same as CoreWeave. The rest of IREN’s $6.6m is the 3-year enterprise price ($22.5m) assumed on the 87% of its 2030 book that is unsigned; its own signed 5-year Microsoft print ($9.7m) keeps about nothing after a four-year refresh. CoreWeave’s side is 98% five-year take-or-pay, the cheapest tenor, with 1.5 GW of 2025–26 paper at ~$10m locked to 2030–31. The like-for-like row (costs held in dollars) flips the order, which says the running-cost lines are not yet comparable: IREN’s 65% implies $7.9m per MW of costs against a filed 87% gross margin.<span class=\"src\">rows above · CoreWeave pricing research 8 Sep and parity research 10 Sep 2026</span>"
    ],
    "picture": [
     "<b>Scale is the tenant’s answer.</b> On the pages as they stand, CoreWeave reaches $93bn of run-rate on 7 GW, Nebius $84bn on 4.65 GW, IREN $62bn on 3 GW. CoreWeave gets there with the most debt and the most prepayments still owed; IREN with the most equity per megawatt.<span class=\"src\">table above</span>",
@@ -10386,14 +10432,19 @@
     "<b>Against the market.</b> IREN trades at a fraction of its base; CoreWeave and Nebius trade near or above theirs. Either the market prices IREN’s unsigned 87% of 2030 revenue at close to zero, or it prices the tenants’ scale at more than the rented megawatt keeps.<span class=\"src\">bars above</span>"
    ],
    "convergence": [
-    "<b>What converges (dated prints).</b> Price per IT MW-yr at a given tenor: 3-year $20–25m at all three (IREN above $20m and discussions ~$25m, 27 Aug 2026; Nebius $20–25m, 12 Aug 2026; CoreWeave’s committed floor ~$20m, 8 Sep 2026), 5-year at ~0.7× (IREN ~$16.5m implied, Nebius–Microsoft $17.4m at 200 MW), short paper at ~2×. Contract length from both sides (IREN 2 → 3–5 years; Nebius months → 1–3 years core; CoreWeave ~5 years plus a 2–3 year sleeve). Take-or-pay as the form, prepayments by counterparty (hyperscalers 20–40% of contract value, AI-natives 45–60% of capex). IG-backed GPU debt at SOFR+225–250 within 25 bp; non-IG at SOFR+450–550. Silicon per MW and its escalation; 5–6 year book lives; ~2-year paybacks; a hyperscaler anchor that diversifies. The round’s verdict: a 2027–30 model should carry one market for revenue, silicon and GPU financing, not three.<span class=\"src\">three-way convergence research, five strands adversarially verified, 8 Sep 2026 · ~/Research/convergence-2026-09-08.json</span>",
+    "<b>What converges (dated prints).</b> Price per IT MW-yr at a given tenor: 3-year $20–25m at all three (IREN above $20m and discussions ~$25m, 27 Aug 2026; Nebius $20–25m, 12 Aug 2026; CoreWeave’s committed floor ~$20m, 8 Sep 2026), 5-year GB300 at $13–14m per IT MW (Nebius–Microsoft $13.1–13.9m on >100k GB300; SemiAnalysis GB300 6-yr $4.00 × 400 = $14m; IREN states ~$19m, unprinted), short paper at ~2×. The megawatt itself is already common: all three report critical-IT MW (the earlier 20% haircut on CoreWeave was wrong and has been removed). Contract length from both sides (IREN 2 → 3–5 years; Nebius months → 1–3 years core; CoreWeave ~5 years plus a 2–3 year sleeve). Take-or-pay as the form, prepayments by counterparty (hyperscalers 20–40% of contract value, AI-natives 45–60% of capex). IG-backed GPU debt at SOFR+225–250 within 25 bp; non-IG at SOFR+450–550. Silicon per MW and its escalation; 5–6 year book lives; ~2-year paybacks; a hyperscaler anchor that diversifies. The round’s verdict: a 2027–30 model should carry one market for revenue, silicon and GPU financing, not three.<span class=\"src\">three-way convergence research, five strands adversarially verified, 8 Sep 2026 · ~/Research/convergence-2026-09-08.json</span>",
     "<b>What is structural, and when it moves.</b> The layer under the GPU: housing and power at ~$1.0–1.3m per IT MW-yr owned (IREN), ~$0.6–1.0m owned and ~$2.5–3m at build-to-suit sites (Nebius), ~$1.9–2.9m leased (CoreWeave) — 5–10% of revenue at $20–25m and second-order to silicon; the EBITDA margin that follows (85% project at IREN, ~60% CoreWeave, 50% and rising Nebius); power price and grid exposure by site; the form of the shell obligation (unencumbered freehold vs $52bn of lease commitments vs a $13.6bn lease book); CoreWeave’s 9–9.75% corporate layer until the 2030–32 notes refinance; non-IG debt tenor and recourse; the dilution path; NVIDIA cohort timing; and the demand backstops only CoreWeave (NVIDIA $6.3bn) and Nebius (Meta $15bn) hold. Each has a date: CoreWeave self-builds from H2-26, Nebius’s owned share rises with each campus, CoreWeave refinances from 2030.<span class=\"src\">same round, structural list</span>",
-    "<b>How the pages treat it.</b> From 2027 the three pages already price new capacity from one market: the same spot rate, silicon curve, lender advance rates and steady-state method. The round adds that IREN’s Microsoft print ($9.7m) and CoreWeave’s 2023–24 private-credit facilities are vintage artefacts to roll off, not to extrapolate; that IREN’s 65% is an assumption where the tenants’ margins are filed; and that the per-MW gap on this page is mostly the tenor assumed on unsigned capacity. Open for a ruling: running costs in dollars per MW on all three pages, and IREN’s unsigned book as a tenor mix.<span class=\"src\">playbook §6e · ramp-core renew</span>"
+    "<b>How the pages treat it.</b> From 2027 the three pages already price new capacity from one market: the same spot rate, silicon curve, lender advance rates and steady-state method. The round adds that IREN’s Microsoft print ($9.7m) and CoreWeave’s 2023–24 private-credit facilities are vintage artefacts to roll off, not to extrapolate; that IREN’s 65% is an assumption where the tenants’ margins are filed; and that the per-MW gap on this page is tenor mix (CoreWeave ~90/10 five-year/short vs ~60/40 at IREN and ~50/50 at Nebius, worth 20–25% at full price parity) plus CoreWeave’s locked 2025–26 book — new-contract prices at equal tenor and generation are at parity within a ±15–30% band. The owner’s parity thesis is priced as a scenario on the CoreWeave page ($177); the Rubin-per-GPU bear is a scenario on all three, and it bites hardest on the IREN and Nebius ladders. Open for a ruling: running costs in dollars per MW on all three pages, and IREN’s unsigned book as a tenor mix.<span class=\"src\">playbook §6e · ramp-core renew</span>"
    ]
   },
   "footer": {
-   "sources": "The three research pages and their research packs (IREN FY26 10-K and 27 Aug call; CoreWeave Q2-26 10-Q, FY25 10-K, 424B4 and the Q1-25 to Q2-26 transcripts; Nebius FY25 20-F, Q2-26 6-K and the shareholder letters), lessor filings (Core Scientific, Applied Digital, Galaxy), SemiAnalysis public posts and index; the three-way convergence research round of 8 Sep 2026 (five strands, adversarially verified, filed at ~/Research/convergence-2026-09-08.json).",
+   "sources": "The three research pages and their research packs (IREN FY26 10-K and 27 Aug call; CoreWeave Q2-26 10-Q, FY25 10-K, 424B4 and the Q1-25 to Q2-26 transcripts; Nebius FY25 20-F, Q2-26 6-K and the shareholder letters), lessor filings (Core Scientific, Applied Digital, Galaxy), SemiAnalysis public posts and index; the three-way convergence research round of 8 Sep 2026 (five strands, adversarially verified, filed at ~/Research/convergence-2026-09-08.json); the CoreWeave parity round of 10 Sep 2026 (four strands, two adversaries each, filed at ~/Research/CRWV/parity-2026-09-10.json).",
    "model": "Compute/Value tracker, playbook §6e. Each column is the same quarterly cash waterfall and the same steady-state per-MW DCF run on that company’s page and ramp blocks in data.json; the comparison page computes nothing of its own."
+  },
+  "mwBasis": {
+   "IREN": "critical IT MW, stated “(IT)” with gross given separately (gross/IT 1.4–1.6 liquid, ~1.2 air)",
+   "CRWV": "active power = critical IT MW: the lease note tracks Galaxy’s critical-IT figures (133/393/525 MW), Core Scientific is counted at 500/70 MW critical IT, and the Aug-26 Indonesia release says “360 MW of contracted IT power”; gross 1.36–1.5× at its landlords",
+   "NBIS": "active = IT by definition (20-F); connected is at most one PUE above IT (Finland ~1.1)"
   }
  }
 }

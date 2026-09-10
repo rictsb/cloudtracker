@@ -179,6 +179,8 @@
               const spot = (R.spot[String(d.spotFlat ? 2026 : yr(q))] || 0) * (d.spotMult || 1);
               let rate = d.rateCap != null ? Math.min(t.rate, d.rateCap) : t.rate * (d.rateMult || 1);
               if (d.vintageDecay) rate *= Math.pow(1 - d.vintageDecay, Math.max(0, (q - rs) / 4));
+              if (d.vintageMult && d.vintageMult[t.energize.slice(0, 4)] != null) rate *= d.vintageMult[t.energize.slice(0, 4)];
+              if (d.genRateCap && d.genRateCap[t.gen] != null && !(t.signed >= 1)) rate = Math.min(rate, d.genRateCap[t.gen]);
               rev += gp * f * (ctr * rate + (1 - ctr) * spot * (R.spotMult[t.gen] || 1)) * 2190 / 1e6;
               gpus += gp * f; itmw += t.itMW * f;
             }

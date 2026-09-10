@@ -17,6 +17,8 @@ function rampApplySc(t,d){
   if(d.rateCap!=null)o.rate=Math.min(t.rate,d.rateCap);
   if(d.rateMult)o.rate=t.rate*d.rateMult;
   if(d.genDensity&&d.genDensity[t.gen])o.gpus=Math.round(t.gpus*d.genDensity[t.gen]);
+  if(d.vintageMult&&d.vintageMult[t.energize.slice(0,4)]!=null)o.rate=o.rate*d.vintageMult[t.energize.slice(0,4)];   // per-vintage (energise-year) rate multiplier — scenario only
+  if(d.genRateCap&&d.genRateCap[t.gen]!=null&&!(t.signed>=1))o.rate=Math.min(o.rate,d.genRateCap[t.gen]);   // per-generation $/GPU-hr cap — scenario only
   if(d.ctrMult!=null){const sg=t.signed||0;o.ctr=sg+(t.ctr-sg)*d.ctrMult;}
   if(d.slipQtrs){const from=d.from!=null?d.from:-99;
     if(RAMP_QS(t.energize)>=from){o.energize=RAMP_QL(RAMP_QS(t.energize)+d.slipQtrs);o.rev=RAMP_QL(RAMP_QS(t.rev)+d.slipQtrs);}}
