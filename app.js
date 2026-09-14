@@ -333,6 +333,11 @@ async function loadNewsAndProposals(){
 function updateApprovalsBadge(){const b=document.getElementById('apbadge');if(!b)return;const n=PROPOSALS?(PROPOSALS.items||[]).filter(p=>p.status==='pending').length:0;b.textContent=n?String(n):'';}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function tsLabel(t){if(t==null)return '';const m=Math.floor(t/60),s=t%60;return `${m}:${String(s).padStart(2,'0')}`;}
+function fmtD(iso){if(!iso)return '';const d=new Date(iso+'T00:00:00');return isNaN(d)?iso:`${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;}
+const SAID_BY={executive:'company statement',host:"the host's own view",guest:'a guest',thirdparty:'a third party'};
+const SIG_TAG={scoop:'own research',call:'prediction',big:'flagged as big',notable:'flagged'};
+const KIND_WORD={news:'news round-up',interview:'interview',earnings:'earnings breakdown',members:'members-only segment',other:'video'};
+function srcName(id){return (NEWS&&(NEWS.sources||[]).find(s=>s.id===id)||{}).name||id||'';}
 function renderNews(){
   const body=document.getElementById('news-body');if(!body)return;
   if(!NEWS){body.innerHTML='<div class="legend2">no news yet — the Spark publishes news.json each morning</div>';return;}
@@ -341,22 +346,29 @@ function renderNews(){
   let items=(NEWS.items||[]).slice();
   if(newsTk)items=items.filter(i=>(i.tickers||[]).includes(newsTk));
   if(newsSignalOnly)items=items.filter(i=>(i.signal||[]).length);
-  let h=`<div class="ssummary" style="margin:4px 4px 12px"><span>as of <b>${esc(NEWS.asOf)}</b>${age>2?' <span class="prov rumored">stale — publish overdue</span>':''}</span><span>window <b>${NEWS.windowDays} days</b></span><span><b>${(NEWS.items||[]).length}</b> videos summarised</span><span>sources: ${(NEWS.sources||[]).map(s=>`<a class="clearfilter" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(', ')}</span></div>`;
-  h+=`<div class="newsbar"><label>Name <select id="news-tk"><option value="">all coverage names</option>${tks.map(t=>`<option value="${t}" ${t===newsTk?'selected':''}>${t}</option>`).join('')}</select></label><label style="cursor:pointer"><input type="checkbox" id="news-sig" ${newsSignalOnly?'checked':''}> signal only (scoops, calls, emphasised)</label><span>${items.length} shown</span></div>`;
+  let h=`<div class="newsbar"><span>Updated ${fmtD(NEWS.asOf)}${age>2?' <span class="prov rumored">stale</span>':''} · ${(NEWS.items||[]).length} videos in the last ${NEWS.windowDays} days · ${(NEWS.sources||[]).map(s=>`<a class="clearfilter" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(', ')}</span></div>`;
+  h+=`<div class="newsbar"><label>Show <select id="news-tk"><option value="">every coverage name</option>${tks.map(t=>`<option value="${t}" ${t===newsTk?'selected':''}>${t}</option>`).join('')}</select></label><label style="cursor:pointer"><input type="checkbox" id="news-sig" ${newsSignalOnly?'checked':''}> only videos with something notable</label><span>${items.length} shown</span></div>`;
   if(!items.length)h+='<div class="legend2">nothing matches</div>';
   items.forEach(i=>{
-    const open=!!newsOpen[i.id];const sum=(i.summary||'').trim();
-    h+=`<div class="news-item"><div class="news-meta"><span>${esc(i.d)}</span><span>${esc((NEWS.sources||[]).find(s=>s.id===i.src)?.name||i.src)}</span>${i.kind?`<span class="kind">${esc(i.kind)}</span>`:''}${i.minutes?`<span>${i.minutes} min</span>`:''}</div>`+
-      `<div class="news-title"><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)} ↗</a></div>`+
-      `<div>${(i.tickers||[]).map(t=>`<span class="tkpill ${(i.main||[]).includes(t)?'main':''}">${t}</span>`).join('')}${(i.sponsored||[]).map(t=>`<span class="tkpill sp" title="sponsored segment — excluded from signal">${t}</span>`).join('')}</div>`+
-      (sum?`<div class="news-sum ${open||sum.length<700?'':'clip'}" id="ns-${i.id}">${esc(sum)}</div>${sum.length>=700&&!open?`<button class="morebtn" data-more="${i.id}">read the full summary ▾</button>`:''}`:'<div class="news-sum" style="color:var(--ink-soft)">summary pending — Hermes runs after transcription</div>')+
-      ((i.signal||[]).length?`<ul class="sig">${i.signal.map(s=>`<li><span class="sigtag ${s.tag}">${esc(s.tag)}</span><b>${esc(s.tk)}</b> ${esc(s.claim)} <span style="color:var(--ink-soft)">‹${esc(s.by)}›</span>${s.t!=null?` <a href="${esc(i.url)}&t=${s.t}s" target="_blank" rel="noopener">${tsLabel(s.t)} ↗</a>`:''}</li>`).join('')}</ul>`:'')+
-      `</div>`;});
-  h+=`<div class="legend2" style="margin-top:14px"><b>Signal</b> tags come from the claim extraction: <b>scoop</b> = information from the speaker's own digging (filings, dockets, permits, site visits) rather than a company announcement; <b>call</b> = a prediction with a horizon; <b>big</b> / <b>notable</b> = the speaker flagged it as important. ‹executive› means the fact comes from the company, whether quoted or relayed; ‹host› is the presenter's own view. Sponsored segments are struck through and never count as signal. Transcripts stay off the site; summaries are ours.</div>`;
+    const open=!!newsOpen[i.id];const main=(i.main||[]).length?i.main:(i.tickers||[]).slice(0,4);const also=(i.tickers||[]).filter(t=>!main.includes(t));
+    h+=`<div class="ni"><div class="ni-meta">${fmtD(i.d)} · ${esc(srcName(i.src))} · ${esc(KIND_WORD[i.kind]||'video')}${i.minutes?`, ${i.minutes} min`:''}</div>`+
+      `<a class="ni-title" href="${esc(i.url)}" target="_blank" rel="noopener" title="${esc(i.title)}">${esc(i.headline||i.title)}</a>`+
+      `<div class="ni-tk">About <b>${main.map(esc).join(', ')||'—'}</b>${also.length?` · also mentions ${also.map(esc).join(', ')}`:''}${(i.sponsored||[]).length?` · sponsored segment: ${i.sponsored.map(esc).join(', ')} (ignored)`:''}</div>`+
+      (i.brief?`<p>${esc(i.brief)}</p>`:i.summary?`<p>${esc(i.summary.slice(0,300))}…</p>`:'<p style="color:var(--ink-soft)">Summary pending.</p>');
+    if((i.signal||[]).length){
+      h+=`<div class="ni-h">What matters</div><ul>${i.signal.map(s=>`<li><b>${esc(s.tk)}</b> — ${esc(s.claim)} <span class="ni-src">${esc(SAID_BY[s.by]||s.by)}${SIG_TAG[s.tag]?`, ${SIG_TAG[s.tag]}`:''}${s.t!=null?` · <a href="${esc(i.url)}&t=${s.t}s" target="_blank" rel="noopener">watch at ${tsLabel(s.t)}</a>`:''}</span></li>`).join('')}</ul>`;}
+    const hasFull=(i.facts||[]).length||i.view||(i.verify||[]).length;
+    if(hasFull){
+      if(!open)h+=`<button class="textbtn" data-more="${esc(i.id)}">Show the full summary</button>`;
+      else h+=`<div>${(i.facts||[]).length?`<div class="ni-h">Key facts by company</div><ul>${i.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}${i.view?`<div class="ni-h">The host's view</div><p>${esc(i.view)}</p>`:''}${(i.verify||[]).length?`<div class="ni-h">Worth checking against filings</div><ul>${i.verify.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}<button class="textbtn" data-less="${esc(i.id)}">Hide the full summary</button></div>`;
+    }
+    h+=`</div>`;});
+  h+=`<div class="legend2" style="margin-top:18px">Each item is one video from a curated source. The summary is ours, written by the local model from the transcript; the video link is the source. Under <b>what matters</b>: <b>company statement</b> means the fact came from the company (its executives, a release, a call), whether quoted or relayed by the presenter; <b>the host's own view</b> is opinion; <b>own research</b> means the presenter dug it up themselves (filings, dockets, permits, site visits); <b>prediction</b> is a call with a date. Sponsored segments are ignored. Nothing here moves a valuation — changes go through Approvals.</div>`;
   body.innerHTML=h;
   body.querySelector('#news-tk').addEventListener('change',e=>{newsTk=e.target.value;renderNews();});
   body.querySelector('#news-sig').addEventListener('change',e=>{newsSignalOnly=e.target.checked;renderNews();});
   body.querySelectorAll('[data-more]').forEach(b=>b.addEventListener('click',()=>{newsOpen[b.dataset.more]=true;renderNews();}));
+  body.querySelectorAll('[data-less]').forEach(b=>b.addEventListener('click',()=>{newsOpen[b.dataset.less]=false;renderNews();}));
 }
 /* Approvals — the GitHub token lives only in this browser (localStorage); a click commits the decision to
    proposals.json on main; the apply-proposals Action does the rest. */
@@ -381,32 +393,43 @@ async function ghDecide(id,status){
   }
   throw new Error('someone else changed proposals.json at the same time — try again');
 }
-function fmtChange(p){
-  const j=v=>v==null?'—':typeof v==='object'?Object.entries(v).map(([k,x])=>`${k}: ${typeof x==='string'&&x.length>160?x.slice(0,160)+'…':x}`).join(' · '):String(v);
-  if(p.kind==='log')return `<div class="prop-change">add to <b>${esc(p.tk)}</b> log → <span class="new">${esc(j(p.proposed))}</span></div>`;
-  if(p.kind==='site')return `<div class="prop-change">site <b>${esc(p.site)}</b>: <span class="cur">${esc(j(p.current))}</span> → <span class="new">${esc(j(p.proposed))}</span></div>`;
-  return `<div class="prop-change">${esc(p.kind)}: <span class="new">${esc(j(p.proposed))}</span></div>`;
+function ym(y,m){return y?`${MONTHS[(m||6)-1]} ${y}`:'—';}
+function propWhat(p){
+  const c=COMPANIES.find(x=>x.tk===p.tk);const name=c?c.name:p.tk;
+  if(p.kind==='log')return `Add a dated note to ${name}'s record`;
+  if(p.kind==='site'&&p.proposed&&'mw' in p.proposed)return `Change ${p.site} from ${p.current?.mw} MW to ${p.proposed.mw} MW`;
+  if(p.kind==='site')return `Move ${p.site}'s energization from ${ym(p.current?.yr,p.current?.mo)} to ${ym(p.proposed?.yr,p.proposed?.mo)}`;
+  if(p.kind==='catalyst')return `Add a catalyst to ${name}`;
+  return p.title||p.kind;
 }
+function propStatement(p){const e=(p.evidence||[])[0]||{};return e.claim||(p.proposed&&p.proposed.x)||p.title||'';}
 function renderApprovals(){
   const body=document.getElementById('approvals-body');if(!body)return;
   const tok=ghToken();
-  let h=`<div class="tokbox">${tok?`<span>GitHub token saved on this device — decisions commit as you.</span> <button class="refreshbtn" id="tok-forget">forget token</button>`:
+  let h=`<div class="tokbox">${tok?`<span>Decisions from this device commit to GitHub as you.</span> <button class="refreshbtn" id="tok-forget">forget token</button>`:
     `<span>To decide from this device, paste a GitHub token once (fine-grained, this repository only, <b>Contents: read and write</b>). It is stored only in this browser.</span> <input type="password" id="tok-in" placeholder="github_pat_…" autocomplete="off"> <button class="refreshbtn" id="tok-save">save on this device</button>`}</div>`;
   if(!PROPOSALS){h+='<div class="legend2">no proposals yet — the Spark publishes proposals.json each morning</div>';body.innerHTML=h;wireTok(body);return;}
   const items=(PROPOSALS.items||[]);const pend=items.filter(p=>p.status==='pending');const done=items.filter(p=>p.status!=='pending').sort((a,b)=>String(b.decided||'').localeCompare(String(a.decided||'')));
-  h+=`<div class="ssummary" style="margin:4px 4px 14px"><span>as of <b>${esc(PROPOSALS.asOf||'—')}</b></span><span><b>${pend.length}</b> awaiting a decision</span><span><b>${done.filter(p=>p.status==='applied').length}</b> applied recently</span></div>`;
-  if(!pend.length)h+='<div class="legend2">nothing awaiting a decision</div>';
+  h+=`<div class="newsbar"><span>${pend.length} awaiting a decision · updated ${fmtD(PROPOSALS.asOf)}</span></div>`;
+  if(!pend.length)h+='<div class="legend2">Nothing waiting. New proposals arrive with the morning publish.</div>';
   pend.forEach(p=>{
-    h+=`<div class="prop" id="prop-${esc(p.id)}"><div class="prop-head"><span class="tk">${esc(p.tk)}</span><span class="kind">${esc(p.kind)}</span><span>${esc(p.title)}</span><span style="color:var(--ink-soft);font-size:11px">${esc(p.created)}</span></div>`+fmtChange(p)+
-      `<div class="prop-ev">${(p.evidence||[]).map(e=>`${esc(e.d)} · ‹${esc(e.by)}› ${e.quote?`<q>${esc(e.quote)}</q>`:esc(e.claim)} <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title||'source')} ↗</a>`).join('<br>')}</div>`+
-      `<div class="propbtns"><button class="pbtn yes" data-dec="accepted" data-id="${esc(p.id)}" ${tok?'':'disabled'}>Yes — apply</button><button class="pbtn no" data-dec="rejected" data-id="${esc(p.id)}" ${tok?'':'disabled'}>No</button><span class="pmsg"></span></div></div>`;});
-  if(done.length){h+=`<div class="eyebrow" style="margin:22px 4px 8px">Recent decisions</div>`;
-    done.slice(0,25).forEach(p=>{h+=`<div class="prop" style="padding:8px 14px"><div class="prop-head"><span class="pstat ${esc(p.status)}">${esc(p.status)}${p.applied?' '+esc(p.applied):''}</span><span class="tk">${esc(p.tk)}</span><span style="font-size:12px">${esc(p.title)}</span>${p.error?`<span style="color:var(--clay-ink);font-size:11px">${esc(p.error)}</span>`:''}</div></div>`;});}
-  h+=`<div class="legend2" style="margin-top:14px">Proposals are generated on the DGX Spark from the curated sources: a site date or MW that disagrees with the tracker (company-sourced statements only), and dated developments for a name's log (scoops, company guidance, big claims — first appearances only). <b>Yes</b> commits the decision; the apply-proposals Action writes the fact into data.json with a CHANGELOG line and the site redeploys within a few minutes. The Action refuses anything that would make the data checks worse. Site changes move the target; log entries never do.</div>`;
+    const e=(p.evidence||[])[0]||{};
+    h+=`<div class="ap" id="prop-${esc(p.id)}"><div class="ap-meta">Proposed ${fmtD(p.created)} · from ${esc(p.sourceName||'the curated sources')}</div>`+
+      `<div class="ap-what"><b>${esc(p.tk)}</b> — ${esc(propWhat(p))}</div>`+
+      `<p class="ap-stmt">${esc(propStatement(p))}</p>`+
+      `<div class="ap-src">${esc(SAID_BY[e.by]||e.by||'')}${e.title?`, in <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title.split(' | ')[0])}</a>`:''}${e.d?` (${fmtD(e.d)})`:''}${e.url&&/[&?]t=\d+s/.test(e.url)?` · <a href="${esc(e.url)}" target="_blank" rel="noopener">watch at ${tsLabel(parseInt(e.url.match(/[&?]t=(\d+)s/)[1]))}</a>`:''}</div>`+
+      (e.quote?`<p class="ap-quote">“${esc(e.quote)}”</p>`:'')+
+      `<div class="propbtns"><button class="pbtn yes" data-dec="accepted" data-id="${esc(p.id)}" ${tok?'':'disabled'}>Yes, ${p.kind==='log'?'add it':'change it'}</button><button class="pbtn no" data-dec="rejected" data-id="${esc(p.id)}" ${tok?'':'disabled'}>No</button><span class="pmsg"></span></div>`+
+      `<button class="textbtn" data-raw="${esc(p.id)}">Show the exact change</button><div class="ap-raw" id="raw-${esc(p.id)}" hidden>${esc(p.kind==='site'?`site "${p.site}": ${JSON.stringify(p.current)} → ${JSON.stringify(p.proposed)}`:JSON.stringify(p.proposed,null,1))}</div></div>`;});
+  if(done.length){h+=`<div class="ni-h" style="margin:26px 4px 6px">Recent decisions</div>`;
+    done.slice(0,25).forEach(p=>{const word=p.status==='applied'||(p.status==='accepted'&&p.applied)?'Applied':p.status==='accepted'?'Approved, applying':p.status==='rejected'?'Declined':'Could not apply';
+      h+=`<div class="ap-done"><span>${word} ${fmtD(p.applied||p.decided)}</span> · <b>${esc(p.tk)}</b> — ${esc(propStatement(p))}${p.error?` <span>(${esc(p.error)})</span>`:''}</div>`;});}
+  h+=`<div class="legend2" style="margin-top:18px">Each proposal is one statement from a curated source that the tracker does not yet reflect. <b>Yes</b> writes it into the model with a changelog line and the site updates within a few minutes; <b>No</b> declines it for good. Site changes move a company's value; notes added to a record do not.</div>`;
   body.innerHTML=h;wireTok(body);
+  body.querySelectorAll('[data-raw]').forEach(b=>b.addEventListener('click',()=>{const d=document.getElementById('raw-'+b.dataset.raw);d.hidden=!d.hidden;b.textContent=d.hidden?'Show the exact change':'Hide the exact change';}));
   body.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',async()=>{
-    const card=b.closest('.prop'),msg=card.querySelector('.pmsg');card.querySelectorAll('.pbtn').forEach(x=>x.disabled=true);msg.textContent='committing…';
-    try{const P=await ghDecide(b.dataset.id,b.dataset.dec);PROPOSALS=P;updateApprovalsBadge();msg.textContent=b.dataset.dec==='accepted'?'recorded — applied to data.json within a few minutes':'recorded';setTimeout(renderApprovals,900);}
+    const card=b.closest('.ap'),msg=card.querySelector('.pmsg');card.querySelectorAll('.pbtn').forEach(x=>x.disabled=true);msg.textContent='saving…';
+    try{const P=await ghDecide(b.dataset.id,b.dataset.dec);PROPOSALS=P;updateApprovalsBadge();msg.textContent=b.dataset.dec==='accepted'?'saved — the site updates in a few minutes':'saved';setTimeout(renderApprovals,900);}
     catch(e){msg.textContent='failed: '+e.message;card.querySelectorAll('.pbtn').forEach(x=>x.disabled=false);}
   }));
 }
