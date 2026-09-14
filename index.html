@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=57">
+<link rel="stylesheet" href="styles.css?v=58">
 </head>
 <body>
 
@@ -43,6 +43,8 @@
         <button class="tab" data-view="ramp">GPU ramp</button>
         <button class="tab" data-view="checks">Checks <span id="tabbadge"></span></button>
         <button class="tab" data-view="port">Portfolio</button>
+        <button class="tab" data-view="news">News</button>
+        <button class="tab" data-view="approvals">Approvals <span id="apbadge"></span></button>
       </div>
 
       <section id="view-cmp" aria-labelledby="h2-cmp">
@@ -104,6 +106,16 @@
         <div id="port-body"></div>
       </section>
 
+      <section id="view-news" aria-labelledby="h2-news" style="display:none">
+        <h2 class="vh" id="h2-news">News</h2><div class="eyebrow">Curated sources, summarised — read the tape without watching it. Summaries are ours; every item links to its source. Display-only; never a valuation input.</div>
+        <div id="news-body"></div>
+      </section>
+
+      <section id="view-approvals" aria-labelledby="h2-approvals" style="display:none">
+        <h2 class="vh" id="h2-approvals">Approvals</h2><div class="eyebrow">Proposed changes to the model, each with its evidence. Yes applies it to data.json and the site redeploys; No records the decision so it is not raised again. Nothing changes without a click.</div>
+        <div id="approvals-body"></div>
+      </section>
+
       <section id="view-sites" aria-labelledby="h2-sites" style="display:none">
         <h2 class="vh" id="h2-sites">All sites</h2><div class="eyebrow" id="sites-eyebrow">Every site in the universe — the inventory the roll-up is built from</div>
         <div style="overflow-x:auto">
@@ -126,12 +138,12 @@
 </div>
 
 <!-- bump ?v= together with meaningful JS/CSS changes — browsers cache these heuristically -->
-<script src="config.js?v=57"></script>
-<script src="checks-core.js?v=57"></script>
-<script src="engine.js?v=57"></script>
-<script src="ramp-core.js?v=57"></script>
-<script src="portfolio-core.js?v=57"></script>
-<script src="app.js?v=57"></script>
-<script src="portfolio-ui.js?v=57"></script>
+<script src="config.js?v=58"></script>
+<script src="checks-core.js?v=58"></script>
+<script src="engine.js?v=58"></script>
+<script src="ramp-core.js?v=58"></script>
+<script src="portfolio-core.js?v=58"></script>
+<script src="app.js?v=58"></script>
+<script src="portfolio-ui.js?v=58"></script>
 </body>
 </html>

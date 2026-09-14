@@ -17,6 +17,8 @@ let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
 let REGION, CONST, PROV, PROV_OP, TIERS;
 let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
 let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
+let NEWS=null, PROPOSALS=null, newsTk='', newsSignalOnly=false, newsOpen={};   // News + Approvals (spec §6g)
+const GH_REPO='rictsb/cloudtracker';
 
 let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1,covSort='anncov',covDir=-1,rzSort='d',rzDir=-1,olTab='leases',olSort='prob',olDir=-1,oeSort='score',oeDir=-1,olBigOnly=false;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -53,7 +55,7 @@ function render(){
   const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
   document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin+CONST.leasedCMargin)/100)*(A.multiple*(1+CONST.multPremium*0.6)))+' / MW';
   document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
-  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else if(view==='raises')renderRaises(); else if(view==='outlook')renderOutlook(); else if(view==='ramp'){if(!RAMP_CTX||!document.getElementById('rampPlayBtn'))renderRamp();} else renderSites();
+  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else if(view==='raises')renderRaises(); else if(view==='outlook')renderOutlook(); else if(view==='news')renderNews(); else if(view==='approvals')renderApprovals(); else if(view==='ramp'){if(!RAMP_CTX||!document.getElementById('rampPlayBtn'))renderRamp();} else renderSites();
 }
 
 /* ---- leases page: the registry rendered — every signed book + its economics (the print tape) ---- */
@@ -318,6 +320,99 @@ function renderOutlook(){
   body.querySelectorAll('th[data-oe]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.oe;if(k===oeSort)oeDir*=-1;else{oeSort=k;oeDir=(k==='tk'||k==='date'||k==='dir')?1:-1;}renderOutlook();}));
   body.querySelectorAll('.olrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ol-'+tr.dataset.i);if(d)d.classList.toggle('open');const c2=tr.querySelector('td');if(c2)c2.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
   body.querySelectorAll('.oerow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('oe-'+tr.dataset.i);if(d)d.classList.toggle('open');const c2=tr.querySelector('td');if(c2)c2.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
+}
+/* ---- News + Approvals (spec §6g) — news.json and proposals.json are pushed daily by the DGX Spark
+   (transcripts → summaries → claims); the Approvals screen commits decisions to GitHub, and the
+   apply-proposals Action turns accepted ones into data.json facts. Display-only here. ---- */
+async function loadNewsAndProposals(){
+  try{const r=await fetch('news.json',{cache:'no-store'});if(r.ok)NEWS=await r.json();}catch(e){}
+  try{const r=await fetch('proposals.json',{cache:'no-store'});if(r.ok)PROPOSALS=await r.json();}catch(e){}
+  updateApprovalsBadge();
+  if(view==='news')renderNews(); if(view==='approvals')renderApprovals();
+}
+function updateApprovalsBadge(){const b=document.getElementById('apbadge');if(!b)return;const n=PROPOSALS?(PROPOSALS.items||[]).filter(p=>p.status==='pending').length:0;b.textContent=n?String(n):'';}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function tsLabel(t){if(t==null)return '';const m=Math.floor(t/60),s=t%60;return `${m}:${String(s).padStart(2,'0')}`;}
+function renderNews(){
+  const body=document.getElementById('news-body');if(!body)return;
+  if(!NEWS){body.innerHTML='<div class="legend2">no news yet — the Spark publishes news.json each morning</div>';return;}
+  const age=Math.round((Date.now()-new Date(NEWS.asOf))/86400000);
+  const tks=[...new Set((NEWS.items||[]).flatMap(i=>i.tickers||[]))].sort();
+  let items=(NEWS.items||[]).slice();
+  if(newsTk)items=items.filter(i=>(i.tickers||[]).includes(newsTk));
+  if(newsSignalOnly)items=items.filter(i=>(i.signal||[]).length);
+  let h=`<div class="ssummary" style="margin:4px 4px 12px"><span>as of <b>${esc(NEWS.asOf)}</b>${age>2?' <span class="prov rumored">stale — publish overdue</span>':''}</span><span>window <b>${NEWS.windowDays} days</b></span><span><b>${(NEWS.items||[]).length}</b> videos summarised</span><span>sources: ${(NEWS.sources||[]).map(s=>`<a class="clearfilter" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(', ')}</span></div>`;
+  h+=`<div class="newsbar"><label>Name <select id="news-tk"><option value="">all coverage names</option>${tks.map(t=>`<option value="${t}" ${t===newsTk?'selected':''}>${t}</option>`).join('')}</select></label><label style="cursor:pointer"><input type="checkbox" id="news-sig" ${newsSignalOnly?'checked':''}> signal only (scoops, calls, emphasised)</label><span>${items.length} shown</span></div>`;
+  if(!items.length)h+='<div class="legend2">nothing matches</div>';
+  items.forEach(i=>{
+    const open=!!newsOpen[i.id];const sum=(i.summary||'').trim();
+    h+=`<div class="news-item"><div class="news-meta"><span>${esc(i.d)}</span><span>${esc((NEWS.sources||[]).find(s=>s.id===i.src)?.name||i.src)}</span>${i.kind?`<span class="kind">${esc(i.kind)}</span>`:''}${i.minutes?`<span>${i.minutes} min</span>`:''}</div>`+
+      `<div class="news-title"><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)} ↗</a></div>`+
+      `<div>${(i.tickers||[]).map(t=>`<span class="tkpill ${(i.main||[]).includes(t)?'main':''}">${t}</span>`).join('')}${(i.sponsored||[]).map(t=>`<span class="tkpill sp" title="sponsored segment — excluded from signal">${t}</span>`).join('')}</div>`+
+      (sum?`<div class="news-sum ${open||sum.length<700?'':'clip'}" id="ns-${i.id}">${esc(sum)}</div>${sum.length>=700&&!open?`<button class="morebtn" data-more="${i.id}">read the full summary ▾</button>`:''}`:'<div class="news-sum" style="color:var(--ink-soft)">summary pending — Hermes runs after transcription</div>')+
+      ((i.signal||[]).length?`<ul class="sig">${i.signal.map(s=>`<li><span class="sigtag ${s.tag}">${esc(s.tag)}</span><b>${esc(s.tk)}</b> ${esc(s.claim)} <span style="color:var(--ink-soft)">‹${esc(s.by)}›</span>${s.t!=null?` <a href="${esc(i.url)}&t=${s.t}s" target="_blank" rel="noopener">${tsLabel(s.t)} ↗</a>`:''}</li>`).join('')}</ul>`:'')+
+      `</div>`;});
+  h+=`<div class="legend2" style="margin-top:14px"><b>Signal</b> tags come from the claim extraction: <b>scoop</b> = information from the speaker's own digging (filings, dockets, permits, site visits) rather than a company announcement; <b>call</b> = a prediction with a horizon; <b>big</b> / <b>notable</b> = the speaker flagged it as important. ‹executive› means the fact comes from the company, whether quoted or relayed; ‹host› is the presenter's own view. Sponsored segments are struck through and never count as signal. Transcripts stay off the site; summaries are ours.</div>`;
+  body.innerHTML=h;
+  body.querySelector('#news-tk').addEventListener('change',e=>{newsTk=e.target.value;renderNews();});
+  body.querySelector('#news-sig').addEventListener('change',e=>{newsSignalOnly=e.target.checked;renderNews();});
+  body.querySelectorAll('[data-more]').forEach(b=>b.addEventListener('click',()=>{newsOpen[b.dataset.more]=true;renderNews();}));
+}
+/* Approvals — the GitHub token lives only in this browser (localStorage); a click commits the decision to
+   proposals.json on main; the apply-proposals Action does the rest. */
+function ghToken(){try{return localStorage.getItem('cv-gh-token')||'';}catch(e){return '';}}
+function b64enc(str){const b=new TextEncoder().encode(str);let s='';for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s);}
+function b64dec(b64){const s=atob(b64.replace(/\n/g,''));const b=new Uint8Array(s.length);for(let i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return new TextDecoder().decode(b);}
+async function ghDecide(id,status){
+  const tok=ghToken();if(!tok)throw new Error('no GitHub token on this device');
+  const api=`https://api.github.com/repos/${GH_REPO}/contents/proposals.json`;
+  const H={Authorization:'Bearer '+tok,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  for(let attempt=0;attempt<3;attempt++){
+    const r=await fetch(api+'?ref=main',{headers:H,cache:'no-store'});
+    if(r.status===401)throw new Error('GitHub rejected the token (401) — paste a fresh one');
+    if(!r.ok)throw new Error('GitHub read failed: HTTP '+r.status);
+    const j=await r.json();const P=JSON.parse(b64dec(j.content));
+    const it=(P.items||[]).find(x=>x.id===id);if(!it)throw new Error('proposal not found on main any more');
+    it.status=status;it.decided=new Date().toISOString().slice(0,10);
+    const w=await fetch(api,{method:'PUT',headers:{...H,'Content-Type':'application/json'},body:JSON.stringify({message:`proposals: ${id} ${status} (Approvals screen)`,content:b64enc(JSON.stringify(P,null,1)+'\n'),sha:j.sha,branch:'main'})});
+    if(w.status===409||w.status===422){await new Promise(r2=>setTimeout(r2,1500));continue;}
+    if(!w.ok)throw new Error('GitHub write failed: HTTP '+w.status);
+    return P;
+  }
+  throw new Error('someone else changed proposals.json at the same time — try again');
+}
+function fmtChange(p){
+  const j=v=>v==null?'—':typeof v==='object'?Object.entries(v).map(([k,x])=>`${k}: ${typeof x==='string'&&x.length>160?x.slice(0,160)+'…':x}`).join(' · '):String(v);
+  if(p.kind==='log')return `<div class="prop-change">add to <b>${esc(p.tk)}</b> log → <span class="new">${esc(j(p.proposed))}</span></div>`;
+  if(p.kind==='site')return `<div class="prop-change">site <b>${esc(p.site)}</b>: <span class="cur">${esc(j(p.current))}</span> → <span class="new">${esc(j(p.proposed))}</span></div>`;
+  return `<div class="prop-change">${esc(p.kind)}: <span class="new">${esc(j(p.proposed))}</span></div>`;
+}
+function renderApprovals(){
+  const body=document.getElementById('approvals-body');if(!body)return;
+  const tok=ghToken();
+  let h=`<div class="tokbox">${tok?`<span>GitHub token saved on this device — decisions commit as you.</span> <button class="refreshbtn" id="tok-forget">forget token</button>`:
+    `<span>To decide from this device, paste a GitHub token once (fine-grained, this repository only, <b>Contents: read and write</b>). It is stored only in this browser.</span> <input type="password" id="tok-in" placeholder="github_pat_…" autocomplete="off"> <button class="refreshbtn" id="tok-save">save on this device</button>`}</div>`;
+  if(!PROPOSALS){h+='<div class="legend2">no proposals yet — the Spark publishes proposals.json each morning</div>';body.innerHTML=h;wireTok(body);return;}
+  const items=(PROPOSALS.items||[]);const pend=items.filter(p=>p.status==='pending');const done=items.filter(p=>p.status!=='pending').sort((a,b)=>String(b.decided||'').localeCompare(String(a.decided||'')));
+  h+=`<div class="ssummary" style="margin:4px 4px 14px"><span>as of <b>${esc(PROPOSALS.asOf||'—')}</b></span><span><b>${pend.length}</b> awaiting a decision</span><span><b>${done.filter(p=>p.status==='applied').length}</b> applied recently</span></div>`;
+  if(!pend.length)h+='<div class="legend2">nothing awaiting a decision</div>';
+  pend.forEach(p=>{
+    h+=`<div class="prop" id="prop-${esc(p.id)}"><div class="prop-head"><span class="tk">${esc(p.tk)}</span><span class="kind">${esc(p.kind)}</span><span>${esc(p.title)}</span><span style="color:var(--ink-soft);font-size:11px">${esc(p.created)}</span></div>`+fmtChange(p)+
+      `<div class="prop-ev">${(p.evidence||[]).map(e=>`${esc(e.d)} · ‹${esc(e.by)}› ${e.quote?`<q>${esc(e.quote)}</q>`:esc(e.claim)} <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title||'source')} ↗</a>`).join('<br>')}</div>`+
+      `<div class="propbtns"><button class="pbtn yes" data-dec="accepted" data-id="${esc(p.id)}" ${tok?'':'disabled'}>Yes — apply</button><button class="pbtn no" data-dec="rejected" data-id="${esc(p.id)}" ${tok?'':'disabled'}>No</button><span class="pmsg"></span></div></div>`;});
+  if(done.length){h+=`<div class="eyebrow" style="margin:22px 4px 8px">Recent decisions</div>`;
+    done.slice(0,25).forEach(p=>{h+=`<div class="prop" style="padding:8px 14px"><div class="prop-head"><span class="pstat ${esc(p.status)}">${esc(p.status)}${p.applied?' '+esc(p.applied):''}</span><span class="tk">${esc(p.tk)}</span><span style="font-size:12px">${esc(p.title)}</span>${p.error?`<span style="color:var(--clay-ink);font-size:11px">${esc(p.error)}</span>`:''}</div></div>`;});}
+  h+=`<div class="legend2" style="margin-top:14px">Proposals are generated on the DGX Spark from the curated sources: a site date or MW that disagrees with the tracker (company-sourced statements only), and dated developments for a name's log (scoops, company guidance, big claims — first appearances only). <b>Yes</b> commits the decision; the apply-proposals Action writes the fact into data.json with a CHANGELOG line and the site redeploys within a few minutes. The Action refuses anything that would make the data checks worse. Site changes move the target; log entries never do.</div>`;
+  body.innerHTML=h;wireTok(body);
+  body.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',async()=>{
+    const card=b.closest('.prop'),msg=card.querySelector('.pmsg');card.querySelectorAll('.pbtn').forEach(x=>x.disabled=true);msg.textContent='committing…';
+    try{const P=await ghDecide(b.dataset.id,b.dataset.dec);PROPOSALS=P;updateApprovalsBadge();msg.textContent=b.dataset.dec==='accepted'?'recorded — applied to data.json within a few minutes':'recorded';setTimeout(renderApprovals,900);}
+    catch(e){msg.textContent='failed: '+e.message;card.querySelectorAll('.pbtn').forEach(x=>x.disabled=false);}
+  }));
+}
+function wireTok(body){
+  const sv=body.querySelector('#tok-save');if(sv)sv.addEventListener('click',()=>{const v=(body.querySelector('#tok-in').value||'').trim();if(!v)return;try{localStorage.setItem('cv-gh-token',v);}catch(e){}renderApprovals();});
+  const fg=body.querySelector('#tok-forget');if(fg)fg.addEventListener('click',()=>{try{localStorage.removeItem('cv-gh-token');}catch(e){}renderApprovals();});
 }
 /* ---- GPU ramp page (spec §6 screen 11) — the rollout explorer: scrub or replay the build-out quarter by
    quarter, per-quarter dispatches, tranche spotlight, synced crosshairs, model-vs-street mode.
@@ -1210,6 +1305,8 @@ function route(){
   if(raw==='outlook'){showDashboard('outlook',null);return;}
   if(raw==='ramp'){showDashboard('ramp',null);return;}
   if(raw==='portfolio'){showDashboard('port',null);return;}
+  if(raw==='news'){showDashboard('news',null);return;}
+  if(raw==='approvals'){showDashboard('approvals',null);return;}
   showDashboard('cmp',null);
 }
 function showDashboard(v,filter){
@@ -1227,6 +1324,8 @@ function showDashboard(v,filter){
   const vz=document.getElementById('view-raises');if(vz)vz.style.display=v==='raises'?'':'none';
   const vo=document.getElementById('view-outlook');if(vo)vo.style.display=v==='outlook'?'':'none';
   const vg=document.getElementById('view-ramp');if(vg)vg.style.display=v==='ramp'?'':'none';
+  const vn=document.getElementById('view-news');if(vn)vn.style.display=v==='news'?'':'none';
+  const va=document.getElementById('view-approvals');if(va)va.style.display=v==='approvals'?'':'none';
   render();window.scrollTo(0,0);
 }
 
@@ -1240,7 +1339,7 @@ function wireEvents(){
     setDials(dOpen);
     dbtn.addEventListener('click',()=>setDials(grid.classList.contains('nodials')));
   }
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':t.dataset.view==='cover'?'coverage':t.dataset.view==='raises'?'raises':t.dataset.view==='outlook'?'outlook':t.dataset.view==='ramp'?'ramp':'')));
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':t.dataset.view==='cover'?'coverage':t.dataset.view==='raises'?'raises':t.dataset.view==='outlook'?'outlook':t.dataset.view==='ramp'?'ramp':t.dataset.view==='news'?'news':t.dataset.view==='approvals'?'approvals':'')));
   document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
   document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
   document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
@@ -1298,6 +1397,7 @@ async function boot(){
     route();
     try{if(typeof ChecksCore!=='undefined')updateChecksBadge(ChecksCore.runChecks(RAW_DATA));}catch(e){}
     fetchPrices();fetchBtc();fetchEth();
+    loadNewsAndProposals();
     setInterval(()=>{fetchPrices();fetchBtc();fetchEth();},3600000);
   }catch(err){
     document.getElementById('rows').innerHTML=`<div class="appmsg err">Could not load data.json — ${err.message}. Serve this folder over HTTP (not file://).</div>`;

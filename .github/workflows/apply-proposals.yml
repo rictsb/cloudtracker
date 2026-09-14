@@ -1,0 +1,52 @@
+# Approvals (spec §6g) — when a decision lands in proposals.json (a Yes/No on the Approvals screen commits it),
+# apply the ACCEPTED proposals to data.json, add the CHANGELOG lines, commit, push (Render redeploys).
+# The apply script refuses to write if the data checks would get worse; a failure opens a GitHub issue.
+name: apply-proposals
+on:
+  push:
+    branches: [main]
+    paths: [proposals.json]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: apply-proposals
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply accepted proposals
+        run: |
+          set -o pipefail
+          node proposals-apply.js | tee apply.log
+      - name: Commit
+        run: |
+          if ! git diff --quiet -- data.json proposals.json CHANGELOG.md; then
+            git config user.name "proposals-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data.json proposals.json CHANGELOG.md
+            git commit -m "proposals: applied $(date -u +%F)"
+            for i in 1 2 3; do
+              git push && break
+              echo "push rejected (concurrent commit to main) — rebasing and retrying ($i/3)"
+              git pull --rebase origin main
+              sleep 5
+            done
+          else
+            echo "nothing to commit"
+          fi
+      - name: Alert on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="apply-proposals needs a look"
+          BODY="Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} ($(date -u +%F)). An accepted proposal could not be applied — see the run log; the proposal is marked error on the Approvals screen."
+          EXISTING=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' || true)
+          if [ -n "$EXISTING" ]; then gh issue comment "$EXISTING" --body "$BODY" || true; else gh issue create --title "$TITLE" --body "$BODY" || true; fi
