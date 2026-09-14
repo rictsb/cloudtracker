@@ -1407,7 +1407,7 @@
       "d": {
        "genRateCap": {
         "rubin": 5.4,
-        "next": 6.0
+        "next": 6
        }
       }
      },
@@ -1437,7 +1437,7 @@
     },
     "evArr": {
      "sh": 551.5,
-     "nd": 30.0,
+     "nd": 30,
      "arr": 19
     },
     "facts": [
@@ -1730,9 +1730,9 @@
        215.6
       ],
       [
-       4.0,
+       4,
        119.6,
-       230.0
+       230
       ]
      ],
      "T0": "2026Q3",
@@ -2824,7 +2824,7 @@
       "d": {
        "genRateCap": {
         "rubin": 5.4,
-        "next": 6.0
+        "next": 6
        }
       }
      },
@@ -3973,7 +3973,7 @@
       "d": {
        "genRateCap": {
         "rubin": 5.4,
-        "next": 6.0
+        "next": 6
        }
       }
      },
@@ -5586,7 +5586,7 @@
        20.98
       ],
       [
-       1.0,
+       1,
        85.63,
        120.18
       ],
@@ -5601,7 +5601,7 @@
        82.24
       ],
       [
-       3.0,
+       3,
        73.07,
        110.3
       ]
@@ -8967,7 +8967,14 @@
      "source": "PR 2025-10-10 9:25am ET + 6-K"
     }
    ],
-   "log": [],
+   "log": [
+    {
+     "d": "2026-08-24",
+     "t": "opinion",
+     "s": "[secondary] McNallie Money (YouTube) — Latest KEEL, SLNH & WULF Site Updates | Top WYFI News | Bitcoin Price Action | A, 2026-08-24",
+     "x": "KEEL is investigating a 100 million USD data center in Moses Lake that previously used crypto mining. — \"You can see a $100 million data center in Moses Lake address listed former-use crypto mining.\" (host)"
+    }
+   ],
    "verified": {
     "capital": "2026-08-24",
     "contracts": "2026-08-24"
