@@ -1596,12 +1596,8 @@
     "CORZ",
     "HIVE",
     "BTBT",
-    "CRWV",
-    "NBIS",
-    "RIOT",
     "MARA",
-    "SLNH",
-    "CIFR"
+    "RIOT"
    ],
    "main": [
     "IREN",
@@ -1612,15 +1608,7 @@
     "BTDR"
    ],
    "summary": "1. The video discusses recent developments in AI infrastructure stocks including earnings updates, price target revisions from analysts, and construction progress at key sites.\n\n2. Key facts by company:\n- IREN: 300 MW of power energized at the Sweetwater site; Childress site has 450 MW remaining capacity after a Microsoft deal for initial 300 MW.\n- CLSK: B. Riley raised price target to $26 (from $19), projecting 88.95% upside from ~$13.76 share price; signed 175 MW hyperscale contract at Sandersville and has Seelye/Brazoria sites as next growth catalysts.\n- HUT: B. Riley raised price target to $163 (from $130), projecting >50% upside from ~$107 share price; Riverbend site construction updates expected on earnings call.\n- WULF: Berenstain maintained $36 price target, projecting 102% upside from ~$17.82 share price; has >900 MW of compute capacity signed.\n\n3. Host's view:\nThe host is bullish on the AI infrastructure sector overall, stating \"I don't think it's a bubble price... I think we're almost not bullish enough.\" They expect significant revenue growth as contracted backlogs convert to actual deployments over 2026-2028, with particular optimism for companies like HUT and WULF that have signed large hyperscale contracts. The host sounds confident these stocks will appreciate substantially.\n\n4. Worth checking:\n- Verify the exact MW capacity remaining at IREN's Childress site after accounting for the Microsoft deal\n- Confirm the specific power allocation costs ($8M-$12M/MW) mentioned by Core Scientific executives in their earnings call\n- Check filings to confirm if/how much ABTC is hedging Bitcoin exposure through derivatives",
-   "signal": [
-    {
-     "tk": "WULF",
-     "claim": "TeraWulf has over 900 MW of compute capacity.",
-     "by": "guest",
-     "tag": "notable",
-     "t": null
-    }
-   ],
+   "signal": [],
    "sponsored": []
   },
   {
@@ -1632,35 +1620,26 @@
    "kind": "news",
    "minutes": 39,
    "tickers": [
-    "BTDR",
-    "WULF",
-    "CORZ",
-    "CLSK",
     "IREN",
     "HUT",
-    "APLD",
-    "MARA",
-    "RIOT",
-    "BTBT",
-    "HIVE"
-   ],
-   "main": [
     "BTDR",
-    "WULF",
+    "GLXY",
     "CORZ",
-    "CLSK",
-    "IREN"
+    "WULF",
+    "CIFR",
+    "APLD",
+    "SLNH",
+    "BTBT",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK"
    ],
+   "main": [],
    "summary": "1. The video discusses recent market volatility driven by margin calls on leveraged positions held by Situational Awareness (a large investor), Amazon's Q2 earnings highlighting AI growth, Morgan Stanley analyst Steven Bird's bullish outlook on select AI infrastructure stocks and the sector's challenges.\n\n2. Key facts by company:\n- **WULF**: TerraWolf has 13G filings showing institutional ownership; Vanguard owns 22.4M shares (4.5% stake). Patrick Fleury (CFO) to be interviewed.\n- **BTDR**: Morgan Stanley analyst Steven Bird calls Bitdeer \"overlooked\" with a low EV/watt ratio; BlackRock owns 10.5M shares (5.3% stake). Bitdeer has 1.74GW operational power capacity, 65-70M annualized HPC revenue run rate.\n- **CIFR**: Cipher is one of Morgan Stanley's top picks per Steven Bird.\n\n3. Host's view: The host is bullish on the AI infrastructure sector long-term due to exponential compute demand doubling every six months and hyperscalers like Amazon reporting triple-digit growth in AI divisions. They see recent volatility as a buying opportunity, noting stocks can swing 15-20% quickly (e.g., yesterday's rebound). Confidence sounds high based on contracts signed by companies they cover.\n\n4. Worth checking: \n- Verify Situational Awareness' actual portfolio allocation and leverage ratio\n- Confirm Citadel's role in the margin call event\n- Check if Leopold Ashenbrenner still holds $10B AUM post-margin call\n- Validate Morgan Stanley's specific price targets for GLXY, CIFR, WULF mentioned by Steven Bird",
-   "signal": [
-    {
-     "tk": "CORZ",
-     "claim": "Industry leaders estimate compute demand could double every six months.",
-     "by": "thirdparty",
-     "tag": "big",
-     "t": 1656
-    }
-   ],
+   "signal": [],
    "sponsored": []
   },
   {
@@ -1676,21 +1655,21 @@
     "CORZ",
     "WULF",
     "CIFR",
-    "HUT",
     "CLSK",
-    "BTBT",
     "HIVE",
-    "MARA",
     "BTDR",
-    "GLXY"
+    "GLXY",
+    "MARA",
+    "BTBT",
+    "SLNH"
    ],
    "main": [
     "IREN",
     "CORZ",
     "WULF",
     "CIFR",
-    "HUT",
-    "CLSK"
+    "CLSK",
+    "HIVE"
    ],
    "summary": "1. The video discusses the hosts' trades during a volatile week in AI infrastructure stocks, their strategies for navigating market swings and their outlook on the sector's long-term potential.\n\n2. Key facts by company:\n- CORZ: Anthony bought 500 shares at $20.98; later bought another 1000 shares as price dropped to ~$20.\n- KEEL: Anthony bought 5,000 shares at $4.05 (stock was over $5 recently and $7 in June).\n- CIFR: Anthony bought 900 shares at $18.25.\n- WULF: Anthony bought 500 shares at $50.45 (stock hit $30 recently).\n- IREN: Anthony bought 500 shares at $30.15; company has energized 300 MW at Sweetwater site, will get ~200 MW compute power.\n\n3. Host's view:\nThe hosts are bullish on AI infrastructure long-term but trade around positions to capture volatility. They see current valuations as attractive for companies like CORZ and IREN trading near cash/GPU values. Anthony is confident in WULF due to the experienced team and says they've delivered site after site.\n\n4. Worth checking:\n- Verify CORZ's contracted power capacity (mentioned as ~1.1 GW).\n- Check IREN's actual cash reserves vs $7.6B stated.\n- Confirm WULF's compute power pipeline (915 MW mentioned).",
    "signal": [],
@@ -1706,41 +1685,46 @@
    "minutes": 46,
    "tickers": [
     "IREN",
-    "WULF",
     "HUT",
     "BTDR",
-    "CLSK",
+    "GLXY",
+    "WULF",
+    "CIFR",
+    "APLD",
     "SLNH",
     "BTBT",
     "HIVE",
-    "CORZ",
+    "CRWV",
+    "NBIS",
     "RIOT",
     "MARA",
-    "CIFR",
-    "APLD"
+    "CLSK"
    ],
    "main": [
-    "IREN",
-    "WULF",
-    "HUT",
-    "BTDR",
-    "CLSK"
+    "IREN"
    ],
    "summary": "1. The video covers extreme volatility in AI infrastructure stocks following Meta and Microsoft earnings, with significant rallies after prior drawdowns; it also discusses updates from Iron Energy (IREN) and Bit Digital's acquisition of nScale.\n\n2. Key facts by company:\n- IREN: 85% of $4B ARR target signed/locked up; Childress site has ~1k employees; 27 Bitcoin mining buildings being repurposed for GPU facilities; original Microsoft contract included a $16M/megawatt accelerator bonus\n- BTDR: Mining >900 BTC/day (vs IREN's ~4/day); hash rate likely 10x that required to mine 4 BTC/day\n- WULF: BlackRock holds 22.3M shares (~4.5% stake)\n- HUT: YTD return +132%; market cap approaching IREN's despite IREN having signed contracts\n\n3. Host's view:\nThe hosts are highly confident in AI infrastructure demand, citing hyperscaler earnings and on-site visits as validation. They see current volatility as a buying opportunity, with Anthony deploying >$50k during the dip.\n\n4. Worth checking:\n- Senator Saloon's claim that clarity app approval could be 1 week away\n- Bit Digital's acquisition of nScale and associated expansion potential to 80MW\n- BlackRock's exact stakes in WULF and other companies via SEC filings",
    "signal": [
     {
      "tk": "IREN",
-     "claim": "IREN's Childress site is progressing through Horizon 1 and 2, with Horizon 1 nearing commissioning for Microsoft.",
+     "claim": "IREN is delivering 200 megawatts of compute to Microsoft at the Childress site.",
      "by": "host",
-     "tag": "scoop",
-     "t": 2000
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "WULF",
+     "claim": "BlackRock holds 22.3 million shares of TerraWulf, representing approximately 4.5% of the volume.",
+     "by": "guest",
+     "tag": "notable",
+     "t": null
     },
     {
      "tk": "IREN",
-     "claim": "IREN is repurposing existing Bitcoin mining buildings at Childress for GPU hosting.",
+     "claim": "IREN is building out the Childress site with Horizon 1 and 2 nearing completion.",
      "by": "host",
      "tag": "scoop",
-     "t": 1982
+     "t": null
     }
    ],
    "sponsored": []
@@ -1779,16 +1763,9 @@
     {
      "tk": "KEEL",
      "claim": "BlackRock holds an 8.4% stake in Keel, representing over 50 million shares.",
-     "by": "thirdparty",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "WULF",
-     "claim": "A prominent miner reported power costs of approximately 5 cents per kWh.",
      "by": "guest",
-     "tag": "scoop",
-     "t": 677
+     "tag": "notable",
+     "t": 2493
     }
    ],
    "sponsored": []
@@ -1806,16 +1783,12 @@
     "APLD",
     "GLXY",
     "HIVE",
-    "IREN",
-    "HUT",
-    "BTDR",
-    "WULF",
-    "CIFR",
-    "SLNH",
     "BTBT",
     "CRWV",
     "NBIS",
-    "RIOT",
+    "WULF",
+    "HUT",
+    "CIFR",
     "MARA",
     "CLSK"
    ],
@@ -1829,10 +1802,31 @@
    "signal": [
     {
      "tk": "CORZ",
-     "claim": "Core Scientific signed a 530 MW deal with AMD to secure US data capacity for AI solutions.",
+     "claim": "Core Scientific signed a 530 megawatt deal with AMD for AI infrastructure.",
      "by": "executive",
      "tag": "big",
-     "t": 67
+     "t": null
+    },
+    {
+     "tk": "APLD",
+     "claim": "Applied Digital has 1.4 gigawatts of contracted power across five AI factory campuses.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 676
+    },
+    {
+     "tk": "APLD",
+     "claim": "Applied Digital reported a Q4 earnings per share profit of 4 cents.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 567
+    },
+    {
+     "tk": "CORZ",
+     "claim": "Cantor updated its Core Scientific price target to $39.",
+     "by": "thirdparty",
+     "tag": "notable",
+     "t": 2702
     }
    ],
    "sponsored": []
@@ -1848,45 +1842,24 @@
    "tickers": [
     "IREN",
     "CORZ",
-    "KEEL",
     "WULF",
     "MARA",
     "BTDR",
-    "HUT",
-    "BTBT",
+    "KEEL",
     "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
     "CLSK",
-    "SLNH",
-    "APLD"
+    "BTBT"
    ],
    "main": [
     "IREN",
     "CORZ",
-    "KEEL",
     "WULF",
     "MARA",
-    "BTDR"
+    "BTDR",
+    "KEEL"
    ],
    "summary": "1. The video discusses recent developments and news from various companies in the AI infrastructure sector, including Kiel (KEEL), White Fiber (WYFI), Core Scientific (CORZ), Marathon Digital Holdings (MARA) and Iris Energy (IREN).\n\n2. Key facts by company:\n- KEEL: Announced Q2 results; three deals expected by year-end; pipeline includes Panther Creek (350 MW), Sharon (110 MW), Moses Lake (18 MW); Scrubgrass site has potential for 1.3 GW.\n- WYFI: Delivered NC1, a 40 MW IT load facility with $865M contract value ($2.1M/MW) for N-Scale; retrofit strategy enables fast deployment and lower costs.\n- CORZ: On track to deliver 590 MW for CoreWeave by early 2027; expects ~400-450 MW handed over by end of June/July, generating ~$50-60M/month revenue; financing mostly from client.\n- MARA: Fred Thiel stated power is more valuable for AI than Bitcoin mining; pivoting to AI while maintaining Bitcoin operations; using behind-the-meter power and wind farm.\n- IREN: Mike Alfred (director) believes owning GPUs offers upside despite risks; full vertical integration strategy includes land, data centers, compute layer and software.\n\n3. Host's view:\nThe host is optimistic about the long-term demand for AI infrastructure, comparing it to early internet adoption. They highlight that while there are short-term market pullbacks, the sector fundamentals remain strong with exponential growth potential. The host expresses confidence in companies securing deals and delivering facilities, noting that earnings reports will provide further clarity on revenue streams.\n\n4. Worth checking:\n- Verify KEEL's deal timelines and pipeline capacity against official filings.\n- Confirm WYFI's contract value ($865M) and IT load (40 MW) for the N-Scale facility.\n- Validate CORZ's delivery timeline (400-450 MW by end of June/July) and associated revenue projections.\n- Check MARA's power pipeline size and behind-the-meter capacity claims.\n- Review IREN's site capacities (e.g. 2 GW at Sweetwater, 750 MW at Childress) and Microsoft contract details ($2.91/MW average).",
-   "signal": [
-    {
-     "tk": "KEEL",
-     "claim": "KEEL is working to convert a Letter of Intent into an agreement for 50 MW of compute power.",
-     "by": "host",
-     "tag": "notable",
-     "t": 329
-    },
-    {
-     "tk": "CORZ",
-     "claim": "Core Scientific expects to deliver the Dalton phase of its project by early 2027.",
-     "by": "host",
-     "tag": "call",
-     "t": 2020
-    }
-   ],
+   "signal": [],
    "sponsored": []
   },
   {
