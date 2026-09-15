@@ -11,6 +11,45 @@ const p=JSON.parse(fs.readFileSync(path.join(base,'iren-data.json'),'utf8'));
 const context=vm.createContext({console,URLSearchParams,TextEncoder,TextDecoder,btoa,atob,fetch:async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(base,String(url).split('/').at(-1)),'utf8'))})});
 for(const file of ['engine.js','ramp-core.js','onepager-core.js','model-data.js','checks-core.js','portfolio-core.js','approvals-core.js','research-view.js','coverage-view.js','contracts-view.js','news-view.js','checks-view.js','portfolio-view.js','approvals-view.js','report-graphics.js','report-layout.js','report-view.js','compare-view.js'])vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
 const close=(a,b,label='')=>assert.ok(Math.abs(a-b)<1e-8*Math.max(1,Math.abs(b)),`${label?label+': ':''}${a} != ${b}`);
+// Export freshness must survive platform-level floating-point jitter without
+// accepting changed evidence, missing fields or material financial differences.
+function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
+  const where=label+' '+at;
+  assert.equal(typeof actual,typeof expected,where+' type differs');
+  if(typeof actual==='number'){
+    assert.ok(Number.isFinite(actual)&&Number.isFinite(expected),where+' must contain finite numbers');
+    const tolerance=1e-12*Math.max(Math.abs(actual),Math.abs(expected));
+    assert.ok(Math.abs(actual-expected)<=tolerance,where+': '+actual+' != '+expected);
+    return;
+  }
+  if(actual===null||expected===null||typeof actual!=='object'){
+    assert.strictEqual(actual,expected,where+' value differs');return;
+  }
+  assert.equal(Array.isArray(actual),Array.isArray(expected),where+' container type differs');
+  if(Array.isArray(actual)){
+    assert.equal(actual.length,expected.length,where+' array length differs');
+    actual.forEach((value,i)=>assertCanonicalJSON(value,expected[i],label,at+'['+i+']'));
+    return;
+  }
+  const keys=Object.keys(actual).sort();
+  assert.deepStrictEqual(keys,Object.keys(expected).sort(),where+' object keys differ');
+  keys.forEach(key=>assertCanonicalJSON(actual[key],expected[key],label,at+'.'+key));
+}
+// Exercise the comparator itself: only tiny numeric round-off may pass.
+{
+  const expected={valuePerShare:122.93886466253481,sources:[{url:'https://example.com/source',dated:'2026-09-15'}]};
+  const changed=fn=>{const x=structuredClone(expected);fn(x);return x;};
+  assert.doesNotThrow(()=>assertCanonicalJSON(changed(x=>{x.valuePerShare=122.93886466253483;}),expected));
+  for(const mutate of [
+    x=>{x.valuePerShare+=1e-5;},
+    x=>{x.sources[0].url='https://example.com/other';},
+    x=>{x.extra=true;},
+    x=>{delete x.valuePerShare;},
+    x=>{x.sources.pop();},
+    x=>{x.valuePerShare=String(x.valuePerShare);},
+    x=>{x.valuePerShare=Infinity;}
+  ])assert.throws(()=>assertCanonicalJSON(changed(mutate),expected),assert.AssertionError);
+}
 (async()=>{
   let model=await context.CloudModel.load();
   assert.equal(model.companies.length,22);assert.equal(model.sites.length,194);assert.equal(model.meta.priceAsOf,null);
@@ -232,8 +271,8 @@ const close=(a,b,label='')=>assert.ok(Math.abs(a-b)<1e-8*Math.max(1,Math.abs(b))
   // is not a reference implementation and must not cause CI to skip freshness.
   // Optional undefined object fields are absent from JSON by definition; compare
   // the serialized exporter contract rather than its pre-serialization shape.
-  for(const tk of ['IREN','CRWV','NBIS'])assert.deepStrictEqual(JSON.parse(JSON.stringify(gen.buildPayload(tk))),JSON.parse(P3[tk.toLowerCase()]),tk+'-data.json stale — rerun export-research.js');
-  assert.deepStrictEqual(JSON.parse(JSON.stringify(gen.buildCompare())),JSON.parse(cmpRaw),'compare-data.json stale — rerun export-research.js --compare');
+  for(const tk of ['IREN','CRWV','NBIS'])assertCanonicalJSON(JSON.parse(JSON.stringify(gen.buildPayload(tk))),JSON.parse(P3[tk.toLowerCase()]),tk+'-data.json stale — rerun export-research.js');
+  assertCanonicalJSON(JSON.parse(JSON.stringify(gen.buildCompare())),JSON.parse(cmpRaw),'compare-data.json stale — rerun export-research.js --compare');
   const nodeChecks=require('./checks-core.js').runChecks(data,'2026-09-15');
   const browserChecks=context.ChecksCore.runChecks(data,'2026-09-15');
   assert.deepStrictEqual(JSON.parse(JSON.stringify(browserChecks)),JSON.parse(JSON.stringify(nodeChecks)),'Browser and CLI checks differ');

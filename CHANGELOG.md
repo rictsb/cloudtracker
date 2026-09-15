@@ -2,6 +2,8 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Cross-platform export verification (2026-09-15): research freshness checks retain exact structure, dates and source text while accepting numeric differences within 1e-12 relative tolerance between JavaScript runtimes; regression probes still reject material value changes, missing fields and altered sources.
+
 - Comparable research pricing (2026-09-15, owner-authorized): separates existing commitments, same-hardware renewals, new business and spot across IREN/CRWV/NBIS; shares the new-business curve and spot assumptions with zero software premium. Unmapped future power allocations use market pricing with a legacy-book sensitivity; evidence and expiry assumptions remain explicit. Reports show matching earned-revenue/earning-IT-MW yields, cohort graphics and recomputed operating multiples. Future prepayment credits follow modeled contract terms; fixes omitted post-horizon fixed credits and retains unscheduled owed balances. Adds pricing/provenance/financing regression gates and grouped uncertainty checks. Preserves the historical ramp calibration, broad asset engine and portfolio policy.
 
 - RIOT: log: Riot Platforms' ERCOT sites at Rockdale and Corsicana are already energized and not subjec — approved on the Approvals screen 2026-09-15, applied 2026-09-15 (proposal p-2026-09-14-RIOT-006; source McNallie Money (YouTube), https://www.youtube.com/watch?v=1azA8TDB0CI&t=810s).
