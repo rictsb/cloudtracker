@@ -1,11 +1,11 @@
 ---
 name: one-pager
-description: Build or refresh the research one-pager for one AI-infrastructure name (<tk>.html) by the spec §6e recipe — sweep every filing, call, deck and trusted secondary source with a fan-out of agents, refute, fill the name's page and ramp blocks in data.json, generate the page, verify adversarially, loop until nothing new appears, then ship.
+description: Build or refresh the research one-pager for one AI-infrastructure name (the /<tk> report, generated from <tk>-data.json) by the spec §6e recipe — sweep every filing, call, deck and trusted secondary source with a fan-out of agents, refute, fill the name's page and ramp blocks in data.json, regenerate the report data, verify adversarially, loop until nothing new appears, then ship.
 ---
 
 # /one-pager <TK> [--refresh | --verify-only]
 
-You are running the research one-pager recipe from `AI-Infra-Tracker-Spec.md` §6e for the ticker given as the argument. Read §6d and §6e first, then `CLAUDE.md`. The IREN page (`iren.html`, generated from the `page` and `ramp` blocks of the IREN record in `data.json`) is the reference standard; every other name must reach the same level: every number sourced and dated, the waterfall tie-out reproducing the base, two adversarial rounds finding nothing material.
+You are running the research one-pager recipe from `AI-Infra-Tracker-Spec.md` §6e for the ticker given as the argument. Read §6d and §6e first, then `CLAUDE.md`. The IREN report (`/iren`, rendered client-side from `iren-data.json`, which is generated from the `page` and `ramp` blocks of the IREN record in `data.json`) is the reference standard; every other name must reach the same level: every number sourced and dated, the waterfall tie-out reproducing the base, two adversarial rounds finding nothing material.
 
 ## 0. Scope (inline, no agents)
 
@@ -35,7 +35,7 @@ Tranches are the unit: `{n, campus, grossMW, itMW, gpus, gen, energize, rev, ram
 node onepager.js <TK> --check
 ```
 
-prints the tie-out and the summary-table totals. Fix inputs until the numbers are internally consistent, then `node onepager.js <TK>` writes `<tk>.html`. Open it on the local preview server, confirm no console errors, confirm the header tile equals the last row of the waterfall.
+prints the tie-out and the summary-table totals. Fix inputs until the numbers are internally consistent, then `node export-research.js <TK>` writes `<tk>-data.json` (the report's data file; it prints the base value on write). Run `node verify.cjs` (data freshness and the report render states must pass), open `/<tk>` on the local preview server, confirm no console errors, confirm the header value equals the last row of the quarterly cash waterfall.
 
 ## 5. Verify (workflow `onepager-verify`)
 
@@ -43,11 +43,11 @@ Run `Workflow({name: "onepager-verify", args: {tk}})`. It lists the ten largest 
 
 ## 6. Ship
 
-One CHANGELOG line (what changed and why, with the base-case value before and after), commit `data.json`, `<tk>.html` and `CHANGELOG.md`, push. Publish the artifact copy if the owner uses one. Then give the owner the "what are we overly optimistic on" pass: the five assumptions that move the value most, with the honest-base direction of each.
+One CHANGELOG line (what changed and why, with the base-case value before and after), commit `data.json`, `<tk>-data.json` and `CHANGELOG.md`, push. Publish the artifact copy if the owner uses one. Then give the owner the "what are we overly optimistic on" pass: the five assumptions that move the value most, with the honest-base direction of each.
 
 ## Standing rules
 
 - `engine.js` and `ramp-core.js` are never edited for a page. The page is display-only; it never feeds the engine.
-- Never hand-edit a generated `<tk>.html`; change `data.json` and regenerate.
+- Never hand-edit a generated `<tk>-data.json`; change `data.json` and regenerate with `node export-research.js <TK>`.
 - Never quote a sell-side target. Never let a number without a source into the page.
 - Research is not investment advice; the page says so in its footer.

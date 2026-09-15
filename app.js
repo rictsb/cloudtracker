@@ -1,1429 +1,227 @@
-/* Compute / Value — relative-value tracker.
-   Engine + screens ported from the prototype; all data loads from data.json at runtime. */
-
-const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const FMT={
-  money1M:v=>'$'+v.toFixed(1)+'M',
-  pctInt:v=>v+'%',
-  mult:v=>v.toFixed(1)+'×',
-  pct1:v=>v.toFixed(1)+'%',
-  months:v=>v+' mo',
-  trend:v=>(v>=0?'+':'')+v+'%/yr',
-};
-
-/* runtime state, populated once data.json loads */
-let E=null;   // the shared valuation engine instance (engine.js) — all math lives there
-let CFG, COMPANIES, YEAR, NOW, BASE, A, SLIDERS, HORIZON;
-let REGION, CONST, PROV, PROV_OP, TIERS;
-let LIVE_PRICES={}, PRICES_AT=null, BTC_PRICE=null, BTC_AT=null, ETH_PRICE=null;
-let FP_COMPANY=null, BUILDOUT_METRIC='mw', SITE_FILTER=null;
-let NEWS=null, PROPOSALS=null, newsTk='', newsSignalOnly=false, newsOpen={};   // News + Approvals (spec §6g)
-const GH_REPO='rictsb/cloudtracker';
-
-let sortKey='upside',sortDir=-1,view='cmp',siteSort='val',siteDir=-1,leaseSort='annual',leaseDir=-1,ocSort='total',ocDir=-1,covSort='anncov',covDir=-1,rzSort='d',rzDir=-1,olTab='leases',olSort='prob',olDir=-1,oeSort='score',oeDir=-1,olBigOnly=false;
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function fmtSlider(s,v){return (FMT[s.fmt]||(x=>x))(v);}
-function fmtM(x){return Math.abs(x)>=1000?'$'+(x/1000).toFixed(1)+'B':'$'+x.toFixed(0)+'M';}
-function fmtPrice(p){return p>=100?'$'+p.toFixed(0):'$'+p.toFixed(2);}
-function horizon(yr){return yr<=HORIZON.near?'var(--indigo)':yr<=HORIZON.mid?'var(--indigo-soft)':'var(--far)';}
-
-/* ---- engine (engine.js — shared with the node portfolio scripts; thin delegates keep call-sites unchanged) ---- */
-function priceOf(c){return E.priceOf(c);}
-function btcPrice(){return E.btcPrice();}
-function ethPrice(){return E.ethPrice();}
-function stakeValue(c){return E.stakeValue(c);}
-function legacyOf(c){return E.legacyOf(c);}
-function prevailingRate(yrs){return E.prevailingRate(yrs);}
-function ownerRate(c){return E.ownerRate(c);}
-function effTrend(){return E.effTrend();}
-function leaseUp(){return E.leaseUp();}
-function siteRates(c,s){return E.siteRates(c,s);}
-function tierOf(c){return E.tierOf(c);}
-function siteValue(c,s){return E.siteValue(c,s);}
-function value(c){return E.value(c);}
-function splitParts(v){const tot=v.contractedEV+v.expectedEV;const cf=tot>0?v.contractedEV/tot*100:0;return{cf,eu:100-cf};}
-function splitBarHTML(v){const p=splitParts(v);return `<div class="splitbar" title="Contracted floor ${p.cf.toFixed(0)}% · expected upside ${p.eu.toFixed(0)}%"><i class="cf" style="width:${p.cf.toFixed(1)}%"></i><i class="eu" style="width:${p.eu.toFixed(1)}%"></i></div>`;}
-/* ---- controls ---- */
-function buildControls(){const w=document.getElementById('controls');w.innerHTML='';SLIDERS.forEach(s=>{const d=document.createElement('div');d.className='ctrl';
-  d.innerHTML=`<div class="row"><label for="s-${s.k}">${s.label}</label><span class="val" id="v-${s.k}">${fmtSlider(s,A[s.k])}</span></div><input type="range" id="s-${s.k}" min="${s.min}" max="${s.max}" step="${s.step}" value="${A[s.k]}" aria-label="${s.label}">`;
-  w.appendChild(d);d.querySelector('input').addEventListener('input',e=>{A[s.k]=parseFloat(e.target.value);document.getElementById('v-'+s.k).textContent=fmtSlider(s,A[s.k]);render();});});}
-function syncControls(){SLIDERS.forEach(s=>{const i=document.getElementById('s-'+s.k);if(i){i.value=A[s.k];document.getElementById('v-'+s.k).textContent=fmtSlider(s,A[s.k]);}});}
-
-/* ---- render ---- */
-function render(){
-  const refO={model:'owner',contractedPct:60,termYrs:3,renewalProb:0.8,mtm:0.95};
-  document.getElementById('d-owner').textContent=fmtM(ownerRate(refO)*((A.margin+CONST.leasedCMargin)/100)*(A.multiple*(1+CONST.multPremium*0.6)))+' / MW';
-  document.getElementById('d-land').textContent=fmtM((CONST.landlordNOI*CONST.leasedLNOI)/((A.capRate/100)*(1-CONST.capCompress*0.4)))+' / MW';
-  if(view==='cmp')renderCmp(); else if(view==='checks')renderChecks(); else if(view==='port')renderPortfolio(); else if(view==='leases')renderLeases(); else if(view==='cover')renderCoverage(); else if(view==='raises')renderRaises(); else if(view==='outlook')renderOutlook(); else if(view==='news')renderNews(); else if(view==='approvals')renderApprovals(); else if(view==='ramp'){if(!RAMP_CTX||!document.getElementById('rampPlayBtn'))renderRamp();} else renderSites();
-}
-
-/* ---- leases page: the registry rendered — every signed book + its economics (the print tape) ---- */
-function renderLeases(){
-  const body=document.getElementById('leases-body');if(!body)return;
-  // campus stem: the site-name prefix before phase/building qualifiers — groups rows into physical campuses
-  const stem=n=>{let x=n;const seps=[' ph',' Ph',' ELN',' CB-',' Bldg',' ROFO',' expansion',' approved',' pipeline',' tranche',' balance',' initial',' build-out',' buildout',' long-term',' Phase','(','—','ph1','ph2'];
-    let cut=x.length;seps.forEach(sp=>{const i=x.indexOf(sp);if(i>0&&i<cut)cut=i;});return x.slice(0,cut).trim().replace(/[,\s]+$/,'');};
-  const rows=[];
-  COMPANIES.forEach(c=>(c.leases||[]).forEach(l=>{
-    const v=value(c);const segs=v.segs.filter(g=>g.s.leaseId===l.id);
-    const ev=segs.reduce((x,g)=>x+g.ev,0);
-    const startYr=segs.length?Math.min(...segs.map(g=>g.s.yr)):null;
-    const camp=segs.length?[...new Set(segs.map(g=>g.s.n.split('(')[0].trim()))].join(' · '):'—';
-    // leased share of the campus power we credit: this lease's MW ÷ all company rows sharing its campus stems
-    const stems=[...new Set(segs.map(g=>stem(g.s.n)))];
-    const campMW=stems.length?c.sites.filter(s2=>stems.some(st=>stem(s2.n)===st)).reduce((x,s2)=>x+(s2.physMW||s2.mw),0):0;
-    rows.push({c,l,ev,campMW,pctCamp:campMW>0?l.mw/campMW:null,annual:l.mw*l.noiPerMWyr,startYr,camp});
-  }));
-  const LKEY={tk:r=>r.c.tk,tenant:r=>r.l.counterparty||'',camp:r=>r.camp||'',base:r=>r.l.totalRevM||0,mw:r=>r.l.mw,noi:r=>r.l.noiPerMWyr,annual:r=>r.annual};
-  const kf=LKEY[leaseSort]||LKEY.annual;
-  rows.sort((x,y)=>{const av=kf(x),bv=kf(y);return (typeof av==='string'?av.localeCompare(bv):av-bv)*leaseDir;});
-  const eff=rows.filter(r=>r.l.effective!==false);
-  const totMW=eff.reduce((x,r)=>x+r.l.mw,0),totNOI=eff.reduce((x,r)=>x+r.annual,0);
-  const totBase=eff.reduce((x,r)=>x+(r.l.totalRevM||0),0);
-  const blended=totMW?totNOI/totMW:0;
-  let h=`<div class="ssummary" style="margin:4px 4px 16px"><span><b>${eff.length}</b> signed books</span><span><b>${totMW.toLocaleString()}</b> MW critical IT</span><span><b>$${(totBase/1000).toFixed(0)}B</b> base-term value</span><span>blended NOI <b>$${blended.toFixed(2)}M</b>/MW·yr</span><span>forward anchor <b>$${(CONST.landlordNOI*1.1).toFixed(2)}M</b> (cheap-owned)</span></div>`;
-  // print tape: median by kind + by signing half
-  const med=x=>{if(!x.length)return null;const s2=[...x].sort((p,q)=>p-q);return s2[Math.floor(s2.length/2)];};
-  const byKind={};eff.forEach(r=>{(byKind[r.l.kind||'?']=byKind[r.l.kind||'?']||[]).push(r.l.noiPerMWyr);});
-  const half=s2=>{const [y,m]=s2.split('-').map(Number);return y+(m<=6?' H1':' H2');};
-  const byHalf={};eff.forEach(r=>{if(r.l.signed)(byHalf[half(r.l.signed)]=byHalf[half(r.l.signed)]||[]).push(r.l.noiPerMWyr);});
-  h+=`<div class="legend2" style="margin:0 4px 18px">Print tape (median signed NOI $M/MW·yr) — by kind: ${Object.entries(byKind).map(([k,x])=>`<b>${k}</b> $${med(x).toFixed(2)} (${x.length})`).join(' · ')} &nbsp;|&nbsp; by vintage: ${Object.keys(byHalf).sort().map(k=>`<b>${k}</b> $${med(byHalf[k]).toFixed(2)}`).join(' → ')}</div>`;
-  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Lessor',''],['tenant','Tenant',''],['camp','Campus',''],['base','Base term','r'],['mw','IT MW','r'],['noi','NOI $/MW·yr','r']].map(([k,lab,cl])=>`<th class="${cl}" data-ls="${k}">${lab}${leaseSort===k?' <span class="arr">'+(leaseDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
-  rows.forEach((r,i)=>{const l=r.l;const pend=l.effective===false;
-    h+=`<tr class="lrow srow${pend?' lpend':''}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
-    `<td class="co">${r.c.tk}</td>`+
-    `<td style="max-width:250px">${l.counterparty}${pend?' <span class="prov rumored">not effective</span>':''}</td>`+
-    `<td style="max-width:200px;font-size:11.5px">${r.camp}</td>`+
-    `<td class="r mono">${l.totalRevM?'$'+(l.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
-    `<td class="r mono">${l.mw.toLocaleString()}</td>`+
-    `<td class="r mono">$${l.noiPerMWyr.toFixed(2)}M</td></tr>`;
-    const f2=(k2,v2)=>`<div class="cstep"><span>${k2}</span><span class="cval">${v2}</span><span class="cnote"></span></div>`;
-    h+=`<tr class="sdetail" id="ld-${i}"><td colspan="7"><div class="sitecalc">`+
-      f2('Kind',l.kind||'—')+f2('Signed',l.signed||'—')+f2('Term',l.termYrs+' yrs')+
-      (l.grossMW?f2('Gross MW',l.grossMW+' MW ('+Math.round(l.mw/l.grossMW*100)+'% IT ratio)'):'')+
-      (pend?'':f2('Annual NOI','$'+r.annual.toFixed(0)+'M'))+
-      (pend?'':f2('Value added',fmtM(r.ev)))+
-      (r.pctCamp!=null?f2('Campus leased',(r.pctCamp*100).toFixed(0)+'% of '+r.campMW.toLocaleString()+' MW credited'):'')+
-      (r.startYr?f2('First rent',String(r.startYr)):'')+
-      `<div class="cstep"><span>Source</span><span class="cval" style="text-align:left;font-family:var(--sans);font-size:11px;color:var(--ink-soft)">${l.source||'—'}</span><span class="cnote"></span></div>`+
-      `<a class="clearfilter" href="#${r.c.tk}" style="font-size:11px">open ${r.c.tk} page →</a>`+
-      `</div></td></tr>`;});
-  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px">NOI is the <b>term-average of the actual contract</b> (escalators embedded) — a fact from the filing. <b>Base term</b> = total base-term contract value. Click a row for kind, vintage, term, gross MW, annual NOI, value added, campus-leased runway and the source.</div>`;
-  // compute contracts (GPU-cloud owners) — dollars+term facts; $/MW mostly inferred
-  const oc=[];COMPANIES.forEach(c=>(c.contracts||[]).forEach(x=>oc.push({c,x})));
-  if(oc.length){
-    const OKEY={tk:r=>r.c.tk,cp:r=>r.x.counterparty||'',gen:r=>r.x.gen||'',signed:r=>r.x.signed||'',total:r=>r.x.totalRevM||0,mw:r=>r.x.mw||0,rate:r=>r.x.ratePerMWyr||0};
-    const okf=OKEY[ocSort]||OKEY.total;
-    oc.sort((p,q)=>{const av=okf(p),bv=okf(q);return (typeof av==='string'?av.localeCompare(bv):av-bv)*ocDir;});
-    const eff2=oc.filter(r=>r.x.effective!==false);
-    const totB=eff2.reduce((a3,r)=>a3+(r.x.totalRevM||0),0);
-    h+=`<h4 class="sec" style="margin-top:30px">Compute contracts — GPU clouds</h4>`;
-    h+=`<div class="ssummary" style="margin:4px 4px 12px"><span><b>${eff2.length}</b> signed contracts</span><span><b>$${(totB/1000).toFixed(0)}B</b> total book</span><span>signed rates: <b>CRWV $9.3M</b>~ · <b>NBIS $11.5M</b>~ · <b>IREN $10.1M</b> (disclosed MW)</span><span>gen ladder: hopper ~$9.3 → blackwell $9.7–11.6 → VR (1H27, est. $13–16)</span></div>`;
-    h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Owner',''],['cp','Counterparty',''],['gen','Gen',''],['total','Base term','r'],['mw','~IT MW','r'],['rate','$/MW·yr','r']].map(([k,lab,cl])=>`<th class="${cl}" data-oc="${k}">${lab}${ocSort===k?' <span class="arr">'+(ocDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
-    oc.forEach((r,i)=>{const x=r.x;const pend=x.effective===false;
-      h+=`<tr class="ocrow srow${pend?' lpend':''}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
-      `<td class="co">${r.c.tk}</td><td style="max-width:250px">${x.counterparty}${pend?' <span class="prov rumored">pending</span>':''}</td>`+
-      `<td><span class="gen ${x.gen==='vera-rubin'?'rubin':x.gen==='blackwell'?'blackwell':x.gen==='hopper'?'hopper':'mixed'}">${x.gen||'—'}</span></td>`+
-      `<td class="r mono">${x.totalRevM?'$'+(x.totalRevM/1000).toFixed(1)+'B':'—'}</td>`+
-      `<td class="r mono">${x.mw?x.mw.toLocaleString()+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':''):'—'}</td>`+
-      `<td class="r mono">${x.ratePerMWyr?('$'+x.ratePerMWyr.toFixed(1)+'M'+(x.inferredMW?' <span style="color:var(--ink-soft)">~</span>':'')):'—'}</td></tr>`;
-      const f3=(k2,v2)=>`<div class="cstep"><span>${k2}</span><span class="cval">${v2}</span><span class="cnote"></span></div>`;
-      h+=`<tr class="sdetail" id="oc-${i}"><td colspan="7"><div class="sitecalc">`+
-        f3('Signed',x.signed||'—')+f3('Term',x.termYrs+' yrs')+f3('Status',pend?'signed, pending/undisclosed':'effective')+
-        f3('Annual run-rate',x.totalRevM?'$'+(x.totalRevM/x.termYrs/1000).toFixed(2)+'B/yr':'—')+
-        (x.mw?f3('MW basis',x.inferredMW?'analyst inference (dollars ÷ fleet rate) — not disclosed':'COMPANY-DISCLOSED'):'')+
-        `<div class="cstep"><span>Source</span><span class="cval" style="text-align:left;font-family:var(--sans);font-size:11px;color:var(--ink-soft)">${x.source||'—'}</span><span class="cnote"></span></div>`+
-        `<a class="clearfilter" href="#${r.c.tk}" style="font-size:11px">open ${r.c.tk} page →</a></div></td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2">Compute contracts are take-or-pay DOLLARS over a TERM — MW and $/MW marked <b>~</b> are analyst inference (only IREN disclosés contractual MW). Each owner's $-weighted blended rate binds its contracted slice via `+'`signedRate`'+`; unsigned + re-signing slices ride the GPU gen-curve dial. Click a row for detail.</div>`;}
-  body.innerHTML=h;
-  body.querySelectorAll('th[data-ls]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.ls;
-    if(k===leaseSort)leaseDir*=-1;else{leaseSort=k;leaseDir=(k==='tk'||k==='tenant'||k==='camp')?1:-1;}renderLeases();}));
-  body.querySelectorAll('th[data-oc]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.oc;
-    if(k===ocSort)ocDir*=-1;else{ocSort=k;ocDir=(k==='tk'||k==='cp'||k==='gen'||k==='signed')?1:-1;}renderLeases();}));
-  body.querySelectorAll('.ocrow').forEach(tr=>tr.addEventListener('click',()=>{const d2=document.getElementById('oc-'+tr.dataset.i);if(d2)d2.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d2&&d2.classList.contains('open')?'▾':'▸';}));
-  body.querySelectorAll('.lrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ld-'+tr.dataset.i);if(d)d.classList.toggle('open');const car=tr.querySelector('td');if(car)car.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
-}
-/* ---- coverage page: confirmed contracted value vs live market cap (gross headline $, not NOI) ---- */
-function renderCoverage(){
-  const body=document.getElementById('cover-body');if(!body)return;
-  const rows=COMPANIES.map(c=>{
-    const px=priceOf(c),mcap=(c.sharesReported||c.shares)*px;   // reported (basic) shares × live price, $M
-    const items=[];
-    (c.leases||[]).forEach(l=>{if(l.effective===false)return;const g=l.grossTotalM||0;if(g<=0)return;
-      items.push({kind:'lease',cp:l.counterparty,gross:g,term:l.termYrs,mw:l.mw,ann:g/l.termYrs});});
-    (c.contracts||[]).forEach(x=>{if(x.effective===false)return;const g=x.totalRevM||0;if(g<=0)return;
-      items.push({kind:'compute',cp:x.counterparty,gross:g,term:x.termYrs,mw:x.mw||null,ann:g/x.termYrs});});
-    const gross=items.reduce((a,i)=>a+i.gross,0),ann=items.reduce((a,i)=>a+i.ann,0);
-    const wterm=gross?items.reduce((a,i)=>a+i.gross*i.term,0)/gross:0;
-    return {c,px,mcap,items,gross,ann,wterm,anncov:mcap?ann/mcap:0,totcov:mcap?gross/mcap:0};
-  });
-  const CKEY={tk:r=>r.c.tk,mcap:r=>r.mcap,gross:r=>r.gross,wterm:r=>r.wterm,ann:r=>r.ann,anncov:r=>r.anncov,totcov:r=>r.totcov};
-  const kf=CKEY[covSort]||CKEY.totcov;
-  rows.sort((x,y)=>{const av=kf(x),bv=kf(y);return (typeof av==='string'?av.localeCompare(bv):av-bv)*covDir;});
-  const uMcap=rows.reduce((a,r)=>a+r.mcap,0),uGross=rows.reduce((a,r)=>a+r.gross,0),uAnn=rows.reduce((a,r)=>a+r.ann,0);
-  let h=`<div class="ssummary" style="margin:4px 4px 16px"><span><b>${fmtM(uMcap)}</b> total market cap</span><span><b>${fmtM(uGross)}</b> confirmed contracted</span><span><b>${fmtM(uAnn)}</b>/yr annualized</span><span>backlog / market cap <b>${(uGross/uMcap*100).toFixed(0)}%</b></span></div>`;
-  const cols=[['tk','Company',''],['mcap','Market cap','r'],['gross','Contracted','r'],['wterm','Avg term','r'],['ann','Annualized','r'],['totcov','Backlog ÷ cap','r'],['anncov','Ann ÷ cap','r']];
-  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${cols.map(([k,lab,cl])=>`<th class="${cl}" data-cv="${k}">${lab}${covSort===k?' <span class="arr">'+(covDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
-  rows.forEach((r,i)=>{const none=r.items.length===0;
-    h+=`<tr class="cvrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">${none?'':'▸'}</td>`+
-      `<td class="co">${r.c.tk}</td>`+
-      `<td class="r mono">${fmtM(r.mcap)}</td>`+
-      `<td class="r mono">${none?'—':fmtM(r.gross)}</td>`+
-      `<td class="r mono">${none?'—':r.wterm.toFixed(1)+'y'}</td>`+
-      `<td class="r mono">${none?'—':fmtM(r.ann)+'/y'}</td>`+
-      `<td class="r mono">${none?'—':(r.totcov*100).toFixed(0)+'%'}</td>`+
-      `<td class="r mono"><b>${none?'—':(r.anncov*100).toFixed(0)+'%'}</b></td></tr>`;
-    if(!none){const its=[...r.items].sort((a,b)=>b.gross-a.gross);
-      h+=`<tr class="sdetail" id="cv-${i}"><td colspan="8"><div style="padding:8px 14px 12px">`+
-        `<table class="stab" style="margin:0;width:100%"><thead><tr><th>Counterparty</th><th></th><th class="r">Gross</th><th class="r">Term</th><th class="r">Annualized</th><th class="r">IT&nbsp;MW</th></tr></thead><tbody>`+
-        its.map(it=>`<tr><td style="max-width:300px">${it.cp}</td><td><span class="prov ${it.kind==='lease'?'disclosed':'estimated'}">${it.kind==='lease'?'colo lease':'compute'}</span></td><td class="r mono">${fmtM(it.gross)}</td><td class="r mono">${it.term}y</td><td class="r mono">${fmtM(it.ann)}/y</td><td class="r mono">${it.mw?it.mw.toLocaleString():'—'}</td></tr>`).join('')+
-        `</tbody></table><a class="clearfilter" href="#${r.c.tk}" style="font-size:11px">open ${r.c.tk} page →</a></div></td></tr>`;}
-  });
-  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>Market cap</b> = reported (basic) shares × live price — tracks the tape, not fully-diluted. <b>Contracted</b> = gross value of every signed/effective lease + compute contract (the headline announced $, not NOI). <b>Annualized</b> = Σ(gross ÷ term) — a term-average, not a current run-rate (many contracts ramp from 2027+). <b>Ann ÷ cap</b> and <b>Backlog ÷ cap</b> measure contracted revenue against market value. Excludes options, LOIs and non-performing books. Click a row for the per-contract breakdown with terms.</div>`;
-  body.innerHTML=h;
-  body.querySelectorAll('th[data-cv]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.cv;
-    if(k===covSort)covDir*=-1;else{covSort=k;covDir=(k==='tk')?1:-1;}renderCoverage();}));
-  body.querySelectorAll('.cvrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('cv-'+tr.dataset.i);if(!d)return;d.classList.toggle('open');const car=tr.querySelector('td');if(car&&car.textContent)car.textContent=d.classList.contains('open')?'▾':'▸';}));
-}
-/* ---- raises page: capital-raise event study (spec §6c) — returns derived live from the sanctioned ledger, nothing stored ---- */
-const RZ_WINDOWS=[5,15,30];
-const RZ_KIND_CLS={equity:'rumored',atm:'rumored',convert:'estimated',pref:'estimated',debt:'disclosed',other:'disclosed'};
-const RZ_KIND_LABEL={equity:'Equity',atm:'ATM',convert:'Convert',pref:'Preferred',debt:'Debt',other:'Other'};
-function rzNextDay(iso){const t=new Date(iso+'T12:00:00Z');t.setUTCDate(t.getUTCDate()+1);return t.toISOString().slice(0,10);}
-function rzDerive(tk,ev,days){
-  const eff=ev.ah?rzNextDay(ev.d):ev.d,last=days.length-1;
-  if(eff>days[last].d)return{status:'pending'};                       // announced after the last mark — day 0 not printed yet
-  let i0=-1;for(let i=0;i<days.length;i++){if(days[i].d>=eff&&days[i].px[tk]>0){i0=i;break;}}
-  if(i0<=0||!(days[i0-1].px[tk]>0))return{status:'nohistory'};        // pre-ledger or pre-listing: a fact without returns
-  const baseline=days[i0-1].px[tk],px0=days[i0].px[tk],wins={};
-  RZ_WINDOWS.forEach(N=>{const j=i0+N;
-    if(j<=last){wins[N]={r:days[j].px[tk]/px0-1,x:days[j].px[tk]/px0-1-(days[j].bench/days[i0].bench-1),done:true};}
-    else if(last>i0){const lp=LIVE_PRICES[tk]>0?LIVE_PRICES[tk]:days[last].px[tk];
-      wins[N]={r:lp/px0-1,x:lp/px0-1-(days[last].bench/days[i0].bench-1),done:false,el:last-i0};}
-    else wins[N]=null;});                                             // day 0 is the latest mark — no forward path yet
-  return{status:'ok',d0:days[i0].d,baseline,px0,reaction:px0/baseline-1,wins};
-}
-function renderRaises(){
-  const body=document.getElementById('raises-body');if(!body)return;
-  if(typeof PFH==='undefined'||!PFH){
-    body.innerHTML=(typeof PF_ERR!=='undefined'&&PF_ERR)?`<div class="appmsg err">Could not load the price ledger — ${PF_ERR} <button class="refreshbtn" onclick="retryPortfolio()">retry</button></div>`:'<div class="legend2">loading price ledger…</div>';
-    if(typeof loadPortfolio==='function'&&!PF_LOADING&&!PF_ERR)loadPortfolio();return;}
-  const days=PFH.days;
-  const rows=[];COMPANIES.forEach(c=>(c.raises||[]).forEach(ev=>rows.push({c,ev,der:rzDerive(c.tk,ev,days)})));
-  if(!rows.length){body.innerHTML='<div class="legend2">no raises recorded yet — events enter data.json as sourced facts (spec §6c)</div>';return;}
-  /* aggregates — complete windows only; the hypothesis test */
-  const med=a=>{if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2;};
-  const agg=ks=>{const ev=rows.filter(r=>r.der.status==='ok'&&(ks==='all'||r.ev.kind===ks));
-    const o={n:ev.length,rx:med(ev.map(r=>r.der.reaction))};
-    RZ_WINDOWS.forEach(N=>{const done=ev.filter(r=>r.der.wins[N]&&r.der.wins[N].done);
-      o[N]={n:done.length,med:med(done.map(r=>r.der.wins[N].r)),hit:done.length?done.filter(r=>r.der.wins[N].r>0).length/done.length:null,xmed:med(done.map(r=>r.der.wins[N].x))};});
-    return o;};
-  const A=agg('all');
-  const kinds=Object.keys(RZ_KIND_CLS).filter(k=>rows.some(r=>r.ev.kind===k&&r.der.status==='ok'));
-  const pc=x=>x==null?'—':(x>=0?'+':'')+(x*100).toFixed(1)+'%';
-  const col=(x,inner)=>x==null?'—':`<span style="color:${x>=0?'var(--pine)':'var(--clay)'}">${inner}</span>`;
-  let h=`<div class="ssummary" style="margin:4px 4px 16px"><span><b>${rows.length}</b> raises recorded</span><span><b>${A[15].n}</b> with a complete +15d window</span><span>day-0 median <b>${pc(A.rx)}</b></span><span>+15d median <b>${pc(A[15].med)}</b>${A[15].hit!=null?' · hit <b>'+(A[15].hit*100).toFixed(0)+'%</b>':''}</span></div>`;
-  /* aggregate table by instrument — per window: absolute median | median net of universe | hit rate */
-  const gsep='border-left:1px solid var(--line)';
-  h+=`<div style="overflow-x:auto"><table class="stab" style="margin:0 0 18px"><thead>`+
-    `<tr><th rowspan="2" style="vertical-align:bottom">Type</th><th class="r" rowspan="2" style="vertical-align:bottom">N</th><th class="r" rowspan="2" style="vertical-align:bottom">Day 0 med</th><th colspan="3" style="text-align:center;${gsep}">+5d</th><th colspan="3" style="text-align:center;${gsep}">+15d</th></tr>`+
-    `<tr><th class="r" style="${gsep}">abs</th><th class="r">vs univ</th><th class="r">hit</th><th class="r" style="${gsep}">abs</th><th class="r">vs univ</th><th class="r">hit</th></tr></thead><tbody>`;
-  const aggRow=(lab,a,bold)=>{const w=N=>a[N].n?`<td class="r mono" style="${gsep}">${col(a[N].med,pc(a[N].med))}</td><td class="r mono">${col(a[N].xmed,pc(a[N].xmed))}</td><td class="r mono">${(a[N].hit*100).toFixed(0)}% <span style="color:var(--ink-soft)">(${a[N].n})</span></td>`:`<td class="r mono" style="${gsep}">—</td><td class="r mono">—</td><td class="r mono">—</td>`;
-    return `<tr><td>${bold?'<b>All</b>':(RZ_KIND_LABEL[lab]||lab)}</td><td class="r mono">${a.n}</td><td class="r mono">${col(a.rx,pc(a.rx))}</td>${w(5)}${w(15)}</tr>`;};
-  kinds.forEach(k=>{h+=aggRow(k,agg(k),false);});
-  h+=aggRow('all',A,true)+`</tbody></table></div>`;
-  /* event table */
-  const wk=(N,f)=>r=>{const w=r.der.wins&&r.der.wins[N];return w&&w.done?w[f]:-9;};
-  const RKEY={tk:r=>r.c.tk,d:r=>r.ev.d,kind:r=>r.ev.kind,sizeM:r=>r.ev.sizeM||0,rx:r=>r.der.reaction!=null?r.der.reaction:-9,r5:wk(5,'r'),r15:wk(15,'r')};
-  const kf=RKEY[rzSort]||RKEY.d;
-  rows.sort((x,y)=>{const av=kf(x),bv=kf(y);return (typeof av==='string'?av.localeCompare(bv):av-bv)*rzDir;});
-  const cols=[['tk','Company',''],['d','Announced',''],['kind','Type',''],['sizeM','Size','r'],['rx','Day 0','r'],['r5','+5d','r'],['r15','+15d','r']];
-  h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${cols.map(([k,lab,cl])=>`<th class="${cl}" data-rz="${k}">${lab}${rzSort===k?' <span class="arr">'+(rzDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
-  const wcell=(der,N)=>{if(der.status!=='ok'||!der.wins[N])return '—';const w=der.wins[N];
-    return w.done?col(w.r,pc(w.r)):`<span class="sofar">${pc(w.r)} (${w.el}d)</span>`;};
-  rows.forEach((r,i)=>{const{c,ev,der}=r,ok=der.status==='ok';
-    h+=`<tr class="rzrow srow${ok?'':' rzdim'}" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td>`+
-      `<td class="co">${c.tk}</td>`+
-      `<td class="mono">${ev.d}${ev.ah?'<span style="color:var(--ink-soft)" title="announced after the close — day 0 is the next session"> ah</span>':''}</td>`+
-      `<td><span class="inst ${ev.kind}">${ev.kind}</span></td>`+
-      `<td class="r mono">${ev.sizeM?fmtM(ev.sizeM):'—'}</td>`+
-      `<td class="r mono">${ok?col(der.reaction,pc(der.reaction)):`<span style="color:var(--ink-soft)">${der.status==='pending'?'awaiting mark':'no price history'}</span>`}</td>`+
-      `<td class="r mono">${wcell(der,5)}</td><td class="r mono">${wcell(der,15)}</td></tr>`;
-    const xs=N=>der.status==='ok'&&der.wins[N]?` <span style="color:var(--ink-soft)">(xs ${pc(der.wins[N].x)}${der.wins[N].done?'':' so far'})</span>`:'';
-    h+=`<tr class="sdetail" id="rz-${i}"><td colspan="8"><div style="padding:8px 14px 12px;font-size:12px;line-height:1.8">`+
-      `<b>Announced</b> ${ev.d}${ev.ah?' — after the close; day 0 is the next session':''}`+
-      (ok?` · <b>day 0</b> ${der.d0}: ${fmtPrice(der.baseline)} → ${fmtPrice(der.px0)} (${pc(der.reaction)})`:'')+
-      (ev.sizeM?` · <b>size</b> ${fmtM(ev.sizeM)}${(c.sharesReported||c.shares)&&priceOf(c)?` = ${(ev.sizeM/((c.sharesReported||c.shares)*priceOf(c))*100).toFixed(0)}% of today's mkt cap`:''}`:'')+
-      (ok?`<br><b>Windows</b> +5d ${wcell(der,5)}${xs(5)} · +15d ${wcell(der,15)}${xs(15)} · +30d ${wcell(der,30)}${xs(30)}`:'')+
-      (ev.terms?`<br><b>Terms</b> ${ev.terms}`:'')+(ev.use?`<br><b>Purpose</b> ${ev.use}`:'')+
-      `<br><b>Source</b> <span style="color:var(--ink-soft)">${ev.source||'—'}</span> · <a class="clearfilter" href="#${c.tk}" style="font-size:11px">open ${c.tk} page →</a></div></td></tr>`;
-  });
-  h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>Day 0</b> = the first ledger session on/after the announcement (<b>ah</b> = announced after the close → next session). Windows are trading days, anchored at the day-0 close — they test buying the reaction, not the round trip. Event-table returns are <b>absolute</b> (the stock's own move). Type summary: <b>abs</b> = median move from the day-0 close, <b>vs univ</b> = the same net of the equal-weight universe benchmark over the window (the name itself is ~1/${COMPANIES.length} of that basket), <b>hit</b> = share that finished positive, (n) = events with the window complete. The row detail adds the +30d path and per-window excess for each event. <i>Italic grey</i> = window still running (return so far — excluded from every aggregate). Ledger closes forward-fill on days without a fresh print, so a flat day 0 on an illiquid name is suspect. Dimmed rows predate the name's ledger history — facts without returns.</div>`;
-  body.innerHTML=h;
-  body.querySelectorAll('th[data-rz]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.rz;
-    if(k===rzSort)rzDir*=-1;else{rzSort=k;rzDir=(k==='tk'||k==='kind')?1:-1;}renderRaises();}));
-  body.querySelectorAll('.rzrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('rz-'+tr.dataset.i);if(!d)return;d.classList.toggle('open');const car=tr.querySelector('td');if(car&&car.textContent)car.textContent=d.classList.contains('open')?'▾':'▸';}));
-}
-/* ---- outlook page: the forward book — next leases + earnings setup (judgement, weekly refresh, never a valuation input) ---- */
-function renderOutlook(){
-  const body=document.getElementById('outlook-body');if(!body)return;
-  const O=(RAW_DATA&&RAW_DATA.outlook)||null;
-  if(!O){body.innerHTML='<div class="legend2">no outlook yet — generated by the weekly sweep</div>';return;}
-  const age=Math.round((Date.now()-new Date(O.asOf))/86400000);
-  let h=`<div class="ssummary" style="margin:4px 4px 14px"><span>as of <b>${O.asOf}</b>${age>8?' <span class="prov rumored">stale — sweep overdue</span>':''}</span><span>refreshed <b>weekly</b> (Monday sweep)</span><span><b>${(O.leases||[]).length}</b> lease candidates</span><span><b>${(O.earnings||[]).length}</b> earnings setups</span></div>`;
-  h+=`<div style="margin:0 4px 14px"><button class="tab ${olTab==='leases'?'on':''}" data-ot="leases">Next leases</button> <button class="tab ${olTab==='earn'?'on':''}" data-ot="earn">Earnings setup</button>`+(olTab==='leases'?` &nbsp; <label style="font-size:11.5px;color:var(--ink-soft);cursor:pointer"><input type="checkbox" id="ol-big" ${olBigOnly?'checked':''}> big leases only (≥100MW expected)</label>`:'')+`</div>`;
-  if(olTab==='leases'){
-    let rows=(O.leases||[]).map(r=>({...r}));
-    if(olBigOnly)rows=rows.filter(r=>(r.mwHi||0)>=100);
-    const K={tk:r=>r.tk,prob:r=>r.prob||0,mw:r=>r.mwHi||0,window:r=>r.window||'',exec:r=>r.exec||0};
-    const kf=K[olSort]||K.prob;
-    rows.sort((x,y)=>{const a=kf(x),b=kf(y);return (typeof a==='string'?a.localeCompare(b):a-b)*olDir;});
-    h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Company',''],['prob','P(lease, 6mo)','r'],['mw','Expected MW','r'],['window','Window',''],['exec','Build speed','r']].map(([k,lab,cl])=>`<th class="${cl}" data-ol="${k}">${lab}${olSort===k?' <span class="arr">'+(olDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
-    rows.forEach((r,i)=>{
-      const oc2=COMPANIES.find(c2=>c2.tk===r.tk);const isOwner=oc2&&(oc2.model==='owner');
-      h+=`<tr class="olrow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td><td class="co">${r.tk} <span class="kind ${isOwner?'compute':'colo'}">${isOwner?'compute contract':'colo lease'}</span></td>`+
-        `<td class="r mono"><b>${r.prob}%</b></td>`+
-        `<td class="r mono">${r.mwLo!=null?r.mwLo+'–'+r.mwHi:'—'}</td>`+
-        `<td style="font-size:11.5px">${r.window||'—'}</td>`+
-        `<td class="r mono">${'★'.repeat(Math.round(r.exec||0))||'—'}</td></tr>`;
-      h+=`<tr class="sdetail" id="ol-${i}"><td colspan="6"><div class="sitecalc" style="display:block;padding:10px 14px">`+
-        `<div style="font-size:12px;margin-bottom:6px"><b>Likely site:</b> ${r.site||'—'} &nbsp; <b>Candidate tenants:</b> ${r.tenants||'unknown'}</div>`+
-        `<ul style="margin:0 0 8px 18px;font-size:11.5px;color:var(--ink-soft)">${(r.drivers||[]).map(d=>`<li>${d}</li>`).join('')}</ul>`+
-        `<div style="font-size:10.5px;color:var(--ink-soft)">${(r.sources||[]).join(' · ')}</div>`+
-        `<a class="clearfilter" href="#${r.tk}" style="font-size:11px">open ${r.tk} page →</a></div></td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>P(lease)</b> = our probability of the NEXT BINDING REVENUE COMMITMENT inside ~6 months — for <b>landlords</b> a colo lease (they own the shell, a tenant signs); for <b>owners</b> (CRWV/NBIS/IREN/HIVE) a take-or-pay <b>compute contract</b> (capacity sold, not property let — these names appear as TENANTS in other landlords' books) — judgement built from negotiation language in filings/calls, financing tripwires, exclusivities, site readiness and tenant-side signals. <b>Build speed</b> = differential execution (announced→energised track record vs peers). Click a row for the evidence.</div>`;
-  }else{
-    let rows=(O.earnings||[]).map(r=>({...r}));
-    const K={tk:r=>r.tk,date:r=>r.date||'9999',score:r=>r.score||0,dir:r=>r.direction||''};
-    const kf=K[oeSort]||K.score;
-    rows.sort((x,y)=>{const a=kf(x),b=kf(y);return (typeof a==='string'?a.localeCompare(b):a-b)*oeDir;});
-    h+=`<div style="overflow-x:auto"><table class="stab"><thead><tr><th></th>${[['tk','Company',''],['date','Reports',''],['score','Surprise score','r'],['dir','Lean','']].map(([k,lab,cl])=>`<th class="${cl}" data-oe="${k}">${lab}${oeSort===k?' <span class="arr">'+(oeDir<0?'▾':'▴')+'</span>':''}</th>`).join('')}</tr></thead><tbody>`;
-    rows.forEach((r,i)=>{
-      const cls=r.direction==='upside'?'upside':r.direction==='downside'?'downside':'flat';
-      h+=`<tr class="oerow srow" data-i="${i}"><td style="width:18px;color:var(--indigo-soft)">▸</td><td class="co">${r.tk}</td>`+
-        `<td style="font-size:11.5px">${r.date||'TBC'}${r.session?' '+r.session:''}${r.confirmed?'':' <span style="color:var(--ink-soft)">(est.)</span>'}</td>`+
-        `<td class="r mono"><b>${r.score>0?'+':''}${r.score}</b></td>`+
-        `<td><span class="prov ${cls}">${r.direction||'—'}</span></td></tr>`;
-      h+=`<tr class="sdetail" id="oe-${i}"><td colspan="5"><div class="sitecalc" style="display:block;padding:10px 14px">`+
-        `<div style="font-size:12px;margin-bottom:6px"><b>The number that decides it:</b> ${r.keyNumber||'—'}${r.consensusRevM?' &nbsp; <b>Consensus rev:</b> $'+r.consensusRevM+'M':''}</div>`+
-        `<ul style="margin:0 0 8px 18px;font-size:11.5px;color:var(--ink-soft)">${(r.drivers||[]).map(d=>`<li>${d}</li>`).join('')}</ul>`+
-        `<div style="font-size:11px;margin-bottom:6px"><b>Sentiment:</b> ${r.sentiment||'—'}</div>`+
-        `<div style="font-size:10.5px;color:var(--ink-soft)">${(r.sources||[]).join(' · ')}</div>`+
-        `<a class="clearfilter" href="#${r.tk}" style="font-size:11px">open ${r.tk} page →</a></div></td></tr>`;});
-    h+=`</tbody></table></div><div class="legend2" style="margin-top:12px"><b>Surprise score</b> (−5…+5) = likelihood × magnitude of an earnings-day surprise <b>relative to what the selloff has already priced</b> — not a forecast of good results, a forecast of the market's reaction risk. Dates from the owner's calendar (est. = unconfirmed). Click a row for the evidence and sentiment read.</div>`;
-  }
-  body.innerHTML=h;
-  body.querySelectorAll('[data-ot]').forEach(b=>b.addEventListener('click',()=>{olTab=b.dataset.ot;renderOutlook();}));
-  const big=document.getElementById('ol-big');if(big)big.addEventListener('change',()=>{olBigOnly=big.checked;renderOutlook();});
-  body.querySelectorAll('th[data-ol]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.ol;if(k===olSort)olDir*=-1;else{olSort=k;olDir=(k==='tk'||k==='window')?1:-1;}renderOutlook();}));
-  body.querySelectorAll('th[data-oe]').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.oe;if(k===oeSort)oeDir*=-1;else{oeSort=k;oeDir=(k==='tk'||k==='date'||k==='dir')?1:-1;}renderOutlook();}));
-  body.querySelectorAll('.olrow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('ol-'+tr.dataset.i);if(d)d.classList.toggle('open');const c2=tr.querySelector('td');if(c2)c2.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
-  body.querySelectorAll('.oerow').forEach(tr=>tr.addEventListener('click',()=>{const d=document.getElementById('oe-'+tr.dataset.i);if(d)d.classList.toggle('open');const c2=tr.querySelector('td');if(c2)c2.textContent=d&&d.classList.contains('open')?'▾':'▸';}));
-}
-/* ---- News + Approvals (spec §6g) — news.json and proposals.json are pushed daily by the DGX Spark
-   (transcripts → summaries → claims); the Approvals screen commits decisions to GitHub, and the
-   apply-proposals Action turns accepted ones into data.json facts. Display-only here. ---- */
-async function loadNewsAndProposals(){
-  try{const r=await fetch('news.json',{cache:'no-store'});if(r.ok)NEWS=await r.json();}catch(e){}
-  try{const r=await fetch('proposals.json',{cache:'no-store'});if(r.ok)PROPOSALS=await r.json();}catch(e){}
-  updateApprovalsBadge();
-  if(view==='news')renderNews(); if(view==='approvals')renderApprovals();
-}
-function updateApprovalsBadge(){const b=document.getElementById('apbadge');if(!b)return;const n=PROPOSALS?(PROPOSALS.items||[]).filter(p=>p.status==='pending').length:0;b.textContent=n?String(n):'';}
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function tsLabel(t){if(t==null)return '';const m=Math.floor(t/60),s=t%60;return `${m}:${String(s).padStart(2,'0')}`;}
-function fmtD(iso){if(!iso)return '';const d=new Date(iso+'T00:00:00');return isNaN(d)?iso:`${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;}
-const SAID_BY={executive:'company statement',host:"the host's own view",guest:'a guest',thirdparty:'a third party'};
-const SIG_TAG={scoop:'own research',call:'prediction',big:'flagged as big',notable:'flagged'};
-const KIND_WORD={news:'news round-up',interview:'interview',earnings:'earnings breakdown',members:'members-only segment',other:'video'};
-function srcName(id){return (NEWS&&(NEWS.sources||[]).find(s=>s.id===id)||{}).name||id||'';}
-function renderNews(){
-  const body=document.getElementById('news-body');if(!body)return;
-  if(!NEWS){body.innerHTML='<div class="legend2">no news yet — the Spark publishes news.json each morning</div>';return;}
-  const age=Math.round((Date.now()-new Date(NEWS.asOf))/86400000);
-  const tks=[...new Set((NEWS.items||[]).flatMap(i=>i.tickers||[]))].sort();
-  let items=(NEWS.items||[]).slice();
-  if(newsTk)items=items.filter(i=>(i.tickers||[]).includes(newsTk));
-  if(newsSignalOnly)items=items.filter(i=>(i.signal||[]).length);
-  let h=`<div class="newsbar"><span>Updated ${fmtD(NEWS.asOf)}${age>2?' <span class="prov rumored">stale</span>':''} · ${(NEWS.items||[]).length} videos in the last ${NEWS.windowDays} days · ${(NEWS.sources||[]).map(s=>`<a class="clearfilter" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(', ')}</span></div>`;
-  h+=`<div class="newsbar"><label>Show <select id="news-tk"><option value="">every coverage name</option>${tks.map(t=>`<option value="${t}" ${t===newsTk?'selected':''}>${t}</option>`).join('')}</select></label><label style="cursor:pointer"><input type="checkbox" id="news-sig" ${newsSignalOnly?'checked':''}> only videos with something notable</label><span>${items.length} shown</span></div>`;
-  if(!items.length)h+='<div class="legend2">nothing matches</div>';
-  items.forEach(i=>{
-    const open=!!newsOpen[i.id];const main=(i.main||[]).length?i.main:(i.tickers||[]).slice(0,4);const also=(i.tickers||[]).filter(t=>!main.includes(t));
-    h+=`<div class="ni"><div class="ni-meta">${fmtD(i.d)} · ${esc(srcName(i.src))} · ${esc(KIND_WORD[i.kind]||'video')}${i.minutes?`, ${i.minutes} min`:''}</div>`+
-      `<a class="ni-title" href="${esc(i.url)}" target="_blank" rel="noopener" title="${esc(i.title)}">${esc(i.headline||i.title)}</a>`+
-      `<div class="ni-tk">About <b>${main.map(esc).join(', ')||'—'}</b>${also.length?` · also mentions ${also.map(esc).join(', ')}`:''}${(i.sponsored||[]).length?` · sponsored segment: ${i.sponsored.map(esc).join(', ')} (ignored)`:''}</div>`+
-      (i.brief?`<p>${esc(i.brief)}</p>`:i.summary?`<p>${esc(i.summary.slice(0,300))}…</p>`:'<p style="color:var(--ink-soft)">Summary pending.</p>');
-    if((i.signal||[]).length){
-      h+=`<div class="ni-h">What matters</div><ul>${i.signal.map(s=>`<li><b>${esc(s.tk)}</b> — ${esc(s.claim)} <span class="ni-src">${esc(SAID_BY[s.by]||s.by)}${SIG_TAG[s.tag]?`, ${SIG_TAG[s.tag]}`:''}${s.t!=null?` · <a href="${esc(i.url)}&t=${s.t}s" target="_blank" rel="noopener">watch at ${tsLabel(s.t)}</a>`:''}</span></li>`).join('')}</ul>`;}
-    const hasFull=(i.facts||[]).length||i.view||(i.verify||[]).length;
-    if(hasFull){
-      if(!open)h+=`<button class="textbtn" data-more="${esc(i.id)}">Show the full summary</button>`;
-      else h+=`<div>${(i.facts||[]).length?`<div class="ni-h">Key facts by company</div><ul>${i.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}${i.view?`<div class="ni-h">The host's view</div><p>${esc(i.view)}</p>`:''}${(i.verify||[]).length?`<div class="ni-h">Worth checking against filings</div><ul>${i.verify.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}<button class="textbtn" data-less="${esc(i.id)}">Hide the full summary</button></div>`;
-    }
-    h+=`</div>`;});
-  h+=`<div class="legend2" style="margin-top:18px">Each item is one video from a curated source. The summary is ours, written by the local model from the transcript; the video link is the source. Under <b>what matters</b>: <b>company statement</b> means the fact came from the company (its executives, a release, a call), whether quoted or relayed by the presenter; <b>the host's own view</b> is opinion; <b>own research</b> means the presenter dug it up themselves (filings, dockets, permits, site visits); <b>prediction</b> is a call with a date. Sponsored segments are ignored. Nothing here moves a valuation — changes go through Approvals.</div>`;
-  body.innerHTML=h;
-  body.querySelector('#news-tk').addEventListener('change',e=>{newsTk=e.target.value;renderNews();});
-  body.querySelector('#news-sig').addEventListener('change',e=>{newsSignalOnly=e.target.checked;renderNews();});
-  body.querySelectorAll('[data-more]').forEach(b=>b.addEventListener('click',()=>{newsOpen[b.dataset.more]=true;renderNews();}));
-  body.querySelectorAll('[data-less]').forEach(b=>b.addEventListener('click',()=>{newsOpen[b.dataset.less]=false;renderNews();}));
-}
-/* Approvals — the GitHub token lives only in this browser (localStorage); a click commits the decision to
-   proposals.json on main; the apply-proposals Action does the rest. */
-function ghToken(){try{return localStorage.getItem('cv-gh-token')||'';}catch(e){return '';}}
-function b64enc(str){const b=new TextEncoder().encode(str);let s='';for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s);}
-function b64dec(b64){const s=atob(b64.replace(/\n/g,''));const b=new Uint8Array(s.length);for(let i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return new TextDecoder().decode(b);}
-async function ghDecide(id,status){
-  const tok=ghToken();if(!tok)throw new Error('no GitHub token on this device');
-  const api=`https://api.github.com/repos/${GH_REPO}/contents/proposals.json`;
-  const H={Authorization:'Bearer '+tok,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
-  for(let attempt=0;attempt<3;attempt++){
-    const r=await fetch(api+'?ref=main',{headers:H,cache:'no-store'});
-    if(r.status===401)throw new Error('GitHub rejected the token (401) — paste a fresh one');
-    if(!r.ok)throw new Error('GitHub read failed: HTTP '+r.status);
-    const j=await r.json();const P=JSON.parse(b64dec(j.content));
-    const it=(P.items||[]).find(x=>x.id===id);if(!it)throw new Error('proposal not found on main any more');
-    it.status=status;it.decided=new Date().toISOString().slice(0,10);
-    const w=await fetch(api,{method:'PUT',headers:{...H,'Content-Type':'application/json'},body:JSON.stringify({message:`proposals: ${id} ${status} (Approvals screen)`,content:b64enc(JSON.stringify(P,null,1)+'\n'),sha:j.sha,branch:'main'})});
-    if(w.status===409||w.status===422){await new Promise(r2=>setTimeout(r2,1500));continue;}
-    if(!w.ok)throw new Error('GitHub write failed: HTTP '+w.status);
-    return P;
-  }
-  throw new Error('someone else changed proposals.json at the same time — try again');
-}
-function ym(y,m){return y?`${MONTHS[(m||6)-1]} ${y}`:'—';}
-function propWhat(p){
-  const c=COMPANIES.find(x=>x.tk===p.tk);const name=c?c.name:p.tk;
-  if(p.kind==='log')return `Add a dated note to ${name}'s record`;
-  if(p.kind==='site'&&p.proposed&&'mw' in p.proposed)return `Change ${p.site} from ${p.current?.mw} MW to ${p.proposed.mw} MW`;
-  if(p.kind==='site')return `Move ${p.site}'s energization from ${ym(p.current?.yr,p.current?.mo)} to ${ym(p.proposed?.yr,p.proposed?.mo)}`;
-  if(p.kind==='catalyst')return `Add a catalyst to ${name}`;
-  return p.title||p.kind;
-}
-function propStatement(p){const e=(p.evidence||[])[0]||{};return e.claim||(p.proposed&&p.proposed.x)||p.title||'';}
-function renderApprovals(){
-  const body=document.getElementById('approvals-body');if(!body)return;
-  const tok=ghToken();
-  let h=`<div class="tokbox">${tok?`<span>Decisions from this device commit to GitHub as you.</span> <button class="refreshbtn" id="tok-forget">forget token</button>`:
-    `<span>To decide from this device, paste a GitHub token once (fine-grained, this repository only, <b>Contents: read and write</b>). It is stored only in this browser.</span> <input type="password" id="tok-in" placeholder="github_pat_…" autocomplete="off"> <button class="refreshbtn" id="tok-save">save on this device</button>`}</div>`;
-  if(!PROPOSALS){h+='<div class="legend2">no proposals yet — the Spark publishes proposals.json each morning</div>';body.innerHTML=h;wireTok(body);return;}
-  const items=(PROPOSALS.items||[]);const pend=items.filter(p=>p.status==='pending');const done=items.filter(p=>p.status!=='pending').sort((a,b)=>String(b.decided||'').localeCompare(String(a.decided||'')));
-  h+=`<div class="newsbar"><span>${pend.length} awaiting a decision · updated ${fmtD(PROPOSALS.asOf)}</span></div>`;
-  if(!pend.length)h+='<div class="legend2">Nothing waiting. New proposals arrive with the morning publish.</div>';
-  pend.forEach(p=>{
-    const e=(p.evidence||[])[0]||{};
-    h+=`<div class="ap" id="prop-${esc(p.id)}"><div class="ap-meta">Proposed ${fmtD(p.created)} · from ${esc(p.sourceName||'the curated sources')}</div>`+
-      `<div class="ap-what"><b>${esc(p.tk)}</b> — ${esc(propWhat(p))}</div>`+
-      `<p class="ap-stmt">${esc(propStatement(p))}</p>`+
-      `<div class="ap-src">${esc(SAID_BY[e.by]||e.by||'')}${e.title?`, in <a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title.split(' | ')[0])}</a>`:''}${e.d?` (${fmtD(e.d)})`:''}${e.url&&/[&?]t=\d+s/.test(e.url)?` · <a href="${esc(e.url)}" target="_blank" rel="noopener">watch at ${tsLabel(parseInt(e.url.match(/[&?]t=(\d+)s/)[1]))}</a>`:''}</div>`+
-      (e.quote?`<p class="ap-quote">“${esc(e.quote)}”</p>`:'')+
-      `<div class="propbtns"><button class="pbtn yes" data-dec="accepted" data-id="${esc(p.id)}" ${tok?'':'disabled'}>Yes, ${p.kind==='log'?'add it':'change it'}</button><button class="pbtn no" data-dec="rejected" data-id="${esc(p.id)}" ${tok?'':'disabled'}>No</button><span class="pmsg"></span></div>`+
-      `<button class="textbtn" data-raw="${esc(p.id)}">Show the exact change</button><div class="ap-raw" id="raw-${esc(p.id)}" hidden>${esc(p.kind==='site'?`site "${p.site}": ${JSON.stringify(p.current)} → ${JSON.stringify(p.proposed)}`:JSON.stringify(p.proposed,null,1))}</div></div>`;});
-  if(done.length){h+=`<div class="ni-h" style="margin:26px 4px 6px">Recent decisions</div>`;
-    done.slice(0,25).forEach(p=>{const word=p.status==='applied'||(p.status==='accepted'&&p.applied)?'Applied':p.status==='accepted'?'Approved, applying':p.status==='rejected'?'Declined':'Could not apply';
-      h+=`<div class="ap-done"><span>${word} ${fmtD(p.applied||p.decided)}</span> · <b>${esc(p.tk)}</b> — ${esc(propStatement(p))}${p.error?` <span>(${esc(p.error)})</span>`:''}</div>`;});}
-  h+=`<div class="legend2" style="margin-top:18px">Each proposal is one statement from a curated source that the tracker does not yet reflect. <b>Yes</b> writes it into the model with a changelog line and the site updates within a few minutes; <b>No</b> declines it for good. Site changes move a company's value; notes added to a record do not.</div>`;
-  body.innerHTML=h;wireTok(body);
-  body.querySelectorAll('[data-raw]').forEach(b=>b.addEventListener('click',()=>{const d=document.getElementById('raw-'+b.dataset.raw);d.hidden=!d.hidden;b.textContent=d.hidden?'Show the exact change':'Hide the exact change';}));
-  body.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',async()=>{
-    const card=b.closest('.ap'),msg=card.querySelector('.pmsg');card.querySelectorAll('.pbtn').forEach(x=>x.disabled=true);msg.textContent='saving…';
-    try{const P=await ghDecide(b.dataset.id,b.dataset.dec);PROPOSALS=P;updateApprovalsBadge();msg.textContent=b.dataset.dec==='accepted'?'saved — the site updates in a few minutes':'saved';setTimeout(renderApprovals,900);}
-    catch(e){msg.textContent='failed: '+e.message;card.querySelectorAll('.pbtn').forEach(x=>x.disabled=false);}
-  }));
-}
-function wireTok(body){
-  const sv=body.querySelector('#tok-save');if(sv)sv.addEventListener('click',()=>{const v=(body.querySelector('#tok-in').value||'').trim();if(!v)return;try{localStorage.setItem('cv-gh-token',v);}catch(e){}renderApprovals();});
-  const fg=body.querySelector('#tok-forget');if(fg)fg.addEventListener('click',()=>{try{localStorage.removeItem('cv-gh-token');}catch(e){}renderApprovals();});
-}
-/* ---- GPU ramp page (spec §6 screen 11) — the rollout explorer: scrub or replay the build-out quarter by
-   quarter, per-quarter dispatches, tranche spotlight, synced crosshairs, model-vs-street mode.
-   Display-only; never a valuation input ---- */
-let rampCo='IREN';
-let RAMP_T=null,RAMP_PLAYING=false,RAMP_RAF=0,RAMP_LASTF=0,RAMP_IV=null,RAMP_SEL=null,RAMP_INTRO_TO=0,RAMP_CTX=null,RAMP_CUR=-1,RAMP_REV_MODE='gen';
-// u = the UNCONTRACTED tint. Every u is pinned to relative luminance 0.55, every solid hue sits at 0.07-0.44,
-// so a hatched bar is lighter than EVERY solid bar in greyscale, whatever its generation. Hue still names the silicon.
-const RAMP_GEN={hopper:{c:'var(--gen-hopper)',u:'var(--gen-hopper-un)',n:'Hopper'},blackwell:{c:'var(--gen-blackwell)',u:'var(--gen-blackwell-un)',n:'Blackwell'},rubin:{c:'var(--gen-rubin)',u:'var(--gen-rubin-un)',n:'Rubin-class'},next:{c:'var(--gen-next)',u:'var(--gen-next-un)',n:'Next-gen'}};
-// RAMP_QS, RAMP_QL, RAMP_START/END/HIST/CONS_HARD, rampApplySc, rampQuarters, rampBacktest, rampTrancheAt live in ramp-core.js (shared with onepager.js)
-function rampEvents(R,Q){
-  const ev={};const add=(s,k,t)=>{if(s<RAMP_START||s>RAMP_END)return;(ev[s]=ev[s]||[]).push({k,t});};
-  R.tranches.forEach(t=>{
-    add(RAMP_QS(t.energize),'power',`${t.n} energised — +${t.grossMW}MW at ${t.campus}`);
-    add(RAMP_QS(t.rev),'rev',`${t.n} starts earning — ${Math.round(t.gpus/1000)}k ${RAMP_GEN[t.gen].n} GPUs ramp over ${t.rampQtrs} qtr${t.rampQtrs>1?'s':''}${(t.signed||0)>0?'':' · uncontracted today'}`);});
-  Q.forEach((q,i)=>{const p=i>0?Q[i-1]:null;
-    const x=(f,lvl,txt)=>{if((p?p[f]:0)<lvl&&q[f]>=lvl)add(q.s,'mile',txt);};
-    x('grossMW',480,'480MW energised — the 2026 program lands (company target)');
-    x('grossMW',1210,'1,210MW energised — the 2027 program lands (company target)');
-    [[100000,'100k'],[250000,'250k'],[500000,'500k'],[750000,'750k']].forEach(([l,n])=>x('cum',l,`fleet passes ${n} revenue-generating GPUs`));
-    if(p&&p.by.rubin<=0&&q.by.rubin>0)add(q.s,'mile','first Rubin-class silicon earns — the Sweetwater / 800V-DC era begins');
-    if(p&&p.by.next<=0&&q.by.next>0)add(q.s,'mile','first next-generation silicon earns');
-    if(p&&p.consTot!=null&&q.consTot!=null&&(p.rev+p.mining)<=p.consTot&&(q.rev+q.mining)>q.consTot)add(q.s,'mile','model revenue passes street consensus — the capacity wedge opens');
-    if(p&&p.mining>0&&q.mining<=0)add(q.s,'mile','Bitcoin mining revenue reaches zero — the pivot completes');});
-  return ev;
-}
-/* chart annotations get a plaque: a label must never inherit whatever fill it lands on.
-   9.5px IBM Plex Mono advances 0.6em = 5.7px/char; the plaque is that width + 5px padding each side. */
-function rampPlaque(x,y,txt,fill,anchor,weight){
-  const w=String(txt).length*5.7+10,h=13.5,ax=anchor==='middle'?x-w/2:anchor==='end'?x-w+5:x-5;
-  return `<rect x="${ax.toFixed(1)}" y="${(y-10.2).toFixed(1)}" width="${w.toFixed(1)}" height="${h}" rx="2" fill="var(--card)" opacity="0.93"/>`+
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}"${anchor&&anchor!=='start'?` text-anchor="${anchor}"`:''} style="font-family:var(--mono);font-size:9.5px;fill:${fill}${weight?';font-weight:'+weight:''}">${txt}</text>`;
-}
-let RAMP_TIP_EL=null;
-// two-layer escape for tip strings embedded in inline single-quoted handler attributes:
-// JS layer (backslash, then apostrophe) then HTML-attribute layer (& before ") — &#39; alone decodes back to ' and breaks the handler
-const rampTipEsc=s=>s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-function rampTip(e,html){const wrap=e.currentTarget&&e.currentTarget.closest?e.currentTarget.closest('.bo-wrap'):null;
-  const t=wrap?wrap.querySelector('.bo-tip'):null;if(!t)return;RAMP_TIP_EL=t;t.innerHTML=html;t.style.display='block';
-  const w=wrap.getBoundingClientRect();let x=e.clientX-w.left+14,y=e.clientY-w.top+14;
-  if(x+t.offsetWidth>w.width-6)x=w.width-t.offsetWidth-6;if(x<2)x=2;t.style.left=x+'px';t.style.top=y+'px';}
-function rampTipHide(){if(RAMP_TIP_EL)RAMP_TIP_EL.style.display='none';}
-/* ---- chart builders: each emits a ghost layer (full picture, faint) + a reveal layer clipped at the scrub time ---- */
-// one geometry for every panel on this screen: same width, margins, plot box, axis treatment
-const RAMP_GEO={W:960,ml:54,mr:96,H:300,mt:18,mb:28};
-const RAMP_GANTT=RAMP_GEO;
-function rampGanttHTML(R,Q){
-  // Capacity as a STAIRCASE, not a Gantt. Gross MW sits on a labelled y-position axis; the old chart put it
-  // on bar thickness as sqrt(MW) — a 75x quantity range drawn across 4.3x of pixels, which ranked 53% of
-  // tranche pairs backwards — while bar LENGTH, the stronger channel, carried nothing at all.
-  const W=960,ml=54,mr=96,H=300,mt=16,mb=26,ph=H-mt-mb;
-  const maxMW=4400;
-  const X=i=>ml+i*((W-ml-mr)/(Q.length-1)), Y=v=>mt+ph-(v/maxMW)*ph;
-  RAMP_GANTT.X=X;RAMP_GANTT.Y=Y;
-  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
-  let stat='',body='';
-  stat+=`<defs><clipPath id="rampClipG"><rect id="rampClipGR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
-  stat+=`<text x="${ml-6}" y="${(mt-4).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">MW</text>`;
-  for(let k=0;k<=4000;k+=1000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
-    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':k.toLocaleString()}</text>`;}
-  Q.forEach((q,i)=>{if(i%2)return;stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
-  // the two company commitments, as labelled reference lines — the only disclosed points on the chart
-  [[480,'480 MW · 2026'],[1210,'1,210 MW · 2027']].forEach(([v,lab])=>{
-    stat+=`<line x1="${ml}" y1="${Y(v).toFixed(1)}" x2="${W-mr}" y2="${Y(v).toFixed(1)}" style="stroke:var(--indigo-soft);stroke-width:1;stroke-dasharray:4 3"/>`+
-      `<text x="${(W-mr+4).toFixed(1)}" y="${(Y(v)+3).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--indigo)">${lab}</text>`;});
-  const step=(vals,fill,stroke,op)=>{let d=`M${ml.toFixed(1)},${Y(0).toFixed(1)}`;
-    vals.forEach((v,i)=>{d+=` L${X(i).toFixed(1)},${Y(vals[i>0?i-1:0]).toFixed(1)} L${X(i).toFixed(1)},${Y(v).toFixed(1)}`;});
-    d+=` L${X(vals.length-1).toFixed(1)},${Y(0).toFixed(1)} Z`;
-    return `<path d="${d}" fill="${fill}" ${stroke?`style="stroke:${stroke};stroke-width:1.6"`:''} ${op?`opacity="${op}"`:''}/>`;};
-  const gross=Q.map(q=>q.grossMW), itCom=Q.map(q=>q.itCom), itAct=Q.map(q=>q.itMW);
-  body+=step(gross,'rgba(55,73,91,.10)','var(--indigo-soft)');
-  body+=step(itCom,'rgba(55,73,91,.16)','');
-  body+=step(itAct,'var(--indigo)','',0.85);
-  const lab=(v,txt,dy)=>`<text x="${(W-mr+5).toFixed(1)}" y="${(Y(v)+dy).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">${txt}</text>`;
-  const L=Q[Q.length-1];
-  stat+=lab(L.grossMW,'energised',3)+lab(L.itCom,'commissioned',3)+lab(L.itMW,'earning',3);
-  let cap='';
-  Q.forEach((q,i)=>{const idle=q.itCom>0?(1-q.itMW/q.itCom)*100:0;
-    const tip=`<b>${q.lbl}</b><br>energised ${Math.round(q.grossMW).toLocaleString()} MW gross<br>commissioned ${Math.round(q.itCom).toLocaleString()} MW critical IT<br>earning ${Math.round(q.itMW).toLocaleString()} MW critical IT<br><b>${Math.round(idle)}% of commissioned IT is idle</b><br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
-    cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Energised gross MW, commissioned critical IT MW and earning critical IT MW by quarter"><title>Capacity: energised, commissioned and earning megawatts by quarter</title><desc>Three nested step bands on one megawatt axis. Energised gross MW rises to 4,230 by 2030Q4; commissioned critical IT MW to 3,000; earning critical IT MW to 2,679. The gap between commissioned and earning is idle capacity — 79% at 2026Q3, 22% by 2029. Dashed reference lines mark the company-disclosed 480MW (2026) and 1,210MW (2027) programmes.</desc>${stat}<rect id="rampHLG" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipG)">${body}</g>${cap}</svg>`;
-}
-const RAMP_F={...RAMP_GEO};
-function rampFleetHTML(Q){
-  // Stacked area: the cumulative fleet total is the quantity wanted, and only a stack shows it.
-  // A stack cannot render a crossover, so the crossover is computed from the data and annotated.
-  const F=RAMP_F,W=F.W,ml=F.ml,mr=F.mr,H=F.H,mt=F.mt,ph=H-mt-F.mb;
-  const max=Math.max(...Q.map(q=>q.cum))*1.08;
-  const X=i=>ml+i*((W-ml-mr)/(Q.length-1)),Y=v=>mt+ph-(v/max)*ph;
-  RAMP_F.X=X;RAMP_F.Y=Y;RAMP_F.max=max;
-  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
-  let stat='',body='';
-  stat+=`<defs><clipPath id="rampClipF"><rect id="rampClipFR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
-  for(let k=0;k<max;k+=200000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
-    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':k/1000+'k'}</text>`;}
-  stat+=`<text x="${ml-6}" y="${(mt-7).toFixed(1)}" text-anchor="end" ${tx}>GPUs</text>`;
-  Q.forEach((q,i)=>{if(i%2)return;stat+=`<text x="${X(i).toFixed(1)}" y="${H-10}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
-  let base=Q.map(()=>0);
-  ['hopper','blackwell','rubin','next'].forEach(gk=>{
-    const tops=Q.map((q,i)=>base[i]+q.by[gk]);
-    if(tops.some((t,i)=>t>base[i]+1)){
-      const p='M'+Q.map((q,i)=>`${X(i).toFixed(1)},${Y(tops[i]).toFixed(1)}`).join(' L')+
-        ' L'+Q.map((q,i)=>Q.length-1-i).map(i=>`${X(i).toFixed(1)},${Y(base[i]).toFixed(1)}`).join(' L')+' Z';
-      body+=`<path d="${p}" fill="${RAMP_GEN[gk].c}" opacity="0.9" style="stroke:var(--paper);stroke-width:1.2"/>`;
-    }
-    base=tops;
-  });
-  // reference lines first, labels last — a plaque can only mask what is already drawn
-  const L=Q[Q.length-1];
-  body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(q.cum).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink);stroke-width:1.4"/>`;
-  body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(q.signed).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink);stroke-width:1.8;stroke-dasharray:6 4"/>`;
-  // a stack cannot render a crossing, so the crossing quarter is computed and stated
-  let cx=-1;Q.forEach((q,i)=>{if(cx<0&&q.by.rubin>q.by.blackwell)cx=i;});
-  if(cx>0)body+=`<line x1="${X(cx).toFixed(1)}" y1="${mt}" x2="${X(cx).toFixed(1)}" y2="${(mt+ph).toFixed(1)}" style="stroke:var(--ink);stroke-width:1;stroke-dasharray:3 3"/>`;
-  const plaque=(x,y,txt,anchor,wt)=>{const w=txt.length*(wt?6.3:5.7)+10,
-      x0=anchor==='end'?x-w:anchor==='middle'?x-w/2:x;
-    return `<rect x="${x0.toFixed(1)}" y="${(y-9.5).toFixed(1)}" width="${w.toFixed(1)}" height="13" rx="2" fill="var(--paper)" opacity="0.92"/>`+
-      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" style="font-family:var(--mono);font-size:${wt?10:9.5}px;${wt?'font-weight:600;':''}fill:var(--ink)">${txt}</text>`;};
-  // band labels sit where each band is thickest, held inside the middle of the plot so they clear both edges
-  const lo=Math.ceil(Q.length*0.25),hi=Math.floor(Q.length*0.75);
-  const stack=(i,gk)=>{let b=0;for(const g of ['hopper','blackwell','rubin','next']){if(g===gk)break;b+=Q[i].by[g];}return b;};
-  const lbl=(gk,txt)=>{let bi=-1,bv=60000;
-    for(let i=lo;i<=hi;i++)if(Q[i].by[gk]>bv){bv=Q[i].by[gk];bi=i;}
-    if(bi<0)return '';
-    let y=Y(stack(bi,gk)+Q[bi].by[gk]*0.5)+3.5;
-    if(Math.abs(y-Y(Q[bi].signed))<13)y+=17;  // clear the signed-book line rather than sit on it
-    return plaque(X(bi),y,txt,'middle',1);};
-  body+=lbl('blackwell','BLACKWELL')+lbl('rubin','RUBIN')+lbl('next','NEXT');
-  // the crossover note sits on the Blackwell/Rubin boundary — the two bands it compares
-  if(cx>0)body+=plaque(X(cx)-6,Y(stack(cx,'rubin'))+3.5,`Rubin band passes Blackwell · ${Q[cx].lbl}`,'end');
-  body+=plaque(X(5)+2,Y(Q[5].signed)-8,'contracted today (signed book)','start');
-  body+=plaque(X(Q.length-1)+7,Y(L.cum)+3.5,`${Math.round(L.cum/1000)}k`,'start',1)+
-    `<text x="${(X(Q.length-1)+7).toFixed(1)}" y="${(Y(L.cum)+16).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)">total fleet</text>`;
-  let cap='';
-  Q.forEach((q,i)=>{const tip=`<b>${q.lbl}</b><br>fleet <b>${(q.cum/1000).toFixed(0)}k</b> GPUs (+${(q.added/1000).toFixed(1)}k)<br>`+['hopper','blackwell','rubin','next'].filter(g=>q.by[g]>0).map(g=>`${RAMP_GEN[g].n} ${(q.by[g]/1000).toFixed(0)}k`).join('<br>')+`<br>signed today ${(q.signed/1000).toFixed(0)}k<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
-    cap+=`<rect x="${(X(i)-((W-ml-mr)/(Q.length-1))/2).toFixed(1)}" y="${mt}" width="${((W-ml-mr)/(Q.length-1)).toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Cumulative revenue-generating GPUs stacked by generation"><title>Fleet by silicon generation, cumulative</title><desc>Stacked area of revenue-earning GPU packages by generation, reaching ${Math.round(L.cum/1000)} thousand by 2030Q4. Rubin-class overtakes Blackwell in ${cx>0?Q[cx].lbl:'the modelled window'}, annotated because a stack cannot show a crossing. The dashed line is the fleet covered by contracts signed today.</desc>${stat}<rect id="rampHLF" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipF)">${body}</g><path id="rampSelF0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelF" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
-}
-function rampRevHTML(Q,mode){
-  const F=RAMP_F,W=F.W,ml=F.ml,mr=F.mr,H=310,mt=16,ph=H-mt-26;
-  const tots=Q.map(q=>q.rev+q.mining);
-  const max=Math.max(...tots)*1.1;
-  const n=Q.length,slot=(W-ml-mr)/n,bw=slot*0.6;
-  const X=i=>ml+i*slot+slot/2,Y=v=>mt+ph-(v/max)*ph;
-  RAMP_F.rX=X;RAMP_F.rY=Y;RAMP_F.rmax=max;RAMP_F.rslot=slot;
-  const tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
-  let stat='',body='',cap='';
-  stat+=`<defs><clipPath id="rampClipR"><rect id="rampClipRR" x="0" y="0" width="${W}" height="${H}"/></clipPath></defs>`;
-  for(let k=0;k<max;k+=2000){stat+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+k/1000+'B'}</text>`;}
-  Q.forEach((q,i)=>{if(i%2===0)stat+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" ${tx}>${q.lbl}</text>`;});
-  const consPts=Q.map((q,i)=>q.consAI!=null?[i,q.consAI]:null).filter(Boolean);
-  if(mode==='street'){
-    // the wedge: model total vs street, trapezoid-shaded by sign per quarter (empty-safe)
-    for(let k=0;k<consPts.length-1;k++){
-      const [i0,c0]=consPts[k],[i1,c1]=consPts[k+1],t0=Q[i0].rev,t1=Q[i1].rev;
-      const above=(t0-c0+t1-c1)/2>=0;
-      body+=`<path d="M${X(i0).toFixed(1)},${Y(t0).toFixed(1)} L${X(i1).toFixed(1)},${Y(t1).toFixed(1)} L${X(i1).toFixed(1)},${Y(c1).toFixed(1)} L${X(i0).toFixed(1)},${Y(c0).toFixed(1)} Z" fill="${above?'rgba(91,122,92,.16)':'rgba(170,107,79,.16)'}"/>`;}
-    if(consPts.length){
-      body+=`<path d="M${consPts.map(([i,c])=>`${X(i).toFixed(1)},${Y(c).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
-      consPts.forEach(([i,c])=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(c).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
-    body+=`<path d="M${Q.map((q,i)=>`${X(i).toFixed(1)},${Y(q.rev).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--indigo);stroke-width:2.4"/>`;
-    Q.forEach((q,i)=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(q.rev).toFixed(1)}" r="2.8" fill="var(--indigo)" style="stroke:var(--card);stroke-width:1.5"/>`;});
-    // the panel thins past 2029Q2 — shade it and say so, rather than drawing the same confident wedge
-    const softI=Q.findIndex(q=>q.s>RAMP_CONS_HARD);
-    if(softI>0){const sx=X(softI)-slot/2;
-      stat+=`<rect x="${sx.toFixed(1)}" y="${mt}" width="${(W-mr-sx).toFixed(1)}" height="${ph}" fill="rgba(42,39,34,.045)"/>`;   // STATIC layer: the ghost pass would otherwise draw this wash twice
-      body+=rampPlaque(sx+7,mt+12,'thin panel \u2014 indicative only','var(--ink-soft)','start');}
-    if(consPts.length){
-      // per-quarter deltas, every other consensus quarter
-      consPts.forEach(([i,c],k)=>{if(k%2)return;const d=Q[i].rev/c-1;if(Math.abs(d)<0.005)return;
-        body+=rampPlaque(X(i),Math.min(Y(Q[i].rev),Y(c))-8,`${d>=0?'+':''}${Math.round(d*100)}%`,d>=0?'var(--pos-ink)':'var(--neg-ink)','middle',600);});
-      const [li2,lc]=consPts[consPts.length-1];
-      body+=rampPlaque(X(li2)+8,Y(lc)+4,'street','var(--ink-soft)','start');
-      // cumulative wedge annotation, anchored inside the wedge opening (index-safe for shorter consensus runs)
-      const wedge=consPts.filter(([i])=>Q[i].s<=RAMP_CONS_HARD).reduce((a,[i,c])=>a+(Q[i].rev-c),0);
-      const kk=Math.min(13,consPts.length-1),[wi,wc]=consPts[kk];
-      body+=rampPlaque(X(Math.min(wi+1,Q.length-1)),(Y(Q[wi].rev)+Y(wc))/2,`the wedge: ${wedge>=0?'+':'−'}$${(Math.abs(wedge)/1000).toFixed(1)}B cumulative vs street`,wedge>=0?'var(--pos-ink)':'var(--neg-ink)','middle');}
-    body+=rampPlaque(X(Q.length-1)-8,Y(Q[Q.length-1].rev)-8,'model','var(--indigo)','end',600);
-  }else{
-    Q.forEach((q,i)=>{let y0=mt+ph;
-      const parts=[['mining',q.mining,'var(--far)','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],RAMP_GEN[g].c,RAMP_GEN[g].n])];
-      parts.forEach(([g,v,col])=>{if(v<1)return;const h=(v/max)*ph;
-        body+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(h,0.5).toFixed(1)}" fill="${col}" style="stroke:var(--card);stroke-width:1.5"/>`;y0-=h;});
-      // the consensus line is AI-cloud only, so mark where AI ends on each bar — the line must never be read against a mining-inclusive top
-      if(q.mining>0&&q.consAI!=null){const yAI=Y(q.rev);
-        body+=`<line x1="${(X(i)-bw/2).toFixed(1)}" y1="${yAI.toFixed(1)}" x2="${(X(i)+bw/2).toFixed(1)}" y2="${yAI.toFixed(1)}" style="stroke:var(--ink);stroke-width:1.4;stroke-dasharray:3 2"/>`;}});
-    if(consPts.length){body+=`<path d="M${consPts.map(([i,c])=>`${X(i).toFixed(1)},${Y(c).toFixed(1)}`).join(' L')}" fill="none" style="stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:6 4"/>`;
-      consPts.forEach(([i,c])=>{body+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(c).toFixed(1)}" r="2.6" fill="var(--ink-soft)" style="stroke:var(--card);stroke-width:1.5"/>`;});}
-  }
-  Q.forEach((q,i)=>{
-    const parts=[['mining',q.mining,'','BTC mining (residual)'],...['hopper','blackwell','rubin','next'].map(g=>[g,q.rv[g],'',RAMP_GEN[g].n])];
-    const tip=`<b>${q.lbl}</b><br>total $${Math.round(q.rev+q.mining)}M${q.consAI?` · consensus AI $${Math.round(q.consAI)}M (Δ ${Math.round((q.rev/q.consAI-1)*100)}%${q.s>RAMP_CONS_HARD?', thin panel':''})`:''}<br>`+parts.filter(p=>p[1]>=1).map(p=>`${p[3]} $${Math.round(p[1])}M`).join(' · ')+`<br>blend $${q.blend.toFixed(2)}/GPU-hr<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
-    cap+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarterly revenue ${mode==='street'?'model vs Bloomberg consensus':'by GPU generation vs Bloomberg consensus'}">${stat}<rect id="rampHLR" y="${mt}" height="${ph}" width="0" fill="rgba(55,73,91,.07)" style="pointer-events:none"/><g class="rampghost" style="pointer-events:none">${body}</g><g clip-path="url(#rampClipR)">${body}</g><path id="rampSelR0" fill="none" style="stroke:var(--card);stroke-width:4;pointer-events:none" d=""/><path id="rampSelR" fill="none" style="stroke-width:2;pointer-events:none" d=""/>${cap}</svg>`;
-}
-
-/* ---- coverage spine: what share of each quarter's revenue is already under contract ---- */
-function rampCoverageHTML(Q){
-  // Absolute dollars keep the denominator visible (#19). The signed SHARE is overlaid on a right-hand
-  // axis rather than exiled to its own strip: it is a share OF the quantity already plotted, not an
-  // unrelated series, so the second scale is a decomposition of the first — labelled as such.
-  const {W,ml,mr}=RAMP_GEO,H=248,mt=22,mb=30,mrAx=52;
-  const ph=H-mt-mb;
-  const n=Q.length,slot=(W-ml-mr-mrAx)/n,bw=slot*0.84;
-  const maxRev=Math.max(...Q.map(q=>q.rev))*1.08;
-  const X=i=>ml+i*slot+slot/2, Y=v=>mt+ph-(v/maxRev)*ph, YP=f=>mt+ph-f*ph;
-  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
-  let s='';
-  for(let k=0;k<=maxRev;k+=2000){s+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${(W-mr-mrAx).toFixed(1)}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
-    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+(k/1000).toFixed(0)+'B'}</text>`;}
-  s+=`<text x="${ml-6}" y="${(mt-7).toFixed(1)}" text-anchor="end" ${tx}>$/qtr</text>`;
-  // right-hand share axis, tied to the same plot box
-  [0,0.25,0.5,0.75,1].forEach(f=>{s+=`<text x="${(W-mr-mrAx+8).toFixed(1)}" y="${(YP(f)+3).toFixed(1)}" ${tx}>${f*100}%</text>`;});
-  s+=`<text x="${(W-mr-mrAx+8).toFixed(1)}" y="${(mt-7).toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">signed %</text>`;
-  s+=`<line x1="${(W-mr-mrAx+2).toFixed(1)}" y1="${mt}" x2="${(W-mr-mrAx+2).toFixed(1)}" y2="${(mt+ph).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`;
-  Q.forEach((q,i)=>{
-    if(q.rev<=0)return;
-    const x=X(i)-bw/2, sg=q.revS, ct=q.revC;
-    const seg=(from,to,fill)=>{const y1=Y(to),y0=Y(from);
-      if(y0-y1<0.4)return; s+=`<rect x="${x.toFixed(1)}" y="${y1.toFixed(1)}" width="${bw.toFixed(1)}" height="${(y0-y1).toFixed(1)}" fill="${fill}" style="stroke:var(--card);stroke-width:1"/>`;};
-    seg(0,sg,'var(--indigo)'); seg(sg,ct,'url(#rampCovHatch)'); seg(ct,q.rev,'var(--line)');
-    const tip=`<b>${q.lbl}</b><br>revenue $${Math.round(q.rev)}M<br>signed today $${Math.round(sg)}M (<b>${Math.round(sg/q.rev*100)}%</b>)<br>modelled contracted $${Math.round(ct-sg)}M<br>uncontracted / spot $${Math.round(q.rev-ct)}M<br><span style="color:var(--ink-soft)">click to jump the timeline here</span>`;
-    s+=`<rect x="${(X(i)-slot/2).toFixed(1)}" y="${mt}" width="${slot.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}');rampHoverQ(${i})" onmouseleave="rampTipHide();rampHoverClear()" onclick="rampSeekQ(${i})"/>`;
-    if(i%4===0)s+=`<text x="${X(i).toFixed(1)}" y="${(H-10).toFixed(1)}" text-anchor="middle" ${tx}>${q.lbl}</text>`;
-  });
-  const live=Q.filter(q=>q.rev>0);
-  const path=live.map(q=>`${X(Q.indexOf(q)).toFixed(1)},${YP(q.revS/q.rev).toFixed(1)}`).join(' L');
-  s+=`<path d="M${path}" fill="none" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round"/>`;
-  // the line is named on the line, not only in the axis title
-  {const li=Math.min(3,live.length-1),lq=live[li],lx=X(Q.indexOf(lq)),ly=YP(lq.revS/lq.rev)+22,lt='share of revenue already signed';
-   s+=`<rect x="${(lx+4).toFixed(1)}" y="${(ly-9.5).toFixed(1)}" width="${(lt.length*5.7+8).toFixed(1)}" height="13" rx="2" fill="var(--paper)" opacity="0.92"/>`+
-      `<text x="${(lx+8).toFixed(1)}" y="${ly.toFixed(1)}" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">${lt}</text>`;}
-  const f0=live[0],f1=live[live.length-1];
-  const p0=Math.round(f0.revS/f0.rev*100),p1=Math.round(f1.revS/f1.rev*100);
-  [[f0,p0,'start'],[f1,p1,'end']].forEach(([q,p,anc])=>{const xi=X(Q.indexOf(q)),yy=YP(q.revS/q.rev);
-    s+=`<circle cx="${xi.toFixed(1)}" cy="${yy.toFixed(1)}" r="3.2" fill="var(--ink)"/>`+
-       `<rect x="${(anc==='start'?xi+5:xi-40).toFixed(1)}" y="${(yy-16).toFixed(1)}" width="36" height="13" rx="2" fill="var(--paper)" opacity="0.92"/>`+
-       `<text x="${(anc==='start'?xi+8:xi-8).toFixed(1)}" y="${(yy-6).toFixed(1)}" text-anchor="${anc==='start'?'start':'end'}" style="font-family:var(--mono);font-size:9.5px;font-weight:600;fill:var(--ink)">${p}%</text>`;});
-  const defs=`<defs><pattern id="rampCovHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#E9E4DA"/><rect width="2.4" height="6" fill="#7D90A0"/></pattern></defs>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Revenue by contract status in absolute dollars with the signed share overlaid"><title>Contract coverage: absolute revenue with the signed share overlaid</title><desc>Stacked bars give each quarter's modelled revenue in dollars split by contract status — signed today, modelled contracted, uncontracted spot — so the growing denominator stays visible. The dark line, read against the right-hand axis, is the signed share of that revenue, falling from ${p0}% to ${p1}%.</desc>${defs}${s}</svg>`;
-}
-/* ---- backtest: the same chain run over reported quarters ---- */
-function rampBacktestHTML(bt,R){
-  if(!bt)return '';
-  const cal=(R.calibration&&R.calibration.rampMult)||1;
-  const sign=v=>(v>=0?'+':'')+v.toFixed(0)+'%';
-  const col=v=>Math.abs(v)<=20?'var(--ink-soft)':'var(--ink)';   // magnitude = ink weight, never hue
-  let h=`<div class="rampbt"><div class="rampbt-hd"><b>The chain retrodicts to within ${bt.mape.toFixed(0)}% (mean absolute), bias ${sign(bt.bias)}.</b> Uncalibrated it missed by ${bt.rawMape.toFixed(0)}%, biased ${sign(bt.rawBias)} — high, every quarter.</div>`;
-  h+=`<table class="stab nosort rampbt-t"><thead><tr><th>Reported quarter</th><th class="r">Reported AI cloud</th><th class="r">Model</th><th class="r">Error</th><th class="r">Uncalibrated</th><th class="r">Earning GPUs: model vs implied</th></tr></thead><tbody>`;
-  bt.rows.forEach(r=>{
-    h+=`<tr><td class="mono">${r.lbl}</td><td class="r mono">$${r.actRev.toFixed(2)}m</td><td class="r mono">$${r.modRev.toFixed(1)}m</td>`+
-       `<td class="r mono" style="color:${col(r.errPct)};font-weight:${Math.abs(r.errPct)<=20?400:600}">${sign(r.errPct)}</td>`+
-       `<td class="r mono" style="color:var(--neg-ink)">${sign(r.rawErrPct)}</td>`+
-       `<td class="r mono">${Math.round(r.modGpu).toLocaleString()} vs ${Math.round(r.actGpu).toLocaleString()}</td></tr>`;});
-  h+=`</tbody></table>`;
-  h+=`<div class="legend2" style="margin:8px 0 0"><b>How.</b> The forward chain is run backwards over every quarter IREN has reported, with no parameter free except one: a single global multiple of ${cal}× on the commissioning ramp, fitted to these three quarters. Reported revenue is converted to an <b>earning-GPU-equivalent</b> at IREN's own disclosed ARR rate ($${bt.rate.toFixed(2)}/GPU-hr on its 23k-GPU fleet) so fleet and revenue are testable separately. <b>The calibration is in the base case</b> — the headline path on this page is the retrodicted one; the uncalibrated column is what the model said before it was tested. ${R.calibration?R.calibration.basis.split('Confound stated:')[1]?'<b>Confound:</b>'+R.calibration.basis.split('Confound stated:')[1]:'':''}</div></div>`;
-  return h;
-}
-/* ---- the chain, declared link by link ---- */
-function rampChainHTML(R){
-  if(!R.chain)return '';
-  let h=`<table class="stab nosort rampchain"><thead><tr><th>Link</th><th>Transfer function</th><th>Value</th><th>Assumption — marked, with range</th></tr></thead><tbody>`;
-  R.chain.forEach(c=>{
-    h+=`<tr><td><b>${c.link}</b></td><td class="mono" style="font-size:11px;color:var(--ink-soft)">${c.fn}</td>`+
-       `<td class="mono" style="font-size:11px">${c.value}</td>`+
-       `<td >${c.assumption}<div class="rampchain-r">range <b>${c.range}</b> · moves ${c.moves}</div></td></tr>`;});
-  return h+`</tbody></table>`;
-}
-/* ---- sensitivity: every assumption, its range, and what it costs ---- */
-function rampSensHTML(R){
-  if(!R.scenarios)return '';
-  const base=rampQuarters(R,null);const bl=base[base.length-1];const bRev=(bl.rev+bl.mining)*4/1000;
-  const rows=R.scenarios.map(sc=>{const Q=rampQuarters(R,sc);const L=Q[Q.length-1];
-    const arr=(L.rev+L.mining)*4/1000;
-    return {sc,arr,fleet:L.cum,d:(arr/bRev-1)*100};});
-  let h=`<table class="stab nosort rampsens"><thead><tr><th>Scenario</th><th>What changes</th><th class="r">Fleet YE-30</th><th class="r">Exit ARR</th><th class="r">vs base</th></tr></thead><tbody>`;
-  rows.forEach(r=>{const isJoint=r.sc.id==='joint',isBase=r.sc.id==='base';
-    h+=`<tr class="${isJoint?'rampsens-joint':''}"><td><b>${r.sc.name}</b></td><td style="color:var(--ink-soft)">${r.sc.note}</td>`+
-       `<td class="r mono">${Math.round(r.fleet/1000)}k</td><td class="r mono"><b>$${r.arr.toFixed(1)}B</b></td>`+
-       `<td class="r mono" style="color:${isBase?'var(--ink-soft)':r.d<0?'var(--neg-ink)':'var(--pos-ink)'}">${isBase?'—':(r.d>=0?'+':'')+r.d.toFixed(0)+'%'}</td></tr>`;});
-  return h+`</tbody></table>`;
-}
-
-/* ---- lag chart: the execution story, drawn. The capacity panel states that the gap between
-   energised and earning IS the story, then asks the reader to subtract two step curves by eye.
-   This puts that gap on length, zero-anchored at power-on, one row per tranche, chronological. ---- */
-function rampLagRows(R){
-  const cal=(R.calibration&&R.calibration.rampMult)||1;
-  return R.tranches.map(t=>{
-    const build=RAMP_QS(t.rev)-RAMP_QS(t.energize);
-    const nC=Math.max(1,Math.ceil(t.rampQtrs)),nU=Math.max(1,Math.ceil(t.rampQtrs*cal));
-    let sell=null;
-    for(let k=1;k<60;k++){const f=t.ctr*Math.min(k/nC,1)+(1-t.ctr)*Math.min(k/nU,1);if(f>=0.9){sell=k;break;}}
-    return {t,build,sell:sell||0,tot:build+(sell||0)};
-  }).sort((x,y)=>RAMP_QS(x.t.energize)-RAMP_QS(y.t.energize));
-}
-function rampLagHTML(R){
-  const rows=rampLagRows(R);
-  const W=RAMP_GEO.W,ml=196,mr=RAMP_GEO.mr,rowH=13,mt=30,mb=26,H=mt+rows.length*rowH+mb;
-  const maxQ=Math.max(...rows.map(r=>r.tot))+1;
-  const X=q=>ml+q*((W-ml-mr)/maxQ);
-  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
-  let s='';
-  for(let q=0;q<=maxQ;q+=2){s+=`<line x1="${X(q).toFixed(1)}" y1="${mt-6}" x2="${X(q).toFixed(1)}" y2="${H-mb+4}" style="stroke:var(--line);stroke-width:1"/>`+
-    `<text x="${X(q).toFixed(1)}" y="${H-mb+16}" text-anchor="middle" ${tx}>${q===0?'power on':q}</text>`;}
-  s+=`<text x="${X(maxQ).toFixed(1)}" y="${(mt-14).toFixed(1)}" text-anchor="end" ${tx}>quarters after power on</text>`;
-  let lastCamp=null;
-  rows.forEach((r,i)=>{
-    const y=mt+i*rowH, g=RAMP_GEN[r.t.gen];
-    const nm=r.t.n.replace(/\s*\([^)]*\)/,'');
-    s+=`<text x="${(ml-8).toFixed(1)}" y="${(y+8.5).toFixed(1)}" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">${nm.length>30?nm.slice(0,29)+'\u2026':nm}</text>`;
-    if(r.t.campus!==lastCamp){lastCamp=r.t.campus;
-      s+=`<line x1="0" y1="${(y).toFixed(1)}" x2="${(W-mr).toFixed(1)}" y2="${(y).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`;}
-    s+=`<rect x="${X(0).toFixed(1)}" y="${(y+2).toFixed(1)}" width="${Math.max(X(r.build)-X(0),1.5).toFixed(1)}" height="7" fill="var(--ink-soft)"/>`;
-    s+=`<rect x="${X(r.build).toFixed(1)}" y="${(y+2).toFixed(1)}" width="${(X(r.tot)-X(r.build)).toFixed(1)}" height="7" fill="${g.c}" opacity="0.85"/>`;
-    s+=`<text x="${(X(r.tot)+5).toFixed(1)}" y="${(y+8.5).toFixed(1)}" ${tx}>${r.tot}q</text>`;
-    const tip=`<b>${r.t.n}</b><br>${r.t.campus} · ${g.n}<br>power on ${r.t.energize} → first revenue ${r.t.rev}<br><b>${r.build}q</b> to commission, <b>${r.sell}q</b> to reach 90% of run-rate<br>${Math.round(r.t.ctr*100)}% contracted at commissioning${(r.t.signed||0)>0?' · signed today':''}<br><span style="color:var(--ink-soft)">contracted capacity bills on acceptance; the rest must be sold down</span>`;
-    s+=`<rect x="${ml}" y="${y}" width="${W-ml-mr}" height="${rowH}" fill="transparent" style="cursor:pointer" onmousemove="rampTip(event,'${rampTipEsc(tip)}')" onmouseleave="rampTipHide()" onclick="rampSelect(${R.tranches.indexOf(r.t)})"/>`;
-  });
-  const med=a2=>{const z=[...a2].sort((p,q)=>p-q);return z[Math.floor(z.length/2)];};
-  const early=med(rows.slice(0,10).map(r=>r.tot)),late=med(rows.slice(-10).map(r=>r.tot));
-  s+=`<line x1="${X(early).toFixed(1)}" y1="${mt}" x2="${X(early).toFixed(1)}" y2="${(mt+10*rowH).toFixed(1)}" style="stroke:var(--ink);stroke-width:1.4;stroke-dasharray:3 2"/>`;
-  s+=`<line x1="${X(late).toFixed(1)}" y1="${(H-mb-10*rowH).toFixed(1)}" x2="${X(late).toFixed(1)}" y2="${(H-mb).toFixed(1)}" style="stroke:var(--ink);stroke-width:1.4;stroke-dasharray:3 2"/>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Quarters from power on to 90% of run-rate, by tranche, in chronological order"><title>Execution lag by tranche</title><desc>Horizontal bars measuring quarters from energisation to 90 per cent of full run-rate, one row per tranche in chronological order. The dark segment is commissioning; the coloured segment is sell-down. Median lag rises from ${early} quarters for the first ten tranches to ${late} for the last ten, because later capacity is less contracted.</desc>${s}</svg>`;
-}
-
-/* ---- bridge: what has to be true for the model and not the street. The page asserted a divergence
-   and displayed it; this decomposes it into named, separately-arguable components on one $ axis. ---- */
-function rampBridgeHTML(Q,R){
-  const hard=Q.filter(q=>q.consAI!=null&&q.s<=RAMP_CONS_HARD);
-  if(!hard.length)return '';
-  const q=hard[hard.length-1];                       // last quarter the panel is deep enough to compare
-  const signed=q.revS, ctr=q.revC-q.revS, spot=q.rev-q.revC, cons=q.consAI;
-  const steps=[
-    {k:'signed',   v:signed, lab:'signed today',        note:'contracts already inked'},
-    {k:'leaseup',  v:ctr,    lab:'+ modelled lease-up', note:'capacity this model assumes gets contracted'},
-    {k:'spot',     v:spot,   lab:'+ uncontracted / spot',note:'sold at the spot rate, 65% utilisation'},
-  ];
-  const {W,ml,mr}=RAMP_GEO,H=210,mt=34,mb=30,ph=H-mt-mb;
-  const max=Math.max(q.rev,cons)*1.15;
-  const n=steps.length+2, slot=(W-ml-mr)/n, bw=slot*0.55;
-  const X=i=>ml+i*slot+slot/2, Y=v=>mt+ph-(v/max)*ph;
-  const tx='style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-soft)"';
-  let s='';
-  for(let k=0;k<=max;k+=1000){s+=`<line x1="${ml}" y1="${Y(k).toFixed(1)}" x2="${W-mr}" y2="${Y(k).toFixed(1)}" style="stroke:var(--line);stroke-width:1"/>`+
-    `<text x="${ml-6}" y="${(Y(k)+3).toFixed(1)}" text-anchor="end" ${tx}>${k===0?'0':'$'+(k/1000).toFixed(0)+'B'}</text>`;}
-  let run=0;
-  steps.forEach((st,i)=>{
-    const y0=Y(run), y1=Y(run+st.v);
-    s+=`<rect x="${(X(i)-bw/2).toFixed(1)}" y="${y1.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(y0-y1,1).toFixed(1)}" fill="${i===0?'var(--indigo)':i===1?'url(#rampBridgeHatch)':'var(--line)'}" style="stroke:var(--card);stroke-width:1"/>`;
-    if(i<steps.length-1)s+=`<line x1="${(X(i)+bw/2).toFixed(1)}" y1="${y1.toFixed(1)}" x2="${(X(i+1)-bw/2).toFixed(1)}" y2="${y1.toFixed(1)}" style="stroke:var(--ink-soft);stroke-width:1;stroke-dasharray:2 2"/>`;
-    s+=`<text x="${X(i).toFixed(1)}" y="${(y1-6).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">$${Math.round(st.v)}M</text>`;
-    s+=`<text x="${X(i).toFixed(1)}" y="${(H-mb+14).toFixed(1)}" text-anchor="middle" ${tx}>${st.lab}</text>`;
-    run+=st.v;
-  });
-  // model total, then the street beside it — the comparison as two bars on one zero-anchored axis
-  const iM=steps.length, iS=steps.length+1;
-  s+=`<rect x="${(X(iM)-bw/2).toFixed(1)}" y="${Y(run).toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(0)-Y(run)).toFixed(1)}" fill="var(--indigo)" opacity="0.55" style="stroke:var(--card);stroke-width:1"/>`;
-  s+=`<text x="${X(iM).toFixed(1)}" y="${(Y(run)-6).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">$${Math.round(run)}M</text>`;
-  s+=`<text x="${X(iM).toFixed(1)}" y="${(H-mb+14).toFixed(1)}" text-anchor="middle" ${tx}>model</text>`;
-  s+=`<rect x="${(X(iS)-bw/2).toFixed(1)}" y="${Y(cons).toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(0)-Y(cons)).toFixed(1)}" fill="var(--ink-soft)" opacity="0.45" style="stroke:var(--card);stroke-width:1"/>`;
-  s+=`<text x="${X(iS).toFixed(1)}" y="${(Y(cons)-6).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)">$${Math.round(cons)}M</text>`;
-  s+=`<text x="${X(iS).toFixed(1)}" y="${(H-mb+14).toFixed(1)}" text-anchor="middle" ${tx}>street</text>`;
-  const d=(run/cons-1)*100;
-  s+=`<text x="${ml}" y="${(mt-16).toFixed(1)}" style="font-family:var(--mono);font-size:10px;fill:var(--ink)">${q.lbl} · model ${d>=0?'+':''}${d.toFixed(0)}% vs street</text>`;
-  const defs=`<defs><pattern id="rampBridgeHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#E9E4DA"/><rect width="2.4" height="6" fill="#7D90A0"/></pattern></defs>`;
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Bridge from signed revenue to the street comparison"><title>What has to be true: signed revenue bridged to the model total and the street</title><desc>Waterfall for ${q.lbl}. Signed contracts $${Math.round(signed)}M, plus modelled lease-up $${Math.round(ctr)}M, plus uncontracted spot $${Math.round(spot)}M, gives a model total of $${Math.round(run)}M against a street AI-cloud consensus of $${Math.round(cons)}M.</desc>${defs}${s}</svg>`;
-}
-/* ---- interactions ---- */
-function rampSeek(v,keepPlay){RAMP_T=Math.max(RAMP_START,Math.min(RAMP_END,+v));if(!keepPlay)rampStop();rampApply();}
-function rampSeekQ(i){rampSeek(RAMP_START+i);}
-
-function rampRevMode(m){if(m===RAMP_REV_MODE)return;RAMP_REV_MODE=m;
-  const holder=document.getElementById('rampRevWrap');if(!holder||!RAMP_CTX)return;
-  holder.innerHTML=rampRevHTML(RAMP_CTX.Q,m)+'<div class="bo-tip"></div>';
-  document.querySelectorAll('[data-rm]').forEach(b=>b.classList.toggle('on',b.dataset.rm===m));
-  const lg=document.getElementById('rampRevLeg');if(lg)lg.innerHTML=rampRevLegend(m);
-  RAMP_CUR=-1;rampApply();
-  if(RAMP_SEL!=null){const keep=RAMP_SEL;RAMP_SEL=null;rampSelect(keep,true);}}
-function rampRevLegend(m){
-  const genLeg=Object.entries(RAMP_GEN).map(([k,g])=>`<span class="bo-leg"><i style="background:${g.c}"></i>${g.n}</span>`).join('');
-  const lineLeg=(col,lab)=>`<span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed ${col}"></i>${lab}</span>`;
-  return m==='street'
-    ?`<span class="bo-leg"><i style="height:2px;border-radius:0;background:var(--indigo)"></i>model — AI cloud</span>${lineLeg('var(--ink-soft)','consensus — AI cloud (Bloomberg)')}<span class="bo-leg"><i style="background:rgba(91,122,92,.4)"></i>model above street</span><span class="bo-leg"><i style="background:rgba(170,107,79,.4)"></i>below</span>`
-    :`${genLeg}<span class="bo-leg"><i style="background:var(--far)"></i>BTC mining (residual)</span>${lineLeg('var(--ink-soft)','consensus — AI cloud (Bloomberg)')}`;}
-function rampStop(){if(RAMP_INTRO_TO){clearTimeout(RAMP_INTRO_TO);RAMP_INTRO_TO=0;}
-  RAMP_PLAYING=false;if(RAMP_RAF)cancelAnimationFrame(RAMP_RAF);if(RAMP_IV)clearInterval(RAMP_IV);RAMP_RAF=0;RAMP_IV=null;
-  const b=document.getElementById('rampPlayBtn');if(b)b.textContent=(RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play';}
-function rampPlay(){
-  if(RAMP_PLAYING){rampStop();return;}
-  if(RAMP_T>=RAMP_END-0.01)RAMP_T=RAMP_START;
-  RAMP_PLAYING=true;const b=document.getElementById('rampPlayBtn');if(b)b.textContent='❚❚ pause';
-  if(reduce){rampApply();RAMP_IV=setInterval(()=>{RAMP_T=Math.min(RAMP_END,Math.round(RAMP_T)+1);rampApply();if(RAMP_T>=RAMP_END)rampStop();},700);return;}
-  RAMP_LASTF=performance.now();
-  const step=now=>{if(!RAMP_PLAYING)return;const dt=Math.min((now-RAMP_LASTF)/1000,0.1);RAMP_LASTF=now;
-    RAMP_T=Math.min(RAMP_END,RAMP_T+dt*1.6);rampApply();
-    if(RAMP_T>=RAMP_END){rampStop();return;}RAMP_RAF=requestAnimationFrame(step);};
-  RAMP_RAF=requestAnimationFrame(step);
-}
-function rampHoverQ(i){const C=RAMP_CTX;if(!C)return;const F=RAMP_F;
-  const set=(id,x,w)=>{const el=document.getElementById(id);if(el){el.setAttribute('x',x);el.setAttribute('width',w);}};
-  const half=((F.W-F.ml-F.mr)/(C.Q.length-1))/2;
-  set('rampHLF',F.X(i)-half,half*2);
-  set('rampHLR',F.rX(i)-F.rslot/2,F.rslot);
-  const gw=(RAMP_GANTT.W-RAMP_GANTT.ml-RAMP_GANTT.mr)/(C.Q.length-1);
-  if(RAMP_GANTT.X)set('rampHLG',RAMP_GANTT.X(i)-gw/2,gw);}
-function rampHoverClear(){['rampHLF','rampHLR','rampHLG'].forEach(id=>{const el=document.getElementById(id);if(el)el.setAttribute('width',0);});}
-function rampSelect(ti,noScroll){
-  const C=RAMP_CTX;if(!C)return;
-  RAMP_SEL=(RAMP_SEL===ti)?null:ti;
-  document.querySelectorAll('#ramp-body [data-ti]').forEach(el=>{el.style.opacity=(RAMP_SEL==null||+el.dataset.ti===RAMP_SEL)?'':'0.12';});
-  const card=document.getElementById('rampSelCard');
-  const setD=(id,d,col)=>{const el=document.getElementById(id);if(el){el.setAttribute('d',d);if(col)el.style.stroke=col;}};
-  if(RAMP_SEL==null){if(card)card.style.display='none';setD('rampSelF','');setD('rampSelF0','');setD('rampSelR','');setD('rampSelR0','');return;}
-  const t=C.R.tranches[RAMP_SEL],F=RAMP_F;
-  const pts=C.Q.map((q,i)=>rampTrancheAt(C.R,t,q.s));
-  const df='M'+C.Q.map((q,i)=>`${F.X(i).toFixed(1)},${F.Y(Math.min(pts[i].g,F.max)).toFixed(1)}`).join(' L');
-  const dr='M'+C.Q.map((q,i)=>`${F.rX(i).toFixed(1)},${F.rY(Math.min(pts[i].r,F.rmax)).toFixed(1)}`).join(' L');
-  const col=RAMP_GEN[t.gen].c;
-  setD('rampSelF0',df);setD('rampSelF',df,col);setD('rampSelR0',dr);setD('rampSelR',dr,col);
-  const peak=Math.max(...pts.map(p=>p.r));
-  const f=(a,b,note)=>`<div class="cstep"><span>${a}</span><span class="cval">${b}</span><span class="cnote">${note||''}</span></div>`;
-  card.style.display='';
-  card.innerHTML=`<div class="sitecalc">`+
-    `<div class="cstep tot"><span>${t.n}</span><span class="cval">${t.campus}</span><span class="cnote"><a href="#ramp" onclick="rampSelect(${RAMP_SEL});return false" style="color:var(--indigo)">✕ clear spotlight</a></span></div>`+
-    f('Generation',RAMP_GEN[t.gen].n)+f('Power',`${t.grossMW}MW gross · ${t.itMW}MW critical IT`)+
-    f('Fleet',`${(t.gpus/1000).toFixed(0)}k GPUs`,`${((t.gpus/C.Q[C.Q.length-1].cum)*100).toFixed(0)}% of the YE-30 fleet`)+
-    f('Energised',t.energize)+f('First revenue',t.rev,`${t.rampQtrs}-quarter ramp to full`)+
-    f('Contract',(t.signed||0)>0?`signed today — ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`:`uncontracted today — modelled ${Math.round(t.ctr*100)}% @ $${t.rate.toFixed(2)}/GPU-hr`,(t.signed||0)>0?'take-or-pay, bills 8,760 hr/yr':'rest earns effective spot')+
-    f('Peak quarter',`$${Math.round(peak)}M revenue`)+
-    `</div>`;
-  if(!noScroll)card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
-}
-function rampApply(){
-  const C=RAMP_CTX;if(!C)return;
-  const T=Math.max(RAMP_START,Math.min(RAMP_END,RAMP_T)),cur=Math.min(RAMP_END,Math.round(T)),q=C.Q[cur-RAMP_START];
-  // every frame: clips, sweep, scrubber fill
-  const gx=RAMP_GANTT.X?RAMP_GANTT.X(Math.max(0,T-RAMP_START)):0;
-  const gr=document.getElementById('rampClipGR');if(gr)gr.setAttribute('width',gx.toFixed(1));
-  const sl=document.getElementById('rampSweepGL');
-  if(sl){sl.setAttribute('x1',gx.toFixed(1));sl.setAttribute('x2',gx.toFixed(1));}
-  const chip=document.getElementById('rampSweepChip');
-  if(chip)chip.setAttribute('transform',`translate(${Math.max(RAMP_GANTT.ml+26,Math.min(gx,RAMP_GANTT.W-30)).toFixed(1)},0)`);
-  // at the end of the ramp the clip opens to the full canvas, so end-of-line labels in the right margin are not cut
-  const F=RAMP_F,fx=T>=RAMP_END-0.001?F.W:F.X(Math.max(0,T-RAMP_START))+((F.W-F.ml-F.mr)/(C.Q.length-1))/2;
-  const fr=document.getElementById('rampClipFR');if(fr)fr.setAttribute('width',fx.toFixed(1));
-  const rx=F.rX(Math.max(0,T-RAMP_START))+F.rslot/2;
-  const rr=document.getElementById('rampClipRR');if(rr)rr.setAttribute('width',rx.toFixed(1));
-  const rg=document.getElementById('rampRange');
-  if(rg){rg.value=T;const p=((T-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(2);
-    rg.style.background=`linear-gradient(to right,var(--indigo) ${p}%,var(--line) ${p}%)`;}
-  // quarter-keyed writes: only when the displayed quarter actually changes
-  if(cur===RAMP_CUR)return;
-  RAMP_CUR=cur;
-  const st=document.getElementById('rampSweepGT');if(st)st.textContent=RAMP_QL(cur);
-  const qn=document.getElementById('rampQnow');if(qn)qn.textContent=RAMP_QL(cur);
-  const S=(id,v)=>{const el=document.getElementById(id);if(!el)return;el.textContent=v;
-    if(!reduce){el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');}};
-  S('rs-gpu',(q.cum/1000).toFixed(q.cum<100000?1:0)+'k');
-  S('rs-mw',Math.round(q.grossMW).toLocaleString());
-  S('rs-it',Math.round(q.itMW).toLocaleString());
-  S('rs-rev','$'+Math.round(q.rev+q.mining).toLocaleString()+'M');
-  S('rs-blend','$'+q.blend.toFixed(2));
-  S('rs-sign',q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—');
-  const qp=cur>RAMP_START?C.Q[cur-RAMP_START-1]:null;
-  const D=(id,v,fmt)=>{const el=document.getElementById(id+'-d');if(!el)return;
-    if(qp==null||v==null||Math.abs(v)<1e-9){el.textContent='';return;}
-    el.textContent=(v>0?'+':'−')+fmt(Math.abs(v))+' q/q';el.style.color=v>0?'var(--pos-ink)':'var(--neg-ink)';};
-  D('rs-gpu',qp?q.cum-qp.cum:null,v=>(v/1000).toFixed(1)+'k');
-  D('rs-mw',qp?q.grossMW-qp.grossMW:null,v=>Math.round(v).toLocaleString());
-  D('rs-it',qp?q.itMW-qp.itMW:null,v=>Math.round(v).toLocaleString());
-  D('rs-rev',qp?(q.rev+q.mining)-(qp.rev+qp.mining):null,v=>'$'+Math.round(v).toLocaleString()+'M');
-  D('rs-blend',qp?q.blend-qp.blend:null,v=>'$'+v.toFixed(2));
-  let d=q.consAI!=null?q.rev/q.consAI-1:null,dLbl=null;
-  if(d==null){const lastC=[...C.Q].reverse().find(x=>x.consAI!=null&&x.s<=cur);
-    if(lastC){d=lastC.rev/lastC.consAI-1;dLbl=lastC.lbl;}}
-  S('rs-street',d==null?'—':(d>=0?'+':'')+Math.round(d*100)+'%'+(dLbl?'*':''));
-  const stLab=document.querySelector('#rs-street')?.previousElementSibling;
-  if(stLab)stLab.textContent=dLbl?`vs street (${dLbl})`:'vs street';
-  const rsEl=document.getElementById('rs-street');if(rsEl)rsEl.style.color=d==null?'':(d>=0?'var(--pos-ink)':'var(--neg-ink)');
-  // the dispatch
-  const cc=document.getElementById('rampCall');
-  if(cc){const evs=C.EV[cur]||[];const nxt=C.EV[cur+1]||[];
-    const PILL={power:['disclosed','power'],rev:['estimated','revenue'],mile:['rumored','milestone']};
-    cc.innerHTML=`<div class="cq">${RAMP_QL(cur)} · dispatch</div>`+
-      (evs.length?evs.map((e,i)=>`<div class="rampev" style="${reduce?'':`animation-delay:${i*60}ms`}"><span class="prov ${PILL[e.k][0]}">${PILL[e.k][1]}</span><span>${e.t}</span></div>`).join(''):`<div class="rampev" style="color:var(--ink-soft)">quiet quarter — capacity ramps, revenue compounds</div>`)+
-      (nxt.length?`<div class="rampnext">next quarter: ${nxt[0].t}${nxt.length>1?` (+${nxt.length-1} more)`:''}</div>`:'');}
-  if(C.rows)C.rows.forEach((tr,i)=>tr.classList.toggle('ramp-now',i===cur-RAMP_START));
-}
-function renderRamp(){
-  const body=document.getElementById('ramp-body');if(!body)return;
-  rampStop();
-  const cos=COMPANIES.filter(c=>c.ramp);
-  if(!cos.length){body.innerHTML='<div class="legend2">no ramp models yet — built per GPU-cloud name from the quarterly research overlay</div>';RAMP_CTX=null;return;}
-  const c=cos.find(x=>x.tk===rampCo)||cos[0];rampCo=c.tk;
-  const R=c.ramp,Q=rampQuarters(R),EV=rampEvents(R,Q),BT=rampBacktest(R);
-  const last=Q[Q.length-1],signedK=Math.round(R.tranches.reduce((a,t)=>a+t.gpus*(t.signed||0),0)/1000);
-  const secured=(c.sites||[]).reduce((a,s)=>a+s.mw,0);
-  const genLeg=Object.entries(RAMP_GEN).map(([k,g])=>`<span class="bo-leg"><i style="background:${g.c}"></i>${g.n}</span>`).join('');
-  const hatchLeg=`<span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--far) 0 2px,var(--paper) 2px 4px);border:1px solid var(--line)"></i>pale hatch = uncontracted today (always lighter than any solid bar)</span>`;
-  const lineLeg=(col,lab)=>`<span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed ${col}"></i>${lab}</span>`;
-  let h=`<div style="margin:0 4px 12px">${cos.map(x=>`<button class="tab ${x.tk===rampCo?'on':''}" data-rc="${x.tk}">${x.tk}</button>`).join(' ')}<span style="font-size:11px;color:var(--ink-soft);margin-left:10px">model as of ${R.asOf}</span></div>`;
-  const jointSc=(R.scenarios||[]).find(x=>x.id==='joint');
-  const jl=jointSc?rampQuarters(R,jointSc).slice(-1)[0]:null;
-  const jointARR=jl?((jl.rev+jl.mining)*4/1000):null;
-  const lastSignedPct=last.rev>0?Math.round(last.revS/last.rev*100):0;
-  h+=`<div class="rampanswer"><div class="rampanswer-n">$${(last.rev*4/1000).toFixed(1)}B<span>exit ARR 2030, base case</span></div>`+
-     `<div class="rampanswer-b"><b>${jointARR?'$'+jointARR.toFixed(1)+'B':'—'}</b> on the joint downside · <b>${lastSignedPct}%</b> of 2030 revenue is covered by contracts signed today`+
-     `${BT?` · retrodicts reported quarters to <b>${BT.mape.toFixed(0)}%</b> mean error`:''}</div></div>`;
-  h+=`<div class="ssummary" style="margin:4px 4px 12px"><span>secured power <b>${(secured/1000).toFixed(1)} GW</b></span><span>modelled in-window <b>${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)} GW</b></span><span>GPUs 26Q3 <b>${(Q[0].cum/1000).toFixed(1)}k</b> → YE-30 <b>~${Math.round(last.cum/1000)}k</b></span><span>signed book today <b>~${signedK}k GPUs</b></span><span>exit ARR 2030 <b>$${(last.rev*4/1000).toFixed(1)}B</b> @ $${last.blend.toFixed(2)}/GPU-hr</span></div>`;
-  // the time machine
-  h+=`<div class="bo-head" style="margin:2px 4px 4px"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--indigo-soft);border-radius:50%;width:7px;height:7px"></i>power on</span><span class="bo-leg"><i style="background:var(--gold);border-radius:50%;width:7px;height:7px"></i>first revenue</span><span class="bo-leg"><i style="background:var(--clay);border-radius:50%;width:7px;height:7px"></i>milestone</span><span class="bo-leg" style="color:var(--ink-soft)">click a dot to jump the timeline</span></div></div>`;
-  h+=`<div class="rampbar"><button class="rampplay" id="rampPlayBtn">${(RAMP_T==null||RAMP_T>=RAMP_END-0.01)?'↺ replay the build-out':'▶ play'}</button><div class="ramptrack"><div class="rampflags">`+
-    Object.keys(EV).map(s=>{const kinds=[...new Set(EV[s].map(e=>e.k))];const col=kinds.includes('mile')?'var(--clay)':kinds.includes('rev')?'var(--gold)':'var(--indigo-soft)';
-      return `<i class="rampflag" style="left:${(((+s)-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%;background:${col}" title="${RAMP_QL(+s)}: ${rampTipEsc(EV[s].map(e=>e.t).join(' · '))}" onclick="rampSeek(${s})"></i>`;}).join('')+
-    `</div><input type="range" id="rampRange" min="${RAMP_START}" max="${RAMP_END}" step="0.05" value="${RAMP_END}" aria-label="Timeline scrubber — drag to replay the build-out"><div class="rampyears">`+
-    [2027,2028,2029,2030].map(y=>`<span style="left:${(((y-2026)*4+1-RAMP_START)/(RAMP_END-RAMP_START)*100).toFixed(1)}%">${y}</span>`).join('')+
-    `</div></div><span class="qnow" id="rampQnow">${RAMP_QL(RAMP_END)}</span></div>`;
-  // live state panel
-  h+=`<div class="rampstats">`+[['rs-gpu','GPUs earning'],['rs-mw','gross MW energised'],['rs-it','critical IT MW active'],['rs-rev','revenue / qtr'],['rs-blend','blend $/GPU-hr'],['rs-sign','fleet signed today'],['rs-street','vs street']].map(([id,lab])=>`<div class="rampstat"><span>${lab}</span><b id="${id}">—</b><i id="${id}-d"></i></div>`).join('')+`</div>`;
-  h+=`<div class="rampcall" id="rampCall"></div>`;
-  h+=`<h4 class="sec">Coverage — how much of this is already sold</h4>`;
-  h+=`<div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--indigo)"></i>signed today</span><span class="bo-leg"><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 2px,transparent 2px 4px);border:1px solid var(--line)"></i>modelled contracted at commissioning</span><span class="bo-leg"><i style="background:var(--line)"></i>uncontracted / spot</span></div></div>`;
-  h+=`<div class="bo-wrap">${rampCoverageHTML(Q)}<div class="bo-tip"></div></div>`;
-  h+=`<div class="legend2" style="margin:4px 4px 0">Bars are <b>dollars</b>, so the growing denominator stays visible; the line is the <b>signed share</b> of those dollars on the right-hand axis. The signed band is close to flat in absolute terms while the total grows \u2014 signed volume is not rolling off, the base is outrunning it. A percentage-only view renders those two cases identically, which is why both are shown together. Measured on <b>revenue</b>, the conservative reading: 22% of the 2030 fleet by GPU count is <b>17% by revenue</b>. Everything above the solid band carries no signature today.</div>`;
-  h+=`<h4 class="sec">Backtest — does the chain reproduce what IREN has already reported?</h4>`;
-  h+=rampBacktestHTML(BT,R);
-  h+=`<h4 class="sec">01 · Concrete — power arriving, and how much of it earns</h4>
-    <div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:rgba(55,73,91,.10);border:1px solid var(--indigo-soft)"></i>energised (gross MW)</span><span class="bo-leg"><i style="background:rgba(55,73,91,.30)"></i>commissioned (critical IT MW)</span><span class="bo-leg"><i style="background:var(--indigo)"></i>earning (critical IT MW)</span><span class="bo-leg"><i style="height:0;border-radius:0;border-top:2px dashed var(--indigo-soft)"></i>company commitments</span></div></div><div class="bo-wrap">${rampGanttHTML(R,Q)}<div class="bo-tip"></div></div>`;
-  h+=`<div id="rampSelCard" style="display:none;margin:10px 4px 0"></div>`;
-  h+=`<div class="legend2" style="margin:6px 4px 0">Every quantity sits on one labelled megawatt axis — the gap between the bands IS the execution story: power energises first, commissions second, earns last. Only the 480MW YE-26 and 1,210MW YE-27 programs are company commitments; everything later is modelled cadence. Tranches sum to the ~${(R.tranches.reduce((a,t)=>a+t.grossMW,0)/1000).toFixed(1)}GW monetised in-window, a subset of the ${(secured/1000).toFixed(1)}GW secured-power site list.</div>`;
-  h+=`<div class="rampnote"><span class="k">assumption</span><span>A building takes <b>12–16 months</b> from groundbreak to first power at a new campus, then <b>6–8 weeks</b> per extra 50MW-IT hall once the template exists. IREN's record: Childress 0→750MW in 33 months; best four-quarter add <b>+550MW</b> (138MW/qtr). <b>This model asks 275MW/qtr average, 369MW/qtr peak — 2.0× and 2.7× that record</b>, across five campuses on three continents.</span></div>`;
-  h+=`<h4 class="sec">Execution lag — power on to earning, tranche by tranche</h4>`;
-  h+=`<div class="bo-head"><div class="bo-legend"><span class="bo-leg"><i style="background:var(--ink-soft)"></i>commissioning</span><span class="bo-leg"><i style="background:var(--gen-blackwell)"></i>sell-down to 90% of run-rate</span><span class="bo-leg" style="color:var(--ink-soft)">bar colour = silicon generation · click a row to spotlight it</span></div></div>`;
-  h+=`<div class="bo-wrap">${rampLagHTML(R)}<div class="bo-tip"></div></div>`;
-  h+=`<div class="legend2" style="margin:6px 4px 0"><b>The lag gets worse, and not because building gets harder.</b> Median time from power on to 90% of run-rate rises from <b>${(()=>{const r=rampLagRows(R).slice(0,10).map(x=>x.tot).sort((p,q)=>p-q);return r[Math.floor(r.length/2)];})()} quarters</b> for the first ten tranches to <b>${(()=>{const r=rampLagRows(R).slice(-10).map(x=>x.tot).sort((p,q)=>p-q);return r[Math.floor(r.length/2)];})()} quarters</b> for the last ten. Commissioning is a flat one-quarter modelling convention throughout; every bit of the deterioration is <b>sell-down</b>, because later tranches carry less contracted capacity and uncontracted megawatts take 4.4x longer to reach full rate. This is the execution story the capacity panel above states in prose — drawn as length on a zero-anchored axis rather than left as a gap between two step curves.</div>`;
-  h+=`<h4 class="sec">02 · Silicon — the fleet by generation</h4>
-    <div class="bo-head"><div class="bo-legend">${genLeg}${lineLeg('var(--ink)','contracted today (signed book)')}</div></div><div class="bo-wrap">${rampFleetHTML(Q)}<div class="bo-tip"></div></div>`;
-  h+=`<div class="legend2" style="margin:6px 4px 0">Stacked, so the <b>top edge is the fleet total</b>. A stack cannot draw a crossing, so the quarter Rubin's band passes Blackwell's is marked instead. The dashed line is the slice covered by contracts <b>signed today</b> — flat, because it does not grow with the build.</div>`;
-  h+=`<div class="rampnote"><span class="k">assumption</span><span>GPUs per megawatt is set by silicon, not trend: <b>Hopper 1.60 kW</b> per package → <b>Blackwell 2.48</b> → <b>Rubin 4.23</b> → <b>next-gen 6.30</b> (+55%, +71%, +49%). Anchored on IREN's disclosed <b>&gt;19,000 GB300 per 50MW-IT</b> Horizon building. A GPU is a <b>package</b>, never a die — counting dies would inflate the Rubin fleet <b>2.4×</b>.</span></div>`;
-  h+=`<h4 class="sec">03 · Money — revenue vs the street</h4>
-    <div class="bo-head"><div class="bo-toggle"><button class="bo-tog ${RAMP_REV_MODE==='gen'?'on':''}" data-rm="gen">by generation</button><button class="bo-tog ${RAMP_REV_MODE==='street'?'on':''}" data-rm="street">vs street</button></div><div class="bo-legend" id="rampRevLeg">${rampRevLegend(RAMP_REV_MODE)}</div></div><div class="bo-wrap" id="rampRevWrap">${rampRevHTML(Q,RAMP_REV_MODE)}<div class="bo-tip"></div></div>`;
-  h+=`<div class="rampnote"><span class="k">assumption</span><span>Commissioning is <b>regime-split</b>: contracted GPUs bill take-or-pay from acceptance (<b>1–3 quarters</b>); uncontracted capacity must be <b>sold down</b>, which the backtest fits at <b>4.4× slower</b> (~9–14 quarters). Rates: <b>3 of 9 vintages come off a dated print</b> (13% of 2030 revenue). <b>63% prices off Rubin-class or later silicon that nobody has publicly priced.</b></span></div>`;
-  h+=`<h4 class="sec">What has to be true — signed revenue bridged to the street</h4>`;
-  h+=`<div class="bo-wrap">${rampBridgeHTML(Q,R)}<div class="bo-tip"></div></div>`;
-  h+=`<div class="legend2" style="margin:6px 4px 0">The divergence decomposed at the last quarter where the consensus panel is deep enough to compare. Only the first bar is <b>signed</b>. The second is capacity this model assumes gets contracted; the third is sold at spot. A reader who accepts the first bar and rejects the second two lands on the street number — that is the whole argument, in one frame.</div>`;
-  h+=`<h4 class="sec">The quarterly table</h4><div style="overflow-x:auto"><table class="stab nosort"><thead><tr><th>Qtr</th><th class="r" title="Cumulative gross MW of every tranche whose energisation quarter has passed. A step function — it does not ramp.">Energised MW<br><span class="thsub">gross, step</span></th><th class="r" title="Critical IT MW actually serving revenue-generating GPUs: gross x the per-tranche derate (0.709 fleet-average) x the commissioning ramp. The ratio between this column and the one on its left is NOT the derate.">Critical IT MW<br><span class="thsub">ramp-weighted</span></th><th class="r">GPUs added</th><th class="r">GPUs cum</th><th class="r">Signed today</th><th class="r">Contracted (mod.)</th><th class="r" title="Revenue divided by (live GPUs x 8,760 hr). A billed-hours-equivalent rate on IREN's own ARR convention, not a realised market price: for uncontracted GPUs the ~65% sold-utilisation sits in the rate, not in the hours.">Blend $/GPU-hr<br><span class="thsub">billed-hours basis</span></th><th class="r">AI rev $M</th><th class="r">Total $M</th><th class="r" title="Bloomberg consensus AI Cloud Services line — the like-for-like comparator. The total-revenue line is not used: it still carries the street's mining assumption.">Consensus AI $M</th><th class="r" title="Model AI-cloud vs consensus AI-cloud. * marks quarters beyond 2029Q2 where the contributor panel thins to a handful and the comparison is indicative only.">Δ vs street</th></tr></thead><tbody>`;
-  Q.forEach(q=>{const tot=q.rev+q.mining;
-    h+=`<tr class="srow ramprow${q.s%4===1?' yrb':''}${q.s>RAMP_CONS_HARD?' softcons':''}" data-qs="${q.s}"><td class="mono">${q.lbl}</td><td class="r mono">${Math.round(q.grossMW).toLocaleString()}</td><td class="r mono">${Math.round(q.itMW).toLocaleString()}</td><td class="r mono">${q.added>0?'+'+Math.round(q.added/100)*100/1000+'k':'—'}</td><td class="r mono">${Math.round(q.cum/100)/10}k</td><td class="r mono">${q.cum>0?Math.round(q.signed/q.cum*100)+'%':'—'}</td><td class="r mono">${q.cum>0?Math.round(q.ctr/q.cum*100)+'%':'—'}</td><td class="r mono">${q.blend.toFixed(2)}</td><td class="r mono">${Math.round(q.rev).toLocaleString()}</td><td class="r mono"><b>${Math.round(tot).toLocaleString()}</b></td><td class="r mono">${q.consAI!=null?Math.round(q.consAI).toLocaleString():'—'}</td><td class="r mono" style="${q.consAI?('color:'+((q.rev/q.consAI-1)>=0?'var(--pos-ink)':'var(--neg-ink)')):''}">${q.consAI?((q.rev/q.consAI-1)>=0?'+':'')+Math.round((q.rev/q.consAI-1)*100)+'%'+(q.s>RAMP_CONS_HARD?'*':''):'—'}</td></tr>`;});
-  h+=`</tbody></table></div>`;
-  h+=`<h4 class="sec">The chain — every link, its transfer function and its marked assumption</h4>`;
-  h+=rampChainHTML(R);
-  h+=`<h4 class="sec">Sensitivity — what each assumption is worth</h4>`;
-  h+=rampSensHTML(R);
-  h+=`<div class="legend2" style="margin-top:10px">Each scenario re-runs the whole chain; only the named input changes. <b>Joint downside</b> is the honest bear case: the individually-defensible assumptions taken together, because they are not independent — a slower ramp, flatter pricing and weaker lease-up are the same demand environment. The answer is most sensitive to <b>pricing</b> and <b>lease-up</b>, not to construction.</div>`;
-  h+=`<div class="legend2" style="margin-top:12px"><b>Basis.</b> ${R.basis}</div>`;
-  h+=`<div class="legend2" style="margin-top:6px"><b>Consensus.</b> ${R.consensusSource}</div>`;
-  body.innerHTML=h;
-  RAMP_SEL=null;RAMP_CUR=-1;
-  RAMP_CTX={Q,EV,R,rows:[...body.querySelectorAll('tr.ramprow')]};
-  body.querySelectorAll('[data-rc]').forEach(b=>b.addEventListener('click',()=>{rampCo=b.dataset.rc;RAMP_T=RAMP_END;renderRamp();}));
-  body.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>rampRevMode(b.dataset.rm)));
-  const btn=document.getElementById('rampPlayBtn');if(btn)btn.addEventListener('click',rampPlay);
-  const rg=document.getElementById('rampRange');if(rg)rg.addEventListener('input',()=>rampSeek(rg.value));
-  RAMP_CTX.rows.forEach(tr=>tr.addEventListener('click',()=>rampSeek(+tr.dataset.qs)));
-  if(RAMP_T==null)RAMP_T=RAMP_END;
-  rampApply();   // land on the full 2030 picture; the replay button is the movie
-}
-/* ---- checks page: the live data test suite (same code as `node checks.js`) ---- */
-let RAW_DATA=null;
-function checkAge(iso){if(!iso)return {t:'never',cls:'bad'};const d=Math.round((Date.now()-new Date(iso))/86400000);return {t:d+'d ago',cls:d>60?'bad':d>30?'mid':'ok'};}
-function updateChecksBadge(r){const el=document.getElementById('tabbadge');if(!el)return;
-  el.className='cbadge '+(r.summary.fail?'bad':r.summary.warn?'mid':'ok');
-  el.textContent=r.summary.fail?r.summary.fail+' fail':r.summary.warn?r.summary.warn+' warn':'✓';}
-function renderChecks(){
-  const body=document.getElementById('checks-body');if(!body||!RAW_DATA||typeof ChecksCore==='undefined')return;
-  // include the portfolio-ledger group once portfolio files are loaded (portfolio-ui.js re-renders
-  // on arrival). Never re-trigger a failed load from here — that would loop; retry lives on the tab.
-  const pfFiles=(typeof PF!=='undefined'&&PF&&PFH)?{portfolio:PF,history:PFH}:null;
-  if(!pfFiles&&typeof loadPortfolio==='function'&&typeof PF_ERR!=='undefined'&&!PF_ERR&&!PF_LOADING)loadPortfolio();
-  const r=ChecksCore.runChecks(RAW_DATA,undefined,pfFiles);updateChecksBadge(r);
-  const esc=t=>String(t).replace(/</g,'&lt;');
-  let h=`<div class="ck-verdict ${r.summary.fail?'bad':'ok'}">${r.summary.fail?'✗':'✓'} ${r.summary.checksRun.toLocaleString()} checks · ${r.summary.companies} companies · ${r.summary.sites} sites — <b>${r.summary.fail} FAIL</b> · ${r.summary.warn} warn · checked just now, in this browser, against the deployed data</div>`;
-  // group cards
-  h+=`<h4 class="sec">What is checked</h4><div class="ck-groups">`;
-  r.groupOrder.forEach(k=>{const g=r.groups[k];const st=g.fail?'bad':g.warn?'mid':'ok';
-    h+=`<div class="ck-g"><div class="ck-g-head"><span class="ck-dot ${st}"></span><b>${g.name}</b><span class="ck-n">${g.pass}/${g.total} pass${g.warn?` · ${g.warn} warn`:''}${g.fail?` · ${g.fail} FAIL`:''}</span></div><div class="ck-guard">${g.guards}</div></div>`;});
-  h+=`</div>`;
-  // findings
-  if(r.msgs.length){h+=`<h4 class="sec">Findings (${r.msgs.length})</h4><div class="ck-msgs">`;
-    r.msgs.forEach(m=>{h+=`<div class="ck-m ${m.level}"><span class="ck-lv">${m.level==='fail'?'FAIL':'warn'}</span><b>${m.tk}</b> ${esc(m.msg)}</div>`;});h+=`</div>`;}
-  // per-company matrix
-  const cols=r.groupOrder.filter(k=>k!=='config');
-  h+=`<h4 class="sec">Per company</h4><div style="overflow-x:auto"><table class="stab ck-mx"><thead><tr><th>Company</th>${cols.map(k=>`<th>${r.groups[k].name.split(' ')[0]}</th>`).join('')}<th class="r">Capital verified</th><th class="r">Contracts verified</th></tr></thead><tbody>`;
-  COMPANIES.forEach(c=>{const pc=r.perCo[c.tk]||{};const v=c.verified||{};const a1=checkAge(v.capital),a2=checkAge(v.contracts);
-    const cells=cols.map(k=>{const x=pc[k];if(!x||!(x.pass+x.warn+x.fail))return '<td class="ck-c">·</td>';
-      const st=x.fail?'bad':x.warn?'mid':'ok';const sym=x.fail?'✗':x.warn?'⚠':'✓';
-      const tip=x.msgs.length?` title="${esc(x.msgs.map(m=>m.msg).join(' · '))}"`:'';
-      return `<td class="ck-c ${st}"${tip}>${sym}${x.fail||x.warn?'<span class="ck-cn">'+(x.fail+x.warn)+'</span>':''}</td>`;}).join('');
-    h+=`<tr><td class="co">${c.tk}</td>${cells}<td class="r"><span class="ck-age ${a1.cls}">${a1.t}</span></td><td class="r"><span class="ck-age ${a2.cls}">${a2.t}</span></td></tr>`;});
-  h+=`</tbody></table></div><div class="legend2">✓ all assertions pass · ⚠ warnings (hover for detail) · ✗ failures. Verification ages: filings/contracts re-checked by the weekly sweep — <span class="ck-age ok">≤30d</span> <span class="ck-age mid">31–60d</span> <span class="ck-age bad">&gt;60d / never</span>. GPU pricing dials last checked vs market: <b>${RAW_DATA.config.verifiedPricing||'never'}</b>.</div>`;
-  // watch items
-  const wi=RAW_DATA.watchItems||[];
-  if(wi.length){h+=`<h4 class="sec">Open watch-items (${wi.length})</h4>`;wi.forEach(w=>{h+=`<div class="ck-m mid"><span class="ck-lv">watch</span><b>${w.tk}</b> ${esc(w.note)} <span class="ck-when">· ${w.added}</span></div>`;});}
-  h+=`<div class="legend2" style="margin-top:14px">Deterministic checks run in this browser via <b>checks-core.js</b> — the identical code <b>node checks.js</b> runs before every push. Research checks (fully-diluted shares vs filings, new issuance, contract announcements, GPU spot pricing) run in the weekly sweep, which updates the verification stamps above on approval.</div>`;
-  body.innerHTML=h;
-}
-// Value gauge: bar = our target value (split contracted-floor / expected / legacy), line = market price,
-// shaded gap = upside (green) or overvalued (red). Bar scaled per-row to max(price,target).
-function gaugeHTML(c,v,uniMax){
-  // Length must be comparable ROW TO ROW, so the track is our value as a MULTIPLE of today's price —
-  // not a per-share currency amount, which is an artefact of each company's share count. The market
-  // price therefore sits at the same x on every row (1.0x), and the gap to the bar end is the upside.
-  const px=v.price,tgt=v.target,mult=px>0?tgt/px:0;
-  const scale=Math.max(uniMax||mult,1.2);
-  const pPos=Math.min(100,1/scale*100), barW=Math.min(100,mult/scale*100), under=mult>=1;
-  let cf=Math.max(0,v.contractedEV),eu=Math.max(0,v.expectedEV),lg=Math.max(0,legacyOf(c));
-  const t=cf+eu+lg||1;cf=cf/t*100;eu=eu/t*100;lg=lg/t*100;
-  const gap=under
-    ? `<div class="vg-gap up" style="left:${pPos.toFixed(2)}%;width:${Math.max(0,barW-pPos).toFixed(2)}%"></div>`
-    : `<div class="vg-gap dn" style="left:${barW.toFixed(2)}%;width:${Math.max(0,pPos-barW).toFixed(2)}%"></div>`;
-  return `<div class="vg-track" title="${c.tk}: our value is ${mult.toFixed(2)}x today's price (${fmtPrice(px)} → $${tgt.toFixed(tgt<60?2:0)}) — ${cf.toFixed(0)}% contracted floor · ${eu.toFixed(0)}% expected · ${lg.toFixed(0)}% legacy">
-    <div class="vg-bar" style="width:${barW.toFixed(2)}%"><i class="vg-seg cf" style="width:${cf.toFixed(2)}%"></i><i class="vg-seg eu" style="width:${eu.toFixed(2)}%"></i><i class="vg-seg lg" style="width:${lg.toFixed(2)}%"></i></div>
-    ${gap}<div class="vg-price" style="left:${pPos.toFixed(2)}%"></div>${v.floorTarget>0?`<div class="vg-floor" style="left:${Math.min(100,(v.floorTarget/px)/scale*100).toFixed(2)}%" title="floor (signed only): $${v.floorTarget.toFixed(v.floorTarget<60?2:0)}"></div>`:''}</div>`;
-}
-function renderCmp(){
-  let rows=COMPANIES.map(c=>({c,v:value(c)}));
-  const UNIMAX=Math.max(...rows.map(r=>r.v.price>0?r.v.target/r.v.price:0));
-  const skey=r=>sortKey==='floor'?(r.v.price>0?(r.v.floorTarget||0)/r.v.price-1:-1):r.v.upside;
-  rows.sort((a,b)=>sortDir*(skey(a)-skey(b)));
-  (function answerLine(){
-    const el=document.getElementById('cmp-answer');if(!el)return;
-    const ups=rows.map(r=>r.v.upside).sort((x,y)=>x-y);
-    const med=ups.length?ups[Math.floor(ups.length/2)]:0;
-    const und=rows.filter(r=>r.v.upside>0).length;
-    const evTot=rows.reduce((a,r)=>a+r.v.contractedEV+r.v.expectedEV,0);
-    const cf=rows.reduce((a,r)=>a+r.v.contractedEV,0);
-    const mcap=rows.reduce((a,r)=>a+(r.c.sharesReported||r.c.shares)*priceOf(r.c),0);
-    const tgt=rows.reduce((a,r)=>a+r.v.target*r.v.fundedShares,0);
-    el.innerHTML=`<span>median upside <b>${(med*100>=0?'+':'')+(med*100).toFixed(0)}%</b></span>`+
-      `<span><b>${und}</b> of ${rows.length} names above market</span>`+
-      `<span>universe <b>${fmtM(mcap)}</b> market cap → <b>${fmtM(tgt)}</b> our value</span>`+
-      `<span><b>${(cf/(evTot||1)*100).toFixed(0)}%</b> of that value is contracted</span>`+
-      `<span>floor (signed only) <b>${fmtM(rows.reduce((a,r)=>a+(r.v.floorTarget||0)*r.v.fundedShares,0))}</b></span>`+
-      `<span style="font-style:italic">${PRICES_AT?'prices live':'prices manual'}</span>`;
+/* View layer only. Financial calculations remain in the original engines. */
+(() => {
+  'use strict';
+  // Legacy-hash migration shim (ruling R4): production's #-links map to paths once, at boot.
+  // Guard: only on the root path, so in-page anchors on other routes are never rewritten.
+  // Keywords match lowercase case-sensitively (production grammar); tickers are case-insensitive.
+  (function () {
+    if (!location.hash || !(location.pathname === '/' || location.pathname === '/index.html')) return;
+    let raw = location.hash.replace(/^#\/?/, '');
+    try { raw = decodeURIComponent(raw); } catch (e) { raw = ''; }
+    const KW = { '': '/', 'sites': '/infrastructure?tab=sites', 'leases': '/infrastructure?tab=contracts', 'coverage': '/infrastructure?tab=coverage', 'raises': '/research?tab=financing', 'outlook': '/research?tab=outlook', 'ramp': '/research?tab=developments', 'portfolio': '/portfolio', 'news': '/news', 'checks': '/checks', 'approvals': '/approvals' };
+    let dest;
+    if (Object.prototype.hasOwnProperty.call(KW, raw)) dest = KW[raw];
+    else if (raw.indexOf('sites=') === 0) dest = '/infrastructure?tab=sites&company=' + encodeURIComponent(raw.slice(6).toUpperCase());
+    else dest = '/company/' + encodeURIComponent(raw.toUpperCase());
+    history.replaceState({}, '', dest);
   })();
-  const cont=document.getElementById('rows');const old={};if(!reduce)[...cont.children].forEach(ch=>old[ch.dataset.tk]=ch.getBoundingClientRect().top);
-  cont.innerHTML='';
-  rows.forEach((r,i)=>{const v=r.v,c=r.c;
-    const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(0)+'%';
-    const row=document.createElement('div');row.className='rowline';row.dataset.tk=c.tk;row.tabIndex=0;row.setAttribute('role','button');
-    row.innerHTML=`<div class="rank">${i+1}</div>
-      <div><div class="tk">${c.tk}</div><span class="pill ${c.model}">${c.model==='owner'?'owner-operator':c.model==='landlord'?'landlord':c.model==='holdco'?'holdco / SOTP':'hybrid'}</span>${c.tier&&c.tier!=='proven'?`<span class="pill tier">${tierOf(c).name}</span>`:''}<span class="ct">${c.model==='holdco'?'sum-of-the-parts':c.contractedPct+'% contracted · '+c.termYrs+'y term'}</span></div>
-      <div class="col-stack">${gaugeHTML(c,v,UNIMAX)}</div>
-      <div class="num"><div class="price">${fmtPrice(v.price)}</div></div>
-      <div class="num floorcol"><div class="floorval">$${(v.floorTarget||0).toFixed(v.floorTarget<60&&v.floorTarget>0?2:0)}</div><div class="up ${v.floorTarget>=v.price?'pos':'neg'}">${v.price>0?((v.floorTarget/v.price-1)*100>=0?'+':'')+((v.floorTarget/v.price-1)*100).toFixed(0)+'%':'—'}</div></div>
-      <div class="num"><div class="target">$${v.target.toFixed(v.target<60?2:0)}</div><div class="up ${upCls}">${upTxt}</div></div>`;
-    row.addEventListener('click',()=>setHash(c.tk));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setHash(c.tk);}});
-    cont.appendChild(row);
-    if(c.thesis){
-      const tog=document.createElement('button');tog.type='button';tog.className='thtoggle';tog.innerHTML='<span class="cv">▸</span> valuation narrative';tog.setAttribute('aria-expanded','false');
-      const th=document.createElement('div');th.className='thesisline';th.innerHTML=`<b>${c.tk}</b> — ${c.thesis}`;
-      tog.addEventListener('click',e=>{e.stopPropagation();const open=th.classList.toggle('open');tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',open?'true':'false');});
-      cont.appendChild(tog);cont.appendChild(th);
-    }});
-  if(!reduce)[...cont.children].forEach(ch=>{const p=old[ch.dataset.tk];if(p==null)return;const dy=p-ch.getBoundingClientRect().top;if(dy){ch.style.transition='none';ch.style.transform=`translateY(${dy}px)`;requestAnimationFrame(()=>{ch.style.transition='';ch.style.transform='';});}});
-  document.getElementById('sortlabel').textContent=sortKey==='floor'?'floor vs price':'upside to target';
-  const au=document.getElementById('ar-upside'),af=document.getElementById('ar-floor');
-  if(au)au.textContent=sortKey==='upside'?(sortDir<0?'▾':'▴'):'';
-  if(af)af.textContent=sortKey==='floor'?(sortDir<0?'▾':'▴'):'';
-}
-function renderSites(){
-  let all=[];
-  COMPANIES.forEach(c=>{
-    if(SITE_FILTER&&c.tk!==SITE_FILTER)return;
-    const v=value(c);
-    v.segs.forEach(sg=>{
-      all.push({c,sg,co:c.tk,coName:c.name,model:c.model,name:sg.s.n,mw:sg.s.mw,tenure:sg.s.owned?'owned':'leased',region:REGION[sg.s.region].name,yr:sg.s.yr,mo:sg.s.mo,prov:sg.s.prov,val:sg.ev});
-    });
-  });
-  const cmp={co:(a,b)=>a.co.localeCompare(b.co),name:(a,b)=>a.name.localeCompare(b.name),mw:(a,b)=>a.mw-b.mw,tenure:(a,b)=>a.tenure.localeCompare(b.tenure),region:(a,b)=>a.region.localeCompare(b.region),yr:(a,b)=>(a.yr*12+(a.mo||1))-(b.yr*12+(b.mo||1)),prov:(a,b)=>a.prov.localeCompare(b.prov),val:(a,b)=>a.val-b.val};
-  all.sort((a,b)=>siteDir*cmp[siteSort](a,b));
-  document.getElementById('sites-body').innerHTML=all.map((s,i)=>`<tr class="srow" onclick="toggleSiteRow(${i})">
-    <td class="co">${s.co}</td><td>${s.name}</td><td class="r mono">${s.mw.toLocaleString()}</td>
-    <td>${s.tenure}</td><td><span class="dot" style="background:${horizon(s.yr)}"></span>${s.region}</td>
-    <td class="r mono">${MONTHS[(s.mo||1)-1]} ${s.yr}</td><td><span class="prov ${s.prov}">${s.prov}</span></td>
-    <td class="r mono">${fmtM(s.val)}</td></tr><tr class="sdetail" id="sd-${i}"><td colspan="8">${siteCalcHTML(s.c,s.sg)}</td></tr>`).join('');
-  const eb=document.getElementById('sites-eyebrow');
-  if(eb)eb.innerHTML=SITE_FILTER?`${SITE_FILTER} sites — <a href="#sites" class="clearfilter">show all ✕</a>`:'Every site in the universe — the inventory the roll-up is built from · <span style="font-style:italic">tap a row for the math</span>';
-  // MW-by-provenance summary
-  const byP={disclosed:0,estimated:0,rumored:0};let totMW=0;all.forEach(s=>{byP[s.prov]+=s.mw;totMW+=s.mw;});
-  const col={disclosed:'var(--indigo)',estimated:'#C9A86A',rumored:'var(--clay)'};
-  document.getElementById('mwbar').innerHTML=['disclosed','estimated','rumored'].map(k=>`<i style="width:${(byP[k]/(totMW||1)*100).toFixed(1)}%;background:${col[k]}"></i>`).join('');
-  document.getElementById('ssummary').innerHTML=`<span>${SITE_FILTER||'Total'} <b>${totMW.toLocaleString()} MW</b> across ${all.length} sites</span>`+['disclosed','estimated','rumored'].map(k=>`<span>${k} <b>${(byP[k]/(totMW||1)*100).toFixed(0)}%</b></span>`).join('')+`<span style="font-style:italic">— ${((byP.rumored)/(totMW||1)*100).toFixed(0)}% rumored</span>`;
-}
-function toggleSiteRow(i){const d=document.getElementById('sd-'+i);if(d)d.classList.toggle('open');}
+  const $ = s => document.querySelector(s);
+  const esc = x => String(x ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const n = (x,d=0) => Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+  const money = x => '$'+n(x,2);
+  const big = x => Math.abs(x)>=1000 ? '$'+n(x/1000,1)+'bn' : '$'+n(x,0)+'m';
+  const pct = (x,d=0,sign=false) => (sign&&x>0?'+':'')+n(x*100,d)+'%';
+  const date = x => x ? new Date(x.length===7?x+'-01T12:00:00':x+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : 'Not supplied';
+  const icons={arrow:'<path d="M4 8h8M9 4l4 4-4 4"/>',back:'<path d="M12 8H4m3-4L3 8l4 4"/>',down:'<path d="m4 6 4 4 4-4"/>',search:'<circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/>',sliders:'<path d="M2 4h12M2 12h12M6 2v4m4 4v4"/>',download:'<path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3"/>',info:'<circle cx="8" cy="8" r="6"/><path d="M8 7v4m0-7v1"/>',close:'<path d="m4 4 8 8M4 12l8-8"/>',clock:'<circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/>',check:'<path d="m3 8 3 3 7-7"/>'};
+  const icon = key => `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[key]||icons.arrow}</svg>`;
+  const metric = (label,value,note,cls='') => `<div class="metric"><div class="metric-label">${label}</div><div class="metric-value ${cls}">${value}</div><div class="metric-note">${note}</div></div>`;
+  let M, overrides={}, filter='all', query='', sort={key:'upside',dir:-1}, returnFocus=null;
+  const OPS={checks:null,pending:0};
+  const main=$('#main'), drawer=$('#drawer');
+  window.UI={esc,n,money,big,pct,date,icon,metric,lineChart};
+  // Integration hook: render() and M live in this closure, so after CloudModel.setMarks(...) the
+  // page stays stale until CVApp.refresh() repaints from the rebuilt model.
+  window.CVApp={
+    refresh(){if(CloudModel.current)M=CloudModel.current;render();
+      if(!M)return;
+      const t=document.getElementById('assumption-target');if(t)t.textContent=money(M.companies.find(c=>c.ticker==='IREN').target);
+      const cs=document.getElementById('assumption-case');if(cs)cs.textContent=priceCaption();},
+    // Approvals hands back the pending count from a live decision's returned file (spec-4 must_preserve).
+    setPending(n){OPS.pending=Number(n)||0;updateOpsBadges();}
+  };
+  const median = a => { const s=[...a].sort((a,b)=>a-b),mid=Math.floor(s.length/2); return s.length%2?s[mid]:(s[mid-1]+s[mid])/2; };
+  const custom = () => Object.keys(overrides).some(k=>overrides[k]!==M.baseAssumptions[k]);
+  const caseLabel = () => custom()?'Custom case':'Base case';
+  const priceCaption = () => caseLabel()+' · '+(M&&M.meta.priceAsOf?'live marks · '+M.meta.priceAsOf:'saved price inputs');
+  const priceBasis = () => M&&M.meta.priceAsOf?'live marks · '+M.meta.priceAsOf:'saved prices, undated';
+  const safeURL = x => {try{const u=new URL(x);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}};
+  const sourceLink = (url,label) => safeURL(url)?`<a href="${esc(safeURL(url))}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`:esc(label);
 
-/* ---- shared one-pager pieces (used by both the quick panel and the full page) ---- */
-function modelLabel(c){return c.model==='owner'?'GPU owner-operator':c.model==='landlord'?'colo / data-center landlord':'hybrid';}
-function liHTML(a){return a.map(x=>`<li>${x}</li>`).join('');}
-function qualHTML(c){return `<div class="qual">
-  <div class="qcol bull"><h5>Bull case</h5><ul>${liHTML(c.bull)}</ul></div>
-  <div class="qcol bear"><h5>Bear case</h5><ul>${liHTML(c.bear)}</ul></div>
-  <div class="qcol"><h5>Catalysts</h5><ul>${liHTML(c.catalysts)}</ul></div>
-  <div class="qcol"><h5>Key risks</h5><ul>${liHTML(c.risks)}</ul></div></div>`;}
-function siteCalcHTML(c,sg){const s=sg.s,k=sg.calc,r=REGION[s.region],tier=tierOf(c);
-  const row=(a,b,note)=>`<div class="cstep"><span>${a}</span><span class="cval">${b}</span><span class="cnote">${note||''}</span></div>`;
-  let steps='';
-  if(c.model==='landlord'){
-    if(k.leased){
-      steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`SIGNED LEASE — ${k.counterparty}${k.kind?' · '+k.kind:''} · term-average of the actual contract (escalators embedded)`);
-      steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} − full contracted compression · floor ${(CONST.capFloor||6.5)}%`);
-    }else{
-      steps+=row('NOI / MW·yr','$'+k.noi.toFixed(2)+'M',`UNLEASED — market anchor $${(k.baseNOI||k.noi).toFixed(2)}M (incl. size factor) × lease-up × trend → $${(k.prevailingNOI||k.noi).toFixed(2)}M at ${s.yr} vintage`);
-      steps+=row('Cap rate',(k.cap*100).toFixed(2)+'%',`${A.capRate}% dial ${tier.capSpread>=0?'+':'−'}${Math.abs(tier.capSpread)} ${tier.name} · no compression without a signed lease · floor ${(CONST.capFloor||6.5)}%`);
+  function navigate(url,replace=false){
+    const u=new URL(url,location.href); if(u.origin!==location.origin)return;
+    if(replace)history.replaceState({},'',u.pathname+u.search+u.hash);else history.pushState({},'',u.pathname+u.search+u.hash);
+    render(); window.scrollTo({top:0,behavior:'instant'}); main.focus({preventScroll:true});
+  }
+  function filteredCompanies(){
+    return M.companies.filter(c=>(filter==='all'||c.type===filter)&&(!query||`${c.ticker} ${c.name}`.toLowerCase().includes(query.toLowerCase())))
+      .sort((a,b)=>sort.dir*(typeof a[sort.key]==='string'?a[sort.key].localeCompare(b[sort.key]):a[sort.key]-b[sort.key]));
+  }
+  function th(label,key,cls=''){
+    return `<th scope="col" class="${cls}" ${sort.key===key?`aria-sort="${sort.dir===1?'ascending':'descending'}"`:''}><button data-action="sort" data-key="${key}" aria-label="Sort by ${label}">${label}${sort.key===key?`<span aria-hidden="true">${sort.dir===1?'↑':'↓'}</span>`:''}</button></th>`;
+  }
+  function compare(){
+    const types=[['all','All companies'],['owner','GPU operators'],['landlord','Landlords'],['holdco','Holdcos']];
+    return `<div class="page-top"><div><h1>GPU cloud valuations</h1><p class="page-description">A clearer view of price, value, and what stands behind it.</p></div><div class="actions"><a class="text-button" href="/iren">IREN research ${icon('arrow')}</a><button class="button" data-action="assumptions" aria-label="Open model assumptions">${icon('sliders')}Model assumptions</button></div></div>
+      <div class="metric-strip">${metric('Companies covered',M.companies.length,'Operators, landlords & holding companies')}${metric('Median model upside',pct(median(M.companies.map(c=>c.upside)),0,true),'Relative to '+(M.meta.priceAsOf?'live marks':'saved share prices'),'positive')}${metric('Contracted share of site value',pct(M.summary.contractedShareOfSiteEV),'Share of modelled site enterprise value')}</div>
+      <section class="panel" aria-labelledby="comparison-title"><div class="comparison-toolbar"><div><h2 id="comparison-title">Company comparison</h2><p>${caseLabel()} · USD/share · ${priceBasis()}</p></div><div class="segments" aria-label="Company type">${types.map(([v,l])=>`<button data-action="filter" data-value="${v}" aria-pressed="${filter===v}">${l}</button>`).join('')}</div><label class="search">${icon('search')}<input id="company-search" type="search" placeholder="Find a company" aria-label="Find a company" value="${esc(query)}"></label></div>
+      <div class="table-scroll"><table class="comparison"><caption class="sr-only">Asset-based company valuations. Signed-only is a model scenario, not a guaranteed floor. ${M.meta.priceAsOf?'Live marks as of '+M.meta.priceAsOf+'; names without a mark show saved prices.':'Prices are saved values without quote timestamps.'}</caption><thead><tr>${th('Company','ticker')}${th(M.meta.priceAsOf?'Price':'Saved price','price')}${th('Signed-only case','floor','hide-mobile')}${th('Model value','target')}${th('Implied upside','upside')}${th('Contracted capacity','contractedPct','hide-mobile')}<th scope="col"><span class="sr-only">Company report</span></th></tr></thead><tbody id="company-rows">${companyRows()}</tbody></table></div>
+      <div class="table-foot"><span id="company-count">${filteredCompanies().length} of ${M.companies.length} companies</span><button class="text-button" data-action="export">${icon('download')}Export comparison</button></div></section>
+      <p class="table-explainer"><strong>Reading the model.</strong> Implied upside compares model value with ${M.meta.priceAsOf?'the live mark (saved price where no mark exists)':'saved price'}. The signed-only case includes contracted value and legacy assets, less claims and modelled dilution; it is not a guaranteed floor. Contracted capacity is a company-level input.</p>
+      <a class="feature-strip" href="/iren"><div><div class="eyebrow">In focus / IREN</div><h3>From power to earnings.</h3></div><p>Follow the build-out, GPU ramp and funding assumptions behind the IREN investment case.</p><span class="text-button">Read the research ${icon('arrow')}</span></a>`;
+  }
+  function companyRows(){const cs=filteredCompanies();if(!cs.length)return `<tr><td colspan="7"><div class="empty"><strong>No companies found</strong>Try a different name, ticker, or company type.</div></td></tr>`;
+    return cs.map(c=>`<tr class="${c.ticker==='IREN'?'featured':''}" data-company-row="${esc(c.ticker)}"><td><div class="company-cell"><span class="ticker-icon" aria-hidden="true">${esc(c.ticker.slice(0,2))}</span><a href="/company/${esc(c.ticker)}"><span class="ticker-line">${esc(c.ticker)}</span><span class="company-sub">${esc(c.name)}</span></a></div></td><td class="table-price">${money(c.price)}</td><td class="table-price hide-mobile">${money(c.floor)}</td><td class="table-price table-model">${money(c.target)}</td><td class="upside-cell ${c.upside>=0?'positive':'negative'}">${pct(c.upside,0,true)}</td><td class="hide-mobile"><span class="coverage"><span class="mini-track" aria-hidden="true"><i style="width:${c.contractedPct}%"></i></span>${c.type==='holdco'?'—':n(c.contractedPct)+'%'}</span></td><td><a class="row-arrow" href="/company/${esc(c.ticker)}" aria-label="View ${esc(c.ticker)} company report">${icon('arrow')}</a></td></tr>`).join('');
+  }
+  function companyHeader(c,tab){return `<div class="breadcrumb"><a href="/">Compare</a>${icon('arrow')}<span>${esc(c.ticker)}</span></div><div class="page-top company-top"><div class="company-title"><span class="ticker-icon">${esc(c.ticker.slice(0,2))}</span><div><h1>${esc(c.ticker)}</h1><div class="company-subtitle">${esc(c.name)}<span class="small-dot"></span>${esc(c.typeLabel)}<span class="report-tag">Asset-based model</span></div></div></div><div class="actions"><button class="button" data-action="assumptions" aria-label="Open model assumptions">${icon('sliders')}Assumptions</button></div></div>
+      <div class="metric-strip">${metric(c.priceAsOf?'Share price':'Saved share price',money(c.price),c.priceAsOf?'Live mark · '+c.priceAsOf:'Quote date unavailable')}${metric(caseLabel()+' model value',money(c.target),'After modelled claims & dilution','blue')}${metric('Signed-only case',money(c.floor),'Scenario value · not a guaranteed floor')}${metric('Implied upside',pct(c.upside,0,true),c.priceAsOf?'Model value vs live mark':'Model value vs saved share price',c.upside>=0?'positive':'negative')}</div>
+      ${c.ticker==='IREN'?`<div class="snapshot-banner">${icon('info')}<span>This asset-based model differs from the IREN cash-flow research snapshot ($156 per share, 4 Sep 2026).</span><a class="text-button" href="/iren">View IREN research →</a></div>`:''}
+      <nav class="subnav" aria-label="Company report">${[['overview','Overview'],['delivery','Delivery'],['valuation','Valuation'],['evidence','Evidence']].map(([k,l])=>`<a href="/company/${c.ticker}?tab=${k}" ${tab===k?'aria-current="page"':''}>${l}</a>`).join('')}</nav>`;}
+  function companyPage(c,p){const tab=['overview','delivery','valuation','evidence'].includes(p.get('tab'))?p.get('tab'):'overview';return companyHeader(c,tab)+(tab==='overview'?companyOverview(c):tab==='delivery'?companyDelivery(c,p):tab==='valuation'?companyValuation(c):companyEvidence(c));}
+  function companyOverview(c){
+    const d=c.decomposition, total=Math.max(d.siteEVM,1), share=d.contractedEVM/total;
+    const summary=c.raw.thesis||c.narrative||'Read the source record and asset-based valuation below.';
+    const coverageTitle=d.siteEVM>0?pct(share)+' of site value is contracted.':'Value comes from holdings and treasury.';
+    const coverageText=d.siteEVM>0?pct(1-share)+' depends on expected earnings and pipeline assumptions.':'This holding-company model values look-through stakes and non-core assets, then deducts senior claims.';
+    return `<div class="report-grid report-section"><section class="panel"><div class="panel-header"><h2>The investment case</h2><span class="source-pill">Model commentary</span></div><div class="padded" style="padding-top:0"><p class="muted" style="font-size:13px">${esc(summary.length>550?summary.slice(0,summary.lastIndexOf(' ',550))+'…':summary)}</p></div>${summary.length>550?`<details class="read-more"><summary>Read full thesis</summary><p>${esc(summary)}</p></details>`:''}<div class="chart-note">Source commentary is preserved from the tracker. Its dates and assumptions may differ from current disclosures.</div></section>
+      <aside class="note-panel"><div class="eyebrow">What backs the valuation</div><h3>${coverageTitle}</h3><p>${coverageText}</p><hr><div class="note-line"><span>Contracted site value</span><strong>${big(d.contractedEVM)}</strong></div><div class="note-line"><span>Expected & pipeline</span><strong>${big(d.expectedEVM)}</strong></div><div class="note-line"><span>Capacity contracted (input)</span><strong>${c.type==='holdco'?'Not applicable':n(c.contractedPct)+'%'}</strong></div></aside></div>
+      <div class="report-grid equal"><section class="panel padded"><h2>What needs to go right</h2><ul class="detail-list">${(c.catalysts.length?c.catalysts:c.bull).slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')||'<li>No catalysts recorded in the source.</li>'}</ul></section><section class="panel padded"><h2>What could change the case</h2><ul class="detail-list">${c.risks.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')||'<li>No separate risk notes recorded in the source.</li>'}</ul></section></div>
+      <a class="feature-strip" href="/company/${c.ticker}?tab=valuation"><div><div class="eyebrow">Follow the calculation</div><h3>From assets to per-share value.</h3></div><p>See site values, senior claims, financing and share dilution in one reconciled bridge.</p><span class="text-button">View valuation ${icon('arrow')}</span></a>`;
+  }
+  function companyValuation(c){const d=c.decomposition;
+    const ledger=[['Contracted site value',big(d.contractedEVM)],['Expected earnings & pipeline',big(d.expectedEVM)],['Legacy assets & treasury',big(d.legacyM)],['Enterprise value',big(d.enterpriseValueM),'total'],[d.claimsM<0?'Net cash after senior claims':'Less net debt & senior claims',(d.claimsM<0?'+':'−')+big(Math.abs(d.claimsM))],...(d.equityDiscount?[['Equity discount',pct(d.equityDiscount)]]:[]),['Equity value',big(d.equityM),'total'],['Funded shares',n(c.fundedSharesM,1)+'m'],['Model value per share',money(c.target),'final']];
+    return `<div class="report-grid"><section class="panel padded"><div class="section-intro"><span class="section-number">01</span><h2>The valuation bridge</h2></div><div class="ledger">${ledger.map(([l,v,cl=''])=>`<span class="${cl}">${l}</span><strong class="${cl}">${v}</strong>`).join('')}</div><p class="bridge-caption">${caseLabel()} from the original asset-based model. Enterprise value less claims, adjusted for any equity discount, divided by funded shares.</p></section><div><section class="note-panel report-section"><div class="eyebrow">Financing matters</div><h3>${n(d.newSharesM,1)}m additional shares in the model.</h3><p>The planned raise changes the denominator used to calculate per-share value.</p><hr><div class="note-line"><span>Current model share base</span><strong>${n(c.sharesM,1)}m</strong></div><div class="note-line"><span>Modelled equity raise</span><strong>${big(d.equityRaiseM)}</strong></div><div class="note-line"><span>Funded shares</span><strong>${n(c.fundedSharesM,1)}m</strong></div></section><section class="panel padded"><h3>Two cases, one price reference</h3><div class="ledger"><span>${c.priceAsOf?'Live price · '+c.priceAsOf:'Saved price'}</span><strong>${money(c.price)}</strong><span>Signed-only case</span><strong>${money(c.floor)}</strong><span>Full model value</span><strong>${money(c.target)}</strong></div><p class="bridge-caption">The signed-only case removes expected site earnings and pipeline value, while retaining legacy assets, claims and dilution. It does not measure a guaranteed downside limit.</p></section></div></div>`;
+  }
+  function lineChart(rows,series,{max=null,unit='',title='',format=x=>n(x),height=255}={}){
+    const w=680,h=height,L=48,R=78,T=25,B=35,pw=w-L-R,ph=h-T-B;
+    const m=max||Math.max(...rows.flatMap(r=>series.map(s=>Number(s.get(r))||0)))*1.1||1;
+    const x=i=>L+i*pw/Math.max(rows.length-1,1),y=v=>T+ph-(v/m)*ph;
+    let s=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}"><title>${esc(title)}</title>`;
+    for(let i=0;i<=4;i++){const val=m*i/4,yy=y(val);s+=`<line x1="${L}" y1="${yy}" x2="${w-R}" y2="${yy}" stroke="#e6ebf2"/><text x="${L-9}" y="${yy+4}" text-anchor="end">${esc(format(val))}</text>`;}
+    const tickCount=Math.min(rows.length,5);const ticks=new Set(Array.from({length:tickCount},(_,i)=>Math.round(i*(rows.length-1)/Math.max(tickCount-1,1))));
+    rows.forEach((r,i)=>{if(ticks.has(i))s+=`<text x="${x(i)}" y="${h-9}" text-anchor="middle">${esc(r.quarter||r.label)}</text>`;});
+    series.forEach((se,j)=>{const pts=rows.map((r,i)=>`${x(i)},${y(se.get(r)||0)}`);if(se.area)s+=`<polygon points="${L},${T+ph} ${pts.join(' ')} ${x(rows.length-1)},${T+ph}" fill="${se.color}" opacity=".06"/>`;s+=`<polyline fill="none" stroke="${se.color}" stroke-width="${j?2:2.5}" ${se.dashed?'stroke-dasharray="5 4"':''} points="${pts.join(' ')}"/>`;const last=rows.at(-1),v=se.get(last);s+=`<circle cx="${x(rows.length-1)}" cy="${y(v)}" r="3.5" fill="${se.color}"/><text class="chart-label" x="${w-R+9}" y="${y(v)+4}" style="fill:${se.color}">${esc(format(v))}${esc(unit)}</text>`;});
+    return s+'</svg>';
+  }
+  function companyDelivery(c,p){const ramp=M.ramps[c.ticker];if(!ramp)return `<div class="section-intro"><span class="section-number">01</span><h2>Capacity & delivery</h2><span class="muted">${c.siteCount} source capacity records</span></div>${sitesTable(c.sites)}<p class="section-caption">Dates are the source model's energisation assumptions, not confirmation that a site is operating. MW bases may differ across records.</p>`;
+    const kind=['revenue','gpus','power'].includes(p.get('metric'))?p.get('metric'):'revenue',q=ramp.quarters;
+    const fields=kind==='revenue'?{title:'Quarterly AI cloud revenue',label:'USD billions / quarter',series:[{name:'Modelled revenue',get:x=>x.revenueM/1000,color:'#345cd0',area:true},{name:'From contracts signed today',get:x=>x.signedRevenueM/1000,color:'#8999ad',dashed:true}],fmt:x=>'$'+n(x,1)}:kind==='gpus'?{title:'GPUs earning revenue',label:'GPUs, thousands',series:[{name:'Modelled fleet',get:x=>x.earningGPUs/1000,color:'#345cd0',area:true},{name:'Signed fleet',get:x=>x.signedGPUs/1000,color:'#8999ad',dashed:true}],fmt:x=>n(x,0)+'k'}:{title:'Critical IT capacity',label:'IT MW',series:[{name:'Commissioned',get:x=>x.commissionedITMW,color:'#a6b7d9'},{name:'Earning',get:x=>x.earningITMW,color:'#345cd0',area:true}],fmt:x=>n(x)};
+    const last=q.at(-1),years=q.filter(x=>x.quarter.endsWith('Q4'));
+    return `<div class="snapshot-banner">${icon('info')}<span>Quarterly ramp model dated ${esc(date(ramp.asOf))}. This research overlay is independent of the asset-based valuation above. Forward figures are model estimates.</span></div><div class="report-grid report-section"><section class="panel"><div class="chart-header"><div><h2>${fields.title}</h2><p>${fields.label}</p></div><div class="chart-toggle">${[['revenue','Revenue'],['gpus','GPUs'],['power','IT MW']].map(([k,l])=>`<a class="button" style="font-size:10px;min-height:28px;padding:4px 7px;${k===kind?'color:var(--blue);background:var(--blue-soft)':''}" href="/company/${c.ticker}?tab=delivery&metric=${k}">${l}</a>`).join('')}</div></div><div class="chart">${lineChart(q,fields.series,{title:fields.title,format:fields.fmt})}</div><div class="chart-legend">${fields.series.map(s=>`<span><i class="swatch" style="background:${s.color}"></i>${s.name}</span>`).join('')}</div><div class="chart-note">Gross power, commissioned IT capacity and earning IT capacity are separate milestones. The IT chart compares only like-for-like IT MW.</div></section><aside class="note-panel"><div class="eyebrow">At the end of ${last.quarter.slice(0,4)}</div><h3>${pct(last.signedRevenueShare)} of modelled revenue is signed today.</h3><p>The remainder depends on future contracts or spot demand. Capacity alone does not secure revenue.</p><hr><div class="note-line"><span>Earning GPUs</span><strong>${n(last.earningGPUs/1000,0)}k</strong></div><div class="note-line"><span>AI revenue run-rate</span><strong>${big(last.revenueRunRateM)}</strong></div></aside></div><section class="panel"><div class="panel-header"><h2>The annual path</h2><span class="muted small">Year-end snapshots</span></div><div class="table-scroll"><table class="plain-table"><thead><tr><th>Year-end</th><th class="num">Energised, gross MW</th><th class="num">Earning, IT MW</th><th class="num">Earning GPUs</th><th class="num">AI revenue / qtr</th><th class="num">Revenue signed today</th></tr></thead><tbody>${years.map(x=>`<tr><td>${esc(x.quarter)}</td><td class="num">${n(x.energizedGrossMW)}</td><td class="num">${n(x.earningITMW)}</td><td class="num">${n(x.earningGPUs)}</td><td class="num">${big(x.revenueM)}</td><td class="num">${pct(x.signedRevenueShare)}</td></tr>`).join('')}</tbody></table></div></section>`;
+  }
+  function companyEvidence(c){return `<div class="report-grid"><section class="panel padded"><h2>Source notes & assumptions</h2><p class="page-description">Original research notes, preserved with their limitations.</p>${Object.entries(c.basis).map(([k,v])=>`<details class="source-row"><summary><strong style="display:inline">${esc(k.replace(/([a-z])([A-Z])/g,'$1 $2'))}</strong></summary><p style="margin-top:10px">${esc(typeof v==='string'?v:JSON.stringify(v))}</p></details>`).join('')||'<p class="muted">No separate source notes recorded.</p>'}</section><div><section class="panel padded report-section"><h3>Dates & model identity</h3><div class="source-row"><strong>Research capture</strong><p>14 September 2026 · public source data</p></div><div class="source-row"><strong>Quote timestamp</strong><p>${c.priceAsOf?'Live mark fetched at '+esc(c.priceAsOf)+'; the saved data carries no quote timestamps':'Not supplied in the saved data'}</p></div>${Object.entries(c.verified).map(([k,v])=>`<div class="source-row"><strong>${esc(k)}</strong><p>Source marked verified ${esc(v)}</p></div>`).join('')}<div class="source-row"><strong>Original data</strong><p>${sourceLink(M.meta.sourceURL,'Open the source dataset')}</p></div></section><section class="note-panel"><div class="eyebrow">Evidence before confidence</div><h3>A model output is not a verified fact.</h3><p>Disclosed, estimated and rumoured source capacity remain distinct. Verification dates describe the existing source record, not a new audit of filings.</p></section></div></div>`;}
+  function sitesTable(sites){return `<section class="panel table-scroll"><table class="plain-table"><caption>Source capacity records · phases and pipeline tranches may refer to the same campus</caption><thead><tr><th>Company</th><th>Site / capacity record</th><th class="num">Model MW</th><th>Tenure</th><th>Model energisation</th><th>Evidence</th><th class="num">Site value</th></tr></thead><tbody>${sites.map(s=>`<tr><td><a href="/company/${esc(s.ticker)}">${esc(s.ticker)}</a></td><td>${esc(s.name)}<div class="company-sub" style="max-width:280px">${esc(s.regionLabel)}</div></td><td class="num">${n(s.mw)}</td><td>${esc(s.tenure)}</td><td class="nowrap">${new Date(s.year,s.month-1).toLocaleDateString('en-GB',{month:'short',year:'numeric'})}</td><td><span class="source-pill ${esc(s.provenance)}">${esc(s.provenance)}</span></td><td class="num">${big(s.evM)}</td></tr>`).join('')||'<tr><td colspan="7"><div class="empty">No capacity records match these filters.</div></td></tr>'}</tbody></table></section>`;}
+  function infrastructure(p){let company=p.get('company')||'';const search=p.get('q')||'',t0=p.get('tab'),tab=t0==='contracts'?'contracts':t0==='coverage'?'coverage':'sites',provenance=p.get('evidence')||'all';
+    if(company&&!M.companies.some(c=>c.ticker===company)){company='';const q=new URLSearchParams(location.search);q.delete('company');history.replaceState({},'',location.pathname+(q.size?'?'+q.toString():''));}
+    const companies=M.companies.filter(c=>!company||c.ticker===company),sites=companies.flatMap(c=>c.sites).filter(s=>(!search||`${s.name} ${s.ticker} ${s.regionLabel}`.toLowerCase().includes(search.toLowerCase()))&&(provenance==='all'||s.provenance===provenance));
+    return `<div class="page-top"><div><div class="eyebrow">The assets behind the model</div><h1>Infrastructure</h1><p class="page-description">Capacity, contracts and the evidence behind each record.</p></div><div class="actions"><a class="button" href="/">Back to comparison ${icon('arrow')}</a></div></div><nav class="subnav" aria-label="Infrastructure"><a href="/infrastructure?tab=sites${company?'&company='+company:''}" ${tab==='sites'?'aria-current="page"':''}>Capacity records</a><a href="/infrastructure?tab=contracts${company?'&company='+company:''}" ${tab==='contracts'?'aria-current="page"':''}>Signed contracts</a><a href="/infrastructure?tab=coverage${company?'&company='+company:''}" ${tab==='coverage'?'aria-current="page"':''}>Coverage</a></nav>${tab==='coverage'?'':`<div class="filterbar" style="margin:0 0 20px"><div class="company-search-select"><label class="search">${icon('search')}<input id="site-search" type="search" placeholder="Search sites" aria-label="Search sites" value="${esc(search)}"></label><select id="site-company" class="select-control" aria-label="Filter infrastructure by company"><option value="">All companies</option>${M.companies.slice().sort((a,b)=>a.ticker.localeCompare(b.ticker)).map(c=>`<option value="${c.ticker}" ${company===c.ticker?'selected':''}>${esc(c.ticker)} · ${esc(c.name)}</option>`).join('')}</select></div>${tab==='sites'?`<select class="select-control" id="site-evidence" aria-label="Filter by evidence"><option value="all">All evidence</option>${['disclosed','estimated','rumored'].map(x=>`<option value="${x}" ${provenance===x?'selected':''}>${x[0].toUpperCase()+x.slice(1)}</option>`).join('')}</select>`:''}</div>`}${tab==='sites'?`<div class="date-rule"><span>${sites.length} capacity records</span><span>Source MW basis · ${caseLabel().toLowerCase()} values</span></div>${sitesTable(sites)}<p class="section-caption">These are source model records, not unique physical campuses. Owner and tenant capacity may overlap; gross and IT MW bases can differ. Model energisation dates do not confirm commissioned GPUs or earned revenue.</p>`:tab==='coverage'?(window.CoverageView?CoverageView.render(p):`<section class="panel padded"><h2>Coverage arrives here soon</h2><p class="page-description" style="max-width:640px">Confirmed contracted value against today's market cap. The data behind it is unchanged.</p></section>`):(window.ContractsView?ContractsView.render(M,company,search):contractsTable(companies,search))}`;
+  }
+  function contractsTable(companies,search=''){
+    // Value basis differs by kind: compute contracts carry totalRevM (take-or-pay revenue), colo leases carry grossTotalM (gross base-term value) — same per-kind selection as the production Coverage screen.
+    const rows=companies.flatMap(c=>[
+      ...c.contracts.map(x=>({...x,co:c.ticker,kindLabel:'GPU compute',valM:x.totalRevM,valBasis:'Take-or-pay contract revenue'})),
+      ...c.leases.map(x=>{const g=x.grossTotalM!=null;return {...x,co:c.ticker,kindLabel:'Data-centre lease',valM:g?x.grossTotalM:x.totalRevM,valBasis:g?'Gross base-term lease value':'Contract revenue over term'};})
+    ]).filter(x=>!search||`${x.co} ${x.counterparty} ${x.source}`.toLowerCase().includes(search.toLowerCase()));
+    return `<section class="panel"><div class="panel-header"><div><h2>Signed contract register</h2><p>${rows.length} contracts shown · signed and effective in the source</p></div></div><div class="table-scroll"><table class="plain-table"><thead><tr><th>Company / counterparty</th><th>Type</th><th>Signed</th><th class="num">Contract value</th><th class="num">Term</th><th>Source basis</th></tr></thead><tbody>${rows.map(r=>`<tr><td><a href="/company/${esc(r.co)}">${esc(r.co)}</a><div style="margin-top:4px;max-width:230px">${esc(r.counterparty)}</div></td><td>${r.kindLabel}</td><td class="nowrap">${esc(r.signed||'Not supplied')}</td><td class="num">${r.valM!=null?`${big(r.valM)}<div class="company-sub" style="margin-top:2px">${r.valBasis}</div>`:'—'}</td><td class="num">${r.termYrs?n(r.termYrs,1)+' years':'—'}</td><td><details><summary>View source note</summary><p>${esc(r.source||'No additional source note supplied.')}</p></details></td></tr>`).join('')||'<tr><td colspan="6"><div class="empty">No signed contracts match this filter.</div></td></tr>'}</tbody></table></div><div class="chart-note">Contract value is the total signed value over the stated term — take-or-pay contract revenue for GPU compute, gross base-term value for data-centre leases; the basis is labelled on each row. It is not annual revenue, recognised revenue or equity value.</div></section>`;
+  }
+  const OPS_TABS=[['news','News','/news'],['approvals','Approvals','/approvals'],['portfolio','Portfolio','/portfolio'],['checks','Checks','/checks']];
+  function opsSubnav(active){return `<nav class="subnav" aria-label="Operations">${OPS_TABS.map(([k,l,href])=>`<a href="${href}" ${active===k?'aria-current="page"':''}>${l}${k==='approvals'&&OPS.pending?`<span class="ops-count">${OPS.pending}</span>`:''}${k==='checks'&&OPS.checks?`<span class="ops-dot ${OPS.checks.cls}" title="Data checks: ${esc(OPS.checks.label)}"></span>`:''}</a>`).join('')}</nav>`;}
+  const OPS_STRAP={
+    news:'What the curated sources said, summarised — one item per video, newest first. Never a valuation input.',
+    approvals:'Statements from the sources that the tracker does not yet reflect. Yes puts it in; No declines it. Nothing changes without a click.',
+    portfolio:'The paper portfolio — the model’s views, sized daily against the market · hypothetical, paper only.',
+    checks:'Data unit tests — run live in this browser against the deployed data, on every load.'
+  };
+  function opsPage(key,p){
+    const V={news:window.NewsView,approvals:window.ApprovalsView,portfolio:window.PortfolioView,checks:window.ChecksView}[key];
+    if(V&&V.render)return `<div class="page-top"><div><div class="eyebrow">Operations</div><h1>${key[0].toUpperCase()+key.slice(1)}</h1><p class="page-description">${OPS_STRAP[key]||''}</p></div></div>${opsSubnav(key)}${V.render(p)}`;
+    const D={
+      news:{h:'News',what:'the curated video digest — one item per video from the curated sources, summarised on the DGX Spark, newest first, never a valuation input',file:'news.json',job:'The Spark publishes news.json each morning; that pipeline is unchanged.'},
+      approvals:{h:'Approvals',what:'the operator decision desk — each pending Spark proposal with its claim, quote and exact change, decided with a click',file:'proposals.json',job:'The Spark publishes proposals.json daily and the apply-proposals Action applies accepted decisions; both are unchanged.'},
+      portfolio:{h:'Portfolio',what:'the paper book — NAV against the equal-weight benchmark, holdings with the confidence math behind each weight, the trade ledger and the learning state',file:'portfolio-history.json',job:'The daily portfolio Action keeps marking and rebalancing the book; the ledgers are unchanged.'},
+      checks:{h:'Checks',what:'the live data test suite — the identical assertions node checks.js runs, in this browser on every page load, with the per-company matrix, verification ages and watch items',file:'data.json',job:'The suite already runs at every page load here — the Operations badge reflects its verdict.'}
+    }[key];
+    const chip=key==='checks'&&OPS.checks?` Current verdict: <span class="ops-chip ${OPS.checks.cls}">${esc(OPS.checks.label)}</span>.`:'';
+    return `<div class="page-top"><div><div class="eyebrow">Operations</div><h1>${D.h}</h1><p class="page-description">This screen is being rebuilt into the new design. Its data and server-side jobs are unchanged.</p></div></div>
+      ${opsSubnav(key)}
+      <section class="panel padded"><h2>${D.h} arrives here soon</h2><p class="page-description" style="max-width:640px">This screen will carry ${D.what}. ${D.job}${chip}</p><p style="margin-top:14px"><a class="text-button" href="/${D.file}" target="_blank" rel="noopener">Open the raw ${D.file} ↗</a></p></section>`;
+  }
+  function updateOpsBadges(){
+    const el=document.getElementById('ops-badges');if(!el)return;
+    let h='';
+    if(OPS.checks)h+=`<span class="ops-chip ${OPS.checks.cls}" title="Data checks: ${esc(OPS.checks.label)}">${esc(OPS.checks.label)}</span>`;
+    if(OPS.pending)h+=`<span class="ops-chip count" title="${OPS.pending} proposals awaiting a decision">${OPS.pending} pending</span>`;
+    el.innerHTML=h;
+  }
+  function runOps(){
+    // Boot-time checks run (production parity: no portfolio group at boot) + approvals pending count.
+    try{
+      if(window.ChecksCore&&CloudModel.source){
+        const r=ChecksCore.runChecks(CloudModel.source);
+        if(!r||!r.summary)throw new Error('checks returned no summary');
+        OPS.checks=r.summary.fail?{cls:'bad',label:r.summary.fail+' fail'}:r.summary.warn?{cls:'mid',label:r.summary.warn+' warn'}:{cls:'ok',label:'✓'};
+      }
+    }catch(e){console.error('checks suite failed:',e);OPS.checks={cls:'bad',label:'suite crashed'};}
+    updateOpsBadges();
+    fetch('/proposals.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(p=>{
+      OPS.pending=p&&Array.isArray(p.items)?p.items.filter(i=>i.status==='pending').length:0;
+      updateOpsBadges();
+      if(['/news','/approvals','/portfolio','/checks'].includes(location.pathname))render();
+    }).catch(()=>{});
+  }
+  function render(){
+    const path=decodeURIComponent(location.pathname),p=new URLSearchParams(location.search);let nav='compare';
+    // Hazard-3 isolation: the Operations screens and the research reports read their OWN files
+    // (proposals/news/ledgers/<tk>-data.json), so a failed primary data.json load must not take
+    // them down with it — only the model-backed routes degrade.
+    if(!M){
+      const setNav=name=>document.querySelectorAll('[data-nav]').forEach(a=>a.dataset.nav===name?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+      main.classList.toggle('iren-page',['/iren','/crwv','/nbis'].includes(path));
+      if(['/iren','/crwv','/nbis'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong></div>';setNav('research');document.title=tk+' — Compute / Value';}
+      else if(path==='/research/compare'){main.innerHTML=window.CompareView?CompareView.render(p):'<div class="empty"><strong>The comparison could not load.</strong></div>';setNav('research');document.title='Megawatt comparison — Compute / Value';}
+      else if(['/news','/approvals','/portfolio','/checks'].includes(path)){const key=path.slice(1);main.innerHTML=opsPage(key,p);setNav('operations');document.title=key[0].toUpperCase()+key.slice(1)+' — Compute / Value';}
+      return;
     }
-    steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','NOI ÷ cap rate');
-  }else{
-    steps+=row('Effective rate','$'+k.eff.toFixed(2)+'M/MW·yr',`${Math.round(sg.contractedShare*100)}% @ signed book $${(c.signedRate||A.rate).toFixed(1)}M · rest @ $${(k.prevailing||A.rate).toFixed(1)}M (${s.yr} gen-curve, ${(A.gpuTrend>=0?'+':'')+(A.gpuTrend!=null?A.gpuTrend:A.rateTrend)}%/yr${c.genAccess&&c.genAccess!==1?' × '+c.genAccess+' access':''})`);
-    steps+=row('Margin',k.m+'%',`${A.margin} ${r.cMargin>=0?'+':'−'}${Math.abs(r.cMargin)} ${r.name.toLowerCase()} ${s.owned?'+'+CONST.ownedCMargin+' owned':CONST.leasedCMargin+' leased'}`);
-    steps+=row('Multiple',k.mult.toFixed(2)+'×',`${A.multiple}× × ${tier.multFactor} ${tier.name} · (1 + ${(CONST.multPremium*(s.prov==='rumored'?0:c.contractedPct)/100).toFixed(2)} contracted, site-aware)`);
-    steps+=row('Value / MW','$'+sg.ppm.toFixed(1)+'M','rate × margin × multiple');
+    main.classList.toggle('compare-page',path==='/'||path==='/index.html');
+    main.classList.toggle('iren-page',['/iren','/crwv','/nbis'].includes(path));
+    if(['/iren','/crwv','/nbis'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong><button class="button" onclick="location.reload()">Reload preview</button></div>';nav='research';document.title=tk+' — Compute / Value';}
+    else if(path==='/research/compare'){main.innerHTML=window.CompareView?CompareView.render(p):'<div class="empty"><strong>The comparison could not load.</strong><button class="button" onclick="location.reload()">Reload preview</button></div>';nav='research';document.title='Megawatt comparison — Compute / Value';}
+    else if(path==='/research'){main.innerHTML=window.ResearchView.render(M,p);nav='research';document.title='Research — Compute / Value';}
+    else if(path==='/infrastructure'){main.innerHTML=infrastructure(p);nav='infrastructure';document.title='Infrastructure — Compute / Value';}
+    else if(['/news','/approvals','/portfolio','/checks'].includes(path)){const key=path.slice(1);main.innerHTML=opsPage(key,p);nav='operations';document.title=key[0].toUpperCase()+key.slice(1)+' — Compute / Value';}
+    else if(path.startsWith('/company/')){const tk=path.split('/')[2].toUpperCase(),c=M.companies.find(c=>c.ticker===tk);main.innerHTML=c?companyPage(c,p):`<div class="empty"><strong>Company not found</strong><a class="text-button" href="/">Return to comparison →</a></div>`;document.title=`${tk} — Compute / Value`;}
+    else{main.innerHTML=compare();document.title='Compute / Value — GPU cloud valuations';}
+    document.querySelectorAll('[data-nav]').forEach(a=>a.dataset.nav===nav?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
   }
-  steps+=row('Gross value',fmtM(sg.gross),`$${sg.ppm.toFixed(1)}M × ${s.mw} MW`);
-  steps+=row('× Execution haircut','×'+sg.hair.toFixed(2),s.prov);
-  steps+=row('× Time discount','×'+sg.dfac.toFixed(2),sg.yrs<=0?'live now':`${sg.yrs.toFixed(1)} yrs @ ${sg.dr%1===0?sg.dr:sg.dr.toFixed(1)}%${A.ramp>0?` · ${A.ramp}mo ramp on uncontracted share`:''}`);
-  steps+=`<div class="cstep tot"><span>Site value</span><span class="cval">${fmtM(sg.ev)}</span><span class="cnote"></span></div>`;
-  steps+=row('— Contracted floor',fmtM(sg.contractedEV),`${Math.round(sg.contractedShare*100)}% of value`);
-  steps+=row('— Expected upside',fmtM(sg.expectedEV),`${Math.round((1-sg.contractedShare)*100)}%`);
-  return `<div class="sitecalc">${steps}</div>`;}
-function commercialHTML(c){const f=(a,b)=>`<div class="f"><span>${a}</span><span>${b}</span></div>`;const tier=tierOf(c);const v=value(c);const bz=c.basis||{};const owner=c.model!=='landlord';const holdco=c.model==='holdco';
-  let stakeRow='';
-  if(c.stake){const t=COMPANIES.find(x=>x.tk===c.stake.tk);const mkt=t?(c.stake.pct*t.shares*priceOf(t)):0;const cap=c.shares*priceOf(c);
-    stakeRow=f(`Stake: ${(c.stake.pct*100).toFixed(0)}% of ${c.stake.tk}`,`${fmtM(stakeValue(c))} (modelled value)`)+
-      f(`↳ ${c.stake.tk} stake at market`,`${fmtM(mkt)} vs ${c.tk} mkt cap ${fmtM(cap)}${mkt>cap?' — stake alone > whole company':''}`);}
-  const ethRow=c.eth?f('ETH treasury',`${c.eth.toLocaleString()} Ξ × $${Math.round(ethPrice()).toLocaleString()} = ${fmtM(c.eth*ethPrice()/1e6)}`):'';
-  const btcRow=c.btc?f('BTC treasury',`${c.btc.toLocaleString()} ₿ × $${Math.round(btcPrice()).toLocaleString()} = ${fmtM(c.btc*btcPrice()/1e6)}`):'';
-  return `<div class="facts">`+
-  (holdco?'':f('Investability tier',tier.name+(bz.tier?` · ${bz.tier}`:'')))+
-  (holdco?'':(owner?f('Compute multiple (incl. tier)',(A.multiple*tier.multFactor).toFixed(1)+'×'):f('Cap rate (incl. tier)',(A.capRate+tier.capSpread).toFixed(1)+'%')))+
-  (holdco?'':f('Contracted today',c.contractedPct+'%'))+
-  (holdco?'':(owner?f('Avg term remaining',c.termYrs+' yrs'):''))+
-  (holdco?'':(!owner?(()=>{const ls=(c.leases||[]).filter(l=>l.effective!==false);if(!ls.length)return '';const mw=ls.reduce((a,l)=>a+l.mw,0);const wnoi=ls.reduce((a,l)=>a+l.noiPerMWyr*l.mw,0)/(mw||1);return f('Signed lease book',`${mw.toLocaleString()}MW @ $${wnoi.toFixed(2)}M NOI/MW·yr (term-avg, actual contracts)`);})():''))+
-  (holdco?'':(owner?f('GPU rate (market · gen-curve)','$'+A.rate.toFixed(1)+'M · '+((A.gpuTrend!=null?A.gpuTrend:A.rateTrend)>=0?'+':'')+(A.gpuTrend!=null?A.gpuTrend:A.rateTrend)+'%/yr'):''))+
-  (owner&&!holdco&&(c.contracts||[]).length?(()=>{const cs2=(c.contracts||[]).filter(x=>x.effective!==false);const tot=cs2.reduce((a3,x)=>a3+(x.totalRevM||0),0);return f('Signed compute book',`$${(tot/1000).toFixed(1)}B across ${cs2.length} contracts @ ~$${(c.signedRate||0).toFixed(1)}M/MW·yr blended`);})():'')+
-  stakeRow+ethRow+btcRow+
-  (c.legacyEV?f(holdco?'Legacy mining':'Legacy / other',fmtM(c.legacyEV)):'')+
-  f('Net debt',fmtM(c.netDebt))+
-  (c.committedDebt?f('Committed project debt',fmtM(c.committedDebt)+(bz.committedDebt?` · ${bz.committedDebt}`:'')):'')+
-  (c.seniorClaims?f('Preferred / minority claims',fmtM(c.seniorClaims)+(bz.seniorClaims?` · ${bz.seniorClaims}`:'')):'')+
-  (()=>{const fmw=(c.sites||[]).filter(s=>s.yr>YEAR).reduce((a,s)=>a+s.mw,0);const cpx=c.model==='landlord'?(CONST.capexLandlordMW||10):(CONST.capexOwnerMW||25);const gap=Math.max(0,fmw*cpx-(c.committedDebt||0)-(c.plannedRaise||0));return fmw>0&&!holdco?f('Funding gap (est., uncharged)',fmtM(gap)+` · ${fmw.toLocaleString()}MW × $${cpx}M − committed − raise`):'';})()+
-  (c.equityDiscount?f('Governance / control discount',(c.equityDiscount*100).toFixed(0)+'% off equity'+(bz.equityDiscount?` · ${bz.equityDiscount}`:'')):'')+
-  (holdco?'':f('Financing mix',c.finMix||'—'))+
-  (holdco?'':f('Discount rate (time)',A.disc.toFixed(0)+'%'))+
-  f('Shares out',c.shares+'M')+
-  (v.equityRaise>0?f('Planned equity raise',fmtM(v.equityRaise)+' @ '+fmtPrice(v.price)+(bz.plannedRaise?` · ${bz.plannedRaise}`:'')):'')+
-  (v.newShares>0?f('Funded shares (incl. dilution)',Math.round(v.fundedShares)+'M ('+(v.newShares/c.shares*100).toFixed(0)+'% dilution)'):'')+
-  (c.leaseQ!=null?f('Counterparty quality (reference)',c.leaseQ.toFixed(1)+' / 5'):'')+
-  `</div>`;}
-/* ---- build-out over time (cumulative capacity or value, stacked by provenance) ---- */
-function buildoutData(c,v){
-  const metric=BUILDOUT_METRIC;
-  const ys=c.sites.map(s=>s.yr),minY=Math.min(...ys),maxY=Math.max(...ys),years=[];
-  for(let y=minY;y<=maxY;y++)years.push(y);
-  const annual={};years.forEach(y=>annual[y]={disclosed:0,estimated:0,rumored:0});
-  v.segs.forEach(sg=>{const q=metric==='mw'?sg.s.mw:sg.ev;if(annual[sg.s.yr])annual[sg.s.yr][sg.s.prov]+=q;});
-  const cum={},run={disclosed:0,estimated:0,rumored:0};
-  years.forEach(y=>{run.disclosed+=annual[y].disclosed;run.estimated+=annual[y].estimated;run.rumored+=annual[y].rumored;cum[y]={disclosed:run.disclosed,estimated:run.estimated,rumored:run.rumored};});
-  const max=Math.max(...years.map(y=>cum[y].disclosed+cum[y].estimated+cum[y].rumored),1e-9);
-  return{years,cum,max,metric};
-}
-function fmtAxis(metric,val){if(metric==='mw'){return val>=1000?(val/1000).toFixed(val%1000===0?0:1)+'GW':Math.round(val)+'';}return fmtM(val);}
-function buildoutChartHTML(c,v){
-  const d=buildoutData(c,v),years=d.years,cum=d.cum,max=d.max,metric=d.metric;
-  const W=640,H=300,ml=54,mr=14,mt=14,mb=30,pw=W-ml-mr,ph=H-mt-mb;
-  const n=years.length||1,step=pw/n,bw=Math.min(48,step*0.6);
-  const COL={disclosed:'var(--indigo)',estimated:'var(--indigo-soft)',rumored:'var(--far)'};
-  const yOf=val=>mt+ph-(val/max)*ph;
-  const tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
-  let s='';
-  for(let i=0;i<=4;i++){const val=max*i/4,y=yOf(val);s+=`<line x1="${ml}" y1="${y.toFixed(1)}" x2="${W-mr}" y2="${y.toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(y+3).toFixed(1)}" text-anchor="end" ${tx}>${fmtAxis(metric,val)}</text>`;}
-  years.forEach((yr,i)=>{const cx=ml+step*i+step/2,x=cx-bw/2;let yb=mt+ph;
-    ['disclosed','estimated','rumored'].forEach(p=>{const val=cum[yr][p];if(val<=0)return;const h=(val/max)*ph;yb-=h;s+=`<rect x="${x.toFixed(1)}" y="${yb.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" style="fill:${COL[p]};stroke:var(--card);stroke-width:1.5"><title>${yr} ${p}: ${fmtAxis(metric,val)}</title></rect>`;});
-    const tot=cum[yr].disclosed+cum[yr].estimated+cum[yr].rumored;
-    s+=`<text x="${cx.toFixed(1)}" y="${(mt+ph+18).toFixed(1)}" text-anchor="middle" ${tx}>${yr}</text>`;
-    if(tot>0)s+=`<text x="${cx.toFixed(1)}" y="${(yOf(tot)-5).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9px;fill:var(--ink)">${fmtAxis(metric,tot)}</text>`;
+  function openDrawer(type){returnFocus=document.activeElement;
+    if(type==='assumptions'){const primary=['rate','margin','multiple','disc','leaseUp'];const controls=a=>`<div class="assumption"><div class="assumption-head"><label for="dial-${a.key}">${esc(a.label)}</label><output id="dial-value-${a.key}" for="dial-${a.key}">${sliderValue(a)}</output></div><input id="dial-${a.key}" type="range" data-dial="${a.key}" value="${a.value}" min="${a.min}" max="${a.max}" step="${a.step}" aria-label="${esc(a.label)}"><div class="assumption-base"><span>Base: ${sliderValue({...a,value:a.baseValue})}</span><span>${sliderValue({...a,value:a.min})} – ${sliderValue({...a,value:a.max})}</span></div></div>`;
+      drawer.innerHTML=`<div class="drawer-head"><h2 id="drawer-title">Model assumptions</h2><button class="icon-button" data-action="close" aria-label="Close assumptions">${icon('close')}</button></div><div class="drawer-body"><p class="drawer-intro">Change the asset-based model and see values update. These assumptions apply to company comparisons; the IREN cash-flow report has its own sensitivities.</p><div class="assumption-result">IREN · asset-based model value<strong id="assumption-target">${money(M.companies.find(c=>c.ticker==='IREN').target)}</strong><span class="small" id="assumption-case">${priceCaption()}</span></div>${M.assumptions.filter(a=>primary.includes(a.key)).map(controls).join('')}<details><summary>Additional assumptions (${M.assumptions.length-primary.length})</summary>${M.assumptions.filter(a=>!primary.includes(a.key)).map(controls).join('')}</details></div><div class="drawer-bottom"><button class="text-button" data-action="reset">Reset to base case</button><button class="button primary" data-action="close">Done ${icon('check')}</button></div>`;
+    }else{drawer.innerHTML=`<div class="drawer-head"><h2 id="drawer-title">Data & methodology</h2><button class="icon-button" data-action="close" aria-label="Close methodology">${icon('close')}</button></div><div class="drawer-body"><div class="method-block"><h3>A working design preview</h3><p>The public source data was captured on 14 September 2026. This preview runs locally using the original valuation engines and captured data. Share prices and BTC/ETH marks refresh hourly when the quote services are reachable.</p></div><div class="method-block"><h3>Prices and dates</h3><p>${M&&M.meta.priceAsOf?`The comparison shows live marks fetched at ${esc(M.meta.priceAsOf)}; names without a mark keep their saved prices.`:`The comparison's saved share prices have no quote timestamps.`} The IREN research report uses its separate $44.68 reference price dated 4 September — a dated cut that never updates with the marks.</p></div><div class="method-block"><h3>Two distinct valuation models</h3><p>The comparison values each company's assets and deducts claims and modelled dilution. IREN research uses a discounted cash-flow model including future funding, convertible dilution and prepayment liabilities. Their outputs are not interchangeable.</p></div><div class="method-block"><h3>Signed-only is a scenario</h3><p>It retains contracted site value and legacy assets, less claims and modelled dilution. It is not a guaranteed floor. Contracted capacity, contracted share of site value, and signed share of future revenue have different denominators.</p></div><div class="method-block"><h3>Power is not revenue</h3><p>Announced power, an energised substation, a completed facility, commissioned GPUs and revenue-generating capacity are separate milestones. Source records may use gross or IT MW and may overlap between owners and tenants.</p></div><div class="method-block"><h3>Source lineage</h3><p>${M?`Discount reference: ${date(M.meta.modelReferenceDate)}. GPU pricing assumptions marked verified ${date(M.meta.assumptionsVerifiedOn)} in the original dataset. Those dates are not share-price timestamps or a new verification of company filings.`:'Source dates unavailable — the model data did not load.'}</p></div><div class="method-block"><h3>The production application</h3><p>These links open the live production tracker — the site this design would eventually replace. At integration these URLs must be remapped, not left pointing at themselves.</p><p>${sourceLink('https://cloudtracker.onrender.com/','Open the production tracker')}<br>${sourceLink('https://cloudtracker.onrender.com/iren','Open the production IREN report')}${M?`<br>${sourceLink(M.meta.sourceURL,'Inspect the source dataset')}`:''}</p></div><div class="method-block"><h3>Operational workspace</h3><p>The production tracker retains approvals, data checks, curated news and the paper portfolio. They stay reachable there until each has a home in this design.</p></div></div>`;}
+    drawer.showModal();
+  }
+  function sliderValue(a){switch(a.format){case 'money1M':return '$'+n(a.value,1)+'m';case 'mult':return n(a.value,2).replace(/0$/,'')+'×';case 'months':return a.value+' mo';case 'trend':return (a.value>0?'+':'')+a.value+'% / yr';default:return a.value+'%';}}
+  function closeDrawer(){drawer.close();returnFocus?.focus?.();}
+  function updateQuery(key,value){const p=new URLSearchParams(location.search);value?p.set(key,value):p.delete(key);navigate(location.pathname+(p.size?'?'+p.toString():''));}
+  function exportCSV(){const rows=[['Company','Name','Price USD','Price as of','Signed-only model USD','Full model USD','Implied upside percent','Capacity contracted percent'],...filteredCompanies().map(c=>[c.ticker,c.name,c.price,c.priceAsOf?'live '+c.priceAsOf:'saved, date unavailable',c.floor,c.target,c.upside*100,c.type==='holdco'?'':c.contractedPct])];const csv=rows.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));const a=document.createElement('a');a.href=url;a.download='compute-value-comparison-snapshot.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#announcement').textContent='Comparison exported as CSV.';}
+  document.addEventListener('click',e=>{const action=e.target.closest('[data-action]');if(action){const a=action.dataset.action;
+    if(a==='filter'){filter=action.dataset.value;render();}
+    if(a==='sort'){const key=action.dataset.key;sort={key,dir:sort.key===key?-sort.dir:key==='ticker'?1:-1};render();}
+    if(a==='assumptions'||a==='methodology'){if(a==='methodology'||M)openDrawer(a);}
+    if(a==='close')closeDrawer();
+    if(a==='reset'){overrides={};M=CloudModel.reset();render();drawer.querySelectorAll('[data-dial]').forEach(input=>{const a=M.assumptions.find(x=>x.key===input.dataset.dial);input.value=a.value;$('#dial-value-'+a.key).textContent=sliderValue(a)});$('#assumption-target').textContent=money(M.companies.find(c=>c.ticker==='IREN').target);$('#assumption-case').textContent=priceCaption();}
+    if(a==='export')exportCSV();
+    return;
+  }const link=e.target.closest('a[href]');if(link&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&link.target!=='_blank'&&!link.hasAttribute('download')){const u=new URL(link.href,location.href);if(u.origin===location.origin&&!u.hash){e.preventDefault();navigate(u.href);}}});
+  document.addEventListener('input',e=>{if(e.target.id==='site-search'){const value=e.target.value,position=e.target.selectionStart;const p=new URLSearchParams(location.search);value?p.set('q',value):p.delete('q');history.replaceState({},'',location.pathname+'?'+p.toString());render();const i=$('#site-search');i.focus();i.setSelectionRange(position,position);}
+    if(e.target.id==='company-search'){query=e.target.value;$('#company-rows').innerHTML=companyRows();$('#company-count').textContent=`${filteredCompanies().length} of ${M.companies.length} companies`;}
+    if(e.target.dataset.dial){const k=e.target.dataset.dial;overrides[k]=Number(e.target.value);M=CloudModel.recalculate(overrides);render();$('#dial-value-'+k).textContent=sliderValue(M.assumptions.find(a=>a.key===k));$('#assumption-target').textContent=money(M.companies.find(c=>c.ticker==='IREN').target);$('#assumption-case').textContent=priceCaption();}
   });
-  years.forEach((yr,i)=>{s+=`<rect x="${(ml+step*i).toFixed(1)}" y="${mt}" width="${step.toFixed(1)}" height="${ph}" fill="transparent" style="cursor:pointer" onmousemove="boTip(event,${yr})" onmouseleave="boTipHide()"></rect>`;});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Cumulative ${metric==='mw'?'capacity':'value'} build-out by energization year">${s}</svg>`;
-}
-function boTipFor(year){
-  const c=FP_COMPANY;if(!c)return'';
-  const g={disclosed:[],estimated:[],rumored:[]};
-  c.sites.forEach(s=>{if(s.yr<=year&&g[s.prov])g[s.prov].push(s);});
-  const COL={disclosed:'var(--indigo)',estimated:'var(--indigo-soft)',rumored:'var(--far)'},LBL={disclosed:'Disclosed',estimated:'Estimated',rumored:'Rumored'};
-  let h=`<div class="bo-tip-yr">Online by ${year}</div>`;
-  ['disclosed','estimated','rumored'].forEach(p=>{if(!g[p].length)return;
-    h+=`<div class="bo-tip-grp"><span class="bo-tip-h" style="color:${COL[p]}">${LBL[p]}</span>`+g[p].map(s=>`<div class="bo-tip-row"><span>${s.n}</span><span>${s.mw.toLocaleString()} MW</span></div>`).join('')+`</div>`;});
-  return h;
-}
-function boTip(e,year){const t=document.getElementById('botip');if(!t)return;t.innerHTML=boTipFor(year);t.style.display='block';
-  const w=t.parentElement.getBoundingClientRect();let x=e.clientX-w.left+14,y=e.clientY-w.top+14;
-  if(x+t.offsetWidth>w.width-6)x=w.width-t.offsetWidth-6;if(x<2)x=2;
-  t.style.left=x+'px';t.style.top=y+'px';}
-function boTipHide(){const t=document.getElementById('botip');if(t)t.style.display='none';}
-function buildoutHTML(c,v){
-  const m=BUILDOUT_METRIC;
-  const tg=(id,lbl)=>`<button class="bo-tog${m===id?' on':''}" onclick="toggleBuildout('${id}')">${lbl}</button>`;
-  const legend=[['Disclosed','indigo'],['Estimated','indigo-soft'],['Rumored','far']].map(p=>`<span class="bo-leg"><i style="background:var(--${p[1]})"></i>${p[0]}</span>`).join('');
-  return `<div class="bo-head"><div class="bo-toggle">${tg('mw','MW')}${tg('val','$ value')}</div><div class="bo-legend">${legend}</div></div><div class="bo-wrap">${buildoutChartHTML(c,v)}<div class="bo-tip" id="botip"></div></div>`;
-}
-function toggleBuildout(m){BUILDOUT_METRIC=m;if(FP_COMPANY){const el=document.getElementById('buildout');if(el)el.innerHTML=buildoutHTML(FP_COMPANY,value(FP_COMPANY));}}
-/* ---- value bridge waterfall ---- */
-function waterfallHTML(c,v){
-  const legacy=legacyOf(c),computeEV=v.ev-legacy,totalEV=v.ev,nd=c.netDebt,equity=v.equity;
-  const steps=[{label:'Sites',val:computeEV,from:0,to:computeEV,k:'pos'}];
-  let run=computeEV;
-  if(legacy){steps.push({label:'Legacy',val:legacy,from:run,to:run+legacy,k:'pos'});run+=legacy;}
-  steps.push({label:nd>=0?'Net debt':'Net cash',val:-nd,from:run,to:run-nd,k:nd>=0?'neg':'pos'});run-=nd;
-  if(c.equityDiscount){const gd=run*c.equityDiscount;steps.push({label:'Gov. disc',val:-gd,from:run,to:run-gd,k:'neg'});run-=gd;}
-  steps.push({label:'Equity',val:equity,from:0,to:equity,k:'tot'});
-  const max=Math.max(computeEV,totalEV,equity,1e-9);
-  const W=640,H=230,ml=54,mr=14,mt=14,mb=28,pw=W-ml-mr,ph=H-mt-mb;
-  const n=steps.length,step=pw/n,bw=Math.min(72,step*0.5);
-  const yOf=val=>mt+ph-(val/max)*ph;
-  const COL={pos:'var(--indigo)',neg:'var(--clay)',tot:'var(--pine)'};
-  const tx='style="font-family:var(--mono);font-size:10px;fill:var(--ink-soft)"';
-  let s='';
-  for(let i=0;i<=4;i++){const val=max*i/4,y=yOf(val);s+=`<line x1="${ml}" y1="${y.toFixed(1)}" x2="${W-mr}" y2="${y.toFixed(1)}" style="stroke:var(--line);stroke-width:1"/><text x="${ml-6}" y="${(y+3).toFixed(1)}" text-anchor="end" ${tx}>${fmtM(val)}</text>`;}
-  steps.forEach((st,i)=>{const cx=ml+step*i+step/2,x=cx-bw/2,yT=yOf(Math.max(st.from,st.to)),h=Math.max(1.5,Math.abs(yOf(st.from)-yOf(st.to)));
-    s+=`<rect x="${x.toFixed(1)}" y="${yT.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" style="fill:${COL[st.k]}"/>`;
-    s+=`<text x="${cx.toFixed(1)}" y="${(mt+ph+17).toFixed(1)}" text-anchor="middle" ${tx}>${st.label}</text>`;
-    s+=`<text x="${cx.toFixed(1)}" y="${(yT-5).toFixed(1)}" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink)">${st.val<0?'−'+fmtM(-st.val):fmtM(st.val)}</text>`;
-  });
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Value bridge: sites plus legacy minus net debt equals equity">${s}</svg><div class="bo-cap">Equity ${fmtM(equity)} ÷ ${Math.round(v.fundedShares)}M funded shares${v.newShares>0?` (${c.shares}M + ${Math.round(v.newShares)}M raise)`:''} = <b>$${v.target.toFixed(v.target<60?2:0)}</b> target</div>`;
-}
-function valBuildHTML(c,v){const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';const p=splitParts(v);return `<div class="breakdown"><div class="b tot"><span>Enterprise value (sum of sites)</span><b>${fmtM(v.ev)}</b></div>${splitBarHTML(v)}<div class="b"><span>— Contracted floor (dial-insulated)</span><b>${fmtM(v.contractedEV)} · ${p.cf.toFixed(0)}%</b></div><div class="b"><span>— Expected upside (spot &amp; pipeline)</span><b>${fmtM(v.expectedEV)} · ${p.eu.toFixed(0)}%</b></div><div class="b"><span>Less: net debt</span><b>−${fmtM(c.netDebt)}</b></div><div class="b tot"><span>Equity value</span><b>${fmtM(v.equity)}</b></div><div class="b tot"><span>Price target → upside</span><b>$${v.target.toFixed(0)} · <span class="up ${upCls}">${upTxt}</span></b></div></div>`;}
-function devsHTML(c){return c.log.map(e=>`<div class="ev"><div class="meta"><span class="etype">${e.t}</span><span>${e.d} · ${e.s}</span></div><div>${e.x}</div></div>`).join('');}
-
-/* ---- full page: the extensible home (graphical, with planned-module slots) ---- */
-function openFull(c){const v=value(c),fp=document.getElementById('fullpage');FP_COMPANY=c;
-  const upCls=v.upside>=0?'pos':'neg',upTxt=(v.upside>=0?'+':'')+(v.upside*100).toFixed(1)+'%';
-  fp.innerHTML=`<button class="back" id="fpback">← Back to comparison</button>
-    <div class="fp-head">
-      <div><div class="fp-tk">${c.tk}</div><div class="fp-model">${c.name} · ${modelLabel(c)} · ${tierOf(c).name}</div></div>
-      <div class="fp-nums">
-        <div class="fp-num"><span>Price</span><b>${fmtPrice(priceOf(c))}</b></div>
-        <div class="fp-num"><span>Target</span><b>$${v.target.toFixed(v.target<60?2:0)}</b></div>
-        <div class="fp-num"><span>Upside</span><b class="up ${upCls}">${upTxt}</b></div>
-      </div>
-    </div>
-    <div class="fp-grid">
-      <div class="fp-main">
-        <div class="narr">${c.narrative}</div>
-        <h4 class="sec">Build-out over time</h4>
-        <div id="buildout">${buildoutHTML(c,v)}</div>
-        <h4 class="sec">Value bridge</h4>
-        ${waterfallHTML(c,v)}
-        ${valBuildHTML(c,v)}
-        <a class="siteslink" href="#sites=${c.tk}">Where the value comes from — all ${c.tk} sites, with the math per site →</a>
-        <h4 class="sec">Developments</h4>${devsHTML(c)}
-      </div>
-      <div class="fp-side">
-        ${qualHTML(c)}
-        <h4 class="sec">Commercial &amp; capital</h4>${commercialHTML(c)}
-        <div class="module planned"><div class="mtag">Planned</div><h5>Management commentary</h5><p>Quotes and read-throughs from earnings calls, fireside chats and interviews.</p></div>
-        <div class="module planned"><div class="mtag">Planned</div><h5>Investor &amp; conference calendar</h5><p>Upcoming earnings dates, growth conferences and investor days.</p></div>
-      </div>
-    </div>`;
-  document.querySelector('.grid').style.display='none';
-  fp.classList.add('on');document.getElementById('fpback').onclick=closeFull;
-  window.scrollTo(0,0);document.getElementById('fpback').focus();}
-function closeFull(){setHash('');}
-
-/* ---- hash routing: #TICKER → full page, #sites[=TK] → sites tab, # → comparison ---- */
-function setHash(h){const cur=location.hash.replace(/^#/,'');if(cur===h){route();}else{location.hash=h;}}
-function route(){
-  if(!COMPANIES)return;
-  const raw=decodeURIComponent((location.hash||'').replace(/^#\/?/,''));
-  const c=COMPANIES.find(x=>x.tk===raw.toUpperCase());
-  if(c){openFull(c);return;}
-  if(raw==='sites'||raw.indexOf('sites=')===0){
-    const tk=raw.indexOf('sites=')===0?raw.slice(6).toUpperCase():null;
-    showDashboard('sites',(tk&&COMPANIES.find(x=>x.tk===tk))?tk:null);return;
-  }
-  if(raw==='checks'){showDashboard('checks',null);return;}
-  if(raw==='leases'){showDashboard('leases',null);return;}
-  if(raw==='coverage'){showDashboard('cover',null);return;}
-  if(raw==='raises'){showDashboard('raises',null);return;}
-  if(raw==='outlook'){showDashboard('outlook',null);return;}
-  if(raw==='ramp'){showDashboard('ramp',null);return;}
-  if(raw==='portfolio'){showDashboard('port',null);return;}
-  if(raw==='news'){showDashboard('news',null);return;}
-  if(raw==='approvals'){showDashboard('approvals',null);return;}
-  showDashboard('cmp',null);
-}
-function showDashboard(v,filter){
-  SITE_FILTER=filter||null;view=v;
-  if(v!=='ramp'&&typeof rampStop==='function')rampStop();   // leaving the ramp view stops any running replay
-  document.getElementById('fullpage').classList.remove('on');
-  document.querySelector('.grid').style.display='';
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.view===v));
-  document.getElementById('view-cmp').style.display=v==='cmp'?'':'none';
-  document.getElementById('view-sites').style.display=v==='sites'?'':'none';
-  const vc=document.getElementById('view-checks');if(vc)vc.style.display=v==='checks'?'':'none';
-  const vp=document.getElementById('view-port');if(vp)vp.style.display=v==='port'?'':'none';
-  const vl=document.getElementById('view-leases');if(vl)vl.style.display=v==='leases'?'':'none';
-  const vv=document.getElementById('view-cover');if(vv)vv.style.display=v==='cover'?'':'none';
-  const vz=document.getElementById('view-raises');if(vz)vz.style.display=v==='raises'?'':'none';
-  const vo=document.getElementById('view-outlook');if(vo)vo.style.display=v==='outlook'?'':'none';
-  const vg=document.getElementById('view-ramp');if(vg)vg.style.display=v==='ramp'?'':'none';
-  const vn=document.getElementById('view-news');if(vn)vn.style.display=v==='news'?'':'none';
-  const va=document.getElementById('view-approvals');if(va)va.style.display=v==='approvals'?'':'none';
-  render();window.scrollTo(0,0);
-}
-
-/* ---- wiring (after data loads) ---- */
-function wireEvents(){
-  // global dials: collapsible sidebar, collapsed by default, preference remembered
-  const grid=document.querySelector('.grid'),dbtn=document.getElementById('dialsToggle');
-  if(grid&&dbtn){
-    const setDials=open=>{grid.classList.toggle('nodials',!open);dbtn.classList.toggle('on',open);dbtn.setAttribute('aria-expanded',open?'true':'false');try{localStorage.setItem('cv-dials',open?'1':'0');}catch(e){}};
-    let dOpen=false;try{dOpen=localStorage.getItem('cv-dials')==='1';}catch(e){}
-    setDials(dOpen);
-    dbtn.addEventListener('click',()=>setDials(grid.classList.contains('nodials')));
-  }
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setHash(t.dataset.view==='sites'?'sites':t.dataset.view==='checks'?'checks':t.dataset.view==='port'?'portfolio':t.dataset.view==='leases'?'leases':t.dataset.view==='cover'?'coverage':t.dataset.view==='raises'?'raises':t.dataset.view==='outlook'?'outlook':t.dataset.view==='ramp'?'ramp':t.dataset.view==='news'?'news':t.dataset.view==='approvals'?'approvals':'')));
-  document.querySelectorAll('.thead .sortable').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.sort;if(k===sortKey)sortDir*=-1;else{sortKey=k;sortDir=-1;}render();}));
-  document.querySelectorAll('.stab th').forEach(h=>h.addEventListener('click',()=>{const k=h.dataset.s;if(k===siteSort)siteDir*=-1;else{siteSort=k;siteDir=(k==='co'||k==='name'||k==='region'||k==='tenure'||k==='prov')?1:-1;}render();}));
-  document.getElementById('reset').addEventListener('click',()=>{Object.assign(A,BASE);syncControls();render();});
-  const rb=document.getElementById('refreshprices');if(rb)rb.addEventListener('click',()=>{fetchPrices();fetchBtc();fetchEth();});
-  addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('fullpage').classList.contains('on'))setHash('');});
-  addEventListener('hashchange',route);
-}
-
-/* ---- live prices (Finnhub, hourly) ---- */
-function updatePriceNote(live){const el=document.getElementById('pricenote');if(!el)return;
-  const base=live&&PRICES_AT?`· prices: Finnhub · updated ${PRICES_AT.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`:'· prices: manual';
-  el.textContent=base+(BTC_PRICE?` · BTC $${Math.round(BTC_PRICE).toLocaleString()}`:'')+(ETH_PRICE?` · ETH $${Math.round(ETH_PRICE).toLocaleString()}`:'');}
-let FETCHING=false;
-async function fetchPrices(){
-  const token=(typeof window!=='undefined'&&window.FINNHUB_TOKEN)||'';
-  if(!token){updatePriceNote(false);return;}
-  if(FETCHING)return;FETCHING=true;
-  const btn=document.getElementById('refreshprices');if(btn)btn.disabled=true;
-  const note=document.getElementById('pricenote');if(note)note.textContent='· prices: refreshing…';
-  await Promise.all(COMPANIES.map(async c=>{
-    try{const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(c.tk)}&token=${token}`);
-      if(!r.ok)return;const j=await r.json();
-      if(j&&typeof j.c==='number'&&j.c>0)LIVE_PRICES[c.tk]=j.c;}catch(e){}
-  }));
-  PRICES_AT=new Date();FETCHING=false;if(btn)btn.disabled=false;updatePriceNote(true);render();
-}
-async function fetchBtc(){
-  try{const r=await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
-    if(!r.ok)return;const j=await r.json();const p=parseFloat(j&&j.data&&j.data.amount);
-    if(p>0){BTC_PRICE=p;E.ctx.btc=p;BTC_AT=new Date();updatePriceNote(!!PRICES_AT);render();}}catch(e){}
-}
-async function fetchEth(){
-  try{const r=await fetch('https://api.coinbase.com/v2/prices/ETH-USD/spot');
-    if(!r.ok)return;const j=await r.json();const p=parseFloat(j&&j.data&&j.data.amount);
-    if(p>0){ETH_PRICE=p;E.ctx.eth=p;updatePriceNote(!!PRICES_AT);render();}}catch(e){}
-}
-
-/* ---- boot: load data, then build ---- */
-function applyConfig(data){
-  E=Engine.createEngine(data);
-  CFG=E.CFG;YEAR=E.YEAR;NOW=E.NOW;HORIZON=E.HORIZON;BASE=E.BASE;A=E.A;SLIDERS=E.SLIDERS;
-  REGION=E.REGION;CONST=E.CONST;TIERS=E.TIERS;PROV=E.PROV;PROV_OP=E.PROV_OP;
-  LIVE_PRICES=E.ctx.prices;   // same object — quote fetches flow straight into the engine
-}
-async function boot(){
-  try{
-    const res=await fetch('data.json',{cache:'no-store'});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const data=await res.json();
-    RAW_DATA=data;
-    applyConfig(data);
-    COMPANIES=data.companies;
-    buildControls();
-    wireEvents();
-    route();
-    try{if(typeof ChecksCore!=='undefined')updateChecksBadge(ChecksCore.runChecks(RAW_DATA));}catch(e){}
-    fetchPrices();fetchBtc();fetchEth();
-    loadNewsAndProposals();
-    setInterval(()=>{fetchPrices();fetchBtc();fetchEth();},3600000);
-  }catch(err){
-    document.getElementById('rows').innerHTML=`<div class="appmsg err">Could not load data.json — ${err.message}. Serve this folder over HTTP (not file://).</div>`;
-  }
-}
-boot();
+  document.addEventListener('change',e=>{const map={'site-company':'company','site-evidence':'evidence','research-company':'company'};if(map[e.target.id])updateQuery(map[e.target.id],e.target.value);});
+  drawer.addEventListener('click',e=>{if(e.target===drawer){const r=drawer.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right)closeDrawer();}});
+  drawer.addEventListener('close',()=>returnFocus?.focus?.());
+  window.addEventListener('popstate',render);
+  // The two loads settle independently: an IREN-only failure degrades just /iren, and only a primary-data failure blanks the app.
+  const loadFailed=err=>{console.error(err);main.innerHTML='<div class="empty"><strong>The research snapshot could not load.</strong><p>Reload this page to try again.</p><button class="button" onclick="location.reload()">Reload preview</button></div>';};
+  // Reports load their own <tk>-data.json lazily inside ReportView — no preload, no coupled failure.
+  CloudModel.load('/data.json').then(data=>{M=data;render();runOps();if(window.Quotes)Quotes.start();})
+    .catch(err=>{loadFailed(err);runOps();});
+})();

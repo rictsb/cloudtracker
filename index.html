@@ -1,149 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Compute / Value — relative-value tracker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=59">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="GPU cloud research. A clear view of company valuations, infrastructure and the path from power to earnings.">
+  <title>Compute / Value — GPU cloud research</title>
+  <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/report-layout.css">
+  <script defer src="/config.js"></script>
+  <script defer src="/engine.js"></script>
+  <script defer src="/ramp-core.js"></script>
+  <script defer src="/onepager-core.js"></script>
+  <script defer src="/model-data.js"></script>
+  <script defer src="/checks-core.js"></script>
+  <script defer src="/portfolio-core.js"></script>
+  <script defer src="/approvals-core.js"></script>
+  <script defer src="/research-view.js"></script>
+  <script defer src="/report-graphics.js"></script>
+  <script defer src="/report-layout.js"></script>
+  <script defer src="/report-view.js"></script>
+  <script defer src="/compare-view.js"></script>
+  <script defer src="/coverage-view.js"></script>
+  <script defer src="/contracts-view.js"></script>
+  <script defer src="/news-view.js"></script>
+  <script defer src="/checks-view.js"></script>
+  <script defer src="/portfolio-view.js"></script>
+  <script defer src="/approvals-view.js"></script>
+  <script defer src="/quotes.js"></script>
+  <script defer src="/app.js"></script>
 </head>
 <body>
-
-<div class="wrap">
-  <header>
-    <div>
-      <h1 class="mark">Compute<span class="slash">/</span>Value</h1>
-      <div class="sub">First-principles relative value — value rolls up from sites</div>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="nav-wrap">
+      <a class="brand" href="/" aria-label="Compute / Value home"><img src="/assets/mark.svg" width="29" height="29" alt=""><span>compute<span class="brand-slash"> / </span>value</span></a>
+      <nav aria-label="Main navigation">
+        <a href="/" data-nav="compare">Compare</a>
+        <a href="/infrastructure" data-nav="infrastructure">Infrastructure</a>
+        <a href="/research" data-nav="research">Research</a>
+      </nav>
+      <a class="ops-entry" href="/news" data-nav="operations"><span>Operations</span><span class="ops-badges" id="ops-badges"></span></a>
     </div>
-    <button class="dialsbtn" id="dialsToggle" aria-expanded="false" title="Show or hide the global assumption dials">☰ global dials</button>
   </header>
-
-  <div class="grid">
-    <aside>
-      <div class="eyebrow">Global dials</div>
-      <div id="controls"></div>
-      <button class="reset" id="reset">Reset to base case</button>
-      <div class="derived">
-        <div><span>Owner-op value / MW</span><b id="d-owner">—</b></div>
-        <div><span>Landlord value / MW</span><b id="d-land">—</b></div>
-        <div style="margin-top:4px;font-style:italic">at base site (mid power, leased)</div>
-      </div>
-    </aside>
-
-    <main>
-      <div class="tabs">
-        <button class="tab on" data-view="cmp">Comparison</button>
-        <button class="tab" data-view="sites">All sites</button>
-        <button class="tab" data-view="leases">Leases</button>
-        <button class="tab" data-view="cover">Coverage</button>
-        <button class="tab" data-view="raises">Raises</button>
-        <button class="tab" data-view="outlook">Outlook</button>
-        <button class="tab" data-view="ramp">GPU ramp</button>
-        <button class="tab" data-view="checks">Checks <span id="tabbadge"></span></button>
-        <button class="tab" data-view="port">Portfolio</button>
-        <button class="tab" data-view="news">News</button>
-        <button class="tab" data-view="approvals">Approvals <span id="apbadge"></span></button>
-      </div>
-
-      <section id="view-cmp" aria-labelledby="h2-cmp">
-        <h2 class="vh" id="h2-cmp">Comparison</h2><div class="eyebrow">Ranked by <span id="sortlabel">upside</span> <button id="refreshprices" class="refreshbtn" title="Refresh live prices">↻ refresh</button> <span id="pricenote" class="pricenote"></span></div>
-        <div class="thead">
-          <div></div><div>Company</div>
-          <div class="col-stack">Market price → our value</div>
-          <div class="num">Price</div>
-          <div class="num sortable floorcol" data-sort="floor">Floor&nbsp;<span class="arr" id="ar-floor"></span></div>
-          <div class="num sortable" data-sort="upside">Target&nbsp;<span class="arr" id="ar-upside">▾</span></div>
-        </div>
-        <div class="ssummary" id="cmp-answer" style="margin:4px 14px 12px"></div>
-        <div class="legend col-stack">
-          <span><i style="background:var(--indigo)"></i>Contracted floor</span>
-          <span><i style="background:repeating-linear-gradient(45deg,var(--indigo-soft) 0 3px,transparent 3px 6px);border:1px solid var(--line)"></i>Expected / pipeline</span>
-          <span><i style="background:var(--gold)"></i>Legacy / treasury</span>
-          <span><i style="width:2px;height:13px;border-radius:0;background:var(--ink)"></i>Market price</span>
-          <span><i style="width:2px;height:13px;border-radius:0;border-left:2px dashed var(--pine);background:transparent"></i>Execution floor (signed only)</span>
-          <span><i style="background:rgba(91,122,92,.22);border:1px dashed var(--pine)"></i>Upside</span>
-          <span><i style="background:rgba(170,107,79,.30);border:1px dashed var(--clay)"></i>Overvalued</span>
-        </div>
-        <div class="legend2 col-stack">Bar length = our value as a <b>multiple of today's price</b>, so rows are directly comparable; the dark line marks 1.0x (today's price) and sits at the same place on every row. The space between is <b>upside</b> (green) or <b>overvalued</b> (red). Segments split the value by what backs it — contracted floor, expected/pipeline, legacy — and the more <b>hatched</b> the bar, the more rests on uncontracted pipeline.</div>
-        <div id="rows"></div>
-        
-      </section>
-
-      <section id="view-leases" aria-labelledby="h2-leases" style="display:none">
-        <h2 class="vh" id="h2-leases">Leases</h2><div class="eyebrow">The lease registry — every signed book, its economics, and what it contributes. The market print-tape the anchor is calibrated against.</div>
-        <div id="leases-body"></div>
-      </section>
-
-      <section id="view-cover" aria-labelledby="h2-cover" style="display:none">
-        <h2 class="vh" id="h2-cover">Coverage</h2><div class="eyebrow">Confirmed contracted value vs today's market cap — every signed lease + compute contract, its gross value and term, annualized and as a share of market cap. Live: market cap tracks the tape. Click any column to sort; click a row for the per-contract breakdown.</div>
-        <div id="cover-body"></div>
-      </section>
-
-      <section id="view-raises" aria-labelledby="h2-raises" style="display:none">
-        <h2 class="vh" id="h2-raises">Raises</h2><div class="eyebrow">Capital raises — every announced raise, its day-0 reaction and the +5/+15 trading-day path; the type summary shows each window absolute and vs the equal-weight universe. Derived live from the portfolio ledger; nothing stored. Click a column to sort; click a row for terms, purpose, source and the +30d path.</div>
-        <div id="raises-body"></div>
-      </section>
-
-      <section id="view-outlook" aria-labelledby="h2-outlook" style="display:none">
-        <h2 class="vh" id="h2-outlook">Outlook</h2><div class="eyebrow">The forward book — who signs the next lease, and who surprises on earnings. Judgement, refreshed weekly by the Monday sweep; never a valuation input.</div>
-        <div id="outlook-body"></div>
-      </section>
-
-      <section id="view-ramp" aria-labelledby="h2-ramp" style="display:none">
-        <h2 class="vh" id="h2-ramp">GPU ramp</h2><div class="eyebrow">The GPU ramp — quarterly capacity, fleet and revenue path for the GPU-cloud owners. Research overlay (filings + print tape + consensus); never a valuation input.</div>
-        <div id="ramp-body"></div>
-      </section>
-
-      <section id="view-checks" aria-labelledby="h2-checks" style="display:none">
-        <h2 class="vh" id="h2-checks">Checks</h2><div class="eyebrow">Data unit tests — run live in this browser against the deployed data, on every load</div>
-        <div id="checks-body"></div>
-      </section>
-
-      <section id="view-port" aria-labelledby="h2-port" style="display:none">
-        <h2 class="vh" id="h2-port">Portfolio</h2><div class="eyebrow">Paper portfolio — the model's views, sized daily against the market · hypothetical, paper only</div>
-        <div id="port-body"></div>
-      </section>
-
-      <section id="view-news" aria-labelledby="h2-news" style="display:none">
-        <h2 class="vh" id="h2-news">News</h2><div class="eyebrow">What the curated sources said, summarised — one item per video, newest first. Never a valuation input.</div>
-        <div id="news-body"></div>
-      </section>
-
-      <section id="view-approvals" aria-labelledby="h2-approvals" style="display:none">
-        <h2 class="vh" id="h2-approvals">Approvals</h2><div class="eyebrow">Statements from the sources that the tracker does not yet reflect. Yes puts it in; No declines it. Nothing changes without a click.</div>
-        <div id="approvals-body"></div>
-      </section>
-
-      <section id="view-sites" aria-labelledby="h2-sites" style="display:none">
-        <h2 class="vh" id="h2-sites">All sites</h2><div class="eyebrow" id="sites-eyebrow">Every site in the universe — the inventory the roll-up is built from</div>
-        <div style="overflow-x:auto">
-          <table class="stab">
-            <thead><tr>
-              <th data-s="co">Company</th><th data-s="name">Site</th>
-              <th class="r" data-s="mw">MW</th><th data-s="tenure">Tenure</th>
-              <th data-s="region">Power</th><th class="r" data-s="yr">Live</th>
-              <th data-s="prov">Provenance</th><th class="r" data-s="val">Value</th>
-            </tr></thead>
-            <tbody id="sites-body"></tbody>
-          </table>
-        </div>
-        <div class="mwbar" id="mwbar"></div>
-        <div class="ssummary" id="ssummary"></div>
-      </section>
-    </main>
-  </div>
-  <div class="fullpage" id="fullpage"></div>
-</div>
-
-<!-- bump ?v= together with meaningful JS/CSS changes — browsers cache these heuristically -->
-<script src="config.js?v=59"></script>
-<script src="checks-core.js?v=59"></script>
-<script src="engine.js?v=59"></script>
-<script src="ramp-core.js?v=59"></script>
-<script src="portfolio-core.js?v=59"></script>
-<script src="app.js?v=59"></script>
-<script src="portfolio-ui.js?v=59"></script>
+  <main id="main" tabindex="-1"><div class="loading">Loading the research snapshot…</div></main>
+  <footer class="footer"><span>Compute / Value <span class="footer-sep">/</span> Independent GPU cloud research</span><div><span>Design preview</span><span>USD unless stated</span><button class="text-button" data-action="methodology">Data & methodology <span aria-hidden="true">↗</span></button></div></footer>
+  <dialog id="drawer" class="drawer" aria-labelledby="drawer-title"></dialog>
+  <div id="announcement" class="sr-only" aria-live="polite"></div>
 </body>
 </html>

@@ -1,0 +1,33 @@
+# Routing for the Render Static Site (redesign cutover, plan rulings R4/C17).
+# NOTE: this service predates Blueprints, so these rules are ALSO entered in the Render
+# dashboard (Settings → Redirects/Rewrites) in this exact order — first match wins.
+# This file is the checked-in source of truth for those rules.
+#
+# Phase 1 (cutover day): the legacy generated pages still serve at their .html URLs;
+# the SPA catch-all must not swallow real files (Render serves existing files first).
+# Phase 2 (follow-up commit, minutes later, after the dashboard rules are live):
+# the four generated pages are deleted and the commented redirects below take effect.
+routes:
+  # Phase 2 redirects — activate together with deleting the generated pages:
+  - type: redirect
+    source: /iren.html
+    destination: /iren
+  - type: redirect
+    source: /crwv.html
+    destination: /crwv
+  - type: redirect
+    source: /nbis.html
+    destination: /nbis
+  - type: redirect
+    source: /compare.html
+    destination: /research/compare
+  - type: redirect
+    source: /compare
+    destination: /research/compare
+  # SPA catch-all — every path route (/company/:tk, /iren, /crwv, /nbis, /infrastructure,
+  # /research, /research/compare, /portfolio, /news, /checks, /approvals) renders the shell.
+  # Real files (data.json, *.js, *.css, news.json, proposals.json, portfolio*.json,
+  # <tk>-data.json, assets/*) are served before this rule.
+  - type: rewrite
+    source: /*
+    destination: /index.html
