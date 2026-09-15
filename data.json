@@ -8126,7 +8126,7 @@
     "plannedRaise": "~$1B judgmental: APLD funds buildout via $2.15B PF2 senior secured notes (6.75% '31), Macquarie $5B perpetual preferred ($2.25M/MW, 12.75%) + ~$900M NCI + converts; telegraphs minimal common-equity/ATM issuance",
     "tier": "IG — ~1.2 GW under 15-yr take-or-pay, ~65% of revenue backed by U.S. investment-grade hyperscalers (Polaris Forge 2/3, Delta Forge 1); CoreWeave book de-risked to A3 via springing guarantee",
     "committedDebt": "ComputeCo-2 $2.15B (closed 3/10/26, PF2 200MW; escrow released 6/17/26) + ComputeCo-3 $1.59B (closed 6/16/26, ELN-04) — funded paper only, $430M FNBO revolver capacity excluded",
-    "seniorClaims": "$3,348M = the $3,285M Macquarie floor CONFIRMED at the FY26 10-K, plus $62.8M of corporate-level redeemable preferred. RESOLVED 2026-08-24: MAM has funded $1,825.0M across four closings (10/6/25 $112.5M + 11/25/25 $450.0M + 12/9/25 $337.5M + 5/29/26 $925.0M); the 1.80x minimum MOIC floor is therefore $3,285M and our carried figure was right. MAM holds 13.5% of TopCo 2 fully-diluted common (NOT the 15% the June deck showed, nor the 10%/$130M our older basis carried). PERIMETER ANSWERED: TopCo 2 wholly owns APLD ComputeCo (ELN-02/03 = Polaris Forge 1) AND APLD ComputeCo 2 (FAR-01/02 = Polaris Forge 2) — so PF1 and PF2, with Delta Forge outside; PF3's inclusion is unconfirmed. WHICH LEG BINDS: on liquidation the 1.80x is expressly INCLUSIVE of common-unit value so common does not stack on top, but on a REDEMPTION available from 4/6/2028 the price is MOIC PLUS 120% of common FMV — so $3,285M is a FLOOR, not a cap. Book redeemable NCI is $1,956.3M and accretes toward the floor at 12.75%. Every incremental MAM dollar under the remaining $4.9B program grows the floor by $1.80. Corporate leg: Series E $6.306M + Series E-1 $56.460M = $62.8M of 9.0% cumulative redeemable preferred in temporary equity at 5/31/26 [edgar: FY26 10-K filed 2026-07-29]",
+    "seniorClaims": "$3,348M = the $3,285M Macquarie floor CONFIRMED at the FY26 10-K, plus $62.8M of corporate-level redeemable preferred. RESOLVED 2026-08-24: MAM has funded $1,825.0M across four closings (10/6/25 $112.5M + 11/25/25 $450.0M + 12/9/25 $337.5M + 5/29/26 $925.0M); the 1.80x minimum MOIC floor is therefore $3,285M and our carried figure was right. MAM holds 13.5% of TopCo 2 fully-diluted common (NOT the 15% the June deck showed, nor the 10%/$130M our older basis carried). PERIMETER ANSWERED: TopCo 2 wholly owns APLD ComputeCo (ELN-02/03 = Polaris Forge 1) AND APLD ComputeCo 2 (FAR-01/02 = Polaris Forge 2) — so PF1 and PF2, with Delta Forge outside; PF3's inclusion is unconfirmed. WHICH LEG BINDS: on liquidation the 1.80x is expressly INCLUSIVE of common-unit value so common does not stack on top, but on a REDEMPTION available from 4/6/2028 the price is MOIC PLUS 120% of common FMV — so $3,285M is a FLOOR, not a cap. Book redeemable NCI is $1,956.3M and accretes toward the floor at 12.75%. Every incremental MAM dollar under the remaining ~$3.2B of the up-to-$5.0B program (headline $5.0B less $1,825.0M funded; corrected 2026-09-15 vs FY26 10-K) grows the floor by $1.80. Corporate leg: Series E $6.306M + Series E-1 $56.460M = $62.8M of 9.0% cumulative redeemable preferred in temporary equity at 5/31/26 [edgar: FY26 10-K filed 2026-07-29]",
     "legacy": "includes $229M capped-call intrinsic value (strike $9.752/cap $14.72, covers the full 46.1M convert shares; stock far above cap so value is fixed; Ex 10.2 unwind terms preserve it on redemption/early conversion)",
     "netDebt": "Restated to the FY26 10-K's single as-of date, 5/31/26 (ComputeCo-2 and ComputeCo-3 bonds sit in committedDebt; the convert's $450M principal is removed because its 46.1M if-converted shares are inside fully-diluted shares). Borrowings in netDebt = $2,350.0M (2030 9.250% ComputeCo 1 notes) + $300.0M GS bridge + $56.7M other (Starion Ellendale $8.1M, Cornerstone $9.9M, Starion Term $3.9M, other/SAFE $34.8M) = $2,706.7M; less cash $1,592.0M; less non-ComputeCo-2 restricted cash $411.4M = $703.3M. JUDGEMENT FLAG: the 10-K does not disaggregate restricted cash, so the ~$2,150M ComputeCo-2 escrow allocation (released 6/18/26) is an inference — netting ALL restricted cash gives -$1,447M, netting none gives $1,115M. Post-FYE for the next as-of date: SAFEs repaid 6/2/26 (-$13.3M), the $300M bridge refinanced 6/16/26 by ComputeCo 3 (already in committedDebt), Texas Capital Bank $58.5M term note 6/30/26, revolver upsized to $430M committed with only $65M of standby LCs and no cash borrowings [edgar]"
    },
@@ -9174,154 +9174,1263 @@
  ],
  "watchItems": [
   {
+   "id": "w-apld-eln03-obligor",
    "tk": "APLD",
-   "note": "Macquarie preferred: $900M face drawn of a $5B program (12.75% PIK, 1.8x MOIC floor) — seniorClaims grows as it draws; re-mark quarterly",
-   "added": "2026-07-02"
+   "cat": "defect",
+   "refs": [
+    "companies[tk=APLD].leases[id=apld-crwv-eln]",
+    "companies[tk=APLD].basis.tier",
+    "companies[tk=APLD].sites[n^=Polaris Forge 1 ELN-03]"
+   ],
+   "note": "FY26 10-K discloses CoreWeave assigned ALL rights and obligations under the ELN-03 lease to CoreWeave Compute Acquisition Co. VIII LLC on 2026-03-30 and was RELEASED; our lease record (apld-crwv-eln, counterparty 'CoreWeave', covers ELN-02/03) carries no obligor substitution, and basis.tier still rests on 'CoreWeave book de-risked to A3 via springing guarantee'.",
+   "alt": "ELN-03 obligor is an unrated CoreWeave SPV with no parent credit — unless the springing guarantee is confirmed to follow the assignee.",
+   "status": "investigating",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "lease-record proposal recording the assignment; guarantee-coverage check against the FY26 10-K / guarantee exhibit",
+   "resolve": "Lease record names the assignee obligor and the counterparty-quality basis (tier 'ig', leaseQ 4.2) is confirmed to still apply to ELN-03 or is adjusted.",
+   "inModel": "no — leases[apld-crwv-eln] still names CoreWeave as obligor; tier and leaseQ assume the A3-guaranteed CoreWeave book",
+   "impact": "Counterparty quality on the 150MW ELN-03 slice of the ~$7B PF1 CoreWeave lease; could weaken the tier='ig' basis and the CoreWeave-book de-risking claim.",
+   "grp": "g02-APLD"
   },
   {
-   "tk": "MARA",
-   "note": "~2,500MW credited but AI-leasable critical IT is ~200MW (Hannibal, ~2028); rest is mining/spec — Richard reviewing before any change",
-   "added": "2026-06-30"
+   "id": "w-apld-mam-draws",
+   "tk": "APLD",
+   "cat": "forward",
+   "refs": [
+    "companies[tk=APLD].seniorClaims",
+    "companies[tk=APLD].basis.seniorClaims",
+    "companies[tk=APLD].log[d=2026-07-23]"
+   ],
+   "note": "Macquarie perpetual preferred: every incremental MAM dollar drawn under the remaining program grows the 1.80x MOIC floor by $1.80 of senior claims ahead of common; seniorClaims must be re-marked each quarter to the funded amount ($1,825.0M funded, floor $3,285M as of the FY26 10-K).",
+   "alt": "Full-draw scenario (MS models the complete program drawn): floor grows toward ~$9B (program size itself unresolved — $5B stated vs 'remaining $4.9B' in basis).",
+   "status": "monitoring",
+   "added": "2026-07-02",
+   "reviewed": "2026-09-15",
+   "next": "FY27 Q1 10-Q (quarter ended 8/31/26, expected ~Oct 2026)",
+   "resolve": "Each quarterly filing's funded-amount disclosure is re-marked into seniorClaims within one review cycle; program size ($5B vs $4.9B-remaining inconsistency) documented from the primary program agreement.",
+   "inModel": "yes — seniorClaims=3348 carries the accreted funded floor ($3,285M MOIC floor + $62.8M corporate preferred)",
+   "impact": "Each $1B of new MAM draws adds $1.8B of claims senior to common — directly compresses APLD equity value per share and its rank.",
+   "grp": "g01-APLD"
   },
   {
-   "tk": "CRWV",
-   "note": "Meta Compute + xAI/Anthropic Colossus = new AIaaS supply entrants; H100 spot −7% off June peak — the trend-dial tripwire",
-   "added": "2026-07-02"
+   "id": "w-apld-topco2-recourse",
+   "tk": "APLD",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=APLD].committedDebt",
+    "companies[tk=APLD].basis.committedDebt"
+   ],
+   "note": "FY26 10-K VIE note states verbatim that TopCo 2 creditors HAVE recourse to the Company’s assets — read literally this moves ~$3.7B of ComputeCo-2/3 committedDebt onto the corporate stack, against the model’s off-corporate treatment. Possibly a drafting error (standard formulation is NO recourse), but it is what is filed. NOT ACTED ON pending a ruling.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "owner ruling",
+   "resolve": "Owner rules: treat as drafting error (keep committedDebt off corporate claims, note the anomaly) or apply literal recourse (move ~$3.7B into claims).",
+   "inModel": "no — treatment pending the ruling",
+   "impact": "First-order for APLD per-share value and rank (~$3.7B of claims).",
+   "grp": "g02-APLD"
   },
   {
-   "tk": "HUT",
-   "note": "RB ROFO exercise ASSUMED by owner mandate (400MW estimated + 600MW rumored). Watch: Entergy power expansion filings / Fluidstack-Anthropic expansion announcements. Falsifier: silence through mid-2027 → regrade",
-   "added": "2026-07-08"
-  },
-  {
-   "tk": "FRMI",
-   "note": "TENANT TRIPWIRES (10-Q): ≥400MW Phase-1 lease by ~Nov 10 2026 or MUFG amortization doubles + agent may market the turbines; Keystone mandatory prepayment + TTU notice-to-proceed both need a customer by Dec 31 2026. Mgmt targets binding lease ~mid-Aug. A signed anchor re-rates; a missed deadline is the falsifier for the whole gas-phase schedule",
-   "added": "2026-07-06"
-  },
-  {
-   "tk": "IREN",
-   "note": "8-K 7/20/26 follow-ups: identity of the unnamed 'leading AI developer'; netDebt re-verify (cash $7.6bn 6/30 printed but borrowings side stale — one as-of date rule); plannedRaise $8B looks stale-conservative vs 45% prepay model + cash — revisit at FY results (Aug)",
-   "added": "2026-07-20"
-  },
-  {
-   "tk": "HUT",
-   "note": "Beacon Point Ph2 construction financing → committedDebt when the SPV bonds/facility print (Ph1 pattern; $7.5B carried today); tenant identity still undisclosed — IG tier rests on company characterization (see basis.tier falsifier); lease not exhibited",
-   "added": "2026-07-20"
-  },
-  {
-   "tk": "CRWV",
-   "note": "RESOLVED 7/27/26: Helios rows set to 133/260/133 IT (Galaxy PR + SA tape, dual-corroborated). Remaining from 7/24: July Form 4 wave + Q2 backlog restate ($33-35B Q1, Jane St was April)",
-   "added": "2026-07-24"
-  },
-  {
+   "id": "w-btdr-site-slips",
    "tk": "BTDR",
-   "note": "Tydal follow-ups: project financing → committedDebt when priced (expected 'significant excess capital'); the yr-10 no-fee termination right — model carries the full 16yr base per convention, guaranteed-ish value ≈ $2.7B/10yr if exercised; Volta credit vs the $1.3B LC backstop (LC milestones = BTDR termination right); end-customer AI lab identity; 6-K on EDGAR when furnished",
-   "added": "2026-08-04"
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=BTDR].sites[n=Knoxville TN ph.1] (2026-12)",
+    "companies[tk=BTDR].sites[n=Knoxville TN ph.2] (2027-03)",
+    "companies[tk=BTDR].sites[n=Wenatchee WA] (2026-10)",
+    "companies[tk=BTDR].sites[n^=Clarington OH] (2028-06 / 2029-06, prov rumored)",
+    "companies[tk=BTDR].log[d=2026-06-01] (Clarington lawsuit)"
+   ],
+   "note": "6-K 2026-08-05 guidance contradicts our site rows: Knoxville was redesigned and pushed to Q3'27 (~3 quarters) but rows still carry 2026-12 / 2027-03; Wenatchee and Clarington are 'to be updated' with no date but rows carry 2026-10 and 2028/2029; Clarington is gated on American Heavy Plate Solutions litigation (corroborated by the 6/1 Blockspace log entry).",
+   "alt": "Knoxville ph1 ≈ 2027-09; Wenatchee and Clarington unknown-dated pending company update.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "re-dating proposal through the Approvals flow; next 6-K/production update for Wenatchee/Clarington dates",
+   "resolve": "Site rows re-dated to filed guidance (or an explicit basis documents why they differ); Clarington litigation status refreshed.",
+   "inModel": "no — rows still carry pre-slip dates, so the model credits earlier energization than filed guidance supports",
+   "impact": "~99MW Knoxville + 13MW Wenatchee near-term ramp timing (model currently too early by ~3 quarters on Knoxville); 570MW Clarington already haircut as 'rumored' but litigation-gating is unrepresented.",
+   "grp": "g04-BTDR"
   },
   {
-   "tk": "RIOT",
-   "note": "Frontier-lease project financing: $573M MS interim facility at Riot DC Logistics LLC (NON-RECOURSE to parent, tenant-secured, SOFR+2.75%, matures 10/15/26) -> IG-backstopped takeout $1.7-2.1B at 80-90% LTC expected near term; non-recourse project debt stays OFF corporate claims — revisit if recourse changes; tenant identity: Bloomberg says Anthropic (unconfirmed)",
-   "added": "2026-08-11"
+   "id": "w-btdr-tydal-effective",
+   "tk": "BTDR",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=BTDR].leases[id=btdr-tydal].effective"
+   ],
+   "note": "Tydal effectiveness promotion unsupported: leases[btdr-tydal].effective=true, but neither the 8/4 PR nor the 6-K states the lease is effective (language qualifiers only); effectiveness gates the contracted floor.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "owner ruling",
+   "resolve": "Primary evidence of effectiveness (or the owner accepts the promotion with a basis), else effective:false until evidenced.",
+   "inModel": "no — treatment pending the ruling",
+   "impact": "Gates the Tydal contribution to BTDR’s contracted floor.",
+   "grp": "g04-BTDR"
   },
   {
-   "tk": "RIOT",
-   "note": "Corsicana LOI (nonbinding, single tenant, full campus 756 MW IT, >$1B/yr rent potential) — conversion to executed lease is mgmt's stated 2026 priority; sites stay unleased/expected until signed",
-   "added": "2026-08-11"
+   "id": "w-btdr-tydal-endcustomer",
+   "tk": "BTDR",
+   "cat": "coverage",
+   "refs": [
+    "companies[tk=BTDR].leases[id=btdr-tydal].counterparty ('end customer: leading AI lab')"
+   ],
+   "note": "The identity of the 'leading AI lab' end customer behind Volta at Tydal remains undisclosed.",
+   "status": "monitoring",
+   "added": "2026-08-04",
+   "reviewed": "2026-09-15",
+   "next": "company disclosure, filing, or trusted secondary (SA tape) naming the end customer",
+   "resolve": "End customer named with filing or dual-corroborated support; counterparty/leaseQ basis updated.",
+   "inModel": "no — only indirectly via leaseQ=3",
+   "impact": "Named-counterparty precedent (cf. CORZ/CLSK rulings) is the trigger for tier/leaseQ re-rates; identity also determines look-through customer-concentration in basket policy.",
+   "grp": "g03-BTDR"
   },
   {
-   "tk": "CRWV",
-   "note": "Q2-26 balance sheet reconcile pending: DDTL 5.5 $2.6B closed 8/10 (Ba2/BB+, SOFR+550, TLB, 5yr tenor > 3yr contract tenor — delayed-draw: move to committedDebt as drawn); confirm mid-June HY notes ($1.25B 9.625% 2032 + EUR2.0B 8.5% 2032) inside netDebt 22,900; sharesReported vs 10-Q cover",
-   "added": "2026-08-18"
+   "id": "w-btdr-tydal-lc-volta",
+   "tk": "BTDR",
+   "cat": "coverage",
+   "refs": [
+    "companies[tk=BTDR].leases[id=btdr-tydal].counterparty",
+    "companies[tk=BTDR].leases[id=btdr-tydal].source",
+    "companies[tk=BTDR].leaseQ (3)"
+   ],
+   "note": "Volta (NCP platform) standalone credit is unassessed, and the 2026-08-24 filing audit found the ~$1.3B J.P. Morgan-arranged LCs are only 'ANTICIPATED to be arranged… subject to customary conditions' — NOT confirmed issued; the LC milestones are a BTDR termination right. (Merges the 8/4 'Volta credit vs LC backstop' atom with the 8/24 LC-qualifier atom.)",
+   "alt": "If LCs never issue, the effective counterparty on the $4.7B lease is an unrated neocloud platform with no backstop.",
+   "status": "investigating",
+   "added": "2026-08-04",
+   "reviewed": "2026-09-15",
+   "next": "filing/6-K confirming LC issuance; Ph1 commencement 12/31/26",
+   "resolve": "LC issuance confirmed with amount and issuer; or milestones missed → BTDR termination decision escalates to owner.",
+   "inModel": "partially — leaseQ=3 carries generic counterparty quality; no explicit LC-issuance contingency on the 2.16 NOI print",
+   "impact": "Credit quality behind the registry's top NOI print; drives whether the Tydal book deserves its current lease-quality treatment.",
+   "grp": "g03-BTDR"
   },
   {
-   "tk": "NBIS",
-   "note": "2Q RPO/backlog dollar figure not in shareholder letter (ARR $3.0B only) — re-infer signedRate 11.5 when RPO prints; watch identity of 'unnamed US frontier lab' >$1B deal; >$9B FY26 prepayments expected (SA 8/18)",
-   "added": "2026-08-18"
+   "id": "w-btdr-tydal-projfin",
+   "tk": "BTDR",
+   "cat": "forward",
+   "refs": [
+    "companies[tk=BTDR].committedDebt (absent=0)",
+    "companies[tk=BTDR].leases[id=btdr-tydal].source",
+    "companies[tk=BTDR].basis.plannedRaise",
+    "companies[tk=BTDR].log[d=2026-08-04]"
+   ],
+   "note": "Tydal project financing (MS/Barclays/Northland advising, expected to generate 'significant excess capital') has NOT priced — confirmed unpriced by the 2026-08-24 filing audit — so committedDebt stays 0 per convention. (Deduplicates the same atom in the 2026-08-24 qualifiers note.)",
+   "status": "monitoring",
+   "added": "2026-08-04",
+   "reviewed": "2026-09-15",
+   "next": "financing pricing print / next 6-K or quarterly report",
+   "resolve": "Financing prices → committedDebt set with terms via proposal; or the financing plan is abandoned/changed.",
+   "inModel": "yes as absence — committedDebt=0 is the conservative convention; basis.plannedRaise records 'Tydal lease → project debt'",
+   "impact": "Funding of the ~$500M remaining Tydal capex without equity; a print would validate the excess-capital claim and could reduce plannedRaise.",
+   "grp": "g03-BTDR"
   },
   {
-   "tk": "NBIS",
-   "note": "ASSET-LIGHT PERIMETER — owner ruling needed. GS (24-Aug) reports a new partnership model where partners finance, build and OPERATE infrastructure while Nebius supplies platform and demand. Our engine values all 6,460 MW at OWNER economics (margin 55% + owned bonus x multiple 7) and has no asset-light mode; setting owned:false is far too weak (only +5 -> -3 on site margin, worth ~$18/sh). $38B of EV sits in the two unnamed Pipeline 2030/2031 (growth) rows. Sensitivity: pipelineCredit 1.0->0.5 takes the target $419->$351; ->0 takes it to $283; upgrading rumored <=300MW rows to estimated takes it to $473. Falsifier: disclosure of how much future MW is partner-owned and on what revenue share. Options if it becomes material: new assetLight site flag, route to the landlord branch, or hold at pipelineCredit [sell-side]",
-   "added": "2026-08-24"
+   "id": "w-btdr-tydal-term10",
+   "tk": "BTDR",
+   "cat": "house-judgement",
+   "refs": [
+    "companies[tk=BTDR].leases[id=btdr-tydal] (termYrs=16)",
+    "companies[tk=BTDR].log[d=2026-08-04]"
+   ],
+   "note": "House convention carries the full 16-yr Tydal base ($4.7B) despite the tenant's no-fee year-10 termination right; the guaranteed-ish base if exercised is ≈$2.7B/10yr; the offsetting protections are the ~$1.3B LC backstop and BTDR's own termination right on missed LC milestones.",
+   "alt": "$2.7B/10yr effective base if the year-10 right is exercised (~$2.0B TCV lower).",
+   "status": "monitoring",
+   "added": "2026-08-04",
+   "reviewed": "2026-09-15",
+   "next": "LC issuance confirmation (w-btdr-tydal-lc-volta) and Ph1 commencement 12/31/26",
+   "resolve": "Falsifier: LCs fail to issue or evidence emerges that the termination option is economically live; otherwise stands as a labeled convention.",
+   "inModel": "yes — leases[btdr-tydal].termYrs=16 with the 8-yr renewal ($8.0B/24yr) already EXCLUDED; the $2.7B/10yr alternative is not modeled",
+   "impact": "~$2.0B of TCV on BTDR's largest lease (the registry's top NOI print at $2.16M/MW·yr) — first-order for the landlord book value.",
+   "grp": "g03-BTDR"
   },
   {
-   "tk": "NBIS",
-   "note": "ACCRETING CONVERTS — the August 2026 notes accrete to 110% (2030s) and 125% (2034s) of original principal, so the maturity claim is $5.8B against $5.0B issued and ~$4.94B of cash raised. Redemption and fundamental-change repurchase prices are both the Accreted Principal Amount, not par. netDebt carries the $5,000M principal per convention — the $800M gap is a real claim ahead of common that the model does not price. Also open: the $750M greenshoe (13-day window running past 8/24, nothing filed yet) [edgar; company pricing release 2026-08-19]",
-   "added": "2026-08-24"
-  },
-  {
-   "tk": "NBIS",
-   "note": "FD SHARE COUNT CANNOT BE REBUILT — shares 341 is CARRIED FORWARD UNVERIFIED. Filed facts: 271.9M outstanding at 6/30/26 (238,400,165 Class A + 33,455,053 Class B), plus 21,065,936 NVIDIA pre-funded warrants exercisable for nominal consideration = ~292.9M basic-equivalent, plus ~15.8M shares from the 8/19 exchange of $400M of 2.00% 2029s and $400M of 3.00% 2031s. That is ~308.7M before any remaining legacy converts. The conversion prices and remaining principal of the legacy 2029/2031/2030/2032 series are NOT disclosed in the Q2 6-K or the pricing release, so the if-converted add is unknown — the implied ~32M in our 341 could be materially too low if those series convert near the ~$50.6/share exchange ratio. Resolve at the 20-F or a convert-terms filing [edgar]",
-   "added": "2026-08-24"
-  },
-  {
-   "tk": "FRMI",
-   "note": "TENSORWAVE LEASE IS NOT EFFECTIVE — do not mark it so. Signed 2026-08-09 (not 8/10) by Fermi Campus 1 LLC with TensorWave TEX1 LLC. NO Item 1.01 8-K was ever filed and the lease is not an exhibit anywhere; the only disclosure is narrative inside the 10-Q filed 2026-08-14. Effectiveness is conditioned on board approvals, work letters, the guaranties and the LANDLORD obtaining project-level financing, at a closing expected on or before 2026-09-30 (extendable), with either party free to terminate if conditions fail. The 222 MW is TOTAL FACILITY POWER (gross) — critical IT MW is never disclosed. The 'global leader in AI' rent guarantee is still only BEING NEGOTIATED; the sole signed guaranty is from TensorWave Inc., the tenant's own parent. Delivery slipped to end-2027 through Feb-2028, with the 15-year term starting at FINAL-phase commencement. FALSIFIER: no closing 8-K by 2026-09-30 -> revert the row and the floor [edgar 10-Q 2026-08-14]",
-   "added": "2026-08-24"
-  },
-  {
-   "tk": "KEEL",
-   "note": "PENNSYLVANIA EXECUTIVE ORDER — Governor Shapiro signed an executive order bearing on HPC/AI data-centre development in PA, which is where Panther Creek, Scrubgrass and Sharon all sit. Surfaced by [zeiner] and independently confirmed on pa.gov. Compounding: Panther Creek's land-development approval is CONDITIONAL and no environmental permit has been issued at any of the three priority sites; the three-signed-leases-by-YE26 target was NOT restated in either the Q2 release or the 10-Q (language moved to 'active negotiations at three sites'). Also open: a $60.8M further letter of credit due by 2027-01-31 on top of the $40.0M already posted [zeiner, edgar, pa.gov]",
-   "added": "2026-08-24"
-  },
-  {
+   "id": "w-clsk-ercot-audit",
    "tk": "CLSK",
-   "note": "TEXAS INTERCONNECTION AUDIT — the 10-Q discloses a 2026-08-03 letter from Governor Abbott to ERCOT and the PUCT directing a comprehensive verification and audit of ALL data centers advancing through the Texas interconnection process before they are approved. CleanSpark is evaluating scope and enforceability. Direct hit on the 885MW Texas exclusivity LOI (271 acres / ~300MW Sealy + 447 acres Brazoria) and, by extension, on every ERCOT-queued site we credit across CIFR, CORZ, MARA and RIOT. Watch for ERCOT/PUCT implementation and any queue re-sequencing [edgar 10-Q]",
-   "added": "2026-08-24"
+   "cat": "forward",
+   "refs": [
+    "companies[tk=CLSK].sites[n^=Sealy] (207+78MW)",
+    "companies[tk=CLSK].sites[n^=Brazoria] (300+300MW)",
+    "cross-name: companies[tk=CIFR].sites TX rows (Barber Lake/Black Pearl/Stingray/Reveille/McLennan/Mikeska/Colchis)",
+    "cross-name: companies[tk=CORZ].sites TX rows (Denton/Austin/Pecos/Hunt)",
+    "cross-name: MARA, RIOT ERCOT-queued rows"
+   ],
+   "note": "Governor Abbott's 2026-08-03 letter directs ERCOT/PUCT to verify and audit ALL data centers advancing through the Texas interconnection process before approval (disclosed in CLSK's 10-Q; CLSK evaluating scope/enforceability). Direct hit on the 885MW Texas tenant-exclusivity portfolio (Sealy 285MW + Brazoria 600MW site rows sum to 885) and, as a shared root cause, on every ERCOT-queued site credited across CIFR, CORZ, MARA and RIOT. No newer in-file evidence resolves or scopes it (CLSK log has nothing after 7/14).",
+   "alt": "Audit proves administrative with no re-sequencing (no model change); or queue re-sequencing delays TX energization dates across multiple names.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "ERCOT/PUCT implementation guidance or queue re-sequencing announcement; else CLSK next 10-Q",
+   "resolve": "Audit scope and enforceability defined; any re-sequencing reflected in affected site dates (or explicitly ruled immaterial).",
+   "inModel": "partially — TX expansion rows carry estimated/rumored provenance haircuts, but no explicit interconnection-audit risk on the disclosed rows",
+   "impact": "Energization timing on 885MW of CLSK Texas pipeline and ERCOT-queued rows at CIFR/CORZ/MARA/RIOT — a CORRELATED shared-cause exposure that basket policy (utility/power-region concentration) should see as one issue, not five.",
+   "grp": "g05-CLSK"
   },
   {
+   "id": "w-clsk-sandersville-financing",
    "tk": "CLSK",
-   "note": "SANDERSVILLE ECONOMICS ARE PRESS-RELEASE ONLY. The 8-K (accession 0001193125-26-302448, filed 2026-07-14) exists but was filed under Items 7.01/8.01, NOT Item 1.01, and the lease is NOT an exhibit. The $6.6B/$11.6B contract value, ~100% NOI contribution margin, ~$330M average annual NOI and $10-12M/MW landlord cost appear ONLY in the furnished EX-99.1 and are repeated nowhere in the 10-Q. The FILED portion supports: 175 MW of CRITICAL IT load, triple-net, 20-year initial term, entered 2026-07-10. Tenant is 'the Tenant' / 'a leading global technology company with a high investment grade credit profile' — unnamed; META HAS ZERO FILING SUPPORT. The ~$2B build financing has NOT printed [edgar]",
-   "added": "2026-08-24"
+   "cat": "forward",
+   "refs": [
+    "companies[tk=CLSK].committedDebt (absent=0)",
+    "companies[tk=CLSK].basis.plannedRaise ('committedDebt when bonds/facility print (watch item)')"
+   ],
+   "note": "The ~$2B Sandersville build financing has NOT printed; basis.plannedRaise already records the expectation that it is project-financeable against the 20yr IG NNN lease, with committedDebt to be set when bonds/facility print.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "bond/facility pricing print; outer marker Q4-27 delivery start",
+   "resolve": "Financing prints → committedDebt set with terms; or the funding plan changes (which would pressure the ~$300M plannedRaise ruling).",
+   "inModel": "yes as absence — committedDebt=0; plannedRaise ~$300M (owner ruling 7/14/26, mgmt anti-dilution) assumes project-financeability",
+   "impact": "Whether the ~$2B build happens without common dilution — the plannedRaise ruling and CLSK's per-share value rest on it.",
+   "grp": "g06-CLSK"
   },
   {
-   "tk": "CRWV",
-   "note": "NARRATIVE CLAIMS CORRECTED 2026-08-24, and a lesson: two statements in our CRWV record had no filing behind them — (1) that the $2.6B DDTL 'names Anthropic, Jane Street, Midjourney, Hudson River Trading and Anysphere' (the closing release names no customers at all), and (2) a '7/31/26' facility date (the credit agreement is dated 2026-08-07, closed 8/10; CoreWeave filed no 8-K in July 2026). Both traced to press/LCD sourcing that was never confirmed. STILL OPEN: DDTL 5.5 is unconditionally guaranteed by CoreWeave, Inc. under a Parent Guarantee, so it is a CORPORATE claim, not non-recourse SPV debt — netDebt 22,900 is Feb-era and must be rebuilt from the Q2 10-Q. Also: the company says customer contracts now average ~3 years, against our termYrs 5 [edgar]",
-   "added": "2026-08-24"
+   "id": "w-clsk-sandersville-provenance",
+   "tk": "CLSK",
+   "cat": "coverage",
+   "refs": [
+    "companies[tk=CLSK].leases[id=clsk-sandersville] (noiPerMWyr=1.886, grossTotalM=6600, source still says '8-K PENDING — verify on filing')",
+    "companies[tk=CLSK].basis.tier"
+   ],
+   "note": "Sandersville lease economics ($6.6B/$11.6B TCV, ~100% NOI margin, ~$330M avg NOI, $10-12M/MW landlord cost) exist ONLY in the furnished EX-99.1 of the 7.01/8.01 8-K (accession 0001193125-26-302448); the lease is not an exhibit and the economics are nowhere in the 10-Q. Filed support covers only: 175MW critical IT, triple-net, 20-yr initial term, entered 2026-07-10. Our lease record's noiPerMWyr 1.886 and grossTotalM 6600 therefore carry a furnished-only provenance ceiling — and its source string still reads '8-K PENDING — verify on filing' although the 8-K was located and audited on 8/24 (stale instruction).",
+   "alt": "Filed-only basis: 175MW/20yr NNN with economics unknown until an exhibit or filed financials corroborate.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "10-K/10-Q lease exhibit or filed-financial corroboration (deliveries begin Q4-27); interim: proposal updating the lease source to record the furnished-only finding",
+   "resolve": "Lease filed as an exhibit or economics corroborated in filed statements; lease source string updated with the 8-K audit result.",
+   "inModel": "partially — tier stays 'proven' per the 7/14 owner ruling (IG re-rate worth +$4.20/sh was declined pending 8-K-confirmed terms) and leaseQ=2.5 withholds credit; but noiPerMWyr 1.886 itself is furnished-sourced and fully credited",
+   "impact": "The NOI print underlying CLSK's landlord value and the quantified +$4.20/sh tier re-rate both hang on this provenance being upgraded.",
+   "grp": "g06-CLSK"
   },
   {
-   "tk": "HUT",
-   "note": "BEACON POINT PH1 DATE BASIS — our site row carries 2027-03, but the company states 'initial energization in the first quarter of 2027 and initial data hall delivery in the THIRD quarter of 2027'. Q1 is substation energization, not revenue capacity: a two-quarter effective slip that the row does not reflect. Separately the RIVER BEND ROFO IS STILL UNEXERCISED and explicitly conditioned on site power expansion — the 10-Q pipeline footnote EXCLUDES the 1,000MW, which gives our owner-mandated 'exercise assumed' (400MW estimated + 600MW rumored) no support this quarter. Energy Capacity Under Exclusivity FELL to 1,880MW from 2,040MW a year ago, refuting the 2,680MW sell-side figure logged 7/23 [edgar 10-Q + 8-K 2026-08-04]",
-   "added": "2026-08-24"
+   "id": "w-clsk-sandersville-tenant",
+   "tk": "CLSK",
+   "cat": "coverage",
+   "refs": [
+    "companies[tk=CLSK].leases[id=clsk-sandersville].counterparty ('High-IG global technology company (confidential)')",
+    "companies[tk=CLSK].basis.tier (re-rate trigger)"
+   ],
+   "note": "Sandersville tenant is unnamed in all filed material ('the Tenant' / 'leading global technology company with a high investment grade credit profile'); Meta attribution has ZERO filing support. The current record correctly does not name Meta. The same tenant holds the LOI + exclusivity over the entire 885MW Texas portfolio, so identity matters twice.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "tenant named in a filing, or dual-corroborated trusted secondary (SA tape)",
+   "resolve": "Tenant named with filing-grade support; counterparty and tier basis updated (second-IG-lease trigger per basis.tier).",
+   "inModel": "partially — leaseQ=2.5 and tier='proven' already withhold IG credit pending confirmation",
+   "impact": "Naming + a second IG lease is the recorded tier re-rate trigger (+$4.20/sh quantified and declined 7/14); also fixes look-through customer concentration for basket policy.",
+   "grp": "g06-CLSK"
   },
   {
+   "id": "w-corz-amd-bonds",
    "tk": "CORZ",
-   "note": "AMD ITEMS RESOLVED 2026-08-24 — reservation is 1,925 MW of CRITICAL IT expiring 2028-12-28 (our 'up to 2 GW' was right in spirit, and it is critical IT not gross); warrant is 30,000,000 shares at $23.47 (5-day VWAP prior to lease execution, market strike confirmed), vesting 12,222 shares per MW of critical IT, ~6.5M vested on the 529 MW signed, terminating 2031-07-27. STILL OPEN: the ~$6B of AMD-related project bonds have NOT printed — nothing on the docket 7/28-8/24 — so committedDebt stays 0. ALSO: filed per-site MW now contradicts our site rows (Pecos ~185, Auburn ~32, Dalton ~120, Muskogee ~82, Hunt ~110) and needs a rebuild [edgar]",
-   "added": "2026-08-24"
+   "cat": "forward",
+   "refs": [
+    "companies[tk=CORZ].committedDebt (absent=0)",
+    "companies[tk=CORZ].leases[id=corz-amd-direct].source ('~$6B via project bonds')",
+    "companies[tk=CORZ].basis.plannedRaise"
+   ],
+   "note": "The ~$6B of AMD-related project bonds have not printed (EDGAR docket empty 7/28–8/24), so committedDebt stays 0; CORZ self-funds the AMD build at $11-12M/MW with no CoreWeave-style capex credits.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "EDGAR docket sweep / Q3 10-Q",
+   "resolve": "Bonds print → committedDebt set with size and terms; or the funding plan changes.",
+   "inModel": "yes as absence — committedDebt=0; basis.plannedRaise (~$600M) assumes debt- and tenant-funded buildout",
+   "impact": "~$6B of future claims and its rate/terms decide how much of the $14B+ AMD lease value survives to common — first-order for CORZ per-share value and the knife-edge dilution math flagged in basis.netDebt.",
+   "grp": "g07-CORZ"
   },
   {
-   "tk": "SHAZ",
-   "note": "NVIDIA BLOCK STILL UNCORROBORATED — the owner's expected-value override ($4.88B floor -> $6.9B) is not supported by any filing. The company still describes the arrangement as a '$4.9bn, six-year strategic compute collaboration with NVIDIA for up to 40,000 GB300 GPUs' — the floor, rounded. The 2026-08-04 $373M contract is 2,048 B300 (Blackwell Ultra), NOT GB300, and is presented as separate. So no placement against the 40,000-GB300 block has printed. Q2 10-Q resolved the last estimated input in our favour (cash $1,861.3M filed vs ~$1,300M assumed). Corrections: the 2032 notes are $700.0M principal, not $691.7M ($691.7M was the amount registered for resale); the ~1.3M 'residual small notes' in our FD build is unsupported. Capacity 132 -> 212 MW secured [edgar]",
-   "added": "2026-08-24"
+   "id": "w-corz-amd-sitemw",
+   "tk": "CORZ",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=CORZ].sites[n^=Pecos AMD ph1] (185)",
+    "companies[tk=CORZ].sites[n^=Pecos AMD ph2] (115)",
+    "companies[tk=CORZ].sites[n^=Hunt AMD] (80)",
+    "companies[tk=CORZ].sites[n^=Auburn + Dalton Ph3] (150 combined)",
+    "companies[tk=CORZ].leases[id=corz-amd-direct] ('gross pro-rata by MW — allocation inferred')"
+   ],
+   "note": "Filed per-site MW (Pecos ~185, Auburn ~32, Dalton ~120, Muskogee ~82, Hunt ~110 — sums to the 529MW signed) contradicts our site rows, which still carry the inferred allocation: Pecos 185+115=300 (vs filed 185), Hunt 80 (vs ~110), no Muskogee AMD row (vs ~82), Auburn+Dalton combined 150 (vs ~152). Aggregate AMD-credited MW ≈530 vs 529 filed, so total value is near-parity; the split and per-site dates are wrong. No rebuild is evidenced in-file after 8/24 (log ends 7/28; rows still labeled '~MW inferred').",
+   "alt": "Filed split: Pecos 185 / Auburn 32 / Dalton 120 / Muskogee 82 / Hunt 110, on the critical-IT basis.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "site-row rebuild proposal through Approvals; Q3 10-Q recheck",
+   "resolve": "Site rows match the filed per-site critical-IT MW (or a basis documents any remaining difference); fold the precise reservation terms (1,925MW critical IT, expires 2028-12-28) into the lease/site records during the rebuild — and give the 2029-dated reserved-expansion rows an explicit basis versus the 2028-12-28 reservation expiry.",
+   "inModel": "no — rows carry the inferred allocation; aggregate MW is right so the error is site mix and timing, not total",
+   "impact": "Per-site energization timing and region mix of the AMD ramp (second-order to value, first-order to the delivery timeline the shortlist will display).",
+   "grp": "g07-CORZ"
   },
   {
-   "tk": "BTDR",
-   "note": "TYDAL LANGUAGE QUALIFIERS — neither the 2026-08-04 press release nor the 2026-08-10 Q2 release ever uses the word 'effective'; the language is 'has executed'. No filing states that the conditions precedent flagged in the June-2026 6-K have been satisfied. The ~$1.3B J.P. Morgan-arranged letters of credit are 'ANTICIPATED to be arranged... subject to customary conditions', NOT confirmed as issued — and the LC milestones are a BTDR termination right. Project financing has not priced, so committedDebt stays 0. Site slips: Knoxville redesigned and pushed to Q3'27 (~3 quarters), Wenatchee and Clarington both now 'to be updated' with no date — Clarington gated on litigation from American Heavy Plate Solutions [edgar 6-K 2026-08-05]",
-   "added": "2026-08-24"
+   "id": "w-crwv-ddtl55-claims",
+   "tk": "CRWV",
+   "cat": "house-judgement",
+   "refs": [
+    "companies[tk=CRWV].raises (no entry for the 8/10 close — tape ends 2026-06-11)",
+    "companies[tk=CRWV].basis.termYrs (cites 'DDTL 5.5 collateral')",
+    "companies[tk=CRWV].netDebt"
+   ],
+   "note": "DDTL 5.5 ($2.6B, Ba2/BB+, SOFR+550 TLB, credit agreement dated 2026-08-07, closed 8/10) is absent from the raises tape and from netDebt/committedDebt. The 8/24 audit established it is unconditionally guaranteed by CoreWeave, Inc. under a Parent Guarantee — a CORPORATE claim, not non-recourse SPV debt — and it is delayed-draw, so the treatment ruling is: record drawn balances (into the rebuilt netDebt or a committedDebt line per owner convention), never face. The 5yr facility tenor vs ~3yr average contract tenor is a flagged asset-liability mismatch. (Merges the 8/18 'move to committedDebt as drawn' atom with the 8/24 corporate-claim finding.)",
+   "alt": "Up to $2.6B of additional corporate claims as drawn; zero today if undrawn at the filing date.",
+   "status": "owner",
+   "added": "2026-08-18",
+   "reviewed": "2026-09-15",
+   "next": "Q2/Q3 10-Q drawn-balance disclosure; owner ruling on the drawn-DDTL placement convention for owner-model names (CRWV has no committedDebt field today)",
+   "resolve": "DDTL 5.5 recorded (raises entry + drawn balances in the rebuilt capital stack) with its corporate-claim character noted; placement convention ruled once and applied to all CRWV DDTLs.",
+   "inModel": "no — neither the facility nor any drawn balance appears in raises, netDebt or committedDebt",
+   "impact": "Claims seniority and size ahead of common; the tenor-vs-contract mismatch is refinancing-risk color for finMix and the financing-conditions scenario group.",
+   "grp": "g10-CRWV"
   },
   {
-   "tk": "WYFI",
-   "note": "NC-1 WAS NOT BILLING IN Q2 — our site rows show Phase 1 (20MW) energized 2026-05 and Phase 2 2026-09, but colocation revenue was $4.726M, essentially flat on Q1's $4.774M, and the 10-Q says billing 'is expected to commence during the third quarter'. Initial billing had commenced by 8/12 with full 40MW contracted IT run-rate 'expected later this month'. The rows overstate the ramp by roughly a quarter. Also open: the 2026-05-26 Bit Digital DDTL draws ($20M + $30M, 90-day tenor, effective rate 50.6%) matured ~2026-08-24 with no disclosure of repayment or extension; and NC-1 permanent financing is in lender EXCLUSIVITY, unsigned [edgar 10-Q 2026-08-12]",
-   "added": "2026-08-24"
+   "id": "w-crwv-form4-jul26",
+   "tk": "CRWV",
+   "cat": "coverage",
+   "refs": [
+    "companies[tk=CRWV].log (no Form 4 review entry exists)"
+   ],
+   "note": "The July-2026 Form 4 wave (insider filings) flagged on 7/24 has no recorded review anywhere in the CRWV record — the open question survived the note's 'RESOLVED' framing.",
+   "status": "investigating",
+   "added": "2026-07-24",
+   "reviewed": "2026-09-15",
+   "next": "EDGAR Form 4 sweep for July-August 2026; fold into the next CRWV research refresh",
+   "resolve": "A dated log entry summarizes the wave (who sold, size vs holdings) and whether it warrants any governance/alignment treatment.",
+   "inModel": "no",
+   "impact": "Insider-alignment signal; sustained officer selling could inform an equityDiscount-style judgement CRWV currently does not carry.",
+   "grp": "g09-CRWV"
   },
   {
+   "id": "w-crwv-q2-rebuild",
+   "tk": "CRWV",
+   "cat": "coverage",
+   "refs": [
+    "companies[tk=CRWV].netDebt (22900 — NO basis entry exists)",
+    "companies[tk=CRWV].basis (keys are only plannedRaise/signedRate/termYrs)",
+    "companies[tk=CRWV].raises[d=2026-06-11] ($1.25B 9.625% + €2.0B 8.5% due 2032)",
+    "companies[tk=CRWV].sharesReported (545.6)"
+   ],
+   "note": "netDebt 22,900 is stale — the 8/24 correction established it is Feb-era, it has no basis entry at all, and the raises tape shows large post-Feb capital events not evidenced inside it (Apr $1.75B notes + $1.0B tap + $3.5B converts, June $3.5B-equivalent HY duals, DDTL 4.0/5.0/5.5 draw capacity). Must be rebuilt from the Q2-26 10-Q to a single filed as-of date (drawn-only for the DDTLs), and sharesReported 545.6 confirmed against the 10-Q cover. (Merges the 8/18 'confirm HY notes inside netDebt' and 'sharesReported vs cover' atoms with the 8/24 'netDebt is Feb-era' atom — one root cause: the Q2 10-Q has not been ingested.)",
+   "alt": "Materially higher corporate debt stack than 22,900 once June HY and drawn DDTL balances are included at 6/30/26.",
+   "status": "investigating",
+   "added": "2026-08-18",
+   "reviewed": "2026-09-15",
+   "next": "ingest the Q2-26 10-Q (already filed) — highest-priority CRWV research task",
+   "resolve": "netDebt restated to the filed 6/30/26 balance sheet with a dated basis entry (following the APLD/CORZ basis pattern); sharesReported tied to the 10-Q cover page.",
+   "inModel": "partially — netDebt=22900 is in the model but on a stale as-of; the risk (understatement) is NOT represented",
+   "impact": "netDebt is first-order in per-share value: an understated stack overstates CRWV's value gap, rank and any basket weight — the single most decision-critical open item on CRWV.",
+   "grp": "g10-CRWV"
+  },
+  {
+   "id": "w-crwv-rate-tripwire",
+   "tk": "CRWV",
+   "cat": "forward",
+   "refs": [
+    "config.dials.rate (14)",
+    "config.dials.gpuTrend (8)",
+    "companies[tk=CRWV].basis.signedRate",
+    "companies[tk=CRWV].log[d=2026-07-23] (Hopper re-signs at 95% of original pricing)"
+   ],
+   "note": "New AIaaS supply entrants (Meta Compute, xAI/Anthropic Colossus) plus H100 spot −7% off the June-26 peak are the standing tripwire for the prevailing-rate and GPU-trend dials. In-file counter-evidence since the note supports the current dials (7/23 MS: aged-Hopper renewals at 95% of original pricing; basis.signedRate: SA 8/18 +25% SKU repricing on renewals and net-new), but the −7% spot reading is now ~10 weeks old and unrefreshed.",
+   "alt": "Sustained spot decline → lower rate (<14) and/or steeper gpuTrend decay — compressing the uncontracted/renewal book across ALL owner-model names, not only CRWV.",
+   "status": "monitoring",
+   "added": "2026-07-02",
+   "reviewed": "2026-09-15",
+   "next": "next SA HPC tape / quarterly GPU spot-price refresh",
+   "resolve": "Refreshed spot and renewal-pricing evidence either confirms the dials or triggers an owner re-ruling of rate/gpuTrend.",
+   "inModel": "yes — config.dials.rate=14 and config.dials.gpuTrend=8 are the exact inputs at risk",
+   "impact": "The rate/trend dials price every owner-model uncontracted MW-year; a downward re-ruling moves CRWV (and IREN/NBIS-class names) value and relative rank simultaneously — a shared-cause, not single-name, risk.",
+   "grp": "g08-CRWV"
+  },
+  {
+   "id": "w-crwv-termyrs",
+   "tk": "CRWV",
+   "cat": "house-judgement",
+   "refs": [
+    "companies[tk=CRWV].termYrs (5)",
+    "companies[tk=CRWV].basis.termYrs ('underlying contracts avg ~3yr, anchor book 4-5yr take-or-pay; was 6, shortened per owner ruling 8/18')",
+    "companies[tk=CRWV].contracts (named-anchor terms 3.9–6.7yr)"
+   ],
+   "note": "The company says customer contracts now average ~3 years against our blended termYrs=5. This is a LABELED house judgement, not an unaddressed conflict: the owner ruling of 8/18 (recorded in basis.termYrs, citing SA 8/18 + DDTL 5.5 collateral) shortened the blend 6→5 while weighing the ~3yr average against the 4-5yr take-or-pay anchor book; the named-contract registry itself runs 3.9–6.7yr. Kept as the approved assumption with its falsifier, per the brief's house-judgement treatment.",
+   "alt": "termYrs ~3 (company-average basis) — rolls the book onto prevailing-rate/gpuTrend assumptions roughly two years sooner.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "next 10-Q RPO / weighted-average remaining-term disclosure",
+   "resolve": "A filed weighted-average term (or a registry MW-weighted signed-term computation) either confirms the 5yr blend or forces an owner re-ruling; lack of new confirmation alone does not reopen it.",
+   "inModel": "yes — termYrs=5 is the exact model input; the ~3yr alternative is not modeled",
+   "impact": "Contracted-revenue tail length: at ~3yr the uncontracted/renewal share of CRWV value grows materially, increasing sensitivity to the rate/gpuTrend dials (links to w-crwv-rate-tripwire) — can move CRWV's rank.",
+   "grp": "g11-CRWV"
+  },
+  {
+   "id": "w-frmi-keystone-ttu",
+   "tk": "FRMI",
+   "cat": "forward",
+   "refs": [
+    "companies[tk=FRMI].raises[d=2026-02-25] (Keystone $120M equipment facility)",
+    "companies[tk=FRMI].narrative (99-yr Texas Tech ground lease)",
+    "outlook.leases[tk=FRMI].drivers[4] ('Keystone requires an approved customer agreement by 2026-12-31 or mandatory prepayment. TTU may terminate the 99-year ground lease if notice to proceed is not received by 2026-12-31')"
+   ],
+   "note": "Two independent 2026-12-31 gates confirmed by the accepted outlook record: Keystone requires an approved customer agreement by 12/31/26 or mandatory prepayment, and TTU may terminate the 99-year ground lease if notice to proceed is not received by 12/31/26. TensorWave is signed but not effective; whether a signed-but-unclosed lease satisfies 'approved customer agreement' is untested.",
+   "alt": "TensorWave closing on or before 2026-09-30 would very likely satisfy both; failure pushes both gates onto a second tenant that does not exist.",
+   "status": "monitoring",
+   "added": "2026-07-06",
+   "reviewed": "2026-09-15",
+   "next": "2026-09-30 TensorWave closing; then Q3 10-Q covenant language; hard date 2026-12-31",
+   "resolve": "an effective customer lease (or disclosed satisfaction of both conditions) by 2026-12-31; else record the Keystone prepayment and the TTU termination right as live",
+   "inModel": "no — nothing in the FRMI inputs encodes the Keystone prepayment or the TTU ground-lease termination right, and TTU termination would undermine the entire site",
+   "impact": "loss of the ground lease is existential for Project Matador; the Keystone prepayment hits the high-voltage equipment chain and the gas-phase schedule",
+   "grp": "g13-FRMI"
+  },
+  {
+   "id": "w-frmi-mufg-400mw",
+   "tk": "FRMI",
+   "cat": "forward",
+   "refs": [
+    "companies[tk=FRMI].raises[d=2026-02-10] (MUFG $500M turbine warehouse)",
+    "companies[tk=FRMI].log[d=2026-05-15] ('MUFG $500M ($396.6M drawn)')",
+    "companies[tk=FRMI].thesis ('without a >=400MW lease by ~Nov 10 the MUFG facility doubles amortization and can market the turbines')",
+    "outlook.leases[tk=FRMI].drivers[4] ('no minimum MUFG principal payment before 2026-11-10, after which the minimum quarterly payment is 10% of principal outstanding, REDUCED to 5% if a lease or offtake for at least 400MW of Phase 1 is executed')",
+    "companies[tk=FRMI].leases[id=frmi-tensorwave] (222MW total facility power, not effective)"
+   ],
+   "note": "MUFG covenant, refined by the accepted 8/24 outlook record: no minimum principal payment before 2026-11-10; thereafter the minimum quarterly payment is 10% of outstanding principal, reduced to 5% only if a lease or offtake for at least 400MW of Phase 1 is executed (~$396.6M drawn at 3/31). The signed TensorWave lease is 222MW total facility power, unclosed and below 400MW on any basis, so the tripwire is currently unmet.",
+   "alt": "A second lease/offtake, an amendment, or a waiver could satisfy or reset the covenant; whether an executed-but-not-yet-effective lease counts requires the credit-agreement definition.",
+   "status": "monitoring",
+   "added": "2026-07-06",
+   "reviewed": "2026-09-15",
+   "next": "2026-09-30 TensorWave closing gate, then the 2026-11-10 covenant date; watch for any MUFG amendment 8-K",
+   "resolve": "≥400MW qualifying lease/offtake executed by ~2026-11-10, or the covenant is amended/waived; otherwise record the doubled amortization and turbine-remarketing exposure in the funding picture",
+   "inModel": "partially — thesis text and the low tier/equityDiscount reflect stress, but no numeric input encodes the doubled-amortization or turbine-remarketing downside",
+   "impact": "gas-phase schedule credibility and near-term liquidity; a miss argues for regrading the 778MW gas Phase 1 row and raising plannedRaise",
+   "grp": "g13-FRMI"
+  },
+  {
+   "id": "w-frmi-tw-effective",
+   "tk": "FRMI",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=FRMI].leases[id=frmi-tensorwave].effective (= true — the contested flag)",
+    "engine.js:72 (a lease is credited unless effective===false — so the flag credits the $6.5B economics today)",
+    "companies[tk=FRMI].sites[0] (TensorWave Ph1 row, 222MW, prov disclosed, leaseId frmi-tensorwave)",
+    "outlook.leases[tk=FRMI].drivers[0-2] ('THE LEASE IS SIGNED BUT NOT EFFECTIVE ... EITHER PARTY may terminate ... the only executed guaranty is from TensorWave Inc., the tenant's own parent')",
+    "outlook.leases[tk=FRMI].window ('The hard gate is 2026-09-30 — the TensorWave closing date')"
+   ],
+   "note": "Direct internal conflict: the lease row is flagged effective:true and engine.js credits any lease not marked effective:false, while the note, the 10-Q (the sole disclosure — no Item 1.01 8-K, no exhibit) and the accepted outlook record all state the lease signed 2026-08-09 is NOT effective — conditioned on board approvals, work letters, the guaranties (only the tenant's own parent, TensorWave Inc., has signed; the 'global leader in AI' rent guarantee is still being negotiated) and the LANDLORD obtaining project financing, at a closing expected on or before 2026-09-30, with either party free to terminate. The closing gate is 15 days out and no closing 8-K is recorded in-file.",
+   "alt": "either set effective:false (dropping the lease pricing from the row) until a closing 8-K, or keep it credited under an explicit, dated conditional basis note — an owner call given contractedPct 11 and the valuation floor rest on it",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "2026-09-30 — the recorded falsifier: no closing 8-K by then → revert the row and the floor (check EDGAR for a closing/extension disclosure now)",
+   "resolve": "closing 8-K or equivalent disclosure makes the lease effective → keep the row and retire; conditions fail or the deadline passes unextended → revert sites[0] and the floor per the falsifier",
+   "inModel": "yes, in the wrong direction — the model fully credits the lease today (effective:true) while the termination/conditionality risk is represented nowhere numerically",
+   "impact": "FRMI's only binding lease and its valuation floor; reversal takes the contracted book to zero and regrades the whole gas-phase story",
+   "grp": "g16-FRMI"
+  },
+  {
+   "id": "w-frmi-tw-itmw",
+   "tk": "FRMI",
+   "cat": "defect",
+   "refs": [
+    "companies[tk=FRMI].sites[0].mw (222) and leases[id=frmi-tensorwave].mw (222)",
+    "companies[tk=FRMI].leases[id=frmi-tensorwave].source ('222 MW TOTAL FACILITY POWER (IT MW not disclosed; ~185 IT at PUE~1.2)')",
+    "outlook.leases[tk=FRMI].drivers[3] ('UNIT FLAG: the 222MW is TOTAL FACILITY POWER, explicitly gross ... Critical IT MW is not disclosed anywhere')"
+   ],
+   "note": "The site and lease rows carry 222MW, which is total facility power (gross); critical IT MW is never disclosed (~185 IT at PUE~1.2 is a house estimate). The file's mw convention elsewhere is IT (HUT and IREN convert gross→IT), so FRMI's capacity aggregates ~17% high on a same-basis comparison. The lease revenue math is internally basis-consistent (noiPerMWyr 1.46 is computed on the facility basis), so the distortion is in capacity totals and cross-name per-MW comparisons, not in the lease NOI itself.",
+   "alt": "restate both rows at ~185 IT MW with a PUE basis note (rescaling noiPerMWyr to the IT basis), or keep 222 with an explicit gross-basis flag the comparisons respect",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "IT MW disclosure at the TensorWave closing, a lease exhibit/work letter, or the Q3 10-Q",
+   "resolve": "critical IT MW disclosed → restate on the IT basis; or an explicit basis note makes the gross basis visible to every consumer of the row",
+   "inModel": "partially — lease economics are basis-consistent, but sites[].mw feeds capacity aggregation and cross-name comparisons on a mixed basis",
+   "impact": "~17% capacity-basis distortion in FRMI MW totals and signed-rate comparisons; secondary to the effectiveness issue but touches ranking inputs. (The note's 8/9-vs-8/10 signing-date correction is absorbed: the month-granular signed='2026-08' is consistent and the precise date is preserved in this registry record.)",
+   "grp": "g16-FRMI"
+  },
+  {
+   "id": "w-glxy-helios2-recourse",
    "tk": "GLXY",
-   "note": "SENIORCLAIMS DOUBLE-COUNT RULING NEEDED — non-controlling interest is $896.7M at 6/30/26 (the GDH LP units held by Class B holders). Convention says NCI goes to seniorClaims, but our 418M FD share count may ALREADY gross up for those LP units, in which case adding $897M charges the same economics twice. NOT APPLIED pending a ruling on what the 418M comprises. Separately: the $3.507B of 9.875% notes were ISSUED AND SOLD 2026-07-28 (so committedDebt 3507 is now FUNDED, not committed) and carry an UNCAPPED GDH LP completion guarantee, so they are not cleanly non-recourse. And three post-quarter Texas campuses (Merlin ~74MW initial of a potential 500MW, Caspian, Selene) take the pipeline past 5.7GW — none are in our site list [edgar 10-Q + 8-K]",
-   "added": "2026-08-24"
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=GLXY].basis.committedDebt ('guaranteed by Galaxy Helios II LLC' — an intermediate Helios entity)",
+    "companies[tk=GLXY].committedDebt (3507) and netDebt (1745, no basis note recording its as-of date)",
+    "companies[tk=GLXY].thesis ('$3.5B of 9.875% project debt now sits ahead of the common')",
+    "engine.js:102-103 (claims include 'ISSUED project bonds funding credited sites (committedDebt, even if escrowed)')"
+   ],
+   "note": "Guarantor-identity conflict with recourse consequences: the note asserts an UNCAPPED GDH LP completion guarantee on the $3.507B 9.875% notes (making them not cleanly non-recourse to the operating parent during construction), while basis.committedDebt records a guarantee only from Galaxy Helios II LLC, an intermediate Helios entity. Different entities, same instrument, same period — a true conflict neither in-file record resolves. Secondary basis check: netDebt 1745 carries no basis note stating its as-of date, so whether the post-quarter note proceeds are consistently excluded from cash (they must be, since the engine charges the bond and credits the campus, not the escrowed cash) cannot be confirmed in-file.",
+   "alt": "if the GDH LP completion guarantee is real and uncapped, the parent carries construction-phase recourse the 'non-recourse project debt' framing hides — relevant to stress scenarios, not the base charge",
+   "status": "investigating",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "the notes indenture / guarantee section (8-K exhibit or Q3 10-Q debt footnote); also add a dated basis.netDebt note at the next capital pass",
+   "resolve": "guarantor entity and cap (if any) confirmed from the indenture; basis.committedDebt corrected or confirmed; netDebt as-of date documented",
+   "inModel": "the $3.507B is already charged in full as a senior claim (engine claims line), so base valuation is unaffected either way; recourse scope matters for stress/failure scenarios where non-recourse debt would otherwise be walk-away",
+   "impact": "changes GLXY's downside/stress case (parent exposure on a construction failure) and the honesty of the 'debt-led, limited recourse' funding narrative",
+   "grp": "g18-GLXY"
   },
   {
-   "tk": "APLD",
-   "note": "NON-RECOURSE FRAMING ANOMALY — the FY26 10-K VIE note states verbatim: 'The creditors of TopCo 2 have recourse to the Company's assets and general credits.' Read literally that cuts against holding the ComputeCo / ComputeCo 2 project notes off corporate claims under spec 5, and would move ~$3.7B of committedDebt onto the corporate stack. It may be a drafting error — the standard formulation is that creditors have NO recourse — but it is what is filed. NOT ACTED ON pending a ruling. Also new: CoreWeave assigned ALL rights and obligations under the ELN-03 lease to CoreWeave Compute Acquisition Co. VIII LLC on 2026-03-30 and WAS RELEASED — an obligor substitution our lease record does not carry [edgar FY26 10-K]",
-   "added": "2026-08-24"
+   "id": "w-glxy-nci-seniorclaims",
+   "tk": "GLXY",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=GLXY].seniorClaims (absent)",
+    "companies[tk=GLXY].basis.committedDebt"
+   ],
+   "note": "NCI/seniorClaims ruling: $896.7M non-controlling interest at 6/30/26 sits in neither seniorClaims (field absent) nor netDebt; charging it as senior to common vs treating it as already-excluded moves ~$2.15/sh (~9% of price). Two plausible treatments, different values.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "owner ruling",
+   "resolve": "Owner picks the treatment; recorded with a basis line either way.",
+   "inModel": "no — treatment pending the ruling",
+   "impact": "~$2.15/sh swing on GLXY (~9%).",
+   "grp": "g18-GLXY"
   },
   {
+   "id": "w-glxy-tx-campuses",
+   "tk": "GLXY",
+   "cat": "coverage",
+   "refs": [
+    "companies[tk=GLXY].sites (Helios rows only — no Merlin/Caspian/Selene/McGregor)",
+    "outlook.leases[tk=GLXY].drivers[4] ('three Texas campuses acquired after quarter-end (Merlin at McGregor ~74MW initial of a potential 500MW, plus Caspian and Selene) take the pipeline past 5.7GW. None are in our site list yet')",
+    "companies[tk=GLXY].thesis ('now with a second campus at McGregor TX behind it')"
+   ],
+   "note": "Coverage gap acknowledged in both the accepted outlook record and the thesis but unremediated in the canonical input: three post-quarter Texas campuses (Merlin at McGregor, ~74MW initial of a potential 500MW; Caspian; Selene) take the disclosed pipeline past 5.7GW, and none has a site row.",
+   "alt": "add graded rows (likely estimated/rumored with appropriate haircuts) once MW, power status and timing support grading; or record why they fail inclusion criteria",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Q3 10-Q or company disclosure with MW/interconnection/timing sufficient to grade rows",
+   "resolve": "site rows added with provenance grades and sources, or a recorded decision that they do not yet meet inclusion criteria",
+   "inModel": "no — omission is conservative (uncredited upside), so this is a ranking-fairness gap, not a downside risk",
+   "impact": "GLXY's pipeline optionality is understated relative to pipeline-credited peers (e.g. HUT's graded expansion rows) — affects relative rank, not the floor",
+   "grp": "g18-GLXY"
+  },
+  {
+   "id": "w-hut-bp-tenant-ig",
+   "tk": "HUT",
+   "cat": "house-judgement",
+   "refs": [
+    "companies[tk=HUT].basis.tier (owner ruling 7/20 + SA/NVIDIA adoption 7/27, falsifier unchanged)",
+    "companies[tk=HUT].leases[id=hut-beaconpoint].counterparty and [id=hut-beaconpoint2].source ('lease NOT exhibited (Ph1 pattern)')",
+    "companies[tk=HUT].log[d=2026-07-27]",
+    "outlook.leases[tk=HUT].tenants ('characterised only as a high-investment-grade technology company and is not named')"
+   ],
+   "note": "The IG tier for the 949MW contracted book rests on the company's 'high-investment-grade' characterization: the Beacon Point tenant is unnamed and neither lease is exhibited. SemiAnalysis identified NVIDIA on 7/27/26 and the owner adopted it as probable with attribution preserved — but it remains uncorroborated by any filing through the 8/4 Q2 print.",
+   "alt": "if disclosure reveals a sub-IG tenant, or exhibited lease terms diverge from the PRs, regrade tier and leaseQ down",
+   "status": "monitoring",
+   "added": "2026-07-20",
+   "reviewed": "2026-09-15",
+   "next": "tenant identity disclosure or a lease exhibit in any HUT filing (named event, no date)",
+   "resolve": "company names the tenant or exhibits the lease; falsifier per basis.tier: sub-IG identity or diverging exhibited terms",
+   "inModel": "yes — tier 'ig' and leaseQ already encode the owner ruling; the open risk is that a top-of-scale input rests on characterization rather than disclosure",
+   "impact": "a tier regrade would raise the quality haircut on HUT's entire contracted book — one of the largest single-input swings in the name",
+   "grp": "g15-HUT"
+  },
+  {
+   "id": "w-hut-bp1-date-basis",
+   "tk": "HUT",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=HUT].sites[n=Beacon Point Ph1] (yr 2027, mo 3 — still unremediated)",
+    "outlook.leases[tk=HUT].drivers[3] ('SCHEDULE BASIS ERROR IN OUR ROWS: Beacon Point Ph1 is targeted for initial energization in Q1 2027 but initial DATA HALL delivery in Q3 2027. Our row carries the energization date, which overstates near-term revenue capacity by two quarters')",
+    "companies[tk=HUT].catalysts[0] (repeats the Q1-2027 framing)"
+   ],
+   "note": "Same-tranche, different-stage conflict, acknowledged in the accepted 8/24 outlook record yet still unremediated in the canonical input: the Beacon Point Ph1 site row carries 2027-03, but the company's own statement is initial energization Q1-2027 (substation, not revenue capacity) and initial DATA HALL delivery Q3-2027. On a revenue-capacity basis the row is ~two quarters early on 352MW of contracted IT.",
+   "alt": "move the row to 2027-09 (delivery basis), or record an explicit stage-basis note justifying 2027-03",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "owner decision on the row (change-ready — evidence is primary and already accepted in outlook); re-check delivery guidance at the Q3 10-Q",
+   "resolve": "site row restated on the delivery/revenue basis with a stage-explicit basis note, or new evidence that Q1-27 revenue capacity is real",
+   "inModel": "no — the model still starts Beacon Point Ph1 revenue at 2027-03; the two-quarter slip is not represented anywhere numeric",
+   "impact": "shifts first Beacon Point revenue ~two quarters on 352MW — moves HUT's near-term ramp, 2027 NOI and any timing-sensitive rank comparison",
+   "grp": "g17-HUT"
+  },
+  {
+   "id": "w-hut-bp2-financing",
+   "tk": "HUT",
+   "cat": "forward",
+   "refs": [
+    "companies[tk=HUT].committedDebt (7500)",
+    "companies[tk=HUT].basis.committedDebt (RB $3.25B + BP Ph1 $4.25B only)",
+    "companies[tk=HUT].log[d=2026-07-23,t=note] ('MS expects BP2 financed with ~$4.25B IG bond')",
+    "outlook.leases[tk=HUT].drivers[4] ('Phase 2 construction financing has NOT printed — the company is evaluating a range of structures')"
+   ],
+   "note": "Beacon Point Ph2 construction financing has still not printed: committedDebt carries only River Bend $3.25B + BP Ph1 $4.25B = $7.5B, and the accepted 8/24 outlook record confirms the company is 'evaluating a range of structures' — so the ~$4.25B Ph1-pattern bond is a sell-side expectation, not guidance.",
+   "alt": "an alternative structure (facility, JV, tenant funding) instead of an SPV bond; record whatever prints",
+   "status": "monitoring",
+   "added": "2026-07-20",
+   "reviewed": "2026-09-15",
+   "next": "financing 8-K or the Q3 10-Q",
+   "resolve": "Ph2 financing prints → add to committedDebt with a basis note; or a disclosed alternative structure is recorded",
+   "inModel": "partially — the Ph2 lease revenue is credited (site row 2028-06, lease hut-beaconpoint2 effective) while its project debt is not yet in the engine claims line, flattering the netted campus math until it prints",
+   "impact": "~$4.25B of senior claims against the Beacon Point Ph2 value once it prints; a failure to finance would question the Ph2 schedule itself",
+   "grp": "g15-HUT"
+  },
+  {
+   "id": "w-hut-rb-rofo",
+   "tk": "HUT",
+   "cat": "house-judgement",
+   "refs": [
+    "companies[tk=HUT].sites[n=River Bend ROFO tranche 1] (mw 400, prov estimated, 2029-06)",
+    "companies[tk=HUT].sites[n=River Bend ROFO balance] (mw 600, prov rumored, 2030-06)",
+    "companies[tk=HUT].basis.sites",
+    "companies[tk=HUT].log[d=2026-07-08] (owner mandate)",
+    "outlook.leases[tk=HUT].drivers[0] ('PROB 45 -> 25 ... 10-Q pipeline footnote EXCLUDES the ROFO capacity')",
+    "outlook.leases[tk=HUT].drivers[1] ('Energy Capacity Under Exclusivity FELL to 1,880MW from 2,040MW')"
+   ],
+   "note": "Owner mandate (2026-07-08) assumes Fluidstack exercises the River Bend ROFO: 400MW carried as estimated plus 600MW rumored. The Q2 primary evidence leans against it: the 10-Q pipeline footnote explicitly excludes the 1,000MW ('subject to the expansion of power at the site'), the ROFO is unexercised, and Energy Capacity Under Exclusivity fell to 1,880MW from 2,040MW y/y; the accepted outlook record cut its probability 45→25 while the site rows keep the exercise-assumed grading.",
+   "alt": "Regrade tranche 1 estimated→rumored (or remove both rows) if Entergy power-expansion progress and ROFO signals stay absent; the recorded falsifier fires on silence through mid-2027.",
+   "status": "monitoring",
+   "added": "2026-07-08",
+   "reviewed": "2026-09-15",
+   "next": "Q3 10-Q pipeline footnote and Entergy power-expansion filings; hard falsifier date mid-2027",
+   "resolve": "ROFO exercised or Entergy expansion evidenced (fulfilled) — or silence through mid-2027 triggers the mandated regrade down",
+   "inModel": "yes — the assumption is a model input via the two site rows, and prov grades (estimated/rumored) already apply the standard provenance haircuts; the contrary Q2 evidence is reflected only in outlook.prob (25), not in the rows",
+   "impact": "1,000MW of pipeline value in the HUT target — regrading removes HUT's largest uncontracted growth leg and would move its rank vs other landlords",
+   "grp": "g12-HUT"
+  },
+  {
+   "id": "w-iren-netdebt-asof",
+   "tk": "IREN",
+   "cat": "defect",
+   "refs": [
+    "companies[tk=IREN].netDebt (1941)",
+    "companies[tk=IREN].log[d=2026-07-20] ('$7.6bn cash 6/30 (incl. $1.7bn restricted, Horizon 1-4 GPU financing)')",
+    "companies[tk=IREN].verified.capital (2026-08-24 — predates the 8/27 FY print)",
+    "companies[tk=IREN].basis.shares ('Re-derive cleanly at the FY26 10-K')"
+   ],
+   "note": "netDebt 1941 was flagged 7/20 as violating the one-as-of-date rule (cash $7.6bn printed at 6/30 while the borrowings side was stale). No log or basis entry since records a rebuild at a single as-of date; verified.capital 2026-08-24 is a company-wide date that predates the 2026-08-27 FY26 print and cannot close a field-specific issue. FY26 results have now been released (the 9/2 log quotes the CFO) with no capital re-derivation logged — the revisit trigger has elapsed.",
+   "alt": "rebuild cash (incl. $1.7bn restricted treatment) and all borrowings (~$6.7B converts + $3.65B GPU financing + any DDTL draws) at the 6/30/26 balance-sheet date from the FY26 10-K",
+   "status": "investigating",
+   "added": "2026-07-20",
+   "reviewed": "2026-09-15",
+   "next": "overdue — FY26 results were 2026-08-27; re-derive at the FY26 10-K balance sheet now",
+   "resolve": "netDebt restated with cash and borrowings at one as-of date, with restricted-cash treatment stated in a basis note",
+   "inModel": "yes — netDebt feeds the engine claims line (netDebt + committedDebt + seniorClaims) directly",
+   "impact": "with ~$7.6bn cash against ~$10B+ of debt-side items, a mixed-date netDebt can misstate the equity bridge by dollars per share on 394M shares",
+   "grp": "g14-IREN"
+  },
+  {
+   "id": "w-iren-plannedraise",
+   "tk": "IREN",
+   "cat": "house-judgement",
+   "refs": [
+    "companies[tk=IREN].plannedRaise (8000)",
+    "companies[tk=IREN].basis.plannedRaise",
+    "companies[tk=IREN].thesis ('$7.6bn cash vs the $8B assumed raise looks increasingly conservative; revisit at FY results')",
+    "outlook.earnings[tk=IREN].keyNumber item (d) ('FY27 capex and how the $8B plannedRaise is funded')"
+   ],
+   "note": "plannedRaise $8B was flagged 7/20 as stale-conservative against the ~45% customer-prepayment model and $7.6bn cash; the thesis carries the same watch verbatim and the question was queued into the 8/27 FY print. The print has passed with no revisit recorded — the review trigger is overdue and the input is unchanged.",
+   "alt": "lower plannedRaise to a documented funding bridge (prepayments + ~$4.9B undrawn ATM + GPU debt + converts) off FY26 10-K capex guidance",
+   "status": "owner",
+   "added": "2026-07-20",
+   "reviewed": "2026-09-15",
+   "next": "immediate — trigger (FY results, 2026-08-27) has elapsed; re-underwrite at the FY26 10-K",
+   "resolve": "owner re-sets (or explicitly reaffirms) plannedRaise with a dated funding-bridge basis note reflecting FY26 capex and prepayment disclosure",
+   "inModel": "yes — plannedRaise 8000 explicitly charges future dilution in the per-share target",
+   "impact": "direct valuation input: a lower assumed raise reduces modeled dilution and raises the IREN per-share target, potentially moving its rank",
+   "grp": "g14-IREN"
+  },
+  {
+   "id": "w-iren-unnamed-dev",
+   "tk": "IREN",
+   "cat": "forward",
+   "refs": [
+    "companies[tk=IREN].contracts[id=iren-aidev-2026].counterparty ('+ unnamed leading AI developer')",
+    "companies[tk=IREN].log[d=2026-07-20]",
+    "companies[tk=IREN].log[d=2026-09-02] ('DC36 (the air-cooled hall for the B300 frontier-lab deployment)')",
+    "outlook.earnings[tk=IREN].keyNumber item (c)"
+   ],
+   "note": "The unnamed 'leading AI developer' from the 7/20/26 8-K cohort ($2.8B TCV, 8 names) is still unidentified; the 9/2 site-footage log narrows it to a frontier lab taking the B300 air-cooled deployment (Childress DC36 + Mackenzie), but no filing names it. The question was queued for the 8/27 FY print and was not answered there.",
+   "alt": "none — awaiting disclosure",
+   "status": "monitoring",
+   "added": "2026-07-20",
+   "reviewed": "2026-09-15",
+   "next": "FY26 10-K or the next contract 8-K",
+   "resolve": "identity disclosed in, or firmly inferable from, a primary source",
+   "inModel": "yes — the cohort is carried in aggregate (contracts iren-aidev-2026, $2.8B TCV, inferred term/MW); identity affects only counterparty-quality shading",
+   "impact": "low — counterparty-quality read on part of the $2.8B cohort; does not move a numeric input by itself",
+   "grp": "g14-IREN"
+  },
+  {
+   "id": "w-keel-lc-608m",
+   "tk": "KEEL",
+   "cat": "forward",
+   "refs": [
+    "watchItems[17]",
+    "companies[20].catalysts[3]",
+    "outlook.leases[20].drivers[4]"
+   ],
+   "note": "A further $60.8M letter of credit is due by 2027-01-31 on top of the $40.0M already posted. Attribution differs slightly in-file: outlook.leases[20].drivers[4] places the posted $40.0M at Panther Creek, while catalysts[3] ties the 1/31/27 LC to 'Sharon transmission upgrades' — pin the site when posted. Context: liquidity is funding the wait ($819M at 2026-08-07 per the outlook driver, vs '~$920M' still in narrative/bull/basis.plannedRaise).",
+   "alt": "",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "2027-01-31 posting deadline; earlier at the Q3 10-Q",
+   "resolve": "LC posted and reflected in the liquidity/restricted-cash treatment, or the obligation renegotiated",
+   "inModel": "No — netDebt 310 and plannedRaise 0 do not reflect ~$100.8M of LC collateral encumbrance",
+   "impact": "Tightens the 'funded through lease execution' claim underpinning plannedRaise 0; forcing a raise would also reopen the equityDiscount 0 setting",
+   "grp": "g19-KEEL"
+  },
+  {
+   "id": "w-keel-pa-executive-order",
+   "tk": "KEEL",
+   "cat": "forward",
+   "refs": [
+    "watchItems[17]",
+    "outlook.leases[20].drivers[1]",
+    "companies[20].sites[0]",
+    "companies[20].sites[1]",
+    "companies[20].sites[2]"
+   ],
+   "note": "Governor Shapiro signed a PA executive order bearing on HPC/AI data-centre development; Panther Creek (350MW), Sharon (110MW) and Scrubgrass all sit in PA. The EO is confirmed real (zeiner + pa.gov, per the accepted outlook driver) but its actual content and effect on siting/permitting are uncharacterized in-file.",
+   "alt": "The EO could be pro-development (expedited siting) or restrictive — either direction moves the permitting-gated 2026-12/2027-12 delivery windows.",
+   "status": "investigating",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Characterize the EO text (pa.gov primary source); else Q3 10-Q permitting language (Nov 2026)",
+   "resolve": "EO substance mapped to each PA site's permitting path; site delivery windows re-based or affirmed with the EO as evidence",
+   "inModel": "No — the PA sites carry prov 'disclosed' with unchanged dates; contractedPct 0 and outlook.leases[20].prob 25 carry generic leasing risk, not regulatory-timing risk",
+   "impact": "Could shift 460MW of PA delivery windows (~96% of KEEL's near-dated credited capacity) and the lease-signing window that carries the whole thesis",
+   "grp": "g19-KEEL"
+  },
+  {
+   "id": "w-keel-permits-conditional",
+   "tk": "KEEL",
+   "cat": "forward",
+   "refs": [
+    "watchItems[17]",
+    "outlook.leases[20].drivers[2]",
+    "companies[20].sites[0]",
+    "companies[20].sites[1]",
+    "companies[20].sites[2]"
+   ],
+   "note": "Panther Creek's land-development approval is CONDITIONAL and no environmental permit has been issued at any of the three priority PA sites (Panther Creek, Scrubgrass, Sharon — outlook driver: 'environmental permit applications still in flight at ALL three priority sites'), while the site rows credit Ph1 50MW ready 2026-12 and 410MW at 2027-12, all prov 'disclosed'. Side finding: Scrubgrass has no explicit site row — presumably inside the 800MW 'Pipeline (PA expansion + Quebec conversions)' rumored row.",
+   "alt": "If environmental permits slip, the Ph1 2026-12 ready date and both 2027-12 dates re-base by two-plus quarters.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Environmental permit issuance at any of the three sites, or Q3 10-Q (Nov 2026)",
+   "resolve": "Permits issued (close), or site yr/mo re-based with the permit record as evidence",
+   "inModel": "Partially — the delivery dates are engine inputs but carry no permit-risk treatment beyond the prov 'disclosed' 0.95 credit",
+   "impact": "A delivery-window slip delays the first-lease catalyst and lengthens the cash-burn runway behind the plannedRaise 0 assumption",
+   "grp": "g19-KEEL"
+  },
+  {
+   "id": "w-keel-ye26-lease-target",
+   "tk": "KEEL",
+   "cat": "superseded-history",
+   "refs": [
+    "watchItems[17]",
+    "companies[20].narrative",
+    "companies[20].catalysts[0]",
+    "companies[20].thesis",
+    "outlook.leases[20].window",
+    "outlook.leases[20].drivers[0]",
+    "outlook.earnings[10].drivers[0]"
+   ],
+   "note": "Management's three-signed-leases-by-YE26 target was not restated in the Q2 release or 10-Q (language moved to 'active negotiations at three sites'). The accepted outlook record already treats this — prob cut 50→25, window moved to 'Q1-Q2 2027; the year-end-2026 target has quietly stopped being restated' — but companies[20].narrative ('management targets three by YE26'), catalysts[0] and thesis still assert the YE26 target as current. Per the outlook driver: 'We cannot confirm the target was abandoned, only that it was not restated.'",
+   "alt": "The outlook treatment (window Q1-Q2 2027, prob 25) is the supported current view; the narrative fields are the stale side.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Narrative/catalysts refresh proposal; or the Q3 release restating or abandoning the target",
+   "resolve": "companies[20] narrative fields updated to the Q2 language (with the YE26 target preserved as history), or management restates the target",
+   "inModel": "Yes for expectations (outlook.leases[20].prob 25 and 2027 window); the stale narrative fields do not feed the engine",
+   "impact": "Expectation timing — a stale YE26 claim on the research surface misstates KEEL's nearest catalyst by roughly two quarters",
+   "grp": "g19-KEEL"
+  },
+  {
+   "id": "w-mara-longridge-unclosed",
    "tk": "MARA",
-   "note": "STARWOOD JV IS PRE-DEVELOPMENT — the Q2 10-Q states ALL sites continue to be deemed held and used by MARA because none has advanced beyond the pre-development phase and the contribution conditions have not been satisfied, with explicit uncertainty on timing and on MARA's resulting retained ownership. Our 400MW + 500MW Starwood rows imply far more progress than that. contractedPct 0 CONFIRMED — zero signed AI/HPC leases; the strongest language on Long Ridge is 'formal indications of interest from investment-grade hyperscale tenants'. Long Ridge is still UNCLOSED (FERC pending). New site Matagorda County TX closed 7/2/26 (>1,200 acres, utility letter agreement for up to 2,000 MW, up to $600M of contingent milestone payments) is not in our site list. Company now guides to ~4.8 GW of gross/nameplate power — NOT critical IT and not AI-leasable [edgar 10-Q]",
-   "added": "2026-08-24"
+   "cat": "forward",
+   "refs": [
+    "watchItems[28]",
+    "companies[9].catalysts[1]",
+    "companies[9].sites[0]",
+    "companies[9].sites[1]",
+    "outlook.leases[9].drivers[2]",
+    "companies[9].raises[0]"
+   ],
+   "note": "The Long Ridge acquisition remains unclosed awaiting FERC approval, no closing date given, with a $75M break fee (outlook driver); our Hannibal/Long Ridge rows (200MW estimated 2028-06 + 400MW rumored 2030-06) are credited owned:true although MARA does not yet own the asset. Strongest tenant language is 'formal indications of interest from investment-grade hyperscale tenants'.",
+   "alt": "If FERC blocks or the deal terminates: remove both Hannibal rows and unwind the ~$785M Barclays bridge assumption in the capital picture.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "FERC approval / closing 8-K — company guided close H2 2026",
+   "resolve": "Closing 8-K affirms the rows, or deal termination removes them",
+   "inModel": "Partially — provenance haircuts apply, but owned:true and the bridge-financed capital treatment assume the close",
+   "impact": "600MW including MARA's ONLY near-dated AI-leasable capacity — without Long Ridge the AI thesis has no anchor site; per outlook: 'Until it closes there is no Hannibal to lease'",
+   "grp": "g21-MARA"
   },
   {
+   "id": "w-mara-matagorda-missing",
+   "tk": "MARA",
+   "cat": "coverage",
+   "refs": [
+    "watchItems[28]",
+    "outlook.leases[9].drivers[3]",
+    "companies[9].sites",
+    "companies[9].basis.seniorClaims"
+   ],
+   "note": "Matagorda County TX closed 2026-07-02 (>1,200 acres, utility letter agreement for up to 2,000MW gross, acquired for up to $600M of post-closing contingent milestone payments) is in the accepted outlook record but absent from companies[9].sites, and the up-to-$600M contingent obligation appears in neither the netDebt (1996) nor seniorClaims (98.8) basis notes.",
+   "alt": "Add a 'rumored'-provenance row (or record a deliberate exclusion — outlook already calls it 'land and a letter agreement, not capacity') and note the contingent milestone obligation in the capital basis.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Owner inclusion decision; MARA energization detail or Q3 10-Q",
+   "resolve": "Site row added or a deliberate exclusion recorded with rationale; contingent $600M noted in the capital basis",
+   "inModel": "No — neither the optionality nor the contingent liability is represented",
+   "impact": "Cuts both ways: unrecorded optionality (up to 2,000MW gross) vs an unrecorded up-to-$600M contingent claim; also feeds the gross-vs-IT ruling",
+   "grp": "g21-MARA"
+  },
+  {
+   "id": "w-mara-mw-basis",
+   "tk": "MARA",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=MARA].sites"
+   ],
+   "note": "MW basis ruling pending since 2026-06-30: ~2,500MW credited across six site rows, but AI-leasable critical IT is materially lower (gross vs IT basis not normalized for MARA’s rows); newer records did not resolve it.",
+   "status": "owner",
+   "added": "2026-06-30",
+   "reviewed": "2026-09-15",
+   "next": "owner ruling",
+   "resolve": "Owner confirms per-row MW basis (gross vs critical-IT) and the rows are restated or a basis note added.",
+   "inModel": "no — treatment pending the ruling",
+   "impact": "Could reduce MARA credited capacity materially; affects value and rank.",
+   "grp": "g20-MARA"
+  },
+  {
+   "id": "w-mara-starwood-predevelopment",
+   "tk": "MARA",
+   "cat": "conflict",
+   "refs": [
+    "watchItems[28]",
+    "companies[9].sites[4]",
+    "companies[9].sites[5]",
+    "outlook.leases[9].drivers[1]"
+   ],
+   "note": "The Q2 10-Q states all Starwood JV sites remain pre-development — held and used by MARA, contribution conditions unsatisfied, timing and MARA's resulting retained ownership explicitly uncertain — while our rows carry 'Starwood JV — existing portfolio retrofit' 400MW prov 'estimated' (2028-06) and 'pathway expansion' 500MW 'rumored' (2030-12), both owned:true, implying more progress and settled ownership than the filing supports.",
+   "alt": "Downgrade the 400MW row to 'rumored', push dates, and record the ownership uncertainty — folded into the same owner ruling as the gross-vs-IT basis review (see the escalated watchItems[1]).",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Q3 10-Q, or a JV contribution-conditions-satisfied disclosure",
+   "resolve": "Row provenance/dates/ownership re-based to filed status, or the contribution conditions satisfied",
+   "inModel": "Partially — 'estimated' (0.55) and 'rumored' (0.25) haircuts apply, but the filed status supports at most 'rumored' on both rows and owned:true is unsupported",
+   "impact": "900MW, 36% of MARA's credited base; shares its root cause with the escalated gross-vs-IT ruling",
+   "grp": "g21-MARA"
+  },
+  {
+   "id": "w-nbis-asset-light-perimeter",
+   "tk": "NBIS",
+   "cat": "house-judgement",
+   "refs": [
+    "watchItems[13]",
+    "companies[1].thesis",
+    "companies[1].bear[2]",
+    "companies[1].sites[17]",
+    "companies[1].sites[18]"
+   ],
+   "note": "GS (2026-08-24, sell-side ceiling) reports a partnership model where partners finance, build and operate infrastructure while Nebius supplies platform and demand; the engine values all 6,460MW at owner economics with no asset-light mode, and the two unnamed Pipeline 2030/2031 rows (1,200+1,800MW rumored — bear[2]: '~26% of site EV') are the exposed slice. Still open: the accepted thesis names 'whether Nebius owns its economics at all under the new asset-light partnership model' as the swing factor, and no assetLight flag, landlord routing or pipelineCredit change has been recorded anywhere in-file.",
+   "alt": "Per the note's own options: a new assetLight site flag; route affected rows to the landlord branch; or hold at reduced pipelineCredit. Sensitivities as recorded: pipelineCredit 1.0→0.5 takes the target $419→$351; →0 gives $283; upgrading rumored ≤300MW rows to estimated gives $473.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Nebius disclosure of partner-owned MW split / revenue share (the recorded falsifier); else owner ruling at the Q3 print",
+   "resolve": "Disclosure quantifies how much future MW is partner-owned and on what revenue share, or the owner selects one of the three model treatments",
+   "inModel": "No — only the 'rumored' provenance haircut (0.25 credit) touches those rows; owner-economics margin and the owned bonus still apply to all 6,460MW",
+   "impact": "Up to ~$136/share of target range ($419 base vs $283 at zero pipeline credit) — selection- and weight-changing for NBIS",
+   "grp": "g23-NBIS"
+  },
+  {
+   "id": "w-nbis-backlog-dollar-basis",
+   "tk": "NBIS",
+   "cat": "coverage",
+   "refs": [
+    "watchItems[12]",
+    "companies[1].narrative",
+    "companies[1].contracts",
+    "companies[1].basis.signedRate",
+    "companies[1].log[0]"
+   ],
+   "note": "A current RPO/backlog dollar figure has still not printed in-file: the narrative asserts '~$50B backlog (~92% Microsoft + Meta)' while the contracts block sums $34.2B firm ($32.3B MSFT+Meta, matching basis.signedRate's 'Microsoft+Meta stack') and the last logged RPO is $33.6B (2026-03-16). The ~$50B is plausibly an options-inclusive basis (MSFT to $19.4B + Meta up-to $27B + four Q2 deals) — per the brief this is a basis difference to explain, not yet a conflict to declare.",
+   "alt": "State backlog on one declared basis (firm vs including options) when the Q3 RPO prints; reconcile the narrative to the contracts block.",
+   "status": "monitoring",
+   "added": "2026-08-18",
+   "reviewed": "2026-09-15",
+   "next": "Q3-26 6-K RPO print (~Nov 2026)",
+   "resolve": "Backlog dollar recorded with declared basis and source; narrative reconciled to contracts",
+   "inModel": "No direct engine input — signedRate 13.5 and contractedPct 85 are the inputs and are separately owner-based",
+   "impact": "Confidence in the contracted-book narrative; a firm-basis backlog well below ~$50B trims the visibility claim, not the engine value",
+   "grp": "g22-NBIS"
+  },
+  {
+   "id": "w-nbis-convert-accretion-gap",
+   "tk": "NBIS",
+   "cat": "house-judgement",
+   "refs": [
+    "watchItems[14]",
+    "companies[1].basis.netDebt",
+    "companies[1].bear[3]",
+    "CHANGELOG entry 'nbis.html reconciled to the research pack (2026-09-05)'"
+   ],
+   "note": "The August 2026 notes accrete to 110% (2030s) / 125% (2034s) — a $5.8B maturity claim on $5.0B principal, with redemption and fundamental-change repurchase both at the accreted amount. netDebt -9,038 carries the $5,000M principal per the approved convention (basis.netDebt's own ACCRETION FLAG: 'netDebt carries principal per convention, with the $800M gap tracked as a watch item'); because the notes are far OTM (strikes ~$313/$325 vs price ~$210) they sit in debt, not shares, so the ~$800M excess claim is unpriced in the engine. The research page now quantifies the full ladder — $13.4bn principal accreting to $15.7bn across eight series (2026-09-05 reconciliation) — while the engine convention is unchanged.",
+   "alt": "Carry the accreted (or currently-accrued) claim value for debt-carried OTM series instead of principal.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Any redemption/fundamental-change trigger, the notes moving into the money, or the next capital-basis re-verification",
+   "resolve": "Convention amended to accreted-claim carrying for OTM series, the notes converting or being repurchased, or the owner re-affirming the principal convention with the gap explicitly accepted",
+   "inModel": "Partially — principal is in netDebt and the legacy ITM converts sit in the FD share count; the accretion excess (~$800M at maturity on the August notes) is in neither; nbis.html does show the accreting ladder",
+   "impact": "~$2.3/share of unpriced senior claim at maturity on the August notes alone; larger if other debt-carried series accrete (research page: $13.4bn→$15.7bn across eight series)",
+   "grp": "g24-NBIS"
+  },
+  {
+   "id": "w-nbis-fd-share-count",
+   "tk": "NBIS",
+   "cat": "conflict",
+   "refs": [
+    "watchItems[15]",
+    "companies[1].shares",
+    "companies[1].sharesReported",
+    "companies[1].basis.netDebt",
+    "CHANGELOG entry 'nbis.html reconciled to the research pack (2026-09-05)'"
+   ],
+   "note": "Engine shares 341 remains carried forward unverified: filed basic-equivalent is ~292.9M (271.9M outstanding at 6/30/26 + 21.1M NVIDIA pre-funded warrants) plus ~15.8M from the 8/19 exchange ≈ 308.7M, leaving an implied ~32M if-converted add that could not be rebuilt at note date. Since the note, the 2026-09-05 research-pack reconciliation partially superseded the coverage gap — the convert ladder is now rebuilt in-file (eight series; 2029/2031 residual $175m after the August exchange) and nbis.html computes a horizon-diluted 473m (68m from converts, corrected from 33m after fixing a netting formula that treated a missing capped call as a full hedge). But the engine's 341 was never re-derived: the two in-file counts sit on different bases (current if-converted vs horizon conversion) with no recorded bridge, and the engine's implied ~32M add matches the research page's PRE-correction 33m — suggesting 341 may embed the same corrected netting error, i.e. it may be understated, not merely unverified.",
+   "alt": "Re-derive engine shares from the research pack's eight-series terms on the house current-FD convention, and record the basis bridge to the 473m horizon count.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Reconciliation pass against the ~/Research/NBIS/ pack and original 2029/2031 issuance filings; the 20-F confirms remaining principal and conversion prices",
+   "resolve": "shares re-derived from disclosed series-level terms, with the engine-vs-research basis designated per brief section 4 step 1",
+   "inModel": "Yes — shares 341 divides every per-share output; the risk is the input itself, not a missing haircut",
+   "impact": "First-order on every per-share target: 341 vs ~308.7 is ~10%; an embedded netting error would push the other way; also weakens the convert-accretion treatment that depends on which series are share-carried",
+   "grp": "g25-NBIS"
+  },
+  {
+   "id": "w-nbis-frontier-lab-identity",
+   "tk": "NBIS",
+   "cat": "forward",
+   "refs": [
+    "watchItems[12]",
+    "companies[1].basis.contractedPct",
+    "outlook.leases[1].tenants"
+   ],
+   "note": "The identity of the unnamed US frontier lab (basis.contractedPct: 'an unnamed US AI neolab') behind one of the four >$1B-TCV Q2 deals remains undisclosed in every accepted record.",
+   "alt": "",
+   "status": "monitoring",
+   "added": "2026-08-18",
+   "reviewed": "2026-09-15",
+   "next": "Q3 6-K, or the customer's own disclosure",
+   "resolve": "Counterparty named in a filing or corroborated primary disclosure",
+   "inModel": "Partially — leaseQ 4.4 already reflects a hyperscaler-anchored book; identity affects the marginal counterparty-quality assessment only",
+   "impact": "Second-order: counterparty quality on >$1B of TCV; could nudge leaseQ, not selection",
+   "grp": "g22-NBIS"
+  },
+  {
+   "id": "w-riot-573m-maturity",
+   "tk": "RIOT",
+   "cat": "conflict",
+   "refs": [
+    "companies[tk=RIOT].finMix",
+    "outlook.leases[tk=RIOT].drivers[2]"
+   ],
+   "note": "The $573M MS facility carries TWO filed maturities: initial 2026-10-15 (Q2 10-Q, “subject to extension… in connection with the re-financing”) and stated 2026-12-31 (Item 1.01 8-K). Operative clock is 10/15 unless the refinancing-linked extension runs. Credit agreement unexhibited until the Q3-26 10-Q (~Nov).",
+   "alt": "Run the financing clock off 12/31/26 (8-K stated maturity).",
+   "status": "owner",
+   "added": "2026-08-11",
+   "reviewed": "2026-09-15",
+   "next": "Q3-26 10-Q credit-agreement exhibit (~Nov 2026)",
+   "resolve": "Owner picks the operative clock until the exhibit prints; the exhibit then settles both dates verbatim.",
+   "inModel": "outlook driver only (judgement layer; never a valuation input)",
+   "impact": "Financing-clock deadline moves from 12/31 to 10/15 (one month out) — tightens the RIOT outlook read.",
+   "grp": "g26-RIOT"
+  },
+  {
+   "id": "w-riot-corsicana-loi",
+   "tk": "RIOT",
+   "cat": "forward",
+   "refs": [
+    "watchItems[10]",
+    "companies[2].sites[5]",
+    "companies[2].sites[7]",
+    "companies[2].sites[8]",
+    "companies[2].catalysts[0]",
+    "companies[2].log[0]",
+    "outlook.leases[2].drivers[0]"
+   ],
+   "note": "Corsicana full-campus LOI (nonbinding, single tenant, 756 MW critical IT ceiling, >$1B/yr rent potential per mgmt) has not converted to an executed lease; conversion is mgmt's stated 2026 priority. The 2026-08-24 outlook re-verified it: 'Corsicana is STILL a non-binding LOI. No executed lease, nothing filed since the 8/14 8-K' — prob 55, window Oct 2026 – Mar 2027.",
+   "alt": "LOI dies — ~1 GW of the story reverts to spec capacity (companies[2].bear[3]); the tenant field has already narrowed: log 2026-07-28 records AMD's anchor commitment going to CORZ with exclusive expansion.",
+   "status": "monitoring",
+   "added": "2026-08-11",
+   "reviewed": "2026-09-15",
+   "next": "Outlook window Oct 2026 – Mar 2027; any RIOT 8-K; Q3 10-Q",
+   "resolve": "Executed lease filed (create the lease record, attach leaseId to the Corsicana site rows) or LOI terminated/expired (rows stay spec and the outlook probability is cut).",
+   "inModel": "Yes, in the conservative direction — the 'sites stay unleased until signed' rule already holds: no Corsicana site row carries a leaseId, contractedPct is 20, and the thesis text discounts the campus as ~95% unleased. Outlook prob 55 is judgement-only and never feeds the engine.",
+   "impact": "Conversion roughly quadruples the contracted book (>$1B/yr rent vs $416-462M avg NOI today) — the single largest swing factor in RIOT's target and its shortlist rank.",
+   "grp": "g27-RIOT"
+  },
+  {
+   "id": "w-riot-frontier-nonrecourse",
+   "tk": "RIOT",
+   "cat": "house-judgement",
+   "refs": [
+    "companies[2].finMix",
+    "companies[2].netDebt",
+    "companies[2].leases[1].source",
+    "watchItems[9]",
+    "outlook.leases[2].drivers[2]"
+   ],
+   "note": "The $573M MS interim facility at Riot DC Logistics LLC is non-recourse to the parent ('expressly non-recourse to Riot Platforms and every parent above the borrower') and stays off corporate claims; corporate netDebt −290 (net cash) excludes it.",
+   "alt": "If the IG-backstopped takeout or any amendment adds parent recourse or guarantees, the project debt moves into corporate claims.",
+   "status": "monitoring",
+   "added": "2026-08-11",
+   "reviewed": "2026-09-15",
+   "next": "IG-backstopped takeout close (or the facility maturity — see the escalated date conflict)",
+   "resolve": "Takeout documents reviewed for recourse; treatment reaffirmed, or the debt reclassified into corporate claims with a changelog line.",
+   "inModel": "Yes — excluded from netDebt (−290) per finMix; the falsifier is written into the record ('revisit if recourse changes').",
+   "impact": "Recourse reclassification would swing corporate net cash by up to $573M and could change RIOT's financing risk framing and target.",
+   "grp": "g26-RIOT"
+  },
+  {
+   "id": "w-riot-frontier-tenant-id",
+   "tk": "RIOT",
+   "cat": "forward",
+   "refs": [
+    "companies[2].leases[1].counterparty",
+    "watchItems[9]",
+    "outlook.leases[2].tenants"
+   ],
+   "note": "The 191MW Rockdale frontier-lab tenant is undisclosed in filings; Bloomberg 8/11/26 reports Anthropic per people familiar, labeled REPORTED, NOT CONFIRMED (Riot declined comment).",
+   "alt": "Tenant is not Anthropic — the label already treats the report as unconfirmed, so no model change either way until a filing names it.",
+   "status": "monitoring",
+   "added": "2026-08-11",
+   "reviewed": "2026-09-15",
+   "next": "Any filing or company confirmation; FY26 10-K customer-concentration disclosure",
+   "resolve": "Tenant named in a filing or by the company, or the report credibly refuted; the counterparty label updated either way.",
+   "inModel": "Partly — leases[1].counterparty carries the attribution with its provenance label; tier 'ig' rests on the IG-or-equivalent backstop, not the name.",
+   "impact": "Confirmation firms counterparty quality and creates a shared-tenant exposure with WULF's 401MW Anthropic lease — a correlated-counterparty input for basket policy.",
+   "grp": "g26-RIOT"
+  },
+  {
+   "id": "w-shaz-373m-contract-missing",
+   "tk": "SHAZ",
+   "cat": "coverage",
+   "refs": [
+    "watchItems[23]",
+    "outlook.leases[21].drivers[0]",
+    "companies[21].contracts",
+    "companies[21].basis.signedRate"
+   ],
+   "note": "The 2026-08-04 $373M/5yr take-or-pay agreement (2,048 B300 across Australian infrastructure) is accepted in the outlook as signed [edgar] but has no contract record: contracts[] sums to the $10,650M in basis.signedRate without it.",
+   "alt": "Deliberately held out pending terms (MW, tenor detail) — if so, the hold-out reason should be recorded.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Next registry pass / Q3 10-Q contract detail",
+   "resolve": "Contract record entered on its own basis (B300, explicitly distinct from the GB300 block so it can never be double-counted as a block placement) or a documented reason it stays out.",
+   "inModel": "No — the $10,650M book and signedRate exclude it.",
+   "impact": "+$373M TCV (~3.5% of book), nudges signedRate/contractedPct; the bigger risk is mis-crediting it to the NVIDIA block, which would wrongly 'corroborate' the override.",
+   "grp": "g28-SHAZ"
+  },
+  {
+   "id": "w-shaz-basis-stale-text",
+   "tk": "SHAZ",
+   "cat": "defect",
+   "refs": [
+    "companies[21].basis.netDebt",
+    "companies[21].basis.shares",
+    "companies[21].netDebt",
+    "companies[21].shares",
+    "watchItems[23]"
+   ],
+   "note": "The Q2 corrections were applied to the numbers but not the basis strings: basis.netDebt still asserts '−$600M ... 2032 notes $691.7M ONLY (filed principal — not $700M)' and 'Q2 10-Q ~Aug 14 replaces the estimate' against netDebt −1157 and the note's filed $700.0M principal; basis.shares still carries the '~1.3M residual small notes' the note flags as unsupported and a 50.6M FD build that no longer reconciles to shares 49.9. The exact bridge from filed cash $1,861.3M to −1157 is unrecorded.",
+   "alt": "$691.7M was the resale-registration amount, not principal — the note's own reconciliation, which dissolves the $691.7-vs-$700 'conflict' in favour of $700.0M per the newer primary filing (Q2 10-Q).",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Next accepted SHAZ data edit",
+   "resolve": "basis.netDebt and basis.shares rewritten present-tense to the filed Q2 figures ($700.0M principal, $1,861.3M cash, the actual FD bridge to 49.9M), restoring §10 state discipline.",
+   "inModel": "The engine inputs (netDebt −1157, shares 49.9) appear correct; only the audit-trail text contradicts them.",
+   "impact": "A future sweep that trusts the basis text over the number could 'correct' SHAZ back by ~$557M of net cash and ~1% of shares; also blocks clean closure of this note's correction atoms.",
+   "grp": "g28-SHAZ"
+  },
+  {
+   "id": "w-shaz-capacity-212mw",
+   "tk": "SHAZ",
+   "cat": "coverage",
+   "refs": [
+    "watchItems[23]",
+    "companies[21].sites",
+    "companies[21].narrative",
+    "outlook.leases[21].drivers[2]",
+    "outlook.leases[21].site"
+   ],
+   "note": "Secured AI Factory capacity stepped up 80MW to 212MW (filed, as of 2026-08-20; 120MW contracted) but sites[] still totals 132 MW and the narrative still reads '4→132MW' — the 80 MW addition has no site rows.",
+   "alt": "The 80MW may be gross vs the sites' IT basis — normalization needed before rows are added.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Site-row rebuild pass (same class as the 8/24 deferred gross-to-critical-IT rulings); Q3 10-Q",
+   "resolve": "80 MW added as site rows with an explicit gross/IT basis and dates, and the narrative capacity updated — or a documented exclusion.",
+   "inModel": "No — coverage and ramp read sites[]; the ~92MW uncontracted slice of the 212MW (the outlook's own next-lease runway) is invisible to the model.",
+   "impact": "Understates SHAZ's capacity runway ~38%; affects contractedPct, MW-based screens and the credibility of the next-signing outlook.",
+   "grp": "g28-SHAZ"
+  },
+  {
+   "id": "w-shaz-nvda-block-uncorroborated",
+   "tk": "SHAZ",
+   "cat": "house-judgement",
+   "refs": [
+    "watchItems[23]",
+    "companies[21].contracts[0].counterparty",
+    "companies[21].contracts[0].source",
+    "companies[21].basis.signedRate",
+    "companies[21].log[0]",
+    "outlook.leases[21].drivers[3]"
+   ],
+   "note": "The NVIDIA block is carried at the owner's expected-value override ($6.9B) against a $4.88B contractual floor — the only signed dollar figure. No placement against the 40,000-GB300 block has printed; the company still describes the arrangement as '$4.9bn ... up to 40,000 GB300' (the floor, rounded). The 2026-08-04 $373M deal is 2,048 B300, not GB300, presented as separate — it is not corroboration of the block.",
+   "alt": "Value at the $4.88B floor: signedRate 16.8→13.5, book $10.65B→$8.63B (the floor-based rate is preserved in basis.signedRate).",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Each SHAZ placement announcement (roughly one contract a month per outlook); Q3 10-Q",
+   "resolve": "Per the recorded re-mark rule on contracts[0]: each actual placement against the block replaces forecast with fact; REVERT to the floor if placements print at/below it.",
+   "inModel": "Yes — contracts[0].totalRevM 6900 and signedRate 16.8 embed the override, loudly labeled as the registry's first expected-value exception with its falsifier attached.",
+   "impact": "Reverting to the floor cuts the contracted book ~19% and the signed rate to 13.5 — enough to move SHAZ's target (~$14 of the 8/3 move) and its rank.",
+   "grp": "g28-SHAZ"
+  },
+  {
+   "id": "w-slnh-authorized-1000m",
    "tk": "SLNH",
-   "note": "KATI 2 IS A JV, NOT A TENANT LEASE — resolved 2026-08-24 in an unexpected direction. What was signed on 2026-06-03 is the LLC agreement of Soluna MB KK II JVCo LLC with DC Kati Venture LLC (a Metrobloks affiliate); Soluna holds 100% of the Class A interests and is sole manager, Metrobloks holds a zero-capital non-voting Class B profits interest. Phase I is ~100 MW of CRITICAL IT. There is no tenant, no counterparty name and no lease economics — the AI book remains 100% pre-tenant. NEW CREDIT STRESS: Soluna failed the Generate financial covenants, borrowings were reclassified to current at 6/30/26, and a 2026-08-07 Limited Waiver required a $19.1M prepayment. Proxy for a 2026-10-16 vote seeks to raise authorized common from 375M to 1,000M shares [edgar]",
-   "added": "2026-08-24"
+   "cat": "forward",
+   "refs": [
+    "watchItems[29]",
+    "outlook.leases[5].drivers[3]",
+    "companies[5].shares",
+    "companies[5].basis.plannedRaise"
+   ],
+   "note": "A proxy filed 8/14 for the 2026-10-16 meeting seeks to raise authorized common 375M→1,000M. At 244.59M shares outstanding only ~130M of authorized headroom remains, so the vote gates the ATM-funded build plan (plannedRaise 750, dilution 3-4x per basis).",
+   "alt": "Vote fails — the equity funding plan is capped well short of the $500M ATM capacity and the buildout funding assumption breaks.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "2026-10-16 shareholder vote (8-K results)",
+   "resolve": "Vote passes (dilution runway confirmed) or fails (escalate — plannedRaise and the funding thesis need an owner decision).",
+   "inModel": "Directionally yes — plannedRaise 750 and the 3-4x share-count basis assume the runway exists; the vote is the unmodeled dependency.",
+   "impact": "A failed vote caps equity issuance at ~$150-260M of headroom at current prices — it would force the funding assumptions behind SLNH's target and its basket eligibility to change.",
+   "grp": "g30-SLNH"
+  },
+  {
+   "id": "w-slnh-generate-covenant",
+   "tk": "SLNH",
+   "cat": "coverage",
+   "refs": [
+    "watchItems[29]",
+    "outlook.leases[5].drivers[2]",
+    "outlook.earnings[5].drivers[1]",
+    "companies[5].finMix",
+    "companies[5].netDebt"
+   ],
+   "note": "Soluna failed the Generate financial covenants; borrowings were reclassified to current at 6/30/26 and a 2026-08-07 Limited Waiver required a $19.1M prepayment. None of this is in the capital record — finMix still reads '~$28M project/equipment debt (Generate...) vs ~$69M cash' and '~$41M net cash post-Briscoe' with no breach, waiver or prepayment, and it disagrees with netDebt −80.3 on its face.",
+   "alt": "netDebt −80.3 already reflects the Q2 10-Q including the prepayment and only the finMix/bull text is stale — plausible, but the bridge is unrecorded.",
+   "status": "investigating",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Q3 10-Q; any Generate amendment/waiver 8-K",
+   "resolve": "finMix/basis restated to the waiver terms, current classification and post-prepayment cash; the −80.3 vs ~$41M internal gap explained on the record.",
+   "inModel": "Partly — equityDiscount 0.10 cites going-concern flags generically; the covenant breach and the $19.1M cash outflow are not identifiable inputs.",
+   "impact": "Credit stress at the lender funding the Dorothy/Kati build: affects going-concern framing, equityDiscount, and whether the Generate facility can fund the AI pivot at all — decision-relevant for a name whose thesis is 'binary on landing an anchor before the going-concern clock'.",
+   "grp": "g30-SLNH"
+  },
+  {
+   "id": "w-slnh-kati2-classb",
+   "tk": "SLNH",
+   "cat": "coverage",
+   "refs": [
+    "watchItems[29]",
+    "companies[5].sites[0]",
+    "companies[5].risks[2]",
+    "outlook.leases[5].drivers[0]"
+   ],
+   "note": "Metrobloks holds a zero-capital, non-voting Class B PROFITS INTEREST in the Kati 2 JV (Soluna: 100% Class A, sole manager). The profits-interest share is not recorded anywhere in the file, so Soluna's retained share of Kati 2 economics is unquantified — and risks[] names Spring Lane/Navitas/Generate/Galaxy as value-siphoning partners but not Metrobloks.",
+   "alt": "The Class B share is immaterial — possible, but currently unevidenced either way.",
+   "status": "investigating",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "LLC-agreement waterfall terms in 10-Q/10-K exhibits; first Kati 2 lease economics",
+   "resolve": "Profits-interest waterfall recorded like the registry's other JV/NCI claims (cf. NUAI's ~20% JV economics), or documented as immaterial.",
+   "inModel": "No — sites[0] is credited at full 100 MW with no minority/profits-interest haircut.",
+   "impact": "A material Class B share cuts the value of SLNH's principal AI asset before any tenant even signs — directly changes what a first Kati 2 lease would be worth to common.",
+   "grp": "g30-SLNH"
+  },
+  {
+   "id": "w-wyfi-ddtl-maturity",
+   "tk": "WYFI",
+   "cat": "forward",
+   "refs": [
+    "watchItems[25]",
+    "companies[13].raises[0]",
+    "outlook.leases[13].drivers[4]"
+   ],
+   "note": "The 2026-05-26 Bit Digital DDTL draws ($20M + $30M, 90-day tenor, effective interest rate 50.6% at 6/30/26) matured ~2026-08-24. As of 2026-09-15 the file holds no repayment, extension or default disclosure — the check is three weeks overdue and must prompt review, not an assumed outcome.",
+   "alt": "Quiet extension or refinancing into the permanent facility with a reporting lag — allowed for, but only until the next disclosure point.",
+   "status": "investigating",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Targeted EDGAR check now for an 8-K/facility amendment; else Q3 10-Q (Nov 2026)",
+   "resolve": "Disclosure of repayment, extension terms, or takeout by the permanent financing; finMix/netDebt updated to match.",
+   "inModel": "Partly — netDebt 259 (rebuilt 2026-08-24) carries the drawn balance, but nothing represents a matured related-party bridge at a 50.6% effective rate.",
+   "impact": "Rollover or default on a matured related-party bridge could force dilution or asset action at the anchor site; also colors the controlled-company/related-party lender discount (equityDiscount 0.10).",
+   "grp": "g29-WYFI"
+  },
+  {
+   "id": "w-wyfi-nc1-billing-lag",
+   "tk": "WYFI",
+   "cat": "conflict",
+   "refs": [
+    "watchItems[25]",
+    "companies[13].sites[2]",
+    "companies[13].sites[3]",
+    "outlook.leases[13].drivers[1]",
+    "outlook.earnings[4].keyNumber",
+    "CHANGELOG 2026-08-24 ('DEFERRED: site-row rebuilds ... WYFI NC-1 ramp')"
+   ],
+   "note": "NC-1 Phase 1 (20MW, Nscale) is dated 2026-05 in sites[] while the 10-Q shows no colocation billing in Q2 (revenue $4.726M, flat on Q1's $4.774M; billing 'expected to commence during the third quarter'). Initial billing had commenced by 8/12 with the full 40MW run-rate expected late August — the rows overstate the revenue ramp by roughly a quarter, and the stage basis (energized vs billing commencement) is unnormalized.",
+   "alt": "The rows are correct on an energized/delivered-power basis (54MW delivered per bull[0]) and only the billing stage lags — in which case the fix is an explicit stage basis, not a date change.",
+   "status": "owner",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "The site-row rebuild pass explicitly deferred on 2026-08-24 (needs a gross-to-critical-IT / stage-basis ruling); else Q3 10-Q (Nov 2026) confirming full run-rate",
+   "resolve": "NC-1 Phase 1/2 rows restated on a declared basis (billing commencement Ph1 ~2026-08, Ph2 per 10-Q) or an explicit energized-vs-billing basis note, so the same tranche is never dated at two stages.",
+   "inModel": "No — the model reads site dates as revenue-relevant, so a quarter of 40MW NC-1 rent is currently credited early.",
+   "impact": "~One quarter of NC-1 rent (order $5-9M) of timing in the WYFI target, flowing through to the BTBT look-through; also a live example of the brief's stage-normalization rule.",
+   "grp": "g29-WYFI"
+  },
+  {
+   "id": "w-wyfi-nc1-permfin",
+   "tk": "WYFI",
+   "cat": "forward",
+   "refs": [
+    "watchItems[25]",
+    "companies[13].basis.plannedRaise",
+    "companies[13].raises[0].use",
+    "outlook.leases[13].drivers[4]"
+   ],
+   "note": "NC-1 permanent project financing is in lender EXCLUSIVITY but unsigned; the asset is bridged by the related-party DDTL ('pending permanent project financing').",
+   "alt": "Exclusivity lapses without a signing — NC-1 stays on the 50.6%-effective bridge.",
+   "status": "monitoring",
+   "added": "2026-08-24",
+   "reviewed": "2026-09-15",
+   "next": "Financing 8-K; Q3 10-Q",
+   "resolve": "Permanent facility signed (record as committedDebt to the extent drawn, DDTL taken out) or exclusivity ends.",
+   "inModel": "Partly — basis.plannedRaise describes the debt-led funding plan; the unsigned facility correctly carries no committedDebt.",
+   "impact": "Signing removes punitive bridge financing and de-risks the NC-1/Nscale ramp — the funding leg of WYFI's next revenue inflection; failure keeps the anchor asset on 50.6%-effective related-party money.",
+   "grp": "g29-WYFI"
   }
  ],
  "outlook": {
@@ -9382,7 +10491,7 @@
     "drivers": [
      "NEGATIVE FINDING: Corsicana is STILL a non-binding LOI. No executed lease, nothing filed since the 8/14 8-K. Riots own contracted total is 241 MW of executed leases and ~$9.8B of long-term contracted revenue, all of it at Rockdale [edgar]",
      "The Rockdale lease is the proof of execution: 191 MW critical IT, 20-year initial term to June 2048, ~$9.1B initial contract revenue, ~$16.1B with both five-year extensions, average annual NOI $365-411M. Phased 96 IT MW Dec-2027, full 191 by Jun-2028 [edgar 8-K 2026-08-14]",
-     "FINANCING CLOCK: the $573M Morgan Stanley facility matures 2026-12-31 — a four-and-a-half-month bridge. It funds ROCKDALE, not Corsicana, and is expressly non-recourse to Riot Platforms and every parent above the borrower [edgar]",
+     "FINANCING CLOCK: the $573M Morgan Stanley facility has an INITIAL maturity of 2026-10-15 (10-Q: “subject to extension in certain circumstances in connection with the Company’s re-financing”), with a stated maturity of 2026-12-31 per the 8-K — the operative clock is 10/15, one month out, unless the refinancing-linked extension runs it to year-end. It funds ROCKDALE, not Corsicana, and is expressly non-recourse to Riot Platforms and every parent above the borrower. Verify both dates against the credit agreement when it is exhibited with the Q3-26 10-Q [edgar 8-K 2026-08-14 acc 0001104659-26-097330; 10-Q 2026-08-10 acc 0001104659-26-093448]",
      "NEGATIVE FINDING: the investment-grade backstopped takeout has NOT happened and Riot has never disclosed a size or terms for it. The Q2 release describes the $573M only as interim financing while the IG credit backstop is finalized [edgar]",
      "Management has named Corsicana conversion its stated 2026 priority, and the campus has >$1B/yr of rent potential at full lease-up"
     ],

@@ -171,8 +171,12 @@ async function main() {
   Object.assign(E.ctx.prices, px);
   E.ctx.btc = btc; E.ctx.eth = eth;
 
-  const watch = {};
-  (data.watchItems || []).forEach(w => { watch[w.tk] = (watch[w.tk] || 0) + 1; });
+  // One original CONCERN = one count: structured registry records carry grp so splitting a
+  // note into atomic issues never multiplies the penalty. Formula and semantics unchanged —
+  // the allocator itself stays as specced (§6b) pending the owner's ruling.
+  const watch = {}, wg = {};
+  (data.watchItems || []).forEach((w, i) => { (wg[w.tk] = wg[w.tk] || new Set()).add(w.grp || w.id || i); });
+  Object.entries(wg).forEach(([tk, s]) => { watch[tk] = s.size; });
 
   const rows = data.companies.filter(c => px[c.tk] > 0 && !stale.has(c.tk) && !(pf.suspect[c.tk] > 0) && !excluded.has(c.tk)).map(c => {
     const v = E.value(c);

@@ -101,7 +101,10 @@
       if (marks.btc != null) eng.ctx.btc = marks.btc;
       if (marks.eth != null) eng.ctx.eth = marks.eth;
       const watch = {};
-      ((CM.source.watchItems) || []).forEach(w => { watch[w.tk] = (watch[w.tk] || 0) + 1; });
+      // Count distinct concerns (grp), not atomic records — mirrors portfolio-run.js exactly.
+      const wg = {};
+      ((CM.source.watchItems) || []).forEach((w, i) => { (wg[w.tk] = wg[w.tk] || new Set()).add(w.grp || w.id || i); });
+      Object.entries(wg).forEach(([tk2, s]) => { watch[tk2] = s.size; });
       const excluded = new Set(Object.keys(PF.exclude || {}));
       const rows = eng.COMPANIES.filter(c => !excluded.has(c.tk)).map(c => {
         const v = eng.value(c);
