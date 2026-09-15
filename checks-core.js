@@ -18,6 +18,7 @@
     { k: 'stakes',  name: 'Stake integrity',        guards: 'stake targets tracked; pct in (0,1]; no self-stakes or cycles at any depth' },
     { k: 'fresh',   name: 'Freshness',              guards: 'thesis present & ≤3 sentences; developments log recency; filing-verification age' },
     { k: 'leases',  name: 'Lease registry',         guards: 'every leaseId resolves; signed NOI within sane bounds; effective leases map to sites; sources present; leased sites disclosed; contracted% ≈ leased share; gross contract value ≥ NOI base-term' },
+    { k: 'watch',   name: 'Issue registry',         guards: 'every watch item structurally valid: known ticker, dated, non-empty assertion; lifecycle fields (status/reviewed/next) valid when present; an empty registry is valid' },
     { k: 'port',    name: 'Portfolio ledger',       guards: 'NAV recomputes from holdings; dates monotonic; weights sum to 1; px-vs-fundamentals basis tripwire; ledger freshness; learning-state bounds' },
   ];
 
@@ -42,7 +43,13 @@
     }
     const failIf = (g, tk, bad, msg) => assert(g, tk, !bad, msg, 'fail');
     const warnIf = (g, tk, bad, msg) => assert(g, tk, !bad, msg, 'warn');
-    const days = (iso) => iso ? Math.round((today - new Date(iso)) / 86400000) : null;
+    // An unparseable date must read as MISSING (null), never as fresh — an invalid date
+    // suppressing a staleness warning was audit probe P2 (review 2026-09-15).
+    const days = (iso) => { if (!iso) return null; const t = new Date(iso).getTime(); return isNaN(t) ? null : Math.round((today - t) / 86400000); };
+    const isoDate = (v) => /^\d{4}-\d{2}-\d{2}$/.test(String(v || '')) && !isNaN(new Date(v).getTime());
+    const futureDated = (v) => isoDate(v) && (new Date(v).getTime() - today.getTime()) > 7 * 86400000;
+    // Invalid-when-present is a data defect (fail); absent stays a staleness warn elsewhere.
+    const badDate = (g, tk, v, what, level) => { if (v != null) assert(g, tk, isoDate(v), `${what}: unparseable date '${v}'`, level || 'fail'); if (v != null && isoDate(v)) assert(g, tk, !futureDated(v), `${what}: inappropriately future-dated ${v}`, 'warn'); };
 
     /* ---- config ---- */
     const dials = ['rate','margin','multiple','capRate','disc','ramp','rateTrend','gpuTrend','dilutionStress','leaseUp','pipelineCredit'];
@@ -53,6 +60,7 @@
     Object.entries(cfg.regions).forEach(([k, r]) => failIf('config', null, typeof r.rateMul !== 'number', `region ${k} missing rateMul`));
     failIf('config', null, 'contractRate' in cfg.constants, 'dead constant contractRate present');
     warnIf('config', null, !cfg.btcFallback || !cfg.ethFallback, 'btcFallback/ethFallback missing');
+    badDate('config', null, cfg.verifiedPricing, 'config.verifiedPricing');
     const pAge = days(cfg.verifiedPricing);
     warnIf('config', null, pAge == null || pAge > 30, `GPU rate/trend dials last checked vs market ${pAge == null ? 'never' : pAge + 'd ago'} (verify ≤30d)`);
 
@@ -74,6 +82,7 @@
     const OL = d.outlook;
     warnIf('fresh', null, !OL, 'no outlook object — the weekly sweep generates the forward book');
     if (OL) {
+      badDate('fresh', null, OL.asOf, 'outlook.asOf');
       const oAge = days(OL.asOf);
       warnIf('fresh', null, oAge == null || oAge > 8, `outlook stale — asOf ${OL.asOf || 'missing'} (${oAge == null ? '?' : oAge + 'd'}; weekly cadence)`);
       const ctks = (d.companies || []).map(c => c.tk);
@@ -145,6 +154,17 @@
         failIf('ramp', id, Math.abs(gross - Object.values(camp).reduce((a, b) => a + b, 0)) > 0.5, 'ramp: campus MW do not sum to tranche MW');
         warnIf('ramp', id, gross > (c.sites || []).reduce((a, s2) => a + s2.mw, 0),
           `ramp: modelled ${gross}MW exceeds secured ${(c.sites || []).reduce((a, s2) => a + s2.mw, 0)}MW`);
+        // Cross-view schedule reconciliation (audit probe P3): where a research tranche names a
+        // site row, the two schedules must agree within a year — commissioning lag between the
+        // site's power date and GPU energize is normal (~1-2q); a multi-year gap is a contradiction
+        // that needs reconciling or an explicit basis.
+        T.forEach(t => {
+          (c.sites || []).filter(s2 => t.n && s2.n.includes(t.n)).forEach(s2 => {
+            const em = String(t.energize || '').match(/^(\d{4})Q([1-4])$/); if (!em) return;
+            const siteQ = s2.yr * 4 + Math.ceil((s2.mo || 1) / 3), dq = siteQ - (+em[1] * 4 + +em[2]);
+            warnIf('ramp', id, Math.abs(dq) > 4, `tranche '${t.n}': research energize ${t.energize} vs site schedule ${s2.yr}-${String(s2.mo || 1).padStart(2, '0')} (${dq > 0 ? '+' : ''}${dq}q apart) — reconcile the schedules or state a basis for the difference`);
+          });
+        });
         // backtest must exist and be within tolerance — a model that cannot retrodict has no business forecasting
         const A = R.actuals || {};
         failIf('ramp', id, !Object.keys(A).length, 'ramp: no reported actuals — the chain is untested');
@@ -285,6 +305,18 @@
         warnIf('leases', id, l.kind && !['retrofit','conversion','build-to-spec'].includes(l.kind), `lease ${l.id}: unknown kind ${l.kind}`);
         warnIf('leases', id, !l.kind, `lease ${l.id}: no kind tag (retrofit / conversion / build-to-spec)`);
         failIf('leases', id, !l.counterparty || !l.source, `lease ${l.id}: counterparty/source missing`);
+        // Source provenance ceiling (audit probe P4): a [source-id]-tagged source cannot support
+        // site provenance above its registry ceiling — commentary cannot make a lease 'disclosed'.
+        const srcTag = String(l.source || '').match(/^\[([\w-]+)\]/);
+        if (srcTag) {
+          const reg = srcs.find(s2 => s2.id === srcTag[1]);
+          warnIf('leases', id, !reg, `lease ${l.id}: source tag [${srcTag[1]}] not in the sources registry`);
+          if (reg) {
+            const RANK = { disclosed: 3, estimated: 2, rumored: 1, none: 0 };
+            const maxProv = Math.max(0, ...(c.sites || []).filter(x => x.leaseId === l.id).map(x => RANK[x.prov] || 0));
+            failIf('leases', id, (RANK[reg.provCeiling] || 0) < maxProv, `lease ${l.id}: source [${reg.id}] ceiling '${reg.provCeiling}' cannot support '${Object.keys(RANK).find(k => RANK[k] === maxProv)}' site provenance — corroborate or downgrade`);
+          }
+        }
         if (l.effective !== false) {
           const cover = (c.sites || []).filter(x => x.leaseId === l.id);
           warnIf('leases', id, !cover.length, `lease ${l.id}: effective but mapped to no site rows`);
@@ -338,9 +370,33 @@
       failIf('fresh', id, !c.narrative, 'no narrative');
       warnIf('fresh', id, !(c.log || []).length, 'empty developments log');
       const v = c.verified || {};
+      badDate('fresh', id, v.capital, 'verified.capital'); badDate('fresh', id, v.contracts, 'verified.contracts');
+      (c.log || []).forEach(l => badDate('fresh', id, l.d, `log entry '${String(l.x || '').slice(0, 30)}'`));
+      // Field-specific freshness (audit probe P1): historical entries never go stale, but a
+      // covered name whose NEWEST development entry is old needs a research pass.
+      const newest = (c.log || []).map(l => l.d).filter(isoDate).sort().reverse()[0];
+      if (newest) warnIf('fresh', id, days(newest) > 60, `developments log stale — newest entry ${days(newest)}d old (research pass due)`);
       const aCap = days(v.capital), aCon = days(v.contracts);
       warnIf('fresh', id, aCap == null || aCap > 45, `capital structure last verified vs filings ${aCap == null ? 'never' : aCap + 'd ago'} (target ≤45d)`);
       warnIf('fresh', id, aCon == null || aCon > 45, `contracts/sites last verified ${aCon == null ? 'never' : aCon + 'd ago'} (target ≤45d)`);
+    }
+
+    /* ---- issue registry (watchItems) — structural validity, never a fixed count (probe P5).
+       Open issues only live here; resolution removes the record with a CHANGELOG line. ---- */
+    {
+      const tks2 = (d.companies || []).map(c => c.tk);
+      const wids = new Set();
+      (d.watchItems || []).forEach((w, i) => {
+        const wid = w.id || w.tk || ('#' + i);
+        failIf('watch', w.tk, !w.tk || !tks2.includes(w.tk), `watch ${wid}: unknown or missing ticker '${w.tk}'`);
+        failIf('watch', w.tk, !String(w.note || '').trim(), `watch ${wid}: empty assertion`);
+        badDate('watch', w.tk, w.added, `watch ${wid} added`);
+        failIf('watch', w.tk, !w.added, `watch ${wid}: no added date`);
+        if (w.id) { failIf('watch', w.tk, wids.has(w.id), `watch ${w.id}: duplicate id`); wids.add(w.id); }
+        if (w.status != null) failIf('watch', w.tk, !['investigating', 'monitoring', 'owner'].includes(w.status), `watch ${wid}: bad status '${w.status}'`);
+        if (w.reviewed != null) badDate('watch', w.tk, w.reviewed, `watch ${wid} reviewed`);
+        if (w.status != null) warnIf('watch', w.tk, !w.next, `watch ${wid}: structured issue without a next-check trigger`);
+      });
     }
 
     /* ---- portfolio ledger (spec §6b) — only when the caller supplies the portfolio files ---- */

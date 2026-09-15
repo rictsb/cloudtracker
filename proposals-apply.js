@@ -15,7 +15,11 @@ const today = new Date().toISOString().slice(0, 10);
 const todo = (P.items || []).filter(p => p.status === 'accepted' && !p.applied);
 if (!todo.length) { console.log('no accepted proposals to apply'); process.exit(0); }
 
-const before = runChecks(JSON.parse(raw)).summary.fail;
+// Stable finding IDs, not totals (audit review 2026-09-15): a proposal is judged by the
+// failures it INTRODUCES — resolving an unrelated failure can never offset a new one, and a
+// warning-count change never blocks an honest disclosure.
+const findingID = m => `${m.group}|${m.tk}|${m.level}|${m.msg}`;
+const beforeFails = new Set(runChecks(JSON.parse(raw)).msgs.filter(m => m.level === 'fail').map(findingID));
 const lines = [];
 for (const p of todo) {
   const c = D.companies.find(x => x.tk === p.tk);
@@ -28,6 +32,10 @@ for (const p of todo) {
   } else if (p.kind === 'site') {
     const s = (c.sites || []).find(x => x.n === p.site);
     if (!s) { p.status = 'error'; p.error = 'site not found: ' + p.site; continue; }
+    // Expected-current precondition (audit probe P6): a proposal drafted against data that has
+    // since changed must be rebased through research, never written over the newer fact.
+    const stale = Object.entries(p.current || {}).find(([k, val]) => JSON.stringify(s[k]) !== JSON.stringify(val));
+    if (stale) { p.status = 'error'; p.error = `stale: expected current ${stale[0]}=${JSON.stringify(stale[1])}, data now has ${JSON.stringify(s[stale[0]])} — rebase against current data`; continue; }
     Object.assign(s, p.proposed);
   } else if (p.kind === 'catalyst') {
     c.catalysts = c.catalysts || [];
@@ -37,11 +45,11 @@ for (const p of todo) {
   lines.push(`- ${p.tk}: ${p.title} — approved on the Approvals screen ${p.decided || today}, applied ${today} (proposal ${p.id}; source ${p.sourceName || 'McNallie Money (YouTube)'}${p.evidence && p.evidence[0] ? ', ' + p.evidence[0].url : ''}).`);
 }
 
-const after = runChecks(D).summary.fail;
-if (after > before) {
-  for (const p of todo) if (p.applied === today) { p.status = 'error'; p.error = `not applied: data checks would go from ${before} to ${after} FAIL`; delete p.applied; }
+const introduced = runChecks(D).msgs.filter(m => m.level === 'fail').map(findingID).filter(id => !beforeFails.has(id));
+if (introduced.length) {
+  for (const p of todo) if (p.applied === today) { p.status = 'error'; p.error = `not applied: would introduce ${introduced.length} new check failure(s): ${introduced.slice(0, 3).join('; ')}`; delete p.applied; }
   fs.writeFileSync(path.join(ROOT, 'proposals.json'), JSON.stringify(P, null, 1) + '\n');
-  console.log(`REFUSED: checks would go from ${before} to ${after} FAIL — data.json untouched, proposals marked error`);
+  console.log(`REFUSED: would introduce new failures — data.json untouched, proposals marked error:\n  ` + introduced.join('\n  '));
   process.exit(1);
 }
 
