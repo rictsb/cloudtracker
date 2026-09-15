@@ -17,6 +17,8 @@ The valuation engine lives in `engine.js`, the GPU-ramp math in `ramp-core.js`, 
 
 ## Working rules
 
+- `quotes.js` shares per-company market prices and provider clocks across the application; refresh on load/return when due and every 30 minutes while open. Never stamp all companies with the latest fetch time. `research-data.js` supplies immutable research payloads and preferred main-comparison values for IREN/CRWV/NBIS; other rows retain the asset model. Missing research values stay unavailable, without asset-value substitution. Run `node verify-quotes.cjs` and `node verify-market-research.cjs` with the other gates.
+
 - Research pricing follows §6i: shared forward curve, explicit expiring contracts and renewals, sourced versus inferred coverage, matched earning-MW denominators and derived operating multiples. Regenerate all three report payloads after changing pricing. Run `node verify-pricing.cjs`, `node verify-pricing-checks.cjs` and `node verify-pricing-finance.cjs` alongside the existing gates.
 
 - The 2026-09 redesign (single-page app: `index.html` + `app.js` + view modules + `styles.css`/`report-layout.css`) is the reference design; rebuild into its system, don't re-invent per screen.

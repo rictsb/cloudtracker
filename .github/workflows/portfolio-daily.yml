@@ -17,10 +17,11 @@ jobs:
   mark:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: '24'
+          package-manager-cache: false
       - name: Run daily portfolio step
         id: run
         env:

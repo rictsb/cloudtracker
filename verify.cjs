@@ -8,8 +8,8 @@ const gen=require(path.join(base,'export-research.js'));
 const {assemble}=require(path.join(base,'onepager.js'));
 const data=JSON.parse(fs.readFileSync(path.join(base,'data.json'),'utf8'));
 const p=JSON.parse(fs.readFileSync(path.join(base,'iren-data.json'),'utf8'));
-const context=vm.createContext({console,URLSearchParams,TextEncoder,TextDecoder,btoa,atob,fetch:async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(base,String(url).split('/').at(-1)),'utf8'))})});
-for(const file of ['engine.js','ramp-core.js','onepager-core.js','model-data.js','checks-core.js','portfolio-core.js','approvals-core.js','research-view.js','coverage-view.js','contracts-view.js','news-view.js','checks-view.js','portfolio-view.js','approvals-view.js','report-graphics.js','report-layout.js','report-view.js','compare-view.js'])vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
+const context=vm.createContext({console,URLSearchParams,TextEncoder,TextDecoder,btoa,atob,setTimeout,clearTimeout,AbortController,fetch:async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(base,String(url).split('/').at(-1)),'utf8'))})});
+for(const file of ['engine.js','ramp-core.js','onepager-core.js','model-data.js','research-data.js','checks-core.js','portfolio-core.js','approvals-core.js','research-view.js','coverage-view.js','contracts-view.js','news-view.js','checks-view.js','portfolio-view.js','approvals-view.js','report-graphics.js','report-layout.js','report-view.js','compare-view.js'])vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
 const close=(a,b,label='')=>assert.ok(Math.abs(a-b)<1e-8*Math.max(1,Math.abs(b)),`${label?label+': ':''}${a} != ${b}`);
 // Export freshness must survive platform-level floating-point jitter without
 // accepting changed evidence, missing fields or material financial differences.
@@ -180,6 +180,8 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
     assert.deepStrictEqual(D.L,assembled.L,tk+' report ledger differs from canonical assembly');
     assert.deepStrictEqual(D.ARRC,assembled.ARRC,tk+' report ARR differs from canonical assembly');
     const sens=context.OnePager.sensitivities(D.L,D.CAPQ,D.finance,D.ARRC,D.px.v);
+    // Only the presentation label changes: the reference is dated until quotes load.
+    sens[2].name='Equity raised at reference price, not $'+D.finance.EQ_PX;
     const scenarioOptions=[{}, {rate:.08}, {eqPx:D.px.v}, {noCredit:true}, {convAsDebt:true}, {noRestricted:true}, {revScale:.9}, {mult:D.finance.MULT-.5}, {mult:D.finance.MULT+.5}];
     const defaultHTML=context.ReportView.render(tk,new URLSearchParams(''));
     const baseLedger=sectionHTML(defaultHTML,'report-cash-ledger');

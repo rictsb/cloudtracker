@@ -5,7 +5,8 @@
    number is recomputed at render time from the three <tk>-data.json payloads through
    OnePager.waterfall — the same co-map derivations as production compare.js:13-17. This file
    computes nothing of its own beyond those ported derivations; the math source stays
-   onepager-core.js, never forked. A static dated read: no controls beyond the app shell.
+   onepager-core.js, never forked. Model inputs stay dated; shared quote references refresh
+   independently and never replace the canonical research payloads.
    Per ruling C12 the compare block's authored fragments (factors, notes, footer, kicker,
    title, sub, mwBasis) are first-party HTML rendered unescaped, exactly as production
    compare.js injects them raw; everything this view formats itself is escaped. */
@@ -13,7 +14,7 @@
   'use strict';
 
   let STATUS = 'idle';        // idle -> loading -> ready | error (error retries via the button)
-  let CMP = null, CO = null, NAMES = null, ERR = null;
+  let CMP = null, CO = null, NAMES = null, PAYLOADS = null, ERR = null;
   let WIRED = false;
 
   const SHORT = { IREN: 'IREN', CRWV: 'CoreWeave', NBIS: 'Nebius' };
@@ -25,6 +26,9 @@
   const f1 = n => n.toFixed(1);
   const refresh = () => { if (root.CVApp && typeof root.CVApp.refresh === 'function') root.CVApp.refresh(); };
   const reportHref = tk => '/' + String(tk).toLowerCase();
+  const usablePrice = n => Number.isFinite(n) && n > 0;
+  const referencePrice = c => usablePrice(c.px) ? '$' + c.px.toFixed(2) : '—';
+  const valueRatio = c => usablePrice(c.px) ? (c.ps / c.px).toFixed(1) + '×' : '—';
 
   /* ---------- data: compare-data.json + the three report payloads, fetched lazily once ---------- */
   function load() {
@@ -35,20 +39,33 @@
       .then(r => { if (!r.ok) throw new Error('compare-data.json returned HTTP ' + r.status); return r.json(); })
       .then(cmp => {
         if (!cmp || !Array.isArray(cmp.names) || !Array.isArray(cmp.factors)) throw new Error('compare-data.json is missing its names or factors');
-        return Promise.all(cmp.names.map(tk => fetch(reportHref(tk) + '-data.json', { cache: 'no-store' })
+        return Promise.all(cmp.names.map(tk => root.ResearchData ? root.ResearchData.load(tk) : fetch(reportHref(tk) + '-data.json', { cache: 'no-store' })
           .then(r => { if (!r.ok) throw new Error(tk + '-data.json returned HTTP ' + r.status); return r.json(); })))
           .then(payloads => ({ cmp, payloads }));
       })
       .then(({ cmp, payloads }) => {
         if (!root.OnePager || typeof root.OnePager.waterfall !== 'function') throw new Error('the one-pager calculator (onepager-core.js) is unavailable');
-        const co = {};
-        cmp.names.forEach((tk, i) => { co[tk] = derive(tk, payloads[i]); });
-        CMP = cmp; CO = co; NAMES = cmp.names; STATUS = 'ready';
+        const co = {}, canonical = {};
+        cmp.names.forEach((tk, i) => { canonical[tk] = payloads[i]; co[tk] = derive(tk, payloads[i]); });
+        CMP = cmp; CO = co; NAMES = cmp.names; PAYLOADS = canonical; STATUS = 'ready';
       })
       .catch(e => { STATUS = 'error'; ERR = e && e.message ? String(e.message) : 'load failed'; })
       .then(refresh);
   }
-  function retry() { if (STATUS !== 'loading') { STATUS = 'idle'; CMP = CO = NAMES = null; load(); refresh(); } }
+  function retry() { if (STATUS !== 'loading') { STATUS = 'idle'; CMP = CO = NAMES = PAYLOADS = null; load(); refresh(); } }
+
+  function refreshReferences() {
+    NAMES.forEach(tk => {
+      const P = PAYLOADS[tk], c = CO[tk];
+      const reference = root.ResearchData ? root.ResearchData.reference(tk) : {
+        value: P.px.v, asOf: P.px.asOf || P.asOf, status: 'snapshot', source: 'Research snapshot',
+        label: 'Research snapshot fallback · ' + root.UI.date(P.px.asOf || P.asOf)
+      };
+      c.px = usablePrice(reference.value) ? reference.value : null;
+      c.priceReference = reference;
+      c.evArr = usablePrice(c.px) ? (P.evArr.sh * c.px / 1000 + P.evArr.nd) / P.evArr.arr : null;
+    });
+  }
 
   /* ---------- the per-name derivations, ported verbatim from production compare.js:13-17.
      pg.* fields live at the payload root (P.steady, P.fund, P.finance, P.px, P.evArr) and the
@@ -100,15 +117,17 @@
   /* value bars (compare.js:39-46): base vs market per name, with the ×-multiple label */
   function valueChart() {
     const W = 880, L = 160, R = 80, top = 12, rowH = 36, H = top + NAMES.length * rowH + 6;
-    const max = Math.max(...NAMES.map(tk => Math.max(CO[tk].ps, CO[tk].px))) * 1.15, x = v => L + v / max * (W - L - R);
-    let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-labelledby="cmp-value-title cmp-value-desc"><title id="cmp-value-title">Base value against the market price</title><desc id="cmp-value-desc">Paired horizontal bars per company: the model base value per share against the market price, with the multiple between them. The same figures are in the last row of the table above.</desc>';
+    const max = Math.max(1, ...NAMES.map(tk => Math.max(CO[tk].ps, CO[tk].px || 0))) * 1.15, x = v => L + v / max * (W - L - R);
+    let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-labelledby="cmp-value-title cmp-value-desc"><title id="cmp-value-title">Base value against the reference price</title><desc id="cmp-value-desc">Paired horizontal bars per company: dated model base value against the latest available reference share price. Quote source and timestamp, including any fallback, are displayed in the company tiles. An unavailable price has no reference bar or ratio.</desc>';
     NAMES.forEach((tk, i) => {
       const c = CO[tk], y = top + i * rowH;
       s += svgText(L - 10, y + 15, short(tk), ' text-anchor="end" class="chart-label"');
       s += svgRect(L, y, x(c.ps) - L, 14, '#345cd0');
       s += svgText(x(c.ps) + 6, y + 12, '$' + f0(c.ps) + ' base', '');
-      s += svgRect(L, y + 16, x(c.px) - L, 6, '#e3e9f2', ' stroke="#aab9cf"');
-      s += svgText(x(c.px) + 6, y + 24, '$' + c.px.toFixed(2) + ' market · ' + (c.ps / c.px).toFixed(1) + '×', '');
+      if (usablePrice(c.px)) {
+        s += svgRect(L, y + 16, x(c.px) - L, 6, '#e3e9f2', ' stroke="#aab9cf"');
+        s += svgText(x(c.px) + 6, y + 24, referencePrice(c) + ' reference · ' + valueRatio(c), '');
+      } else s += svgText(L + 6, y + 24, 'Reference price unavailable', '');
     });
     return s + '</svg>';
   }
@@ -146,6 +165,7 @@
   }
 
   function page() {
+    refreshReferences();
     const UI = root.UI, esc = UI.esc;
     const dateLong = UI.date(CMP.asOf);
     const snapshots = [...new Set(NAMES.map(tk => CO[tk].asOf).filter(Boolean))].map(v => UI.date(v)).join(' · ');
@@ -154,9 +174,9 @@
 
     /* header: kicker/title/sub are the compare block's authored copy (raw, as production injects them) */
     const head = '<header class="page-top"><div><div class="eyebrow">Research library · ' + CMP.kicker + '</div><h1>' + CMP.title + '</h1><p class="page-description">' + CMP.sub + '</p></div><div class="actions"><a class="text-button" href="/research">Research library ' + UI.icon('back') + '</a></div></header>';
-    const banner = '<div class="snapshot-banner">' + UI.icon('clock') + '<span><strong>Research snapshots · ' + esc(snapshots || dateLong) + '.</strong> ' + (modelDates ? 'Pricing model revised ' + esc(modelDates) + '. ' : '') + 'Values use the shared research calculator. Reference share prices are dated snapshots; this page does not read live quotes.</span></div>';
+    const banner = '<div class="snapshot-banner">' + UI.icon('clock') + '<span><strong>Research snapshots · ' + esc(snapshots || dateLong) + '.</strong> ' + (modelDates ? 'Pricing model revised ' + esc(modelDates) + '. ' : '') + 'Base values use the dated research model. Reference prices update from the market feed; each company shows its price source, timestamp and any fallback below.</span></div>';
     const tiles = '<div class="metric-strip cmp-tiles">' + NAMES.map(tk => { const c = CO[tk];
-      return '<a class="metric" href="' + reportHref(tk) + '"><div class="metric-label">' + esc(short(tk)) + '</div><div class="metric-value">$' + esc(f0(c.ps)) + '</div><div class="metric-note">base · $' + esc(c.px.toFixed(2)) + ' market · ' + esc((c.ps / c.px).toFixed(1)) + '× · open the report</div></a>'; }).join('') + '</div>';
+      return '<a class="metric" href="' + reportHref(tk) + '" data-reference-price="' + (c.px ?? '') + '" data-price-state="' + esc(c.priceReference.status) + '" data-price-as-of="' + esc(c.priceReference.asOf || '') + '"><div class="metric-label">' + esc(short(tk)) + '</div><div class="metric-value">$' + esc(f0(c.ps)) + '</div><div class="metric-note">base · ' + esc(referencePrice(c)) + ' reference · ' + esc(valueRatio(c)) + '<br>' + esc(c.priceReference.label) + '</div></a>'; }).join('') + '</div>';
 
     /* card 1 — the gating factors (17 authored rows; values and src raw per C12, trend colored by its first word) */
     const factorRows = CMP.factors.map(r => '<tr><td class="k">' + r.f + (r.src ? '<span class="src small muted">' + r.src + '</span>' : '') + '</td>' + NAMES.map(tk => '<td>' + (r.v && r.v[tk] ? r.v[tk] : '') + '</td>').join('') + '<td class="trend ' + trendClass(r.trend) + '">' + (r.trend || '') + '</td></tr>');
@@ -201,13 +221,13 @@
       ['Prepayments still owed at ' + y30 + ', PV', c => '$' + f1(c.liab) + 'bn'],
       ['Diluted shares, converts in', c => f0(c.dil) + 'm'],
       [y30 + ' EPS', c => '$' + c.eps.toFixed(1)],
-      ['EV / ARR today', c => c.evArr.toFixed(1) + '×'],
-      ['Base value vs market', c => '$' + f0(c.ps) + ' vs $' + c.px.toFixed(2) + ' · ' + (c.ps / c.px).toFixed(1) + '×']
+      ['EV / snapshot ARR at reference price', c => Number.isFinite(c.evArr) ? c.evArr.toFixed(1) + '×' : '—'],
+      ['Base value vs reference price', c => '$' + f0(c.ps) + ' vs ' + referencePrice(c) + ' · ' + valueRatio(c)]
     ];
     const picRows = picDefs.map(([k, fn]) => '<tr><td class="k">' + k + '</td>' + NAMES.map(tk => '<td>' + fn(CO[tk]) + '</td>').join('') + '</tr>');
     const picture = '<section class="report-section">' + heading('04', 'The ' + y30 + ' picture', heroGW) +
       '<div class="panel report-section">' + cmpTable('cmp-picture', '', tk => '<th scope="col"><a href="' + esc(reportHref(tk)) + '">' + esc(short(tk)) + '</a></th>', picRows, 'The ' + y30 + ' horizon of each research model, recomputed from its data file.') + '</div>' +
-      '<div class="panel"><div class="chart-header"><div><h2>Base-case value per share against the reference price</h2><p>Model base value (solid) over each report’s dated share-price snapshot (outline)</p></div></div><div class="chart cmp-chart">' + valueChart() + '</div><div class="chart-note">The base bar is each research page’s discounted value per share; the thin bar is its dated reference share price. This ratio does not use current market quotes. Open each report from the tiles above or the table heads.</div></div></section>' + notes(CMP.notes && CMP.notes.picture);
+      '<div class="panel"><div class="chart-header"><div><h2>Base-case value per share against the reference price</h2><p>Dated model base value (solid) and the latest available reference share price (outline)</p></div></div><div class="chart cmp-chart">' + valueChart() + '</div><div class="chart-note">Price updates move the reference bar and valuation ratio; the research value stays unchanged. Source and provider timestamps are shown in the company tiles, including cached or research-snapshot fallbacks. EV / ARR uses the reference share price with the research snapshot’s shares, net debt and ARR.</div></div></section>' + notes(CMP.notes && CMP.notes.picture);
 
     /* card 4 — converging or structural */
     const convergence = '<section class="report-section">' + heading('05', 'Converging or structural', 'The convergence read across the three names') + notes(CMP.notes && CMP.notes.convergence) + '</section>';

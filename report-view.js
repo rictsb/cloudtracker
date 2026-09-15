@@ -1,11 +1,12 @@
 /* Research reports — the generalized client-rendered research destination (spec §6 sections (b);
    rulings C6, C8, C12), one continuous visual view for /iren, /crwv and /nbis with ZERO per-name code.
    User direction 14 Sep: restore the seven-stage graphical report; legacy tab queries show the full document.
-   Data: fetch('/<tk>-data.json') lazily once per ticker (cache no-store) — the exact P payload of
+   Data: shared ResearchData.load(tk), lazily once per ticker — the exact P payload of
    onepager.js:64-65 plus the narrative extension (facts/tiles/notes/arr/footer/capexBasis/prints).
    Math: window.OnePager (the canonical onepager-core.js) — waterfall, sensitivities, tie-out.
    NEVER forked or reimplemented here; this file is presentation only, every displayed number
-   is computed from the payload, never typed. Dates come from P.asOf (dated-cut rule).
+   is computed from the payload, never typed. Model dates come from P.asOf; reference prices
+   carry a separate provider clock. Price updates never change the canonical research payload.
    Narrative blocks (notes/facts/tiles/folds/captions/footer) are first-party HTML fragments,
    rendered UNESCAPED per ruling C12 — exactly as production onepager.js injects them raw.
    Everything else is escaped. A failed report degrades only its own route (scoped error). */
@@ -34,10 +35,11 @@
   function ensure(tk) {
     let st = REPORTS[tk];
     if (st) return st;
-    st = REPORTS[tk] = { P: null, base: null, sens: null, labels: null, err: null };
-    if (typeof fetch !== 'function') { st.err = 'This environment cannot fetch the snapshot.'; return st; }
-    fetch('/' + tk.toLowerCase() + '-data.json', { cache: 'no-store' })
-      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + tk.toLowerCase() + '-data.json'); return r.json(); })
+    st = REPORTS[tk] = { P: null, base: null, sens: null, sensPrice: undefined, labels: null, err: null };
+    if (!root.ResearchData && typeof fetch !== 'function') { st.err = 'This environment cannot fetch the snapshot.'; return st; }
+    const payload = root.ResearchData ? root.ResearchData.load(tk) : fetch('/' + tk.toLowerCase() + '-data.json', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + tk.toLowerCase() + '-data.json'); return r.json(); });
+    st.loading = payload
       .then(P => {
         if (!root.OnePager) throw new Error('The valuation calculator (onepager-core.js) is unavailable.');
         if (!P || !P.L || !P.finance || !P.CAPQ) throw new Error('The snapshot file is missing its model series.');
@@ -45,11 +47,30 @@
         /* label defaults exactly as the production template applies them (onepager-template.html:293) */
         st.labels = Object.assign({ shell: 'shell', shellRow: 'Capex — shell', shellDebt: 'data-centre debt', debt: 'Debt', energised: 'energised' }, P.labels || {});
         st.base = root.OnePager.waterfall(P.L, P.CAPQ, P.finance, P.ARRC);
-        st.sens = root.OnePager.sensitivities(P.L, P.CAPQ, P.finance, P.ARRC, P.px.v);
       })
       .catch(e => { st.P = null; st.err = (e && e.message) || String(e); })
       .then(() => { if (root.CVApp && root.CVApp.refresh) root.CVApp.refresh(); });
     return st;
+  }
+
+  function presentation(tk, st) {
+    const canonical = st.P;
+    const reference = root.ResearchData ? root.ResearchData.reference(tk) : {
+      value: canonical.px?.v, asOf: canonical.px?.asOf || canonical.asOf,
+      source: 'Research snapshot', status: 'snapshot',
+      label: 'Research snapshot fallback · ' + dateLong(canonical.px?.asOf || canonical.asOf)
+    };
+    const available = Number.isFinite(reference.value) && reference.value > 0;
+    const price = available ? reference.value : null;
+    const displayed = root.ResearchData?.displayPayload(tk);
+    const P = displayed || { ...canonical, px: { ...canonical.px, v: price, note: reference.label, asOf: reference.asOf } };
+    if (!st.sens || st.sensPrice !== price) {
+      st.sens = root.OnePager.sensitivities(canonical.L, canonical.CAPQ, canonical.finance, canonical.ARRC, price);
+      st.sens[2] = { ...st.sens[2], name: available ? 'Equity raised at reference price, not $' + canonical.finance.EQ_PX : 'Equity raised at reference price · unavailable', unavailable: !available };
+      if (!available) st.sens[2] = { ...st.sens[2], ps: null, delta: null, nd: null, sh: null, eq: null };
+      st.sensPrice = price;
+    }
+    return { ...st, P, reference: { ...reference, value: price }, referenceUnavailable: !available };
   }
 
   /* ---------- the nine standard sensitivities (onepager-core.js:77-91) as URL-addressable keys.
@@ -61,7 +82,7 @@
     const F = P.finance;
     switch (key) {
       case 'rate8': return { rate: .08 };
-      case 'equityPrice': return { eqPx: P.px.v };
+      case 'equityPrice': return Number.isFinite(P.px.v) && P.px.v > 0 ? { eqPx: P.px.v } : {};
       case 'noCredit': return { noCredit: true };
       case 'convAsDebt': return { convAsDebt: true };
       case 'noRestricted': return { noRestricted: true };
@@ -289,7 +310,7 @@
       const query = params instanceof URLSearchParams ? params : new URLSearchParams(params || '');
       let output;
       try {
-        output = root.ResearchLayout.render(st, query, {cashLedger,svgFund,svgBridge,svgSteps,scenarioOptions,SCENARIO_KEYS});
+        output = root.ResearchLayout.render(presentation(tk, st), query, {cashLedger,svgFund,svgBridge,svgSteps,scenarioOptions,SCENARIO_KEYS});
       } catch (e) {
         // A malformed payload field must degrade this route alone, like a failed fetch does.
         console.error(e);

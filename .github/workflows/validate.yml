@@ -10,10 +10,11 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: '24'
+          package-manager-cache: false
       - name: Check canonical data
         run: node checks.js
       - name: Verify application and research parity
@@ -24,3 +25,7 @@ jobs:
         run: node verify-pricing-checks.cjs
       - name: Verify contract and financing calendars
         run: node verify-pricing-finance.cjs
+      - name: Verify market quote refresh and cache behavior
+        run: node verify-quotes.cjs
+      - name: Verify shared research values and market references
+        run: node verify-market-research.cjs

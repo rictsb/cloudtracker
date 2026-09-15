@@ -13,7 +13,8 @@
   let pending = null;
   // Live marks live OUTSIDE the engine: every build() constructs a fresh engine, so marks must be
   // re-applied on each build or a slider recalculation silently reverts to saved prices/fallbacks.
-  let marks = { prices: {}, btc: null, eth: null, asOf: null };
+  const emptyMarks = () => ({prices:{},priceDates:{},priceFetchedAt:{},priceSources:{},cryptoDates:{},btc:null,eth:null,asOf:null,fetchedAt:null});
+  let marks = emptyMarks();
   const hasMarks = () => Object.keys(marks.prices).length > 0 || marks.btc != null || marks.eth != null;
   const labels = { owner: 'GPU operator', landlord: 'Data-centre landlord', holdco: 'Holding company' };
   const sum = (rows, key) => rows.reduce((n, row) => n + (row[key] || 0), 0);
@@ -120,7 +121,8 @@
         tier: c.tier || 'proven',
         tierLabel: engine.tierOf(c).name,
         price: v.price,
-        priceAsOf: marks.prices[c.tk] != null ? marks.asOf : null,
+        priceAsOf: marks.prices[c.tk] != null ? marks.priceDates[c.tk] || null : null,
+        priceFetchedAt: marks.priceFetchedAt[c.tk] || null,
         floor: v.floorTarget,
         target: v.target,
         upside: v.upside,
@@ -191,11 +193,11 @@
         modelId: MODEL_ID,
         capturedOn: CAPTURED_ON,
         asOf: CAPTURED_ON,
-        priceMode: hasMarks() ? 'Live marks supplied' : 'Saved source prices',
+        priceMode: hasMarks() ? 'Market references supplied' : 'Saved source prices',
         priceAsOf: hasMarks() ? marks.asOf : null,
         priceNote: hasMarks()
-          ? 'Live equity/crypto marks supplied via setMarks()' + (marks.asOf ? ', as of ' + marks.asOf : '') + '; names without a mark keep saved prices.'
-          : 'Saved source prices; quote dates are not supplied. No live market refresh.',
+          ? 'Market equity/crypto references; per-company provider dates are separate from receipt time. Names without a quote keep saved prices.'
+          : 'Saved source prices; quote dates are not supplied. Awaiting a usable market refresh.',
         modelReferenceDate: engine.YEAR + '-' + String(engine.CFG.referenceMonth || 1).padStart(2, '0') + '-01',
         assumptionsVerifiedOn: engine.CFG.verifiedPricing || null,
         sourceURL: 'https://cloudtracker.onrender.com/data.json',
@@ -258,10 +260,20 @@
     setMarks(next) {
       next = next || {};
       const usable = v => typeof v === 'number' && Number.isFinite(v) && v > 0;
-      const prices = { ...marks.prices };
-      Object.entries(next.prices || {}).forEach(([tk, v]) => { if (usable(v)) prices[tk] = v; else delete prices[tk]; });
+      const prices={...marks.prices},priceDates={...marks.priceDates},priceFetchedAt={...marks.priceFetchedAt},priceSources={...marks.priceSources};
+      const own=(o,k)=>o&&Object.prototype.hasOwnProperty.call(o,k);
+      Object.entries(next.prices||{}).forEach(([tk,v])=>{
+        if(usable(v)){
+          prices[tk]=v;
+          priceDates[tk]=own(next.priceDates,tk)?next.priceDates[tk]||null:next.asOf||null;
+          priceFetchedAt[tk]=own(next.priceFetchedAt,tk)?next.priceFetchedAt[tk]||null:next.fetchedAt||next.asOf||null;
+          priceSources[tk]=next.priceSources?.[tk]||'Market quote';
+        }else{delete prices[tk];delete priceDates[tk];delete priceFetchedAt[tk];delete priceSources[tk];}
+      });
       marks = {
-        prices,
+        prices,priceDates,priceFetchedAt,priceSources,
+        cryptoDates:Object.fromEntries(['btc','eth'].map(k=>[k,k in next?(usable(next[k])?(own(next.cryptoDates,k)?next.cryptoDates[k]||null:next.asOf||null):null):marks.cryptoDates[k]||null])),
+        fetchedAt:next.fetchedAt??marks.fetchedAt,
         btc: 'btc' in next ? (usable(next.btc) ? next.btc : null) : marks.btc,
         eth: 'eth' in next ? (usable(next.eth) ? next.eth : null) : marks.eth,
         asOf: next.asOf != null ? next.asOf : marks.asOf
@@ -269,7 +281,7 @@
       return source ? build(currentOverrides()) : null;
     },
     clearMarks() {
-      marks = { prices: {}, btc: null, eth: null, asOf: null };
+      marks = emptyMarks();
       return source ? build(currentOverrides()) : null;
     },
     company: ticker => { requireData(); return current.companies.find(c => c.ticker === ticker) || null; },
@@ -284,7 +296,7 @@
   Object.defineProperty(api, 'source', { get() { return source; } });
   // Read-only snapshot of the live marks, so other views (e.g. Portfolio's Target-now engine)
   // can price at the same marks this adapter uses. Never mutate through this.
-  Object.defineProperty(api, 'marks', { get() { return { prices: { ...marks.prices }, btc: marks.btc, eth: marks.eth, asOf: marks.asOf }; } });
+  Object.defineProperty(api, 'marks', { get() { return {...marks,prices:{...marks.prices},priceDates:{...marks.priceDates},priceFetchedAt:{...marks.priceFetchedAt},priceSources:{...marks.priceSources},cryptoDates:{...marks.cryptoDates}}; } });
   Object.defineProperty(api, 'current', { get() { return current; } });
   root.CloudModel = api;
 })(typeof window !== 'undefined' ? window : globalThis);

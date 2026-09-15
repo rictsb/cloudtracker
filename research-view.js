@@ -97,12 +97,18 @@
     const outlook = M.outlook && !Array.isArray(M.outlook) ? M.outlook : {};
     const rampDate = ticker => M.ramps && M.ramps[ticker] ? M.ramps[ticker].asOf : companyByTicker[ticker] && companyByTicker[ticker].raw.ramp ? companyByTicker[ticker].raw.ramp.asOf : null;
     const compareAsOf = root.CloudModel && root.CloudModel.source && root.CloudModel.source.compare ? root.CloudModel.source.compare.asOf : null;
+    const RD=root.ResearchData;
     const cards = '<section class="research-cards four" aria-label="Company research reports">' + [
-      { ticker: 'IREN', url: '/iren', title: 'From power to value', text: 'The delivery, revenue, funding and valuation path in one company report.', date: '2026-09-04', tag: 'Research snapshot', feature: true },
-      { ticker: 'CRWV', url: '/company/CRWV?tab=delivery', title: 'CoreWeave', text: 'Explore the quarterly capacity, GPU fleet and revenue model.', date: rampDate('CRWV'), tag: 'Delivery model' },
-      { ticker: 'NBIS', url: '/company/NBIS?tab=delivery', title: 'Nebius', text: 'Follow the modeled build-out and the assumptions behind revenue.', date: rampDate('NBIS'), tag: 'Delivery model' },
-      { ticker: 'IREN · CRWV · NBIS', url: '/research/compare', title: 'The same megawatt, three balance sheets', text: 'Gating factors, per-megawatt economics and the 2030 picture, recomputed side by side from the three research models.', date: compareAsOf, tag: 'Comparison' }
-    ].map(card => '<a class="research-card' + (card.feature ? ' feature' : '') + '" href="' + esc(card.url) + '"><div class="eyebrow">' + card.ticker + ' · ' + card.tag + '</div><h2>' + card.title + '</h2><p>' + card.text + '</p><div class="card-bottom"><span>' + esc(date(card.date)) + '</span><span>Open report →</span></div></a>').join('') + '</section>';
+      { ticker: 'IREN', url: '/iren', title: 'IREN', text: 'Power, delivery, earnings and funding in one research report.', feature: true },
+      { ticker: 'CRWV', url: '/crwv', title: 'CoreWeave', text: 'Capacity, contract renewals and funding through to per-share value.' },
+      { ticker: 'NBIS', url: '/nbis', title: 'Nebius', text: 'The build-out, earnings and balance sheet behind the research valuation.' },
+      { ticker: 'IREN · CRWV · NBIS', url: '/research/compare', title: 'The same megawatt, three balance sheets', text: 'Gating factors, per-megawatt economics and the 2030 picture, recomputed side by side from the three research models.', date: compareAsOf }
+    ].map(card => {
+      const P=RD?.get(card.ticker),ref=RD?.supports(card.ticker)?RD.reference(card.ticker):null,value=RD?.value(card.ticker);
+      const modelDate=P?.modelAsOf||P?.pricing?.asOf||P?.asOf||card.date;
+      const prices=ref?'<div class="research-prices"><span>Market <strong>'+(ref.value>0?'$'+ref.value.toFixed(2):'Unavailable')+'</strong></span><span>Research <strong>'+(Number.isFinite(value)?'$'+value.toFixed(2):RD.status(card.ticker).error?'Unavailable':'Loading…')+'</strong></span></div><small class="quote-clock">'+esc(ref.label)+'</small>':'';
+      return '<a class="research-card'+(card.feature?' feature':'')+'" href="'+esc(card.url)+'"><div class="eyebrow">'+card.ticker+' · '+(ref?'Research DCF':'Comparison')+'</div><h2>'+card.title+'</h2><p>'+card.text+'</p>'+prices+'<div class="card-bottom"><span>'+(modelDate?'Model · '+esc(date(modelDate)):'Model loading')+'</span><span>Open report →</span></div></a>';
+    }).join('') + '</section>';
 
     let content = '';
     if (tab === 'developments') {
