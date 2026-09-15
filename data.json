@@ -3784,7 +3784,7 @@
      "kind": "conversion",
      "signed": "2026-08",
      "effective": true,
-     "source": "PR + 6-K 8/4/26: $4.7B/16yr modified gross ($202/kW/mo avg 16yr, electricity pass-through), 121 IT/133 gross MW, $2.4M/MW·yr avg revenue × ~90% NOI margin = $2.16M NOI/MW·yr — NEW TOP PRINT on the registry tape; 3% escalators on lease AND services; 8-yr renewal option → $8.0B/24yr potential (EXCLUDED); TENANT NO-FEE TERMINATION RIGHT AT YEAR 10 (guaranteed-ish base ≈ $2.7B/10yr) — the offsetting protections: ~$1.3B Letters of Credit arranged by J.P. Morgan affiliates + another top-tier institution (~28% of TCV), BTDR termination right if backstop milestones missed. Ph1 commencement 12/31/26, Ph2 3/31/27. Remaining capex ~$500M (~$4.0M/IT MW — mining-conversion economics, vs $10-12M US builds); BTDR retains 100% of the campus; NO equity/warrants issued; debt financing being arranged (MS/Barclays/Northland advising) expected to generate excess capital",
+     "source": "PR + 6-K 8/4/26: $4.7B/16yr modified gross ($202/kW/mo avg 16yr, electricity pass-through), 121 IT/133 gross MW, $2.4M/MW·yr avg revenue × ~90% NOI margin = $2.16M NOI/MW·yr — NEW TOP PRINT on the registry tape; 3% escalators on lease AND services; 8-yr renewal option → $8.0B/24yr potential (EXCLUDED); TENANT NO-FEE TERMINATION RIGHT AT YEAR 10 (guaranteed-ish base ≈ $2.7B/10yr) — the offsetting protections: ~$1.3B Letters of Credit arranged by J.P. Morgan affiliates + another top-tier institution (~28% of TCV), BTDR termination right if backstop milestones missed. Ph1 commencement 12/31/26, Ph2 3/31/27. Remaining capex ~$500M (~$4.0M/IT MW — mining-conversion economics, vs $10-12M US builds); BTDR retains 100% of the campus; NO equity/warrants issued; debt financing being arranged (MS/Barclays/Northland advising) expected to generate excess capital · effectiveness: OWNER RULING Richard 2026-09-15 — treated as EFFECTIVE (neither the 8/4 PR nor the 6-K states effectiveness; language qualifiers noted); falsifier: any filing describing conditions precedent unmet or the lease as not yet effective",
      "grossMW": 133,
      "grossTotalM": 4700
     }
@@ -5886,7 +5886,8 @@
    "basis": {
     "plannedRaise": "Helios is debt-led: $1.4B project financing facility at 80% loan-to-cost + $2.6B corporate cash/stablecoins + financial-services cash flow; Galaxy repurchased $65M of Class A stock in Q1 2026 rather than issuing. ~$1.5B is a realistic incremental equity contribution to fund the uncontracted multi-GW expansion phases beyond project-debt capacity.",
     "equityDiscount": "Dual-class structure (191.8M Class A vs 198.4M supervoting Class B), founder/Novogratz control, controlled-company governance -> 0.10.",
-    "committedDebt": "Galaxy Helios Data Centers II LLC (indirect wholly-owned sub), guaranteed by Galaxy Helios II LLC: $3,507M 9.875% Senior Secured Notes due 2031-08-01, issued at 99.500, closed 2026-07-28 (priced 7/23, launched 7/22). Semi-annual coupon from 2027-02-01; semi-annual amortisation starting no earlier than ten months after project completion; BNY Mellon trustee/collateral agent, Morgan Stanley lead. Funds two buildings / eight data halls = 400MW utility and 260MW critical IT on ~196-260 acres in Dickens County TX, plus debt service reserves. Sits ON TOP of the existing $1.4bn Helios I term loan ($1.1bn drawn at 3/31/26) [edgar]"
+    "committedDebt": "Galaxy Helios Data Centers II LLC (indirect wholly-owned sub), guaranteed by Galaxy Helios II LLC: $3,507M 9.875% Senior Secured Notes due 2031-08-01, issued at 99.500, closed 2026-07-28 (priced 7/23, launched 7/22). Semi-annual coupon from 2027-02-01; semi-annual amortisation starting no earlier than ten months after project completion; BNY Mellon trustee/collateral agent, Morgan Stanley lead. Funds two buildings / eight data halls = 400MW utility and 260MW critical IT on ~196-260 acres in Dickens County TX, plus debt service reserves. Sits ON TOP of the existing $1.4bn Helios I term loan ($1.1bn drawn at 3/31/26) [edgar]",
+    "shares": "FD 418M vs basic 390.2M (191.8M Class A + 198.4M supervoting Class B, the Up-C pairing with GDH LP units; the ~28M gap to 418M is undocumented in-file — document at the Q3 10-Q share-class table). RULING Richard 2026-09-15: the $896.7M NCI (6/30/26) is NOT charged as a claim senior to common — the Class B shares in the count already carry the LP-unit economics, so charging NCI would count the same economics twice (more-positive treatment, supported by the in-file share-count evidence). Falsifier: the Q3 10-Q share-class table showing the FD count excludes LP-unit economics → add ~$897M to seniorClaims."
    },
    "narrative": "Galaxy is a crypto financial-services franchise (trading, asset management ~$5B AUM + $3.2B staked, lending, ~$650M venture book) being repriced as an AI-infrastructure landlord on the strength of its Helios campus in Dickens County, west Texas. Helios is a converted Bitcoin-mining site leased to CoreWeave: 526 MW of critical IT load contracted across three phases (Phase I 133 MW delivered Apr 2026; Phase II 260 MW H1 2027; Phase III 133 MW) on a 15-year take-or-pay lease expected to generate >$1B average annual revenue at ~90% lease-level EBITDA margin. ERCOT has approved 1.6+ GW total (potential to ~2.5-3.5 GW), so most of the campus is approved-but-uncontracted optionality on top of the signed CoreWeave book.",
    "bull": [
@@ -9256,19 +9257,20 @@
   {
    "id": "w-btdr-tydal-effective",
    "tk": "BTDR",
-   "cat": "conflict",
+   "cat": "house-judgement",
    "refs": [
     "companies[tk=BTDR].leases[id=btdr-tydal].effective"
    ],
-   "note": "Tydal effectiveness promotion unsupported: leases[btdr-tydal].effective=true, but neither the 8/4 PR nor the 6-K states the lease is effective (language qualifiers only); effectiveness gates the contracted floor.",
-   "status": "owner",
+   "note": "RULED 2026-09-15 (Richard): the Tydal lease is treated as EFFECTIVE (effective:true stands; it gates the contracted floor). No filed effectiveness statement exists yet — the ruling and its falsifier are recorded on the lease source.",
+   "status": "monitoring",
    "added": "2026-08-24",
    "reviewed": "2026-09-15",
-   "next": "owner ruling",
-   "resolve": "Primary evidence of effectiveness (or the owner accepts the promotion with a basis), else effective:false until evidenced.",
+   "next": "next BTDR 6-K / first Tydal billing or delivery disclosure",
+   "resolve": "A filing evidences effectiveness (close) or contradicts it (flip effective:false and re-run).",
    "inModel": "no — treatment pending the ruling",
    "impact": "Gates the Tydal contribution to BTDR’s contracted floor.",
-   "grp": "g04-BTDR"
+   "grp": "g04-BTDR",
+   "alt": "effective:false until evidenced (removes Tydal from the contracted floor)."
   },
   {
    "id": "w-btdr-tydal-endcustomer",
@@ -9671,20 +9673,21 @@
   {
    "id": "w-glxy-nci-seniorclaims",
    "tk": "GLXY",
-   "cat": "conflict",
+   "cat": "house-judgement",
    "refs": [
     "companies[tk=GLXY].seniorClaims (absent)",
     "companies[tk=GLXY].basis.committedDebt"
    ],
-   "note": "NCI/seniorClaims ruling: $896.7M non-controlling interest at 6/30/26 sits in neither seniorClaims (field absent) nor netDebt; charging it as senior to common vs treating it as already-excluded moves ~$2.15/sh (~9% of price). Two plausible treatments, different values.",
-   "status": "owner",
+   "note": "RULED 2026-09-15 (Richard): the $896.7M NCI is not charged as a senior claim — the basic count already includes the Class B shares pairing with GDH LP units, so the FD count very likely spreads value across the NCI economics; charging it would double-count (~$2.15/sh). Ruling documented in basis.shares.",
+   "status": "monitoring",
    "added": "2026-08-24",
    "reviewed": "2026-09-15",
-   "next": "owner ruling",
-   "resolve": "Owner picks the treatment; recorded with a basis line either way.",
-   "inModel": "no — treatment pending the ruling",
+   "next": "Q3-26 10-Q — NCI figure and the share-class table",
+   "resolve": "Share-class table confirms Class B carries the LP-unit economics (close), or contradicts it (apply the alternative).",
+   "inModel": "yes — no seniorClaims charge; ruling + falsifier in basis.shares",
    "impact": "~$2.15/sh swing on GLXY (~9%).",
-   "grp": "g18-GLXY"
+   "grp": "g18-GLXY",
+   "alt": "If the Q3 10-Q share-class table shows the 418M FD count EXCLUDES LP-unit economics: add ~$897M to seniorClaims."
   },
   {
    "id": "w-glxy-tx-campuses",
@@ -10139,13 +10142,13 @@
     "companies[tk=RIOT].finMix",
     "outlook.leases[tk=RIOT].drivers[2]"
    ],
-   "note": "The $573M MS facility carries TWO filed maturities: initial 2026-10-15 (Q2 10-Q, “subject to extension… in connection with the re-financing”) and stated 2026-12-31 (Item 1.01 8-K). Operative clock is 10/15 unless the refinancing-linked extension runs. Credit agreement unexhibited until the Q3-26 10-Q (~Nov).",
+   "note": "RULED 2026-09-15 (Richard): the financing clock runs to the 8-K’s stated 12/31/26 maturity; the 10-Q’s 10/15/26 initial maturity is the tripwire (no disclosed refinancing progress by mid-October reopens this). Both dates are filed facts about the same facility; credit agreement unexhibited until the Q3-26 10-Q.",
    "alt": "Run the financing clock off 12/31/26 (8-K stated maturity).",
-   "status": "owner",
+   "status": "monitoring",
    "added": "2026-08-11",
    "reviewed": "2026-09-15",
-   "next": "Q3-26 10-Q credit-agreement exhibit (~Nov 2026)",
-   "resolve": "Owner picks the operative clock until the exhibit prints; the exhibit then settles both dates verbatim.",
+   "next": "mid-October refinancing-progress check; then the Q3-26 10-Q credit-agreement exhibit (~Nov 2026)",
+   "resolve": "The exhibited credit agreement states the Maturity Date and extension mechanics verbatim; confirm and close.",
    "inModel": "outlook driver only (judgement layer; never a valuation input)",
    "impact": "Financing-clock deadline moves from 12/31 to 10/15 (one month out) — tightens the RIOT outlook read.",
    "grp": "g26-RIOT"
@@ -10491,7 +10494,7 @@
     "drivers": [
      "NEGATIVE FINDING: Corsicana is STILL a non-binding LOI. No executed lease, nothing filed since the 8/14 8-K. Riots own contracted total is 241 MW of executed leases and ~$9.8B of long-term contracted revenue, all of it at Rockdale [edgar]",
      "The Rockdale lease is the proof of execution: 191 MW critical IT, 20-year initial term to June 2048, ~$9.1B initial contract revenue, ~$16.1B with both five-year extensions, average annual NOI $365-411M. Phased 96 IT MW Dec-2027, full 191 by Jun-2028 [edgar 8-K 2026-08-14]",
-     "FINANCING CLOCK: the $573M Morgan Stanley facility has an INITIAL maturity of 2026-10-15 (10-Q: “subject to extension in certain circumstances in connection with the Company’s re-financing”), with a stated maturity of 2026-12-31 per the 8-K — the operative clock is 10/15, one month out, unless the refinancing-linked extension runs it to year-end. It funds ROCKDALE, not Corsicana, and is expressly non-recourse to Riot Platforms and every parent above the borrower. Verify both dates against the credit agreement when it is exhibited with the Q3-26 10-Q [edgar 8-K 2026-08-14 acc 0001104659-26-097330; 10-Q 2026-08-10 acc 0001104659-26-093448]",
+     "FINANCING CLOCK: the $573M Morgan Stanley facility carries two filed maturities — initial 2026-10-15 (Q2 10-Q, “subject to extension in certain circumstances in connection with the Company’s re-financing”) and stated 2026-12-31 (Item 1.01 8-K). RULING Richard 2026-09-15: the clock runs to 12/31/26 (extension expected with the refinancing); 10/15 is the tripwire — no refinancing progress by mid-October reopens the read. It funds ROCKDALE, not Corsicana, and is expressly non-recourse to Riot Platforms and every parent above the borrower. Verify both dates against the credit agreement exhibited with the Q3-26 10-Q [edgar 8-K 2026-08-14 acc 0001104659-26-097330; 10-Q 2026-08-10 acc 0001104659-26-093448]",
      "NEGATIVE FINDING: the investment-grade backstopped takeout has NOT happened and Riot has never disclosed a size or terms for it. The Q2 release describes the $573M only as interim financing while the IG credit backstop is finalized [edgar]",
      "Management has named Corsicana conversion its stated 2026 priority, and the campus has >$1B/yr of rent potential at full lease-up"
     ],
