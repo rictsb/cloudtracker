@@ -1,14 +1,14 @@
-# Routing for the Render Static Site (redesign cutover, plan rulings R4/C17).
-# NOTE: this service predates Blueprints, so these rules are ALSO entered in the Render
-# dashboard (Settings → Redirects/Rewrites) in this exact order — first match wins.
-# This file is the checked-in source of truth for those rules.
+# Routing for the Render Static Site — source of truth, mirrored in the dashboard
+# (Settings → Redirects/Rewrites; this service predates Blueprints, so the dashboard
+# rules are the live ones and must match this file). First match wins.
 #
-# Phase 1 (cutover day): the legacy generated pages still serve at their .html URLs;
-# the SPA catch-all must not swallow real files (Render serves existing files first).
-# Phase 2 (follow-up commit, minutes later, after the dashboard rules are live):
-# the four generated pages are deleted and the commented redirects below take effect.
+# Verified live 2026-09-15: Render serves an EXISTING file before applying rules
+# (so redirects for deleted pages activate on deletion), while extensionless paths
+# hit the rules (so /iren rewrites to the app, never the old alias). Rewrites are
+# enumerated per route rather than a /* catch-all: real files can never be swallowed,
+# and unknown paths return Render's 404.
 routes:
-  # Phase 2 redirects — activate together with deleting the generated pages:
+  # Legacy research URLs → their client-rendered replacements (pages retired 2026-09-15)
   - type: redirect
     source: /iren.html
     destination: /iren
@@ -24,10 +24,37 @@ routes:
   - type: redirect
     source: /compare
     destination: /research/compare
-  # SPA catch-all — every path route (/company/:tk, /iren, /crwv, /nbis, /infrastructure,
-  # /research, /research/compare, /portfolio, /news, /checks, /approvals) renders the shell.
-  # Real files (data.json, *.js, *.css, news.json, proposals.json, portfolio*.json,
-  # <tk>-data.json, assets/*) are served before this rule.
+  # SPA routes → the app shell
   - type: rewrite
-    source: /*
+    source: /company/*
+    destination: /index.html
+  - type: rewrite
+    source: /iren
+    destination: /index.html
+  - type: rewrite
+    source: /crwv
+    destination: /index.html
+  - type: rewrite
+    source: /nbis
+    destination: /index.html
+  - type: rewrite
+    source: /infrastructure
+    destination: /index.html
+  - type: rewrite
+    source: /research
+    destination: /index.html
+  - type: rewrite
+    source: /research/*
+    destination: /index.html
+  - type: rewrite
+    source: /portfolio
+    destination: /index.html
+  - type: rewrite
+    source: /news
+    destination: /index.html
+  - type: rewrite
+    source: /checks
+    destination: /index.html
+  - type: rewrite
+    source: /approvals
     destination: /index.html
