@@ -10,7 +10,7 @@ const d = JSON.parse(fs.readFileSync(path.join(ROOT, 'data.json'), 'utf8'));
 const CMP = d.compare; if (!CMP) { console.error('data.json has no compare block'); process.exit(1); }
 const names = CMP.names, co = {};
 names.forEach(tk => { const c = d.companies.find(x => x.tk === tk); if (!c || !c.page || !c.ramp) { console.error(tk + ' needs page + ramp'); process.exit(1); }
-  const A = assemble(c), W = A.W, pg = c.page, st = pg.steady, steps = Object.fromEntries(st.steps.map(s => [s[0], s[1]]));
+  const A = assemble(c, d.researchPricing), W = A.W, pg = A.pg, st = pg.steady, steps = Object.fromEntries(st.steps.map(s => [s[0], s[1]]));
   const rev = st.steps[0][1], keep = st.steps[st.steps.length - 1][1], costs = -(st.steps[1][1]), refresh = -(steps['GPU refresh + spares'] || 0), shell = -(steps['Shell 25-yr'] || 0), tax = -(steps['Tax 21%'] || 0);
   const own = pg.fund.cost, C = W.C.filter(x => !x.past), capex = C.reduce((a, x) => a + x.capex, 0) / 1000, ebitda30 = W.pl.eb, mw30 = A.L[A.L.length - 1][2], mwNow = A.L.find(r => r[0] === (pg.finance.T0 || '2026Q3'))[2];
   co[tk] = { tk, name: c.name, pg, A, W, rev, costs, refresh, shell, tax, keep, own, roic: keep / own, payback: own / (rev * 0.85), ebitdaMW: steps['Cash profit'] != null ? steps['Cash profit'] : rev * pg.finance.M, capex, ebitda30, mw30, mwNow, rr: A.rr, mult: pg.finance.MULT, ps: W.ps, px: pg.px.v, dil: W.dil, nd: W.last.nd, liab: W.liab, owed: W.last.owed, eq: W.eqTot, year: A.year,

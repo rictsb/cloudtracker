@@ -3,13 +3,21 @@
    - the site's "Checks" tab (live in the browser, on every load)
    Deterministic/offline only; research checks live in the weekly sweep (see WIKI). */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory();
-  else root.ChecksCore = factory();
-})(typeof self !== 'undefined' ? self : this, function () {
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./ramp-core.js'));
+  else root.ChecksCore = factory(root);
+})(typeof self !== 'undefined' ? self : this, function (ramp) {
+
+  // Date.parse normalizes impossible dates such as 2026-02-30. Compare the UTC
+  // calendar representation too, so freshness cannot be manufactured by rollover.
+  const isoDate = v => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) &&
+    Number.isFinite(Date.parse(v + 'T00:00:00Z')) &&
+    new Date(v + 'T00:00:00Z').toISOString().slice(0, 10) === v;
+  const findingID = m => `${m.level}|${m.id || `${m.group}|${m.tk}|${m.msg}`}`;
 
   const GROUPS = [
     { k: 'config',  name: 'Config integrity',       guards: 'every dial has a slider; provenance/regions complete; no dead constants; source registry typed with provenance ceilings' },
     { k: 'ramp',    name: 'GPU-ramp overlay',       guards: 'chain invariants: MW/GPU sums, date order, coverage monotonicity, declared assumptions, backtest error within tolerance' },
+    { k: 'pricing', name: 'Research pricing',      guards: 'shared market curve; contract expiry and provenance; renewals separated from existing commitments; cohort revenue reconciles' },
     { k: 'schema',  name: 'Schema & types',         guards: 'required fields per model type; valid enums; no dead fields; holdco shape' },
     { k: 'sites',   name: 'Site schedules',         guards: 'energization dates & months in range; MW > 0; phased blocks ≤ ~800MW; no duplicates' },
     { k: 'prov',    name: 'Provenance consistency', guards: 'past capacity must be disclosed; 2031+ "disclosed" questioned; contracted% vs rumored-MW tension' },
@@ -25,31 +33,135 @@
   function runChecks(d, todayISO, pf) {
     const cfg = d.config, cos = d.companies;
     const NOWY = cfg.referenceYear + ((cfg.referenceMonth || 1) - 1) / 12;
-    const today = todayISO ? new Date(todayISO) : new Date();
+    const todayDay = todayISO == null ? new Date().toISOString().slice(0, 10) : todayISO;
+    if (!isoDate(todayDay)) throw new RangeError('todayISO must be a real YYYY-MM-DD calendar date');
+    const today = new Date(todayDay + 'T00:00:00Z');
     const groups = {}; GROUPS.forEach(g => groups[g.k] = { ...g, pass: 0, warn: 0, fail: 0, total: 0 });
     const perCo = {}; const msgs = [];
     const co = (tk) => perCo[tk] || (perCo[tk] = {});
     const cell = (tk, g) => co(tk)[g] || (co(tk)[g] = { pass: 0, warn: 0, fail: 0, msgs: [] });
 
-    function assert(g, tk, ok, msg, level) {
+    function assert(g, tk, ok, msg, level, rule) {
       level = level || 'fail';
       const G = groups[g], C = tk ? cell(tk, g) : null;
       G.total++; if (C) { }
       if (ok) { G.pass++; if (C) C.pass++; }
       else {
-        G[level]++; if (C) { C[level]++; C.msgs.push({ level, msg }); }
-        msgs.push({ group: g, tk: tk || '—', level, msg });
+        // Explicit IDs identify the rule and entity, independently of changed
+        // dates, measured values or wording. Older rules retain a message fallback.
+        const id = rule ? `${g}|${tk || '—'}|${rule}` : undefined;
+        G[level]++; if (C) { C[level]++; C.msgs.push({ id, level, msg }); }
+        msgs.push({ id, group: g, tk: tk || '—', level, msg });
       }
     }
-    const failIf = (g, tk, bad, msg) => assert(g, tk, !bad, msg, 'fail');
-    const warnIf = (g, tk, bad, msg) => assert(g, tk, !bad, msg, 'warn');
+    const failIf = (g, tk, bad, msg, rule) => assert(g, tk, !bad, msg, 'fail', rule);
+    const warnIf = (g, tk, bad, msg, rule) => assert(g, tk, !bad, msg, 'warn', rule);
     // An unparseable date must read as MISSING (null), never as fresh — an invalid date
     // suppressing a staleness warning was audit probe P2 (review 2026-09-15).
-    const days = (iso) => { if (!iso) return null; const t = new Date(iso).getTime(); return isNaN(t) ? null : Math.round((today - t) / 86400000); };
-    const isoDate = (v) => /^\d{4}-\d{2}-\d{2}$/.test(String(v || '')) && !isNaN(new Date(v).getTime());
-    const futureDated = (v) => isoDate(v) && (new Date(v).getTime() - today.getTime()) > 7 * 86400000;
+    const days = iso => isoDate(iso) ? (today - new Date(iso + 'T00:00:00Z')) / 86400000 : null;
+    const futureDated = v => isoDate(v) && v > todayDay;
     // Invalid-when-present is a data defect (fail); absent stays a staleness warn elsewhere.
-    const badDate = (g, tk, v, what, level) => { if (v != null) assert(g, tk, isoDate(v), `${what}: unparseable date '${v}'`, level || 'fail'); if (v != null && isoDate(v)) assert(g, tk, !futureDated(v), `${what}: inappropriately future-dated ${v}`, 'warn'); };
+    const badDate = (g, tk, v, what, level) => {
+      if (v != null) assert(g, tk, isoDate(v), `${what}: invalid calendar date '${v}'`, level || 'fail', `${what}.date`);
+      if (isoDate(v)) assert(g, tk, !futureDated(v), `${what}: inappropriately future-dated ${v}`, level || 'fail', `${what}.future`);
+    };
+
+    /* Research pricing assumptions are validated as data, not promoted to facts.
+       Unknown mappings are grouped by company; contradictory inputs fail. */
+    const qsPricing = q => typeof q === 'string' && /^\d{4}Q[1-4]$/.test(q) ? (+q.slice(0, 4) - 2026) * 4 + +q.slice(5) : NaN;
+    const finitePositive = v => typeof v === 'number' && Number.isFinite(v) && v > 0;
+    const validTerm = v => finitePositive(v) && v <= 20 && Number.isInteger(v * 4);
+    const nonempty = v => typeof v === 'string' && v.trim().length > 0;
+    const record = v => v && typeof v === 'object' && !Array.isArray(v);
+    const market = d.researchPricing;
+    const pricingCos = cos.filter(c => c.ramp && c.ramp.pricing);
+    if (pricingCos.length || market != null) {
+      failIf('pricing', null, !record(market), 'researchPricing: shared market policy missing', 'market.missing');
+      if (record(market)) {
+        failIf('pricing', null, !isoDate(market.asOf), 'researchPricing.asOf: real YYYY-MM-DD date required', 'market.asOf.date');
+        failIf('pricing', null, futureDated(market.asOf), 'researchPricing.asOf: future evidence date', 'market.asOf.future');
+        failIf('pricing', null, !Number.isFinite(qsPricing(market.effectiveQ)), 'researchPricing.effectiveQ: valid quarter required', 'market.effectiveQ');
+        if (market.allocationCutoffQ != null) failIf('pricing', null, !Number.isFinite(qsPricing(market.allocationCutoffQ)), 'researchPricing.allocationCutoffQ: valid quarter required', 'market.allocationCutoffQ');
+        failIf('pricing', null, !nonempty(market.basis), 'researchPricing: shared curve and renewal assumptions need a basis', 'market.basis');
+        const sources = Array.isArray(market.sources) ? market.sources : [];
+        failIf('pricing', null, !sources.length || sources.some(s => !/^https?:\/\/\S+$/.test(typeof s === 'string' ? s : (s && s.url) || '')),
+          'researchPricing.sources: at least one source URL required; each source must have a URL', 'market.sources');
+        sources.forEach((s, i) => {
+          if (record(s) && s.asOf != null) badDate('pricing', null, s.asOf, `market.sources.${i}.asOf`);
+          if (record(s) && s.date != null) badDate('pricing', null, s.date, `market.sources.${i}.date`);
+        });
+        failIf('pricing', null, market.softwarePremium !== 0, 'researchPricing: an unsupported software premium cannot enter the common base', 'market.softwarePremium');
+        const curve = record(market.curve) ? market.curve : {};
+        failIf('pricing', null, !Object.keys(curve).length, 'researchPricing.curve: empty market curve', 'market.curve.empty');
+        Object.entries(curve).forEach(([year, terms]) => {
+          failIf('pricing', null, !/^\d{4}$/.test(year), `researchPricing.curve: invalid year '${year}'`, `market.curve.${year}.year`);
+          failIf('pricing', null, !record(terms) || !Object.keys(terms).length, `researchPricing.curve.${year}: tenor prices missing`, `market.curve.${year}.terms`);
+          Object.entries(record(terms) ? terms : {}).forEach(([term, rate]) => {
+            failIf('pricing', null, !validTerm(+term), `researchPricing.curve.${year}: invalid ${term}-year tenor`, `market.curve.${year}.${term}.term`);
+            failIf('pricing', null, !finitePositive(rate), `researchPricing.curve.${year}.${term}: price must be finite and positive`, `market.curve.${year}.${term}.rate`);
+          });
+        });
+        const gen = record(market.generationFactors) ? market.generationFactors : {};
+        const usedGen = [...new Set(pricingCos.flatMap(c => (c.ramp.tranches || []).map(t => t.gen)))];
+        usedGen.forEach(g => failIf('pricing', null, !finitePositive(gen[g]), `researchPricing: generation ${g} needs a finite positive factor`, `market.generation.${g}`));
+        Object.entries(gen).forEach(([g, v]) => failIf('pricing', null, !finitePositive(v), `researchPricing: invalid factor for ${g}`, `market.generation.${g}.value`));
+        const renewal = market.renewal || {};
+        failIf('pricing', null, !validTerm(renewal.termYears), 'researchPricing.renewal: term must be positive, at most 20 years and in whole quarters', 'market.renewal.term');
+        failIf('pricing', null, !Number.isFinite(renewal.retention) || renewal.retention < 0 || renewal.retention > 1, 'researchPricing.renewal: retention outside [0,1]', 'market.renewal.retention');
+        failIf('pricing', null, renewal.rateMode !== 'retain', 'researchPricing.renewal: existing hardware must retain its own price basis; frontier repricing requires funded hardware changes', 'market.renewal.mode');
+        failIf('pricing', null, !finitePositive(renewal.rateMultiplier), 'researchPricing.renewal: rate multiplier must be finite and positive', 'market.renewal.multiplier');
+        if (record(market.spot)) {
+          failIf('pricing', null, !['per-gpu-hour', 'per-it-mw-year'].includes(market.spot.basis), 'researchPricing.spot: explicit GPU-hour or IT-MW-year units required', 'market.spot.basis');
+          const rates = record(market.spot.rates) ? market.spot.rates : {};
+          failIf('pricing', null, !Object.keys(rates).length || Object.entries(rates).some(([y, v]) => !/^\d{4}$/.test(y) || !finitePositive(v)), 'researchPricing.spot: each annual realized price must be finite and positive', 'market.spot.rates');
+          Object.entries(market.spot.generationMultipliers || {}).forEach(([g, v]) => failIf('pricing', null, !finitePositive(v), `researchPricing.spot: invalid generation multiplier for ${g}`, `market.spot.generation.${g}`));
+        }
+      }
+    }
+
+    function checkPricing(c) {
+      const id = c.tk, T = c.ramp.tranches || [];
+      const cfg = record(c.ramp.pricing) ? c.ramp.pricing : {};
+      if (cfg.effectiveQ != null) failIf('pricing', id, !Number.isFinite(qsPricing(cfg.effectiveQ)), 'research pricing: invalid company effective quarter', 'policy.effectiveQ');
+      if (cfg.allocationCutoffQ != null) failIf('pricing', id, !Number.isFinite(qsPricing(cfg.allocationCutoffQ)), 'research pricing: invalid allocation cutoff quarter', 'policy.allocationCutoffQ');
+      if (cfg.softwarePremium != null) failIf('pricing', id, cfg.softwarePremium !== 0, 'research pricing: unsupported company software premium', 'policy.softwarePremium');
+      let assumedMappings = 0, assumedCommitments = 0;
+      T.forEach((t, i) => {
+        const label = `pricing tranche '${(t.n || i).toString().slice(0, 34)}'`, rule = `tranche.${i}`, ctr = t.contract;
+        const existingShare = record(ctr) && ctr.signedShare != null ? ctr.signedShare : (t.signed || 0);
+        if ((t.signed || 0) > 0) failIf('pricing', id, !record(ctr), `${label}: existing book needs explicit contract metadata`, `${rule}.contract`);
+        if (record(ctr)) {
+          const start = qsPricing(t.rev), end = qsPricing(ctr.endQ);
+          failIf('pricing', id, !validTerm(ctr.termYears), `${label}: invalid contract term`, `${rule}.term`);
+          failIf('pricing', id, !Number.isFinite(end), `${label}: invalid exclusive contract end quarter`, `${rule}.endQ`);
+          failIf('pricing', id, Number.isFinite(end) && Number.isFinite(start) && end <= start, `${label}: contract expires before or at first revenue`, `${rule}.expiryOrder`);
+          failIf('pricing', id, !['estimated', 'disclosed'].includes(ctr.expiryBasis), `${label}: expiry provenance missing or invalid`, `${rule}.expiryBasis`);
+          failIf('pricing', id, !['inferred', 'disclosed'].includes(ctr.priceBasis), `${label}: price provenance missing or invalid`, `${rule}.priceBasis`);
+          failIf('pricing', id, !['assumed', 'disclosed'].includes(ctr.commitmentBasis), `${label}: customer commitment provenance missing or invalid`, `${rule}.commitmentBasis`);
+          failIf('pricing', id, !nonempty(ctr.source) || !nonempty(ctr.note), `${label}: contract source and explanatory note required`, `${rule}.source`);
+          if (ctr.signedShare != null) {
+            const cutoff = qsPricing(cfg.allocationCutoffQ || (market && market.allocationCutoffQ));
+            const allowedReclassification = ctr.signedShare === 0 && ctr.allocationBasis === 'unmapped-future' &&
+              ctr.commitmentBasis === 'assumed' && Number.isFinite(cutoff) && qsPricing(t.energize) >= cutoff && nonempty(ctr.note) && nonempty(ctr.source);
+            failIf('pricing', id, !Number.isFinite(ctr.signedShare) || ctr.signedShare < 0 || ctr.signedShare > t.ctr ||
+              (Math.abs(ctr.signedShare - (t.signed || 0)) > 1e-9 && !allowedReclassification), `${label}: pricing signed-share override needs an explicit future-allocation policy and cannot remove disclosed commitments`, `${rule}.signedShare`);
+          }
+          if (ctr.asOf != null) badDate('pricing', id, ctr.asOf, `${rule}.asOf`);
+          if (ctr.expiryBasis === 'estimated' && validTerm(ctr.termYears) && Number.isFinite(end) && Number.isFinite(start)) {
+            failIf('pricing', id, end !== start + ctr.termYears * 4, `${label}: estimated expiry contradicts its stated term and first revenue`, `${rule}.expiryTerm`);
+          }
+          if (existingShare > 0 && (ctr.expiryBasis !== 'disclosed' || ctr.priceBasis !== 'disclosed')) assumedMappings++;
+          if (ctr.commitmentBasis !== 'disclosed' && existingShare > 0) assumedCommitments++;
+        }
+        if (t.ctr > existingShare + 1e-9) failIf('pricing', id, !record(t.newBusiness), `${label}: unsigned business needs a stated contract term`, `${rule}.newBusiness`);
+        if (record(t.newBusiness)) {
+          failIf('pricing', id, !validTerm(t.newBusiness.termYears), `${label}: invalid new-business term`, `${rule}.newTerm`);
+          failIf('pricing', id, t.newBusiness.priceBasis !== 'assumed', `${label}: future market prices must be labelled assumed`, `${rule}.newPriceBasis`);
+        }
+      });
+      warnIf('pricing', id, assumedMappings > 0, `${assumedMappings} contract cohorts use estimated expiries or inferred prices; grouped research mapping remains open`, 'mapping.assumptions');
+      warnIf('pricing', id, assumedCommitments > 0, `${assumedCommitments} existing-book cohorts have assumed customer commitments; power access alone does not establish signed revenue`, 'commitment.assumptions');
+    }
 
     /* ---- config ---- */
     const dials = ['rate','margin','multiple','capRate','disc','ramp','rateTrend','gpuTrend','dilutionStress','leaseUp','pipelineCredit'];
@@ -62,7 +174,7 @@
     warnIf('config', null, !cfg.btcFallback || !cfg.ethFallback, 'btcFallback/ethFallback missing');
     badDate('config', null, cfg.verifiedPricing, 'config.verifiedPricing');
     const pAge = days(cfg.verifiedPricing);
-    warnIf('config', null, pAge == null || pAge > 30, `GPU rate/trend dials last checked vs market ${pAge == null ? 'never' : pAge + 'd ago'} (verify ≤30d)`);
+    warnIf('config', null, pAge == null || pAge > 30, `GPU rate/trend dials last checked vs market ${pAge == null ? 'never' : pAge + 'd ago'} (verify ≤30d)`, 'verifiedPricing.stale');
 
     /* ---- preferred-source registry (spec §9) ---- */
     const SRC_T = ['market','filings','research','commentary','calendar'];
@@ -84,7 +196,7 @@
     if (OL) {
       badDate('fresh', null, OL.asOf, 'outlook.asOf');
       const oAge = days(OL.asOf);
-      warnIf('fresh', null, oAge == null || oAge > 8, `outlook stale — asOf ${OL.asOf || 'missing'} (${oAge == null ? '?' : oAge + 'd'}; weekly cadence)`);
+      warnIf('fresh', null, oAge == null || oAge > 8, `outlook stale — asOf ${OL.asOf || 'missing'} (${oAge == null ? '?' : oAge + 'd'}; weekly cadence)`, 'outlook.stale');
       const ctks = (d.companies || []).map(c => c.tk);
       (OL.leases || []).forEach(r => {
         failIf('fresh', r.tk, !ctks.includes(r.tk), `outlook lease row: unknown ticker ${r.tk}`);
@@ -94,7 +206,7 @@
       (OL.earnings || []).forEach(r => {
         failIf('fresh', r.tk, !ctks.includes(r.tk), `outlook earnings row: unknown ticker ${r.tk}`);
         failIf('fresh', r.tk, !(r.score >= -5 && r.score <= 5), `outlook ${r.tk}: surprise score ${r.score} out of -5..5`);
-        warnIf('fresh', r.tk, r.date != null && isNaN(new Date(r.date).getTime()), `outlook ${r.tk}: unparseable earnings date ${r.date}`);
+        failIf('fresh', r.tk, r.date != null && !isoDate(r.date), `outlook ${r.tk}: invalid earnings date ${r.date}`, 'outlook.earnings.date');
       });
     }
 
@@ -126,6 +238,7 @@
       /* ---- GPU-ramp overlay (spec §6 screen 11): display-only, but its chain must hold ---- */
       if (c.ramp) {
         const R = c.ramp, T = R.tranches || [];
+        if (R.pricing) checkPricing(c);
         const qs = l => /^\d{4}Q[1-4]$/.test(l || '') ? (parseInt(l.slice(0, 4)) - 2026) * 4 + parseInt(l.slice(5)) : NaN;
         failIf('ramp', id, !T.length, 'ramp present but no tranches');
         failIf('ramp', id, !R.basis || R.basis.length < 40, 'ramp: basis note missing or too short to carry provenance');
@@ -179,13 +292,14 @@
         failIf('ramp', id, !R.spot || !R.spotMult || !R.consensus, 'ramp: spot / spotMult / consensus missing — revenue and comparison cannot be derived');
         failIf('ramp', id, !(R.earningRate > 0), 'ramp: earningRate missing — reported revenue cannot be converted to an earning-GPU-equivalent');
         RAMP_GENS.forEach(g => failIf('ramp', id, T.some(t => t.gen === g) && !(R.spotMult[g] > 0), `ramp: generation ${g} used but has no spotMult`));
-        /* the gate re-derives the chain INDEPENDENTLY of app.js and binds the published backtest error.
-           A model that cannot retrodict has no business forecasting, so the tolerance is a hard failure. */
+        /* Historical calibration remains independent of the forward pricing policy.
+           Cohort forecasts use the shared engine, so checks cannot silently test a
+           different renewal/expiry model from the published report. */
         (function rampGate() {
           const cal = R.calibration.rampMult, A2 = R.actuals || {};
           const yr = q => 2026 + Math.floor((q - 1) / 4);
           const ff = (k, n) => Math.min(Math.max(k / n, 0), 1);
-          const revAt = (q, d) => {
+          const legacyRevAt = (q, d) => {
             d = d || {}; let rev = 0, gpus = 0, itmw = 0;
             for (const t of T) {
               const rm = d.rampMult || 1, c2 = d.cal != null ? d.cal : cal;
@@ -206,7 +320,23 @@
             }
             return { rev, gpus, itmw };
           };
-          const errs = Object.entries(A2).map(([q, a]) => Math.abs(revAt(qs(q)).rev / a.aiRevM - 1));
+          let runtimeFailed = false;
+          const canonicalRows = (sc, from, to) => {
+            try {
+              if (!ramp || typeof ramp.rampQuarters !== 'function') throw new Error('shared ramp engine unavailable');
+              return ramp.rampQuarters(R, sc, from, to, market);
+            } catch (e) {
+              if (!runtimeFailed) failIf('pricing', id, true, `research pricing cannot run: ${e.message}`, 'runtime');
+              runtimeFailed = true;
+              return [];
+            }
+          };
+          const revAt = (q, d) => {
+            if (!R.pricing) return legacyRevAt(q, d);
+            const row = canonicalRows({ d: d || {} }, q, q)[0];
+            return row ? { rev: row.rev, gpus: row.cum, itmw: row.itMW } : legacyRevAt(q, d);
+          };
+          const errs = Object.entries(A2).map(([q, a]) => Math.abs(legacyRevAt(qs(q)).rev / a.aiRevM - 1));
           const mape = errs.reduce((x, y) => x + y, 0) / (errs.length || 1);
           failIf('ramp', id, !(mape <= 0.25), `ramp backtest: mean absolute error ${(mape * 100).toFixed(1)}% exceeds the 25% tolerance — the chain does not reproduce reported quarters`);
           warnIf('ramp', id, mape > 0.15, `ramp backtest: mean absolute error ${(mape * 100).toFixed(1)}% above the 15% target`);
@@ -215,13 +345,37 @@
           const nameplateKw = T.reduce((x, t) => x + t.itMW, 0) * 1000 / T.reduce((x, t) => x + t.gpus, 0);
           failIf('ramp', id, Math.abs(kw / nameplateKw - 1) > 0.08,
             `ramp: terminal IT-MW/GPU ratio ${kw.toFixed(2)} kW diverges >8% from the nameplate ${nameplateKw.toFixed(2)} kW — the two columns are on different ramps`);
-          // every scenario must actually move the answer, and the joint case must be the worst of them
-          const base = revAt(20).rev;
-          const outs = (R.scenarios || []).map(sc => ({ id: sc.id, rev: revAt(20, sc.d || {}).rev }));
-          outs.forEach(o => { if (o.id !== 'base') failIf('ramp', id, Math.abs(o.rev / base - 1) < 0.001, `ramp scenario '${o.id}': changes nothing — it is not a sensitivity`); });
-          const joint = outs.find(o => o.id === 'joint');
-          const worstSingle = Math.min(...outs.filter(o => !['base', 'joint', 'uncal', 'denselow'].includes(o.id)).map(o => o.rev));
-          if (joint) failIf('ramp', id, joint.rev > worstSingle + 1e-6, 'ramp: the joint downside is not worse than the worst single scenario — it is not a joint case');
+          if (R.pricing) {
+            const rows = canonicalRows({ d: {} }, 3, 20);
+            const close = (a, b) => Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) <= Math.max(1, Math.abs(a), Math.abs(b)) * 1e-8;
+            rows.filter(q => q.s >= qsPricing(market && market.effectiveQ)).forEach(q => {
+              const n = q.lbl || q.s, key = `quarter.${n}`;
+              const values = ['rev', 'revC', 'revS', 'revExisting', 'revExistingConfirmed', 'revExistingAssumed', 'revRenewal', 'revNew', 'revSpot', 'arrContracted', 'arrExisting', 'arrRenewal', 'arrNew', 'itMW', 'itContracted', 'itSpot'];
+              failIf('pricing', id, values.some(k => !Number.isFinite(q[k]) || q[k] < -1e-8), `pricing ${n}: non-finite or negative cohort amount`, `${key}.amounts`);
+              failIf('pricing', id, !close(q.revExisting, q.revExistingConfirmed + q.revExistingAssumed), `pricing ${n}: original commitment evidence groups do not reconcile`, `${key}.existing`);
+              failIf('pricing', id, !close(q.revC, q.revExisting + q.revRenewal + q.revNew) || !close(q.rev, q.revC + q.revSpot), `pricing ${n}: cohort revenues do not reconcile`, `${key}.revenue`);
+              failIf('pricing', id, !close(q.revS, q.revExistingConfirmed) || q.revS > q.revC + 1e-8, `pricing ${n}: signed revenue includes assumed commitments or renewals`, `${key}.signed`);
+              failIf('pricing', id, !close(q.arrContracted, q.arrExisting + q.arrRenewal + q.arrNew), `pricing ${n}: contracted ARR cohorts do not reconcile`, `${key}.arr`);
+              failIf('pricing', id, !close(q.itMW, q.itContracted + q.itSpot), `pricing ${n}: contractual and spot earning MW do not reconcile`, `${key}.mw`);
+            });
+            // Term and renewal sensitivities may change earlier cash receipts while
+            // reaching the same endpoint. Test the whole path, not one last cell.
+            const outs = (R.scenarios || []).map(sc => ({ id: sc.id, rows: canonicalRows(sc, 3, 20) }));
+            outs.forEach(o => {
+              if (o.id !== 'base' && !runtimeFailed) failIf('ramp', id, !o.rows.some((q, i) => rows[i] && !close(q.rev, rows[i].rev)), `ramp scenario '${o.id}': changes no quarterly revenue — it is not a sensitivity`, `scenario.${o.id}.noEffect`);
+            });
+            const total = a => a.reduce((sum, q) => sum + q.rev, 0);
+            const joint = outs.find(o => o.id === 'joint');
+            const singles = outs.filter(o => !['base', 'joint', 'uncal', 'denselow'].includes(o.id));
+            if (joint && singles.length && !runtimeFailed) failIf('ramp', id, total(joint.rows) > Math.min(...singles.map(o => total(o.rows))) + 1e-6, 'ramp: joint downside does not reduce cumulative revenue at least as much as the worst single case', 'scenario.joint.order');
+          } else {
+            const base = revAt(20).rev;
+            const outs = (R.scenarios || []).map(sc => ({ id: sc.id, rev: revAt(20, sc.d || {}).rev }));
+            outs.forEach(o => { if (o.id !== 'base') failIf('ramp', id, Math.abs(o.rev / base - 1) < 0.001, `ramp scenario '${o.id}': changes nothing — it is not a sensitivity`); });
+            const joint = outs.find(o => o.id === 'joint');
+            const worstSingle = Math.min(...outs.filter(o => !['base', 'joint', 'uncal', 'denselow'].includes(o.id)).map(o => o.rev));
+            if (joint) failIf('ramp', id, joint.rev > worstSingle + 1e-6, 'ramp: the joint downside is not worse than the worst single scenario — it is not a joint case');
+          }
         })();
       }
       failIf('capital', id, !(c.shares > 0), 'shares must be > 0');
@@ -239,8 +393,8 @@
       const rseen = {};
       for (const r of (c.raises || [])) {
         const rid = `raise ${r.d || '?'}/${r.kind || '?'}`;
-        failIf('capital', id, !/^\d{4}-\d{2}-\d{2}$/.test(r.d || ''), `${rid}: d must be ISO YYYY-MM-DD`);
-        failIf('capital', id, !!r.d && days(r.d) < 0, `${rid}: announcement date in the future`);
+        failIf('capital', id, !isoDate(r.d), `${rid}: d must be a real ISO YYYY-MM-DD date`, `${rid}.date`);
+        failIf('capital', id, futureDated(r.d), `${rid}: announcement date in the future`, `${rid}.future`);
         failIf('capital', id, !RZ_KINDS.includes(r.kind), `${rid}: bad kind`);
         failIf('capital', id, !(typeof r.source === 'string' && r.source.trim().length > 3), `${rid}: source missing`);
         failIf('capital', id, !(r.sizeM === null || r.sizeM > 0), `${rid}: sizeM must be > 0 or null (undisclosed)`);
@@ -268,15 +422,15 @@
 
       const names = {};
       for (const s of (c.sites || [])) {
-        siteCount++; const sid = s.n;
-        failIf('sites', id, !!names[s.n], `${sid}: duplicate site name`); names[s.n] = 1;
-        failIf('sites', id, !(s.mw > 0), `${sid}: mw must be > 0`);
-        warnIf('sites', id, s.mw > 800, `${sid}: ${s.mw}MW single row — decompose by rollout (max ~800)`);
-        failIf('sites', id, !REG.includes(s.region), `${sid}: bad region ${s.region}`);
-        failIf('sites', id, !PROV.includes(s.prov), `${sid}: bad prov ${s.prov}`);
-        failIf('sites', id, typeof s.owned !== 'boolean', `${sid}: owned must be boolean`);
-        failIf('sites', id, !(s.yr >= 2024 && s.yr <= 2032), `${sid}: yr ${s.yr} outside 2024-2032`);
-        failIf('sites', id, !(s.mo >= 1 && s.mo <= 12), `${sid}: mo ${s.mo} invalid`);
+        siteCount++; const sid = s.n, key = `site:${s.id || sid}`;
+        failIf('sites', id, !!names[s.n], `${sid}: duplicate site name`, `${key}.duplicate`); names[s.n] = 1;
+        failIf('sites', id, !(Number.isFinite(s.mw) && s.mw > 0), `${sid}: mw must be a finite number > 0`, `${key}.mw`);
+        warnIf('sites', id, s.mw > 800, `${sid}: ${s.mw}MW single row — decompose by rollout (max ~800)`, `${key}.size`);
+        failIf('sites', id, !REG.includes(s.region), `${sid}: bad region ${s.region}`, `${key}.region`);
+        failIf('sites', id, !PROV.includes(s.prov), `${sid}: bad prov ${s.prov}`, `${key}.provenance`);
+        failIf('sites', id, typeof s.owned !== 'boolean', `${sid}: owned must be boolean`, `${key}.owned`);
+        failIf('sites', id, !(Number.isInteger(s.yr) && s.yr >= 2024 && s.yr <= 2032), `${sid}: yr ${s.yr} outside integer years 2024-2032`, `${key}.year`);
+        failIf('sites', id, !(Number.isInteger(s.mo) && s.mo >= 1 && s.mo <= 12), `${sid}: mo ${s.mo} invalid`, `${key}.month`);
         const t = s.yr + (s.mo - 1) / 12;
         warnIf('prov', id, t < NOWY - 0.5 && s.prov !== 'disclosed', `${sid}: energized in the past but prov=${s.prov} (past capacity should be disclosed)`);
         warnIf('prov', id, s.yr >= 2031 && s.prov === 'disclosed', `${sid}: 2031+ but disclosed — really under construction/secured?`);
@@ -375,10 +529,10 @@
       // Field-specific freshness (audit probe P1): historical entries never go stale, but a
       // covered name whose NEWEST development entry is old needs a research pass.
       const newest = (c.log || []).map(l => l.d).filter(isoDate).sort().reverse()[0];
-      if (newest) warnIf('fresh', id, days(newest) > 60, `developments log stale — newest entry ${days(newest)}d old (research pass due)`);
+      if (newest) warnIf('fresh', id, days(newest) > 60, `developments log stale — newest entry ${days(newest)}d old (research pass due)`, 'log.stale');
       const aCap = days(v.capital), aCon = days(v.contracts);
-      warnIf('fresh', id, aCap == null || aCap > 45, `capital structure last verified vs filings ${aCap == null ? 'never' : aCap + 'd ago'} (target ≤45d)`);
-      warnIf('fresh', id, aCon == null || aCon > 45, `contracts/sites last verified ${aCon == null ? 'never' : aCon + 'd ago'} (target ≤45d)`);
+      warnIf('fresh', id, aCap == null || aCap > 45, `capital structure last verified vs filings ${aCap == null ? 'never' : aCap + 'd ago'} (target ≤45d)`, 'verified.capital.stale');
+      warnIf('fresh', id, aCon == null || aCon > 45, `contracts/sites last verified ${aCon == null ? 'never' : aCon + 'd ago'} (target ≤45d)`, 'verified.contracts.stale');
     }
 
     /* ---- issue registry (watchItems) — structural validity, never a fixed count (probe P5).
@@ -388,14 +542,14 @@
       const wids = new Set();
       (d.watchItems || []).forEach((w, i) => {
         const wid = w.id || w.tk || ('#' + i);
-        failIf('watch', w.tk, !w.tk || !tks2.includes(w.tk), `watch ${wid}: unknown or missing ticker '${w.tk}'`);
-        failIf('watch', w.tk, !String(w.note || '').trim(), `watch ${wid}: empty assertion`);
+        failIf('watch', w.tk, !w.tk || !tks2.includes(w.tk), `watch ${wid}: unknown or missing ticker '${w.tk}'`, `watch:${wid}.ticker`);
+        failIf('watch', w.tk, !String(w.note || '').trim(), `watch ${wid}: empty assertion`, `watch:${wid}.assertion`);
         badDate('watch', w.tk, w.added, `watch ${wid} added`);
-        failIf('watch', w.tk, !w.added, `watch ${wid}: no added date`);
-        if (w.id) { failIf('watch', w.tk, wids.has(w.id), `watch ${w.id}: duplicate id`); wids.add(w.id); }
-        if (w.status != null) failIf('watch', w.tk, !['investigating', 'monitoring', 'owner'].includes(w.status), `watch ${wid}: bad status '${w.status}'`);
+        failIf('watch', w.tk, !w.added, `watch ${wid}: no added date`, `watch:${wid}.added.missing`);
+        if (w.id) { failIf('watch', w.tk, wids.has(w.id), `watch ${w.id}: duplicate id`, `watch:${wid}.duplicate`); wids.add(w.id); }
+        if (w.status != null) failIf('watch', w.tk, !['investigating', 'monitoring', 'owner'].includes(w.status), `watch ${wid}: bad status '${w.status}'`, `watch:${wid}.status`);
         if (w.reviewed != null) badDate('watch', w.tk, w.reviewed, `watch ${wid} reviewed`);
-        if (w.status != null) warnIf('watch', w.tk, !w.next, `watch ${wid}: structured issue without a next-check trigger`);
+        if (w.status != null) warnIf('watch', w.tk, !w.next, `watch ${wid}: structured issue without a next-check trigger`, `watch:${wid}.next`);
       });
     }
 
@@ -412,6 +566,9 @@
           if (dw === 0 || dw === 6) weekend = true;
           if (!(L[i].nav > 0) || !(L[i].bench > 0) || !isFinite(L[i].nav) || !isFinite(L[i].bench)) badNav = true;
         }
+        failIf('port', null, L.some(day => !isoDate(day.d)), 'ledger contains invalid calendar dates', 'ledger.date');
+        failIf('port', null, L.some(day => futureDated(day.d)), 'ledger contains future observations', 'ledger.future');
+        badDate('port', null, P.asOf, 'portfolio.asOf');
         failIf('port', null, !mono, 'ledger dates not strictly increasing');
         failIf('port', null, weekend, 'ledger contains weekend records');
         failIf('port', null, badNav, 'non-finite or non-positive NAV/bench in ledger');
@@ -426,7 +583,7 @@
         failIf('port', null, P.dayIdx !== L.length - 1, `dayIdx ${P.dayIdx} ≠ ledger length−1 (${L.length - 1})`);
         failIf('port', null, (H.meta || {}).backtestThrough !== P.backtestThrough, 'backtestThrough differs between ledger meta and portfolio.json');
         const age = days(last.d);
-        assert('port', null, age <= 6, `ledger ${age}d stale — the daily Action has not marked in over a week`, age > 12 ? 'fail' : 'warn');
+        assert('port', null, age != null && age <= 6, `ledger ${age == null ? '?' : age}d stale — the daily Action has not marked in over a week`, age == null || age > 12 ? 'fail' : 'warn', 'ledger.stale');
         // per-name: positions must be tracked names; prices must sit near fundamentals (basis breaks)
         for (const tk in (P.holdings || {}).positions || {}) {
           const c = cos.find(x => x.tk === tk);
@@ -462,5 +619,5 @@
     return { groups, groupOrder: GROUPS.map(g => g.k), perCo, msgs, summary };
   }
 
-  return { runChecks, GROUPS };
+  return { runChecks, GROUPS, isoDate, findingID };
 });

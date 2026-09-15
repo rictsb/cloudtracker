@@ -17,6 +17,8 @@ The valuation engine lives in `engine.js`, the GPU-ramp math in `ramp-core.js`, 
 
 ## Working rules
 
+- Research pricing follows §6i: shared forward curve, explicit expiring contracts and renewals, sourced versus inferred coverage, matched earning-MW denominators and derived operating multiples. Regenerate all three report payloads after changing pricing. Run `node verify-pricing.cjs`, `node verify-pricing-checks.cjs` and `node verify-pricing-finance.cjs` alongside the existing gates.
+
 - The 2026-09 redesign (single-page app: `index.html` + `app.js` + view modules + `styles.css`/`report-layout.css`) is the reference design; rebuild into its system, don't re-invent per screen.
 - Before every push, verify the app actually works. Never push a broken build.
 - Small, frequent commits, conventional messages. Use `[skip render]` for commits that shouldn't deploy (spec/changelog edits).

@@ -1,7 +1,7 @@
 /* Presentation adapter for the existing public Cloudtracker model.
  * Load engine.js, ramp-core.js, then this file. No market-data requests are made here;
  * live marks may be supplied by the caller via CloudModel.setMarks().
- * The engine and ramp math are retained byte-for-byte from the original site.
+ * The asset engine is shared unchanged; research ramps consume the canonical pricing policy.
  */
 (function (root) {
   'use strict';
@@ -30,7 +30,7 @@
 
   function rampModel(company, scenario) {
     if (!company.ramp || typeof root.rampQuarters !== 'function') return null;
-    const quarters = root.rampQuarters(company.ramp, scenario || null).map(q => ({
+    const quarters = root.rampQuarters(company.ramp, scenario || null, undefined, undefined, source.researchPricing).map(q => ({
       quarter: q.lbl,
       serial: q.s,
       energizedGrossMW: q.grossMW,
@@ -63,7 +63,7 @@
       independentOfValuation: true,
       basis: company.ramp.basis || '',
       quarters,
-      backtest: typeof root.rampBacktest === 'function' ? root.rampBacktest(company.ramp) : null,
+      backtest: typeof root.rampBacktest === 'function' ? root.rampBacktest(company.ramp, source.researchPricing) : null,
       scenarios: company.ramp.scenarios || [],
       raw: company.ramp
     };

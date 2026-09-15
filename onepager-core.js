@@ -33,8 +33,10 @@
       return { q, g, it, add, itE, util, gi, gc, vint, sg, cs, bl, perMW, rev, act, dl: act != null ? rev / act - 1 : null, st, rr: rev * 4 / 1000,
         arrc: (ARRC || {})[q], eb, capG, capS, capex, cbf, df, pv, cum: past ? null : cumPV / 1000, past, ye: /Q4$/.test(q) };
     });
-    const N = C.length, CR = new Array(N + 24).fill(0), qi = q => C.findIndex(x => x.q === q);
-    creditsFixed.forEach(c => { const i0 = qi(c.from); if (i0 < 0) return; for (let k = 0; k < c.n; k++) CR[i0 + k] += c.amt / c.n; });
+    const N = C.length, schedules=PP.creditSchedules||{};
+    const tail=Math.max(24,...Object.values(schedules).flat().map(s=>s.startQ+s.termQ),...creditsFixed.map(s=>s.n+Math.max(0,QS(s.from)-QS(C[N-1].q))));
+    const CR = new Array(N + tail).fill(0), qi = q => QS(q)-QS(C[0].q);
+    if(!o.noCredit)creditsFixed.forEach(c => { const i0 = qi(c.from); for (let k = 0; k < c.n; k++) if(i0+k>=0)CR[i0 + k] += c.amt / c.n; });
     const rd = { debt: DEBT0 - CONV, cash: CASH0 + CASH_R, sh: SH0, gpu: 0, shell: 0, owed: PP.openingOwed || 0 };
     let eqTot = 0;
     C.forEach((c, i) => {
@@ -42,7 +44,10 @@
       const G = c.capG / 1000, S = c.capS / 1000, capex = G + S, eb = c.eb / 1000, yr = +c.q.slice(0, 4), eqPol = yr >= (F.EQ_FROM || 2027) ? EQ_SHARE * capex : 0;
       const sp = special[c.q] || {};
       const preOth = c.cs * ratio * (G - (sp.replaceG || 0)), nq = termOv[c.q] || termQ;
-      if (!o.noCredit) for (let k = 0; k < nq; k++) CR[i + startQ + k] += preOth / nq;
+      if (!o.noCredit) {
+        const parts=schedules[c.q]||[{weight:1,startQ,termQ:nq}];
+        for(const part of parts)for(let k=0;k<part.termQ;k++)CR[i+part.startQ+k]+=preOth*part.weight/part.termQ;
+      }
       const pre = preOth + (sp.upfront || 0) - (already[c.q] || 0), cred = o.noCredit ? 0 : CR[i];
       rd.gpu += G; rd.shell += S;
       const da = rd.gpu / (F.GPU_LIFE || 5) / 4 + rd.shell / (F.SHELL_LIFE || 25) / 4, intr = rd.debt * RATE / 4 + CONV * CONV_RATE / 4,
@@ -60,7 +65,10 @@
     /* tie-out: horizon run-rate x multiple, less net debt ex converts and prepayments still owed at PV, over the diluted count;
        the converts become shares at the model's own horizon price with the capped calls netted */
     const last = C[N - 1].r, rr = L[N - 1][7] * revScale * 4 / 1000, ev = rr * mult, DF = Math.pow(1 + W, HZ);
-    let liab = 0; for (let k = N; k < CR.length; k++) liab += CR[k] / Math.pow(1 + W, (k - N + 1) / 4);
+    let liab = 0, scheduledOwed = 0; for (let k = N; k < CR.length; k++) { liab += CR[k] / Math.pow(1 + W, (k - N + 1) / 4); scheduledOwed += CR[k]; }
+    // An opening-balance residual with no repayment calendar remains an obligation. Carry it
+    // at face value until sourced timing exists; the deliberately uncredited sensitivity waives it.
+    const unscheduledOwed=o.noCredit?0:Math.max(0,last.owed-scheduledOwed); liab+=unscheduledOwed;
     const sh30 = last.sh - FWD; let S = 0, convSh = 0;
     const NC = F.NONCORE || 0;   // non-core stakes and assets, $bn at the horizon (added to equity, not to EV)
     if (o.convAsDebt) { S = (ev - (last.nd + CONV) - liab + NC) / sh30 * 1000; }
@@ -70,7 +78,7 @@
       if (ys.length === 4) c.epsYE = (ys.reduce((s, x) => s + x.r.ni, 0) + addb) / (c.r.sh + convSh - (c.q.slice(0, 4) === L[N - 1][0].slice(0, 4) ? FWD : 0)); });
     const hy = L[N - 1][0].slice(0, 4), Y = C.filter(x => x.q.startsWith(hy) && x.r), S30 = k => Y.reduce((s, x) => s + x.r[k], 0) / 1000;
     const pl = { rev: S30('eb') / M, eb: S30('eb'), da: S30('da'), intr: S30('intr'), tax: S30('tax'), ni: S30('ni'), dag: S30('dag'), debtAvg: Y.reduce((s, x) => s + x.r.debt, 0) / Math.max(1, Y.length) };
-    return { C, N, last, rr, ev, DF, liab, sh30, S, convSh, dil, ps, addb, pl, eqTot, issued: last.sh - SH0, year: hy, ndc: last.nd + (o.convAsDebt ? CONV : 0) };
+    return { C, N, last, rr, ev, DF, liab, scheduledOwed, unscheduledOwed, sh30, S, convSh, dil, ps, addb, pl, eqTot, issued: last.sh - SH0, year: hy, ndc: last.nd + (o.convAsDebt ? CONV : 0) };
   }
 
   /* the standard sensitivities every page shows the same way */

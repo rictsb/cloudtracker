@@ -831,7 +831,23 @@
       "rampQtrs": 1,
       "ctr": 1,
       "rate": 1.71,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-01",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2029Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2024 adds Q2",
@@ -845,7 +861,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 1.63,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-02",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2029Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2024 adds Q3",
@@ -859,7 +891,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 1.63,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-03",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2029Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2024 adds Q4",
@@ -873,7 +921,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 1.63,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-04",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2029Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2025 Q1 (H200)",
@@ -887,7 +951,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 1.55,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-05",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2030Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2025 Q2 (H200/GB200)",
@@ -901,7 +981,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 1.55,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-06",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2030Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2025 Q3 (GB200)",
@@ -915,7 +1011,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 2.71,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-07",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2030Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2025 Q4 (GB200, Denton, Chester)",
@@ -929,7 +1041,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 2.71,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-08",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2030Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2026 Q1 (Denton, Dalton, Ellendale)",
@@ -943,7 +1071,23 @@
       "rampQtrs": 3,
       "ctr": 1,
       "rate": 3.14,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-09",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2026 Q2 (+~500 MW, >300 in June)",
@@ -957,7 +1101,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 3.14,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-10",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2026 Q3 (Helios 1, Ellendale 2, Muskogee)",
@@ -971,7 +1131,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 3.14,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-11",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2026 Q4",
@@ -985,7 +1161,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 3.14,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-12",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2027 Q1 (Dalton, Ellendale 3)",
@@ -999,7 +1191,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 3.28,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-13",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2027 Q2 (Helios 2 from Q2-27, Kenilworth)",
@@ -1013,7 +1223,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 3.28,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-14",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2027 Q3 (Lancaster, Chicago)",
@@ -1027,7 +1255,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 3.28,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-15",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2027 Q4 (Vera Rubin: Meta, Jane Street)",
@@ -1041,7 +1287,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 5.25,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-16",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2028 Q1 (contracted footprint)",
@@ -1055,7 +1319,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 6.16,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-17",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2033Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2028 Q2 (contracted footprint)",
@@ -1069,7 +1351,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 6.16,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-18",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2033Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2028 Q3 (contracted footprint)",
@@ -1083,7 +1383,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 6.16,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-19",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2033Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q1 (last of the contracted footprint, to 4.2 GW)",
@@ -1097,7 +1415,25 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 6.62,
-      "signed": 1
+      "signed": 1,
+      "id": "crwv-ramp-20",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2034Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q1 (options / LOIs)",
@@ -1111,7 +1447,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 6.62,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-21",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2034Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q2 (options / LOIs)",
@@ -1125,7 +1477,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 6.62,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-22",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2034Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q3 (options / LOIs)",
@@ -1139,7 +1507,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 6.62,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-23",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2034Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q4 (options / LOIs)",
@@ -1153,7 +1537,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 6.62,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-24",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2034Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q1 (pipeline, rumored)",
@@ -1167,7 +1567,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 8.56,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-25",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2035Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q2 (pipeline, rumored)",
@@ -1181,7 +1597,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 8.56,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-26",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2035Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q3 (pipeline, rumored)",
@@ -1195,7 +1627,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 8.56,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-27",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2035Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q4 (pipeline, rumored)",
@@ -1209,7 +1657,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 8.56,
-      "signed": 0
+      "signed": 0,
+      "id": "crwv-ramp-28",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2035Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      }
     ],
     "spot": {
@@ -1277,7 +1741,7 @@
      "fittedOn": "2024Q1-2026Q2 reported revenue (ten quarters)",
      "basis": "Ten reported quarters retrodicted with rampMult 1: MAPE 8.0%, bias -3.1%. There is no sell-down leg to calibrate — 98% of revenue is take-or-pay and bills on acceptance — so the observed lag between active power and revenue (the 2026Q1-Q2 additions bill over three quarters, >300 MW energised in June 2026 alone) is carried on the tranches directly as rampQtrs 2-3, not as a multiplier. Vintage rates were set so the retrodiction holds: $10.5m/$10m per active MW-yr on 2023-24, $9.5m on 2025, $10m on 2026."
     },
-    "basis": "Quarterly GPU-ramp overlay for CoreWeave (owner-approved playbook §6e, drafted 2026-09-04) — DISPLAY ONLY. 'Active power' and 'contracted power' as reported by the company are critical-IT MW (parity research 10 Sep 2026: the 10-Q lease note tracks Galaxy Helios's critical-IT figures 133/393/525 MW at every filing; the 424B4 counts Core Scientific at its 500/70 MW critical IT, not its 700-840 MW gross; the 4 Aug 2026 Indonesia release says '360 megawatts of contracted IT power'; no filing defines the term) — conversion to IT MW 1.0, range 0.9-1.0; gross is a site attribute (1.36-1.5x at Core Scientific and Galaxy), shown at 1.3x as a display assumption. History from company-reported active power (70 MW Dec-23, >360 Dec-24, 420/470/590/850 MW through 2025, >1 GW Mar-26, 1.5 GW Jun-26; 10-K FY25, 10-Q Q2-26, calls) and AI-cloud revenue by quarter; 2026H2 to the >1.85 GW year-end guide (11 Aug 2026); 2027 to the >3 GW active-by-YE27 framing on the Q2-26 call (Helios 393 MW undelivered, Applied Digital 225 MW, Lancaster, Kenilworth, Core Scientific Dalton/Marble/Muskogee, Chicago); 2028 most of the contracted footprint, the last 300 MW in 2029Q1 (10-Q Note 8: leases not yet commenced begin between 2026 and 2029); 2029 the >1.5 GW of options and LOIs, unsigned (ctr 0.9); 2030 the tracker's rumored pipeline (1.3 GW) — 7.0 GW at 2030Q4 against the company's >=8 GW objective, the gap left unmodelled. Rates per active MW-yr by vintage: 2023-24 $10.5-10m (H100-era hyperscaler contracts), 2025 $9.5m, 2026 $10m (exit-2026 ARR $18.5-19.5bn on >1.85 GW), then the evidence-weighted path from the pricing-trajectory research of 8 Sep 2026: 2027 $11.5m (>75% of exit-27 pre-sold at pre-July prices; the >$30bn exit-27 guide back-solves to $9.5-12m), 2028 $13.5m, 2029 $14.5m, 2030 $15m (the July-2026 ~25% list step, capped by the 5-yr Rubin evidence per critical-IT MW: SemiAnalysis VR 5-yr cost-plus floor $4.92/GPU-hr x 250 = $10.8m, Nscale-Anthropic $12.4-16.3m depending on whether its 460 MW is rack or IT power, 5-yr GB300 ~$14m; no basis haircut — the earlier '~20% IT-to-gross' reading was dropped on 10 Sep 2026). The cohort on these rates reproduces exit-27 ~$31bn, FY27 $25.5bn vs street $26.5bn, FY28 $42.5bn vs street $42.0bn. The former 14/15.5/16.5/17.5 ladder is the HIGH case ($157/share), conditional on 5-yr Rubin paper holding >=$16m per IT-MW-yr; the owner's parity thesis (2027-30 vintages at the IREN/Nebius per-IT-MW ladders, $12.5/19/20/21.5m) is the 'parity' scenario ($177/share) and even there the 2030 fleet average lands ~85-90% of the peers' because of the locked 2025-26 book; legacy re-contracting (~360 MW, ~240 MW of it in 2028, at ~1.0x original) is immaterial (+/-$0.3m per MW-yr on the average). GPU density per active MW: Hopper 700, Blackwell 400, Rubin 250, next-gen 200. Contracted share 1.0 on signed capacity (98% take-or-pay), 0.9 on unsigned; spot from 2027 as IREN. Backtest on ten reported quarters: MAPE 8.0%, bias -3.1%.",
+    "basis": "CoreWeave physical build-out model. 'Active power' and 'contracted power' as reported by the company are critical-IT MW (parity research 10 Sep 2026: the 10-Q lease note tracks Galaxy Helios's critical-IT figures 133/393/525 MW at every filing; the 424B4 counts Core Scientific at its 500/70 MW critical IT, not its 700-840 MW gross; the 4 Aug 2026 Indonesia release says '360 megawatts of contracted IT power'; no filing defines the term) — conversion to IT MW 1.0, range 0.9-1.0; gross is a site attribute (1.36-1.5x at Core Scientific and Galaxy), shown at 1.3x as a display assumption. History from company-reported active power (70 MW Dec-23, >360 Dec-24, 420/470/590/850 MW through 2025, >1 GW Mar-26, 1.5 GW Jun-26; 10-K FY25, 10-Q Q2-26, calls) and AI-cloud revenue by quarter; 2026H2 to the >1.85 GW year-end guide (11 Aug 2026); 2027 to the >3 GW active-by-YE27 framing on the Q2-26 call (Helios 393 MW undelivered, Applied Digital 225 MW, Lancaster, Kenilworth, Core Scientific Dalton/Marble/Muskogee, Chicago); 2028 most of the contracted footprint, the last 300 MW in 2029Q1 (10-Q Note 8: leases not yet commenced begin between 2026 and 2029); 2029 the >1.5 GW of options and LOIs, unsigned (ctr 0.9); 2030 the tracker's rumored pipeline (1.3 GW) — 7.0 GW at 2030Q4 against the company's >=8 GW objective, the gap left unmodelled. Research pricing is governed by data.researchPricing: existing/inferred book is held through its modeled term, same-hardware renewals retain the original all-in price, and new capacity uses one shared curve. Unmapped future power tranches from 2027Q1 use new-business assumptions; the legacy-book sensitivity retains the alternative inferred allocation. Sources for a power lease do not prove a customer compute contract. All expiry quarters currently remain estimates. Contracted and spot earning capacity ramp separately; no software attach is added above the all-in curve. The common curve, renewal continuation, generation factors and realized spot rates are house assumptions. Pre-policy reported-period calculations retain their historical calibration. These research valuations are separate from the broad asset engine.",
     "actualsSource": "AI-cloud revenue by quarter: 10-K FY25 and 10-Qs (2024 quarters from prior-year comparatives in the 2025 releases)",
     "consensusSource": "company guidance: Q3-26 revenue $3.45-3.6bn (11 Aug 2026)",
     "chain": [
@@ -1348,83 +1812,87 @@
     "scenarios": [
      {
       "id": "base",
-      "name": "Base",
-      "note": "As modelled.",
+      "name": "Shared pricing base",
+      "note": "Existing book, same-hardware renewals and shared new-business pricing.",
       "d": {}
      },
      {
+      "id": "newdown",
+      "name": "New prices −20%",
+      "note": "Shared new-business prices 20% lower; original existing-book rates protected.",
+      "d": {
+       "newRateMult": 0.8
+      }
+     },
+     {
+      "id": "newup",
+      "name": "New prices +20%",
+      "note": "Shared new-business prices 20% higher; original existing-book rates protected.",
+      "d": {
+       "newRateMult": 1.2
+      }
+     },
+     {
+      "id": "renewdown",
+      "name": "Renewal prices −20%",
+      "note": "Same hardware renews at 80% of its original all-in price.",
+      "d": {
+       "renewalRateMult": 0.8
+      }
+     },
+     {
+      "id": "retention",
+      "name": "80% renewal retention",
+      "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions.",
+      "d": {
+       "renewalRetention": 0.8
+      }
+     },
+     {
+      "id": "longterm",
+      "name": "Five-year new business, lower price",
+      "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years.",
+      "d": {
+       "newTermYears": 5,
+       "newRateMult": 0.85
+      }
+     },
+     {
       "id": "slip",
-      "name": "Slip 2 quarters",
-      "note": "Every tranche beyond 2027Q4 energises and earns two quarters later — the lessor-delay pattern of Q3-25 repeated at scale.",
+      "name": "Delivery slips two quarters",
+      "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar.",
       "d": {
        "slipQtrs": 2,
        "from": 8
       }
      },
      {
-      "id": "flatrate",
-      "name": "Flat vintages",
-      "note": "No repricing: every future tranche prices at the 2026 Blackwell level ($2.85/GPU-hr, $10m per active MW-yr) and spot falls back to 2026 levels.",
-      "d": {
-       "rateCap": 2.85,
-       "spotMult": 0.205
-      }
-     },
-     {
-      "id": "decay",
-      "name": "Price decay -20%",
-      "note": "Compute prices fall: every vintage and spot rate 20% below base.",
-      "d": {
-       "rateMult": 0.8,
-       "spotMult": 0.8
-      }
-     },
-     {
-      "id": "leaseup",
-      "name": "Lease-up at 50%",
-      "note": "The 2029-30 options and pipeline contract at half the modelled share (ctr 0.9 -> 0.45); the downside is funding (no 90% gearing on the spot slice), not revenue.",
-      "d": {
-       "ctrMult": 0.5
-      }
-     },
-     {
-      "id": "parity",
-      "name": "Parity (owner thesis)",
-      "note": "CoreWeave's 2027-30 vintages priced at the IREN/Nebius per-IT-MW ladders and the peers' tenor mix: $12.5 / 19 / 20 / 21.5m per MW-yr (MW basis already common, conversion 1.0). Even here the 2030 fleet average is ~85-90% of the peers' because 1.5 GW of 2025-26 paper at ~$10m runs to 2030-31.",
-      "d": {
-       "vintageMult": {
-        "2027": 1.087,
-        "2028": 1.407,
-        "2029": 1.379,
-        "2030": 1.433
-       }
-      }
-     },
-     {
-      "id": "rubinpergpu",
-      "name": "Rubin priced per GPU",
-      "note": "Unsigned Rubin and next-gen capacity priced per GPU at 5-yr cost-plus ($5.40 / $6.00 per GPU-hr: SemiAnalysis VR 5-yr floor $4.92, Nscale-Anthropic ~$5.85) — $10.5-13.5m per MW-yr, below GB300 paper. The bear for every per-MW ladder; smallest here.",
-      "d": {
-       "genRateCap": {
-        "rubin": 5.4,
-        "next": 6
-       }
-      }
-     },
-     {
       "id": "joint",
       "name": "Joint downside",
-      "note": "The bear case: 50% slower ramp AND flat vintages with spot at 2026 levels AND two-quarter slip AND half lease-up, together.",
+      "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar.",
       "d": {
-       "rampMult": 1.5,
-       "rateCap": 2.85,
-       "spotMult": 0.205,
+       "newRateMult": 0.8,
+       "renewalRateMult": 0.8,
+       "spotMult": 0.7,
        "slipQtrs": 2,
-       "from": 8,
-       "ctrMult": 0.5
+       "from": 8
+      }
+     },
+     {
+      "id": "legacybook",
+      "name": "Legacy book allocations retained",
+      "note": "Keeps the prior inferred customer-price allocations on unmapped future power tranches. Tests contract coverage uncertainty; not a sourced committed-book case.",
+      "d": {
+       "legacyBookAllocation": true
       }
      }
-    ]
+    ],
+    "pricing": {
+     "effectiveQ": "2026Q3",
+     "defaultTermYears": 5,
+     "softwarePremium": 0,
+     "basis": "Existing-book economic coverage is retained but does not establish sourced customer contracts for every physical tranche. New-business contracts use the shared curve and three-year terms; renewals retain hardware and original rates."
+    }
    },
    "page": {
     "asOf": "2026-09-04",
@@ -1492,69 +1960,12 @@
      ],
      "max": 8000
     },
-    "arrLabel": "contracted run-rate",
+    "arrLabel": "Energized contractual run-rate, including assumed renewals and new signings; earning revenue is shown separately.",
     "fromQ": "2024Q1",
     "prints": {},
     "arr": {
-     "cap": "contracted run-rate, $bn — contracted GPUs on active capacity × the contract rate × 8,760 h · CoreWeave reports backlog and RPO, not ARR; this is the model’s equivalent",
-     "folds": [
-      {
-       "summary": [
-        "Unsigned capacity modelled at",
-        "$11.5–15m / active MW-yr"
-       ],
-       "rows": [
-        [
-         "Backlog, 30 June",
-         "$104bn · RPO $103.7bn"
-        ],
-        [
-         "Exit-2026 run-rate, guided",
-         "$18.5–19.5bn on >1.85 GW"
-        ],
-        [
-         "Exit-2027 run-rate, guided",
-         ">$30bn on ~3 GW"
-        ],
-        [
-         "Implied on the book today",
-         "~$10m per active MW-yr"
-        ],
-        [
-         "New SKUs, July 2026",
-         "list prices +25%; Blackwell and Rubin “at new highs”"
-        ]
-       ]
-      },
-      {
-       "summary": [
-        "Fleet blend, Q4 2030",
-        "$4.84 / GPU-hr"
-       ],
-       "rows": [
-        [
-         "Hyperscaler book (Microsoft, OpenAI, Meta)",
-         "~$10m per MW-yr, 5-yr fixed to 2030-31"
-        ],
-        [
-         "2027-30 vintages",
-         "$11.5m → $15m per MW-yr (evidence-weighted; $14-17.5m is the high case)"
-        ],
-        [
-         "÷ GPUs per active MW",
-         "700 Hopper · 400 Blackwell · 250 Rubin · 200 next"
-        ],
-        [
-         "10% of 2029-30 capacity at spot",
-         "$35m / MW-yr"
-        ],
-        [
-         "Contracted share of unsigned tranches",
-         "90%"
-        ]
-       ]
-      }
-     ]
+     "cap": "Annualized earned revenue is split into existing book (including estimates), assumed renewals, assumed new contracts and spot. Full-capacity contracted run-rate is a separate measure.",
+     "folds": []
     },
     "tiles": [
      [
@@ -1642,75 +2053,9 @@
      "total": "≈ $37bn",
      "cap": "2026 bridge · $bn"
     },
-    "steady": {
-     "steps": [
-      [
-       "Revenue",
-       14,
-       "total"
-      ],
-      [
-       "Running costs incl. rent",
-       -5.6,
-       "d"
-      ],
-      [
-       "Cash profit",
-       8.4,
-       "sub"
-      ],
-      [
-       "GPU refresh + spares",
-       -5.53,
-       "d"
-      ],
-      [
-       "Tax 21%",
-       -0.81,
-       "d"
-      ],
-      [
-       "Owner keeps",
-       2.06,
-       "total"
-      ]
-     ],
-     "stepsMax": 16,
-     "footer": "$2.06m today · market +6%/yr for five years, repriced at renewal: worth $39m = 2.75×",
-     "regimes": [
-      [
-       "Blend: 95% contracted, 5% spot",
-       2.75,
-       "base"
-      ],
-      [
-       "Contracted, 5-yr terms",
-       2.77,
-       ""
-      ],
-      [
-       "Spot only, 13% discount",
-       2.53,
-       ""
-      ],
-      [
-       "Flat $/MW, no density pricing",
-       1.83,
-       ""
-      ],
-      [
-       "Mature contracts at 70% EBITDA",
-       3.65,
-       ""
-      ]
-     ],
-     "regimesMax": 3.6,
-     "basis": "per active MW (= critical IT MW): $14m revenue (between the 2028 and 2029 vintages; the 2030 fleet average is $13.3m), 60% EBITDA after rent and power (reported 57-59%; mature contracts ~70%), GPUs + ancillaries $33m, no shell (leased), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 5-yr renewals, spot at 13%; 95/5 blend"
-    },
     "finance": {
      "M": 0.57,
      "W": 0.105,
-     "MULT": 2.75,
      "SH0": 608.5,
      "EQ_SHARE": 0.1,
      "EQ_PX": 90,
@@ -1758,7 +2103,11 @@
         "amt": 4.85
        }
       ],
-      "basis": "weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $9.7bn at 30-Jun-26 (10-Q) is the opening balance, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32)"
+      "basis": "weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $9.7bn at 30-Jun-26 (10-Q) is the opening balance, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "creditTiming": {
+       "mode": "final-quarters",
+       "quarters": 4
+      }
      },
      "cover": {
       "ctrPre": 0.42,
@@ -1805,9 +2154,9 @@
       "<b>Vera Rubin from Q4-27.</b> Meta’s $21bn order and Jane Street’s $6bn commitment are the first Vera Rubin deployments; CoreWeave took delivery of the first VR NVL72 rack in June 2026.<span class=\"src\">8-K 9 Apr 2026 · 8-K 15 Apr 2026</span>"
      ],
      [
-      "<b>Backlog, not ARR.</b> CoreWeave reports revenue backlog — RPO plus other committed amounts — $104bn at 30 June, 41% recognised within 24 months, >$25bn more signed in early Q3. The chart converts the same contracts into a run-rate on active capacity.<span class=\"src\">Q2-26 10-Q · 11 Aug call</span>",
-      "<b>Tenor sets the price, and CoreWeave sells the cheapest tenor.</b> The same Blackwell megawatt clears at $9.7–16.5m on 5-year paper, $20–25m on 1–3 years and $40–50m on 3–6 months. 98% of CoreWeave’s revenue is 5-year fixed take-or-pay, priced cost-plus to a target margin, so its average per MW grows ~20% from 2027 to 2030 against +65% on the owner-operator pages, even after the July +25% list step. Its ~$10m 2023–26 paper is locked to 2030–31 and is still 23% of the 2030 fleet.<span class=\"src\">pricing-trajectory research, 8 Sep 2026 · Q2-26 call · 10-K</span>",
-      "<b>Signed vs contracted.</b> Signed run-rate reaches ~$44bn by early 2029 when the 4.2 GW contracted footprint is active. Everything after is options, LOIs and pipeline the model assumes signs 5-year take-or-pay at $14.5–15m per MW as it energises, 10% kept for spot. The owner’s hypothesis that new-generation pricing lifts the average faster is carried as the high case: $157 a share on the old $14–17.5m ladder.<span class=\"src\">90% of unsigned capacity contracted · research 8 Sep 2026</span>"
+      "<b>Contract cohorts.</b> Existing/inferred book keeps its original all-in rate until a disclosed or estimated expiry. Expiry ends signed coverage; continuation becomes an assumed renewal. New capacity uses one shared house curve.",
+      "<b>Compare matching measures.</b> Annualized earning contracted revenue divided by earning contracted IT MW measures contract yield. Total annualized revenue divided by all earning IT MW includes spot. Neither denominator should be paired with full energized-capacity ARR.",
+      "<b>Evidence.</b> Every tranche records price, commitment and expiry provenance. An inferred allocation is not a verified contract. New prices, zero software premium and 100% same-hardware renewal continuation are explicit assumptions."
      ],
      [
       "<b>Success-based capex.</b> Contracted revenue more than covers capex within the contract term; each deployment is financed by a self-amortising delayed-draw term loan plus prepayments. DDTL 4.0 ($8.5bn, SOFR+225 / 5.9% fixed, non-recourse, A3) advances 90% of cost; DDTL 5.5 ($2.6bn, SOFR+550) finances 3-year contracts.<span class=\"src\">8-Ks 30 Mar, 15 May, 7 Aug 2026</span>",
@@ -1815,19 +2164,35 @@
       "<b>The catch:</b> prepayments are 15–25% of contract value and lenders advance 90% only against signed take-or-pay. Unsigned capacity needs ~$16.5m of equity per MW — or, as in 2025, the NVIDIA backstop and equity placements ($2bn at $87.20, $1bn at $109).<span class=\"src\">424B4 · 8-Ks 23 Jan, 15 Apr 2026</span>"
      ],
      [
-      "<b>Rent is the cost.</b> Adjusted EBITDA margin 56–59% after rent, power and data-centre staff (the quarterly table runs at 57%); management puts some scaled contracts in a ~70% zone, and the per-MW economics use 60%. Core Scientific charges ~$120/kW-month ($1.4m per MW-yr), Applied Digital ~$150 ($1.8m).<span class=\"src\">Q2-26 release · lessor filings</span>",
-      "<b>Capex is $30–33m per active MW and rising.</b> Management capex ÷ active MW added gives $30m for FY25 and $25m for H1-26; component inflation is passed through in contract pricing since Q1-26.<span class=\"src\">10-K FY25 · Q1-26 and Q2-26 calls</span>",
-      "<b>Maintenance, not replacement.</b> Refresh as a tray swap at ~55% of GPU cost every four years plus 3%/yr spares: $5.5m per MW-yr on $33m of silicon. A tenant keeps $2m of every $14m today; the multiple is what the market’s +6%/yr does to that over five years.<span class=\"src\">model · peer 10-Ks</span>"
+      "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
+      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption."
      ],
      [
-      "<b>Some equity, not none.</b> $3bn of placements in 2026 against $37bn of capex. Base: 10% of the 2027–30 build plus the residual the flywheel cannot cover, at an assumed $90 — the bridge shows the count; the summary table shows the quarters.<span class=\"src\">8-Ks · 11 Aug call</span>",
-      "<b>The multiple is the swing.</b> At $14m per MW and 60% after rent, $1 of run-rate is worth ~2.75× — well under IREN’s 4.06× because the tenant pays rent and earns half the revenue per MW on the same silicon. Signed contracts never escalate; they reprice when they end.<span class=\"src\">contracted 5-yr at 10.5% · spot at 13%</span>",
-      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> A six-year book flatters CoreWeave’s earnings relative to IREN’s five. Pick your multiple.<span class=\"src\">after the raise</span>"
+      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
+      "<b>Separate clocks.</b> Model policy revision is dated 15 September 2026; financial disclosures and reference share prices retain their original dates. This is not a refreshed market quotation."
      ]
     ],
     "footer": {
      "sources": "Q2-26 10-Q (filed 12 Aug 2026), Q1-26 10-Q, FY25 10-K (2 Mar 2026), IPO 424B4; 8-Ks for DDTL 3.0/4.0/5.0/5.5, both convertible issues, the senior notes, the NVIDIA and Jane Street placements, the OpenAI, Meta and NVIDIA order forms; FactSet corrected transcripts Q1-25 to Q2-26 (IR CDN); Core Scientific, Applied Digital and Galaxy filings for lease terms; Epoch AI satellite site assessments; SemiAnalysis ClusterMAX and public GPU index.",
-     "model": "Compute/Value tracker, CoreWeave ramp drafted 4 Sep 2026 by the §6e playbook. Ramp: company-reported active power as billing IT MW; 2026 to the >1.85 GW guide, 2027 to >3 GW, 2028 the 4.2 GW contracted footprint, 2029 options and LOIs, 2030 rumored pipeline to 7 GW; rates per active MW-yr $10m on the signed book rising to $17.5m on 2030 vintages, 10% of unsigned capacity at $35m spot, 90% contracted. Capex per active MW: $30m Blackwell, +10% on 2027 orders, $38m Rubin, $45m next-gen; no shell — every site is leased with rent inside the 60% EBITDA margin. Steady-state: $14m revenue per active MW-yr, 60% EBITDA, $33m GPUs, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 5-yr renewals, spot at 13%; refresh 55% of GPU cost every four years plus 3%/yr; 10% of the 2027–30 build in equity at $90; operating cash funds the build first, prepayments next, debt within lenders’ cover, equity for the rest. Honest-base items: prepayments credited back in the final year of each contract with the balance owed at 2030 deducted at PV; the $6.6bn of converts as equity at the model’s 2030 price with capped calls netted; restricted cash counted. Value = 2030 EV less net debt ex converts and prepayments owed, discounted to today, over the diluted count."
+     "model": "Shared pricing and contract-cohort model. Existing commitments, estimated coverage, same-hardware renewals and new business are distinguished. Pricing, expiry and continuity assumptions are exposed with their evidence. Company financing and capex retain the dated research snapshot."
+    },
+    "modelAsOf": "2026-09-15",
+    "steadyInputs": {
+     "M": 0.6,
+     "gpu": 33,
+     "shell": 0,
+     "shellLife": 25,
+     "swap": 0.55,
+     "life": 4,
+     "fail": 0.03,
+     "tax": 0.21,
+     "W": 0.105,
+     "g": 0.06,
+     "gY": 5,
+     "term": 3,
+     "spotW": 0.025,
+     "H": 60,
+     "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
     }
    }
   },
@@ -2209,7 +2574,23 @@
       "ctr": 0.5,
       "rate": 0.98,
       "signed": 0.5,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-01",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2026Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Paris · Iceland · Kansas City (H200)",
@@ -2224,7 +2605,23 @@
       "ctr": 0.8,
       "rate": 1.47,
       "signed": 0.8,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-02",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2027Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Mäntsälä expansion a (B200)",
@@ -2239,7 +2636,23 @@
       "ctr": 0.9,
       "rate": 2.57,
       "signed": 0.9,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-03",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2027Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Mäntsälä expansion b (B300)",
@@ -2254,7 +2667,23 @@
       "ctr": 0.9,
       "rate": 2.57,
       "signed": 0.9,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-04",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2027Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Vineland tranche 1 · Microsoft GB300 (Nov-25)",
@@ -2269,7 +2698,23 @@
       "ctr": 1,
       "rate": 2.57,
       "signed": 1,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-05",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2030Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Israel · UK Longcross (B200/B300)",
@@ -2284,7 +2729,23 @@
       "ctr": 0.9,
       "rate": 2.57,
       "signed": 0.9,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-06",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2028Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Vineland tranches 2-3 · Microsoft",
@@ -2299,7 +2760,23 @@
       "ctr": 1,
       "rate": 3.57,
       "signed": 1,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-07",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Vineland tranches 4-5 · Microsoft",
@@ -2314,7 +2791,23 @@
       "ctr": 1,
       "rate": 3.57,
       "signed": 1,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-08",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Kansas City · Meta #1 clusters",
@@ -2329,7 +2822,23 @@
       "ctr": 1,
       "rate": 3.57,
       "signed": 1,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-09",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Vineland tranches 6-9 · Microsoft (all delivered Aug-26)",
@@ -2344,7 +2853,23 @@
       "ctr": 1,
       "rate": 3.57,
       "signed": 1,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-10",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Q3-26 step-up: UK 65, Israel 80, Estonia 22, Bethune (FR)",
@@ -2359,7 +2884,23 @@
       "ctr": 0.9,
       "rate": 3.57,
       "signed": 0.5,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-11",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2028Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Q4-26: Bethune, Spain, Minnesota, Alabama first halls",
@@ -2374,7 +2915,23 @@
       "ctr": 0.9,
       "rate": 3.57,
       "signed": 0.4,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-12",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2029Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Lappeenranta first halls · Meta #2 Vera Rubin",
@@ -2389,7 +2946,23 @@
       "ctr": 1,
       "rate": 8.22,
       "signed": 1,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-13",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Alabama phase 1",
@@ -2404,7 +2977,25 @@
       "ctr": 0.9,
       "rate": 8.22,
       "signed": 0.5,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-14",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2029Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Independence MO phase 1 (250 MW, Oct-27)",
@@ -2419,7 +3010,25 @@
       "ctr": 0.9,
       "rate": 8.22,
       "signed": 0.4,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-15",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2030Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Pennsylvania phase 1 (250-300 MW by YE27)",
@@ -2434,7 +3043,25 @@
       "ctr": 0.9,
       "rate": 8.22,
       "signed": 0.4,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-16",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2030Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Bethune to 240 · Vineland phase 2",
@@ -2449,7 +3076,25 @@
       "ctr": 0.9,
       "rate": 8.22,
       "signed": 0.4,
-      "shellPerMW": 0
+      "shellPerMW": 0,
+      "id": "nbis-ramp-17",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2029Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract.",
+       "signedShare": 0,
+       "allocationBasis": "unmapped-future"
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2028 Q1 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
@@ -2464,7 +3109,23 @@
       "ctr": 0.9,
       "rate": 8.68,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-18",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2030Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2028 Q2 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
@@ -2479,7 +3140,23 @@
       "ctr": 0.9,
       "rate": 8.68,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-19",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2030Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2028 Q3 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
@@ -2494,7 +3171,23 @@
       "ctr": 0.9,
       "rate": 8.68,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-20",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2030Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2028 Q4 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
@@ -2509,7 +3202,23 @@
       "ctr": 0.9,
       "rate": 8.68,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-21",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q1 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
@@ -2524,7 +3233,23 @@
       "ctr": 0.9,
       "rate": 9.13,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-22",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2031Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q2 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
@@ -2539,7 +3264,23 @@
       "ctr": 0.9,
       "rate": 9.13,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-23",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q3 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
@@ -2554,7 +3295,23 @@
       "ctr": 0.9,
       "rate": 9.13,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-24",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2031Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2029 Q4 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
@@ -2569,7 +3326,23 @@
       "ctr": 0.9,
       "rate": 9.13,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-25",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2032Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q1 (to the 5 GW contracted book)",
@@ -2584,7 +3357,23 @@
       "ctr": 0.9,
       "rate": 11.99,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-26",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2032Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q2 (to the 5 GW contracted book)",
@@ -2599,7 +3388,23 @@
       "ctr": 0.9,
       "rate": 11.99,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-27",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2032Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q3 (to the 5 GW contracted book)",
@@ -2614,7 +3419,23 @@
       "ctr": 0.9,
       "rate": 11.99,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-28",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2032Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 Q4 (to the 5 GW contracted book)",
@@ -2629,7 +3450,23 @@
       "ctr": 0.9,
       "rate": 11.99,
       "signed": 0,
-      "shellPerMW": 8
+      "shellPerMW": 8,
+      "id": "nbis-ramp-29",
+      "contract": {
+       "termYears": 2,
+       "endQ": "2033Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      }
     ],
     "spot": {
@@ -2707,7 +3544,7 @@
      "fittedOn": "2024Q3-2026Q2 reported AI-cloud revenue (eight quarters)",
      "basis": "Eight reported quarters retrodicted with rampMult 1: errors -1% to +20% from 2024Q4 on (the first quarter, 2024Q3, is a partial and misses by half). The lag between connected power and revenue is 6-12 weeks per management, carried as rampQtrs 2. Vintage rates were set so the retrodiction holds: $6m per MW-yr on the 2024 on-demand fleet, $9m on 2025, $12.5m on 2026."
     },
-    "basis": "Quarterly GPU-ramp overlay for Nebius (owner-approved playbook §6e, drafted 2026-09-04) — DISPLAY ONLY. Nebius reports contracted, connected and active power; active/connected MW are read as billing IT MW. History from the letters (~25 MW connected end-2024; ~170 MW active end-2025 against a 100 MW target; Microsoft Vineland tranches from Nov-25, all nine delivered by Aug-26; Finland 75 MW complete early 2026) and Nebius AI-cloud segment revenue by quarter; 2026H2 the guided step-up (800 MW–1 GW connected by year-end; UK 65 MW, Israel 80, Estonia 22, Bethune, Meta #1 clusters); 2027 the owned greenfields (Lappeenranta first halls with Meta #2 Vera Rubin from early 2027, Alabama, Independence MO phase 1 250 MW by Oct-27, Pennsylvania 250-300 MW by YE27, Bethune to 240, Vineland phase 2); 2028-30 the 5 GW contracted book online over 3-3.5 years (Q2-26 call), ~1 GW a year of owned campuses (Missouri to 1.1 GW by Dec-29, Pennsylvania ~300 MW/yr) — 4.7 GW at 2030Q4. Rates per MW-yr by vintage: 2024 $6m (on-demand Hopper), 2025 $9m, 2026 $12.5m (the '$12m 2026 base' on the Q2-26 letter chart; Microsoft $17.4bn/5yr on ~250 MW ≈ $14m), 2027 $18m, 2028 $19m, 2029 $20m, 2030 $21m (Q2-26 landmark deals at $20-25m per MW, 1-3 yr; short-term $40-50m). Owned sites (Finland, Missouri, Pennsylvania, Alabama, >75% of contracted power) carry $8m shell per MW; co-location sites none. Density per MW: Hopper 700, Blackwell 400, Rubin 250, next-gen 200. Contracted share 1.0 on Microsoft/Meta tranches, 0.9 on the rest; spot from 2027 as IREN. Backtest on eight reported quarters: MAPE ~13% excluding the first partial quarter.",
+    "basis": "Nebius physical build-out model. Nebius reports contracted, connected and active power; active/connected MW are read as billing IT MW. History from the letters (~25 MW connected end-2024; ~170 MW active end-2025 against a 100 MW target; Microsoft Vineland tranches from Nov-25, all nine delivered by Aug-26; Finland 75 MW complete early 2026) and Nebius AI-cloud segment revenue by quarter; 2026H2 the guided step-up (800 MW–1 GW connected by year-end; UK 65 MW, Israel 80, Estonia 22, Bethune, Meta #1 clusters); 2027 the owned greenfields (Lappeenranta first halls with Meta #2 Vera Rubin from early 2027, Alabama, Independence MO phase 1 250 MW by Oct-27, Pennsylvania 250-300 MW by YE27, Bethune to 240, Vineland phase 2); 2028-30 the 5 GW contracted book online over 3-3.5 years (Q2-26 call), ~1 GW a year of owned campuses (Missouri to 1.1 GW by Dec-29, Pennsylvania ~300 MW/yr) — 4.7 GW at 2030Q4. Research pricing is governed by data.researchPricing: existing/inferred book is held through its modeled term, same-hardware renewals retain the original all-in price, and new capacity uses one shared curve. Unmapped future power tranches from 2027Q1 use new-business assumptions; the legacy-book sensitivity retains the alternative inferred allocation. Sources for a power lease do not prove a customer compute contract. All expiry quarters currently remain estimates. Contracted and spot earning capacity ramp separately; no software attach is added above the all-in curve. The common curve, renewal continuation, generation factors and realized spot rates are house assumptions. Pre-policy reported-period calculations retain their historical calibration. These research valuations are separate from the broad asset engine. Owned campus shell costs and the owned/leased mix remain company-specific.",
     "actualsSource": "Nebius AI-cloud segment revenue by quarter: 20-F FY25 and the Q3-24 to Q2-26 results releases (restated ex-Toloka)",
     "consensusSource": "Q3-26 $907m (TipRanks, 25 Aug 2026); Q4-26 as the residual of the FY26 street mean $3.34bn (stockanalysis.com, 17 analysts, 26 Aug 2026) after reported H1 and Q3; 2027 quarters = the FY27 street mean $11.97bn spread on a rising quarterly shape (2.30/2.75/3.20/3.72bn)",
     "chain": [
@@ -2778,70 +3615,87 @@
     "scenarios": [
      {
       "id": "base",
-      "name": "Base",
-      "note": "As modelled.",
+      "name": "Shared pricing base",
+      "note": "Existing book, same-hardware renewals and shared new-business pricing.",
       "d": {}
      },
      {
+      "id": "newdown",
+      "name": "New prices −20%",
+      "note": "Shared new-business prices 20% lower; original existing-book rates protected.",
+      "d": {
+       "newRateMult": 0.8
+      }
+     },
+     {
+      "id": "newup",
+      "name": "New prices +20%",
+      "note": "Shared new-business prices 20% higher; original existing-book rates protected.",
+      "d": {
+       "newRateMult": 1.2
+      }
+     },
+     {
+      "id": "renewdown",
+      "name": "Renewal prices −20%",
+      "note": "Same hardware renews at 80% of its original all-in price.",
+      "d": {
+       "renewalRateMult": 0.8
+      }
+     },
+     {
+      "id": "retention",
+      "name": "80% renewal retention",
+      "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions.",
+      "d": {
+       "renewalRetention": 0.8
+      }
+     },
+     {
+      "id": "longterm",
+      "name": "Five-year new business, lower price",
+      "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years.",
+      "d": {
+       "newTermYears": 5,
+       "newRateMult": 0.85
+      }
+     },
+     {
       "id": "slip",
-      "name": "Slip 2 quarters",
-      "note": "Every tranche beyond 2027Q4 energises and earns two quarters later — the greenfields (Missouri, Pennsylvania) run a half-year late.",
+      "name": "Delivery slips two quarters",
+      "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar.",
       "d": {
        "slipQtrs": 2,
        "from": 8
       }
      },
      {
-      "id": "flatrate",
-      "name": "Flat vintages",
-      "note": "No repricing: every future tranche prices at the 2026 Blackwell level ($3.57/GPU-hr, $12.5m per MW-yr) and spot falls back to 2026 levels.",
-      "d": {
-       "rateCap": 3.57,
-       "spotMult": 0.205
-      }
-     },
-     {
-      "id": "decay",
-      "name": "Price decay -20%",
-      "note": "Compute prices fall: every vintage and spot rate 20% below base.",
-      "d": {
-       "rateMult": 0.8,
-       "spotMult": 0.8
-      }
-     },
-     {
-      "id": "leaseup",
-      "name": "Lease-up at 50%",
-      "note": "Unsigned owned capacity contracts at half the modelled share (ctr 0.9 -> 0.45); the downside is funding (no prepayment, no 90% gearing on the spot slice), not revenue.",
-      "d": {
-       "ctrMult": 0.5
-      }
-     },
-     {
-      "id": "rubinpergpu",
-      "name": "Rubin priced per GPU",
-      "note": "Unsigned Rubin and next-gen capacity priced per GPU at 5-yr cost-plus ($5.40 / $6.00 per GPU-hr) — $10.5-13.5m per MW-yr against the $19-21m ladder. Signed Meta Rubin tranches keep their contract rate.",
-      "d": {
-       "genRateCap": {
-        "rubin": 5.4,
-        "next": 6
-       }
-      }
-     },
-     {
       "id": "joint",
       "name": "Joint downside",
-      "note": "The bear case: 50% slower ramp AND flat vintages with spot at 2026 levels AND two-quarter slip AND half lease-up, together.",
+      "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar.",
       "d": {
-       "rampMult": 1.5,
-       "rateCap": 3.57,
-       "spotMult": 0.205,
+       "newRateMult": 0.8,
+       "renewalRateMult": 0.8,
+       "spotMult": 0.7,
        "slipQtrs": 2,
-       "from": 8,
-       "ctrMult": 0.5
+       "from": 8
+      }
+     },
+     {
+      "id": "legacybook",
+      "name": "Legacy book allocations retained",
+      "note": "Keeps the prior inferred customer-price allocations on unmapped future power tranches. Tests contract coverage uncertainty; not a sourced committed-book case.",
+      "d": {
+       "legacyBookAllocation": true
       }
      }
-    ]
+    ],
+    "pricing": {
+     "effectiveQ": "2026Q3",
+     "defaultTermYears": 2,
+     "softwarePremium": 0,
+     "basis": "Existing-book economic coverage is retained but does not establish sourced customer contracts for every physical tranche. New-business contracts use the shared curve and three-year terms; renewals retain hardware and original rates."
+    }
    },
    "page": {
     "asOf": "2026-09-04",
@@ -2909,69 +3763,12 @@
      ],
      "max": 5000
     },
-    "arrLabel": "contracted run-rate",
+    "arrLabel": "Energized contractual run-rate, including assumed renewals and new signings; earning revenue is shown separately.",
     "fromQ": "2024Q3",
     "prints": {},
     "arr": {
-     "cap": "contracted run-rate, $bn — contracted GPUs on connected capacity × the contract rate × 8,760 h · Nebius reports ARR as the last month’s AI-cloud revenue × 12 ($1.25bn Dec-25; $7–9bn guided for Dec-26)",
-     "folds": [
-      {
-       "summary": [
-        "Unsigned capacity modelled at",
-        "$18–21m / MW-yr"
-       ],
-       "rows": [
-        [
-         "2026 installed base (Q2-26 letter)",
-         "~$12m per MW-yr"
-        ],
-        [
-         "Q2-26 landmark deals",
-         "$20–25m per MW-yr, 1–3 yr"
-        ],
-        [
-         "Short-term auction, Q3-26",
-         "$40–50m per MW-yr, 3–6 months"
-        ],
-        [
-         "Microsoft, Vineland",
-         "$17.4bn / 5 yr — ~$14m per MW at 250 MW"
-        ],
-        [
-         "Meta #2, Vera Rubin",
-         "$12bn firm / 5 yr from early 2027, +$15bn backstop"
-        ]
-       ]
-      },
-      {
-       "summary": [
-        "Fleet blend, Q4 2030",
-        "$8.32 / GPU-hr"
-       ],
-       "rows": [
-        [
-         "2025-26 vintages",
-         "$9m → $12.5m per MW-yr"
-        ],
-        [
-         "2027-30 vintages",
-         "$18m → $21m per MW-yr"
-        ],
-        [
-         "÷ GPUs per MW",
-         "700 Hopper · 400 Blackwell · 250 Rubin · 200 next"
-        ],
-        [
-         "10% of unsigned capacity at spot",
-         "$35m / MW-yr"
-        ],
-        [
-         "Contracted share of unsigned tranches",
-         "90%"
-        ]
-       ]
-      }
-     ]
+     "cap": "Annualized earned revenue is split into existing book (including estimates), assumed renewals, assumed new contracts and spot. Full-capacity contracted run-rate is a separate measure.",
+     "folds": []
     },
     "tiles": [
      [
@@ -3069,80 +3866,9 @@
      "total": "≈ $22.5bn",
      "cap": "2026 bridge · $bn"
     },
-    "steady": {
-     "steps": [
-      [
-       "Revenue",
-       20,
-       "total"
-      ],
-      [
-       "Running costs",
-       -9,
-       "d"
-      ],
-      [
-       "Cash profit",
-       11,
-       "sub"
-      ],
-      [
-       "GPU refresh + spares",
-       -5.03,
-       "d"
-      ],
-      [
-       "Shell 25-yr",
-       -0.24,
-       "d"
-      ],
-      [
-       "Tax 21%",
-       -1.39,
-       "d"
-      ],
-      [
-       "Owner keeps",
-       4.34,
-       "total"
-      ]
-     ],
-     "stepsMax": 22,
-     "footer": "$4.34m today · market +6%/yr for five years, repriced at renewal: worth $67m = 3.34×",
-     "regimes": [
-      [
-       "Blend: 90% contracted, 10% short-term",
-       3.34,
-       "base"
-      ],
-      [
-       "Contracted, 2-yr terms",
-       3.4,
-       ""
-      ],
-      [
-       "Short-term only, 13% discount",
-       2.83,
-       ""
-      ],
-      [
-       "Flat $/MW, no density pricing",
-       2.31,
-       ""
-      ],
-      [
-       "Owner-operator margin 65%",
-       4.27,
-       ""
-      ]
-     ],
-     "regimesMax": 4.4,
-     "basis": "per IT MW: $20m revenue (the 2029 vintage; the ramp's 2027 vintage is $18m and the 2030 fleet average $18.0m; $20m is the low end of Q2-26 signings), 55% EBITDA (AI cloud 50% in Q2-26; a flat 55% from 2026H2 in the quarterly table overstates the next four quarters by ~$1/share against the ~40% group guide, and is kept for simplicity), GPUs + ancillaries $30m, shell $6m blended (75% owned at $8m), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals (1-3 yr mid-term book), short-term at 13%; 90/10 blend"
-    },
     "finance": {
      "M": 0.55,
      "W": 0.105,
-     "MULT": 3.34,
      "SH0": 321.7,
      "EQ_SHARE": 0.1,
      "EQ_PX": 250,
@@ -3216,7 +3942,11 @@
         "amt": 5.98
        }
       ],
-      "basis": "~70% of Q2-26 deals carried prepayments covering 50-60% of associated capex (Q2-26 letter) → 45% of GPU cost on contracted capacity; Microsoft prepaid $6.96bn of $17.39bn (40% of TCV, 20-F), credited through reduced monthly instalments from the start of each tranche → credited pro rata from month 1 over 2 years on mid-term deals (termQ 8, startQ 0); deferred revenue $5.98bn at 30-Jun-26 is the opening balance, credited over 20 quarters (Microsoft-weighted)"
+      "basis": "~70% of Q2-26 deals carried prepayments covering 50-60% of associated capex (Q2-26 letter) → 45% of GPU cost on contracted capacity; Microsoft prepaid $6.96bn of $17.39bn (40% of TCV, 20-F), credited through reduced monthly instalments from the start of each tranche → credited pro rata from month 1 over 2 years on mid-term deals (termQ 8, startQ 0); deferred revenue $5.98bn at 30-Jun-26 is the opening balance, credited over 20 quarters (Microsoft-weighted) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: first eight service quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "creditTiming": {
+       "mode": "first-quarters",
+       "quarters": 8
+      }
      },
      "cover": {
       "ctrPre": 0.45,
@@ -3262,9 +3992,9 @@
       "<b>Vera Rubin from early 2027.</b> Meta’s $12bn dedicated capacity is one of the first large-scale Vera Rubin deployments, delivery H1-27; the $15bn backstop lets Nebius sell that capacity to others with Meta taking what is unsold.<span class=\"src\">6-K 16 Mar 2026 · Q1-26 letter</span>"
      ],
      [
-      "<b>ARR on Nebius’s definition.</b> Last month’s AI-cloud revenue × 12: $1.25bn at Dec-25 (guide $0.9–1.1bn), $7–9bn guided for Dec-26. RPO $37.5bn at 30 June, 36% within 24 months; >$40bn of commitments in total. The chart is the model’s contracted run-rate on connected capacity, which runs ahead of the ARR print by one to two quarters.<span class=\"src\">Q2-26 6-K · 12 Aug letter</span>",
-      "<b>The book repriced in a year.</b> 2026 base ~$12m per MW; Q2-26 landmark deals (Reflection, Cohere, a US neolab, a quant firm) at $20–25m on 1–3 yr terms; the first capacity auction cleared 15% above any prior Blackwell price; short-term 3–6 month deals at $40–50m. Older-generation pricing rose >30% in the quarter.<span class=\"src\">Q2-26 letter and call</span>",
-      "<b>Signed vs contracted.</b> Microsoft ($17.4bn), Meta ($2.9bn + $12bn firm) and the 2026 enterprise book are signed; every owned megawatt from 2027 is assumed to sign at $18–21m per MW as it connects, 10% kept for short-term.<span class=\"src\">90% of unsigned capacity contracted</span>"
+      "<b>Contract cohorts.</b> Existing/inferred book keeps its original all-in rate until a disclosed or estimated expiry. Expiry ends signed coverage; continuation becomes an assumed renewal. New capacity uses one shared house curve.",
+      "<b>Compare matching measures.</b> Annualized earning contracted revenue divided by earning contracted IT MW measures contract yield. Total annualized revenue divided by all earning IT MW includes spot. Neither denominator should be paired with full energized-capacity ARR.",
+      "<b>Evidence.</b> Every tranche records price, commitment and expiry provenance. An inferred allocation is not a verified contract. New prices, zero software premium and 100% same-hardware renewal continuation are explicit assumptions."
      ],
      [
       "<b>Prepayments do the funding.</b> ~70% of Q2-26 deals carried prepayments covering 50–60% of capex; >$9bn expected in 2026; Microsoft prepaid $6.96bn of $17.4bn. Deferred revenue $6.0bn at 30 June.<span class=\"src\">Q2-26 letter · 20-F Note on Microsoft</span>",
@@ -3272,19 +4002,35 @@
       "<b>The catch:</b> prepayments and gearing follow signed contracts; the owned greenfields ($8m shell per MW) are built ahead of signing. Unsigned capacity needs ~$19m of equity per MW, and the ATM has 12.3m shares left.<span class=\"src\">funding stack above · Q2-26 6-K</span>"
      ],
      [
-      "<b>Margins are still climbing.</b> AI-cloud adjusted EBITDA margin 19% (Q3-25) → 24% → 45% → 50% (Q2-26) as co-location and lease costs fall as a share of revenue; group guide ~40% for 2026. Owned campuses at Finland-style PUE 1.13 should take it toward the owner-operator 65%.<span class=\"src\">quarterly 6-Ks · Q4-25 call</span>",
-      "<b>Capex is $30m of GPUs per MW plus $8m of shell on owned sites.</b> Management’s split: land and power ~1%, data-centre build 18–20%, GPUs ~80%; 2026 guide $20–25bn (raised from $16–20bn in May); H1-26 spent $8.1bn.<span class=\"src\">Q3-25 call · Q1-26 and Q2-26 letters</span>",
-      "<b>Payback 1 year 10 months</b> on Q2-26 deals (was 2–3 years), on prepayments of 50–60% of capex. Maintenance as a tray swap at 55% of GPU cost every four years plus 3%/yr spares: $5.0m per MW-yr on $30m of silicon.<span class=\"src\">Q2-26 letter · model</span>"
+      "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
+      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption."
      ],
      [
-      "<b>Some equity, not none.</b> $6.9bn of equity-linked capital in 2026 (NVIDIA warrant, ATM) against $20–25bn of capex. Base: 10% of the 2027–30 build plus the residual the flywheel cannot cover, at an assumed $250 — the bridge shows the count.<span class=\"src\">6-Ks · 12 Aug letter</span>",
-      "<b>The multiple is the swing.</b> At $20m per MW and 55% EBITDA, $1 of run-rate is worth ~3.3× — between CoreWeave’s tenant 2.75× and IREN’s owner-operator 4.06×, because Nebius owns most of its shell but pays more for silicon per dollar of revenue on shorter contracts. Signed contracts never escalate; they reprice when they end.<span class=\"src\">contracted 2-yr at 10.5% · short-term at 13%</span>",
-      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> Non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) are added to equity at the tracker’s $5.8bn mark, not to EV. Pick your multiple.<span class=\"src\">after the raise</span>"
+      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
+      "<b>Separate clocks.</b> Model policy revision is dated 15 September 2026; financial disclosures and reference share prices retain their original dates. This is not a refreshed market quotation."
      ]
     ],
     "footer": {
      "sources": "FY25 20-F (filed 30 Apr 2026, with the Meta agreements Ex-4.2/4.3 and Microsoft SOW Ex-4.4/4.5), Q1-26 and Q2-26 6-K interim statements, every shareholder letter Q3-24 to Q2-26 (assets.nebius.com), 6-Ks for the Microsoft, Meta, convertible-note and secured-facility announcements, AGM materials Aug-26; Q1-26 and Q2-26 call transcripts (investing.com, Motley Fool); Vineland Planning Board, City of Independence, Floodlight/Guardian and trade-press site reports; SemiAnalysis ClusterMAX and the public GPU index; Know Your Investments, MVC Investing and Northwise for site-by-site tallies.",
-     "model": "Compute/Value tracker, Nebius ramp drafted 4 Sep 2026 by the §6e playbook. Ramp: connected/active power as billing IT MW; 2026 to the connected guide, 2027 the owned greenfields, 2028-30 the 5 GW contracted book at ~1 GW a year to 4.7 GW; rates $12.5m per MW-yr on 2026 vintages rising to $21m on 2030, 10% of unsigned capacity at $35m spot, 90% contracted. Capex per MW: $30m Blackwell, +10% on 2027 orders, $38m Rubin, $45m next-gen; shell $8m on owned campuses, none on co-location. Steady-state: $20m revenue per MW-yr, 55% EBITDA, $30m GPUs + $6m blended shell, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals, short-term at 13%; refresh 55% of GPU cost every four years plus 3%/yr; 10% of the 2027–30 build in equity at $250; operating cash funds the build first, prepayments next, debt within lenders’ cover, equity for the rest. Honest-base items: prepayments credited pro rata through reduced instalments with the balance owed at 2030 deducted at PV; eight convertible series as equity at the model’s 2030 price (no capped calls); restricted cash counted; non-core stakes at the tracker mark. Value = 2030 EV less net debt ex converts and prepayments owed, plus non-core, discounted to today, over the diluted count."
+     "model": "Shared pricing and contract-cohort model. Existing commitments, estimated coverage, same-hardware renewals and new business are distinguished. Pricing, expiry and continuity assumptions are exposed with their evidence. Company financing and capex retain the dated research snapshot."
+    },
+    "modelAsOf": "2026-09-15",
+    "steadyInputs": {
+     "M": 0.55,
+     "gpu": 30,
+     "shell": 6,
+     "shellLife": 25,
+     "swap": 0.55,
+     "life": 4,
+     "fail": 0.03,
+     "tax": 0.21,
+     "W": 0.105,
+     "g": 0.06,
+     "gY": 5,
+     "term": 3,
+     "spotW": 0.025,
+     "H": 60,
+     "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
     }
    }
   },
@@ -3802,7 +4548,7 @@
    "name": "IREN",
    "ramp": {
     "asOf": "2026-08-18",
-    "basis": "Quarterly GPU-ramp research overlay (owner-approved 8/27/26 post-FY26-print) — DISPLAY ONLY, never a valuation input; the engine is untouched. Tranche schedule reconciled to filings: 480MW/150k-GPU 2026 program and 1,210MW 2027 program COMPANY-DISCLOSED and reaffirmed verbatim 13-Aug-2026; Horizon 1 DELIVERED TO AND ACCEPTED BY MICROSOFT 13-Aug-2026, which confirms first revenue in 2026Q3 as modelled and makes Horizon 1 the only tranche in the book whose acceptance is a fact rather than a schedule; 2028-30 extrapolated at researched build cadence (~200-300MW/qtr, Kiowa revenue pushed to 2029 on SPP queue timing). Vintage rates: IREN's own dated prints anchor the signed book — MSFT $2.91/GPU-hr (8-K 3-Nov-2025: $9.7bn/5yr/200MW-IT, ~76k GB300 at >19k per 50MW Horizon, ~$1.94bn ARR), NVDA $3.10 (8-K 7-May-2026: $3.4bn/5yr, ~$0.7bn ARR on 25k GPUs, 60MW air Blackwell at Childress) and $2.48 on the legacy fleet from IREN's own ARR disclosure. THE UNSIGNED BOOK IS MARKED PER MEGAWATT, at $20.0M per critical IT-MW-yr on 2026-27 vintages, and for 2028+ vintages priced on the CONSTANT-PAYBACK PATH (owner-directed 2026-09-02): each vintage's contract rate is set so that IREN's stated ~2-year payback on GPUs-and-ancillaries (FY26 release fn.3: capex for GPUs and ancillaries / (contracted revenue - direct costs); '>$20m per MW ... around 2 years') still holds on the filed, rising cost of the silicon — GPUs+ancillaries $29M/IT-MW on the Nov-2025 Microsoft/Dell order (8-K 3-Nov-2025; $5.81bn for 200MW IT), +15-20% for 2027 orders (CFO, FY26 call), ~$39-41M for Rubin and ~$45M for next-gen (Morgan Stanley, TrendForce, NVIDIA content-per-GW) — giving $20.0M 2027 -> $20.8M 2028 -> $21.8M 2029 -> $24.0M 2030 per IT-MW-yr (x1.04 / x1.09 / x1.20 on the 2027 base, ~+6%/yr). This replaces a flat +2%/yr that was inconsistent with the company's own economics once capex was put on its real curve: holding price while silicon cost rises would stretch the payback to 3-4 years, which IREN does not guide to ('revenue increases expected to ultimately outpace those increases', CFO). UNCONTRACTED capacity earns REALISED SPOT of $35M/IT-MW-yr from 2027 (spot $11.70/GPU-hr x spotMult by generation; owner-directed 2026-09-02 off the Sep-2026 rate sweep: neocloud HGX B300 on-demand $7.85 = ~$30M/MW at 65% utilisation, CoreWeave GB200 NVL72 $10.50, Nebius \">$40M per MW\" on short-term paper), and the CONTRACTED SHARE of every unsigned tranche is set to 0.90 — ~10% of capacity sells at spot, the owner's settled view of the mix (directed 2026-09-02, NVIDIA cited as the benchmark; set at 0.85 then 0.90 the same day, after an earlier 0.7x cut that took 2030 to 56% spot was reversed). Spot for 2025-26 is unchanged at $2.50/$2.40 (Hopper-era, inside the calibration window); the retrodiction is unaffected (MAPE 11.0195%, verified by running rampBacktest on the old and new ramp). Spot at $35M on a 10% slice with +8%/yr vintage pricing lifts the 2030Q4 run-rate from $45.4bn (pre-2026-09-02) to the figure in the CHANGELOG; contracted share of 2030 revenue ~85% of run-rate. — the LOW end of the band Nebius is signing new capacity at (AIDC 27-Aug-2026: $20-25bn ARR per GW on Q2-26 signings, against a $12bn/GW installed base; SemiAnalysis 18-Aug-2026 has Nebius new deals through 2027 above $20M/MW versus a $12M/MW 2026 base). Air-cooled Childress retrofits hold their existing 13.4% discount to liquid, at $17.3M/IT-MW-yr, since the market prints are for liquid NVL72 SKUs. Pricing PER MEGAWATT rather than per GPU is deliberate: the megawatt is the scarce input, and a flat $/GPU-hr across generations silently prices thirstier silicon cheaper per MW — at a flat $7.50 the 2030 next-gen vintage came out at $10.4M/IT-MW-yr, BELOW the Nov-2025 Microsoft print. CAVEAT, stated not buried: $20M/IT-MW-yr sits ABOVE the SemiAnalysis five-year contract prints (GB300 $15.6-17.0M, VR NVL72 $15.5-16.5M per IT-MW-yr) and at the bottom of the Nebius new-signing band. The two sources disagree; the reconciliation is most likely tenor and attach mix, and this deck takes the Nebius read. Those are market prints for the SILICON, not IREN counterparty contracts: 87.2% of CY2030 revenue carries no signature (only $3.98bn of $31.10bn is covered by contracts signed today). Separately, 70.9% of CY2030 revenue prices off Rubin-class or later silicon — a different cut, and the two must not be conflated. IREN's signed book sits 33-46% below those prints — what it traded for anchor-tenant financing, and the reason the unsigned book is not marked at the signed level. Spot held FLAT from 2027 at $2.40: prior-generation cards recontract at or above prior rates (CoreWeave A100s signed out to 2029), so no decay is applied to installed silicon. A 5% attach for storage, CPU, networking and the managed layer applies to UNSIGNED tranches only. Renewals flat (2023-24 Hopper multi-yr contracts renewed 2026 at identical rates, SemiAnalysis). Contracted GPUs bill 8,760 hr/yr (take-or-pay, IREN ARR convention); uncontracted earn effective spot (headline x ~65% utilisation). Tranche gross MW sums to the ~4.2GW monetised in-window, not the 5.8GW secured-power site list. Nostrum first revenue owner-ruled to 2029Q3 (7/25/26): no disclosed hall schedule; Spanish permitting + first-EU-build cycle inference — skew later, not earlier. FY26 PRINT (27-Aug-2026) RECONCILIATION: gross MW schedule CONFIRMED EXACTLY — company 2026 build is Childress 300 liquid + Childress 50 air + Mackenzie 80 + Prince George 50 = 480MW, and 2027 adds Childress 250 air + Childress 150 liquid + Sweetwater 1 300 + Canal Flats 30 = 730MW for 1,210MW cumulative; both tie to this schedule tranche for tranche. TIMING CORRECTED off 'phased commissioning of air-cooled capacity from Q1 2027 and liquid-cooled capacity from Q4 2027': Childress air 27a pulled to 2027Q1, Horizon 5 and 6 pushed from 2027Q2/Q3 to 2027Q4. Canal Flats added (30MW gross, whole site converting to liquid for GB300). IT DERATE FLAGGED NOT CHANGED: ours is 0.723, company states 0.5GW gross / 0.3GW IT for 2026 and 1.2/0.8 for 2027, i.e. 0.60 and 0.667 — but a one-decimal disclosure admits 0.455-0.778 and 0.600-0.739 respectively, so ours sits INSIDE both bands. Our IT total is at the top of what the disclosure can mean and may be up to ~16% high; it cannot be proven wrong on this data. RATES VALIDATED: the company's own contract-economics chart runs from ~$10m per IT-MW-yr in Nov-25 (ties to the Microsoft print at $9.70m) to ~$17m on 5-year and ~$23m on 3-year contracts today, with recent 3-year signings >$20m and active discussions ~$25m — the $20.0m this deck carries sits between the two tenors and at the floor of recent signings. OUT-OF-SAMPLE: 2026Q2 modelled $66.3m against $70.5m reported, -5.9%, a quarter the 4.4x calibration never saw.",
+    "basis": "IREN physical build-out model: company-disclosed 480 MW gross 2026 program and 1,210 MW cumulative 2027 program. Horizon 1 acceptance by Microsoft anchors first revenue in 2026Q3. Later tranches are schedules; 2028–30 extrapolate the modeled construction cadence. Nostrum first revenue is a permitting/construction inference for 2029Q3; Kiowa timing reflects the modeled power queue. Gross and IT capacity are distinct: the modeled IT conversion is toward the upper end of the rounded company disclosures and requires continued reconciliation. Microsoft and NVIDIA named contract allocations retain their inferred GPU-hour economics and disclosed five-year term; exact calendar expiries remain estimated. Research pricing is governed by data.researchPricing: existing/inferred book is held through its modeled term, same-hardware renewals retain the original all-in price, and new capacity uses one shared curve. Unmapped future power tranches from 2027Q1 use new-business assumptions; the legacy-book sensitivity retains the alternative inferred allocation. Sources for a power lease do not prove a customer compute contract. All expiry quarters currently remain estimates. Contracted and spot earning capacity ramp separately; no software attach is added above the all-in curve. The common curve, renewal continuation, generation factors and realized spot rates are house assumptions. Pre-policy reported-period calculations retain their historical calibration. These research valuations are separate from the broad asset engine.",
     "chain": [
      {
       "id": "secured",
@@ -3897,103 +4643,70 @@
     "scenarios": [
      {
       "id": "base",
-      "name": "Base",
-      "note": "As modelled.",
+      "name": "Shared pricing base",
+      "note": "Existing book, same-hardware renewals and shared new-business pricing.",
       "d": {}
      },
      {
-      "id": "uncal",
-      "name": "Uncalibrated ramp",
-      "note": "The ramp as originally modelled, before the backtest — the path that overstates every reported quarter by a mean +65%. Shown as the upside bound, not as a forecast.",
+      "id": "newdown",
+      "name": "New prices −20%",
+      "note": "Shared new-business prices 20% lower; original existing-book rates protected.",
       "d": {
-       "cal": 1
+       "newRateMult": 0.8
       }
      },
      {
-      "id": "flatrate",
-      "name": "Flat vintages",
-      "note": "No vintage escalation: every future tranche prices at today's signed level ($3.10/GPU-hr) and spot falls back to its 2026 level ($2.40, a 0.205x on the $11.70 base).",
+      "id": "newup",
+      "name": "New prices +20%",
+      "note": "Shared new-business prices 20% higher; original existing-book rates protected.",
       "d": {
-       "rateCap": 3.1,
-       "spotMult": 0.205
+       "newRateMult": 1.2
       }
      },
      {
-      "id": "decay",
-      "name": "Price decay −20%",
-      "note": "Compute prices fall: every vintage and spot rate 20% below base.",
+      "id": "renewdown",
+      "name": "Renewal prices −20%",
+      "note": "Same hardware renews at 80% of its original all-in price.",
       "d": {
-       "rateMult": 0.8,
-       "spotMult": 0.8
+       "renewalRateMult": 0.8
+      }
+     },
+     {
+      "id": "retention",
+      "name": "80% renewal retention",
+      "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions.",
+      "d": {
+       "renewalRetention": 0.8
+      }
+     },
+     {
+      "id": "longterm",
+      "name": "Five-year new business, lower price",
+      "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years.",
+      "d": {
+       "newTermYears": 5,
+       "newRateMult": 0.85
       }
      },
      {
       "id": "slip",
-      "name": "Slip 2 quarters",
-      "note": "Every tranche beyond the disclosed 2027 programme energises and earns two quarters later.",
+      "name": "Delivery slips two quarters",
+      "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar.",
       "d": {
        "slipQtrs": 2,
        "from": 8
       }
      },
      {
-      "id": "leaseup",
-      "name": "Lease-up at 50%",
-      "note": "Uncontracted capacity contracts at half the modelled rate (ctr 0.90 -> 0.45). With realised spot ($35M/MW) above the contract rate ($20M/MW) this LIFTS revenue rather than cutting it — the downside it carries is funding, not revenue: no prepayment and no 90% gearing on the spot slice.",
-      "d": {
-       "ctrMult": 0.5
-      }
-     },
-     {
-      "id": "denselow",
-      "name": "Rubin denser (+18%)",
-      "note": "Datacentre-engineering reading: VR200 rack power and package count give ~279 GPU per IT-MW against a fleet-weighted 236 — the same megawatts carry more silicon. Applied as a uniform +18% to every Rubin tranche, which pushes tranches already at the top of the band (Sweetwater 1 initial, 285/IT-MW) past any defensible density; read it as an envelope, not a per-tranche claim.",
-      "d": {
-       "genDensity": {
-        "rubin": 1.18
-       }
-      }
-     },
-     {
-      "id": "densehigh",
-      "name": "Next-gen thirstier (7.0 kW)",
-      "note": "The base case now carries 6.30 kW per next-gen package. This is the top of the defensible band — 7.0 kW, the Feynman-class reading of a ~1 MW rack — so the same megawatts carry 10% fewer GPUs at an unchanged vintage rate.",
-      "d": {
-       "genDensity": {
-        "next": 0.9
-       }
-      }
-     },
-     {
-      "id": "recontract",
-      "name": "Unsigned book re-prices −15%/yr",
-      "note": "The uncontracted 79% of the 2030 fleet re-prices down 15% a year rather than holding its vintage rate.",
-      "d": {
-       "vintageDecay": 0.15
-      }
-     },
-     {
-      "id": "rubinpergpu",
-      "name": "Rubin priced per GPU",
-      "note": "Unsigned Rubin and next-gen capacity priced per GPU at 5-yr cost-plus ($5.40 / $6.00 per GPU-hr: SemiAnalysis VR 5-yr floor $4.92, Nscale-Anthropic ~$5.85) — $8.4-13.5m per IT MW-yr at IREN's densities against the $20.8-24m constant-payback ladder. The largest single exposure in the three ladders.",
-      "d": {
-       "genRateCap": {
-        "rubin": 5.4,
-        "next": 6
-       }
-      }
-     },
-     {
       "id": "joint",
       "name": "Joint downside",
-      "note": "The bear case: a further 50% slower ramp AND flat vintages with spot back at 2026 levels AND two-quarter slip AND half lease-up, together. Each is individually defensible; the stack is the honest downside.",
+      "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar.",
       "d": {
-       "rampMult": 1.5,
-       "rateCap": 3.1,
-       "spotMult": 0.205,
+       "newRateMult": 0.8,
+       "renewalRateMult": 0.8,
+       "spotMult": 0.7,
        "slipQtrs": 2,
-       "from": 8,
-       "ctrMult": 0.5
+       "from": 8
       }
      }
     ],
@@ -4103,7 +4816,23 @@
       "rampQtrs": 2,
       "ctr": 0.48,
       "rate": 2.48,
-      "signed": 0.48
+      "signed": 0.48,
+      "id": "iren-ramp-01",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2028Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sep-2025 cohort (B300 / B200 / MI350X)",
@@ -4117,7 +4846,23 @@
       "rampQtrs": 3,
       "ctr": 0.48,
       "rate": 2.48,
-      "signed": 0.48
+      "signed": 0.48,
+      "id": "iren-ramp-02",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2028Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Prince George / BC expansion",
@@ -4131,7 +4876,23 @@
       "rampQtrs": 2,
       "ctr": 0.85,
       "rate": 2.72,
-      "signed": 0.85
+      "signed": 0.85,
+      "id": "iren-ramp-03",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2029Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Horizon 1 (Microsoft GB300)",
@@ -4145,7 +4906,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 2.91,
-      "signed": 1
+      "signed": 1,
+      "id": "iren-ramp-04",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://irisenergy.gcs-web.com/news-releases/news-release-details/iren-secures-97bn-ai-cloud-contract-microsoft",
+       "note": "Named Microsoft capacity and five-year term are disclosed. GPU-hour rate is derived. End quarter follows modeled acceptance and is estimated, not a disclosed calendar maturity."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Horizon 2 (Microsoft)",
@@ -4159,7 +4936,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 2.91,
-      "signed": 1
+      "signed": 1,
+      "id": "iren-ramp-05",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://irisenergy.gcs-web.com/news-releases/news-release-details/iren-secures-97bn-ai-cloud-contract-microsoft",
+       "note": "Named Microsoft capacity and five-year term are disclosed. GPU-hour rate is derived. End quarter follows modeled acceptance and is estimated, not a disclosed calendar maturity."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Horizon 3 (Microsoft)",
@@ -4173,7 +4966,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 2.91,
-      "signed": 1
+      "signed": 1,
+      "id": "iren-ramp-06",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://irisenergy.gcs-web.com/news-releases/news-release-details/iren-secures-97bn-ai-cloud-contract-microsoft",
+       "note": "Named Microsoft capacity and five-year term are disclosed. GPU-hour rate is derived. End quarter follows modeled acceptance and is estimated, not a disclosed calendar maturity."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Horizon 4 (Microsoft)",
@@ -4187,7 +4996,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 2.91,
-      "signed": 1
+      "signed": 1,
+      "id": "iren-ramp-07",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://irisenergy.gcs-web.com/news-releases/news-release-details/iren-secures-97bn-ai-cloud-contract-microsoft",
+       "note": "Named Microsoft capacity and five-year term are disclosed. GPU-hour rate is derived. End quarter follows modeled acceptance and is estimated, not a disclosed calendar maturity."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "50k B300 (Mackenzie + Childress air)",
@@ -4201,7 +5026,23 @@
       "rampQtrs": 3,
       "ctr": 0.85,
       "rate": 5.02,
-      "signed": 0.85
+      "signed": 0.85,
+      "id": "iren-ramp-08",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2029Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "NVIDIA 60MW air Blackwell",
@@ -4215,7 +5056,23 @@
       "rampQtrs": 2,
       "ctr": 1,
       "rate": 3.1,
-      "signed": 1
+      "signed": 1,
+      "id": "iren-ramp-09",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Named NVIDIA five-year contract; IT capacity and GPU-hour rate are inferred from the source. End quarter follows modeled service commencement."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Horizon 5",
@@ -4229,7 +5086,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 6.72,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-10",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Horizon 6",
@@ -4243,7 +5116,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 6.72,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-11",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Childress air retrofit 27a",
@@ -4257,7 +5146,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 4.81,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-12",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2030Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Childress air retrofit 27b",
@@ -4271,7 +5176,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 4.94,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-13",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2030Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Childress air retrofit 27c",
@@ -4285,7 +5206,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 4.94,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-14",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sweetwater 1 initial (VR200, 200MW IT)",
@@ -4299,7 +5236,23 @@
       "rampQtrs": 3,
       "ctr": 0.9,
       "rate": 8.01,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-15",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Childress air completion",
@@ -4313,7 +5266,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 5.48,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-16",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sweetwater 1 ramp a",
@@ -4327,7 +5296,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 9.78,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-17",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sweetwater 1 ramp b",
@@ -4341,7 +5326,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 9.78,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-18",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sweetwater 1 ramp c",
@@ -4355,7 +5356,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 9.78,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-19",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Nostrum first halls",
@@ -4369,7 +5386,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 10.25,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-20",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2032Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sweetwater 1 completion a",
@@ -4383,7 +5416,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 11.16,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-21",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2032Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sweetwater 1 completion b",
@@ -4397,7 +5446,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 11.46,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-22",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2032Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Sweetwater 2 phase 1",
@@ -4411,7 +5476,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 11.24,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-23",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2032Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Kiowa phase 1",
@@ -4425,7 +5506,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 11.36,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-24",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2032Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Bundey first halls",
@@ -4439,7 +5536,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 11.61,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-25",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2032Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 wave a (Sweetwater 2)",
@@ -4453,7 +5566,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 15.7,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-26",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2033Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 wave b (Kiowa)",
@@ -4467,7 +5596,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 17.28,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-27",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2033Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 wave c (Sweetwater)",
@@ -4481,7 +5626,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 17.28,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-28",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2033Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "2030 wave d (Bundey / Nostrum)",
@@ -4495,7 +5656,23 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 17.24,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-29",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2033Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      },
      {
       "n": "Canal Flats liquid conversion",
@@ -4509,11 +5686,33 @@
       "rampQtrs": 2,
       "ctr": 0.9,
       "rate": 6.72,
-      "signed": 0
+      "signed": 0,
+      "id": "iren-ramp-30",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
      }
     ],
     "attach": 0,
-    "attachBasis": "Storage, CPU, networking and managed-services revenue earned alongside GPU hours — NOT applied (0). IREN's contract pricing is quoted per IT megawatt on its ARR definition, which by the FY26 release footnote 'includes annualized revenue for storage and ancillaries', and Roberts credits 'what we attach on top in managed services' for the '>$20m per MW' figure; the $20.0M/IT-MW-yr the unsigned book is marked at is therefore already all-in, and an uplift on top double-counts (found by the Sep-2026 rate sweep, adopted 2026-09-02). The 5% previously carried was sized on CoreWeave's disclosure (storage + CPU + networking above $400M ARR against a ~$10.3bn run-rate, plus managed inference >=$250M by exit-2026) and remains the right order of magnitude for what the attach IS — it is simply inside the per-MW price, not additional to it. Signed tranches were never uplifted (their rates are back-solved from all-in contract dollars)."
+    "attachBasis": "Storage, CPU, networking and managed-services revenue earned alongside GPU hours — NOT applied (0). IREN's contract pricing is quoted per IT megawatt on its ARR definition, which by the FY26 release footnote 'includes annualized revenue for storage and ancillaries', and Roberts credits 'what we attach on top in managed services' for the '>$20m per MW' figure; the $20.0M/IT-MW-yr the unsigned book is marked at is therefore already all-in, and an uplift on top double-counts (found by the Sep-2026 rate sweep, adopted 2026-09-02). The 5% previously carried was sized on CoreWeave's disclosure (storage + CPU + networking above $400M ARR against a ~$10.3bn run-rate, plus managed inference >=$250M by exit-2026) and remains the right order of magnitude for what the attach IS — it is simply inside the per-MW price, not additional to it. Signed tranches were never uplifted (their rates are back-solved from all-in contract dollars).",
+    "pricing": {
+     "effectiveQ": "2026Q3",
+     "defaultTermYears": 3,
+     "softwarePremium": 0,
+     "basis": "Existing-book economic coverage is retained but does not establish sourced customer contracts for every physical tranche. New-business contracts use the shared curve and three-year terms; renewals retain hardware and original rates."
+    }
    },
    "model": "owner",
    "tier": "proven",
@@ -4949,67 +6148,10 @@
      ]
     },
     "arr": {
-     "folds": [
-      {
-       "summary": [
-        "Unsigned capacity modelled at",
-        "$20m / IT MW-yr"
-       ],
-       "rows": [
-        [
-         "Microsoft · GB300 · signed",
-         "$2.91 / GPU-hr"
-        ],
-        [
-         "NVIDIA · Blackwell · signed",
-         "$3.10 / GPU-hr"
-        ],
-        [
-         "Nov-25 pricing, per IT MW-yr",
-         "~$10m"
-        ],
-        [
-         "3-yr contracts today",
-         "&gt;$20m"
-        ],
-        [
-         "Active discussions",
-         "~$25m"
-        ]
-       ]
-      },
-      {
-       "summary": [
-        "Fleet blend, Q4 2030",
-        "$9.38 / GPU-hr"
-       ],
-       "rows": [
-        [
-         "1 IT MW × 8,760 h, 2026–27 vintage",
-         "$20.0m / yr"
-        ],
-        [
-         "÷ GB300 packages per MW (340)",
-         "$6.72 / GPU-hr"
-        ],
-        [
-         "Contract $/MW, 2028+ vintages",
-         "holds a ~2-yr GPU payback (≈+6% / yr)"
-        ],
-        [
-         "10% uncontracted, at realised spot",
-         "$35m / IT MW-yr"
-        ],
-        [
-         "Uncontracted GPUs sell down",
-         "4.4× slower"
-        ]
-       ]
-      }
-     ],
-     "cap": "contracted ARR, $bn — IREN’s definition: GPU/hour price × 8,760 h on energised capacity under contract, incl. storage and ancillaries · spot excluded"
+     "cap": "Annualized earned revenue is split into existing book (including estimates), assumed renewals, assumed new contracts and spot. Full-capacity contracted run-rate is a separate measure.",
+     "folds": []
     },
-    "arrLabel": "IREN definition",
+    "arrLabel": "Energized contractual run-rate, including assumed renewals and new signings; earning revenue is shown separately.",
     "tiles": [
      [
       "Cash",
@@ -5044,9 +6186,9 @@
       "<b>Density rises</b>: 2.9 kW per GB300 package, 3.5–4.7 kW Rubin, 6.3 kW next-gen. Same megawatt, fewer chips, same dollars per MW.<span class=\"src\">model tranches</span>"
      ],
      [
-      "<b>IREN’s definition.</b> Price × 8,760 h × commissioned GPUs under contract, plus storage and ancillaries — counted here as capacity is energised, which is how the company’s “$4bn for 2026 capacity” reconciles: $4.1bn at Dec 2026. Billing follows one to two quarters behind; the summary table carries both.<span class=\"src\">FY26 release fn.1</span>",
-      "<b>The model held out of sample.</b> Q2 2026 modelled $66.3m, reported $70.5m — a quarter the calibration never saw.<span class=\"src\">−5.9%</span>",
-      "<b>Signed vs contracted.</b> Signed ARR flattens at $4.8bn from 2027 — Microsoft, NVIDIA and the 2026 book. Everything above that is capacity the model assumes signs 3-year take-or-pay at $20m+ per MW as it energises; the 10% kept for spot is not counted here.<span class=\"src\">90% of unsigned capacity contracted</span>"
+      "<b>Contract cohorts.</b> Existing/inferred book keeps its original all-in rate until a disclosed or estimated expiry. Expiry ends signed coverage; continuation becomes an assumed renewal. New capacity uses one shared house curve.",
+      "<b>Compare matching measures.</b> Annualized earning contracted revenue divided by earning contracted IT MW measures contract yield. Total annualized revenue divided by all earning IT MW includes spot. Neither denominator should be paired with full energized-capacity ARR.",
+      "<b>Evidence.</b> Every tranche records price, commitment and expiry provenance. An inferred allocation is not a verified contract. New prices, zero software premium and 100% same-hardware renewal continuation are explicit assumptions."
      ],
      [
       "<b>“Recent customer prepayments represent 45–55% of GPU capex.”</b> On Microsoft, prepayments plus $3.6bn of investment-grade debt funded ~96% of the GPUs. The ATM has $3.5bn unused of a $6bn programme — nothing issued since 30 June.<span class=\"src\">8-K EX-99.1 · 10-K Note 24</span>",
@@ -5054,19 +6196,17 @@
       "<b>The catch:</b> prepayments and 90% gearing exist only on <b>signed</b> capacity. Unsigned capacity needs ~$25m of equity per IT MW — or is simply not built.<span class=\"src\">SOW §3.2 · funding stack above</span>"
      ],
      [
-      "<b>Costs are tiny.</b> Power at $35/MWh is 1.8% of revenue — IREN owns the substations. Gross margin ~94%; 65% EBITDA after overhead.<span class=\"src\">10,512 MWh per IT MW-yr at PUE 1.2</span>",
-      "<b>Capex is $44m per IT MW today and rising.</b> $29m of GPUs and ancillaries on the Microsoft/Dell order plus IREN’s own $15m shell; 15–20% more on 2027 orders (CFO), ~$40m of silicon for Rubin, ~$45m after. Pricing is set so IREN’s ~2-year GPU payback holds on each vintage.<span class=\"src\">8-K 3-Nov-25 · Nov-25 deck · FY26 call</span>",
-      "<b>Maintenance, not replacement.</b> The refresh is a tray swap — racks, liquid loop and power stay — at ~55% of GPU cost every four years, plus 3%/yr on failures and spares: $5.7m per MW-yr on $34m of silicon. Never refreshing (2.91×) sits well under the base (4.06×) once pricing rises with cost. Book life: IREN 5 yr; CoreWeave, MSFT, GOOG 6.<span class=\"src\">10-K Note 2 · peer 10-Ks</span>"
+      "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
+      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption."
      ],
      [
-      "<b>Some equity, not none.</b> The flywheel could cover the build, but the company raised 16% of last year’s funding in equity and keeps the ATM live. Base: 10% of the 2027–30 build plus the residual the flywheel cannot cover, $14.6bn, at an assumed $55 — +265m shares, 757m diluted once the converts are counted. At today’s price the same raise costs ~390m shares and about $22 a share.<span class=\"src\">FY26 call · 10-K Note 24</span>",
-      "<b>The regime is the swing, not the ARR.</b> Same $62.3bn, same balance sheet: $95 if the fleet is never refreshed, $98 at flat $/MW, $156 with pricing that keeps IREN’s two-year GPU payback on rising silicon cost for five years, then flat. Signed contracts never escalate; they reprice when they end.<span class=\"src\">contracted 3-yr at 10.5% · spot at 13%</span>",
-      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> A $150bn fleet on a five-year book is what holds earnings down while value holds up. Pick your multiple.<span class=\"src\">after the raise</span>"
+      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
+      "<b>Separate clocks.</b> Model policy revision is dated 15 September 2026; financial disclosures and reference share prices retain their original dates. This is not a refreshed market quotation."
      ]
     ],
     "footer": {
      "sources": "FY26 10-K (filed 27 Aug 2026; balance sheet tied line-by-line to XBRL), FY26 results 8-K, 8-Ks of 20 Jul, 4 Aug, 13 Aug; FY26 Q4 earnings call, 27 Aug (transcripts: stockanalysis.com, investing.com, benzinga.com); Microsoft Partner SOW (EX-10.3, 10-Q Feb 2026); Common Terms Agreement (EX-10.37); CoreWeave FY25 10-K and Q2-26 call (peer GPU life).",
-     "model": "Compute/Value tracker, IREN ramp as of 18 Aug 2026, repriced 27 Aug. Ramp: contracts $20m per IT MW-yr on 2026–27 vintages, then priced by vintage so IREN’s ~2-year GPU payback holds on the rising cost of silicon ($20.8m 2028, $21.8m 2029, $24.0m 2030); 10% of unsigned capacity kept for spot at $35m realised from 2027, 90% contracted. Capex by vintage: GPUs and ancillaries $29m per IT MW on the Nov-25 Microsoft order and ~$31m air-cooled, +15–20% on 2027 orders, ~$40m Rubin, ~$45m next-gen; shell $15m liquid new-build, $5m air retrofit. Steady-state: $22.5m revenue per IT MW-yr today, 65% EBITDA, the 2027 marginal MW at $34m GPU + $15m shell, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice only at renewal (3-yr terms), spot MW at market every year discounted at 13%; refresh as a tray swap at 55% of GPU cost every four years plus 3%/yr on failures and spares; 10% of the 2027–30 build funded in equity at an assumed $55; operating cash funds the build first, prepayments next, debt for the shortfall within lenders’ cover, equity for the rest, surplus repays debt. Honest-base items: prepayments are timing, not funding — credited back against fees after month 24 to the end of term, Microsoft’s filed mechanism, with the balance still owed at 2030 deducted at PV; the $6.7bn of convertible notes are equity at the model’s own 2030 price (six series, capped calls netted, ~112m shares) and carry their ~0.9% coupon meanwhile; Microsoft’s $1.93bn upfront at its filed size and timing; restricted cash counted against the debt it secures. Value = 2030 EV less net debt ex converts and prepayments owed, discounted to today, over the diluted count."
+     "model": "Shared pricing and contract-cohort model. Existing commitments, estimated coverage, same-hardware renewals and new business are distinguished. Pricing, expiry and continuity assumptions are exposed with their evidence. Company financing and capex retain the dated research snapshot."
     },
     "px": {
      "v": 44.68,
@@ -5426,75 +6566,6 @@
      "total": "≈ $28bn",
      "cap": "FY27 bridge · $bn"
     },
-    "steady": {
-     "steps": [
-      [
-       "Revenue",
-       22.5,
-       "total"
-      ],
-      [
-       "Running costs",
-       -7.88,
-       "d"
-      ],
-      [
-       "Cash profit",
-       14.63,
-       "sub"
-      ],
-      [
-       "GPU refresh + spares",
-       -5.7,
-       "d"
-      ],
-      [
-       "Shell 25-yr",
-       -0.6,
-       "d"
-      ],
-      [
-       "Tax 21%",
-       -1.75,
-       "d"
-      ],
-      [
-       "Owner keeps",
-       6.58,
-       "total"
-      ]
-     ],
-     "stepsMax": 24,
-     "footer": "$6.58m today · market +6%/yr for five years, repriced at renewal: worth $91m = 4.06×",
-     "regimes": [
-      [
-       "Blend: 90% contracted, 10% spot",
-       4.06,
-       "base"
-      ],
-      [
-       "Contracted, 3-yr terms",
-       4.12,
-       ""
-      ],
-      [
-       "Spot only, 13% discount",
-       3.5,
-       ""
-      ],
-      [
-       "Flat $/MW, no density pricing",
-       2.97,
-       ""
-      ],
-      [
-       "Never refresh, −5%/yr",
-       2.91,
-       ""
-      ]
-     ],
-     "regimesMax": 4.6
-    },
     "capexQ": {
      "2025Q3": [
       682,
@@ -5573,7 +6644,6 @@
     "finance": {
      "M": 0.65,
      "W": 0.105,
-     "MULT": 4.06,
      "SH0": 394.1,
      "EQ_SHARE": 0.1,
      "EQ_PX": 55,
@@ -5657,7 +6727,11 @@
        }
       ],
       "openingOwed": 1.843,
-      "basis": "50% of GPU capex on contracted capacity (FY26 release fn.4: 45-55%), credited back after month 24 to the end of term (Microsoft SOW EX-10.3 s3.2.a.iii mechanism); Microsoft $1.933bn = $483m per Horizon, $1.013bn (H1-2) and $0.83bn of other prepayments in June-26 cash (10-K Note 20 deferred revenue $1.84bn), H3-4 arrive 2026Q3-Q4, credited over months 25-60"
+      "basis": "50% of GPU capex on contracted capacity (FY26 release fn.4: 45-55%), credited back after month 24 to the end of term (Microsoft SOW EX-10.3 s3.2.a.iii mechanism); Microsoft $1.933bn = $483m per Horizon, $1.013bn (H1-2) and $0.83bn of other prepayments in June-26 cash (10-K Note 20 deferred revenue $1.84bn), H3-4 arrive 2026Q3-Q4, credited over months 25-60 Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: after eight service quarters through expiry. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "creditTiming": {
+       "mode": "after-quarters",
+       "quarters": 8
+      }
      },
      "cover": {
       "ctrPre": 0.5,
@@ -5671,6 +6745,24 @@
     "asOf": "2026-09-04",
     "prints": {
      "2026Q2": 70.5
+    },
+    "modelAsOf": "2026-09-15",
+    "steadyInputs": {
+     "M": 0.65,
+     "gpu": 34,
+     "shell": 15,
+     "shellLife": 25,
+     "swap": 0.55,
+     "life": 4,
+     "fail": 0.03,
+     "tax": 0.21,
+     "W": 0.105,
+     "g": 0.06,
+     "gY": 5,
+     "term": 3,
+     "spotW": 0.025,
+     "H": 60,
+     "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
     }
    }
   },
@@ -11416,11 +12508,11 @@
     "f": "Contract length",
     "src": "10-K · 424B4, 10-K · Q2-26 letter",
     "v": {
-     "IREN": "5 years with Microsoft and NVIDIA; 3 years on enterprise deals (~4 years ARR-weighted); “3- to 5-year, not 2 years, not spot”; no expansion options granted.",
-     "CRWV": "~5 years weighted (~4 at Dec-24); contracts over 48 months are 21% of backlog (10% a year earlier); DDTL 5.5 finances 2–3 year enterprise paper.",
-     "NBIS": "5 years with Microsoft and Meta; 1–3 years on the mid-term core; 3–6 months short-term."
+     "IREN": "Named Microsoft/NVIDIA five-year terms; other initial terms estimated. New business and renewals: three years (house).",
+     "CRWV": "Initial aggregate five-year proxy is estimated; actual order maturities are not mapped to physical tranches. New business/renewals three years (house).",
+     "NBIS": "Named Microsoft/Meta five-year terms; other initial terms estimated at two years. New business/renewals three years (house)."
     },
-    "trend": "converging from both sides — 5 years for hyperscalers and NVIDIA, 1–3 years for AI-native and enterprise, ~4–5 years weighted for all three"
+    "trend": "Explicit expiry and renewal timing; no permanent signed coverage."
    },
    {
     "f": "Take-or-pay and prepayments",
@@ -11440,17 +12532,17 @@
      "CRWV": "Microsoft 36% of Q2-26 revenue (67% in FY25), OpenAI, Meta, Anthropic, Jane Street; more than 60% of backlog investment-grade.",
      "NBIS": "Customers C, D and E 24/21/14% of Q2-26 revenue; Microsoft and Meta up to 86% of RPO; four >$1bn non-hyperscaler deals in Q2-26."
     },
-    "trend": "converging — each anchors on a hyperscaler at 40–70% then diversifies; CoreWeave’s largest customer fell from 85% to 35% of backlog in 2025"
+    "trend": "Commercial coverage is distinguished from contracted power; physical-tranche mappings need evidence."
    },
    {
     "f": "Price per MW-yr by tenor",
-    "src": "FY26 call and slides 27–28 Aug 2026 · Q2-26 call 11 Aug 2026 · Q2-26 letter, Bloomberg 2 Oct 2025 · parity research 10 Sep 2026",
+    "src": "researchPricing; 2026 company results and model assumptions",
     "v": {
-     "IREN": "5-yr Microsoft $9.7m (Nov-25 anchor); 5-yr stated ~$19m on the FY26 slide (unprinted); NVIDIA 5-yr $13.6m per IT MW (60 MW gross); 3-yr above $20m, discussions ~$25m.",
-     "CRWV": "Book ~$10m per active MW = per IT MW (active is critical IT); 5-yr H2-26 paper $10–14.5m (the only company datum, >$25bn on ~500 MW, is ~$10m); no 3-yr print; list +25% in July; on-demand GB200 $10.50/GPU-hr.",
-     "NBIS": "Microsoft 5-yr $13.1–13.9m per IT MW (>100k GB300, ~250–263 MW); 2026 base ~$12m; 1–3 yr $20–25m; 3–6 month $40–50m (basis undefined, IT implied)."
+     "IREN": "New business: shared house curve; existing and renewal rates retain tranche economics.",
+     "CRWV": "New business: shared house curve; aggregate existing-book prices and coverage remain inferred.",
+     "NBIS": "New business: shared house curve; disclosed ACV improvements support direction, not exact future prices."
     },
-    "trend": "converging by tenor — 3-yr $20–25m at IREN and Nebius; 5-yr $13–14m at the market and Nebius level with IREN stated higher; CoreWeave at or below par on 5-yr and barely sells shorter paper"
+    "trend": "Common new-business curve; tenor pricing remains uncalibrated."
    },
    {
     "f": "Cost of investment-grade-backed GPU debt",
@@ -11536,34 +12628,140 @@
   "notes": {
    "factors": [
     "<b>Three ways to reach the same megawatt.</b> IREN buys the land and substation and waits for power; CoreWeave rents a finished hall and pays for it monthly for 7–16 years; Nebius does both. Everything downstream — silicon, contracts, customers, debt — is bought in the same market from the same vendors and lenders.<span class=\"src\">sections 1–2 of each page</span>",
-    "<b>Where they already meet.</b> Investment-grade-backed GPU debt prices at ~6% for all three and non-IG at ~9%; silicon costs the same per MW and escalates alike; book lives sit at 5–6 years; take-or-pay is the form and prepayment size follows the counterparty; new capacity signs on 3–5 year terms at $20–25m per MW for 3-year paper whoever the landlord is; each anchors on a hyperscaler and then diversifies; and all three ship Rubin in 2027.<span class=\"src\">rows 4–11, 15, 17</span>",
-    "<b>Where they will not.</b> The shell is either $15m of capex or ~$2m a year of rent; power is either $30/MWh at your own substation or a market price passed through; corporate debt is either 0–4.5% converts or 9–9.75% bonds until refinanced; the dilution path and the NVIDIA cohort are set by each history. Those are choices and vintages, not stages — but each has a date on which it moves.<span class=\"src\">rows 1–3, 12–14</span>"
+    "<b>Evidence limits.</b> Similar customer or hardware labels do not establish identical contract economics. Revenue per MW, term, prepayments and scope need a matching denominator and source."
    ],
    "economics": [
-    "<b>Read the waterfall per megawatt, not in total.</b> CoreWeave’s 2030 EBITDA is larger because it runs 7 GW to IREN’s 3 GW, not because a rented megawatt earns more. Per megawatt-year IREN earns about $14.6m of EBITDA and keeps $6.6m; CoreWeave earns $8.4m and keeps $2.1m; Nebius earns $11.0m and keeps $4.3m.<span class=\"src\">chart above · page §5 of each</span>",
-    "<b>Rent hides inside EBITDA; the shell hides inside capex.</b> A tenant’s building cost is a running cost, so its margin is lower but its capex per MW is $33m instead of $49m. The like-for-like test is cash kept on the capital the company itself deploys: IREN 13%, Nebius 11%, CoreWeave 6%.<span class=\"src\">table above</span>",
-    "<b>Renting is faster, not richer.</b> The landlord’s capital plus 20% prepayments plus 90% GPU financing let CoreWeave add more than twice IREN’s megawatts with less equity per MW. The price is rent for 7–16 years whether or not the racks are full, 9–9.75% senior notes, and half the revenue per MW on a hyperscaler-anchored book.<span class=\"src\">page §4 of each</span>",
-    "<b>Most of the per-MW gap is tenor and vintage, not the megawatt.</b> All three count the same megawatt (the power reaching the computers), so CoreWeave’s $14m and IREN’s $22.5m are like for like on the megawatt. Hold IREN’s 65% margin and put it on CoreWeave’s $14m: it keeps $2.0m, the same as CoreWeave. The rest of IREN’s $6.6m is the 3-year enterprise price ($22.5m) assumed on the 87% of its 2030 book that is unsigned; its own signed 5-year Microsoft print ($9.7m) keeps about nothing after a four-year refresh. CoreWeave’s side is 98% five-year take-or-pay, the cheapest tenor, with 1.5 GW of 2025–26 paper at ~$10m locked to 2030–31. The like-for-like row (costs held in dollars) flips the order, which says the running-cost lines are not yet comparable: IREN’s 65% implies $7.9m per MW of costs against a filed 87% gross margin.<span class=\"src\">rows above · CoreWeave pricing research 8 Sep and parity research 10 Sep 2026</span>"
+    "<b>Like-for-like yields.</b> Contracted revenue is divided by earning contracted IT MW; total revenue is divided by all earning IT MW. Energized capacity run-rate is not substituted into either measure.",
+    "<b>Company economics.</b> Ownership, rent, operating margins, capex and financing remain company-specific. Revenue multiples are recalculated from current modeled unit economics, not carried forward as fixed relative discounts."
    ],
    "picture": [
-    "<b>Scale is the tenant’s answer.</b> On the pages as they stand, CoreWeave reaches $93bn of run-rate on 7 GW, Nebius $84bn on 4.65 GW, IREN $62bn on 3 GW. CoreWeave gets there with the most debt and the most prepayments still owed; IREN with the most equity per megawatt.<span class=\"src\">table above</span>",
-    "<b>The multiple does the rest.</b> $1 of run-rate is worth 4.06× to IREN, 3.34× to Nebius, 2.75× to CoreWeave, so IREN’s smaller book is worth more per share of ARR. Whether density pricing continues after 2030, and whether the refresh cost rises with it, is the open method question on all three pages.<span class=\"src\">page §5–6 of each</span>",
-    "<b>Against the market.</b> IREN trades at a fraction of its base; CoreWeave and Nebius trade near or above theirs. Either the market prices IREN’s unsigned 87% of 2030 revenue at close to zero, or it prices the tenants’ scale at more than the rented megawatt keeps.<span class=\"src\">bars above</span>"
+    "<b>Separate confidence from value.</b> Existing-book allocations may be inferred; assumed renewals and future contracts are separate categories. None is a probability-calibrated confidence measure.",
+    "<b>Market comparison.</b> Reference prices retain their original snapshot dates; the model-policy revision does not refresh them."
    ],
    "convergence": [
-    "<b>What converges (dated prints).</b> Price per IT MW-yr at a given tenor: 3-year $20–25m at all three (IREN above $20m and discussions ~$25m, 27 Aug 2026; Nebius $20–25m, 12 Aug 2026; CoreWeave’s committed floor ~$20m, 8 Sep 2026), 5-year GB300 at $13–14m per IT MW (Nebius–Microsoft $13.1–13.9m on >100k GB300; SemiAnalysis GB300 6-yr $4.00 × 400 = $14m; IREN states ~$19m, unprinted), short paper at ~2×. The megawatt itself is already common: all three report critical-IT MW (the earlier 20% haircut on CoreWeave was wrong and has been removed). Contract length from both sides (IREN 2 → 3–5 years; Nebius months → 1–3 years core; CoreWeave ~5 years plus a 2–3 year sleeve). Take-or-pay as the form, prepayments by counterparty (hyperscalers 20–40% of contract value, AI-natives 45–60% of capex). IG-backed GPU debt at SOFR+225–250 within 25 bp; non-IG at SOFR+450–550. Silicon per MW and its escalation; 5–6 year book lives; ~2-year paybacks; a hyperscaler anchor that diversifies. The round’s verdict: a 2027–30 model should carry one market for revenue, silicon and GPU financing, not three.<span class=\"src\">three-way convergence research, five strands adversarially verified, 8 Sep 2026 · ~/Research/convergence-2026-09-08.json</span>",
-    "<b>What is structural, and when it moves.</b> The layer under the GPU: housing and power at ~$1.0–1.3m per IT MW-yr owned (IREN), ~$0.6–1.0m owned and ~$2.5–3m at build-to-suit sites (Nebius), ~$1.9–2.9m leased (CoreWeave) — 5–10% of revenue at $20–25m and second-order to silicon; the EBITDA margin that follows (85% project at IREN, ~60% CoreWeave, 50% and rising Nebius); power price and grid exposure by site; the form of the shell obligation (unencumbered freehold vs $52bn of lease commitments vs a $13.6bn lease book); CoreWeave’s 9–9.75% corporate layer until the 2030–32 notes refinance; non-IG debt tenor and recourse; the dilution path; NVIDIA cohort timing; and the demand backstops only CoreWeave (NVIDIA $6.3bn) and Nebius (Meta $15bn) hold. Each has a date: CoreWeave self-builds from H2-26, Nebius’s owned share rises with each campus, CoreWeave refinances from 2030.<span class=\"src\">same round, structural list</span>",
-    "<b>How the pages treat it.</b> From 2027 the three pages already price new capacity from one market: the same spot rate, silicon curve, lender advance rates and steady-state method. The round adds that IREN’s Microsoft print ($9.7m) and CoreWeave’s 2023–24 private-credit facilities are vintage artefacts to roll off, not to extrapolate; that IREN’s 65% is an assumption where the tenants’ margins are filed; and that the per-MW gap on this page is tenor mix (CoreWeave ~90/10 five-year/short vs ~60/40 at IREN and ~50/50 at Nebius, worth 20–25% at full price parity) plus CoreWeave’s locked 2025–26 book — new-contract prices at equal tenor and generation are at parity within a ±15–30% band. The owner’s parity thesis is priced as a scenario on the CoreWeave page ($177); the Rubin-per-GPU bear is a scenario on all three, and it bites hardest on the IREN and Nebius ladders. Open for a ruling: running costs in dollars per MW on all three pages, and IREN’s unsigned book as a tenor mix.<span class=\"src\">playbook §6e · ramp-core renew</span>"
+    "<b>One market curve.</b> New business uses the same house curve across all three companies. Term, hardware, cost, delivery and evidence differences remain visible. The initial curve does not calibrate a tenor premium or a company software premium.",
+    "<b>Different books.</b> Existing commitments retain their own original rates until expiry. Same-hardware renewals remain at those rates in the base case. No frontier-generation upgrade or price is granted to old GPUs for free.",
+    "<b>Next evidence.</b> Contract-to-tranche expiry mapping, comparable term-specific pricing and realized renewal outcomes can update the policy without redesigning the model."
    ]
   },
   "footer": {
    "sources": "The three research pages and their research packs (IREN FY26 10-K and 27 Aug call; CoreWeave Q2-26 10-Q, FY25 10-K, 424B4 and the Q1-25 to Q2-26 transcripts; Nebius FY25 20-F, Q2-26 6-K and the shareholder letters), lessor filings (Core Scientific, Applied Digital, Galaxy), SemiAnalysis public posts and index; the three-way convergence research round of 8 Sep 2026 (five strands, adversarially verified, filed at ~/Research/convergence-2026-09-08.json); the CoreWeave parity round of 10 Sep 2026 (four strands, two adversaries each, filed at ~/Research/CRWV/parity-2026-09-10.json).",
-   "model": "Compute/Value tracker, playbook §6e. Each column is the same quarterly cash waterfall and the same steady-state per-MW DCF run on that company’s page and ramp blocks in data.json; the comparison page computes nothing of its own."
+   "model": "Recomputed from the same shared cohort, pricing and financing calculations as the company reports; reference price dates remain unchanged."
   },
   "mwBasis": {
    "IREN": "critical IT MW, stated “(IT)” with gross given separately (gross/IT 1.4–1.6 liquid, ~1.2 air)",
    "CRWV": "active power = critical IT MW: the lease note tracks Galaxy’s critical-IT figures (133/393/525 MW), Core Scientific is counted at 500/70 MW critical IT, and the Aug-26 Indonesia release says “360 MW of contracted IT power”; gross 1.36–1.5× at its landlords",
    "NBIS": "active = IT by definition (20-F); connected is at most one PUE above IT (Finland ~1.1)"
-  }
+  },
+  "modelAsOf": "2026-09-15"
+ },
+ "researchPricing": {
+  "version": 1,
+  "asOf": "2026-09-15",
+  "effectiveQ": "2026Q3",
+  "status": "house-assumption",
+  "units": "USD millions per IT MW per year; all-in contracted services",
+  "curve": {
+   "2026": {
+    "1": 18,
+    "2": 18,
+    "3": 18,
+    "5": 18,
+    "6": 18
+   },
+   "2027": {
+    "1": 18,
+    "2": 18,
+    "3": 18,
+    "5": 18,
+    "6": 18
+   },
+   "2028": {
+    "1": 19,
+    "2": 19,
+    "3": 19,
+    "5": 19,
+    "6": 19
+   },
+   "2029": {
+    "1": 20,
+    "2": 20,
+    "3": 20,
+    "5": 20,
+    "6": 20
+   },
+   "2030": {
+    "1": 21,
+    "2": 21,
+    "3": 21,
+    "5": 21,
+    "6": 21
+   },
+   "2031": {
+    "1": 21,
+    "2": 21,
+    "3": 21,
+    "5": 21,
+    "6": 21
+   }
+  },
+  "generationFactors": {
+   "hopper": 1,
+   "blackwell": 1,
+   "rubin": 1,
+   "next": 1
+  },
+  "tenorBasis": "The initial new-business curve has no calibrated tenor premium or discount. Term controls the next renewal date. A five-year, 15% lower-price case is an explicit sensitivity, not a disclosed market spread.",
+  "generationBasis": "The shared frontier curve is quoted per IT MW, with generation factors of 1 as an explicit house assumption. It is not a hardware productivity forecast. Existing equipment renews at its own all-in price; renewal does not install new GPUs.",
+  "renewal": {
+   "termYears": 3,
+   "retention": 1,
+   "rateMode": "retain",
+   "rateMultiplier": 1,
+   "basis": "Base assumes the same hardware keeps earning at the original all-in rate and 100% contracted capacity renews. These are house assumptions, not commitments. Price and retention downside cases are shown."
+  },
+  "softwarePremium": 0,
+  "spot": {
+   "basis": "per-gpu-hour",
+   "rates": {
+    "2024": 2.5,
+    "2025": 2.5,
+    "2026": 2.4,
+    "2027": 11.7,
+    "2028": 11.7,
+    "2029": 11.7,
+    "2030": 11.7
+   },
+   "generationMultipliers": {
+    "hopper": 0.21,
+    "blackwell": 0.854,
+    "rubin": 1.366,
+    "next": 1.707
+   },
+   "note": "Shared realized spot assumptions inherited from the CoreWeave/Nebius model, not executable rate cards. Physical GPU density remains tranche-specific."
+  },
+  "basis": "One shared new-business curve using the existing Nebius 2027–30 house ladder ($18m/$19m/$20m/$21m per IT MW-year). Prices fix at modeled service commencement, not energisation. Current disclosures support improving pricing but do not establish these forward prices. Existing/inferred commitments retain their own rates through disclosed or estimated expiry. No quantified company software premium is assumed. The 2031 service-start price holds the 2030 level flat; it is a house extension, not a market quote.",
+  "sources": [
+   {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+    "date": "2026-08-12",
+    "title": "Nebius Q2 letter",
+    "supports": "New annual contract values above $20m/MW; term mix and improved older-generation pricing. MW definition and exact future prices are not established by this source."
+   },
+   {
+    "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+    "date": "2026-08-11",
+    "title": "CoreWeave Q2 call",
+    "supports": "Improved new pricing and contribution margins; renewal examples, not a fleet expiry ladder."
+   },
+   {
+    "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+    "date": "2026-08-27",
+    "title": "IREN FY26 results",
+    "supports": "Stronger recent three-year contract pricing and financing; not a future common-price guarantee."
+   }
+  ],
+  "allocationCutoffQ": "2027Q1",
+  "allocationBasis": "Unmapped future tranches energizing from 2027Q1 use the shared new-business curve. Power leases do not establish customer compute prices. Existing and in-flight 2026 book and identifiable disclosed future commitments retain their own rates. This cutoff is a house allocation convention, not a statement that disclosed backlog excludes future sites. The legacy-book-allocation sensitivity tests the uncertainty."
  }
 }

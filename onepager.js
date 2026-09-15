@@ -8,39 +8,132 @@
 const fs = require('fs'), path = require('path');
 const ROOT = __dirname;
 const RC = require('./ramp-core.js'), OP = require('./onepager-core.js');
-/* assemble(c): the page's data series for one company record {page, ramp} — used by the CLI below and by any draft script */
-function assemble(c) {
-  const pg = c.page, R = c.ramp;
+/* assemble(c, market, scenario): one canonical report calculation for the CLI, exporter and comparison. */
+function assemble(c, market, scenario) {
+  const pg = JSON.parse(JSON.stringify(c.page)), R = c.ramp;
+  if (R.pricing && !market) throw new Error(c.tk + ': shared researchPricing policy is required');
   const QS = RC.RAMP_QS, F = pg.finance;
   const r1 = n => Math.round(n * 10) / 10, r2 = n => Math.round(n * 100) / 100;
 
   /* ---- series from the ramp (never typed) ---- */
   const S0 = pg.fromQ != null ? QS(pg.fromQ) : -2, S1 = pg.toQ != null ? QS(pg.toQ) : RC.RAMP_END;
-  const QQ = RC.rampQuarters(R, null, S0, S1);
+  const QQ = RC.rampQuarters(R, scenario || null, S0, S1, market);
+  const delta = scenario?.d || {}, TR = R.tranches.map(t => RC.rampApplySc(t, delta));
   const T0 = QS(F.T0 || '2026Q3');
   const Q = QQ.filter(q => q.s >= T0).map(q => [q.lbl, r1(q.rev), r1(q.revC), r1(q.revS), Math.round(q.itMW), Math.round(q.grossMW), Math.round(q.cum),
     { hopper: Math.round(q.by.hopper), blackwell: Math.round(q.by.blackwell), rubin: Math.round(q.by.rubin), next: Math.round(q.by.next) }]);
   const prints = Object.assign({}, Object.fromEntries(Object.entries(R.actuals || {}).map(([k, v]) => [k, v.aiRevM])), pg.prints || {});
   const L = QQ.map(q => {
-    const s = q.s, gi = R.tranches.filter(t => QS(t.energize) <= s).reduce((a, t) => a + t.gpus, 0);
-    const vt = R.tranches.filter(t => QS(t.energize) === s), vint = vt.length ? r1(vt.reduce((a, t) => a + t.rate * t.gpus * 8.76, 0) / vt.reduce((a, t) => a + t.itMW, 0) / 1000) : null;
+    const s = q.s, gi = TR.filter(t => QS(t.energize) <= s).reduce((a, t) => a + t.gpus, 0);
+    const vt = TR.filter(t => QS(t.energize) === s), priced = (q.details || []).filter(t => QS(t.energize) === s);
+    const contractedMW = priced.reduce((a,t) => a+t.itCom*t.groups.reduce((v,g)=>v+g.share,0),0);
+    const vint = priced.length ? (contractedMW ? r1(priced.reduce((a,t)=>a+t.groups.reduce((v,g)=>v+g.arr,0),0)*1000/contractedMW) : null)
+      : vt.length ? r1(vt.reduce((a, t) => a + t.rate * t.gpus * 8.76, 0) / vt.reduce((a, t) => a + t.itMW, 0) / 1000) : null;
     const cons = (R.consensus || {})[q.lbl];
     return [q.lbl, Math.round(q.grossMW), Math.round(q.itCom), r1(q.itMW), gi, Math.round(q.cum), Math.round(q.signed), r1(q.rev), r1(q.revC), r1(q.revS), r2(q.blend), vint,
       prints[q.lbl] != null ? prints[q.lbl] : null, cons ? cons[1] : null];
   });
   /* contracted ARR on the company's definition: contracted GPUs on energised capacity x rate x 8,760 h; spot excluded */
   const A = QQ.map(q => { const tr = R.tranches.filter(t => QS(t.energize) <= q.s);
-    return [q.lbl, r2(tr.reduce((a, t) => a + t.ctr * t.gpus * t.rate * 8760, 0) / 1e9), r2(tr.reduce((a, t) => a + (t.signed || 0) * t.gpus * t.rate * 8760, 0) / 1e9)]; });
+    return [q.lbl, r2(q.arrContracted != null ? q.arrContracted : tr.reduce((a, t) => a + t.ctr * t.gpus * t.rate * 8760, 0) / 1e9), r2(q.arrExistingConfirmed != null ? q.arrExistingConfirmed : tr.reduce((a, t) => a + (t.signed || 0) * t.gpus * t.rate * 8760, 0) / 1e9)]; });
   const ARRC = Object.fromEntries(A.map(r => [r[0], r[1]]));
   /* site phasing: an override in page.gantt, else one row per campus from the tranches */
-  const gantt = pg.gantt || (() => { const by = {}; R.tranches.forEach(t => { (by[t.campus] = by[t.campus] || []).push([t.n, t.itMW, t.energize, t.rev, t.rampQtrs, (t.signed || 0) > 0 ? 1 : 0]); });
+  const gantt = pg.gantt || (() => { const by = {}; R.tranches.forEach(t => { (by[t.campus] = by[t.campus] || []).push([t.n, t.itMW, t.energize, t.rev, t.rampQtrs, (t.contract?.signedShare ?? t.signed ?? 0) > 0 ? 1 : 0]); });
     return Object.entries(by).map(([campus, rows]) => [campus, R.tranches.filter(t => t.campus === campus).reduce((a, t) => a + t.grossMW, 0), rows, null]); })();
   /* capex by energisation quarter: an override in page.capexQ (verified numbers), else rules per generation and build type */
   const CAPQ = pg.capexQ || (() => { const out = {}, ru = pg.capexRules; R.tranches.forEach(t => { const air = /air|retrofit/i.test(t.n) || (t.air === true); const g = (ru.gpu[air ? t.gen + '-air' : t.gen] || ru.gpu[t.gen]) * (ru.inflate[t.energize.slice(0, 4)] || 1);
     const sh = t.shellPerMW != null ? t.shellPerMW : (air ? ru.shell.air : ru.shell.liquid); const o = out[t.energize] = out[t.energize] || [0, 0]; o[0] += Math.round(g * t.itMW); o[1] += Math.round(sh * t.itMW); }); return out; })();
   const rr = L[L.length - 1][7] * 4 / 1000, year = L[L.length - 1][0].slice(0, 4);
+  // Purchases remain on the committed capex calendar when delivery slips. Modeled customer
+  // credits follow service and term; fixed opening-balance/disclosed credit schedules are preserved.
+  if (R.pricing && F.prepay?.creditTiming) {
+    const pp=F.prepay, timing=pp.creditTiming;
+    pp.creditSchedules={};
+    Object.keys(CAPQ).filter(q=>QS(q)>=T0).forEach(q=>{
+      const slices=[];
+      R.tranches.forEach((original,i)=>{
+        if(original.energize!==q)return;
+        const t=TR[i],start=QS(t.rev),signed=delta.legacyBookAllocation&&original.contract?.allocationBasis==='unmapped-future' ? original.signed : original.contract?.signedShare??original.signed??0;
+        const end=QS(original.contract.endQ)+(original.contract.expiryBasis==='disclosed'?0:start-QS(original.rev));
+        const freshStart=Math.max(start,QS(R.pricing.effectiveQ||market.effectiveQ));
+        // Microsoft replacement capex is covered by the retained explicit IREN special schedules.
+        if(!(pp.special?.[q]?.replaceG && /Microsoft/.test(t.n))) {
+          if(signed>0)slices.push({weight:t.itMW*signed,start,end});
+          if(t.ctr>signed)slices.push({weight:t.itMW*(t.ctr-signed),start:freshStart,end:freshStart+4*(delta.newTermYears??original.newBusiness.termYears)});
+        }
+      });
+      const total=slices.reduce((a,x)=>a+x.weight,0);
+      if(!total)return;
+      pp.creditSchedules[q]=slices.map(x=>{
+        let first=timing.mode==='final-quarters'?Math.max(x.start,x.end-timing.quarters)
+          :timing.mode==='after-quarters'?Math.min(x.end-1,x.start+timing.quarters):x.start;
+        const end=timing.mode==='first-quarters'?Math.min(x.end,first+timing.quarters):x.end;
+        return {weight:x.weight/total,startQ:Math.max(0,first-QS(q)),termQ:end-first,serviceQ:RC.RAMP_QL(x.start),endQ:RC.RAMP_QL(x.end)};
+      });
+    });
+  }
+  if (R.pricing && pg.steadyInputs) {
+    const last = QQ.at(-1), inputs = { ...pg.steadyInputs, rev: last.rev * 4 / last.itMW,
+      term: delta.newTermYears ?? pg.steadyInputs.term, spotShare: (last.rev - last.revC) / last.rev };
+    const multiples = OP.steadyMultiple(inputs);
+    F.MULT = multiples.blend;
+    const eb = inputs.rev * inputs.M, shell = inputs.shell / inputs.shellLife;
+    const reserve = inputs.gpu * inputs.swap / inputs.life + inputs.gpu * inputs.fail;
+    const tax = Math.max(0, eb - inputs.gpu * inputs.swap / inputs.life - shell) * inputs.tax;
+    const keep = eb - reserve - shell - tax;
+    pg.steady = { inputs, steps: [['Revenue',r2(inputs.rev),'total'],
+      [c.tk === 'CRWV' ? 'Running costs incl. rent' : 'Running costs',-r2(inputs.rev-eb),'d'],
+      ['Cash profit',r2(eb),'sub'],['GPU refresh + spares',-r2(reserve),'d'],
+      ...(shell ? [['Shell 25-yr',-r2(shell),'d']] : []),['Tax 21%',-r2(tax),'d'],['Owner keeps',r2(keep),'total']],
+      stepsMax: Math.ceil(inputs.rev / 2) * 2,
+      footer: '$'+keep.toFixed(2)+'m normalized cash per earning IT MW; '+F.MULT.toFixed(2)+'× revenue from the shared DCF.',
+      regimes: [['Modeled contract / spot mix',multiples.blend,'base'],['Contracted, '+inputs.term+'-yr renewal regime',multiples.contracted,''],
+        ['Spot only, '+Math.round((inputs.W+inputs.spotW)*100)+'% discount',multiples.spot,''],
+        ['Flat post-horizon pricing',OP.steadyMultiple({...inputs,g:0}).blend,'']],
+      regimesMax: Math.ceil(Math.max(multiples.blend,multiples.contracted,multiples.spot)),basis:inputs.basis };
+  }
   const W = OP.waterfall(L, CAPQ, F, ARRC);
-  return { Q, L, A, ARRC, gantt, CAPQ, rr, year, W, F, pg, R };
+  const last = QQ.at(-1);
+  const pricing = R.pricing ? {
+    asOf: market.asOf, effectiveQ: R.pricing.effectiveQ || market.effectiveQ, market,
+    summary: { earningITMW:last.itMW, contractedEarningITMW:last.itContracted,
+      totalRevenueRunRateBn:last.rev*.004, contractRevenueRunRateBn:last.revC*.004,
+      contractRevenuePerMW:last.itContracted > 0 ? last.revC*4/last.itContracted : null,
+      totalRevenuePerMW:last.itMW > 0 ? last.rev*4/last.itMW : null,
+      existingRevenueBn:last.revExisting*.004,renewalRevenueBn:last.revRenewal*.004,newRevenueBn:last.revNew*.004,spotRevenueBn:last.revSpot*.004,
+      confirmedExistingRevenueBn:(last.revExistingConfirmed||0)*.004,
+      arrExisting:last.arrExisting,arrRenewal:last.arrRenewal,arrNew:last.arrNew,arrContracted:last.arrContracted,
+      estimatedExpiryCount:R.tranches.filter(t=>(t.contract?.signedShare??t.signed??0)>0 && t.contract?.expiryBasis!=='disclosed').length,
+      unverifiedPriceCount:R.tranches.filter(t=>(t.contract?.signedShare??t.signed??0)>0 && t.contract?.priceBasis!=='disclosed').length,
+      assumedCommitmentCount:R.tranches.filter(t=>(t.contract?.signedShare??t.signed??0)>0 && t.contract?.commitmentBasis!=='disclosed').length },
+    quarters:QQ.filter(q=>q.s>=T0).map(q=>({quarter:q.lbl,existingBn:q.revExisting*.004,renewalBn:q.revRenewal*.004,newBn:q.revNew*.004,spotBn:q.revSpot*.004,
+      earningITMW:q.itMW,contractedEarningITMW:q.itContracted})),
+    cohorts:R.tranches.map((t,i)=>{
+      const detail=last.details[i],existing=detail.groups.find(g=>g.origin==='existing'),fresh=detail.groups.find(g=>g.origin==='new');
+      const toMW=g=>g ? g.rate*TR[i].gpus*8760/t.itMW/1e6 : null;
+      const firstNew=(QQ.flatMap(q=>q.details?.[i]?.groups||[])).find(g=>g.origin==='new'&&g.cohort==='new');
+      const next=detail.groups.filter(g=>g.share>0&&QS(g.endQ)>last.s).map(g=>g.endQ).sort()[0];
+      return {name:t.n,gen:t.gen,itMW:t.itMW,contractShare:detail.existingShare,
+        modeledContractShare:TR[i].ctr,newBusinessShare:TR[i].ctr-detail.existingShare,
+        firstRevenue:TR[i].rev,endQ:RC.RAMP_QL(QS(t.contract.endQ)+(t.contract.expiryBasis==='disclosed'?0:QS(TR[i].rev)-QS(t.rev))),expiryBasis:t.contract?.expiryBasis,priceBasis:t.contract?.priceBasis,commitmentBasis:t.contract?.commitmentBasis,
+        termYears:t.contract?.termYears,newTermYears:delta.newTermYears??t.newBusiness.termYears,ratePerMW:t.rate*t.gpus*8760/t.itMW/1e6,newRatePerMW:toMW(firstNew||fresh),
+        newEndQ:firstNew?.endQ||fresh?.endQ,nextExpiryQ:next,
+        existingRenewalRatePerMW:existing ? toMW(existing)*(existing.cohort==='renewal'?1:(market.renewal.rateMultiplier??1)) : null,
+        newRenewalRatePerMW:fresh ? toMW(fresh)*(fresh.cohort==='renewal'?1:(market.renewal.rateMultiplier??1)) : null,
+        earningRevenueBn:(detail.groups.reduce((v,g)=>v+g.rev,0)+detail.spot.rev)*.004,
+        source:t.contract?.source,note:t.contract?.note};
+    }),
+    limitations:['Expiry quarters are estimates from modeled acceptance unless specifically marked disclosed.',
+      'An inferred existing-book allocation is not a verified customer commitment for that physical tranche.',
+      'Renewals do not retire or replace equipment. The long-run maintenance reserve is a separate house assumption.',
+      'Contract price by tenor is uncalibrated in the base case; the five-year discount is an explicit sensitivity.',
+      'Future prepayments and borrowing capacity are financing assumptions, not committed funding; customer credits follow modeled contract terms.',
+      'Delivery-delay tests retain the original capex purchase calendar. Fixed opening credit schedules remain unchanged.',
+      'Any prepayment balance without a credit calendar is deducted at face value at the horizon until its timing is sourced.',
+      'Forecast cash margin is '+Math.round(F.M*100)+'%; normalized terminal margin is '+Math.round(pg.steadyInputs.M*100)+'%.',
+      market.allocationBasis]
+  } : null;
+  return { Q, L, A, ARRC, gantt, CAPQ, rr, year, W, F, pg, R, pricing, rawQuarters:QQ };
 }
 module.exports = { assemble };
 if (require.main === module) {
@@ -50,12 +143,12 @@ const flag = f => args.includes(f), argOf = f => { const i = args.indexOf(f); re
 const d = JSON.parse(fs.readFileSync(path.join(ROOT, 'data.json'), 'utf8'));
 const c = d.companies.find(x => x.tk === tk); if (!c) { console.error('no such company: ' + tk); process.exit(1); }
 if (!c.page || !c.ramp) { console.error(tk + ' needs both a page block and a ramp block in data.json'); process.exit(1); }
-const { Q, L, A, ARRC, gantt, CAPQ, rr, year, W, F, pg, R } = assemble(c);
+const { Q, L, A, ARRC, gantt, CAPQ, rr, year, W, F, pg, R } = assemble(c, d.researchPricing);
 if (flag('--check')) {
   const f = n => n.toFixed(1);
   console.log(`${tk} ${pg.asOf} — base $${W.ps.toFixed(0)} per share · ${year} run-rate $${rr.toFixed(1)}bn × ${F.MULT} = EV $${W.ev.toFixed(0)}bn · net debt ex converts $${f(W.last.nd)}bn · prepayments owed at PV $${f(W.liab)}bn · diluted ${W.dil.toFixed(0)}m (${F.SH0}m + ${W.issued.toFixed(0)}m issued for $${f(W.eqTot)}bn at $${F.EQ_PX} + ${W.convSh.toFixed(0)}m converts − ${F.FWD || 0}m forwards) · ${year} EPS $${((W.pl.ni * 1000 + W.addb) / W.dil).toFixed(2)}`);
   W.C.filter(x => x.ye && x.r).forEach(x => console.log(`  ${x.q}  rev ${x.rev.toFixed(0)}  ebitda ${x.eb.toFixed(0)}  capex ${x.capex}  pre ${x.r.pre.toFixed(0)}  cred ${x.r.cred.toFixed(0)}  eq ${x.r.eq.toFixed(0)}  draw ${x.r.draw.toFixed(0)}  debt ${f(x.r.debt)}  cash ${f(x.r.cash)}  nd ${f(x.r.nd)}  owed ${f(x.r.owed)}  sh ${x.r.sh.toFixed(0)}  ni ${x.r.ni.toFixed(0)}  eps ${x.epsYE != null ? x.epsYE.toFixed(2) : ''}`));
-  const bt = RC.rampBacktest(R); if (bt) console.log(`  backtest MAPE ${bt.mape.toFixed(4)}% · contracted ARR ${year}Q4 $${ARRC[L[L.length - 1][0]]}bn · Q rows ${Q.length} · L rows ${L.length}`);
+  const bt = RC.rampBacktest(R, d.researchPricing); if (bt) console.log(`  backtest MAPE ${bt.mape.toFixed(4)}% · contracted ARR ${year}Q4 $${ARRC[L[L.length - 1][0]]}bn · Q rows ${Q.length} · L rows ${L.length}`);
 }
 if (flag('--sens')) OP.sensitivities(L, CAPQ, F, ARRC, pg.px.v).forEach(x => console.log(`  ${x.name.padEnd(52)} $${x.ps.toFixed(0).padStart(4)}  ${(x.delta >= 0 ? '+' : '') + x.delta.toFixed(0)}`));
 if (flag('--check') || flag('--sens')) process.exit(0);

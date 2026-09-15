@@ -1,0 +1,26 @@
+name: validate-research-pricing
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check canonical data
+        run: node checks.js
+      - name: Verify application and research parity
+        run: node verify.cjs
+      - name: Verify pricing cohorts and renewal assumptions
+        run: node verify-pricing.cjs
+      - name: Verify pricing evidence and conflict checks
+        run: node verify-pricing-checks.cjs
+      - name: Verify contract and financing calendars
+        run: node verify-pricing-finance.cjs

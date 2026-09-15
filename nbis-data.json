@@ -14,7 +14,7 @@
     "nd": 0.46,
     "arr": 8
   },
-  "arrLabel": "contracted run-rate",
+  "arrLabel": "Energized contractual run-rate, including assumed renewals and new signings; earning revenue is shown separately.",
   "capacity": {
     "rows": [
       [
@@ -130,7 +130,7 @@
           "2027Q3",
           "2027Q4",
           2,
-          1
+          0
         ]
       ],
       null
@@ -184,7 +184,7 @@
           "2027Q2",
           "2027Q3",
           2,
-          1
+          0
         ]
       ],
       null
@@ -199,7 +199,7 @@
           "2027Q4",
           "2028Q1",
           2,
-          1
+          0
         ]
       ],
       null
@@ -214,7 +214,7 @@
           "2027Q4",
           "2028Q1",
           2,
-          1
+          0
         ]
       ],
       null
@@ -342,7 +342,7 @@
       "2026Q3",
       894.5,
       867.4,
-      867.4,
+      650.5,
       340,
       588,
       149500,
@@ -355,9 +355,9 @@
     ],
     [
       "2026Q4",
-      1200.6,
-      1164.5,
-      1102,
+      1228,
+      1192,
+      806.8,
       440,
       804,
       189500,
@@ -370,9 +370,9 @@
     ],
     [
       "2027Q1",
-      1857,
-      1558.5,
-      1292.7,
+      1973.7,
+      1675.2,
+      806.8,
       580,
       984,
       245500,
@@ -385,9 +385,9 @@
     ],
     [
       "2027Q2",
-      2526.6,
-      2149.4,
-      1742.8,
+      2705.1,
+      2327.8,
+      1144.4,
       745,
       1164,
       300250,
@@ -400,9 +400,9 @@
     ],
     [
       "2027Q3",
-      3233.6,
-      2790.7,
-      2249.1,
+      3412,
+      2969.1,
+      1481.9,
       895,
       1344,
       337750,
@@ -415,9 +415,9 @@
     ],
     [
       "2027Q4",
-      3972.4,
-      3398.3,
-      2552.9,
+      4150.8,
+      3576.6,
+      1481.9,
       1045,
       1974,
       375250,
@@ -430,9 +430,9 @@
     ],
     [
       "2028Q1",
-      5634.7,
-      4765.3,
-      3160.5,
+      5872,
+      5002.6,
+      1481.9,
       1383,
       2274,
       459625,
@@ -445,9 +445,9 @@
     ],
     [
       "2028Q2",
-      7571.7,
-      6363.1,
-      3633,
+      7867.6,
+      6659.1,
+      1481.9,
       1770,
       2574,
       556500,
@@ -460,9 +460,9 @@
     ],
     [
       "2028Q3",
-      8859.7,
-      7432.4,
-      3633,
+      9155.2,
+      7727.9,
+      1481.9,
       2020,
       2874,
       619000,
@@ -475,9 +475,9 @@
     ],
     [
       "2028Q4",
-      10147.7,
-      8501.7,
-      3633,
+      10442.7,
+      8796.6,
+      1481.9,
       2270,
       3174,
       681500,
@@ -490,9 +490,9 @@
     ],
     [
       "2029Q1",
-      11435.7,
-      9570.9,
-      3633,
+      11758.3,
+      9893.5,
+      1481.9,
       2520,
       3474,
       744000,
@@ -505,9 +505,9 @@
     ],
     [
       "2029Q2",
-      12751.5,
-      10667.9,
-      3633,
+      13102,
+      11018.5,
+      1481.9,
       2770,
       3774,
       806500,
@@ -520,9 +520,9 @@
     ],
     [
       "2029Q3",
-      14094.9,
-      11792.6,
-      3633,
+      14445.8,
+      12143.5,
+      1481.9,
       3020,
       4074,
       869000,
@@ -535,9 +535,9 @@
     ],
     [
       "2029Q4",
-      15438.4,
-      12917.3,
-      3633,
+      15789.6,
+      13268.5,
+      1481.9,
       3270,
       4374,
       931500,
@@ -550,9 +550,9 @@
     ],
     [
       "2030Q1",
-      16781.9,
-      14042,
-      3633,
+      17161.4,
+      14421.6,
+      1481.9,
       3520,
       4674,
       994000,
@@ -565,9 +565,9 @@
     ],
     [
       "2030Q2",
-      18153.7,
-      15195.2,
-      3633,
+      18561.4,
+      15602.9,
+      1481.9,
       3770,
       4974,
       1050250,
@@ -580,9 +580,9 @@
     ],
     [
       "2030Q3",
-      19554,
-      16376.8,
-      3633,
+      19961.4,
+      16784.1,
+      1481.9,
       4020,
       5274,
       1100250,
@@ -595,9 +595,9 @@
     ],
     [
       "2030Q4",
-      20954.3,
-      17558.4,
-      3633,
+      21361.3,
+      17965.4,
+      1425.6,
       4270,
       5574,
       1150250,
@@ -652,93 +652,93 @@
     ],
     [
       "2026Q3",
-      5.22,
-      4.72
+      5.44,
+      3.23
     ],
     [
       "2026Q4",
-      7.25,
-      5.62
+      7.96,
+      3.23
     ],
     [
       "2027Q1",
-      9.95,
-      8.32
+      10.66,
+      5.93
     ],
     [
       "2027Q2",
-      12.38,
-      9.67
+      13.09,
+      5.93
     ],
     [
       "2027Q3",
-      14.81,
-      10.75
+      15.52,
+      5.93
     ],
     [
       "2027Q4",
-      23.31,
-      14.53
+      24.5,
+      5.93
     ],
     [
       "2028Q1",
-      27.59,
-      14.53
+      28.77,
+      5.93
     ],
     [
       "2028Q2",
-      31.87,
-      14.53
+      33.05,
+      5.93
     ],
     [
       "2028Q3",
-      36.15,
-      14.53
+      37.32,
+      5.93
     ],
     [
       "2028Q4",
-      40.42,
-      14.53
+      41.82,
+      5.93
     ],
     [
       "2029Q1",
-      44.92,
-      14.53
+      46.32,
+      5.93
     ],
     [
       "2029Q2",
-      49.42,
-      14.53
+      50.82,
+      5.93
     ],
     [
       "2029Q3",
-      53.92,
-      14.53
+      55.32,
+      5.93
     ],
     [
       "2029Q4",
-      58.42,
-      14.53
+      60.05,
+      5.93
     ],
     [
       "2030Q1",
-      63.14,
-      14.53
+      64.77,
+      5.93
     ],
     [
       "2030Q2",
-      67.87,
-      14.53
+      69.5,
+      5.93
     ],
     [
       "2030Q3",
-      72.6,
-      14.53
+      74.22,
+      5.93
     ],
     [
       "2030Q4",
-      77.32,
-      14.53
+      78.95,
+      5.7
     ]
   ],
   "L": [
@@ -877,12 +877,12 @@
       340,
       209500,
       149500,
-      134750,
+      86000,
       894.5,
       867.4,
-      867.4,
+      650.5,
       2.73,
-      12.5,
+      13.7,
       null,
       907
     ],
@@ -893,12 +893,12 @@
       440,
       281500,
       189500,
-      164750,
-      1200.6,
-      1164.5,
-      1102,
-      2.89,
-      12.5,
+      106000,
+      1228,
+      1192,
+      806.8,
+      2.96,
+      15.6,
       null,
       1455
     ],
@@ -909,11 +909,11 @@
       580,
       319000,
       245500,
-      189150,
-      1857,
-      1558.5,
-      1292.7,
-      3.45,
+      106000,
+      1973.7,
+      1675.2,
+      806.8,
+      3.67,
       18,
       null,
       2300
@@ -925,11 +925,11 @@
       745,
       356500,
       300250,
-      222300,
-      2526.6,
-      2149.4,
-      1742.8,
-      3.84,
+      124750,
+      2705.1,
+      2327.8,
+      1144.4,
+      4.11,
       18,
       null,
       2750
@@ -941,11 +941,11 @@
       895,
       394000,
       337750,
-      250425,
-      3233.6,
-      2790.7,
-      2249.1,
-      4.37,
+      143500,
+      3412,
+      2969.1,
+      1481.9,
+      4.61,
       18,
       null,
       3200
@@ -957,12 +957,12 @@
       1045,
       525250,
       375250,
-      267300,
-      3972.4,
-      3398.3,
-      2552.9,
-      4.83,
-      18,
+      143500,
+      4150.8,
+      3576.6,
+      1481.9,
+      5.05,
+      19,
       null,
       3720
     ],
@@ -973,11 +973,11 @@
       1382.5,
       587750,
       459625,
-      301050,
-      5634.7,
-      4765.3,
-      3160.5,
-      5.6,
+      143500,
+      5872,
+      5002.6,
+      1481.9,
+      5.83,
       19,
       null,
       null
@@ -989,11 +989,11 @@
       1770,
       650250,
       556500,
-      327300,
-      7571.7,
-      6363.1,
-      3633,
-      6.21,
+      143500,
+      7867.6,
+      6659.1,
+      1481.9,
+      6.46,
       19,
       null,
       null
@@ -1005,11 +1005,11 @@
       2020,
       712750,
       619000,
-      327300,
-      8859.7,
-      7432.4,
-      3633,
-      6.54,
+      143500,
+      9155.2,
+      7727.9,
+      1481.9,
+      6.75,
       19,
       null,
       null
@@ -1021,12 +1021,12 @@
       2270,
       775250,
       681500,
-      327300,
-      10147.7,
-      8501.7,
-      3633,
-      6.8,
-      19,
+      143500,
+      10442.7,
+      8796.6,
+      1481.9,
+      7,
+      20,
       null,
       null
     ],
@@ -1037,11 +1037,11 @@
       2520,
       837750,
       744000,
-      327300,
-      11435.7,
-      9570.9,
-      3633,
-      7.02,
+      143500,
+      11758.3,
+      9893.5,
+      1481.9,
+      7.22,
       20,
       null,
       null
@@ -1053,11 +1053,11 @@
       2770,
       900250,
       806500,
-      327300,
-      12751.5,
-      10667.9,
-      3633,
-      7.22,
+      143500,
+      13102,
+      11018.5,
+      1481.9,
+      7.42,
       20,
       null,
       null
@@ -1069,11 +1069,11 @@
       3020,
       962750,
       869000,
-      327300,
-      14094.9,
-      11792.6,
-      3633,
-      7.41,
+      143500,
+      14445.8,
+      12143.5,
+      1481.9,
+      7.59,
       20,
       null,
       null
@@ -1085,12 +1085,12 @@
       3270,
       1025250,
       931500,
-      327300,
-      15438.4,
-      12917.3,
-      3633,
-      7.57,
-      20,
+      143500,
+      15789.6,
+      13268.5,
+      1481.9,
+      7.74,
+      21,
       null,
       null
     ],
@@ -1101,11 +1101,11 @@
       3520,
       1075250,
       994000,
-      327300,
-      16781.9,
-      14042,
-      3633,
-      7.71,
+      143500,
+      17161.4,
+      14421.6,
+      1481.9,
+      7.88,
       21,
       null,
       null
@@ -1117,11 +1117,11 @@
       3770,
       1125250,
       1050250,
-      327300,
-      18153.7,
-      15195.2,
-      3633,
-      7.89,
+      143500,
+      18561.4,
+      15602.9,
+      1481.9,
+      8.07,
       21,
       null,
       null
@@ -1133,11 +1133,11 @@
       4020,
       1175250,
       1100250,
-      327300,
-      19554,
-      16376.8,
-      3633,
-      8.12,
+      143500,
+      19961.4,
+      16784.1,
+      1481.9,
+      8.28,
       21,
       null,
       null
@@ -1149,11 +1149,11 @@
       4270,
       1225250,
       1150250,
-      327300,
-      20954.3,
-      17558.4,
-      3633,
-      8.32,
+      133500,
+      21361.3,
+      17965.4,
+      1425.6,
+      8.48,
       21,
       null,
       null
@@ -1270,24 +1270,24 @@
     "2025Q4": 1.09,
     "2026Q1": 1.72,
     "2026Q2": 2.84,
-    "2026Q3": 5.22,
-    "2026Q4": 7.25,
-    "2027Q1": 9.95,
-    "2027Q2": 12.38,
-    "2027Q3": 14.81,
-    "2027Q4": 23.31,
-    "2028Q1": 27.59,
-    "2028Q2": 31.87,
-    "2028Q3": 36.15,
-    "2028Q4": 40.42,
-    "2029Q1": 44.92,
-    "2029Q2": 49.42,
-    "2029Q3": 53.92,
-    "2029Q4": 58.42,
-    "2030Q1": 63.14,
-    "2030Q2": 67.87,
-    "2030Q3": 72.6,
-    "2030Q4": 77.32
+    "2026Q3": 5.44,
+    "2026Q4": 7.96,
+    "2027Q1": 10.66,
+    "2027Q2": 13.09,
+    "2027Q3": 15.52,
+    "2027Q4": 24.5,
+    "2028Q1": 28.77,
+    "2028Q2": 33.05,
+    "2028Q3": 37.32,
+    "2028Q4": 41.82,
+    "2029Q1": 46.32,
+    "2029Q2": 50.82,
+    "2029Q3": 55.32,
+    "2029Q4": 60.05,
+    "2030Q1": 64.77,
+    "2030Q2": 69.5,
+    "2030Q3": 74.22,
+    "2030Q4": 78.95
   },
   "fund": {
     "cost": 38,
@@ -1364,10 +1364,29 @@
     "cap": "2026 bridge · $bn"
   },
   "steady": {
+    "inputs": {
+      "M": 0.55,
+      "gpu": 30,
+      "shell": 6,
+      "shellLife": 25,
+      "swap": 0.55,
+      "life": 4,
+      "fail": 0.03,
+      "tax": 0.21,
+      "W": 0.105,
+      "g": 0.06,
+      "gY": 5,
+      "term": 3,
+      "spotW": 0.025,
+      "H": 60,
+      "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime.",
+      "rev": 20.0105840187822,
+      "spotShare": 0.158975712997063
+    },
     "steps": [
       [
         "Revenue",
-        20,
+        20.01,
         "total"
       ],
       [
@@ -1377,7 +1396,7 @@
       ],
       [
         "Cash profit",
-        11,
+        11.01,
         "sub"
       ],
       [
@@ -1397,46 +1416,40 @@
       ],
       [
         "Owner keeps",
-        4.34,
+        4.35,
         "total"
       ]
     ],
     "stepsMax": 22,
-    "footer": "$4.34m today · market +6%/yr for five years, repriced at renewal: worth $67m = 3.34×",
+    "footer": "$4.35m normalized cash per earning IT MW; 3.24× revenue from the shared DCF.",
     "regimes": [
       [
-        "Blend: 90% contracted, 10% short-term",
-        3.34,
+        "Modeled contract / spot mix",
+        3.2424354359118692,
         "base"
       ],
       [
-        "Contracted, 2-yr terms",
-        3.4,
+        "Contracted, 3-yr renewal regime",
+        3.3199213788980186,
         ""
       ],
       [
-        "Short-term only, 13% discount",
-        2.83,
+        "Spot only, 13% discount",
+        2.832513953415479,
         ""
       ],
       [
-        "Flat $/MW, no density pricing",
-        2.31,
-        ""
-      ],
-      [
-        "Owner-operator margin 65%",
-        4.27,
+        "Flat post-horizon pricing",
+        2.282804935110888,
         ""
       ]
     ],
-    "regimesMax": 4.4,
-    "basis": "per IT MW: $20m revenue (the 2029 vintage; the ramp's 2027 vintage is $18m and the 2030 fleet average $18.0m; $20m is the low end of Q2-26 signings), 55% EBITDA (AI cloud 50% in Q2-26; a flat 55% from 2026H2 in the quarterly table overstates the next four quarters by ~$1/share against the ~40% group guide, and is kept for simplicity), GPUs + ancillaries $30m, shell $6m blended (75% owned at $8m), tray-swap refresh 55% of GPU cost every four years plus 3%/yr spares, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals (1-3 yr mid-term book), short-term at 13%; 90/10 blend"
+    "regimesMax": 4,
+    "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
   },
   "finance": {
     "M": 0.55,
     "W": 0.105,
-    "MULT": 3.34,
     "SH0": 321.7,
     "EQ_SHARE": 0.1,
     "EQ_PX": 250,
@@ -1510,7 +1523,203 @@
           "amt": 5.98
         }
       ],
-      "basis": "~70% of Q2-26 deals carried prepayments covering 50-60% of associated capex (Q2-26 letter) → 45% of GPU cost on contracted capacity; Microsoft prepaid $6.96bn of $17.39bn (40% of TCV, 20-F), credited through reduced monthly instalments from the start of each tranche → credited pro rata from month 1 over 2 years on mid-term deals (termQ 8, startQ 0); deferred revenue $5.98bn at 30-Jun-26 is the opening balance, credited over 20 quarters (Microsoft-weighted)"
+      "basis": "~70% of Q2-26 deals carried prepayments covering 50-60% of associated capex (Q2-26 letter) → 45% of GPU cost on contracted capacity; Microsoft prepaid $6.96bn of $17.39bn (40% of TCV, 20-F), credited through reduced monthly instalments from the start of each tranche → credited pro rata from month 1 over 2 years on mid-term deals (termQ 8, startQ 0); deferred revenue $5.98bn at 30-Jun-26 is the opening balance, credited over 20 quarters (Microsoft-weighted) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: first eight service quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "creditTiming": {
+        "mode": "first-quarters",
+        "quarters": 8
+      },
+      "creditSchedules": {
+        "2026Q3": [
+          {
+            "weight": 0.5263157894736842,
+            "startQ": 0,
+            "termQ": 8,
+            "serviceQ": "2026Q3",
+            "endQ": "2031Q3"
+          },
+          {
+            "weight": 0.2631578947368421,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2026Q4",
+            "endQ": "2028Q4"
+          },
+          {
+            "weight": 0.21052631578947367,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2026Q4",
+            "endQ": "2029Q4"
+          }
+        ],
+        "2026Q4": [
+          {
+            "weight": 0.4444444444444444,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2027Q1",
+            "endQ": "2029Q1"
+          },
+          {
+            "weight": 0.5555555555555556,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2027Q1",
+            "endQ": "2030Q1"
+          }
+        ],
+        "2027Q1": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2027Q2",
+            "endQ": "2032Q2"
+          }
+        ],
+        "2027Q2": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2027Q3",
+            "endQ": "2030Q3"
+          }
+        ],
+        "2027Q4": [
+          {
+            "weight": 0.47619047619047616,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2028Q1",
+            "endQ": "2031Q1"
+          },
+          {
+            "weight": 0.5238095238095238,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2028Q1",
+            "endQ": "2031Q1"
+          }
+        ],
+        "2027Q3": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2027Q4",
+            "endQ": "2030Q4"
+          }
+        ],
+        "2028Q1": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2028Q2",
+            "endQ": "2031Q2"
+          }
+        ],
+        "2028Q2": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2028Q3",
+            "endQ": "2031Q3"
+          }
+        ],
+        "2028Q3": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2028Q4",
+            "endQ": "2031Q4"
+          }
+        ],
+        "2028Q4": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2029Q1",
+            "endQ": "2032Q1"
+          }
+        ],
+        "2029Q1": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2029Q2",
+            "endQ": "2032Q2"
+          }
+        ],
+        "2029Q2": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2029Q3",
+            "endQ": "2032Q3"
+          }
+        ],
+        "2029Q3": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2029Q4",
+            "endQ": "2032Q4"
+          }
+        ],
+        "2029Q4": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2030Q1",
+            "endQ": "2033Q1"
+          }
+        ],
+        "2030Q1": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2030Q2",
+            "endQ": "2033Q2"
+          }
+        ],
+        "2030Q2": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2030Q3",
+            "endQ": "2033Q3"
+          }
+        ],
+        "2030Q3": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2030Q4",
+            "endQ": "2033Q4"
+          }
+        ],
+        "2030Q4": [
+          {
+            "weight": 1,
+            "startQ": 1,
+            "termQ": 8,
+            "serviceQ": "2031Q1",
+            "endQ": "2034Q1"
+          }
+        ]
+      }
     },
     "cover": {
       "ctrPre": 0.45,
@@ -1519,7 +1728,8 @@
       "spotGpu": 0.5,
       "spotShell": 0.5
     },
-    "basis": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $250 plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Aug-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets)"
+    "basis": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $250 plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Aug-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets)",
+    "MULT": 3.2424354359118692
   },
   "labels": {
     "shell": "shell",
@@ -1528,7 +1738,7 @@
     "debt": "Debt",
     "energised": "connected"
   },
-  "rr": 83.8172,
+  "rr": 85.4452,
   "year": "2030",
   "gpuMax": 1250000,
   "arrMax": 90,
@@ -1593,9 +1803,9 @@
       "<b>Vera Rubin from early 2027.</b> Meta’s $12bn dedicated capacity is one of the first large-scale Vera Rubin deployments, delivery H1-27; the $15bn backstop lets Nebius sell that capacity to others with Meta taking what is unsold.<span class=\"src\">6-K 16 Mar 2026 · Q1-26 letter</span>"
     ],
     [
-      "<b>ARR on Nebius’s definition.</b> Last month’s AI-cloud revenue × 12: $1.25bn at Dec-25 (guide $0.9–1.1bn), $7–9bn guided for Dec-26. RPO $37.5bn at 30 June, 36% within 24 months; >$40bn of commitments in total. The chart is the model’s contracted run-rate on connected capacity, which runs ahead of the ARR print by one to two quarters.<span class=\"src\">Q2-26 6-K · 12 Aug letter</span>",
-      "<b>The book repriced in a year.</b> 2026 base ~$12m per MW; Q2-26 landmark deals (Reflection, Cohere, a US neolab, a quant firm) at $20–25m on 1–3 yr terms; the first capacity auction cleared 15% above any prior Blackwell price; short-term 3–6 month deals at $40–50m. Older-generation pricing rose >30% in the quarter.<span class=\"src\">Q2-26 letter and call</span>",
-      "<b>Signed vs contracted.</b> Microsoft ($17.4bn), Meta ($2.9bn + $12bn firm) and the 2026 enterprise book are signed; every owned megawatt from 2027 is assumed to sign at $18–21m per MW as it connects, 10% kept for short-term.<span class=\"src\">90% of unsigned capacity contracted</span>"
+      "<b>Contract cohorts.</b> Existing/inferred book keeps its original all-in rate until a disclosed or estimated expiry. Expiry ends signed coverage; continuation becomes an assumed renewal. New capacity uses one shared house curve.",
+      "<b>Compare matching measures.</b> Annualized earning contracted revenue divided by earning contracted IT MW measures contract yield. Total annualized revenue divided by all earning IT MW includes spot. Neither denominator should be paired with full energized-capacity ARR.",
+      "<b>Evidence.</b> Every tranche records price, commitment and expiry provenance. An inferred allocation is not a verified contract. New prices, zero software premium and 100% same-hardware renewal continuation are explicit assumptions."
     ],
     [
       "<b>Prepayments do the funding.</b> ~70% of Q2-26 deals carried prepayments covering 50–60% of capex; >$9bn expected in 2026; Microsoft prepaid $6.96bn of $17.4bn. Deferred revenue $6.0bn at 30 June.<span class=\"src\">Q2-26 letter · 20-F Note on Microsoft</span>",
@@ -1603,80 +1813,21 @@
       "<b>The catch:</b> prepayments and gearing follow signed contracts; the owned greenfields ($8m shell per MW) are built ahead of signing. Unsigned capacity needs ~$19m of equity per MW, and the ATM has 12.3m shares left.<span class=\"src\">funding stack above · Q2-26 6-K</span>"
     ],
     [
-      "<b>Margins are still climbing.</b> AI-cloud adjusted EBITDA margin 19% (Q3-25) → 24% → 45% → 50% (Q2-26) as co-location and lease costs fall as a share of revenue; group guide ~40% for 2026. Owned campuses at Finland-style PUE 1.13 should take it toward the owner-operator 65%.<span class=\"src\">quarterly 6-Ks · Q4-25 call</span>",
-      "<b>Capex is $30m of GPUs per MW plus $8m of shell on owned sites.</b> Management’s split: land and power ~1%, data-centre build 18–20%, GPUs ~80%; 2026 guide $20–25bn (raised from $16–20bn in May); H1-26 spent $8.1bn.<span class=\"src\">Q3-25 call · Q1-26 and Q2-26 letters</span>",
-      "<b>Payback 1 year 10 months</b> on Q2-26 deals (was 2–3 years), on prepayments of 50–60% of capex. Maintenance as a tray swap at 55% of GPU cost every four years plus 3%/yr spares: $5.0m per MW-yr on $30m of silicon.<span class=\"src\">Q2-26 letter · model</span>"
+      "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
+      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption."
     ],
     [
-      "<b>Some equity, not none.</b> $6.9bn of equity-linked capital in 2026 (NVIDIA warrant, ATM) against $20–25bn of capex. Base: 10% of the 2027–30 build plus the residual the flywheel cannot cover, at an assumed $250 — the bridge shows the count.<span class=\"src\">6-Ks · 12 Aug letter</span>",
-      "<b>The multiple is the swing.</b> At $20m per MW and 55% EBITDA, $1 of run-rate is worth ~3.3× — between CoreWeave’s tenant 2.75× and IREN’s owner-operator 4.06×, because Nebius owns most of its shell but pays more for silicon per dollar of revenue on shorter contracts. Signed contracts never escalate; they reprice when they end.<span class=\"src\">contracted 2-yr at 10.5% · short-term at 13%</span>",
-      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> Non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) are added to equity at the tracker’s $5.8bn mark, not to EV. Pick your multiple.<span class=\"src\">after the raise</span>"
+      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
+      "<b>Separate clocks.</b> Model policy revision is dated 15 September 2026; financial disclosures and reference share prices retain their original dates. This is not a refreshed market quotation."
     ]
   ],
   "arr": {
-    "folds": [
-      {
-        "summary": [
-          "Unsigned capacity modelled at",
-          "$18–21m / MW-yr"
-        ],
-        "rows": [
-          [
-            "2026 installed base (Q2-26 letter)",
-            "~$12m per MW-yr"
-          ],
-          [
-            "Q2-26 landmark deals",
-            "$20–25m per MW-yr, 1–3 yr"
-          ],
-          [
-            "Short-term auction, Q3-26",
-            "$40–50m per MW-yr, 3–6 months"
-          ],
-          [
-            "Microsoft, Vineland",
-            "$17.4bn / 5 yr — ~$14m per MW at 250 MW"
-          ],
-          [
-            "Meta #2, Vera Rubin",
-            "$12bn firm / 5 yr from early 2027, +$15bn backstop"
-          ]
-        ]
-      },
-      {
-        "summary": [
-          "Fleet blend, Q4 2030",
-          "$8.32 / GPU-hr"
-        ],
-        "rows": [
-          [
-            "2025-26 vintages",
-            "$9m → $12.5m per MW-yr"
-          ],
-          [
-            "2027-30 vintages",
-            "$18m → $21m per MW-yr"
-          ],
-          [
-            "÷ GPUs per MW",
-            "700 Hopper · 400 Blackwell · 250 Rubin · 200 next"
-          ],
-          [
-            "10% of unsigned capacity at spot",
-            "$35m / MW-yr"
-          ],
-          [
-            "Contracted share of unsigned tranches",
-            "90%"
-          ]
-        ]
-      }
-    ],
-    "cap": "contracted run-rate, $bn — contracted GPUs on connected capacity × the contract rate × 8,760 h · Nebius reports ARR as the last month’s AI-cloud revenue × 12 ($1.25bn Dec-25; $7–9bn guided for Dec-26)"
+    "folds": [],
+    "cap": "Annualized earned revenue is split into existing book (including estimates), assumed renewals, assumed new contracts and spot. Full-capacity contracted run-rate is a separate measure."
   },
   "footer": {
     "sources": "FY25 20-F (filed 30 Apr 2026, with the Meta agreements Ex-4.2/4.3 and Microsoft SOW Ex-4.4/4.5), Q1-26 and Q2-26 6-K interim statements, every shareholder letter Q3-24 to Q2-26 (assets.nebius.com), 6-Ks for the Microsoft, Meta, convertible-note and secured-facility announcements, AGM materials Aug-26; Q1-26 and Q2-26 call transcripts (investing.com, Motley Fool); Vineland Planning Board, City of Independence, Floodlight/Guardian and trade-press site reports; SemiAnalysis ClusterMAX and the public GPU index; Know Your Investments, MVC Investing and Northwise for site-by-site tallies.",
-    "model": "Compute/Value tracker, Nebius ramp drafted 4 Sep 2026 by the §6e playbook. Ramp: connected/active power as billing IT MW; 2026 to the connected guide, 2027 the owned greenfields, 2028-30 the 5 GW contracted book at ~1 GW a year to 4.7 GW; rates $12.5m per MW-yr on 2026 vintages rising to $21m on 2030, 10% of unsigned capacity at $35m spot, 90% contracted. Capex per MW: $30m Blackwell, +10% on 2027 orders, $38m Rubin, $45m next-gen; shell $8m on owned campuses, none on co-location. Steady-state: $20m revenue per MW-yr, 55% EBITDA, $30m GPUs + $6m blended shell, 21% tax, 10.5% WACC; market $/MW +6%/yr for five years then flat; contracted MW reprice at 2-yr renewals, short-term at 13%; refresh 55% of GPU cost every four years plus 3%/yr; 10% of the 2027–30 build in equity at $250; operating cash funds the build first, prepayments next, debt within lenders’ cover, equity for the rest. Honest-base items: prepayments credited pro rata through reduced instalments with the balance owed at 2030 deducted at PV; eight convertible series as equity at the model’s 2030 price (no capped calls); restricted cash counted; non-core stakes at the tracker mark. Value = 2030 EV less net debt ex converts and prepayments owed, plus non-core, discounted to today, over the diluted count."
+    "model": "Shared pricing and contract-cohort model. Existing commitments, estimated coverage, same-hardware renewals and new business are distinguished. Pricing, expiry and continuity assumptions are exposed with their evidence. Company financing and capex retain the dated research snapshot."
   },
   "capexBasis": "GPUs + ancillaries per MW by vintage: $30m Blackwell (derived: 2026 capex guide $20-25bn against ~700 MW added; management: GPUs ~80% of total capex), +10% on 2027 orders, Rubin ~$38m, next-gen ~$45m; shell $8m per MW on owned campuses (management: data-centre build 18-20% of capex), none on co-location",
   "prints": {
@@ -1688,5 +1839,1075 @@
     "2025Q4": 214.2,
     "2026Q1": 389.7,
     "2026Q2": 574.9
+  },
+  "modelAsOf": "2026-09-15",
+  "pricing": {
+    "asOf": "2026-09-15",
+    "effectiveQ": "2026Q3",
+    "market": {
+      "version": 1,
+      "asOf": "2026-09-15",
+      "effectiveQ": "2026Q3",
+      "status": "house-assumption",
+      "units": "USD millions per IT MW per year; all-in contracted services",
+      "curve": {
+        "2026": {
+          "1": 18,
+          "2": 18,
+          "3": 18,
+          "5": 18,
+          "6": 18
+        },
+        "2027": {
+          "1": 18,
+          "2": 18,
+          "3": 18,
+          "5": 18,
+          "6": 18
+        },
+        "2028": {
+          "1": 19,
+          "2": 19,
+          "3": 19,
+          "5": 19,
+          "6": 19
+        },
+        "2029": {
+          "1": 20,
+          "2": 20,
+          "3": 20,
+          "5": 20,
+          "6": 20
+        },
+        "2030": {
+          "1": 21,
+          "2": 21,
+          "3": 21,
+          "5": 21,
+          "6": 21
+        },
+        "2031": {
+          "1": 21,
+          "2": 21,
+          "3": 21,
+          "5": 21,
+          "6": 21
+        }
+      },
+      "generationFactors": {
+        "hopper": 1,
+        "blackwell": 1,
+        "rubin": 1,
+        "next": 1
+      },
+      "tenorBasis": "The initial new-business curve has no calibrated tenor premium or discount. Term controls the next renewal date. A five-year, 15% lower-price case is an explicit sensitivity, not a disclosed market spread.",
+      "generationBasis": "The shared frontier curve is quoted per IT MW, with generation factors of 1 as an explicit house assumption. It is not a hardware productivity forecast. Existing equipment renews at its own all-in price; renewal does not install new GPUs.",
+      "renewal": {
+        "termYears": 3,
+        "retention": 1,
+        "rateMode": "retain",
+        "rateMultiplier": 1,
+        "basis": "Base assumes the same hardware keeps earning at the original all-in rate and 100% contracted capacity renews. These are house assumptions, not commitments. Price and retention downside cases are shown."
+      },
+      "softwarePremium": 0,
+      "spot": {
+        "basis": "per-gpu-hour",
+        "rates": {
+          "2024": 2.5,
+          "2025": 2.5,
+          "2026": 2.4,
+          "2027": 11.7,
+          "2028": 11.7,
+          "2029": 11.7,
+          "2030": 11.7
+        },
+        "generationMultipliers": {
+          "hopper": 0.21,
+          "blackwell": 0.854,
+          "rubin": 1.366,
+          "next": 1.707
+        },
+        "note": "Shared realized spot assumptions inherited from the CoreWeave/Nebius model, not executable rate cards. Physical GPU density remains tranche-specific."
+      },
+      "basis": "One shared new-business curve using the existing Nebius 2027–30 house ladder ($18m/$19m/$20m/$21m per IT MW-year). Prices fix at modeled service commencement, not energisation. Current disclosures support improving pricing but do not establish these forward prices. Existing/inferred commitments retain their own rates through disclosed or estimated expiry. No quantified company software premium is assumed. The 2031 service-start price holds the 2030 level flat; it is a house extension, not a market quote.",
+      "sources": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+          "date": "2026-08-12",
+          "title": "Nebius Q2 letter",
+          "supports": "New annual contract values above $20m/MW; term mix and improved older-generation pricing. MW definition and exact future prices are not established by this source."
+        },
+        {
+          "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+          "date": "2026-08-11",
+          "title": "CoreWeave Q2 call",
+          "supports": "Improved new pricing and contribution margins; renewal examples, not a fleet expiry ladder."
+        },
+        {
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+          "date": "2026-08-27",
+          "title": "IREN FY26 results",
+          "supports": "Stronger recent three-year contract pricing and financing; not a future common-price guarantee."
+        }
+      ],
+      "allocationCutoffQ": "2027Q1",
+      "allocationBasis": "Unmapped future tranches energizing from 2027Q1 use the shared new-business curve. Power leases do not establish customer compute prices. Existing and in-flight 2026 book and identifiable disclosed future commitments retain their own rates. This cutoff is a house allocation convention, not a statement that disclosed backlog excludes future sites. The legacy-book-allocation sensitivity tests the uncertainty."
+    },
+    "summary": {
+      "earningITMW": 4270,
+      "contractedEarningITMW": 3872.5,
+      "totalRevenueRunRateBn": 85.4451937602,
+      "contractRevenueRunRateBn": 71.86148316,
+      "contractRevenuePerMW": 18.55687105487411,
+      "totalRevenuePerMW": 20.0105840187822,
+      "existingRevenueBn": 5.7024972,
+      "renewalRevenueBn": 9.818985960000001,
+      "newRevenueBn": 56.34,
+      "spotRevenueBn": 13.583710600199996,
+      "confirmedExistingRevenueBn": 5.7024972,
+      "arrExisting": 5.7024972,
+      "arrRenewal": 9.818985960000001,
+      "arrNew": 63.42750000000001,
+      "arrContracted": 78.94898316000001,
+      "estimatedExpiryCount": 13,
+      "unverifiedPriceCount": 13,
+      "assumedCommitmentCount": 7
+    },
+    "quarters": [
+      {
+        "quarter": "2026Q3",
+        "existingBn": 3.3945,
+        "renewalBn": 0.075117,
+        "newBn": 0,
+        "spotBn": 0.10844809919999998,
+        "earningITMW": 340,
+        "contractedEarningITMW": 315.5
+      },
+      {
+        "quarter": "2026Q4",
+        "existingBn": 4.332696,
+        "renewalBn": 0.075117,
+        "newBn": 0.35999999999999993,
+        "spotBn": 0.14435709119999995,
+        "earningITMW": 440,
+        "contractedEarningITMW": 410.5
+      },
+      {
+        "quarter": "2027Q1",
+        "existingBn": 4.95153744,
+        "renewalBn": 0.21934163999999998,
+        "newBn": 1.5299999999999998,
+        "spotBn": 1.1938985603999996,
+        "earningITMW": 580,
+        "contractedEarningITMW": 536.5
+      },
+      {
+        "quarter": "2027Q2",
+        "existingBn": 6.508863960000001,
+        "renewalBn": 0.4624842,
+        "newBn": 2.3399999999999994,
+        "spotBn": 1.5089999651999997,
+        "earningITMW": 745,
+        "contractedEarningITMW": 692.5
+      },
+      {
+        "quarter": "2027Q3",
+        "existingBn": 7.656380160000001,
+        "renewalBn": 0.665103,
+        "newBn": 3.555,
+        "spotBn": 1.7715076001999996,
+        "earningITMW": 895,
+        "contractedEarningITMW": 835
+      },
+      {
+        "quarter": "2027Q4",
+        "existingBn": 7.656380160000001,
+        "renewalBn": 0.665103,
+        "newBn": 5.985,
+        "spotBn": 2.2965228701999996,
+        "earningITMW": 1045,
+        "contractedEarningITMW": 970
+      },
+      {
+        "quarter": "2028Q1",
+        "existingBn": 7.453761360000001,
+        "renewalBn": 0.8677218,
+        "newBn": 11.68875,
+        "spotBn": 3.477807227699999,
+        "earningITMW": 1382.5,
+        "contractedEarningITMW": 1273.75
+      },
+      {
+        "quarter": "2028Q2",
+        "existingBn": 7.453761360000001,
+        "renewalBn": 0.8677218,
+        "newBn": 18.315,
+        "spotBn": 4.834096675199999,
+        "earningITMW": 1770,
+        "contractedEarningITMW": 1622.5
+      },
+      {
+        "quarter": "2028Q3",
+        "existingBn": 7.453761360000001,
+        "renewalBn": 0.8677218,
+        "newBn": 22.59,
+        "spotBn": 5.709122125199999,
+        "earningITMW": 2020,
+        "contractedEarningITMW": 1847.5
+      },
+      {
+        "quarter": "2028Q4",
+        "existingBn": 6.8282973600000005,
+        "renewalBn": 1.4931858,
+        "newBn": 26.865000000000002,
+        "spotBn": 6.5841475751999985,
+        "earningITMW": 2270,
+        "contractedEarningITMW": 2072.5
+      },
+      {
+        "quarter": "2029Q1",
+        "existingBn": 5.927629199999999,
+        "renewalBn": 2.39385396,
+        "newBn": 31.2525,
+        "spotBn": 7.459173025199999,
+        "earningITMW": 2520,
+        "contractedEarningITMW": 2297.5
+      },
+      {
+        "quarter": "2029Q2",
+        "existingBn": 5.927629199999999,
+        "renewalBn": 2.39385396,
+        "newBn": 35.7525,
+        "spotBn": 8.3341984752,
+        "earningITMW": 2770,
+        "contractedEarningITMW": 2522.5
+      },
+      {
+        "quarter": "2029Q3",
+        "existingBn": 5.927629199999999,
+        "renewalBn": 2.39385396,
+        "newBn": 40.2525,
+        "spotBn": 9.2092239252,
+        "earningITMW": 3020,
+        "contractedEarningITMW": 2747.5
+      },
+      {
+        "quarter": "2029Q4",
+        "existingBn": 5.927629199999999,
+        "renewalBn": 3.1138539599999997,
+        "newBn": 44.0325,
+        "spotBn": 10.084249375199999,
+        "earningITMW": 3270,
+        "contractedEarningITMW": 2972.5
+      },
+      {
+        "quarter": "2030Q1",
+        "existingBn": 5.927629199999999,
+        "renewalBn": 4.733853959999999,
+        "newBn": 47.025,
+        "spotBn": 10.959274825199998,
+        "earningITMW": 3520,
+        "contractedEarningITMW": 3197.5
+      },
+      {
+        "quarter": "2030Q2",
+        "existingBn": 5.927629199999999,
+        "renewalBn": 4.733853959999999,
+        "newBn": 51.75,
+        "spotBn": 11.834172160199996,
+        "earningITMW": 3770,
+        "contractedEarningITMW": 3422.5
+      },
+      {
+        "quarter": "2030Q3",
+        "existingBn": 5.927629199999999,
+        "renewalBn": 7.163853960000001,
+        "newBn": 54.045,
+        "spotBn": 12.708941380199997,
+        "earningITMW": 4020,
+        "contractedEarningITMW": 3647.5
+      },
+      {
+        "quarter": "2030Q4",
+        "existingBn": 5.7024972,
+        "renewalBn": 9.818985960000001,
+        "newBn": 56.34,
+        "spotBn": 13.583710600199996,
+        "earningITMW": 4270,
+        "contractedEarningITMW": 3872.5
+      }
+    ],
+    "cohorts": [
+      {
+        "name": "Mäntsälä H100/H200 (2024, on-demand)",
+        "gen": "hopper",
+        "itMW": 25,
+        "contractShare": 0.5,
+        "modeledContractShare": 0.5,
+        "newBusinessShare": 0,
+        "firstRevenue": "2024Q3",
+        "endQ": "2026Q3",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 6.00936,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2032Q3",
+        "existingRenewalRatePerMW": 6.00936,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.26344605000000004,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "Paris · Iceland · Kansas City (H200)",
+        "gen": "hopper",
+        "itMW": 20,
+        "contractShare": 0.8,
+        "modeledContractShare": 0.8,
+        "newBusinessShare": 0,
+        "firstRevenue": "2025Q1",
+        "endQ": "2027Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 9.01404,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2033Q1",
+        "existingRenewalRatePerMW": 9.01404,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.20448993599999998,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "Mäntsälä expansion a (B200)",
+        "gen": "blackwell",
+        "itMW": 30,
+        "contractShare": 0.9,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0,
+        "firstRevenue": "2025Q2",
+        "endQ": "2027Q2",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 9.005279999999997,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2033Q2",
+        "existingRenewalRatePerMW": 9.005279999999997,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.3481763616,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "Mäntsälä expansion b (B300)",
+        "gen": "blackwell",
+        "itMW": 25,
+        "contractShare": 0.9,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0,
+        "firstRevenue": "2025Q3",
+        "endQ": "2027Q3",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 9.00528,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2033Q3",
+        "existingRenewalRatePerMW": 9.00528,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.29014696799999995,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "Vineland tranche 1 · Microsoft GB300 (Nov-25)",
+        "gen": "blackwell",
+        "itMW": 25,
+        "contractShare": 1,
+        "modeledContractShare": 1,
+        "newBusinessShare": 0,
+        "firstRevenue": "2025Q4",
+        "endQ": "2030Q4",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "disclosed",
+        "termYears": 5,
+        "newTermYears": 3,
+        "ratePerMW": 9.00528,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2033Q4",
+        "existingRenewalRatePerMW": 9.00528,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.225132,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      {
+        "name": "Israel · UK Longcross (B200/B300)",
+        "gen": "blackwell",
+        "itMW": 25,
+        "contractShare": 0.9,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0,
+        "firstRevenue": "2026Q1",
+        "endQ": "2028Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 9.00528,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2031Q1",
+        "existingRenewalRatePerMW": 9.00528,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.29014696799999995,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "Vineland tranches 2-3 · Microsoft",
+        "gen": "blackwell",
+        "itMW": 50,
+        "contractShare": 1,
+        "modeledContractShare": 1,
+        "newBusinessShare": 0,
+        "firstRevenue": "2026Q1",
+        "endQ": "2031Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "disclosed",
+        "termYears": 5,
+        "newTermYears": 3,
+        "ratePerMW": 12.50928,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2031Q1",
+        "existingRenewalRatePerMW": 12.50928,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.625464,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      {
+        "name": "Vineland tranches 4-5 · Microsoft",
+        "gen": "blackwell",
+        "itMW": 50,
+        "contractShare": 1,
+        "modeledContractShare": 1,
+        "newBusinessShare": 0,
+        "firstRevenue": "2026Q2",
+        "endQ": "2031Q2",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "disclosed",
+        "termYears": 5,
+        "newTermYears": 3,
+        "ratePerMW": 12.50928,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2031Q2",
+        "existingRenewalRatePerMW": 12.50928,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.625464,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      {
+        "name": "Kansas City · Meta #1 clusters",
+        "gen": "blackwell",
+        "itMW": 40,
+        "contractShare": 1,
+        "modeledContractShare": 1,
+        "newBusinessShare": 0,
+        "firstRevenue": "2026Q2",
+        "endQ": "2031Q2",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "disclosed",
+        "termYears": 5,
+        "newTermYears": 3,
+        "ratePerMW": 12.50928,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2031Q2",
+        "existingRenewalRatePerMW": 12.50928,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 0.5003712,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      {
+        "name": "Vineland tranches 6-9 · Microsoft (all delivered Aug-26)",
+        "gen": "blackwell",
+        "itMW": 100,
+        "contractShare": 1,
+        "modeledContractShare": 1,
+        "newBusinessShare": 0,
+        "firstRevenue": "2026Q3",
+        "endQ": "2031Q3",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "disclosed",
+        "termYears": 5,
+        "newTermYears": 3,
+        "ratePerMW": 12.50928,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2031Q3",
+        "existingRenewalRatePerMW": 12.50928,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 1.250928,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      {
+        "name": "Q3-26 step-up: UK 65, Israel 80, Estonia 22, Bethune (FR)",
+        "gen": "blackwell",
+        "itMW": 100,
+        "contractShare": 0.5,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.4,
+        "firstRevenue": "2026Q4",
+        "endQ": "2028Q4",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 12.50928,
+        "newRatePerMW": 17.999999999999996,
+        "newEndQ": "2029Q4",
+        "nextExpiryQ": "2031Q4",
+        "existingRenewalRatePerMW": 12.50928,
+        "newRenewalRatePerMW": 17.999999999999996,
+        "earningRevenueBn": 1.695576672,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "Q4-26: Bethune, Spain, Minnesota, Alabama first halls",
+        "gen": "blackwell",
+        "itMW": 180,
+        "contractShare": 0.4,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.5,
+        "firstRevenue": "2027Q1",
+        "endQ": "2029Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 12.50928,
+        "newRatePerMW": 17.999999999999996,
+        "newEndQ": "2030Q1",
+        "nextExpiryQ": "2032Q1",
+        "existingRenewalRatePerMW": 12.50928,
+        "newRenewalRatePerMW": 17.999999999999996,
+        "earningRevenueBn": 3.1508709695999997,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "Lappeenranta first halls · Meta #2 Vera Rubin",
+        "gen": "rubin",
+        "itMW": 150,
+        "contractShare": 1,
+        "modeledContractShare": 1,
+        "newBusinessShare": 0,
+        "firstRevenue": "2027Q2",
+        "endQ": "2032Q2",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "disclosed",
+        "termYears": 5,
+        "newTermYears": 3,
+        "ratePerMW": 18.0018,
+        "newRatePerMW": null,
+        "nextExpiryQ": "2032Q2",
+        "existingRenewalRatePerMW": 18.0018,
+        "newRenewalRatePerMW": null,
+        "earningRevenueBn": 2.70027,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Named customer contract; physical allocation and all-in GPU-hour price are inferred. Five-year end quarter is derived from modeled delivery, not verified at tranche level."
+      },
+      {
+        "name": "Alabama phase 1",
+        "gen": "rubin",
+        "itMW": 150,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2027Q3",
+        "endQ": "2029Q3",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 18.0018,
+        "newRatePerMW": 18,
+        "newEndQ": "2030Q3",
+        "nextExpiryQ": "2033Q3",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 18,
+        "earningRevenueBn": 2.9550152700000005,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract."
+      },
+      {
+        "name": "Independence MO phase 1 (250 MW, Oct-27)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2028Q1",
+        "endQ": "2030Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 18.001800000000003,
+        "newRatePerMW": 19,
+        "newEndQ": "2031Q1",
+        "nextExpiryQ": "2031Q1",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 19,
+        "earningRevenueBn": 5.15002545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract."
+      },
+      {
+        "name": "Pennsylvania phase 1 (250-300 MW by YE27)",
+        "gen": "rubin",
+        "itMW": 275,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2028Q1",
+        "endQ": "2030Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 18.0018,
+        "newRatePerMW": 18.999999999999996,
+        "newEndQ": "2031Q1",
+        "nextExpiryQ": "2031Q1",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 18.999999999999996,
+        "earningRevenueBn": 5.665027995,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract."
+      },
+      {
+        "name": "Bethune to 240 · Vineland phase 2",
+        "gen": "rubin",
+        "itMW": 150,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2027Q4",
+        "endQ": "2029Q4",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 18.0018,
+        "newRatePerMW": 18,
+        "newEndQ": "2030Q4",
+        "nextExpiryQ": "2033Q4",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 18,
+        "earningRevenueBn": 2.9550152700000005,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Future physical tranche with no verified allocation of customer contract pricing. Base case uses the shared new-business curve; legacy-book sensitivity retains the original inferred rate. Power access and project names do not establish a locked compute contract."
+      },
+      {
+        "name": "2028 Q1 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2028Q2",
+        "endQ": "2030Q2",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.0092,
+        "newRatePerMW": 19,
+        "newEndQ": "2031Q2",
+        "nextExpiryQ": "2031Q2",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 19,
+        "earningRevenueBn": 5.15002545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2028 Q2 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2028Q3",
+        "endQ": "2030Q3",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.0092,
+        "newRatePerMW": 19,
+        "newEndQ": "2031Q3",
+        "nextExpiryQ": "2031Q3",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 19,
+        "earningRevenueBn": 5.15002545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2028 Q3 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2028Q4",
+        "endQ": "2030Q4",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.0092,
+        "newRatePerMW": 19,
+        "newEndQ": "2031Q4",
+        "nextExpiryQ": "2031Q4",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 19,
+        "earningRevenueBn": 5.15002545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2028 Q4 (Missouri, Pennsylvania ~300 MW/yr each, Finland)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2029Q1",
+        "endQ": "2031Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.0092,
+        "newRatePerMW": 20,
+        "newEndQ": "2032Q1",
+        "nextExpiryQ": "2032Q1",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 20,
+        "earningRevenueBn": 5.37502545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2029 Q1 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2029Q2",
+        "endQ": "2031Q2",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.9947,
+        "newRatePerMW": 20,
+        "newEndQ": "2032Q2",
+        "nextExpiryQ": "2032Q2",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 20,
+        "earningRevenueBn": 5.37502545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2029 Q2 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2029Q3",
+        "endQ": "2031Q3",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.9947,
+        "newRatePerMW": 20,
+        "newEndQ": "2032Q3",
+        "nextExpiryQ": "2032Q3",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 20,
+        "earningRevenueBn": 5.37502545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2029 Q3 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2029Q4",
+        "endQ": "2031Q4",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.9947,
+        "newRatePerMW": 20,
+        "newEndQ": "2032Q4",
+        "nextExpiryQ": "2032Q4",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 20,
+        "earningRevenueBn": 5.37502545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2029 Q4 (Missouri to 1.1 GW Dec-29, Pennsylvania)",
+        "gen": "rubin",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2030Q1",
+        "endQ": "2032Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 19.9947,
+        "newRatePerMW": 21,
+        "newEndQ": "2033Q1",
+        "nextExpiryQ": "2033Q1",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 21,
+        "earningRevenueBn": 5.60002545,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2030 Q1 (to the 5 GW contracted book)",
+        "gen": "next",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2030Q2",
+        "endQ": "2032Q2",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 21.00648,
+        "newRatePerMW": 21.000000000000004,
+        "newEndQ": "2033Q2",
+        "nextExpiryQ": "2033Q2",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 21.000000000000004,
+        "earningRevenueBn": 5.599769220000001,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2030 Q2 (to the 5 GW contracted book)",
+        "gen": "next",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2030Q3",
+        "endQ": "2032Q3",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 21.00648,
+        "newRatePerMW": 21.000000000000004,
+        "newEndQ": "2033Q3",
+        "nextExpiryQ": "2033Q3",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 21.000000000000004,
+        "earningRevenueBn": 5.599769220000001,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2030 Q3 (to the 5 GW contracted book)",
+        "gen": "next",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2030Q4",
+        "endQ": "2032Q4",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 21.00648,
+        "newRatePerMW": 21.000000000000004,
+        "newEndQ": "2033Q4",
+        "nextExpiryQ": "2033Q4",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 21.000000000000004,
+        "earningRevenueBn": 2.7998846100000003,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      },
+      {
+        "name": "2030 Q4 (to the 5 GW contracted book)",
+        "gen": "next",
+        "itMW": 250,
+        "contractShare": 0,
+        "modeledContractShare": 0.9,
+        "newBusinessShare": 0.9,
+        "firstRevenue": "2031Q1",
+        "endQ": "2033Q1",
+        "expiryBasis": "estimated",
+        "priceBasis": "inferred",
+        "commitmentBasis": "assumed",
+        "termYears": 2,
+        "newTermYears": 3,
+        "ratePerMW": 21.00648,
+        "newRatePerMW": 21.000000000000004,
+        "newEndQ": "2034Q1",
+        "nextExpiryQ": "2034Q1",
+        "existingRenewalRatePerMW": null,
+        "newRenewalRatePerMW": 21.000000000000004,
+        "earningRevenueBn": 0,
+        "source": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+      }
+    ],
+    "limitations": [
+      "Expiry quarters are estimates from modeled acceptance unless specifically marked disclosed.",
+      "An inferred existing-book allocation is not a verified customer commitment for that physical tranche.",
+      "Renewals do not retire or replace equipment. The long-run maintenance reserve is a separate house assumption.",
+      "Contract price by tenor is uncalibrated in the base case; the five-year discount is an explicit sensitivity.",
+      "Future prepayments and borrowing capacity are financing assumptions, not committed funding; customer credits follow modeled contract terms.",
+      "Delivery-delay tests retain the original capex purchase calendar. Fixed opening credit schedules remain unchanged.",
+      "Any prepayment balance without a credit calendar is deducted at face value at the horizon until its timing is sourced.",
+      "Forecast cash margin is 55%; normalized terminal margin is 55%.",
+      "Unmapped future tranches energizing from 2027Q1 use the shared new-business curve. Power leases do not establish customer compute prices. Existing and in-flight 2026 book and identifiable disclosed future commitments retain their own rates. This cutoff is a house allocation convention, not a statement that disclosed backlog excludes future sites. The legacy-book-allocation sensitivity tests the uncertainty."
+    ],
+    "sensitivities": [
+      {
+        "id": "base",
+        "label": "Shared pricing base",
+        "valuePerShare": 268.2092441421448,
+        "runRateBn": 85.4452,
+        "multiple": 3.2424354359118692,
+        "note": "Existing book, same-hardware renewals and shared new-business pricing."
+      },
+      {
+        "id": "newdown",
+        "label": "New prices −20%",
+        "valuePerShare": 169.1249619278051,
+        "runRateBn": 72.7372,
+        "multiple": 2.930328934441472,
+        "note": "Shared new-business prices 20% lower; original existing-book rates protected."
+      },
+      {
+        "id": "newup",
+        "label": "New prices +20%",
+        "valuePerShare": 372.81080500411827,
+        "runRateBn": 98.1532,
+        "multiple": 3.4761581955215295,
+        "note": "Shared new-business prices 20% higher; original existing-book rates protected."
+      },
+      {
+        "id": "renewdown",
+        "label": "Renewal prices −20%",
+        "valuePerShare": 253.05729216271914,
+        "runRateBn": 83.4812,
+        "multiple": 3.200192454346208,
+        "note": "Same hardware renews at 80% of its original all-in price."
+      },
+      {
+        "id": "retention",
+        "label": "80% renewal retention",
+        "valuePerShare": 285.94250687469753,
+        "runRateBn": 88.1408,
+        "multiple": 3.270458522869764,
+        "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions."
+      },
+      {
+        "id": "longterm",
+        "label": "Five-year new business, lower price",
+        "valuePerShare": 185.5847161255311,
+        "runRateBn": 75.914,
+        "multiple": 2.912968660530065,
+        "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years."
+      },
+      {
+        "id": "slip",
+        "label": "Delivery slips two quarters",
+        "valuePerShare": 203.65003985380898,
+        "runRateBn": 75.1456,
+        "multiple": 3.2364267703909966,
+        "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar."
+      },
+      {
+        "id": "joint",
+        "label": "Joint downside",
+        "valuePerShare": 84.7409817787717,
+        "runRateBn": 58.9216,
+        "multiple": 2.7672783809772694,
+        "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar."
+      },
+      {
+        "id": "legacybook",
+        "label": "Legacy book allocations retained",
+        "valuePerShare": 266.3432526962792,
+        "runRateBn": 85.236,
+        "multiple": 3.2380210185786478,
+        "note": "Keeps the prior inferred customer-price allocations on unmapped future power tranches. Tests contract coverage uncertainty; not a sourced committed-book case."
+      }
+    ]
   }
 }

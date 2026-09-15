@@ -60,22 +60,17 @@
     const rev = st.steps[0][1], keep = st.steps[st.steps.length - 1][1], costs = -(st.steps[1][1]),
       refreshC = -(steps['GPU refresh + spares'] || 0), shell = -(steps['Shell 25-yr'] || 0), tax = -(steps['Tax 21%'] || 0);
     const own = P.fund.cost, C = W.C.filter(x => !x.past), capex = C.reduce((a, x) => a + x.capex, 0) / 1000,
-      ebitda30 = W.pl.eb, mw30 = P.L[P.L.length - 1][2], t0row = P.L.find(r => r[0] === (P.finance.T0 || '2026Q3'));
+      ebitda30 = W.pl.eb, horizon = P.L[P.L.length - 1], mw30 = horizon[3], t0row = P.L.find(r => r[0] === (P.finance.T0 || '2026Q3'));
     if (!t0row) throw new Error(tk + ' ledger has no ' + (P.finance.T0 || '2026Q3') + ' row');
     return { tk, name: P.name, rev, costs, refresh: refreshC, shell, tax, keep, own,
       roic: keep / own, payback: own / (rev * 0.85),
       ebitdaMW: steps['Cash profit'] != null ? steps['Cash profit'] : rev * P.finance.M,
-      capex, ebitda30, mw30, mwNow: t0row[2], rr: P.rr, mult: P.finance.MULT,
+      capex, ebitda30, mw30, commissionedMW: horizon[2], mwNow: t0row[3], rr: P.rr, mult: P.finance.MULT,
       ps: W.ps, px: P.px.v, dil: W.dil, nd: W.last.nd, liab: W.liab, owed: W.last.owed,
-      eq: W.eqTot, year: P.year,
+      eq: W.eqTot, year: P.year, cashMargin: P.finance.M, normalizedMargin: st.inputs?.M, pricing: P.pricing || null, asOf: P.asOf, modelAsOf: P.pricing?.asOf || P.modelAsOf,
       evArr: (P.evArr.sh * P.px.v / 1000 + P.evArr.nd) / P.evArr.arr,
       eps: (W.pl.ni * 1000 + W.addb) / W.dil };
   }
-  /* like-for-like repricing (compare.js:51-52): hold each company's running costs, refresh and
-     shell in $ per MW and price every megawatt at the same 5-yr hyperscaler rate */
-  const LFL = 16;
-  const keepAt = (c, price) => { const eb = price - c.costs, tax = Math.max(0, eb - c.refresh - c.shell) * 0.21; return eb - c.refresh - c.shell - tax; };
-
   /* ---------- presentation ---------- */
   function heading(number, title, note) {
     const esc = root.UI.esc;
@@ -125,20 +120,47 @@
       rows.join('') + '</tbody></table></div>';
   }
 
+  function pricingComparison(year) {
+    const esc = root.UI.esc;
+    const amount = (v, unit) => Number.isFinite(v) ? (unit === 'mw' ? f0(v) : '$' + (unit === 'm' ? v.toFixed(2) : f1(v)) + unit) : '—';
+    const defs = [
+      ['Contract revenue / contracted earning IT MW', 'contractRevenuePerMW', 'm', true],
+      ['Total revenue / all earning IT MW', 'totalRevenuePerMW', 'm', true],
+      ['Contracted earning IT MW', 'contractedEarningITMW', 'mw'],
+      ['All earning IT MW', 'earningITMW', 'mw'],
+      ['Model contract revenue run-rate', 'contractRevenueRunRateBn', 'bn'],
+      ['Total revenue run-rate, including spot', 'totalRevenueRunRateBn', 'bn'],
+      ['Remaining existing book · includes estimates', 'existingRevenueBn', 'bn'],
+      ['Renewals after modeled expiry', 'renewalRevenueBn', 'bn'],
+      ['New business', 'newRevenueBn', 'bn'],
+      ['Spot', 'spotRevenueBn', 'bn']
+    ];
+    const rows = defs.map(([label, key, unit, highlight]) => '<tr' + (highlight ? ' class="cmp-yield"' : '') + '><td class="k">' + esc(label) + (highlight ? '<small>$m per IT MW-year · matching earning denominator</small>' : '') + '</td>' + NAMES.map(tk => '<td>' + amount(CO[tk].pricing?.summary?.[key], unit) + '</td>').join('') + '</tr>');
+    const incomplete = NAMES.filter(tk => !CO[tk].pricing?.summary);
+    const premiums = NAMES.map(tk => { const p = CO[tk].pricing?.market?.softwarePremium; return short(tk) + ': ' + (Number.isFinite(p) ? (p * 100).toFixed(0) + '%' : 'unavailable'); }).join(' · ');
+    return '<section class="report-section cmp-pricing">' + heading('01', 'Shared pricing, different revenue books', 'End-' + year + ' · one earned-revenue basis') +
+      '<div class="panel"><div class="chart-header"><div><h2>What the earning megawatt generates</h2><p>Model contract revenue is divided by the capacity earning that revenue. Spot remains separate.</p></div></div>' +
+      cmpTable('cmp-pricing-table', 'Annualized earned revenue', tk => '<th scope="col"><a href="' + esc(reportHref(tk)) + '#report-arr">' + esc(short(tk)) + '</a></th>', rows, 'Quarterly earned revenue × 4, with commissioning ramps included. The first two rows use different, explicitly matched denominators.') +
+      '<div class="chart-note">New business uses the shared house market curve, with no calibrated tenor spread. Existing prices stay fixed through their disclosed or estimated term; renewals are assumptions. An existing-book allocation does not establish a legally signed customer contract. Fully energised ARR is excluded from these yield calculations.' + (incomplete.length ? ' Pricing detail unavailable for ' + esc(incomplete.join(', ')) + '.' : '') + '</div>' +
+      '<div class="rp-pricing-basis"><span>Software premium above curve · ' + esc(premiums) + '</span><span>Rates, expiries and sensitivities are in each report’s Revenue section.</span></div></div></section>';
+  }
+
   function page() {
     const UI = root.UI, esc = UI.esc;
     const dateLong = UI.date(CMP.asOf);
+    const snapshots = [...new Set(NAMES.map(tk => CO[tk].asOf).filter(Boolean))].map(v => UI.date(v)).join(' · ');
+    const modelDates = [...new Set(NAMES.map(tk => CO[tk].modelAsOf).filter(Boolean))].map(v => UI.date(v)).join(' · ');
     const y30 = CO[NAMES[0]].year;
 
     /* header: kicker/title/sub are the compare block's authored copy (raw, as production injects them) */
     const head = '<header class="page-top"><div><div class="eyebrow">Research library · ' + CMP.kicker + '</div><h1>' + CMP.title + '</h1><p class="page-description">' + CMP.sub + '</p></div><div class="actions"><a class="text-button" href="/research">Research library ' + UI.icon('back') + '</a></div></header>';
-    const banner = '<div class="snapshot-banner">' + UI.icon('clock') + '<span><strong>Dated research comparison · ' + esc(dateLong) + '.</strong> Every number is recomputed at render time from the three research data files through the shared one-pager calculator — nothing on this page reads live prices, and the date comes from the data file itself.</span></div>';
+    const banner = '<div class="snapshot-banner">' + UI.icon('clock') + '<span><strong>Research snapshots · ' + esc(snapshots || dateLong) + '.</strong> ' + (modelDates ? 'Pricing model revised ' + esc(modelDates) + '. ' : '') + 'Values use the shared research calculator. Reference share prices are dated snapshots; this page does not read live quotes.</span></div>';
     const tiles = '<div class="metric-strip cmp-tiles">' + NAMES.map(tk => { const c = CO[tk];
       return '<a class="metric" href="' + reportHref(tk) + '"><div class="metric-label">' + esc(short(tk)) + '</div><div class="metric-value">$' + esc(f0(c.ps)) + '</div><div class="metric-note">base · $' + esc(c.px.toFixed(2)) + ' market · ' + esc((c.ps / c.px).toFixed(1)) + '× · open the report</div></a>'; }).join('') + '</div>';
 
     /* card 1 — the gating factors (17 authored rows; values and src raw per C12, trend colored by its first word) */
     const factorRows = CMP.factors.map(r => '<tr><td class="k">' + r.f + (r.src ? '<span class="src small muted">' + r.src + '</span>' : '') + '</td>' + NAMES.map(tk => '<td>' + (r.v && r.v[tk] ? r.v[tk] : '') + '</td>').join('') + '<td class="trend ' + trendClass(r.trend) + '">' + (r.trend || '') + '</td></tr>');
-    const factors = '<section class="report-section">' + heading('01', 'The gating factors', 'Three balance sheets · one megawatt · what each company must secure before a megawatt earns') +
+    const factors = '<section class="report-section">' + heading('02', 'The gating factors', 'Three balance sheets · one megawatt · what each company must secure before a megawatt earns') +
       '<div class="panel"><div class="table-scroll"><table class="plain-table cmp cmp-factors"><caption>Sourced values from the three research packs · trend = the evidence since 2025.</caption><thead><tr><th scope="col"></th>' +
       NAMES.map(tk => '<th scope="col"><a href="/company/' + esc(tk) + '">' + esc(short(tk)) + '</a></th>').join('') +
       '<th scope="col">Trend</th></tr></thead><tbody>' + factorRows.join('') + '</tbody></table></div></div></section>' + notes(CMP.notes && CMP.notes.factors);
@@ -147,29 +169,30 @@
     const heroKeepOrder = ['IREN', 'NBIS', 'CRWV'].every(tk => CO[tk]) ? ['IREN', 'NBIS', 'CRWV'] : NAMES;
     const heroKeep = heroKeepOrder.map(tk => '$' + f1(CO[tk].keep) + 'm').join(' · ') + ' — ' + heroKeepOrder.map(tk => short(tk)).join(' · ') + ', per MW-yr after refresh, shell and tax';
     const econDefs = [
-      ['Revenue per MW-yr in the per-MW block (a late vintage)', c => '$' + f1(c.rev) + 'm'],
+      ['Revenue per earning IT MW-year · steady-state basis', c => '$' + f1(c.rev) + 'm'],
       ['MW basis', c => (CMP.mwBasis && CMP.mwBasis[c.tk]) || 'critical IT MW'],
-      ['2030 fleet average per MW-yr (run-rate ÷ active MW)', c => '$' + f1(c.rr * 1000 / c.mw30) + 'm'],
+      ['End-' + y30 + ' revenue / all earning IT MW, including spot', c => '$' + f1(c.pricing?.summary?.totalRevenuePerMW ?? c.rr * 1000 / c.mw30) + 'm'],
       ['Running costs per MW-yr, $ (power, rent, staff, overhead)', c => '$' + f1(c.costs) + 'm'],
-      ['EBITDA per MW-yr (steady state)', c => '$' + f1(c.ebitdaMW) + 'm (' + Math.round(c.ebitdaMW / c.rev * 100) + '%)'],
+      ['EBITDA per MW-year (normalized steady state)', c => '$' + f1(c.ebitdaMW) + 'm (' + Math.round(c.ebitdaMW / c.rev * 100) + '%)'],
+      ['Cash ledger EBITDA margin through the horizon', c => (c.cashMargin * 100).toFixed(0) + '%'],
       ['Owner keeps after refresh, shell and tax', c => '$' + f1(c.keep) + 'm'],
       ['Capital the company itself puts into one MW', c => '$' + f0(c.own) + 'm'],
       ['Cash return on that capital', c => (c.roic * 100).toFixed(0) + '%'],
       ['Payback on own capex, after direct costs', c => f1(c.payback) + ' yr'],
-      ['$1 of run-rate is worth', c => c.mult.toFixed(2) + '×'],
-      ['Kept per MW-yr if every MW sold at the same $' + LFL + 'm 5-yr rate, costs held in $', c => '$' + f1(keepAt(c, LFL)) + 'm']
+      ['$1 of run-rate is worth', c => c.mult.toFixed(2) + '×']
     ];
     const econRows = econDefs.map(([k, fn]) => '<tr><td class="k">' + k + '</td>' + NAMES.map(tk => '<td>' + fn(CO[tk]) + '</td>').join('') + '</tr>');
     const legend = '<div class="chart-legend">' + NAMES.map(tk => '<span><i class="swatch" style="background:' + color(tk) + '"></i>' + esc(short(tk)) + '</span>').join('') + '<span class="muted">one IT MW · one year · $m</span></div>';
-    const perMW = '<section class="report-section">' + heading('02', 'What one megawatt keeps', heroKeep) +
-      '<div class="panel report-section"><div class="chart-header"><div><h2>One megawatt, one year</h2><p>The 2027 marginal megawatt of each research page · $m per IT MW-yr</p></div></div><div class="chart cmp-chart">' + perMWChart() + '</div>' + legend + '<div class="chart-note">Revenue, running costs, GPU refresh and spares, shell, tax and what the owner keeps — each company’s per-megawatt block from its own research page, on one dollar scale.</div></div>' +
+    const perMW = '<section class="report-section">' + heading('03', 'What one megawatt keeps', heroKeep) +
+      '<div class="panel report-section"><div class="chart-header"><div><h2>One megawatt, one year</h2><p>Each report’s steady-state basis · $m per earning IT MW-year</p></div></div><div class="chart cmp-chart">' + perMWChart() + '</div>' + legend + '<div class="chart-note">The modeled horizon revenue yield feeds each company’s operating-cost, replacement and shell assumptions. Tenant rent remains inside running costs; owned buildings remain in the shell line. The resulting multiple is recomputed from those economics.</div></div>' +
       '<div class="panel">' + cmpTable('cmp-econ', 'One megawatt', tk => '<th scope="col"><a href="' + esc(reportHref(tk)) + '">' + esc(short(tk)) + '</a></th>', econRows, 'Per-megawatt economics, recomputed from each report’s data file. Rows link the column heads to the full reports.') + '</div></section>' + notes(CMP.notes && CMP.notes.economics);
 
     /* card 3 — the 2030 picture (compare.js:57-59, 11 horizon rows + the value bars) */
     const heroGWOrder = ['CRWV', 'NBIS', 'IREN'].every(tk => CO[tk]) ? ['CRWV', 'NBIS', 'IREN'] : NAMES;
-    const heroGW = heroGWOrder.map(tk => (Math.round(CO[tk].mw30 / 100) / 10)).join(' · ') + ' GW — ' + heroGWOrder.map(tk => short(tk)).join(' · ') + ' active by end-' + y30;
+    const heroGW = heroGWOrder.map(tk => (Math.round(CO[tk].mw30 / 100) / 10)).join(' · ') + ' GW — ' + heroGWOrder.map(tk => short(tk)).join(' · ') + ' earning by end-' + y30;
     const picDefs = [
-      ['Active IT MW, 2026Q3 model → end-' + y30, c => f0(c.mwNow) + ' → ' + f0(c.mw30)],
+      ['Earning IT MW, 2026Q3 model → end-' + y30, c => f0(c.mwNow) + ' → ' + f0(c.mw30)],
+      ['Energised IT MW at end-' + y30, c => f0(c.commissionedMW)],
       ['Run-rate revenue at end-' + y30, c => '$' + f1(c.rr) + 'bn'],
       [y30 + ' EBITDA', c => '$' + f1(c.ebitda30) + 'bn'],
       ['Capex 2026H2–' + y30, c => '$' + f0(c.capex) + 'bn'],
@@ -182,20 +205,20 @@
       ['Base value vs market', c => '$' + f0(c.ps) + ' vs $' + c.px.toFixed(2) + ' · ' + (c.ps / c.px).toFixed(1) + '×']
     ];
     const picRows = picDefs.map(([k, fn]) => '<tr><td class="k">' + k + '</td>' + NAMES.map(tk => '<td>' + fn(CO[tk]) + '</td>').join('') + '</tr>');
-    const picture = '<section class="report-section">' + heading('03', 'The ' + y30 + ' picture', heroGW) +
+    const picture = '<section class="report-section">' + heading('04', 'The ' + y30 + ' picture', heroGW) +
       '<div class="panel report-section">' + cmpTable('cmp-picture', '', tk => '<th scope="col"><a href="' + esc(reportHref(tk)) + '">' + esc(short(tk)) + '</a></th>', picRows, 'The ' + y30 + ' horizon of each research model, recomputed from its data file.') + '</div>' +
-      '<div class="panel"><div class="chart-header"><div><h2>Base-case value per share against the market</h2><p>Model base value (solid) over the ' + esc(dateLong) + ' market price (outline)</p></div></div><div class="chart cmp-chart">' + valueChart() + '</div><div class="chart-note">The base bar is each research page’s discounted value per share; the thin bar is the market price recorded in the same dated snapshot; the multiple is base over market. Open each report from the tiles above or the table heads.</div></div></section>' + notes(CMP.notes && CMP.notes.picture);
+      '<div class="panel"><div class="chart-header"><div><h2>Base-case value per share against the reference price</h2><p>Model base value (solid) over each report’s dated share-price snapshot (outline)</p></div></div><div class="chart cmp-chart">' + valueChart() + '</div><div class="chart-note">The base bar is each research page’s discounted value per share; the thin bar is its dated reference share price. This ratio does not use current market quotes. Open each report from the tiles above or the table heads.</div></div></section>' + notes(CMP.notes && CMP.notes.picture);
 
     /* card 4 — converging or structural */
-    const convergence = '<section class="report-section">' + heading('04', 'Converging or structural', 'The convergence read across the three names') + notes(CMP.notes && CMP.notes.convergence) + '</section>';
+    const convergence = '<section class="report-section">' + heading('05', 'Converging or structural', 'The convergence read across the three names') + notes(CMP.notes && CMP.notes.convergence) + '</section>';
 
     /* footer: sources/model raw (authored), snapshot links re-pointed at the client reports */
     const footer = '<section class="panel padded reading cmp-footer report-section"><h2>Sources, model and snapshot</h2>' +
       (CMP.footer && CMP.footer.sources ? '<p><b>Sources.</b> ' + CMP.footer.sources + '</p>' : '') +
       (CMP.footer && CMP.footer.model ? '<p><b>Model.</b> ' + CMP.footer.model + '</p>' : '') +
-      '<p><b>Snapshot.</b> Every number is computed from the same data that generates the three research reports (' + NAMES.map(tk => '<a href="' + esc(reportHref(tk)) + '">' + esc(short(tk)) + '</a>').join(', ') + ') as of ' + esc(dateLong) + '; the live capacity-based model is on the <a href="/">comparison screen</a>. <b>Not advice.</b> A first-principles comparison of what the assets earn — not a price target.</p></section>';
+      '<p><b>Snapshot.</b> The same payloads generate these research reports (' + NAMES.map(tk => '<a href="' + esc(reportHref(tk)) + '">' + esc(short(tk)) + '</a>').join(', ') + '): research snapshots ' + esc(snapshots || dateLong) + (modelDates ? ', pricing model revised ' + esc(modelDates) : '') + '. The separate capacity-based model is on the <a href="/?view=compare">full comparison screen</a>. Model values are not price targets.</p></section>';
 
-    return head + banner + tiles + factors + perMW + picture + convergence + footer;
+    return head + banner + tiles + pricingComparison(y30) + factors + perMW + picture + convergence + footer;
   }
 
   /* ---------- shell states ---------- */

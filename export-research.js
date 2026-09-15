@@ -24,7 +24,7 @@ function buildPayload(tk, dataObj) {
   const c = (d.companies || []).find(x => x.tk === tk);
   if (!c) throw new Error('no such company: ' + tk);
   if (!c.page || !c.ramp) throw new Error(tk + ' needs both a page block and a ramp block in data.json');
-  const { Q, L, A, ARRC, gantt, CAPQ, rr, year, F, pg, R } = assemble(c);
+  const { Q, L, A, ARRC, gantt, CAPQ, rr, year, F, pg, R, pricing } = assemble(c, d.researchPricing);
   /* ---- the P payload, verbatim from onepager.js ---- */
   const P = { tk, name: c.name, asOf: pg.asOf, kicker: pg.kicker, title: pg.title, sub: pg.sub, px: pg.px, evArr: pg.evArr, arrLabel: pg.arrLabel, capacity: pg.capacity, gantt, Q, A, L, CAPQ, ARRC,
     fund: pg.fund, bridge: pg.bridge, steady: pg.steady, finance: F, labels: pg.labels || {}, rr, year, gpuMax: Math.ceil(Q[Q.length - 1][6] / 250000) * 250000, arrMax: Math.ceil(A[A.length - 1][1] / 15) * 15, hero: pg.hero };
@@ -37,6 +37,14 @@ function buildPayload(tk, dataObj) {
   if (pg.capexBasis != null) P.capexBasis = pg.capexBasis;
   /* merged actuals, exactly as assemble()'s internal `prints` const (onepager.js): ramp actuals overlaid with page prints */
   P.prints = Object.assign({}, Object.fromEntries(Object.entries(R.actuals || {}).map(([k, v]) => [k, v.aiRevM])), pg.prints || {});
+  if (pricing) {
+    P.modelAsOf = pg.modelAsOf;
+    P.pricing = pricing;
+    P.pricing.sensitivities = R.scenarios.map(s => {
+      const a = assemble(c, d.researchPricing, s);
+      return { id:s.id,label:s.name,valuePerShare:a.W.ps,runRateBn:a.rr,multiple:a.F.MULT,note:s.note };
+    });
+  }
   return P;
 }
 

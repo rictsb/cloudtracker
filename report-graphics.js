@@ -50,7 +50,7 @@
       return out;
     });
     const H = top + 29;
-    let b = legend([['Signed at snapshot', C.blue], ['Future assumed / unsigned', C.future]]);
+    let b = legend([['Existing book / assumed coverage', C.blue], ['Future business assumed', C.future]]);
     b += text(1000 - R, 17, 'Labels: IT MW', 'text-anchor="end"');
     for (let year = 2026; year <= Number(P.year); year++) {
       const a = x(quarter(year + 'Q1')), z = x(quarter((year + 1) + 'Q1'));
@@ -63,12 +63,12 @@
       b += text(16, y + 27, num(total) + ' IT MW in schedule', 'style="font-size:10px"');
       if (historical.length) {
         const mw = historical.reduce((a, item) => a + Number(item.t[1]), 0);
-        const desc = num(mw) + ' IT MW already in place before 2026. ' + historical.map(({ t }) => t[0] + ': ' + num(t[1]) + ' IT MW; energised ' + qLabel(t[2]) + ', first revenue ' + qLabel(t[3]) + ', ' + (t[5] ? 'signed' : 'unsigned')).join('. ');
+        const desc = num(mw) + ' IT MW already in place before 2026. ' + historical.map(({ t }) => t[0] + ': ' + num(t[1]) + ' IT MW; energised ' + qLabel(t[2]) + ', first revenue ' + qLabel(t[3]) + ', ' + (t[5] ? 'existing book / assumed coverage' : 'future business assumed')).join('. ');
         b += rect(L, y, 8, 14, C.blue, desc) + text(L + 15, y + 11, num(mw) + ' in place before 2026', 'style="font-size:10px;fill:' + C.ink + '"');
       }
       future.forEach(({ t, plotStart, plotEnd, lane }) => {
         const bx = x(plotStart), by = y + lane * 16, w = x(plotEnd) - bx - 2;
-        const desc = site[0] + ' — ' + t[0] + ': ' + num(t[1]) + ' IT MW; energised ' + qLabel(t[2]) + '; first revenue ' + qLabel(t[3]) + '; commissioning ramp ' + num(t[4]) + ' quarters; ' + (t[5] ? 'signed at snapshot' : 'future assumed / unsigned');
+        const desc = site[0] + ' — ' + t[0] + ': ' + num(t[1]) + ' IT MW; energised ' + qLabel(t[2]) + '; first revenue ' + qLabel(t[3]) + '; commissioning ramp ' + num(t[4]) + ' quarters; ' + (t[5] ? 'existing book / assumed coverage; see revenue section for contract evidence and expiry' : 'future business assumed');
         b += rect(bx, by, Math.max(4, w), 14, t[5] ? C.blue : C.future, desc);
         const firstRevenue = quarter(t[3]);
         if (firstRevenue >= first && firstRevenue < end) {
@@ -85,7 +85,7 @@
       b += line(9, y + height - 4, 1000 - R, y + height - 4);
     });
     b += text(L, H - 8, '▲ Substation date on hover · bar: energisation through commissioning · tick: first revenue', 'style="font-size:10px"');
-    return svg(P, 'timeline', H, 880, P.name + ': when power comes online', 'Campus and capacity tranche schedule, 2026 through ' + P.year + '. Separate lanes preserve overlapping tranches. Blue means signed at the research snapshot; pale blue means future assumed capacity. Labels and schedule totals are IT MW. A thin tick marks first revenue. Earlier operating tranches are explicitly marked in place. Campus triangles disclose substation dates on focus or hover.', b);
+    return svg(P, 'timeline', H, 880, P.name + ': when power comes online', 'Campus and capacity tranche schedule, 2026 through ' + P.year + '. Separate lanes preserve overlapping tranches. Blue denotes the model existing book, including estimated commercial coverage; pale blue denotes future assumed business. These colors do not establish legally contracted revenue. Labels and schedule totals are IT MW. A thin tick marks first revenue. Earlier operating tranches are explicitly marked in place. Campus triangles disclose substation dates on focus or hover.', b);
   }
 
   function fleet(P) {
@@ -109,20 +109,49 @@
   }
 
   function arr(P) {
+    if (P.pricing && Array.isArray(P.pricing.quarters)) return revenue(P);
     const start = P.finance && P.finance.T0 || '2026Q3', rows = (P.A || []).filter(r => r[0] >= start);
     const L = 68, R = 24, top = 55, bottom = 266, H = 304, maximum = nice(Math.max(1, ...rows.map(r => Number(r[1]))) * 1.1);
     const y = v => bottom - v / maximum * (bottom - top), band = (1000 - L - R) / Math.max(1, rows.length);
-    let b = legend([['Contracts signed at snapshot', C.blue], ['Future assumed contracts', C.future]]);
+    let b = legend([['Existing-book model cohorts', C.blue], ['Future assumed contracts', C.future]]);
     b += text(1000 - R, 17, 'Contracted ARR · $bn', 'text-anchor="end"');
     for (let i = 0; i <= 4; i++) { const value = maximum * i / 4; b += line(L, y(value), 1000 - R, y(value)) + text(L - 9, y(value) + 4, '$' + num(value, 1), 'text-anchor="end"'); }
     rows.forEach((r, i) => {
       const cx = L + band * (i + .5), w = Math.min(30, band - 9), signed = Number(r[2]), model = Number(r[1]), future = Math.max(0, model - signed);
-      b += rect(cx - w / 2, y(signed), w, bottom - y(signed), C.blue, qLabel(r[0]) + ': $' + num(signed, 2) + 'bn ARR from contracts signed at the ' + P.asOf + ' snapshot');
+      b += rect(cx - w / 2, y(signed), w, bottom - y(signed), C.blue, qLabel(r[0]) + ': $' + num(signed, 2) + 'bn ARR attributed to existing-book model cohorts; contractual expiry is not established by this series');
       if (future > 0) b += rect(cx - w / 2, y(model), w, Math.max(1, y(signed) - y(model) - 1), C.future, qLabel(r[0]) + ': $' + num(future, 2) + 'bn ARR from future assumed contracts; total modeled contracted ARR $' + num(model, 2) + 'bn');
       if (/Q4$/.test(r[0])) b += text(cx, y(model) - 8, '$' + num(model, 1) + 'bn', 'text-anchor="middle" style="fill:' + C.ink + ';font-size:11px;font-weight:600"');
       if (i === 0 || /Q[24]$/.test(r[0])) b += text(cx, bottom + 23, String(r[0]).slice(2, 4) + ' Q' + String(r[0]).slice(-1), 'text-anchor="middle" style="font-size:11px"');
     });
-    return svg(P, 'arr', H, 740, P.name + ': signed and modeled contracted ARR', 'Quarterly annual recurring revenue in billions of US dollars. Solid blue is covered by contracts signed at the research snapshot. Pale blue is additional revenue from future assumed signings. Their sum is modeled contracted ARR; it excludes spot and differs from recognized revenue.', b);
+    return svg(P, 'arr', H, 740, P.name + ': legacy modeled contracted ARR', 'Quarterly modeled annual recurring revenue in billions of US dollars. Blue is attributed to existing-book model cohorts; this does not establish contractual coverage through the horizon. Pale blue is additional revenue from future assumed signings. Their sum excludes spot and differs from recognized revenue. This legacy series does not model contract expiry.', b);
   }
-  root.ReportGraphics = { timeline, fleet, arr };
+  function revenue(P) {
+    const start = P.pricing.effectiveQ || P.finance.T0 || '2026Q3';
+    const rows = (P.pricing.quarters || []).filter(r => r.quarter >= start);
+    const groups = [['existingBn', 'Existing book (incl. estimates)', C.blue], ['renewalBn', 'Renewals', C.teal], ['newBn', 'New business', C.future], ['spotBn', 'Spot', C.gold]];
+    const total = row => groups.reduce((sum, g) => sum + (Number.isFinite(row[g[0]]) ? row[g[0]] : 0), 0);
+    const L = 68, R = 24, top = 57, bottom = 278, H = 321;
+    const maximum = nice(Math.max(1, ...rows.map(total)) * 1.1), band = (1000 - L - R) / Math.max(1, rows.length);
+    const y = v => bottom - v / maximum * (bottom - top);
+    let b = legend(groups.map(g => [g[1], g[2]]));
+    b += text(1000 - R, 17, 'Annualized earned revenue · $bn', 'text-anchor="end"');
+    for (let i = 0; i <= 4; i++) {
+      const value = maximum * i / 4;
+      b += line(L, y(value), 1000 - R, y(value)) + text(L - 9, y(value) + 4, '$' + num(value, 1), 'text-anchor="end"');
+    }
+    rows.forEach((r, i) => {
+      const cx = L + band * (i + .5), w = Math.min(30, band - 9); let stacked = 0;
+      groups.forEach(([key, label, color]) => {
+        const value = r[key];
+        if (!Number.isFinite(value) || value <= 0) return;
+        const detail = qLabel(r.quarter) + ' — ' + label + ': $' + num(value, 2) + 'bn annualized earned revenue; total $' + num(total(r), 2) + 'bn. ' + num(r.earningITMW) + ' earning IT MW, of which ' + num(r.contractedEarningITMW) + ' are allocated to model contracts.';
+        b += rect(cx - w / 2, y(stacked + value), w, Math.max(1, y(stacked) - y(stacked + value) - 1), color, detail);
+        stacked += value;
+      });
+      if (/Q4$/.test(r.quarter)) b += text(cx, y(stacked) - 8, '$' + num(stacked, 1) + 'bn', 'text-anchor="middle" style="fill:' + C.ink + ';font-size:11px;font-weight:600"');
+      if (i === 0 || /Q[24]$/.test(r.quarter)) b += text(cx, bottom + 23, r.quarter.slice(2, 4) + ' Q' + r.quarter.slice(-1), 'text-anchor="middle" style="font-size:11px"');
+    });
+    return svg(P, 'revenue', H, 880, P.name + ': revenue from the existing book, renewals, new business and spot', 'Quarterly earned revenue multiplied by four, in billions of US dollars. Existing book includes estimated commercial coverage at original prices until each modeled expiry. Renewals are house assumptions after expiry. New business uses the shared house market curve. Spot is separate. Each quarter includes its commissioning ramp. This is a modeled revenue run-rate, not reported ARR, legally secured revenue, or full-year revenue.', b);
+  }
+  root.ReportGraphics = { timeline, fleet, arr, revenue };
 })(typeof window !== 'undefined' ? window : globalThis);
