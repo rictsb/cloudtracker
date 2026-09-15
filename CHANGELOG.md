@@ -2,6 +2,8 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Main-page display preferences (2026-09-15, owner-directed): GPU operators is the default filter, the model-value column uses “Research”, and the top “CRWV / IREN / NBIS Research” link opens the three-company comparison.
+
 - GPT-scheduled shared market snapshots (2026-09-15, owner-directed): a dedicated quote job publishes present-tense market-prices.json independently of open browsers; the GPT schedule dispatches it every 30 minutes. Browser pages prefer the common snapshot with dated provider/cache fallback. Job timestamps remain separate from quote times; partial failures preserve each company’s last-good observation. Research assumptions, valuations and portfolio accounting are unchanged.
 
 - Shared market references and preferred research values (2026-09-15, owner-authorized): quotes refresh every 30 minutes and when overdue on return, preserve per-company provider/receipt clocks and dated fallback caches, and feed all three research reports, comparison and summary pages. Main-list values, upside, sorting, median and CSV prefer IREN/CRWV/NBIS research DCF; unavailable research does not fall back to asset targets. Base research values and historical paper-portfolio policy stay unchanged. Adds quote and research-integration regression gates; upgrades GitHub Actions to supported Node 24 actions.
