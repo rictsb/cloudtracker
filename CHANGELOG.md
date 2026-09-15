@@ -2,6 +2,8 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Research power checkpoints (2026-09-15, owner-directed): all three campus timelines now include a compact year-end table of cumulative energised IT power, gross power and earning IT capacity, drawn from the canonical Q4 ledger including the opening fleet.
+
 - Main-page display preferences (2026-09-15, owner-directed): GPU operators is the default filter, the model-value column uses “Research”, and the top “CRWV / IREN / NBIS Research” link opens the three-company comparison.
 
 - GPT-scheduled shared market snapshots (2026-09-15, owner-directed): a dedicated quote job publishes present-tense market-prices.json independently of open browsers; the GPT schedule dispatches it every 30 minutes. Browser pages prefer the common snapshot with dated provider/cache fallback. Job timestamps remain separate from quote times; partial failures preserve each company’s last-good observation. Research assumptions, valuations and portfolio accounting are unchanged.

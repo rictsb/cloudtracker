@@ -26,6 +26,23 @@ main.iren-page{padding-top:22px}.rp-context{margin-bottom:14px}.rp-hero{margin-b
 @media print{.rp-chart-hint{display:none}.rp-figure svg{min-width:0!important}}
 
 .rp-mobile-bars{display:none}
+/* Year-end checkpoints use the research ledger, with IT power matching the timeline labels. */
+.rp-year-end{border-top:1px solid var(--line);padding-top:1px;margin-top:18px}
+.rp-year-end .rp-chart-title{margin-top:16px}
+.rp-power-totals{width:100%;min-width:650px;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.rp-power-totals th,.rp-power-totals td{padding:11px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.rp-power-totals th:first-child{text-align:left;width:220px;padding-left:0}
+.rp-power-totals thead th{font-size:11px;color:var(--muted);font-weight:500;padding-top:3px;padding-bottom:10px}
+.rp-power-totals tbody th{font-weight:400;color:var(--muted)}
+.rp-power-totals tbody td{color:#53647c}
+.rp-power-totals .primary th{font-weight:600;color:#243751}
+.rp-power-totals .primary td{font-size:19px;font-weight:600;color:#345cd0;letter-spacing:-.3px}
+.rp-power-totals th:last-child,.rp-power-totals td:last-child{background:#f5f7fb}
+.rp-power-totals tbody tr:last-child th,.rp-power-totals tbody tr:last-child td{border-bottom:0}
+.rp-year-end .table-scroll:focus-visible{outline:2px solid #345cd0;outline-offset:3px}
+.rp-power-mobile{display:none}
+@media screen and (max-width:700px){.rp-power-wide{display:none}.rp-power-mobile{display:table;width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.rp-power-mobile th,.rp-power-mobile td{text-align:right;padding:11px 4px;border-bottom:1px solid var(--line)}.rp-power-mobile th:first-child{width:54px;text-align:left;padding-left:0;color:#243751}.rp-power-mobile thead th{font-size:10px;font-weight:500;color:var(--muted);vertical-align:top}.rp-power-mobile small{display:block;font-size:9px;font-weight:400;line-height:1.4;margin-top:3px}.rp-power-mobile tbody th{font-weight:500}.rp-power-mobile td{color:#53647c}.rp-power-mobile td:nth-child(2){font-size:16px;font-weight:600;color:#345cd0}.rp-power-mobile tbody tr:last-child{background:#f5f7fb}.rp-power-mobile tbody tr:last-child th,.rp-power-mobile tbody tr:last-child td{border-bottom:0}}
+@media print{.rp-year-end .table-scroll{overflow:visible}.rp-power-totals{min-width:0;font-size:10px}.rp-power-totals th,.rp-power-totals td{padding:8px}.rp-power-totals .primary td{font-size:16px}}
 @media(max-width:900px){.rp-desktop-bars{display:none}.rp-mobile-bars{display:block;padding:2px 0}.rp-mobile-bar{margin:0 0 19px}.rp-mobile-bar>div:first-child{display:flex;justify-content:space-between;gap:14px;margin-bottom:8px;align-items:baseline}.rp-mobile-bar span{font-size:12px;color:#53647c;line-height:1.5}.rp-mobile-bar small{display:block;font-size:10px;color:var(--muted)}.rp-mobile-bar strong{font-size:17px;white-space:nowrap;color:#243751;font-weight:600}.rp-mobile-track{height:17px;background:#f1f4f8;position:relative;border-radius:3px}.rp-mobile-track i{position:absolute;height:100%;border-radius:3px}.rp-mobile-track b{position:absolute;top:-3px;bottom:-3px;border-left:1px dashed #263c64}.rp-mobile-bars>p{font-size:11px;color:var(--muted);margin-top:10px}.rp-chart-hint:has(+ .rp-regime-chart){display:none}}
 @media print{.rp-desktop-bars{display:block}.rp-mobile-bars{display:none}}
 
