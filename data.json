@@ -6009,7 +6009,7 @@
      "owned": true,
      "region": "cheap",
      "yr": 2027,
-     "mo": 3,
+     "mo": 9,
      "prov": "disclosed",
      "leaseId": "hut-beaconpoint"
     },
@@ -6172,6 +6172,12 @@
     }
    ],
    "log": [
+    {
+     "d": "2026-09-15",
+     "t": "site",
+     "s": "Beacon Point Ph1",
+     "x": "Energization basis corrected to the verifiable revenue stage (owner ruling, Richard): row moves 2027-03 → 2027-09 per the company’s own staging — initial energization Q1-27 is the substation, initial DATA-HALL DELIVERY Q3-27 is revenue capacity. Resolves w-hut-bp1-date-basis."
+    },
     {
      "d": "2026-07-27",
      "t": "note",
@@ -9217,17 +9223,17 @@
   {
    "id": "w-apld-topco2-recourse",
    "tk": "APLD",
-   "cat": "conflict",
+   "cat": "house-judgement",
    "refs": [
     "companies[tk=APLD].committedDebt",
     "companies[tk=APLD].basis.committedDebt"
    ],
-   "note": "FY26 10-K VIE note says TopCo 2 creditors \"have recourse to the Company’s assets and general credits\" — investigated 2026-09-15 against the actual debt contracts, which outrank the footnote: the ComputeCo 2 indenture (Ex 4.1, 8-K 2026-03-10) makes Applied Digital a defined non-party with NO note guarantee (completion guarantee only), its \"No Recourse Against Others\" section waives claims against stockholders, and the 10-K states three times that the Company provides no credit support beyond customary completion guarantees; the sentence contradicts the adjacent \"bankruptcy-remote\" sentence, uses non-standard \"general credits\", and is copy-pasted verbatim since the Jan-2026 10-Q. Reads as a dropped-\"not\" drafting error. RECOMMENDATION: rule drafting error, keep treatment.",
-   "status": "owner",
+   "note": "RULED 2026-09-15 (Richard): the VIE-note sentence is treated as a dropped-\"not\" drafting error — the ComputeCo project notes are NON-RECOURSE to the parent, per the indenture (APLD a non-party, no note guarantee, \"No Recourse Against Others\" waiver) and three 10-K no-credit-support statements. Base target is invariant either way ($57.87 — committedDebt already charged in claims); the ruling preserves the walk-away tail treatment. Live bounded exposure regardless: completion guarantees on PF2/ELN-04 through ~mid-2027.",
+   "status": "monitoring",
    "added": "2026-08-24",
    "reviewed": "2026-09-15",
    "next": "Q1 FY27 10-Q (~2026-10-08): check whether the sentence becomes \"do not have recourse\"; falsifier: any contract showing a parent PAYMENT guarantee of the ComputeCo 2/3 notes",
-   "resolve": "Owner rules (recommended: drafting error, keep treatment, monitor the next 10-Q wording); a parent payment guarantee in any contract flips the ruling.",
+   "resolve": "Q1 FY27 10-Q wording check closes this; a contract showing a parent PAYMENT guarantee reopens it (tail treatment via equityDiscount/tier, not claims).",
    "inModel": "no — treatment pending the ruling",
    "impact": "Base target unchanged under both readings ($57.87); a literal reading affects downside/tail treatment only. The original \"first-order ~$3.7B\" framing was wrong — that debt is already fully deducted.",
    "grp": "g02-APLD",
@@ -9732,26 +9738,6 @@
    "grp": "g15-HUT"
   },
   {
-   "id": "w-hut-bp1-date-basis",
-   "tk": "HUT",
-   "cat": "conflict",
-   "refs": [
-    "companies[tk=HUT].sites[n=Beacon Point Ph1] (yr 2027, mo 3 — still unremediated)",
-    "outlook.leases[tk=HUT].drivers[3] ('SCHEDULE BASIS ERROR IN OUR ROWS: Beacon Point Ph1 is targeted for initial energization in Q1 2027 but initial DATA HALL delivery in Q3 2027. Our row carries the energization date, which overstates near-term revenue capacity by two quarters')",
-    "companies[tk=HUT].catalysts[0] (repeats the Q1-2027 framing)"
-   ],
-   "note": "Same-tranche, different-stage conflict, acknowledged in the accepted 8/24 outlook record yet still unremediated in the canonical input: the Beacon Point Ph1 site row carries 2027-03, but the company's own statement is initial energization Q1-2027 (substation, not revenue capacity) and initial DATA HALL delivery Q3-2027. On a revenue-capacity basis the row is ~two quarters early on 352MW of contracted IT.",
-   "alt": "move the row to 2027-09 (delivery basis), or record an explicit stage-basis note justifying 2027-03",
-   "status": "owner",
-   "added": "2026-08-24",
-   "reviewed": "2026-09-15",
-   "next": "owner decision on the row (change-ready — evidence is primary and already accepted in outlook); re-check delivery guidance at the Q3 10-Q",
-   "resolve": "site row restated on the delivery/revenue basis with a stage-explicit basis note, or new evidence that Q1-27 revenue capacity is real",
-   "inModel": "no — the model still starts Beacon Point Ph1 revenue at 2027-03; the two-quarter slip is not represented anywhere numeric",
-   "impact": "shifts first Beacon Point revenue ~two quarters on 352MW — moves HUT's near-term ramp, 2027 NOI and any timing-sensitive rank comparison",
-   "grp": "g17-HUT"
-  },
-  {
    "id": "w-hut-bp2-financing",
    "tk": "HUT",
    "cat": "forward",
@@ -10040,13 +10026,13 @@
     "companies[1].sites[17]",
     "companies[1].sites[18]"
    ],
-   "note": "GS (2026-08-24, sell-side ceiling) reports a partnership model where partners finance, build and operate infrastructure while Nebius supplies platform and demand; the engine values all 6,460MW at owner economics with no asset-light mode, and the two unnamed Pipeline 2030/2031 rows (1,200+1,800MW rumored — bear[2]: '~26% of site EV') are the exposed slice. Still open: the accepted thesis names 'whether Nebius owns its economics at all under the new asset-light partnership model' as the swing factor, and no assetLight flag, landlord routing or pipelineCredit change has been recorded anywhere in-file.",
-   "alt": "Per the note's own options: a new assetLight site flag; route affected rows to the landlord branch; or hold at reduced pipelineCredit. Sensitivities as recorded: pipelineCredit 1.0→0.5 takes the target $419→$351; →0 gives $283; upgrading rumored ≤300MW rows to estimated gives $473.",
-   "status": "owner",
+   "note": "RULED 2026-09-15 (Richard): NBIS keeps OWNER economics on all modeled MW until primary evidence shows otherwise — the >$9B customer prepayments buy CAPACITY, not equity in the assets, consistent with Nebius owning and operating the infrastructure; the asset-light claim rests on sell-side commentary below the provenance ceiling. The two unnamed Pipeline 2030/31 rows (3,000MW rumored, ~26% of site EV) remain the exposed slice and already carry rumored haircuts.",
+   "alt": "Nebius primary disclosure of partner-owned MW / revenue-share flips the affected rows to an asset-light treatment (recorded sensitivities: pipelineCredit 0.5 → $351; 0 → $283 vs $419).",
+   "status": "monitoring",
    "added": "2026-08-24",
    "reviewed": "2026-09-15",
-   "next": "Nebius disclosure of partner-owned MW split / revenue share (the recorded falsifier); else owner ruling at the Q3 print",
-   "resolve": "Disclosure quantifies how much future MW is partner-owned and on what revenue share, or the owner selects one of the three model treatments",
+   "next": "Nebius Q3-26 shareholder letter / 20-F — any primary disclosure of partner-owned MW or infrastructure revenue-share",
+   "resolve": "Primary disclosure either way: confirmation of ownership closes this; partner-ownership disclosure reopens it as a modeling change.",
    "inModel": "No — only the 'rumored' provenance haircut (0.25 credit) touches those rows; owner-economics margin and the owned bonus still apply to all 6,460MW",
    "impact": "Up to ~$136/share of target range ($419 base vs $283 at zero pipeline credit) — selection- and weight-changing for NBIS",
    "grp": "g23-NBIS"
