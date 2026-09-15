@@ -39,11 +39,21 @@
     "SLNH",
     "BTBT"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent developments in the AI and crypto sectors, including regulatory concerns around AI development speed, updates from companies like Bitdeer (BTDR) and Soluna (SLNH), price targets for Iris Energy (IREN), and the upcoming Clarity Act vote.\n\n2. Key facts by company:\n   - BTDR: Secured 65.1 MW at A202 facility in Malaysia; total AI cloud pipeline now over $7B.\n   - GLXY: Named Taylor Reinhart as head of investor relations, reporting to CFO Tony Paquette; Goldman Sachs maintains $28 price target.\n   - SLNH: Given conditional base load status for 100 MW at Dorothy site; total now 300 MW (150 MW from Silverton + 50 MW below ERCOT requirement + 100 MW new).\n   - IREN: JP Morgan upgraded to overweight with $65 PT (from underweight, prior PT $46); BTIG maintains $80 PT.\n\n3. Host's view:\n   The hosts are generally bullish on the AI infrastructure sector despite recent fears around AI development speed. They highlight that demand for compute far exceeds supply and that companies like IREN have strong growth prospects due to long-term contracts and increasing power capacity. They sound confident in their stance, citing analyst price targets and company execution.\n\n4. Worth checking:\n   - Verify BTDR's total AI cloud pipeline ($7B) against official filings.\n   - Confirm GLXY's Helios site energisation (133 MW vs 1.63 GW target).\n   - Check SLNH's exact power allocations at Dorothy/Silverton sites.\n   - Validate IREN's updated revenue guidance ($3.4B to $4B by EOY).",
+   "brief": "Recent developments in the AI and crypto sectors, including regulatory concerns around AI development speed, updates from companies like Bitdeer (BTDR) and Soluna (SLNH), price targets for Iris Energy (IREN), and the upcoming Clarity Act vote.",
+   "facts": [
+    "BTDR: Secured 65.1 MW at A202 facility in Malaysia; total AI cloud pipeline now over $7B.",
+    "GLXY: Named Taylor Reinhart as head of investor relations, reporting to CFO Tony Paquette; Goldman Sachs maintains $28 price target.",
+    "SLNH: Given conditional base load status for 100 MW at Dorothy site; total now 300 MW (150 MW from Silverton + 50 MW below ERCOT requirement + 100 MW new).",
+    "IREN: JP Morgan upgraded to overweight with $65 PT (from underweight, prior PT $46); BTIG maintains $80 PT."
+   ],
+   "view": "The hosts are generally bullish on the AI infrastructure sector despite recent fears around AI development speed. They highlight that demand for compute far exceeds supply and that companies like IREN have strong growth prospects due to long-term contracts and increasing power capacity. They sound confident in their stance, citing analyst price targets and company execution.",
+   "verify": [
+    "Verify BTDR's total AI cloud pipeline ($7B) against official filings.",
+    "Confirm GLXY's Helios site energisation (133 MW vs 1.63 GW target).",
+    "Check SLNH's exact power allocations at Dorothy/Silverton sites.",
+    "Validate IREN's updated revenue guidance ($3.4B to $4B by EOY)."
+   ],
    "signal": [
     {
      "tk": "IREN",
