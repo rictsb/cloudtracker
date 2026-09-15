@@ -1,5 +1,5 @@
 {
- "asOf": "2026-09-14",
+ "asOf": "2026-09-15",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,52 @@
   }
  ],
  "items": [
+  {
+   "id": "0fzy2ea5-4Q",
+   "src": "mcnallie-money",
+   "d": "2026-09-14",
+   "title": "Growing AI Fears Cause Panic | Latest IREN, GLXY, BTDR & SLNH Stock News | AI Stocks to Watch Now",
+   "headline": "Growing AI Fears Cause Panic",
+   "url": "https://www.youtube.com/watch?v=0fzy2ea5-4Q",
+   "kind": "news",
+   "minutes": 51,
+   "tickers": [
+    "IREN",
+    "BTDR",
+    "GLXY",
+    "SLNH",
+    "BTBT",
+    "CORZ",
+    "WULF",
+    "CIFR",
+    "APLD",
+    "HIVE",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "BTDR",
+    "GLXY",
+    "SLNH",
+    "BTBT"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "JP Morgan upgraded IREN with a price target of 65 USD.",
+     "by": "thirdparty",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "0l_sqbevRnI",
    "src": "mcnallie-money",
@@ -4891,16 +4937,17 @@
     "KEEL",
     "APLD",
     "NBIS",
-    "BTDR",
-    "GLXY",
-    "WULF",
-    "CIFR",
-    "SLNH",
-    "BTBT",
-    "HIVE",
     "RIOT",
     "MARA",
-    "CLSK"
+    "CLSK",
+    "BTDR",
+    "GLXY",
+    "HUT",
+    "IREN",
+    "WULF",
+    "CIFR",
+    "BTBT",
+    "HIVE"
    ],
    "main": [
     "KEEL"
@@ -4918,6 +4965,13 @@
     "Monitor subsequent announcements regarding deal signings and progress on permitting/leasing at their sites (Panther Creek, Sharon, Moses Lake)."
    ],
    "signal": [
+    {
+     "tk": "KEEL",
+     "claim": "Keel Infrastructure's convertible note was seven times oversubscribed.",
+     "by": "executive",
+     "tag": "big",
+     "t": 517
+    },
     {
      "tk": "KEEL",
      "claim": "Keel Infrastructure expects to announce new deals within 24 to 48 hours of signing.",
@@ -4939,21 +4993,21 @@
    "minutes": 44,
    "tickers": [
     "APLD",
-    "IREN",
     "HUT",
-    "BTDR",
-    "GLXY",
+    "KEEL",
+    "IREN",
     "CORZ",
     "WULF",
     "CIFR",
-    "SLNH",
-    "BTBT",
-    "HIVE",
+    "BTDR",
+    "GLXY",
     "CRWV",
     "NBIS",
     "RIOT",
-    "MARA",
-    "CLSK"
+    "CLSK",
+    "SLNH",
+    "BTBT",
+    "HIVE"
    ],
    "main": [
     "APLD"
@@ -4975,16 +5029,9 @@
    "signal": [
     {
      "tk": "APLD",
-     "claim": "The host estimates Applied Digital's share price could reach 78.05 USD based on its announced deals.",
+     "claim": "The host estimates Applied Digital's share price could reach $78.05 based on deal analysis.",
      "by": "host",
      "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "APLD",
-     "claim": "The host estimates Applied Digital's share price could reach 100 USD if all deals materialize.",
-     "by": "host",
-     "tag": "call",
      "t": null
     }
    ],
@@ -5038,22 +5085,29 @@
    "signal": [
     {
      "tk": "HIVE",
-     "claim": "Hive Digital Technologies has a target of installing approximately 100,000 GPUs by 2028.",
-     "by": "executive",
+     "claim": "Hive Digital Technologies aims to install approximately 100,000 GPUs by the end of its target period.",
+     "by": "host",
      "tag": "big",
      "t": null
     },
     {
+     "tk": "CIFR",
+     "claim": "Cipher's Stingray site provides 70 MW of compute power.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    },
+    {
      "tk": "CORZ",
-     "claim": "Core Scientific is delivering 590 MW of compute power to CoreWeave by the end of this year.",
-     "by": "executive",
+     "claim": "Core Scientific is delivering up to 590 MW of compute power for CoreWeave by the end of this year.",
+     "by": "host",
      "tag": "notable",
      "t": null
     },
     {
      "tk": "SLNH",
-     "claim": "Saluna Holdings entered a definitive JV with Metroblocks for a 350+ MW AI HPC hosting project.",
-     "by": "executive",
+     "claim": "Soluna Holdings completed a definitive JV with Metroblocks for a 350+ MW AI HPC hosting project.",
+     "by": "host",
      "tag": "notable",
      "t": null
     }
@@ -5071,24 +5125,26 @@
    "minutes": 37,
    "tickers": [
     "CORZ",
-    "KEEL",
+    "CIFR",
     "NBIS",
-    "BTDR",
-    "HIVE",
     "IREN",
     "HUT",
+    "BTDR",
+    "GLXY",
+    "WULF",
+    "APLD",
+    "SLNH",
     "BTBT",
+    "HIVE",
     "CRWV",
-    "CLSK",
+    "RIOT",
     "MARA",
-    "WULF"
+    "CLSK"
    ],
    "main": [
     "CORZ",
-    "KEEL",
-    "NBIS",
-    "BTDR",
-    "HIVE"
+    "CIFR",
+    "NBIS"
    ],
    "summary": "1. The video discusses recent news in the AI infrastructure sector including Nebius' expansion into the UK with Revolut, Bitdeer's executive changes, Cypher Digital's $810M secured senior note to fund a 70MW data center for AWS at Stingray, and valuation analyses for Keel Infrastructure (14MW Moses Lake site) and Cypher Digital.\n\n2. Key facts by company:\n- Nebius: Expanding into the UK with Revolut; deploying 65MW across four sites by 2027; $1.7B commitment.\n- Bitdeer: COO Chao Suao and CBO Matt Kong resigned for personal reasons (effective immediately); both remain in unspecified roles within the company.\n- Cypher Digital: Secured senior note of $810M to fund construction of a 70MW data center at Stingray; AWS is tenant under a 15-year triple net lease with no termination for convenience after commencement; CAPEX cost of $10.5M/IT MW; contract has 3% annual escalator.\n- Keel Infrastructure: Moses Lake site could represent $0.59/share increase based on 14MW at $2M/MW revenue, 80% EBITDA margin and $10M/MW CAPEX.\n\n3. Host's view:\nThe host is bullish on the sector overall, noting double-digit gains for some stocks and framing recent news (Nebius' UK expansion, Cypher's AWS deal) as positive developments. They emphasize that even smaller workloads can represent significant upside due to high multiples and improving deal economics (higher revenue/MW and NOI margins). The host sounds confident in the valuation models used.\n\n4. Worth checking:\n- Verify Nebius' $1.7B commitment for 65MW across four UK sites by 2027.\n- Confirm Bitdeer's executive changes (Chao Suao and Matt Kong resignations) and their continued unspecified roles within the company.\n- Check Cypher Digital's $810M secured senior note details, AWS lease terms at Stingray (15-year triple net lease with no termination for convenience after commencement), CAPEX cost of $10.5M/IT MW and 3% annual escalator.\n- Validate Keel Infrastructure's Moses Lake site valuation assumptions: 14MW capacity, $2M/MW revenue, 80% EBITDA margin, $10M/MW CAPEX.",
    "brief": "Recent news in the AI infrastructure sector including Nebius' expansion into the UK with Revolut, Bitdeer's executive changes, Cypher Digital's $810M secured senior note to fund a 70MW data center for AWS at Stingray, and valuation analyses for Keel Infrastructure (14MW Moses Lake site) and Cypher Digital.",
@@ -5105,7 +5161,15 @@
     "Check Cypher Digital's $810M secured senior note details, AWS lease terms at Stingray (15-year triple net lease with no termination for convenience after commencement), CAPEX cost of $10.5M/IT MW and 3% annual escalator.",
     "Validate Keel Infrastructure's Moses Lake site valuation assumptions: 14MW capacity, $2M/MW revenue, 80% EBITDA margin, $10M/MW CAPEX."
    ],
-   "signal": [],
+   "signal": [
+    {
+     "tk": "CORZ",
+     "claim": "The Stingray deal for Cypher Digital could imply a share price increase of 5.05 USD.",
+     "by": "guest",
+     "tag": "notable",
+     "t": null
+    }
+   ],
    "sponsored": []
   },
   {
@@ -5119,25 +5183,23 @@
    "minutes": 19,
    "tickers": [
     "BTDR",
-    "CORZ",
-    "IREN",
-    "WULF",
     "HUT",
-    "RIOT",
-    "MARA",
+    "IREN",
+    "CORZ",
+    "WULF",
+    "CIFR",
     "CLSK",
+    "MARA",
     "BTBT",
+    "RIOT",
     "HIVE",
     "APLD",
-    "SLNH",
-    "NBIS"
+    "SLNH"
    ],
    "main": [
     "BTDR",
-    "CORZ",
-    "IREN",
-    "WULF",
-    "HUT"
+    "HUT",
+    "IREN"
    ],
    "summary": "1. The video discusses recent news in the AI infrastructure sector including BitZero's NASDAQ uplist and contract announcement, Hut 8's senior note pricing, and Keeley's convertible note offering.\n\n2. Key facts by company:\n   - BITZERO (AIBZ): Announced NASDAQ uplisting effective June 9, 2026; signed a 15-year lease for AI deployment in Norway with $2.6 billion contracted revenue and targeting commissioning in H1 2027\n   - HUT: Priced $4.25B senior notes at 6.129% due November 2042, fully amortizing non-recourse infrastructure financing commencing May 30, 2030\n   - KEEL: Raised $400M convertible notes (upsized from $300M) with additional $58M option, 1.25% coupon due January 2032, conversion price at $7.41 (25% premium to last close)\n\n3. Host's view: The hosts maintain a positive stance on the sector despite today's sell-off, emphasizing that taking profits is important and highlighting BitZero as one to watch with its NASDAQ uplist and contract announcement. They sound confident about the long-term prospects.\n\n4. Worth checking:\n   - Verify Hut 8's senior note terms including interest rate of 6.129%, due date in November 2042, and full amortization commencing May 30, 2030\n   - Confirm Keeley's convertible notes details: $400M raised (upsized from $300M), additional $58M option, 1.25% coupon due January 2032, conversion price at $7.41 (25% premium to last close)\n   - Check BitZero's NASDAQ uplisting effective date of June 9, 2026 and Norway contract details: 15-year lease, $2.6 billion contracted revenue, targeting commissioning in H1 2027",
    "brief": "Recent news in the AI infrastructure sector including BitZero's NASDAQ uplist and contract announcement, Hut 8's senior note pricing, and Keeley's convertible note offering.",
@@ -5155,17 +5217,31 @@
    "signal": [
     {
      "tk": "BTDR",
-     "claim": "BitZero has signed a 15-year lease for AI deployment at its Norway site.",
-     "by": "executive",
+     "claim": "Bitdeer (BTDR) has been approved for a NASDAQ uplist under the ticker AIBZ.",
+     "by": "host",
      "tag": "notable",
      "t": null
+    },
+    {
+     "tk": "BTDR",
+     "claim": "Bitdeer (BTDR) signed a 15-year lease for AI deployment at its Norway site.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "HUT",
+     "claim": "Hut 8 (HUT) raised 4.25 billion USD via investor-grade senior notes.",
+     "by": "host",
+     "tag": "notable",
+     "t": 788
     },
     {
      "tk": "IREN",
      "claim": "IREN (Keel Infrastructure) raised 400 million USD through a convertible note.",
      "by": "host",
      "tag": "notable",
-     "t": null
+     "t": 909
     }
    ],
    "sponsored": []
@@ -5217,7 +5293,15 @@
     "Verify the specific terms and pricing of the convertible note announced by KEEL",
     "Confirm the exact cash balance and debt levels for all companies mentioned, especially those announcing financing deals"
    ],
-   "signal": [],
+   "signal": [
+    {
+     "tk": "CORZ",
+     "claim": "The host noted that CORZ can generate $0.80 per share in weekly premiums via covered calls.",
+     "by": "host",
+     "tag": "notable",
+     "t": 188
+    }
+   ],
    "sponsored": []
   },
   {
@@ -5244,8 +5328,7 @@
     "CRWV",
     "NBIS",
     "RIOT",
-    "MARA",
-    "CORZ"
+    "MARA"
    ],
    "main": [
     "CLSK",
@@ -5324,6 +5407,13 @@
      "by": "executive",
      "tag": "notable",
      "t": null
+    },
+    {
+     "tk": "CLSK",
+     "claim": "CLSK has a Sandersville site where significant groundwork is being done for HPC.",
+     "by": "host",
+     "tag": "scoop",
+     "t": null
     }
    ],
    "sponsored": []
@@ -5340,14 +5430,10 @@
    "tickers": [
     "HIVE",
     "CORZ",
-    "WULF",
     "BTDR",
-    "GLXY",
-    "IREN",
     "HUT",
     "CLSK",
-    "MARA",
-    "RIOT"
+    "MARA"
    ],
    "main": [
     "HIVE"
@@ -5374,58 +5460,23 @@
    "signal": [
     {
      "tk": "HIVE",
-     "claim": "HIVE Digital Technologies generated $400,000 of operating income during a challenging period in February.",
+     "claim": "HIVE Digital Technologies has a 320 MW sovereign AI data factory project in the Toronto-Waterloo corridor.",
      "by": "executive",
      "tag": "notable",
      "t": null
     },
     {
      "tk": "HIVE",
-     "claim": "HIVE Digital Technologies is developing a 320 MW sovereign AI data factory in the Toronto-Waterloo corridor.",
+     "claim": "HIVE Digital Technologies completed a $100 million zero-coupon bond issuance that was oversubscribed to approximately $120 million.",
      "by": "executive",
      "tag": "notable",
      "t": null
     },
     {
      "tk": "HIVE",
-     "claim": "HIVE Digital Technologies aims to scale its annual run rate from $35 million to $660 million by 2028.",
-     "by": "executive",
-     "tag": "call",
-     "t": null
-    },
-    {
-     "tk": "HIVE",
-     "claim": "HIVE Digital Technologies' zero-coupon bond saw demand of approximately $600 million.",
+     "claim": "HIVE Digital Technologies expects to qualify for the TSX 300 index by December 2026.",
      "by": "executive",
      "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "HIVE",
-     "claim": "HIVE Digital Technologies expects to qualify for the TSX 300 index by December.",
-     "by": "executive",
-     "tag": "call",
-     "t": null
-    },
-    {
-     "tk": "HIVE",
-     "claim": "HIVE Digital Technologies plans to deploy two clusters of over 2,000 GPUs each at the Bell facility in Merit.",
-     "by": "executive",
-     "tag": "call",
-     "t": null
-    },
-    {
-     "tk": "HIVE",
-     "claim": "HIVE Digital Technologies expects an annual run rate of $60 million to $70 million from its Merit GPU clusters.",
-     "by": "executive",
-     "tag": "call",
-     "t": null
-    },
-    {
-     "tk": "HIVE",
-     "claim": "HIVE Digital Technologies is expanding its mining capacity by an additional 10 EH/s in Paraguay.",
-     "by": "executive",
-     "tag": "call",
      "t": null
     }
    ],
@@ -5493,11 +5544,25 @@
    ],
    "signal": [
     {
+     "tk": "BTBT",
+     "claim": "BitDigital does not intend to sell any White Fiber shares during the year 2026.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    },
+    {
      "tk": "WYFI",
-     "claim": "White Fiber expects full revenue contribution from the NC1 facility in the third quarter.",
+     "claim": "White Fiber expects full revenue contribution from the NC1 facility in Q3 2026.",
      "by": "executive",
      "tag": "call",
-     "t": 231
+     "t": null
+    },
+    {
+     "tk": "WYFI",
+     "claim": "White Fiber plans to market the next tranche of capacity at NC1 during summer 2026.",
+     "by": "executive",
+     "tag": "call",
+     "t": null
     }
    ],
    "sponsored": []
@@ -5519,15 +5584,9 @@
     "CRWV",
     "CORZ",
     "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "RIOT",
-    "MARA",
     "CLSK",
-    "GLXY"
+    "HIVE",
+    "HUT"
    ],
    "main": [
     "IREN",
@@ -5552,16 +5611,9 @@
    "signal": [
     {
      "tk": "IREN",
-     "claim": "The all-in finance cost for IREN's GPU fleet is approximately 3.31% following a significant upfront payment from Microsoft.",
-     "by": "host",
-     "tag": "big",
-     "t": null
-    },
-    {
-     "tk": "IREN",
-     "claim": "IREN secured 3.65 billion USD in GPU financing through a two-part structure.",
+     "claim": "IREN secured 3.65 USDbn in GPU financing, which is the highest publicly rated GPU financing ever announced.",
      "by": "executive",
-     "tag": "notable",
+     "tag": "big",
      "t": null
     }
    ],
@@ -5577,22 +5629,29 @@
    "kind": "news",
    "minutes": 37,
    "tickers": [
+    "KEEL",
     "IREN",
     "HUT",
     "CORZ",
     "WULF",
-    "CLSK",
+    "RIOT",
     "BTDR",
+    "GLXY",
+    "CLSK",
+    "APLD",
+    "SLNH",
     "BTBT",
-    "HIVE"
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "MARA"
    ],
    "main": [
+    "KEEL",
     "IREN",
     "HUT",
     "CORZ",
-    "WULF",
-    "CLSK",
-    "BTDR"
+    "WULF"
    ],
    "summary": "1. The video discusses AI infrastructure companies' valuations, focusing on Kiel Infrastructure's potential HPC deals and comparing them to peers like IRON, HUT8, WULF, CIFR, CORZ and RIOT.\n\n2. Key facts by company:\n   - DELL: Q1 revenue $43.9B (+88% YoY), EPS $5.24 (+282%), cash flow from operations $4.1B (record). Backlog for AI infrastructure is unprecedented.\n   - IRON: 480MW contracted HPC capacity, including a 200MW deal with Microsoft and GPU orders for Childress/BC sites. Market cap +620% YoY; Cantor price target $99.\n   - HUT8: Two deals (Riverbend & Beacon Hill) total 597MW compute power, expected to generate $9.8B revenue ($665M NOI). KBW raised price target from $89 to $138.\n   - WULF: 522MW contracted compute power across multiple deals; share price +589% YoY.\n   - RIOT: Two small HPC contracts (50MW total) at Rockdale site. Market cap ~$10B despite limited HPC exposure; Corsicana site (756MW capacity) could add $35-40/share if leased.\n   - CIFR: Multiple AWS/Fluidstack deals totaling 522MW compute power; share price +624% YoY.\n   - CORZ: Largest contracted HPC capacity (500MW+ with CoreWeave) but only +150% YoY due to high refurbishment costs ($6B). Labor/electrical costs up ~20-30%.\n   - KEEL: No HPC deals signed yet. Ben Gagnon expects 3 deals by end-2026 across Moses Lake (14MW), Sharon and Panther Creek sites. Sensitivity analysis assumes 150MW total capacity at $2M/MW revenue, 70% EBITDA margin, $10M/MW capex - could add ~$4.55/share if achieved.\n\n3. Host's view: The hosts are bullish on the sector, noting that even with recent rallies (e.g., KEEL +516% YoY), significant upside remains as HPC deals get signed and energized. They emphasize that current share prices have only partially priced in future HPC revenues, especially for companies like RIOT and KEEL.\n\n4. Worth checking: Verify KEEL's actual site capacities (Moses Lake 14MW vs assumed 150MW total), capex costs ($10M/MW assumption vs CORZ's reported $12M/MW) and EBITDA margins (70% assumption). Also confirm HUT8's Beacon Hill contract details ($9.8B revenue, $665M NOI) in filings.",
    "brief": "AI infrastructure companies' valuations, focusing on Kiel Infrastructure's potential HPC deals and comparing them to peers like IRON, HUT8, WULF, CIFR, CORZ and RIOT.",
@@ -5612,17 +5671,10 @@
    ],
    "signal": [
     {
-     "tk": "CORZ",
-     "claim": "Core Scientific's CEO noted that electrical labor costs at sites are increasing by approximately 30%.",
+     "tk": "KEEL",
+     "claim": "Keel Infrastructure aims to sign three HPC deals by the end of 2026.",
      "by": "host",
      "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "KEEL",
-     "claim": "Keel Infrastructure expects to sign three HPC deals by the end of 202<0xC2>6.",
-     "by": "host",
-     "tag": "call",
      "t": null
     }
    ],
@@ -5674,20 +5726,18 @@
     "CORZ",
     "HUT",
     "WULF",
-    "CRWV",
-    "NBIS",
+    "CLSK",
     "APLD",
     "SLNH",
     "HIVE",
-    "CLSK"
+    "CRWV",
+    "NBIS",
+    "MARA"
    ],
    "main": [
     "IREN",
     "RIOT",
-    "BTBT",
-    "CORZ",
-    "HUT",
-    "WULF"
+    "BTBT"
    ],
    "summary": "1. The video discusses recent news and price targets for AI infrastructure stocks, focusing on BitDigital's financing deal and Ethereum purchase, DMG Blockchain's CEO interview confirming a potential HPC deal by year-end, and Riot Platforms' valuation sensitivity analysis based on a hypothetical 756 MW contract at its Corsicana site.\n\n2. Key facts:\n   - BTBT: Purchased an additional $20 million of ETH (8,568 coins) at ~$2,334/ETH; total holdings now 158,461 ETH.\n   - DMGI: CEO Sheldon Bennett expects to close an HPC deal by year-end; received a C$0.40 price target from an analyst.\n   - IREN: Received a $99 price target from Cantor Fitzgerald (previously $61), based on its current GPU orders and expected $4.3B run rate revenue by EOY 2026, excluding future capacity at Sweetwater, Oklahoma or Spain sites.\n   - RIOT: Valuation sensitivity analysis suggests a hypothetical 756 MW deal at Corsicana could imply a $50.38/share price (assuming $2M/MW revenue, 80% EBITDA margin, 20x multiple), with ~$15 of this potentially already priced in.\n\n3. Host's view:\n   - The host is bullish on the AI infrastructure sector, noting that companies signing HPC deals are seeing significant re-rates. They believe Riot's Corsicana site has substantial upside potential if a large deal is announced and suggest Iron Energy could be worth much more than its $99 target once all capacity is factored in. The tone is confident and enthusiastic about the sector's growth prospects.\n\n4. Worth checking:\n   - Verify BitDigital's total ETH holdings (158,461) against company filings.\n   - Confirm DMG Blockchain's CEO Sheldon Bennett actually stated a deal would close by year-end.\n   - Check if Cantor Fitzgerald's $99 price target for IREN explicitly excludes future capacity at Sweetwater, Oklahoma and Spain sites.\n   - Validate the assumptions in Riot Platforms' valuation sensitivity analysis (revenue/MW, EBITDA margins, capex costs) against industry benchmarks.",
    "brief": "Recent news and price targets for AI infrastructure stocks, focusing on BitDigital's financing deal and Ethereum purchase, DMG Blockchain's CEO interview confirming a potential HPC deal by year-end, and Riot Platforms' valuation sensitivity analysis based on a hypothetical 756 MW contract at its Corsicana site.",
@@ -5707,10 +5757,17 @@
    "signal": [
     {
      "tk": "IREN",
-     "claim": "Cantor analyst has upgraded IREN price target to $99 from $61.",
-     "by": "host",
+     "claim": "Cantor has raised its price target for IREN to $99.",
+     "by": "thirdparty",
      "tag": "big",
-     "t": null
+     "t": 1884
+    },
+    {
+     "tk": "RIOT",
+     "claim": "An analysis suggests that a single client deal at the Corsicana site could drive RIOT's share price to $50.38.",
+     "by": "host",
+     "tag": "notable",
+     "t": 1633
     }
    ],
    "sponsored": []
@@ -5757,11 +5814,6 @@
    "tickers": [
     "IREN",
     "SLNH",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK",
     "HUT",
     "BTDR",
     "GLXY",
@@ -5770,6 +5822,11 @@
     "APLD",
     "BTBT",
     "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK",
     "CORZ",
     "ABTC"
    ],
@@ -5790,7 +5847,15 @@
     "Confirm DMG's Q2 numbers ($7.3M revenue, 69 BTC mined, $47M cash+Bitcoin) match SEC filings.",
     "Check Soluna's AMA for specifics on Cotty 2/Dorothy 3 projects and wind farm capacity."
    ],
-   "signal": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN has entered a $1.6 billion purchase agreement with Dell for Blackwell systems, including GPUs, servers, storage, and networking.",
+     "by": "executive",
+     "tag": "big",
+     "t": 1739
+    }
+   ],
    "sponsored": []
   },
   {
@@ -5800,27 +5865,28 @@
    "title": "PA Power Play | Channel Members Only | Week of May 27",
    "headline": "PA Power Play — Channel Members Only",
    "url": "https://www.youtube.com/watch?v=xaApY8h2tVA",
-   "kind": "news",
+   "kind": "members",
    "minutes": 23,
    "tickers": [
     "IREN",
     "CORZ",
     "RIOT",
+    "CIFR",
     "WULF",
-    "CLSK",
-    "BTDR",
+    "HUT",
     "MARA",
     "GLXY",
-    "BTBT",
+    "BTDR",
+    "CLSK",
     "HIVE"
    ],
    "main": [
     "IREN",
     "CORZ",
     "RIOT",
+    "CIFR",
     "WULF",
-    "CLSK",
-    "BTDR"
+    "HUT"
    ],
    "summary": "1. The video is an update from two retail investors discussing their recent stock sales (including limit orders and covered calls), portfolio performance (hitting all-time highs), and strategies for taking profits in the AI infrastructure and Bitcoin mining sectors.\n\n2. Key facts by company:\n- IREN: Bryce sold 100 shares via a covered call at $62.06; Anthony set a limit sell order at $63 which executed.\n- CIFR: Bryce's 200 shares were called away at $21 (plus $0.50 premium); Anthony sold 600 shares at $24.\n- RIOT: Anthony placed a limit sell order for ~25% of his position at $26.75.\n- CORZ: Anthony set a limit sell order for 560 shares at $27.50.\n\n3. Host's view:\nBoth hosts are taking profits after significant portfolio gains (Bryce’s account reached CAD$505,000; Anthony’s grew from £87,000 to £388,000 in ~13 months). They emphasize disciplined profit-taking via limit orders and covered calls, with confidence in the AI infrastructure thesis but caution about potential pullbacks. Bryce is reallocating some proceeds into dividend products like Seda (targeting ~11% APY after foreign tax withholding).\n\n4. Worth checking:\n- Verify the actual execution details of Anthony’s Riot sell order at $26.75 and Core Scientific limit order at $27.50.\n- Confirm the exact terms, fees, and net APY of the Seda dividend product Bryce references (including the 15% foreign tax withholding for Canadian investors).\n- Cross-reference the hosts’ portfolio return claims against official filings or disclosures from the companies mentioned.",
    "brief": "The video is an update from two retail investors discussing their recent stock sales (including limit orders and covered calls), portfolio performance (hitting all-time highs), and strategies for taking profits in the AI infrastructure and Bitcoin mining sectors.",
@@ -5838,9 +5904,16 @@
    ],
    "signal": [
     {
+     "tk": "GLXY",
+     "claim": "Galaxy acquired the Helios site from Argo for approximately $65 million.",
+     "by": "guest",
+     "tag": "notable",
+     "t": null
+    },
+    {
      "tk": "RIOT",
-     "claim": "The market has priced in the expectation of a deal at the Corsicana site for Riot.",
-     "by": "host",
+     "claim": "Riot has 50 MW of power already under its belt for compute.",
+     "by": "guest",
      "tag": "notable",
      "t": null
     }
@@ -5861,26 +5934,21 @@
     "CORZ",
     "IREN",
     "SLNH",
-    "CLSK",
-    "HIVE",
     "BTDR",
-    "GLXY",
-    "HUT",
-    "RIOT",
+    "HIVE",
     "MARA",
-    "BTBT",
-    "APLD",
-    "CIFR",
+    "CLSK",
+    "HUT",
     "CRWV",
+    "RIOT",
+    "APLD",
     "NBIS"
    ],
    "main": [
     "WULF",
     "CORZ",
     "IREN",
-    "SLNH",
-    "CLSK",
-    "HIVE"
+    "SLNH"
    ],
    "summary": "1. The video discusses recent positive developments and price surges in AI infrastructure stocks, particularly highlighting TeraWulf's new Kentucky site acquisition and Core Scientific's board appointment.\n\n2. Key facts by company:\n   - CORZ (Core Scientific): Appointed Steve Smith to the board; Smith has 35 years of data center experience and previously grew Equinix revenue from $400M to $4B.\n   - WULF (TeraWulf): Acquired a 285-acre site in Kentucky capable of supporting over 1GW of capacity; first 500MW expected H2 2028, additional 500MW targeted for H2 2030. Announced $290M AI infrastructure solutions deal with Schneider Electric at Lake Mariner.\n   - IREN (Iris Energy): Mentioned as one of the top four companies with major deals signed.\n   - SLNH (Soluna Holdings): Market cap increased to ~$325M from previous $20-30M range; stock up 20% today.\n\n3. Host's view: The host is very bullish on AI infrastructure stocks, stating they have \"lift off\" and calling it an \"absolute massive start\". They highlight significant share price increases for companies like Hut 8 (nearly 40x from $2.54) and Cipher/IREN (~559% in one year). The host sounds highly confident about the sector's prospects.\n\n4. Worth checking: \n   - Verify Core Scientific's deal terms with CoreWeave, specifically that they were paid ~$6B to build sites without repayment obligation.\n   - Confirm TeraWulf's Kentucky site details including acreage (285 acres within 1,000-acre park), capacity (1GW+), and phased delivery timeline (500MW H2 2028, additional 500MW H2 2030).\n   - Check if Steve Smith's background at Equinix (revenue growth from $400M to $4B) is accurately stated.",
    "brief": "Recent positive developments and price surges in AI infrastructure stocks, particularly highlighting TeraWulf's new Kentucky site acquisition and Core Scientific's board appointment.",
@@ -5899,10 +5967,10 @@
    "signal": [
     {
      "tk": "CORZ",
-     "claim": "Core Scientific appointed Steve Smith to its Board of Directors.",
+     "claim": "Core Scientific previously entered a deal with CoreWeave valued at approximately $6 billion.",
      "by": "executive",
      "tag": "notable",
-     "t": null
+     "t": 1057
     }
    ],
    "sponsored": []
@@ -5918,22 +5986,25 @@
    "minutes": 49,
    "tickers": [
     "BTDR",
-    "HIVE",
     "KEEL",
-    "SLNH",
+    "HIVE",
     "RIOT",
     "HUT",
     "CLSK",
     "APLD",
+    "SLNH",
+    "BTBT",
+    "CRWV",
+    "NBIS",
     "MARA",
     "CORZ",
-    "WULF"
+    "WULF",
+    "CIFR"
    ],
    "main": [
     "BTDR",
-    "HIVE",
     "KEEL",
-    "SLNH",
+    "HIVE",
     "RIOT"
    ],
    "summary": "1. The video discusses recent developments in the AI/HPC sector, including deals, financing activities, and guidance from companies such as White Fiber (Wi-Fi), Kiel Infrastructure, Soluna Holdings, Hive Blockchain, and Riot Platforms.\n\n2. Key facts by company:\n   - Wi-Fi: Announced a $160 million investment-grade technology center in Paris, France, for advanced NVIDIA GPU systems; service commences July 2026 with prepayments including 12 months of fees plus project-level financing closing June 2026.\n   - Kiel Infrastructure: CEO Ben Gagnon expects three deals by year-end, with sites at Moses Lake (18 MW), Panther Creek, and Sharon; $500 million cash on hand for development.\n   - Soluna Holdings: CFO Michael Peachy and CEO John Belazare aim to start construction in 2026 and energize Cottey 2 in 2027; have a $500 million ATM facility available.\n   - Hive Blockchain: Announced a sovereign data opportunity with a 320 MW deal; previously secured a 70 MW co-location deal in New Brunswick driving ~$85M/year revenue at ~$1.75M/MW.\n   - Riot Platforms: CEO Jason Les discussed the Corsicana facility, aiming for high-quality tenants and financing terms to achieve valuation targets.\n\n3. Host's view:\n   The host is optimistic about the sector, highlighting significant upside potential from deals such as Riot’s potential $1.5B/year revenue at Corsicana (adding ~$42-43/share) and Wi-Fi’s Paris deal. They emphasize that companies without announced deals (e.g., Bitfarms) have substantial room for growth once they secure contracts.\n\n4. Worth checking:\n   - Verify the specifics of Wi-Fi's $160M Paris deal, including megawatt capacity and revenue per MW.\n   - Confirm Kiel Infrastructure’s ability to fund three deals by year-end given their cash position and typical debt/equity ratios in the industry.\n   - Validate Soluna Holdings’ timeline for Cottey 2 construction start (2026) and energization (2027).\n   - Check details of Hive Blockchain’s 320 MW sovereign data deal, including site specifics and financial terms.\n   - Assess Riot Platforms’ assumptions about achievable revenue ($1.5B/year) and valuation impact at Corsicana.",
@@ -5955,10 +6026,17 @@
    ],
    "signal": [
     {
+     "tk": "RIOT",
+     "claim": "A single large client deal at Riot's Corsicana site could generate $1.5 billion in annual revenue.",
+     "by": "host",
+     "tag": "big",
+     "t": null
+    },
+    {
      "tk": "KEEL",
      "claim": "Keel Infrastructure aims to sign three deals by the end of the year.",
-     "by": "guest",
-     "tag": "big",
+     "by": "executive",
+     "tag": "notable",
      "t": 1454
     }
    ],
@@ -6002,7 +6080,14 @@
      "claim": "HIVE Digital Technologies announced a 320 megawatt gigafactory project.",
      "by": "executive",
      "tag": "notable",
-     "t": null
+     "t": 11
+    },
+    {
+     "tk": "HIVE",
+     "claim": "The HIVE New Brunswick site has the capacity to host 20,000 NVIDIA Grace Blackwell GPUs.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 553
     }
    ],
    "sponsored": []
@@ -6018,26 +6103,22 @@
    "minutes": 29,
    "tickers": [
     "NBIS",
-    "IREN",
     "APLD",
+    "IREN",
+    "HUT",
     "CORZ",
     "WULF",
-    "HIVE",
-    "BTDR",
-    "MARA",
-    "CLSK",
     "RIOT",
-    "HUT",
-    "CIFR",
-    "BTBT"
+    "BTDR",
+    "CLSK",
+    "MARA",
+    "HIVE",
+    "CRWV"
    ],
    "main": [
     "NBIS",
-    "IREN",
     "APLD",
-    "CORZ",
-    "WULF",
-    "HIVE"
+    "IREN"
    ],
    "summary": "1. The video discusses recent developments in the AI infrastructure sector, including NVIDIA's earnings report, Nebius' GPU pricing increases, Anthropic's profitability and deal with SpaceX, Applied Digital's contract milestones, and whether these events indicate a bubble in the AI space.\n\n2. Key facts by company:\n   - **Nebius**: Up 16%, trading at $222 million market cap; increased rates for older GPUs (e.g., B300 model now $6.10–$7.85/hour).\n   - **Applied Digital**: Signed a new 15-year, 300 MW deal with an investment-grade hyperscaler at Polaris Forge 3 facility ($7.5B base term/$18.2B including renewals); total contracted capacity now 1.2 GW critical IT load (1.67 GW gross utility power) across four campuses; $31B total contracted revenue ($73B including renewal options).\n   - **NVIDIA**: Q1 revenue $81.6B (+85% y/y, +20% q/q), data center revenue $75.2B (+92%), net income $58.3B (+210% y/y); Q2 guidance $91B; increased quarterly dividend 25x to $0.25/share.\n   - **Anthropic**: On pace for first profitable quarter (Q2 revenue ~$10.9B, operating profit $559M); agreed to pay SpaceX $1.25B/month for Orbital Data Center capacity.\n\n3. Host's view: The hosts believe there is no bubble in the AI infrastructure sector currently. They point to increasing GPU rental rates, large deals signed by companies like Applied Digital, NVIDIA's strong earnings and guidance, Anthropic's profitability, and high demand for compute power as evidence of a growing market rather than a speculative bubble. They sound confident in their assessment.\n\n4. Worth checking: Investors should verify Nebius' exact GPU pricing increases against official sources; Applied Digital's contract terms (e.g., 15-year duration, $7.5B/$18.2B values) and campus details in SEC filings; NVIDIA's Q1 financials and Q2 guidance in their earnings release; Anthropic's Q2 revenue/operating profit projections and SpaceX deal terms from official announcements.",
    "brief": "Recent developments in the AI infrastructure sector, including NVIDIA's earnings report, Nebius' GPU pricing increases, Anthropic's profitability and deal with SpaceX, Applied Digital's contract milestones, and whether these events indicate a bubble in the AI space.",
@@ -6051,22 +6132,7 @@
    "verify": [
     "Investors should verify Nebius' exact GPU pricing increases against official sources; Applied Digital's contract terms (e.g., 15-year duration, $7.5B/$18.2B values) and campus details in SEC filings; NVIDIA's Q1 financials and Q2 guidance in their earnings release; Anthropic's Q2 revenue/operating profit projections and SpaceX deal terms from official announcements."
    ],
-   "signal": [
-    {
-     "tk": "APLD",
-     "claim": "Applied Digital surpassed 1 GW of contracted capacity and signed a 15-year lease at Polaris Forge 3 for 300 MW.",
-     "by": "host",
-     "tag": "big",
-     "t": null
-    },
-    {
-     "tk": "NBIS",
-     "claim": "Nebius has increased its GPU rental rates for older models.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    }
-   ],
+   "signal": [],
    "sponsored": []
   },
   {
@@ -6086,10 +6152,12 @@
     "WULF",
     "RIOT",
     "CORZ",
-    "IREN",
-    "HUT",
     "BTDR",
-    "GLXY"
+    "GLXY",
+    "MARA",
+    "APLD",
+    "HUT",
+    "BTBT"
    ],
    "main": [
     "SLNH",
@@ -6113,7 +6181,22 @@
    "verify": [
     "Verify Nebius's 1.2 GW Pennsylvania AI factory announcement and expected deal timeline; confirm Soluna Holdings' $53 million Briscoe wind farm acquisition details and preference share conversion terms; check Hut 8 Mining Corp's $16 million Louisiana water infrastructure investment specifics and job creation numbers; validate TeraWulf Inc.'s funding capabilities for signed deals."
    ],
-   "signal": [],
+   "signal": [
+    {
+     "tk": "SLNH",
+     "claim": "Soluna's flagship sites include Catty 2 and Dorothy 3 with over 300 MW of potential capacity for HPC/AI.",
+     "by": "host",
+     "tag": "notable",
+     "t": 548
+    },
+    {
+     "tk": "NBIS",
+     "claim": "Nebius signed a contract with Bloom Energy for monthly rental fees totaling 2.6 USDbn over 10 years.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    }
+   ],
    "sponsored": []
   },
   {
@@ -6128,28 +6211,23 @@
    "tickers": [
     "HIVE",
     "IREN",
-    "SLNH",
+    "CORZ",
     "MARA",
     "ABTC",
-    "CORZ",
+    "SLNH",
     "BTDR",
     "GLXY",
     "WULF",
     "CLSK",
-    "APLD",
-    "BTBT",
-    "CRWV",
-    "NBIS",
-    "RIOT",
     "HUT"
    ],
    "main": [
     "HIVE",
     "IREN",
-    "SLNH",
+    "CORZ",
     "MARA",
     "ABTC",
-    "CORZ"
+    "SLNH"
    ],
    "summary": "1. The video discusses recent developments in AI and Bitcoin mining companies, including Hive's new 320 MW sovereign AI project in Toronto, Iron Energy's acquisition of Awaken, Marathon Digital's financing for its Longridge acquisition, and Soluna Holdings' plans to energize sites by 2027.\n\n2. Key facts:\n   - HIVE: Announced a 320 MW sovereign AI infrastructure project in the Greater Toronto Area; acquired 21 acres at $46M plus 4 additional acres at $12M; expects ~100K GPUs once fully built out.\n   - IREN (Iron Energy): Acquired Awaken, a creative and media agency; co-CEO Dan Roberts spoke alongside Nvidia's CEO and Michael Dell at Dell Technologies World; has allocated only ~6% of its total 5 GW power capacity to compute contracts.\n   - MARA: Received consents from majority shareholders for Longridge Energy acquisition; deal includes 505 MW in Hannibal, Ohio with $144M annualized EBITDA at <1.5 cents/kWh; will have a 2.2 GW platform across PJM, ERCOT, SPP and international markets.\n   - SLNH (Soluna Holdings): Aiming to energize sites by end of 2027; owns power, sites, machines and infrastructure.\n\n3. Host's view: The host is bullish on the AI sector long-term, noting that GPU spot prices for older models like H200s have exceeded newer B200s at $6.40/hour (up 29% overnight). They highlight Iron Energy as well-positioned with only ~6% of its power capacity contracted and praise Core Scientific's progress on its 590 MW deal with CoreWeave.\n\n4. Worth checking: Verify Hive's land acquisition costs ($46M + $12M) and projected GPU count (~100K); confirm Marathon Digital's EBITDA estimate ($144M at <1.5 cents/kWh); validate Soluna Holdings' claim of full vertical integration (owning power, sites, machines, infrastructure).",
    "brief": "Recent developments in AI and Bitcoin mining companies, including Hive's new 320 MW sovereign AI project in Toronto, Iron Energy's acquisition of Awaken, Marathon Digital's financing for its Longridge acquisition, and Soluna Holdings' plans to energize sites by 2027.",
@@ -6172,11 +6250,11 @@
      "t": null
     },
     {
-     "tk": "HIVE",
-     "claim": "Hive's AI infrastructure project is targeted to be online in the second half of 2027.",
+     "tk": "IREN",
+     "claim": "IREN has allocated 300 MW of compute, representing only about 6% of its total 5 GW power capacity.",
      "by": "host",
-     "tag": "call",
-     "t": null
+     "tag": "notable",
+     "t": 2822
     }
    ],
    "sponsored": []
@@ -6193,15 +6271,14 @@
    "tickers": [
     "SLNH",
     "CRWV",
+    "CORZ",
+    "WULF",
     "BTDR",
     "GLXY",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "HIVE",
+    "HUT",
     "RIOT",
-    "MARA",
-    "CLSK"
+    "CLSK",
+    "MARA"
    ],
    "main": [
     "SLNH"
@@ -6229,38 +6306,45 @@
    "signal": [
     {
      "tk": "SLNH",
-     "claim": "Soluna Holdings (SLNH) has a massive power pipeline exceeding 4.3 GW.",
+     "claim": "Soluna Holdings has a power pipeline exceeding 4.3 GW.",
      "by": "executive",
      "tag": "big",
-     "t": 3393
+     "t": null
     },
     {
      "tk": "SLNH",
-     "claim": "Soluna Holdings (SLNH) expects to have over 206 MW of operations under management by mid-2026.",
+     "claim": "Soluna Holdings' Series B preferred stock has been converted to common stock.",
      "by": "executive",
-     "tag": "call",
-     "t": 191
+     "tag": "notable",
+     "t": null
     },
     {
      "tk": "SLNH",
-     "claim": "Soluna Holdings (SLNH) plans to sunset its proprietary mining activities over the next few weeks.",
+     "claim": "Soluna Holdings expects to have over 206 MW of operations under management by mid-2/2026.",
      "by": "executive",
      "tag": "call",
-     "t": 325
+     "t": null
     },
     {
      "tk": "SLNH",
-     "claim": "Soluna Holdings (SLNH) expects to have fully energized Dorothy 2 and Cottee 1 in Q2 2026.",
+     "claim": "Soluna Holdings plans to energize the Kati 2 phase 1 site in 2027.",
      "by": "executive",
      "tag": "call",
-     "t": 501
+     "t": null
     },
     {
      "tk": "SLNH",
-     "claim": "Soluna Holdings (SLNH) targets an RFS date for Cottee 2 in mid-2027.",
+     "claim": "Soluna Holdings is sunsetting its proprietary mining activities over the next few weeks.",
      "by": "executive",
      "tag": "call",
-     "t": 976
+     "t": null
+    },
+    {
+     "tk": "SLNH",
+     "claim": "Soluna Holdings plans to expand the Dorothy 3 site load footprint to 150 MW.",
+     "by": "executive",
+     "tag": "call",
+     "t": null
     }
    ],
    "sponsored": []
