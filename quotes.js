@@ -4,10 +4,10 @@
 (function (root) {
   'use strict';
   const INTERVAL=1800000,CACHE_KEY='cloudtracker.market-marks.v1',FALLBACK=['IREN','CRWV','NBIS'],listeners=new Set();
-  let timer=null,inFlight=null,listening=false,hydrated=false,lastAttempt=0,started=false;
+  let timer=null,inFlight=null,listening=false,hydrated=false,lastAttempt=0,started=false,serverChecked=false;
   let requested=new Set(),activeTickers=[];
   let marks={prices:{},priceDates:{},priceFetchedAt:{},priceSources:{},cryptoDates:{},btc:null,eth:null,asOf:null,fetchedAt:null};
-  let state={phase:'idle',lastAttemptAt:null,lastSuccessAt:null,failedTickers:[],failedCrypto:[],fromCache:false};
+  let state={phase:'idle',lastAttemptAt:null,lastSuccessAt:null,failedTickers:[],failedCrypto:[],fromCache:false,transport:null,serverCheckedAt:null,serverStatus:null};
   const usable=n=>typeof n==='number'&&Number.isFinite(n)&&n>0;
   const now=()=>Date.now(),iso=()=>new Date(now()).toISOString();
   const validDate=v=>{
@@ -65,7 +65,7 @@
       const cached=JSON.parse(root.localStorage.getItem(CACHE_KEY)||'null');
       if(!cached||cached.version!==1||!cached.marks||!validDate(cached.marks.fetchedAt))return;
       const accepted=merge(cached.marks,true);if(!accepted)return;applyToModel(accepted);
-      state={...state,phase:'cached',fromCache:true,lastSuccessAt:marks.fetchedAt};
+      state={...state,phase:'cached',fromCache:true,transport:'cache',lastSuccessAt:marks.fetchedAt};
       lastAttempt=Date.parse(marks.fetchedAt);requested=new Set(Object.keys(marks.prices));
     }catch(_){}finally{publish();}
   }
@@ -87,12 +87,46 @@
     const price=typeof v==='string'&&v.trim()?Number(v):typeof v==='number'?v:NaN;
     return usable(price)?{price,fetchedAt:iso()}:null;
   }
-  function refresh(){
+  function snapshotShape(s){
+    const object=x=>x&&typeof x==='object'&&!Array.isArray(x),tickers=x=>Array.isArray(x)&&x.every(t=>typeof t==='string'&&/^[A-Z0-9._-]{1,32}$/.test(t))&&new Set(x).size===x.length;
+    if(!object(s)||s.version!==1||!validDate(s.checkedAt)||!['ready','partial','error'].includes(s.status)||!tickers(s.universe)||!tickers(s.failedTickers)||!Array.isArray(s.failedCrypto)||s.failedCrypto.some(x=>!['btc','eth'].includes(x))||!object(s.marks))return false;
+    if(!object(s.marks.prices)||!object(s.marks.priceFetchedAt)||!object(s.marks.priceDates)||!object(s.marks.cryptoDates))return false;
+    if(s.failedTickers.some(t=>!s.universe.includes(t))||(s.status==='ready'&&(s.failedTickers.length||s.failedCrypto.length)))return false;
+    return Object.entries(s.marks.prices).every(([tk,p])=>s.universe.includes(tk)&&usable(p)&&validDate(s.marks.priceFetchedAt[tk])&&(s.marks.priceDates[tk]==null||validDate(s.marks.priceDates[tk])))&&
+      ['btc','eth'].every(asset=>s.marks[asset]==null||(usable(s.marks[asset])&&validDate(s.marks.cryptoDates[asset])));
+  }
+  function snapshotComplete(s){
+    const fresh=d=>validDate(d)&&now()-Date.parse(d)<INTERVAL;
+    return s.status==='ready'&&activeTickers.every(tk=>s.universe.includes(tk)&&usable(s.marks.prices[tk])&&fresh(s.marks.priceFetchedAt[tk]))&&
+      ['btc','eth'].every(asset=>usable(s.marks[asset])&&fresh(s.marks.cryptoDates[asset]));
+  }
+  function refresh(options){
     hydrate();if(inFlight)return inFlight;
     const token=root.FINNHUB_TOKEN||'';
-    if(!token){state={...state,phase:'unconfigured'};publish();return Promise.resolve(getState());}
-    activeTickers=universe();lastAttempt=now();state={...state,phase:'refreshing',lastAttemptAt:iso()};
+    const previousAttempt=lastAttempt,cacheFresh=previousAttempt&&now()-previousAttempt<INTERVAL&&universe().every(tk=>requested.has(tk));
+    activeTickers=universe();lastAttempt=now();state={...state,phase:'refreshing',lastAttemptAt:iso(),serverCheckedAt:null,serverStatus:null};
     inFlight=Promise.resolve().then(async()=>{
+      const raw=await readJSON('/market-prices.json');serverChecked=true;
+      const snapshot=snapshotShape(raw)?raw:null;
+      if(snapshot){
+        const fresh=now()-Date.parse(snapshot.checkedAt)<INTERVAL,complete=snapshotComplete(snapshot),accepted=merge(snapshot.marks,true);
+        const unavailable=activeTickers.filter(tk=>!snapshot.universe.includes(tk)||!usable(snapshot.marks.prices[tk])||now()-Date.parse(snapshot.marks.priceFetchedAt[tk])>=INTERVAL);
+        const missingCrypto=['btc','eth'].filter(asset=>!usable(snapshot.marks[asset])||now()-Date.parse(snapshot.marks.cryptoDates[asset])>=INTERVAL);
+        state={...state,phase:fresh?(snapshot.status==='error'?'error':complete?'ready':'partial'):'cached',fromCache:!fresh,transport:'shared',serverCheckedAt:snapshot.checkedAt,serverStatus:snapshot.status,
+          failedTickers:[...new Set([...snapshot.failedTickers,...unavailable])],failedCrypto:[...new Set([...snapshot.failedCrypto,...missingCrypto])],lastSuccessAt:accepted?marks.fetchedAt:state.lastSuccessAt};
+        if(accepted){applyToModel(accepted,false);saveCache();if(!fresh||!complete){publish();repaint();}}
+        if(fresh&&complete){
+          requested=new Set(snapshot.universe);lastAttempt=Math.min(now(),Date.parse(snapshot.checkedAt));return;
+        }
+        // A current partial/error job is still useful evidence, even without a browser token.
+        if(!token){requested=new Set(activeTickers);if(fresh)lastAttempt=Math.min(now(),Date.parse(snapshot.checkedAt));return;}
+      }
+      // A local cache is not allowed to suppress the first shared-snapshot check.
+      if(!snapshot&&options&&options.allowFreshCache&&cacheFresh){
+        lastAttempt=previousAttempt;state={...state,phase:'cached',fromCache:true,transport:'cache'};return;
+      }
+      if(!token){requested=new Set(activeTickers);state={...state,phase:'unconfigured',transport:state.fromCache?'cache':null};return;}
+      lastAttempt=now();
       const [entries,btc,eth]=await Promise.all([Promise.all(activeTickers.map(async tk=>[tk,await quote(tk,token)])),spot('BTC-USD'),spot('ETH-USD')]);
       const delta={prices:{},priceDates:{},priceFetchedAt:{},priceSources:{},cryptoDates:{},asOf:iso(),fetchedAt:iso()},failedTickers=[];
       entries.forEach(([tk,q])=>{
@@ -103,7 +137,7 @@
       if(eth){delta.eth=eth.price;delta.cryptoDates.eth=eth.fetchedAt;}
       const accepted=merge(delta),failedCrypto=['btc','eth'].filter(asset=>!delta[asset]);requested=new Set(activeTickers);
       state={...state,phase:accepted?(failedTickers.length||failedCrypto.length?'partial':'ready'):'error',
-        failedTickers,failedCrypto,fromCache:accepted?false:state.fromCache,lastSuccessAt:accepted?marks.fetchedAt:state.lastSuccessAt};
+        failedTickers,failedCrypto,transport:accepted?'browser':state.transport,fromCache:accepted?false:state.fromCache,lastSuccessAt:accepted?marks.fetchedAt:state.lastSuccessAt};
       if(accepted){applyToModel(accepted,false);saveCache();}
     }).finally(()=>{
       inFlight=null;publish();repaint();
@@ -114,6 +148,7 @@
   }
   function refreshIfDue(){
     if(inFlight)return inFlight;
+    if(!serverChecked)return refresh({allowFreshCache:true});
     if(!lastAttempt||now()-lastAttempt>=INTERVAL||universe().some(tk=>!requested.has(tk)))return refresh();
     return Promise.resolve(getState());
   }

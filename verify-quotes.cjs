@@ -5,6 +5,13 @@ const source=fs.readFileSync(__dirname+'/quotes.js','utf8'),KEY='cloudtracker.ma
 const INITIAL=Date.parse('2026-09-15T14:00:00Z'),copy=v=>JSON.parse(JSON.stringify(v));
 const flush=async()=>{for(let i=0;i<24;i++)await Promise.resolve();};
 function deferred(){let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return{promise,resolve,reject};}
+function sharedSnapshot(time=INITIAL,price=70){
+  const stamp=offset=>new Date(time+offset).toISOString(),tickers=['IREN','CRWV','NBIS'];
+  return {version:1,checkedAt:stamp(0),status:'ready',failedTickers:[],failedCrypto:[],universe:tickers,
+    marks:{prices:Object.fromEntries(tickers.map(tk=>[tk,price])),priceDates:Object.fromEntries(tickers.map(tk=>[tk,stamp(-60000)])),
+      priceFetchedAt:Object.fromEntries(tickers.map(tk=>[tk,stamp(-5000)])),priceSources:Object.fromEntries(tickers.map(tk=>[tk,'Finnhub'])),
+      btc:101000,eth:4100,cryptoDates:{btc:stamp(-4000),eth:stamp(-3000)},asOf:stamp(-3000),fetchedAt:stamp(-3000)}};
+}
 function harness(options={}){
   let time=options.time||INITIAL,seq=0,repaints=0;
   const timers=new Map(),storage=new Map(options.storage||[]),requests=[],updates=[],events={},docEvents={},paintStates=[];
@@ -12,6 +19,7 @@ function harness(options={}){
   class Clock extends Date{constructor(...args){super(...(args.length?args:[time]));}static now(){return time;}}
   const add=(list,type,fn)=>{(list[type]||(list[type]=new Set())).add(fn);},remove=(list,type,fn)=>list[type]?.delete(fn);
   const document={hidden:false,addEventListener:(t,f)=>add(docEvents,t,f),removeEventListener:(t,f)=>remove(docEvents,t,f)};
+  let serverImpl=async()=>({ok:false});
   let fetchImpl=async url=>({ok:true,json:async()=>url.includes('coinbase')?{data:{amount:url.includes('BTC')?'100000':'4000'}}:{c:50,t:Math.floor((time-60000)/1000)}});
   const CloudModel={source:options.source===null?null:{companies:(options.tickers||['IREN','CRWV','NBIS']).map(tk=>({tk}))},
     get marks(){return copy(saved);},
@@ -21,10 +29,10 @@ function harness(options={}){
     addEventListener:(t,f)=>add(events,t,f),removeEventListener:(t,f)=>remove(events,t,f),
     setInterval(fn,delay){const id=++seq;timers.set(id,{fn,delay,next:time+delay,repeat:true});return id;},clearInterval:id=>timers.delete(id),
     setTimeout(fn,delay){const id=++seq;timers.set(id,{fn,delay,next:time+delay,repeat:false});return id;},clearTimeout:id=>timers.delete(id),
-    fetch(url,options){requests.push(url);return fetchImpl(url,options);}});
+    fetch(url,options){requests.push(url);return url==='/market-prices.json'?serverImpl(url,options):fetchImpl(url,options);}});
   vm.runInContext(source,context,{filename:'quotes.js'});
-  return {context,requests,updates,storage,timers,paintStates,get marks(){return copy(saved);},get repaints(){return repaints;},
-    now:()=>time,setTime:t=>{time=t;},fetch:fn=>{fetchImpl=fn;},
+  return {context,requests,get providerRequests(){return requests.filter(url=>url!=='/market-prices.json');},get serverRequests(){return requests.filter(url=>url==='/market-prices.json');},updates,storage,timers,paintStates,get marks(){return copy(saved);},get repaints(){return repaints;},
+    now:()=>time,setTime:t=>{time=t;},fetch:fn=>{fetchImpl=fn;},server:fn=>{serverImpl=fn;},
     event:(type)=>{for(const fn of events[type]||[])fn();},visibility:hidden=>{document.hidden=hidden;for(const fn of docEvents.visibilitychange||[])fn();},
     advance(ms){const end=time+ms;for(;;){const due=[...timers].filter(([,t])=>t.next<=end).sort((a,b)=>a[1].next-b[1].next)[0];if(!due)break;const[id,t]=due;time=t.next;if(t.repeat)t.next+=t.delay;else timers.delete(id);t.fn();}time=end;},
     setSource:tickers=>{CloudModel.source={companies:tickers.map(tk=>({tk}))};}};
@@ -38,18 +46,18 @@ async function check(name,fn){await fn();count++;console.log('PASS '+name);}
     assert.equal(h.marks.priceDates.IREN,'2026-09-15T13:59:00.000Z');assert.equal(h.marks.priceFetchedAt.IREN,'2026-09-15T14:00:00.000Z');
     assert.equal(h.marks.priceSources.IREN,'Finnhub');assert.equal(h.marks.cryptoDates.btc,h.marks.fetchedAt);
     assert.equal(h.context.Quotes.status.cryptoClock,'receipt');assert.ok(seen.some(s=>s.phase==='ready'));
-    assert.equal(h.requests.length,5);assert.ok(!h.storage.get(KEY).includes('synthetic-test-token'));
+    assert.equal(h.providerRequests.length,5);assert.ok(!h.storage.get(KEY).includes('synthetic-test-token'));
     h.context.Quotes.stop();assert.equal(h.timers.size,0);
   });
   await check('One 30-minute timer survives repeated starts and does not poll early',async()=>{
     const h=harness();await h.context.Quotes.start();await h.context.Quotes.start();
     assert.equal(h.timers.size,1);assert.equal([...h.timers.values()][0].delay,HALF_HOUR);
-    h.advance(HALF_HOUR-1);await flush();assert.equal(h.requests.length,5);
-    h.advance(1);await flush();assert.equal(h.requests.length,10);assert.equal(h.marks.priceFetchedAt.IREN,'2026-09-15T14:30:00.000Z');
+    h.advance(HALF_HOUR-1);await flush();assert.equal(h.providerRequests.length,5);
+    h.advance(1);await flush();assert.equal(h.providerRequests.length,10);assert.equal(h.marks.priceFetchedAt.IREN,'2026-09-15T14:30:00.000Z');
   });
   await check('Concurrent refreshes share one in-flight promise and one request batch',async()=>{
     const h=harness(),gate=deferred();h.fetch(async()=>{await gate.promise;return{ok:true,json:async()=>({c:50,t:Math.floor(INITIAL/1000),data:{amount:'1'}})};});
-    const a=h.context.Quotes.refresh(),b=h.context.Quotes.refresh();assert.equal(a,b);await flush();assert.equal(h.requests.length,5);
+    const a=h.context.Quotes.refresh(),b=h.context.Quotes.refresh();assert.equal(a,b);await flush();assert.equal(h.providerRequests.length,5);
     gate.resolve();await a;assert.equal(h.context.Quotes.status.refreshing,false);
   });
   await check('Partial failures preserve each failed ticker/asset clock and unknown trade times remain unknown',async()=>{
@@ -79,28 +87,28 @@ async function check(name,fn){await fn();count++;console.log('PASS '+name);}
   await check('Fresh cache hydration immediately publishes dated marks and avoids another network batch',async()=>{
     const a=harness();await a.context.Quotes.refresh();
     const h=harness({time:INITIAL+300000,storage:a.storage}),seen=[];h.context.Quotes.subscribe(s=>seen.push(copy(s)));await h.context.Quotes.start();
-    assert.equal(h.requests.length,0);assert.deepEqual(h.marks,a.marks);assert.ok(seen.some(s=>s.phase==='cached'&&s.marks.prices.IREN===50));
+    assert.equal(h.providerRequests.length,0);assert.deepEqual(h.marks,a.marks);assert.ok(seen.some(s=>s.phase==='cached'&&s.marks.prices.IREN===50));
     const late=[];h.context.Quotes.subscribe(s=>late.push(s));assert.equal(late[0].marks.priceFetchedAt.IREN,'2026-09-15T14:00:00.000Z');
-    h.advance(HALF_HOUR-300000);await flush();assert.equal(h.requests.length,5,'cache reload retains the original 30-minute refresh deadline');
+    h.advance(HALF_HOUR-300000);await flush();assert.equal(h.providerRequests.length,5,'cache reload retains the original 30-minute refresh deadline');
     assert.equal(h.marks.priceFetchedAt.IREN,'2026-09-15T14:30:00.000Z');
   });
   await check('Stale cache is visible immediately while refresh is pending, without relabeling its timestamps',async()=>{
     const a=harness();await a.context.Quotes.refresh();const h=harness({time:INITIAL+HALF_HOUR+1,storage:a.storage}),gate=deferred(),seen=[];
     h.context.Quotes.subscribe(s=>seen.push(copy(s)));h.fetch(async()=>{await gate.promise;return{ok:false};});const task=h.context.Quotes.start();await flush();
-    assert.equal(h.requests.length,5);assert.ok(seen.some(s=>s.phase==='cached'));assert.equal(h.marks.priceFetchedAt.IREN,a.marks.priceFetchedAt.IREN);
+    assert.equal(h.providerRequests.length,5);assert.ok(seen.some(s=>s.phase==='cached'));assert.equal(h.marks.priceFetchedAt.IREN,a.marks.priceFetchedAt.IREN);
     gate.resolve();await task;assert.equal(h.context.Quotes.status.phase,'error');assert.deepEqual(h.marks,a.marks);
   });
   await check('Overdue visible/focus wakeups refresh once; hidden or fresh tabs do not',async()=>{
     const h=harness();await h.context.Quotes.start();h.setTime(INITIAL+HALF_HOUR+1000);
-    h.visibility(true);h.event('focus');await flush();assert.equal(h.requests.length,5);
-    h.visibility(false);h.event('focus');await flush();assert.equal(h.requests.length,10);
-    h.event('focus');h.visibility(false);await flush();assert.equal(h.requests.length,10);
+    h.visibility(true);h.event('focus');await flush();assert.equal(h.providerRequests.length,5);
+    h.visibility(false);h.event('focus');await flush();assert.equal(h.providerRequests.length,10);
+    h.event('focus');h.visibility(false);await flush();assert.equal(h.providerRequests.length,10);
   });
   await check('Research fallback quotes work without source data and expand when the company universe loads',async()=>{
     const h=harness({source:null}),gate=deferred();h.fetch(async url=>{await gate.promise;return{ok:true,json:async()=>url.includes('coinbase')?{data:{amount:'1'}}:{c:60,t:Math.floor(INITIAL/1000)}};});
-    const first=h.context.Quotes.start();await flush();assert.equal(h.requests.length,5);
+    const first=h.context.Quotes.start();await flush();assert.equal(h.providerRequests.length,5);
     h.setSource(['IREN','CRWV','NBIS','RIOT']);gate.resolve();await first;await flush();await h.context.Quotes.refreshIfDue();
-    assert.equal(h.requests.length,11);assert.equal(h.marks.prices.RIOT,60);
+    assert.equal(h.providerRequests.length,11);assert.equal(h.marks.prices.RIOT,60);
   });
   await check('Malformed/disabled storage cannot prevent fetching or destroy usable session marks',async()=>{
     for(const options of [{storage:[[KEY,'{bad json']]},{storageThrows:true}]){
@@ -114,10 +122,10 @@ async function check(name,fn){await fn();count++;console.log('PASS '+name);}
     const h=harness({time:INITIAL+600000,marks:newer,storage:[[KEY,JSON.stringify(cached)]]});await h.context.Quotes.start();
     assert.equal(h.marks.prices.IREN,80);assert.equal(h.marks.priceFetchedAt.IREN,newer.priceFetchedAt.IREN);
     cached.marks.fetchedAt='2026-02-30T14:00:00.000Z';const invalid=harness({storage:[[KEY,JSON.stringify(cached)]]});
-    await invalid.context.Quotes.start();assert.equal(invalid.requests.length,5);assert.equal(invalid.context.Quotes.status.fromCache,false);
+    await invalid.context.Quotes.start();assert.equal(invalid.providerRequests.length,5);assert.equal(invalid.context.Quotes.status.fromCache,false);
   });
-  await check('Missing credentials do not make network requests',async()=>{
-    const h=harness({token:''});await h.context.Quotes.start();assert.equal(h.requests.length,0);assert.equal(h.context.Quotes.status.phase,'unconfigured');
+  await check('Missing credentials allow only the shared snapshot request',async()=>{
+    const h=harness({token:''});await h.context.Quotes.start();assert.equal(h.providerRequests.length,0);assert.equal(h.serverRequests.length,1);assert.equal(h.context.Quotes.status.phase,'unconfigured');
     const a=harness();await a.context.Quotes.refresh();const stale=harness({token:'',time:INITIAL+HALF_HOUR+1,storage:a.storage});
     await stale.context.Quotes.start();assert.equal([...stale.timers.values()][0].delay,HALF_HOUR,'stale cache without credentials must not spin');
   });
@@ -133,6 +141,65 @@ async function check(name,fn){await fn();count++;console.log('PASS '+name);}
   await check('Subscriber snapshots and unsubscription cannot mutate or disrupt quote state',async()=>{
     const h=harness();let calls=0;const off=h.context.Quotes.subscribe(()=>calls++);assert.equal(calls,1);off();
     h.context.Quotes.subscribe(s=>{s.marks.prices.IREN=-100;});await h.context.Quotes.refresh();assert.equal(calls,1);assert.equal(h.marks.prices.IREN,50);assert.equal(h.context.Quotes.status.marks.prices.IREN,50);
+  });
+  await check('Fresh shared snapshots work without browser credentials and preserve all provider clocks',async()=>{
+    const h=harness({token:''}),snapshot=sharedSnapshot();h.server(async()=>({ok:true,json:async()=>snapshot}));await h.context.Quotes.start();
+    assert.equal(h.serverRequests.length,1);assert.equal(h.providerRequests.length,0);assert.equal(h.marks.prices.IREN,70);
+    assert.equal(h.marks.priceFetchedAt.IREN,snapshot.marks.priceFetchedAt.IREN);assert.equal(h.marks.priceDates.IREN,snapshot.marks.priceDates.IREN);
+    assert.equal(h.marks.priceSources.IREN,'Finnhub');assert.equal(h.marks.fetchedAt,snapshot.marks.fetchedAt);
+    assert.equal(h.context.Quotes.status.serverCheckedAt,snapshot.checkedAt);assert.equal(h.context.Quotes.status.transport,'shared');
+  });
+  await check('Startup checks the shared snapshot even with a fresh local cache; manual refresh only rereads it',async()=>{
+    const a=harness();await a.context.Quotes.refresh();const h=harness({time:INITIAL+300000,storage:a.storage}),snapshot=sharedSnapshot(INITIAL+240000),seen=[];
+    h.context.Quotes.subscribe(s=>seen.push(copy(s)));h.server(async()=>({ok:true,json:async()=>snapshot}));await h.context.Quotes.start();
+    assert.ok(seen.some(s=>s.phase==='cached'&&s.marks.prices.IREN===50));assert.equal(h.marks.prices.IREN,70);assert.equal(h.serverRequests.length,1);assert.equal(h.providerRequests.length,0);
+    await h.context.Quotes.refresh();assert.equal(h.serverRequests.length,2);assert.equal(h.providerRequests.length,0);assert.equal(h.marks.priceFetchedAt.IREN,snapshot.marks.priceFetchedAt.IREN);
+  });
+  await check('Stale shared marks hydrate immediately, then normal browser providers recover without shared-source claims',async()=>{
+    const h=harness({time:INITIAL+HALF_HOUR+1000}),snapshot=sharedSnapshot(),gate=deferred();h.server(async()=>({ok:true,json:async()=>snapshot}));
+    h.fetch(async url=>{await gate.promise;return{ok:true,json:async()=>url.includes('coinbase')?{data:{amount:'1'}}:{c:90,t:Math.floor(h.now()/1000)}};});
+    const task=h.context.Quotes.start();await flush();assert.equal(h.marks.prices.IREN,70);assert.equal(h.marks.priceFetchedAt.IREN,snapshot.marks.priceFetchedAt.IREN);
+    assert.ok(h.paintStates.some(s=>s.phase==='cached'&&s.fromCache));gate.resolve();await task;
+    assert.equal(h.marks.prices.IREN,90);assert.equal(h.context.Quotes.status.transport,'browser');assert.equal(h.context.Quotes.status.serverCheckedAt,snapshot.checkedAt);
+  });
+  await check('Fresh partial/error jobs retain failed-name state without credentials and can recover through browser fallback',async()=>{
+    for(const status of ['partial','error']){
+      const snapshot=sharedSnapshot();snapshot.status=status;snapshot.failedTickers=status==='partial'?['CRWV']:['IREN','CRWV','NBIS'];
+      const h=harness({token:''});h.server(async()=>({ok:true,json:async()=>snapshot}));await h.context.Quotes.start();
+      assert.equal(h.context.Quotes.status.phase,status);assert.deepEqual(copy(h.context.Quotes.status.failedTickers),snapshot.failedTickers);assert.equal(h.providerRequests.length,0);
+      assert.equal(h.marks.priceFetchedAt.CRWV,snapshot.marks.priceFetchedAt.CRWV);assert.equal(h.marks.fetchedAt,snapshot.marks.fetchedAt);
+      const fallback=harness();fallback.server(async()=>({ok:true,json:async()=>snapshot}));await fallback.context.Quotes.start();
+      assert.equal(fallback.providerRequests.length,5);assert.equal(fallback.context.Quotes.status.phase,'ready');assert.equal(fallback.context.Quotes.status.transport,'browser');
+      assert.deepEqual(copy(fallback.context.Quotes.status.failedTickers),[]);
+    }
+  });
+  await check('Malformed snapshots fall back safely and incomplete ready snapshots cannot masquerade as complete',async()=>{
+    const bad=[];let s=sharedSnapshot();s.version=2;bad.push(s);s=sharedSnapshot();s.checkedAt='2026-02-30T00:00:00Z';bad.push(s);
+    s=sharedSnapshot();s.checkedAt='2027-01-01T00:00:00Z';bad.push(s);s=sharedSnapshot();s.marks.prices.IREN=-1;bad.push(s);
+    for(const snapshot of bad){const h=harness();h.server(async()=>({ok:true,json:async()=>snapshot}));await h.context.Quotes.start();assert.equal(h.providerRequests.length,5);assert.equal(h.context.Quotes.status.serverStatus,null);}
+    const incomplete=sharedSnapshot();delete incomplete.marks.prices.NBIS;const h=harness({token:''});h.server(async()=>({ok:true,json:async()=>incomplete}));await h.context.Quotes.start();
+    assert.equal(h.context.Quotes.status.phase,'partial');assert.ok(h.context.Quotes.status.failedTickers.includes('NBIS'));assert.equal(h.marks.prices.NBIS,undefined);
+  });
+  await check('Server snapshots never downgrade a newer trade/receipt or overwrite known clocks with unknown ones',async()=>{
+    const snapshot=sharedSnapshot(),newer=copy(snapshot.marks);newer.prices.IREN=80;newer.priceDates.IREN='2026-09-15T13:59:30.000Z';
+    newer.prices.CRWV=81;newer.priceFetchedAt.CRWV='2026-09-15T14:00:00.000Z';snapshot.marks.priceDates.NBIS=null;
+    const h=harness({marks:newer,token:''});h.server(async()=>({ok:true,json:async()=>snapshot}));await h.context.Quotes.start();
+    assert.equal(h.marks.prices.IREN,80);assert.equal(h.marks.prices.CRWV,81);assert.equal(h.marks.priceDates.NBIS,newer.priceDates.NBIS);
+    assert.equal(h.marks.priceFetchedAt.CRWV,newer.priceFetchedAt.CRWV);assert.equal(h.providerRequests.length,0);
+  });
+  await check('Shared-snapshot requests deduplicate in flight and poll at the job deadline without tight loops',async()=>{
+    const h=harness({token:'',time:INITIAL+300000}),gate=deferred();let snapshot=sharedSnapshot();h.server(async()=>{await gate.promise;return{ok:true,json:async()=>snapshot};});
+    const a=h.context.Quotes.start(),b=h.context.Quotes.refresh();assert.equal(a,b);await flush();assert.equal(h.serverRequests.length,1);gate.resolve();await a;
+    assert.equal([...h.timers.values()][0].delay,HALF_HOUR-300000);snapshot=sharedSnapshot(INITIAL+HALF_HOUR,75);
+    h.advance(HALF_HOUR-300000);await flush();assert.equal(h.serverRequests.length,2);assert.equal(h.marks.prices.IREN,75);assert.equal(h.providerRequests.length,0);
+    assert.equal([...h.timers.values()][0].delay,HALF_HOUR);
+  });
+  await check('A checked job cannot freshen stale individual quotes, and a subsequent valid snapshot recovers cleanly',async()=>{
+    const h=harness({token:'',time:INITIAL+HALF_HOUR+1000});let snapshot=sharedSnapshot();snapshot.checkedAt=new Date(h.now()).toISOString();
+    h.server(async()=>({ok:true,json:async()=>snapshot}));await h.context.Quotes.start();
+    assert.equal(h.context.Quotes.status.phase,'partial');assert.ok(h.context.Quotes.status.failedTickers.includes('IREN'));assert.equal(h.marks.priceFetchedAt.IREN,snapshot.marks.priceFetchedAt.IREN);
+    h.setTime(h.now()+HALF_HOUR);snapshot=sharedSnapshot(h.now(),88);await h.context.Quotes.refresh();
+    assert.equal(h.context.Quotes.status.phase,'ready');assert.equal(h.marks.prices.IREN,88);assert.deepEqual(copy(h.context.Quotes.status.failedTickers),[]);assert.equal(h.providerRequests.length,0);
   });
   console.log('PASS: '+count+' quote polling, cache and provider-clock regression groups.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

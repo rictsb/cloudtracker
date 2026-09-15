@@ -29,3 +29,5 @@ jobs:
         run: node verify-quotes.cjs
       - name: Verify shared research values and market references
         run: node verify-market-research.cjs
+      - name: Verify shared market snapshot publication
+        run: node verify-quote-snapshot.cjs

@@ -1,0 +1,57 @@
+# Shared present-tense market references. Dispatched by the GPT task every 30 minutes.
+# This job never rebalances the paper portfolio or changes research inputs.
+name: refresh-market-quotes
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: refresh-market-quotes
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Fetch, validate and publish shared market references
+        env:
+          FINNHUB_TOKEN: ${{ secrets.FINNHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          test "${GITHUB_ACTIONS:-}" = "true"
+          if [ -z "${FINNHUB_TOKEN:-}" ]; then
+            echo "::error::Configure the FINNHUB_TOKEN repository secret before running the shared quote job."
+            exit 1
+          fi
+          git config user.name "market-quotes-bot"
+          git config user.email "actions@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            # Only reset the disposable Actions checkout; always retain concurrent main changes.
+            git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+            git reset --hard refs/remotes/origin/main
+            quote_status=0
+            node quote-snapshot.cjs || quote_status=$?
+            if [ ! -f market-prices.json ]; then
+              echo "::error::No usable quote snapshot was written."
+              exit 1
+            fi
+            if git diff --quiet -- market-prices.json && [ -z "$(git ls-files --others --exclude-standard -- market-prices.json)" ]; then
+              exit "$quote_status"
+            fi
+            git add market-prices.json
+            git commit -m "quotes: refresh shared market references"
+            if git push origin HEAD:main; then
+              # All-provider failure is visible even though last-good data and failure status publish.
+              exit "$quote_status"
+            fi
+            echo "Main changed; reload it and refresh against the latest snapshot ($attempt/3)."
+          done
+          echo "::error::Could not publish market references after 3 attempts."
+          exit 1
