@@ -9222,15 +9222,16 @@
     "companies[tk=APLD].committedDebt",
     "companies[tk=APLD].basis.committedDebt"
    ],
-   "note": "FY26 10-K VIE note states verbatim that TopCo 2 creditors HAVE recourse to the Company’s assets — read literally this moves ~$3.7B of ComputeCo-2/3 committedDebt onto the corporate stack, against the model’s off-corporate treatment. Possibly a drafting error (standard formulation is NO recourse), but it is what is filed. NOT ACTED ON pending a ruling.",
+   "note": "FY26 10-K VIE note says TopCo 2 creditors \"have recourse to the Company’s assets and general credits\" — investigated 2026-09-15 against the actual debt contracts, which outrank the footnote: the ComputeCo 2 indenture (Ex 4.1, 8-K 2026-03-10) makes Applied Digital a defined non-party with NO note guarantee (completion guarantee only), its \"No Recourse Against Others\" section waives claims against stockholders, and the 10-K states three times that the Company provides no credit support beyond customary completion guarantees; the sentence contradicts the adjacent \"bankruptcy-remote\" sentence, uses non-standard \"general credits\", and is copy-pasted verbatim since the Jan-2026 10-Q. Reads as a dropped-\"not\" drafting error. RECOMMENDATION: rule drafting error, keep treatment.",
    "status": "owner",
    "added": "2026-08-24",
    "reviewed": "2026-09-15",
-   "next": "owner ruling",
-   "resolve": "Owner rules: treat as drafting error (keep committedDebt off corporate claims, note the anomaly) or apply literal recourse (move ~$3.7B into claims).",
+   "next": "Q1 FY27 10-Q (~2026-10-08): check whether the sentence becomes \"do not have recourse\"; falsifier: any contract showing a parent PAYMENT guarantee of the ComputeCo 2/3 notes",
+   "resolve": "Owner rules (recommended: drafting error, keep treatment, monitor the next 10-Q wording); a parent payment guarantee in any contract flips the ruling.",
    "inModel": "no — treatment pending the ruling",
-   "impact": "First-order for APLD per-share value and rank (~$3.7B of claims).",
-   "grp": "g02-APLD"
+   "impact": "Base target unchanged under both readings ($57.87); a literal reading affects downside/tail treatment only. The original \"first-order ~$3.7B\" framing was wrong — that debt is already fully deducted.",
+   "grp": "g02-APLD",
+   "alt": "Literal recourse. NOTE the corrected impact: TARGET-INVARIANT either way — the engine already charges committedDebt in claims (engine.js:103), both readings give $57.87. A literal reading changes TAIL risk only: the walk-away option on a failed project is lost (up to ~$9/sh extra loss in a project-failure state) — would route through equityDiscount/tier, not claims. Live bounded exposure regardless: completion guarantees on PF2/ELN-04 through ~mid-2027 (cost-overrun risk)."
   },
   {
    "id": "w-btdr-site-slips",
@@ -9996,15 +9997,16 @@
    "refs": [
     "companies[tk=MARA].sites"
    ],
-   "note": "MW basis ruling pending since 2026-06-30: ~2,500MW credited across six site rows, but AI-leasable critical IT is materially lower (gross vs IT basis not normalized for MARA’s rows); newer records did not resolve it.",
+   "note": "Researched 2026-09-15 per owner instruction, per campus vs primary sources: LONG RIDGE 600MW credited — MARA’s own release labels it \"600 Gross MW\" (power plant is 485MW, 505MW from Q1-27); implied IT ~480MW at PUE 1.25. WEST TEXAS/MPLX 1,000MW credited — the LOI figure is power-GENERATION capacity with a tolling give-back to MPLX (doubly diluted to IT), LOI only, absent from the Q2 10-Q. STARWOOD 900MW credited — company’s own denominator IS IT (~1GW near-term) but MARA retains only \"up to a 50% ownership interest\" (10-Q), so full-MW crediting overstates MARA’s share. Three incompatible denominators across six rows.",
    "status": "owner",
    "added": "2026-06-30",
    "reviewed": "2026-09-15",
-   "next": "owner ruling",
-   "resolve": "Owner confirms per-row MW basis (gross vs critical-IT) and the rows are restated or a basis note added.",
+   "next": "owner ruling on the restatement table",
+   "resolve": "Owner approves the per-row restatement (apply with CHANGELOG + regenerate), approves a partial variant, or records an explicit gross-basis convention for MARA.",
    "inModel": "no — treatment pending the ruling",
-   "impact": "Could reduce MARA credited capacity materially; affects value and rank.",
-   "grp": "g20-MARA"
+   "impact": "Restatement moves MARA’s target −38% and its rank; leaving 2,500MW leaves MARA credited on three incompatible denominators vs peers’ IT-normalized rows.",
+   "grp": "g20-MARA",
+   "alt": "PROPOSED RESTATEMENT (owner ruling required): rows to supported IT/economic MW with conversions stamped in row names — Long Ridge 200→160, 400→320; MPLX 400→240, 600→360 (generation net of toll-back, ×0.6 labeled inference); Starwood 400→200, 500→250 (IT stands, capped at 50% JV share per the NUAI convention). Total 2,500→1,530MW; target $26.81→$16.64 (−38%), upside 131%→43%. Partial variants: PUE-only $22.01; Starwood-share-only $21.02. Provenance/dates unchanged (quantity and existence are separate axes)."
   },
   {
    "id": "w-mara-starwood-predevelopment",
