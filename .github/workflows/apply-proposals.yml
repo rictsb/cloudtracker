@@ -5,7 +5,7 @@ name: apply-proposals
 on:
   push:
     branches: [main]
-    paths: [proposals.json]
+    paths: [proposals.json, .github/workflows/apply-proposals.yml]
   workflow_dispatch: {}
 permissions:
   contents: write
@@ -18,35 +18,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Apply accepted proposals
+      - name: Apply and save accepted proposals
         run: |
-          set -o pipefail
-          node proposals-apply.js | tee apply.log
-      - name: Commit
-        run: |
-          if ! git diff --quiet -- data.json proposals.json CHANGELOG.md; then
-            git config user.name "proposals-bot"
-            git config user.email "actions@users.noreply.github.com"
+          set -euo pipefail
+          # This reset is safe only in the disposable Actions checkout. A queued
+          # run's trigger SHA can predate a preceding run's generated commit.
+          test "${GITHUB_ACTIONS:-}" = "true"
+          git config user.name "proposals-bot"
+          git config user.email "actions@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+            git reset --hard refs/remotes/origin/main
+            node proposals-apply.js | tee -a "${RUNNER_TEMP}/apply-proposals.log"
+            if git diff --quiet -- data.json proposals.json CHANGELOG.md; then
+              echo "All accepted proposals are already saved; nothing to commit."
+              exit 0
+            fi
             git add data.json proposals.json CHANGELOG.md
             git commit -m "proposals: applied $(date -u +%F)"
-            for i in 1 2 3; do
-              git push && break
-              echo "push rejected (concurrent commit to main) — rebasing and retrying ($i/3)"
-              git pull --rebase origin main
-              sleep 5
-            done
-          else
-            echo "nothing to commit"
-          fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push rejected; reload main and recompute accepted proposals ($attempt/3)."
+          done
+          echo "Could not save proposals after 3 attempts; approvals remain recorded on main."
+          exit 1
       - name: Alert on failure
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TITLE="apply-proposals needs a look"
-          BODY="Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} ($(date -u +%F)). An accepted proposal could not be applied — see the run log; the proposal is marked error on the Approvals screen."
+          BODY="Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} ($(date -u +%F)). The approval job could not finish. See the failed step and compare proposals.json applied/error status with the current main branch; a failed push may leave an approved item unapplied."
           EXISTING=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' || true)
           if [ -n "$EXISTING" ]; then gh issue comment "$EXISTING" --body "$BODY" || true; else gh issue create --title "$TITLE" --body "$BODY" || true; fi
