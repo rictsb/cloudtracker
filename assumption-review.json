@@ -3,9 +3,9 @@
   "asOf": "2026-09-16",
   "summary": {
     "companies": 22,
-    "findings": 111,
+    "findings": 112,
     "errors": 0,
-    "reviews": 49,
+    "reviews": 50,
     "gaps": 62
   },
   "companies": [
@@ -25,17 +25,17 @@
         },
         "funding": {
           "status": "review",
-          "summary": "0 errors, 1 reviews, 1 coverage gaps."
+          "summary": "0 errors, 2 reviews, 1 coverage gaps."
         }
       },
       "metrics": {
-        "price": 83.4,
-        "priceAsOf": "2026-09-16T18:47:50.000Z",
+        "price": 81.8,
+        "priceAsOf": "2026-09-16T19:19:54.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 218.06173379490235,
+        "assetValuePerShare": 217.09480757112848,
         "modelSharesM": 610,
         "plannedRaiseM": 15000,
-        "assetFundedSharesM": 789.8561151079136,
+        "assetFundedSharesM": 793.3740831295844,
         "siteEconomicMW": 8126,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "horizonQuarter": "2030Q4",
@@ -81,13 +81,13 @@
         }
       },
       "metrics": {
-        "price": 215.99,
-        "priceAsOf": "2026-09-16T18:47:49.000Z",
+        "price": 210.75,
+        "priceAsOf": "2026-09-16T19:19:54.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 444.3280771921052,
+        "assetValuePerShare": 443.01133984163863,
         "modelSharesM": 341,
         "plannedRaiseM": 10000,
-        "assetFundedSharesM": 387.2984397425807,
+        "assetFundedSharesM": 388.44958481613287,
         "siteEconomicMW": 6460,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "horizonQuarter": "2030Q4",
@@ -133,18 +133,18 @@
         }
       },
       "metrics": {
-        "price": 20.34,
-        "priceAsOf": "2026-09-16T18:47:50.000Z",
+        "price": 20.14,
+        "priceAsOf": "2026-09-16T19:19:55.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 54.846085260219716,
+        "assetValuePerShare": 54.82305818477852,
         "modelSharesM": 422,
         "plannedRaiseM": 250,
-        "assetFundedSharesM": 434.29105211406096,
+        "assetFundedSharesM": 434.41310824230385,
         "siteEconomicMW": 1235,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.7180865591380814,
+        "unsignedEVShare": 0.7181875595717192,
         "assetClaimsM": -290,
-        "assetEnterpriseValueM": 23529.16407199831,
+        "assetEnterpriseValueM": 23525.85510939831,
         "leasedEconomicMW": 241,
         "annualContractNOIM": 438.73,
         "contractNOIPerMW": 1.8204564315352698
@@ -170,13 +170,13 @@
         }
       },
       "metrics": {
-        "price": 11.01,
-        "priceAsOf": "2026-09-16T18:47:48.000Z",
+        "price": 10.8,
+        "priceAsOf": "2026-09-16T19:19:54.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 27.22020703842121,
+        "assetValuePerShare": 27.111590613678615,
         "modelSharesM": 350,
         "plannedRaiseM": 1000,
-        "assetFundedSharesM": 440.8265213442325,
+        "assetFundedSharesM": 442.5925925925926,
         "siteEconomicMW": 1323.5,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 0.6805552836262089,
@@ -207,13 +207,13 @@
         }
       },
       "metrics": {
-        "price": 42.77,
-        "priceAsOf": "2026-09-16T18:47:48.000Z",
+        "price": 41.81,
+        "priceAsOf": "2026-09-16T19:19:53.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 293.43886514680827,
+        "assetValuePerShare": 291.2862037595049,
         "modelSharesM": 394.1,
         "plannedRaiseM": 8000,
-        "assetFundedSharesM": 581.1469955576339,
+        "assetFundedSharesM": 585.4417842621383,
         "siteEconomicMW": 5610,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "horizonQuarter": "2030Q4",
@@ -259,13 +259,13 @@
         }
       },
       "metrics": {
-        "price": 1.15,
-        "priceAsOf": "2026-09-16T18:47:42.000Z",
+        "price": 1.14,
+        "priceAsOf": "2026-09-16T19:19:50.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 1.5502595682599414,
+        "assetValuePerShare": 1.5404325191475283,
         "modelSharesM": 244.59,
         "plannedRaiseM": 750,
-        "assetFundedSharesM": 896.7639130434784,
+        "assetFundedSharesM": 902.4847368421053,
         "siteEconomicMW": 280,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 0.9506898907753648,
@@ -296,18 +296,18 @@
         }
       },
       "metrics": {
-        "price": 22.35,
-        "priceAsOf": "2026-09-16T18:47:45.000Z",
+        "price": 21.82,
+        "priceAsOf": "2026-09-16T19:19:51.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 44.31620267989725,
+        "assetValuePerShare": 44.16407478482544,
         "modelSharesM": 418,
         "plannedRaiseM": 1500,
-        "assetFundedSharesM": 485.1140939597315,
+        "assetFundedSharesM": 486.7442713107241,
         "siteEconomicMW": 2126,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.31105451631827846,
+        "unsignedEVShare": 0.31107591616805147,
         "assetClaimsM": 5252,
-        "assetEnterpriseValueM": 29139.127234215754,
+        "assetEnterpriseValueM": 29137.122665835755,
         "leasedEconomicMW": 526,
         "annualContractNOIM": 1272.92,
         "contractNOIPerMW": 2.42
@@ -333,18 +333,18 @@
         }
       },
       "metrics": {
-        "price": 90.77,
-        "priceAsOf": "2026-09-16T18:47:40.000Z",
+        "price": 89.8,
+        "priceAsOf": "2026-09-16T19:19:53.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 162.76954206229615,
+        "assetValuePerShare": 162.6761387807346,
         "modelSharesM": 133.7,
         "plannedRaiseM": 500,
-        "assetFundedSharesM": 139.20842789467883,
+        "assetFundedSharesM": 139.26792873051224,
         "siteEconomicMW": 2264,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.2587775594820759,
+        "unsignedEVShare": 0.25880621930713804,
         "assetClaimsM": 7737,
-        "assetEnterpriseValueM": 31588.465325925314,
+        "assetEnterpriseValueM": 31584.967265126594,
         "leasedEconomicMW": 949,
         "annualContractNOIM": 1761.2820000000002,
         "contractNOIPerMW": 1.8559346680716546
@@ -370,18 +370,18 @@
         }
       },
       "metrics": {
-        "price": 16.77,
-        "priceAsOf": "2026-09-16T18:47:50.000Z",
+        "price": 16.54,
+        "priceAsOf": "2026-09-16T19:19:54.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 50.25291383387806,
+        "assetValuePerShare": 50.16174796860816,
         "modelSharesM": 478,
         "plannedRaiseM": 1200,
-        "assetFundedSharesM": 549.556350626118,
+        "assetFundedSharesM": 550.5513905683192,
         "siteEconomicMW": 3063,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.6437114371712513,
+        "unsignedEVShare": 0.6437151205903865,
         "assetClaimsM": 5209.7,
-        "assetEnterpriseValueM": 32826.50793487479,
+        "assetEnterpriseValueM": 32826.32009745479,
         "leasedEconomicMW": 493,
         "annualContractNOIM": 818.4399999999999,
         "contractNOIPerMW": 1.6601217038539553
@@ -407,18 +407,18 @@
         }
       },
       "metrics": {
-        "price": 11.06,
-        "priceAsOf": "2026-09-16T18:47:50.000Z",
+        "price": 10.88,
+        "priceAsOf": "2026-09-16T19:19:54.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 27.5765844339801,
+        "assetValuePerShare": 27.437633683376912,
         "modelSharesM": 381.888,
         "plannedRaiseM": 1500,
-        "assetFundedSharesM": 517.5118698010849,
+        "assetFundedSharesM": 519.7556470588235,
         "siteEconomicMW": 2500,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.7493948437115618,
+        "unsignedEVShare": 0.7498688252353569,
         "assetClaimsM": 2094.8,
-        "assetEnterpriseValueM": 16366.009773156535,
+        "assetEnterpriseValueM": 16355.665048866536,
         "leasedEconomicMW": 0,
         "annualContractNOIM": 0,
         "contractNOIPerMW": null
@@ -444,18 +444,18 @@
         }
       },
       "metrics": {
-        "price": 16.93,
-        "priceAsOf": "2026-09-16T18:47:49.000Z",
+        "price": 16.57,
+        "priceAsOf": "2026-09-16T19:19:53.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 47.43084414971979,
+        "assetValuePerShare": 47.353500216775714,
         "modelSharesM": 439,
         "plannedRaiseM": 600,
-        "assetFundedSharesM": 474.44004725339636,
+        "assetFundedSharesM": 475.21001810500906,
         "siteEconomicMW": 2271,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.26232931436012363,
+        "unsignedEVShare": 0.2623318503422888,
         "assetClaimsM": 1819,
-        "assetEnterpriseValueM": 25506.465199643724,
+        "assetEnterpriseValueM": 25506.218626683723,
         "leasedEconomicMW": 1116,
         "annualContractNOIM": 1382.7,
         "contractNOIPerMW": 1.238978494623656
@@ -481,13 +481,13 @@
         }
       },
       "metrics": {
-        "price": 15.35,
-        "priceAsOf": "2026-09-16T18:47:49.000Z",
+        "price": 15.09,
+        "priceAsOf": "2026-09-16T19:19:52.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 35.78851918913977,
+        "assetValuePerShare": 35.75776623648372,
         "modelSharesM": 744,
         "plannedRaiseM": 600,
-        "assetFundedSharesM": 783.0879478827362,
+        "assetFundedSharesM": 783.7614314115308,
         "siteEconomicMW": 2349,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 0.2876137980631739,
@@ -518,13 +518,13 @@
         }
       },
       "metrics": {
-        "price": 4.9,
-        "priceAsOf": "2026-09-16T18:47:42.000Z",
+        "price": 4.77,
+        "priceAsOf": "2026-09-16T19:19:51.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 10.266399188591738,
+        "assetValuePerShare": 10.120971028122806,
         "modelSharesM": 640.5,
         "plannedRaiseM": 3500,
-        "assetFundedSharesM": 1354.7857142857142,
+        "assetFundedSharesM": 1374.2526205450736,
         "siteEconomicMW": 2000,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 0.7554634582899681,
@@ -555,13 +555,13 @@
         }
       },
       "metrics": {
-        "price": 17.27,
-        "priceAsOf": "2026-09-16T18:47:39.000Z",
+        "price": 17,
+        "priceAsOf": "2026-09-16T19:19:43.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 30.699011177017884,
+        "assetValuePerShare": 30.62047679308091,
         "modelSharesM": 45.1,
         "plannedRaiseM": 150,
-        "assetFundedSharesM": 53.785581933989576,
+        "assetFundedSharesM": 53.923529411764704,
         "siteEconomicMW": 179,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 0.3125890297240511,
@@ -592,18 +592,18 @@
         }
       },
       "metrics": {
-        "price": 2.95,
-        "priceAsOf": "2026-09-16T18:47:45.000Z",
+        "price": 2.91,
+        "priceAsOf": "2026-09-16T19:19:43.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 5.4928135000529235,
+        "assetValuePerShare": 5.4745078805812835,
         "modelSharesM": 319.07,
         "plannedRaiseM": 300,
-        "assetFundedSharesM": 420.7649152542373,
+        "assetFundedSharesM": 422.1627835051546,
         "siteEconomicMW": 84,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.8486690267432179,
+        "unsignedEVShare": 0.8486876253938295,
         "assetClaimsM": -47,
-        "assetEnterpriseValueM": 2520.981340952332
+        "assetEnterpriseValueM": 2520.9260946523323
       }
     },
     {
@@ -626,13 +626,13 @@
         }
       },
       "metrics": {
-        "price": 24.31,
-        "priceAsOf": "2026-09-16T18:47:50.000Z",
+        "price": 23.93,
+        "priceAsOf": "2026-09-16T19:19:53.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 57.23277066544543,
+        "assetValuePerShare": 57.144135527698346,
         "modelSharesM": 380,
         "plannedRaiseM": 1000,
-        "assetFundedSharesM": 421.1353352529823,
+        "assetFundedSharesM": 421.78854993731716,
         "siteEconomicMW": 2140,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 0.13132234514109367,
@@ -663,16 +663,16 @@
         }
       },
       "metrics": {
-        "price": 8.06,
-        "priceAsOf": "2026-09-16T18:47:21.000Z",
+        "price": 7.99,
+        "priceAsOf": "2026-09-16T19:19:36.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 7.428925420488876,
+        "assetValuePerShare": 7.409311822026917,
         "modelSharesM": 72.82,
         "plannedRaiseM": 0,
         "assetFundedSharesM": 72.82,
         "unsignedEVShare": 0,
         "assetClaimsM": -18,
-        "assetEnterpriseValueM": 522.9743491199999
+        "assetEnterpriseValueM": 521.5460868800001
       }
     },
     {
@@ -695,18 +695,18 @@
         }
       },
       "metrics": {
-        "price": 12.78,
-        "priceAsOf": "2026-09-16T18:47:48.000Z",
+        "price": 12.58,
+        "priceAsOf": "2026-09-16T19:19:54.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 37.45552367123752,
+        "assetValuePerShare": 37.404142291160355,
         "modelSharesM": 327,
         "plannedRaiseM": 300,
-        "assetFundedSharesM": 350.47417840375584,
+        "assetFundedSharesM": 350.8473767885533,
         "siteEconomicMW": 1135,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.6132187373577228,
+        "unsignedEVShare": 0.6133875942458717,
         "assetClaimsM": 1580,
-        "assetEnterpriseValueM": 14707.193885359398,
+        "assetEnterpriseValueM": 14703.145203879398,
         "leasedEconomicMW": 175,
         "annualContractNOIM": 330.04999999999995,
         "contractNOIPerMW": 1.8859999999999997
@@ -732,16 +732,16 @@
         }
       },
       "metrics": {
-        "price": 1.47,
-        "priceAsOf": "2026-09-16T18:47:50.000Z",
+        "price": 1.46,
+        "priceAsOf": "2026-09-16T19:19:34.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 2.654942087169456,
+        "assetValuePerShare": 2.64467200779084,
         "modelSharesM": 349,
         "plannedRaiseM": 0,
         "assetFundedSharesM": 349,
         "unsignedEVShare": 0,
         "assetClaimsM": 322.05,
-        "assetEnterpriseValueM": 1248.62478842214
+        "assetEnterpriseValueM": 1245.040530719003
       }
     },
     {
@@ -764,13 +764,13 @@
         }
       },
       "metrics": {
-        "price": 5.46,
-        "priceAsOf": "2026-09-16T18:47:46.000Z",
+        "price": 5.32,
+        "priceAsOf": "2026-09-16T19:19:55.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 7.890509384618178,
+        "assetValuePerShare": 7.863460287661624,
         "modelSharesM": 121.8,
         "plannedRaiseM": 100,
-        "assetFundedSharesM": 140.11501831501832,
+        "assetFundedSharesM": 140.59699248120302,
         "siteEconomicMW": 180,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 1,
@@ -801,18 +801,18 @@
         }
       },
       "metrics": {
-        "price": 3.4,
-        "priceAsOf": "2026-09-16T18:47:47.000Z",
+        "price": 3.35,
+        "priceAsOf": "2026-09-16T19:19:46.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 15.4295703732342,
+        "assetValuePerShare": 15.428694160059985,
         "modelSharesM": 617.57,
         "plannedRaiseM": 0,
         "assetFundedSharesM": 617.57,
         "siteEconomicMW": 1278,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
-        "unsignedEVShare": 0.9703920298012771,
+        "unsignedEVShare": 0.9704454029947308,
         "assetClaimsM": 310,
-        "assetEnterpriseValueM": 9838.839775398246,
+        "assetEnterpriseValueM": 9838.298652428246,
         "leasedEconomicMW": 0,
         "annualContractNOIM": 0,
         "contractNOIPerMW": null
@@ -838,13 +838,13 @@
         }
       },
       "metrics": {
-        "price": 53.85,
-        "priceAsOf": "2026-09-16T18:47:32.000Z",
+        "price": 51.91,
+        "priceAsOf": "2026-09-16T19:19:51.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 113.48054772163502,
+        "assetValuePerShare": 112.81908474147912,
         "modelSharesM": 49.9,
         "plannedRaiseM": 500,
-        "assetFundedSharesM": 59.18505106778087,
+        "assetFundedSharesM": 59.53205548063957,
         "siteEconomicMW": 132,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "unsignedEVShare": 0.2923826257303883,
@@ -985,10 +985,10 @@
         }
       ],
       "impact": {
-        "base": 113.48054772163502,
-        "alternative": 143.35338629714786,
-        "delta": 29.872838575512844,
-        "pct": 26.324193154927467,
+        "base": 112.81908474147912,
+        "alternative": 142.5177985244474,
+        "delta": 29.69871378296827,
+        "pct": 26.32419315492747,
         "pctUnit": "percent",
         "label": "Neutralize the additional regional discount on signed income only",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1006,10 +1006,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 8270.086098595571,
         "claimsM": -1157,
-        "fundedSharesM": 59.18505106778087,
-        "newSharesM": 9.285051067780872
+        "fundedSharesM": 59.53205548063957,
+        "newSharesM": 9.632055480639568
       },
-      "fingerprint": "796a56884f605ea6a635df00c15ad7071ef2826c07d0c4b988246e45cb673a65"
+      "fingerprint": "edee7605980526fe1da2022f9339e7491277f9e99557551f0edb2e8c37b0a8a9"
     },
     {
       "id": "KEEL:economics:unsigned-realization",
@@ -1018,7 +1018,7 @@
       "severity": "review",
       "title": "Unsigned business drives a material part of equity value",
       "explanation": "The model capitalizes capacity without executed contracts at the assumed lease-up or spot realization. Existing provenance haircuts already apply, but they do not establish customer demand or realization at the assumed rate. This measures the exposure without requiring a quarterly model.",
-      "calculation": "9,547.53m unsigned site EV / 9,838.84m total modeled EV = 97.04%; realization 100% → 80% with signed business unchanged.",
+      "calculation": "9,547.53m unsigned site EV / 9,838.3m total modeled EV = 97.04%; realization 100% → 80% with signed business unchanged.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.KEEL; filing verification not dated here"
@@ -1028,10 +1028,10 @@
         }
       ],
       "impact": {
-        "base": 15.4295703732342,
-        "alternative": 12.33760291997765,
-        "delta": -3.091967453256551,
-        "pct": -20.03923232120715,
+        "base": 15.428694160059985,
+        "alternative": 12.336726706803436,
+        "delta": -3.091967453256549,
+        "pct": -20.040370372112733,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1047,12 +1047,12 @@
         "label": "Unsigned realization 100% → 80%"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 7929.333435290598,
+        "enterpriseValueM": 7928.792312320598,
         "claimsM": 310,
         "fundedSharesM": 617.57,
         "newSharesM": 0
       },
-      "fingerprint": "605a910019e9be637dd4aac435414b4f13638bd0c5bb668316638aaf97254877"
+      "fingerprint": "9a70ed277852438486e5f28ecefc8ce500f6f740e7f76847da87c360126ea8a1"
     },
     {
       "id": "SLNH:economics:unsigned-realization",
@@ -1071,10 +1071,10 @@
         }
       ],
       "impact": {
-        "base": 1.5502595682599414,
-        "alternative": 1.2406693145766237,
-        "delta": -0.3095902536833177,
-        "pct": -19.970220472872892,
+        "base": 1.5404325191475283,
+        "alternative": 1.2328047488379368,
+        "delta": -0.30762777030959154,
+        "pct": -19.970220472872903,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1092,10 +1092,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 1313.908299258559,
         "claimsM": 77.7,
-        "fundedSharesM": 896.7639130434784,
-        "newSharesM": 652.1739130434784
+        "fundedSharesM": 902.4847368421053,
+        "newSharesM": 657.8947368421053
       },
-      "fingerprint": "3b1a070bb9926787afa387273c19852afe64d879d0fe048dfa65c9e147380349"
+      "fingerprint": "89dda5eca889694c0131c9be312b6c5b79043c3ab7611aab33275981aaef500f"
     },
     {
       "id": "NUAI:economics:unsigned-realization",
@@ -1114,9 +1114,9 @@
         }
       ],
       "impact": {
-        "base": 7.890509384618178,
-        "alternative": 6.368361538135258,
-        "delta": -1.5221478464829197,
+        "base": 7.863460287661624,
+        "alternative": 6.346530447098828,
+        "delta": -1.5169298405627964,
         "pct": -19.2908692238578,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
@@ -1135,10 +1135,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 1066.3788669406,
         "claimsM": -49,
-        "fundedSharesM": 140.11501831501832,
-        "newSharesM": 18.315018315018314
+        "fundedSharesM": 140.59699248120302,
+        "newSharesM": 18.796992481203006
       },
-      "fingerprint": "f5b9cb3fdf7b39295b1c2cbddc080a46155b2a09178cd6599907f4c1008278a5"
+      "fingerprint": "f3dc112be17fa8fe53b63da6b7824c26e5ccf97eea86dee69bf61a1612c091a7"
     },
     {
       "id": "MARA:economics:unsigned-realization",
@@ -1147,7 +1147,7 @@
       "severity": "review",
       "title": "Unsigned business drives a material part of equity value",
       "explanation": "The model capitalizes capacity without executed contracts at the assumed lease-up or spot realization. Existing provenance haircuts already apply, but they do not establish customer demand or realization at the assumed rate. This measures the exposure without requiring a quarterly model.",
-      "calculation": "12,264.6m unsigned site EV / 16,366.01m total modeled EV = 74.94%; realization 100% → 80% with signed business unchanged.",
+      "calculation": "12,264.6m unsigned site EV / 16,355.67m total modeled EV = 74.99%; realization 100% → 80% with signed business unchanged.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.MARA; filing verification not dated here"
@@ -1157,10 +1157,10 @@
         }
       ],
       "impact": {
-        "base": 27.5765844339801,
-        "alternative": 22.836749832369645,
-        "delta": -4.739834601610454,
-        "pct": -17.18789581413857,
+        "base": 27.437633683376912,
+        "alternative": 22.71826087596671,
+        "delta": -4.719372807410203,
+        "pct": -17.200363784539604,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1176,12 +1176,12 @@
         "label": "Unsigned realization 100% → 80%"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 13913.089105929228,
+        "enterpriseValueM": 13902.74438163923,
         "claimsM": 2094.8,
-        "fundedSharesM": 517.5118698010849,
-        "newSharesM": 135.623869801085
+        "fundedSharesM": 519.7556470588235,
+        "newSharesM": 137.8676470588235
       },
-      "fingerprint": "a7d1992a5b90b2953077b3d94750a78476478acfe0e77c6cf2d5caf9cbed2a2a"
+      "fingerprint": "59ea923f8ac4b55678049c6e007250dad07b28f9a762a4d9921567df37c72a89"
     },
     {
       "id": "HIVE:economics:unsigned-realization",
@@ -1190,7 +1190,7 @@
       "severity": "review",
       "title": "Unsigned business drives a material part of equity value",
       "explanation": "The model capitalizes capacity without executed contracts at the assumed lease-up or spot realization. Existing provenance haircuts already apply, but they do not establish customer demand or realization at the assumed rate. This measures the exposure without requiring a quarterly model.",
-      "calculation": "2,139.48m unsigned site EV / 2,520.98m total modeled EV = 84.87%; realization 100% → 80% with signed business unchanged.",
+      "calculation": "2,139.48m unsigned site EV / 2,520.93m total modeled EV = 84.87%; realization 100% → 80% with signed business unchanged.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.HIVE; filing verification not dated here"
@@ -1200,10 +1200,10 @@
         }
       ],
       "impact": {
-        "base": 5.4928135000529235,
-        "alternative": 4.579321875048925,
-        "delta": -0.9134916250039984,
-        "pct": -16.630668872977335,
+        "base": 5.4745078805812835,
+        "alternative": 4.564041015196002,
+        "delta": -0.9104668653852812,
+        "pct": -16.631026664785946,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1219,12 +1219,12 @@
         "label": "Unsigned realization 100% → 80%"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 2093.9088674187064,
+        "enterpriseValueM": 2093.8536211187065,
         "claimsM": -47,
-        "fundedSharesM": 420.7649152542373,
-        "newSharesM": 101.69491525423729
+        "fundedSharesM": 422.1627835051546,
+        "newSharesM": 103.09278350515463
       },
-      "fingerprint": "11b0ad11a6492ff3509bd67d5b134076feaae243f90bd74c84841bae71feff7a"
+      "fingerprint": "d537c2a8c02fd98b18d1e03a4c7daa7b80f87bf3ed8ceab729ddea0cdc539029"
     },
     {
       "id": "FRMI:economics:unsigned-realization",
@@ -1243,10 +1243,10 @@
         }
       ],
       "impact": {
-        "base": 10.266399188591738,
-        "alternative": 8.674648448852414,
-        "delta": -1.5917507397393234,
-        "pct": -15.50446958567629,
+        "base": 10.120971028122806,
+        "alternative": 8.551768153292397,
+        "delta": -1.5692028748304097,
+        "pct": -15.504469585676292,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1264,10 +1264,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 14254.223288183508,
         "claimsM": 428,
-        "fundedSharesM": 1354.7857142857142,
-        "newSharesM": 714.2857142857142
+        "fundedSharesM": 1374.2526205450736,
+        "newSharesM": 733.7526205450735
       },
-      "fingerprint": "2a3e5a3575a61a0bff77868920c1c9a6f8bebe24b1504f584970d1af424338ed"
+      "fingerprint": "9dfa785accd9fb33e2594173bc7edd517d55e9bea3748926d3c76dcc3486aaab"
     },
     {
       "id": "SLNH:funding:issuance-price",
@@ -1276,7 +1276,7 @@
       "severity": "review",
       "title": "Planned issuance is large relative to existing shares",
       "explanation": "The asset model issues the entire planned equity raise at the reference share price. A large raise makes the execution price and financing sequence material. This is an issuance-price sensitivity; it does not claim that the share price will fall.",
-      "calculation": "750m planned raise / $1.15 = 652.17m new shares, 266.64% of 244.59m existing shares; funded denominator 896.76m.",
+      "calculation": "750m planned raise / $1.14 = 657.89m new shares, 268.98% of 244.59m existing shares; funded denominator 902.48m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.SLNH; filing verification not dated here"
@@ -1289,10 +1289,10 @@
         }
       ],
       "impact": {
-        "base": 1.5502595682599414,
-        "alternative": 1.3117636733547235,
-        "delta": -0.23849589490521783,
-        "pct": -15.384255629714506,
+        "base": 1.5404325191475283,
+        "alternative": 1.302971895844197,
+        "delta": -0.2374606233033314,
+        "pct": -15.415191535604658,
         "pctUnit": "percent",
         "label": "Same planned equity dollars issued at a 20% lower price",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1301,17 +1301,17 @@
       "scenario": {
         "kind": "asset",
         "changes": {
-          "price": 0.9199999999999999
+          "price": 0.9119999999999999
         },
         "label": "Same planned equity dollars issued at a 20% lower price"
       },
       "alternativeMetrics": {
         "enterpriseValueM": 1622.3853740731984,
         "claimsM": 77.7,
-        "fundedSharesM": 1059.807391304348,
-        "newSharesM": 815.2173913043479
+        "fundedSharesM": 1066.9584210526316,
+        "newSharesM": 822.3684210526317
       },
-      "fingerprint": "a1a368a23938cd8b3564d3bf95ab5d180a135ecd8da1e50a1eb89b123e644892"
+      "fingerprint": "78d78319f1e0a9113046629c6a8f717e6311f21fbaadeff51d14187f47f9b3dd"
     },
     {
       "id": "CIFR:economics:unsigned-realization",
@@ -1320,7 +1320,7 @@
       "severity": "review",
       "title": "Unsigned business drives a material part of equity value",
       "explanation": "The model capitalizes capacity without executed contracts at the assumed lease-up or spot realization. Existing provenance haircuts already apply, but they do not establish customer demand or realization at the assumed rate. This measures the exposure without requiring a quarterly model.",
-      "calculation": "21,130.8m unsigned site EV / 32,826.51m total modeled EV = 64.37%; realization 100% → 80% with signed business unchanged.",
+      "calculation": "21,130.8m unsigned site EV / 32,826.32m total modeled EV = 64.37%; realization 100% → 80% with signed business unchanged.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.CIFR; filing verification not dated here"
@@ -1330,10 +1330,10 @@
         }
       ],
       "impact": {
-        "base": 50.25291383387806,
-        "alternative": 42.562783940557,
-        "delta": -7.690129893321064,
-        "pct": -15.302853718577317,
+        "base": 50.16174796860816,
+        "alternative": 42.48551684393188,
+        "delta": -7.676231124676278,
+        "pct": -15.302957802587258,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1349,12 +1349,12 @@
         "label": "Unsigned realization 100% → 80%"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 28600.34821486045,
+        "enterpriseValueM": 28600.160377440447,
         "claimsM": 5209.7,
-        "fundedSharesM": 549.556350626118,
-        "newSharesM": 71.55635062611807
+        "fundedSharesM": 550.5513905683192,
+        "newSharesM": 72.55139056831923
       },
-      "fingerprint": "0a21cbe7d33cd7432b80bcdf6472227d864c9740f75dbeffebed4c8c8490f621"
+      "fingerprint": "4111bf2aa65e185c9dce264f509b35330cc6ea93cee65440dd20580642b3203e"
     },
     {
       "id": "APLD:economics:lease-capitalization",
@@ -1376,10 +1376,10 @@
         }
       ],
       "impact": {
-        "base": 57.23277066544543,
-        "alternative": 48.66026715181103,
-        "delta": -8.572503513634402,
-        "pct": -14.978312973427466,
+        "base": 57.144135527698346,
+        "alternative": 48.584908062400125,
+        "delta": -8.559227465298221,
+        "pct": -14.978312973427476,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1397,10 +1397,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 28283.55792047762,
         "claimsM": 7791,
-        "fundedSharesM": 421.1353352529823,
-        "newSharesM": 41.135335252982316
+        "fundedSharesM": 421.78854993731716,
+        "newSharesM": 41.78854993731718
       },
-      "fingerprint": "7e380f7af0ee01f6b3ce0d3106aeaa46b107c509fe673b5a43703f7f03e4c58b"
+      "fingerprint": "0dc533765bcd0142aa5e8e57e4fadf648c699c985ccc9e793a69a6396146ee52"
     },
     {
       "id": "BTDR:economics:unsigned-realization",
@@ -1419,10 +1419,10 @@
         }
       ],
       "impact": {
-        "base": 27.22020703842121,
-        "alternative": 23.16224223775604,
-        "delta": -4.057964800665172,
-        "pct": -14.907913062297325,
+        "base": 27.111590613678615,
+        "alternative": 23.069818255185446,
+        "delta": -4.041772358493169,
+        "pct": -14.907913062297323,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1440,10 +1440,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 13357.389026120527,
         "claimsM": 1345,
-        "fundedSharesM": 440.8265213442325,
-        "newSharesM": 90.82652134423252
+        "fundedSharesM": 442.5925925925926,
+        "newSharesM": 92.59259259259258
       },
-      "fingerprint": "46c6d8cf8818842b6dc8c3ab307a8c5f7f3ca126818d663d3b4b160fa8c27ff2"
+      "fingerprint": "0e5ea7705767ba0966c8f77db1813fe749dc75d5b20cd31309707a94a883d52d"
     },
     {
       "id": "RIOT:economics:unsigned-realization",
@@ -1452,7 +1452,7 @@
       "severity": "review",
       "title": "Unsigned business drives a material part of equity value",
       "explanation": "The model capitalizes capacity without executed contracts at the assumed lease-up or spot realization. Existing provenance haircuts already apply, but they do not establish customer demand or realization at the assumed rate. This measures the exposure without requiring a quarterly model.",
-      "calculation": "16,895.98m unsigned site EV / 23,529.16m total modeled EV = 71.81%; realization 100% → 80% with signed business unchanged.",
+      "calculation": "16,895.98m unsigned site EV / 23,525.86m total modeled EV = 71.82%; realization 100% → 80% with signed business unchanged.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.RIOT; filing verification not dated here"
@@ -1462,10 +1462,10 @@
         }
       ],
       "impact": {
-        "base": 54.846085260219716,
-        "alternative": 47.06513910182677,
-        "delta": -7.780946158392943,
-        "pct": -14.186876094211453,
+        "base": 54.82305818477852,
+        "alternative": 47.04429822229942,
+        "delta": -7.7787599624791,
+        "pct": -14.188847211443692,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1481,12 +1481,12 @@
         "label": "Unsigned realization 100% → 80%"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 20149.96877842698,
+        "enterpriseValueM": 20146.65981582698,
         "claimsM": -290,
-        "fundedSharesM": 434.29105211406096,
-        "newSharesM": 12.291052114060964
+        "fundedSharesM": 434.41310824230385,
+        "newSharesM": 12.413108242303872
       },
-      "fingerprint": "f6f0dc3286e529c6bcf2552a1a821e8bd69c6580633b5e7a97da79df72d4db44"
+      "fingerprint": "e14efd34041f6037f1b5dff388c76c25ce166f5e8a3ac23f4b2905f2e2c9d04f"
     },
     {
       "id": "ABTC:funding:treasury-claims",
@@ -1495,7 +1495,7 @@
       "severity": "review",
       "title": "Treasury assets dominate; associated claims need reconciliation",
       "explanation": "Most modeled enterprise value comes from marked crypto holdings. Free versus pledged units, purchase obligations, derivatives and related-party balances must use a consistent valuation perimeter. A correct multiplication of coins by price does not settle which assets and claims belong to common equity.",
-      "calculation": "372.97m marked treasury / 522.97m modeled EV = 71.32%; 4,912 BTC, 0 ETH; total deducted claims -18m.",
+      "calculation": "371.55m marked treasury / 521.55m modeled EV = 71.24%; 4,912 BTC, 0 ETH; total deducted claims -18m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.ABTC; filing verification not dated here"
@@ -1511,10 +1511,10 @@
         }
       ],
       "impact": {
-        "base": 7.428925420488876,
-        "alternative": 6.404552036473497,
-        "delta": -1.0243733840153793,
-        "pct": -13.78898462475032,
+        "base": 7.409311822026917,
+        "alternative": 6.3888611577039285,
+        "delta": -1.020450664322989,
+        "pct": -13.772543102981874,
         "pctUnit": "percent",
         "label": "Crypto reference prices 20% lower; asset and claim perimeter unchanged",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1523,18 +1523,18 @@
       "scenario": {
         "kind": "asset",
         "changes": {
-          "btc": 60745.008,
-          "eth": 1926.116
+          "btc": 60512.39200000001,
+          "eth": 1918.9160000000002
         },
         "label": "Crypto reference prices 20% lower; asset and claim perimeter unchanged"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 448.379479296,
+        "enterpriseValueM": 447.236869504,
         "claimsM": -18,
         "fundedSharesM": 72.82,
         "newSharesM": 0
       },
-      "fingerprint": "8ec18277b1d1f6477dbdec52e48600c372feb187d8e3a11a5e0e3f7f053105dd"
+      "fingerprint": "f418c3b6fdf9abb20160bd8571d7a1ce0ec72b2ac52884655e729ffe35b2ce4b"
     },
     {
       "id": "CLSK:economics:unsigned-realization",
@@ -1543,7 +1543,7 @@
       "severity": "review",
       "title": "Unsigned business drives a material part of equity value",
       "explanation": "The model capitalizes capacity without executed contracts at the assumed lease-up or spot realization. Existing provenance haircuts already apply, but they do not establish customer demand or realization at the assumed rate. This measures the exposure without requiring a quarterly model.",
-      "calculation": "9,018.73m unsigned site EV / 14,707.19m total modeled EV = 61.32%; realization 100% → 80% with signed business unchanged.",
+      "calculation": "9,018.73m unsigned site EV / 14,703.15m total modeled EV = 61.34%; realization 100% → 80% with signed business unchanged.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.CLSK; filing verification not dated here"
@@ -1553,10 +1553,10 @@
         }
       ],
       "impact": {
-        "base": 37.45552367123752,
-        "alternative": 32.308938033727024,
-        "delta": -5.146585637510498,
-        "pct": -13.740525116359843,
+        "base": 37.404142291160355,
+        "alternative": 32.26303110657216,
+        "delta": -5.141111184588198,
+        "pct": -13.744764268537141,
         "pctUnit": "percent",
         "label": "Unsigned realization 100% → 80%",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1572,12 +1572,12 @@
         "label": "Unsigned realization 100% → 80%"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 12903.448512468338,
+        "enterpriseValueM": 12899.399830988337,
         "claimsM": 1580,
-        "fundedSharesM": 350.47417840375584,
-        "newSharesM": 23.474178403755868
+        "fundedSharesM": 350.8473767885533,
+        "newSharesM": 23.84737678855326
       },
-      "fingerprint": "28963c1fcf8b2b8f04f2e1df84d8121bb2ad10c205bf5d0de10996141ed37cc3"
+      "fingerprint": "1fd39c5ed32a0299c522c871dfd420983f83d01ec96ccaaabf1319a976e0f467"
     },
     {
       "id": "HUT:economics:lease-capitalization",
@@ -1599,10 +1599,10 @@
         }
       ],
       "impact": {
-        "base": 162.76954206229615,
-        "alternative": 142.38063096659684,
-        "delta": -20.388911095699314,
-        "pct": -12.526244675368039,
+        "base": 162.6761387807346,
+        "alternative": 142.29593864428475,
+        "delta": -20.380200136449844,
+        "pct": -12.528082046451566,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1618,12 +1618,12 @@
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 28600.772420539342,
+        "enterpriseValueM": 28597.274359740622,
         "claimsM": 7737,
-        "fundedSharesM": 139.20842789467883,
-        "newSharesM": 5.508427894678859
+        "fundedSharesM": 139.26792873051224,
+        "newSharesM": 5.56792873051225
       },
-      "fingerprint": "dea82c8e8abe319d2de12e283ca19716ad6755e7d2543488432dc39f732aef29"
+      "fingerprint": "b5d90035078462bf91d501e77c3eb8644efff3b7cfa844c90f3c84e786dd7d43"
     },
     {
       "id": "FRMI:funding:issuance-price",
@@ -1632,7 +1632,7 @@
       "severity": "review",
       "title": "Planned issuance is large relative to existing shares",
       "explanation": "The asset model issues the entire planned equity raise at the reference share price. A large raise makes the execution price and financing sequence material. This is an issuance-price sensitivity; it does not claim that the share price will fall.",
-      "calculation": "3,500m planned raise / $4.9 = 714.29m new shares, 111.52% of 640.5m existing shares; funded denominator 1,354.79m.",
+      "calculation": "3,500m planned raise / $4.77 = 733.75m new shares, 114.56% of 640.5m existing shares; funded denominator 1,374.25m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.FRMI; filing verification not dated here"
@@ -1645,10 +1645,10 @@
         }
       ],
       "impact": {
-        "base": 10.266399188591738,
-        "alternative": 9.070796730331184,
-        "delta": -1.195602458260554,
-        "pct": -11.645781897796603,
+        "base": 10.120971028122806,
+        "alternative": 8.929096310385974,
+        "delta": -1.191874717736832,
+        "pct": -11.776288208167076,
         "pctUnit": "percent",
         "label": "Same planned equity dollars issued at a 20% lower price",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1657,17 +1657,17 @@
       "scenario": {
         "kind": "asset",
         "changes": {
-          "price": 3.9200000000000004
+          "price": 3.816
         },
         "label": "Same planned equity dollars issued at a 20% lower price"
       },
       "alternativeMetrics": {
         "enterpriseValueM": 16791.259950421805,
         "claimsM": 428,
-        "fundedSharesM": 1533.3571428571427,
-        "newSharesM": 892.8571428571428
+        "fundedSharesM": 1557.6907756813416,
+        "newSharesM": 917.1907756813417
       },
-      "fingerprint": "fa33709a9a0ecf642cd9c610d077ffa5c01f58c3ee3fefc807805fa34c5479bc"
+      "fingerprint": "99a6b1d48b39514b8f523817ca960b90996fca5234e4486fc377d095f17e2968"
     },
     {
       "id": "CORZ:economics:lease-capitalization",
@@ -1689,10 +1689,10 @@
         }
       ],
       "impact": {
-        "base": 47.43084414971979,
-        "alternative": 42.46472799722636,
-        "delta": -4.966116152493427,
-        "pct": -10.470225106720488,
+        "base": 47.353500216775714,
+        "alternative": 42.3954305374993,
+        "delta": -4.958069679276413,
+        "pct": -10.470334096907877,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1708,12 +1708,52 @@
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 23026.334271164946,
+        "enterpriseValueM": 23026.087698204945,
         "claimsM": 1819,
-        "fundedSharesM": 474.44004725339636,
-        "newSharesM": 35.44004725339634
+        "fundedSharesM": 475.21001810500906,
+        "newSharesM": 36.21001810500905
       },
-      "fingerprint": "bda9ab8b0834f3102320843ae73ef6e69789101845c03cdd8277b46e620f92b4"
+      "fingerprint": "e905f941d7a3c3f098c906e71e2ef9fd969b9a03ae6af4b570ad06097085a0d8"
+    },
+    {
+      "id": "IREN:funding:equity-issuance-price",
+      "ticker": "IREN",
+      "family": "funding",
+      "severity": "review",
+      "title": "Future equity is issued at a materially different price from the reference mark",
+      "explanation": "A fixed future issuance price changes how much of the funded operating outcome belongs to each share. The current reference mark is a sensitivity, not a forecast of future execution.",
+      "calculation": "$14.57bn raised at $55 vs reference mark $41.81; 264.91m shares issued in the base.",
+      "evidence": [
+        {
+          "label": "Model equity assumption: debt 7% (converts 0.9% cash coupon, 10-K Note 23), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $55 plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, capped calls, 10-K Notes 17/23) convert at the model 2030 price; restricted cash $1.724bn counted; prepaid forwards 14.5m shares returned Dec-29/Jun-30"
+        },
+        {
+          "label": "Reference price: supplied quote if available; otherwise data.json price $41.81"
+        }
+      ],
+      "impact": {
+        "base": 146.83439127805482,
+        "alternative": 132.48622634221758,
+        "delta": -14.348164935837247,
+        "pct": -9.771665078562325,
+        "pctUnit": "percent",
+        "label": "Equity issued at the reference share price",
+        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
+      },
+      "nextAction": "Review issuance pricing and access to capital; compare the reference-price sensitivity.",
+      "scenario": {
+        "kind": "waterfall",
+        "options": {
+          "eqPx": 41.81
+        },
+        "label": "Equity issued at the reference share price"
+      },
+      "alternativeMetrics": {
+        "debtBn": 42.76240793995206,
+        "sharesM": 837.8639360521952,
+        "equityRaisedBn": 14.570199999999998
+      },
+      "fingerprint": "9f02ef425f92b829b81be56f092aaf2457f710f96e0ae589a2b5c1e39ec9331c"
     },
     {
       "id": "GLXY:economics:lease-capitalization",
@@ -1735,10 +1775,10 @@
         }
       ],
       "impact": {
-        "base": 44.31620267989725,
-        "alternative": 40.12292933383599,
-        "delta": -4.193273346061261,
-        "pct": -9.462167542534994,
+        "base": 44.16407478482544,
+        "alternative": 39.984845321020586,
+        "delta": -4.179229463804852,
+        "pct": -9.46296165869372,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1754,12 +1794,12 @@
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 26878.887234215756,
+        "enterpriseValueM": 26876.882665835758,
         "claimsM": 5252,
-        "fundedSharesM": 485.1140939597315,
-        "newSharesM": 67.11409395973153
+        "fundedSharesM": 486.7442713107241,
+        "newSharesM": 68.7442713107241
       },
-      "fingerprint": "16250ddb9bab43c18a8df3a1d100aef7346bca13010966608b8b8ecb97a554cf"
+      "fingerprint": "9a567823f6afc51153a117010ce7a649fabdbc6881c620168f08ad9eb3288b1f"
     },
     {
       "id": "WULF:economics:lease-capitalization",
@@ -1781,10 +1821,10 @@
         }
       ],
       "impact": {
-        "base": 35.78851918913977,
-        "alternative": 32.45009481387673,
-        "delta": -3.3384243752630383,
-        "pct": -9.328199240710976,
+        "base": 35.75776623648372,
+        "alternative": 32.42221055791684,
+        "delta": -3.3355556785668767,
+        "pct": -9.328199240710967,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1802,50 +1842,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 25821.27815639895,
         "claimsM": 410,
-        "fundedSharesM": 783.0879478827362,
-        "newSharesM": 39.08794788273616
+        "fundedSharesM": 783.7614314115308,
+        "newSharesM": 39.761431411530815
       },
-      "fingerprint": "43d4d0136804063ed2f54da71af0a9d9702ed67b2e955ed1500a03f157629781"
-    },
-    {
-      "id": "IREN:funding:equity-issuance-price",
-      "ticker": "IREN",
-      "family": "funding",
-      "severity": "review",
-      "title": "Future equity is issued at a materially different price from the reference mark",
-      "explanation": "A fixed future issuance price changes how much of the funded operating outcome belongs to each share. The current reference mark is a sensitivity, not a forecast of future execution.",
-      "calculation": "$14.57bn raised at $55 vs reference mark $42.77; 264.91m shares issued in the base.",
-      "evidence": [
-        {
-          "label": "Model equity assumption: debt 7% (converts 0.9% cash coupon, 10-K Note 23), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $55 plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, capped calls, 10-K Notes 17/23) convert at the model 2030 price; restricted cash $1.724bn counted; prepaid forwards 14.5m shares returned Dec-29/Jun-30"
-        },
-        {
-          "label": "Reference price: supplied quote if available; otherwise data.json price $42.77"
-        }
-      ],
-      "impact": {
-        "base": 146.83439127805482,
-        "alternative": 133.7090938210636,
-        "delta": -13.125297456991234,
-        "pct": -8.938844192254896,
-        "pctUnit": "percent",
-        "label": "Equity issued at the reference share price",
-        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
-      },
-      "nextAction": "Review issuance pricing and access to capital; compare the reference-price sensitivity.",
-      "scenario": {
-        "kind": "waterfall",
-        "options": {
-          "eqPx": 42.77
-        },
-        "label": "Equity issued at the reference share price"
-      },
-      "alternativeMetrics": {
-        "debtBn": 42.76240793995206,
-        "sharesM": 830.2010574115897,
-        "equityRaisedBn": 14.570199999999998
-      },
-      "fingerprint": "ab0d0afa9b243c9fa854d7554ff408323eab2b26660ddb86ecddd71dd159373a"
+      "fingerprint": "e1f397b8f816100ad3536a9961642c5859df890e2ff7ff7191540e86f90d29b6"
     },
     {
       "id": "WYFI:economics:lease-capitalization",
@@ -1867,10 +1867,10 @@
         }
       ],
       "impact": {
-        "base": 30.699011177017884,
-        "alternative": 28.001227794050084,
-        "delta": -2.697783382967799,
-        "pct": -8.787851072504358,
+        "base": 30.62047679308091,
+        "alternative": 27.929594894814205,
+        "delta": -2.6908818982667064,
+        "pct": -8.78785107250435,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1888,10 +1888,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 1932.4025908546523,
         "claimsM": 259,
-        "fundedSharesM": 53.785581933989576,
-        "newSharesM": 8.685581933989578
+        "fundedSharesM": 53.923529411764704,
+        "newSharesM": 8.823529411764707
       },
-      "fingerprint": "96ac94535690096cc0dd6485162746fef6558ac363243fe0eef8212af065c6f3"
+      "fingerprint": "30c82e74d057b570c4ee48909d80b3bb641ad30f90591f11c3d894b9d97599e4"
     },
     {
       "id": "NBIS:economics:spot-price-step",
@@ -1937,7 +1937,7 @@
       "severity": "review",
       "title": "Planned issuance is large relative to existing shares",
       "explanation": "The asset model issues the entire planned equity raise at the reference share price. A large raise makes the execution price and financing sequence material. This is an issuance-price sensitivity; it does not claim that the share price will fall.",
-      "calculation": "1,500m planned raise / $11.06 = 135.62m new shares, 35.51% of 381.89m existing shares; funded denominator 517.51m.",
+      "calculation": "1,500m planned raise / $10.88 = 137.87m new shares, 36.1% of 381.89m existing shares; funded denominator 519.76m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.MARA; filing verification not dated here"
@@ -1950,10 +1950,10 @@
         }
       ],
       "impact": {
-        "base": 27.5765844339801,
-        "alternative": 25.880936032635447,
-        "delta": -1.695648401344652,
-        "pct": -6.148870268557479,
+        "base": 27.437633683376912,
+        "alternative": 25.731296609684474,
+        "delta": -1.7063370736924384,
+        "pct": -6.218965867768045,
         "pctUnit": "percent",
         "label": "Same planned equity dollars issued at a 20% lower price",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -1962,17 +1962,17 @@
       "scenario": {
         "kind": "asset",
         "changes": {
-          "price": 8.848
+          "price": 8.704
         },
         "label": "Same planned equity dollars issued at a 20% lower price"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 16366.009773156535,
+        "enterpriseValueM": 16355.665048866536,
         "claimsM": 2094.8,
-        "fundedSharesM": 551.4178372513562,
-        "newSharesM": 169.5298372513562
+        "fundedSharesM": 554.2225588235294,
+        "newSharesM": 172.3345588235294
       },
-      "fingerprint": "400057e57f5c92113385873c3047b3583c6f8c3f31cc6e603857d30d8f5317be"
+      "fingerprint": "5fc41e644f49727a302f0e43e3811a6abf3ab95652481fcbf13c0f24d9495116"
     },
     {
       "id": "HIVE:funding:issuance-price",
@@ -1981,7 +1981,7 @@
       "severity": "review",
       "title": "Planned issuance is large relative to existing shares",
       "explanation": "The asset model issues the entire planned equity raise at the reference share price. A large raise makes the execution price and financing sequence material. This is an issuance-price sensitivity; it does not claim that the share price will fall.",
-      "calculation": "300m planned raise / $2.95 = 101.69m new shares, 31.87% of 319.07m existing shares; funded denominator 420.76m.",
+      "calculation": "300m planned raise / $2.91 = 103.09m new shares, 32.31% of 319.07m existing shares; funded denominator 422.16m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.HIVE; filing verification not dated here"
@@ -1994,10 +1994,10 @@
         }
       ],
       "impact": {
-        "base": 5.4928135000529235,
-        "alternative": 5.179834219415777,
-        "delta": -0.31297928063714675,
-        "pct": -5.697977559844899,
+        "base": 5.4745078805812835,
+        "alternative": 5.159517412239476,
+        "delta": -0.3149904683418079,
+        "pct": -5.753767739729003,
         "pctUnit": "percent",
         "label": "Same planned equity dollars issued at a 20% lower price",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2006,17 +2006,17 @@
       "scenario": {
         "kind": "asset",
         "changes": {
-          "price": 2.3600000000000003
+          "price": 2.3280000000000003
         },
         "label": "Same planned equity dollars issued at a 20% lower price"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 2520.981340952332,
+        "enterpriseValueM": 2520.9260946523323,
         "claimsM": -47,
-        "fundedSharesM": 446.1886440677966,
-        "newSharesM": 127.1186440677966
+        "fundedSharesM": 447.9359793814433,
+        "newSharesM": 128.86597938144328
       },
-      "fingerprint": "5538716b85fdc50395094b4e7eb517e563a2ca5fbefc51ba21ee03aceb386efe"
+      "fingerprint": "883a5e7dc94f171c3520ef1d546095a681a480eea4cae1a54a63e9a0a34a9214"
     },
     {
       "id": "CIFR:economics:lease-capitalization",
@@ -2038,10 +2038,10 @@
         }
       ],
       "impact": {
-        "base": 50.25291383387806,
-        "alternative": 47.49998832031532,
-        "delta": -2.7529255135627437,
-        "pct": -5.478141073895014,
+        "base": 50.16174796860816,
+        "alternative": 47.41379795940492,
+        "delta": -2.747950009203244,
+        "pct": -5.478178334062331,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2057,12 +2057,12 @@
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 31313.620236095718,
+        "enterpriseValueM": 31313.432398675715,
         "claimsM": 5209.7,
-        "fundedSharesM": 549.556350626118,
-        "newSharesM": 71.55635062611807
+        "fundedSharesM": 550.5513905683192,
+        "newSharesM": 72.55139056831923
       },
-      "fingerprint": "9b0ae0699663bbb2ca43d30b67162b86ff2b81ba3f80ff8d79e77c46f070ebe6"
+      "fingerprint": "33c3c0122b591d463caa3771942e81ceccf70c3e6f4551a359fad739170f985a"
     },
     {
       "id": "IREN:economics:spot-price-step",
@@ -2108,7 +2108,7 @@
       "severity": "review",
       "title": "Planned issuance is large relative to existing shares",
       "explanation": "The asset model issues the entire planned equity raise at the reference share price. A large raise makes the execution price and financing sequence material. This is an issuance-price sensitivity; it does not claim that the share price will fall.",
-      "calculation": "1,000m planned raise / $11.01 = 90.83m new shares, 25.95% of 350m existing shares; funded denominator 440.83m.",
+      "calculation": "1,000m planned raise / $10.8 = 92.59m new shares, 26.46% of 350m existing shares; funded denominator 442.59m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.BTDR; filing verification not dated here"
@@ -2121,10 +2121,10 @@
         }
       ],
       "impact": {
-        "base": 27.22020703842121,
-        "alternative": 25.886798248452504,
-        "delta": -1.3334087899687077,
-        "pct": -4.898599000685802,
+        "base": 27.111590613678615,
+        "alternative": 25.76409605037451,
+        "delta": -1.3474945633041067,
+        "pct": -4.970178926441354,
         "pctUnit": "percent",
         "label": "Same planned equity dollars issued at a 20% lower price",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2133,17 +2133,17 @@
       "scenario": {
         "kind": "asset",
         "changes": {
-          "price": 8.808
+          "price": 8.64
         },
         "label": "Same planned equity dollars issued at a 20% lower price"
       },
       "alternativeMetrics": {
         "enterpriseValueM": 15461.928445902373,
         "claimsM": 1345,
-        "fundedSharesM": 463.53315168029064,
-        "newSharesM": 113.53315168029064
+        "fundedSharesM": 465.74074074074076,
+        "newSharesM": 115.74074074074073
       },
-      "fingerprint": "fdefadf81525e32e5b1a9ca4d1afb00e2190c5a2041497df943b6537e04b9d9e"
+      "fingerprint": "5a2132604dd68d3f23b2533579945d0bb39aafd0f846a5d053066345143211e6"
     },
     {
       "id": "CLSK:economics:lease-capitalization",
@@ -2152,7 +2152,7 @@
       "severity": "review",
       "title": "Signed lease value depends on the cap-rate floor and residual value",
       "explanation": "Signed leases capitalize term-average NOI and classify the full asset value as contracted. The cap-rate floor can erase tenant-tier differences. Where that value exceeds even undiscounted full initial-term NOI, it necessarily relies on residual property value or future use beyond the initial lease; that residual is not signed rent.",
-      "calculation": "4,181.2m signed EV is pinned to the 6.5% floor (28.43% of total EV). No mapped block exceeds its full initial-term NOI in this comparison; credit and capitalization assumptions still require justification.",
+      "calculation": "4,181.2m signed EV is pinned to the 6.5% floor (28.44% of total EV). No mapped block exceeds its full initial-term NOI in this comparison; credit and capitalization assumptions still require justification.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.CLSK; filing verification not dated here"
@@ -2165,10 +2165,10 @@
         }
       ],
       "impact": {
-        "base": 37.45552367123752,
-        "alternative": 35.864840566533495,
-        "delta": -1.590683104704027,
-        "pct": -4.246858537251019,
+        "base": 37.404142291160355,
+        "alternative": 35.81515120527897,
+        "delta": -1.588991085881382,
+        "pct": -4.248168754980127,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2184,12 +2184,12 @@
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 14149.70053113752,
+        "enterpriseValueM": 14145.651849657519,
         "claimsM": 1580,
-        "fundedSharesM": 350.47417840375584,
-        "newSharesM": 23.474178403755868
+        "fundedSharesM": 350.8473767885533,
+        "newSharesM": 23.84737678855326
       },
-      "fingerprint": "f73187c4c4a28831def2a3a69ddadfdd66370877f8246fc26d16f148fc96aca9"
+      "fingerprint": "c07299cc592cd05f1874bb4cf6e224846dc9c91248af0e68f14a815fd1139c88"
     },
     {
       "id": "BTBT:funding:shares-below-reported",
@@ -2211,10 +2211,10 @@
         }
       ],
       "impact": {
-        "base": 2.654942087169456,
-        "alternative": 2.559598863044586,
-        "delta": -0.09534322412486995,
-        "pct": -3.591160220994475,
+        "base": 2.64467200779084,
+        "alternative": 2.5496975986712793,
+        "delta": -0.09497440911956057,
+        "pct": -3.5911602209944755,
         "pctUnit": "percent",
         "label": "Use the reported-share field before modeled new issuance",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2230,12 +2230,12 @@
         "label": "Use the reported-share field before modeled new issuance"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 1248.62478842214,
+        "enterpriseValueM": 1245.040530719003,
         "claimsM": 322.05,
         "fundedSharesM": 362,
         "newSharesM": 0
       },
-      "fingerprint": "80eb8adb13e85affe5a9bf8b454cead2a8a5bc25eedbf76889de20e7521e8c95"
+      "fingerprint": "3153d0afa6e9ac827eb8b545af757bff0f5a95099a485478dde2deee28065507"
     },
     {
       "id": "BTDR:economics:lease-capitalization",
@@ -2257,10 +2257,10 @@
         }
       ],
       "impact": {
-        "base": 27.22020703842121,
-        "alternative": 26.29487050297709,
-        "delta": -0.9253365354441208,
-        "pct": -3.399447087738943,
+        "base": 27.111590613678615,
+        "alternative": 26.18994643612221,
+        "delta": -0.9216441775564057,
+        "pct": -3.3994470877389555,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2278,10 +2278,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 14982.030932969954,
         "claimsM": 1345,
-        "fundedSharesM": 440.8265213442325,
-        "newSharesM": 90.82652134423252
+        "fundedSharesM": 442.5925925925926,
+        "newSharesM": 92.59259259259258
       },
-      "fingerprint": "702c839d32ad3068a6da6dfb85cd4063436fe390c37d221b95c5464fb21f0748"
+      "fingerprint": "1200d4a577a0b6768b45c0c334f9f9aed30ed1459d911080364175f9fdcdefe6"
     },
     {
       "id": "FRMI:economics:lease-capitalization",
@@ -2303,10 +2303,10 @@
         }
       ],
       "impact": {
-        "base": 10.266399188591738,
-        "alternative": 9.922909183095591,
-        "delta": -0.3434900054961467,
-        "pct": -3.345769039234719,
+        "base": 10.120971028122806,
+        "alternative": 9.782346712993958,
+        "delta": -0.3386243151288486,
+        "pct": -3.345769039234718,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2324,10 +2324,10 @@
       "alternativeMetrics": {
         "enterpriseValueM": 16243.783065191097,
         "claimsM": 428,
-        "fundedSharesM": 1354.7857142857142,
-        "newSharesM": 714.2857142857142
+        "fundedSharesM": 1374.2526205450736,
+        "newSharesM": 733.7526205450735
       },
-      "fingerprint": "5f735473b0c0dc2e066021626552a340c3478dc98e716501ab03ad5619a1abc7"
+      "fingerprint": "c1e83d3bb7dd20417893991e1b4d09bb44b2b0735c3ac82a58342970c5fbebc6"
     },
     {
       "id": "RIOT:economics:lease-capitalization",
@@ -2349,10 +2349,10 @@
         }
       ],
       "impact": {
-        "base": 54.846085260219716,
-        "alternative": 53.15164867183025,
-        "delta": -1.6944365883894648,
-        "pct": -3.0894394382937893,
+        "base": 54.82305818477852,
+        "alternative": 53.129097678637976,
+        "delta": -1.6939605061405416,
+        "pct": -3.089868683412604,
         "pctUnit": "percent",
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2368,12 +2368,12 @@
         "label": "Cap-rate floor 6.5% → 7.5%; no change to lease NOI"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 22793.285423286092,
+        "enterpriseValueM": 22789.97646068609,
         "claimsM": -290,
-        "fundedSharesM": 434.29105211406096,
-        "newSharesM": 12.291052114060964
+        "fundedSharesM": 434.41310824230385,
+        "newSharesM": 12.413108242303872
       },
-      "fingerprint": "84cff9e5514955d33c72e5cf18698f24f60b3971488fd16ec5c4d92b7d1b6812"
+      "fingerprint": "150c3be302626a3ce29d9e2efc174ee6d92f93f45f2b4313f01f52b44e369432"
     },
     {
       "id": "CRWV:economics:spot-price-step",
@@ -2419,20 +2419,20 @@
       "severity": "review",
       "title": "Future equity is issued at a materially different price from the reference mark",
       "explanation": "A fixed future issuance price changes how much of the funded operating outcome belongs to each share. The current reference mark is a sensitivity, not a forecast of future execution.",
-      "calculation": "$19.24bn raised at $250 vs reference mark $215.99; 76.94m shares issued in the base.",
+      "calculation": "$19.24bn raised at $250 vs reference mark $210.75; 76.94m shares issued in the base.",
       "evidence": [
         {
           "label": "Model equity assumption: debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $250 plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Aug-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets)"
         },
         {
-          "label": "Reference price: supplied quote if available; otherwise data.json price $215.99"
+          "label": "Reference price: supplied quote if available; otherwise data.json price $210.75"
         }
       ],
       "impact": {
         "base": 268.2092441421448,
-        "alternative": 261.42357859651077,
-        "delta": -6.78566554563406,
-        "pct": -2.5299894369180698,
+        "alternative": 260.22032545545545,
+        "delta": -7.988918686689374,
+        "pct": -2.978614220491009,
         "pctUnit": "percent",
         "label": "Equity issued at the reference share price",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -2441,16 +2441,56 @@
       "scenario": {
         "kind": "waterfall",
         "options": {
-          "eqPx": 215.99
+          "eqPx": 210.75
         },
         "label": "Equity issued at the reference share price"
       },
       "alternativeMetrics": {
         "debtBn": 72.522142833862,
-        "sharesM": 478.8701324223293,
+        "sharesM": 481.0844175285607,
         "equityRaisedBn": 19.235500000000002
       },
-      "fingerprint": "98ebde4992eee9fffa3984b50be97bc46d1a40cc2716ad62498281559ca24722"
+      "fingerprint": "195fe0db3ee05d76a40c334e97c95af93e3cc5fc2ddd0f6517bdd2bbc064ba2c"
+    },
+    {
+      "id": "CRWV:funding:equity-issuance-price",
+      "ticker": "CRWV",
+      "family": "funding",
+      "severity": "review",
+      "title": "Future equity is issued at a materially different price from the reference mark",
+      "explanation": "A fixed future issuance price changes how much of the funded operating outcome belongs to each share. The current reference mark is a sensitivity, not a forecast of future execution.",
+      "calculation": "$20.17bn raised at $90 vs reference mark $81.8; 224.1m shares issued in the base.",
+      "evidence": [
+        {
+          "label": "Model equity assumption: debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75%), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $90 plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230) convert at the model 2030 price; restricted cash $1.4bn counted; fully diluted count before converts 608.5m = 551.5m basic (31 Jul 26) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs"
+        },
+        {
+          "label": "Reference price: supplied quote if available; otherwise data.json price $81.8"
+        }
+      ],
+      "impact": {
+        "base": 242.6305098158181,
+        "alternative": 236.65728245871406,
+        "delta": -5.973227357104037,
+        "pct": -2.4618616024993476,
+        "pctUnit": "percent",
+        "label": "Equity issued at the reference share price",
+        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
+      },
+      "nextAction": "Review issuance pricing and access to capital; compare the reference-price sensitivity.",
+      "scenario": {
+        "kind": "waterfall",
+        "options": {
+          "eqPx": 81.8
+        },
+        "label": "Equity issued at the reference share price"
+      },
+      "alternativeMetrics": {
+        "debtBn": 32.166360921261656,
+        "sharesM": 895.291016806574,
+        "equityRaisedBn": 20.169
+      },
+      "fingerprint": "ab4f7ddf4bcd1b4198e566cfc587e562b9873b0c71018ff557ada8bf8b19d1bf"
     },
     {
       "id": "NBIS:economics:renewal-spot-substitution",
@@ -2843,7 +2883,7 @@
       "severity": "review",
       "title": "Subsidiary ownership and parent claims need a common share basis",
       "explanation": "The asset engine applies an ownership percentage to the subsidiary and then applies its planned dilution. It also deducts parent-level claims. Held shares, the subsidiary denominator and the entity scope of minority claims must reconcile; otherwise ownership can be diluted twice or minority interests deducted twice. Separate preferred claims can remain valid.",
-      "calculation": "53.5% × 45.1m WYFI model shares implies 24.13m held before future issuance; stake value 823.02m; separate parent senior claims 9.05m.",
+      "calculation": "53.5% × 45.1m WYFI model shares implies 24.13m held before future issuance; stake value 820.92m; separate parent senior claims 9.05m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.BTBT; filing verification not dated here"
@@ -2860,7 +2900,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile documented shares held to the current subsidiary basic/diluted denominator. Map each claim to its legal entity; reconcile proportionate valuation with consolidated-value-less-minority treatment before proposing a change.",
-      "fingerprint": "257457fbce43294c5cdca7c53d8f17338ea0767acbd1ef909a01848ff893d557"
+      "fingerprint": "9bdcc2f7656f384ee11ce9bd9ba34344058ae78558888cd06d66f3f9cd9d5286"
     },
     {
       "id": "HUT:funding:lookthrough-ownership",
@@ -2869,7 +2909,7 @@
       "severity": "review",
       "title": "Subsidiary ownership and parent claims need a common share basis",
       "explanation": "The asset engine applies an ownership percentage to the subsidiary and then applies its planned dilution. It also deducts parent-level claims. Held shares, the subsidiary denominator and the entity scope of minority claims must reconcile; otherwise ownership can be diluted twice or minority interests deducted twice. Separate preferred claims can remain valid.",
-      "calculation": "55.3% × 72.82m ABTC model shares implies 40.27m held before future issuance; stake value 299.16m; separate parent senior claims 311m.",
+      "calculation": "55.3% × 72.82m ABTC model shares implies 40.27m held before future issuance; stake value 298.37m; separate parent senior claims 311m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.HUT; filing verification not dated here"
@@ -2886,7 +2926,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile documented shares held to the current subsidiary basic/diluted denominator. Map each claim to its legal entity; reconcile proportionate valuation with consolidated-value-less-minority treatment before proposing a change.",
-      "fingerprint": "00d5c5f60ac05579e2944f131d77b40f951f2cd801de910c2c07f83811558261"
+      "fingerprint": "6a0c41305dcb6545d16c7e3fdb1ec91cb146ec50751460c32c0750d82aebd5df"
     },
     {
       "id": "NBIS:funding:accreting-convertibles",
@@ -2920,7 +2960,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "f5a7e52bc0f09948393a0fdbac8fabda14202cd50858b7a650fe09508f75faa8"
+      "fingerprint": "6f92a081119093a9fbcf0f5a9ef5cc24208b30638e6f7b281a8d0d7befc247b8"
     },
     {
       "id": "APLD:capacity:quarterly-bridge-missing",
@@ -2969,7 +3009,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "380m existing shares + 41.14m modeled issuance; net debt 703m, committed debt 3,740m, senior claims 3,348m.",
+      "calculation": "380m existing shares + 41.79m modeled issuance; net debt 703m, committed debt 3,740m, senior claims 3,348m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.APLD; filing verification not dated here"
@@ -2977,7 +3017,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "a5857e15a355c43ffe8a8f70c5e3d663747078b59e0fe5e36c927bcbdd3bdcf9"
+      "fingerprint": "c021578607d589b73b62b11444a0880608fa29c5384ca2d41043e936351c94f9"
     },
     {
       "id": "BTBT:funding:funding-bridge-missing",
@@ -2994,7 +3034,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "95208174580cb6f49ae941c40cc67d218de0babf56c27ab12a098a856bb85143"
+      "fingerprint": "5569ca4f7464658877460806f215225cded59976674a1698f4154f267f95e249"
     },
     {
       "id": "BTDR:capacity:quarterly-bridge-missing",
@@ -3037,7 +3077,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "350m existing shares + 90.83m modeled issuance; net debt 1,345m, committed debt 0m, senior claims 0m.",
+      "calculation": "350m existing shares + 92.59m modeled issuance; net debt 1,345m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.BTDR; filing verification not dated here"
@@ -3045,7 +3085,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "805ce264e41cfd4f199fb86db3132fda54534f7a7e4a45d376aaa8b27b37547a"
+      "fingerprint": "a76ef0cf2e35063b54fa283edec18c30773818958dd29e6c022c49dc943313ca"
     },
     {
       "id": "CIFR:capacity:quarterly-bridge-missing",
@@ -3094,7 +3134,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "478m existing shares + 71.56m modeled issuance; net debt 1,456m, committed debt 3,728m, senior claims 25.7m.",
+      "calculation": "478m existing shares + 72.55m modeled issuance; net debt 1,456m, committed debt 3,728m, senior claims 25.7m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.CIFR; filing verification not dated here"
@@ -3102,7 +3142,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "1563c384ac90bf46650e45c90bc4bc9ebb321ad58f48efc0be0ebd2c337c658d"
+      "fingerprint": "85770c3e16a547a947e93d80488149195f4d198178cd60243743a9f6f6906b21"
     },
     {
       "id": "CLSK:capacity:quarterly-bridge-missing",
@@ -3145,7 +3185,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "327m existing shares + 23.47m modeled issuance; net debt 1,580m, committed debt 0m, senior claims 0m.",
+      "calculation": "327m existing shares + 23.85m modeled issuance; net debt 1,580m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.CLSK; filing verification not dated here"
@@ -3153,7 +3193,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "8c227eb682a05b89cc42994fecfbe75d353220a6fbed674fb37e7730769cc55b"
+      "fingerprint": "827b9461bf76c5991b304a9235eee3ba64b20e60021cc4df6751d33e925c252f"
     },
     {
       "id": "CORZ:capacity:quarterly-bridge-missing",
@@ -3202,7 +3242,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "439m existing shares + 35.44m modeled issuance; net debt 1,819m, committed debt 0m, senior claims 0m.",
+      "calculation": "439m existing shares + 36.21m modeled issuance; net debt 1,819m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.CORZ; filing verification not dated here"
@@ -3210,7 +3250,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "8c5429b90ba7fac22418d893667e4e7139231789f9dedbac4d4b570a4f88ec02"
+      "fingerprint": "52e4d7a8ca3ccc8a14f4ebef999e25d1408b125f9a63bc2388f57fb97488cfde"
     },
     {
       "id": "CRWV:capacity:customer-mapping",
@@ -3328,7 +3368,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "640.5m existing shares + 714.29m modeled issuance; net debt 428m, committed debt 0m, senior claims 0m.",
+      "calculation": "640.5m existing shares + 733.75m modeled issuance; net debt 428m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.FRMI; filing verification not dated here"
@@ -3336,7 +3376,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "b3d54cf924851ec8a3402c4bc84532224bb281cfc44600411f7846d6e79a33d0"
+      "fingerprint": "8b2743bfd15648931f1c52813257955e72e86fad1e360f17981540d3da800a2d"
     },
     {
       "id": "GLXY:capacity:quarterly-bridge-missing",
@@ -3379,7 +3419,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "418m existing shares + 67.11m modeled issuance; net debt 1,745m, committed debt 3,507m, senior claims 0m.",
+      "calculation": "418m existing shares + 68.74m modeled issuance; net debt 1,745m, committed debt 3,507m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.GLXY; filing verification not dated here"
@@ -3387,7 +3427,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "db27e5077d3ca42a149f2e74d15304f19aba28e57878a7d41863a73d77a80e95"
+      "fingerprint": "65ed9d610e2dbdb1b9c3ef4b5d4ad3bd34383b3f888c2878287c2b906dcb5115"
     },
     {
       "id": "HIVE:capacity:quarterly-bridge-missing",
@@ -3430,7 +3470,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "319.07m existing shares + 101.69m modeled issuance; net debt -47m, committed debt 0m, senior claims 0m.",
+      "calculation": "319.07m existing shares + 103.09m modeled issuance; net debt -47m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.HIVE; filing verification not dated here"
@@ -3438,7 +3478,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "1440798bde77fd398a6439f1890a9b9d8e76979d4a71eea4dd236cae9a253a85"
+      "fingerprint": "ba4736ac45ddd55dae9cf944246a875aceeed217618c3da1074a47d533832d55"
     },
     {
       "id": "HUT:capacity:quarterly-bridge-missing",
@@ -3487,7 +3527,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "133.7m existing shares + 5.51m modeled issuance; net debt -74m, committed debt 7,500m, senior claims 311m.",
+      "calculation": "133.7m existing shares + 5.57m modeled issuance; net debt -74m, committed debt 7,500m, senior claims 311m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.HUT; filing verification not dated here"
@@ -3495,7 +3535,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "8048e6de9756f4ce58519b18cfbe081997d64a42da300104717482e0b64e8005"
+      "fingerprint": "ef016c7dd2d9f5ee2e6dd28f2c2cb94ccc676fd3a65e75f6f898db8de42b2bc4"
     },
     {
       "id": "IREN:capacity:customer-mapping",
@@ -3621,7 +3661,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "489e7fe975a3e8003e62b9e1a509717ced33300129bcc24199cd8b39b7f9d34e"
+      "fingerprint": "01a2c7af421b02a5a3de9ec7b8f82835f3176bff23cb35b90fdf129c130013f6"
     },
     {
       "id": "MARA:capacity:quarterly-bridge-missing",
@@ -3664,7 +3704,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "381.89m existing shares + 135.62m modeled issuance; net debt 1,996m, committed debt 0m, senior claims 98.8m.",
+      "calculation": "381.89m existing shares + 137.87m modeled issuance; net debt 1,996m, committed debt 0m, senior claims 98.8m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.MARA; filing verification not dated here"
@@ -3672,7 +3712,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "d86352a7ddffe84ed0cddf9c82db940275dd5a31b2d47c7259ea750fc25a4709"
+      "fingerprint": "1f11c48fd7d3c019246b0b727a06ed5e2f49eb2d342d249a9921b78a58da03fe"
     },
     {
       "id": "NBIS:capacity:customer-mapping",
@@ -3790,7 +3830,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "121.8m existing shares + 18.32m modeled issuance; net debt -49m, committed debt 0m, senior claims 0m.",
+      "calculation": "121.8m existing shares + 18.8m modeled issuance; net debt -49m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.NUAI; filing verification not dated here"
@@ -3798,7 +3838,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "5f5b6674d14327027aa198c5e87464b5e22b6d14165203cb0fecad2635f2a0b5"
+      "fingerprint": "ab0151ae16861a22bea2b64fb56a2702a6e2dc09176171e89af7b21a8d3ba788"
     },
     {
       "id": "RIOT:capacity:quarterly-bridge-missing",
@@ -3844,7 +3884,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "422m existing shares + 12.29m modeled issuance; net debt -290m, committed debt 0m, senior claims 0m.",
+      "calculation": "422m existing shares + 12.41m modeled issuance; net debt -290m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.RIOT; filing verification not dated here"
@@ -3852,7 +3892,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "053b65ffd40fc369f0e6fdf553dda44f1dbd0ce9f64660535f40e57d36420d7c"
+      "fingerprint": "36d8748db0bf3fdb8e4372bee17a75a5c7573f09d715a678df55586350f71dce"
     },
     {
       "id": "SHAZ:capacity:quarterly-bridge-missing",
@@ -3895,7 +3935,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "49.9m existing shares + 9.29m modeled issuance; net debt -1,157m, committed debt 0m, senior claims 0m.",
+      "calculation": "49.9m existing shares + 9.63m modeled issuance; net debt -1,157m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.SHAZ; filing verification not dated here"
@@ -3903,7 +3943,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "edb4fb15d57106810f2882c520ae5691ddec32ab53c672a2f68a58b4c8ac24f9"
+      "fingerprint": "89368954dcc13c719847cb8e5493c190fc1352036fde0ea7187d821e889892ce"
     },
     {
       "id": "SLNH:capacity:quarterly-bridge-missing",
@@ -3946,7 +3986,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "244.59m existing shares + 652.17m modeled issuance; net debt -80.3m, committed debt 0m, senior claims 158m.",
+      "calculation": "244.59m existing shares + 657.89m modeled issuance; net debt -80.3m, committed debt 0m, senior claims 158m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.SLNH; filing verification not dated here"
@@ -3954,7 +3994,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "e236bd33b3eb84ee06298e84f2215f966abde0a622a7da977b05b015058513ba"
+      "fingerprint": "b5b86442e8ea743042fea3e938a2876e1e84f5d77684c3b85ced23b631918ef6"
     },
     {
       "id": "WULF:capacity:quarterly-bridge-missing",
@@ -4003,7 +4043,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "744m existing shares + 39.09m modeled issuance; net debt 110m, committed debt 0m, senior claims 300m.",
+      "calculation": "744m existing shares + 39.76m modeled issuance; net debt 110m, committed debt 0m, senior claims 300m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.WULF; filing verification not dated here"
@@ -4011,7 +4051,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "534c50a433ad3d6e338b9f907217d17868b3c77498e05df3b5ae538e18c55cef"
+      "fingerprint": "9eb727de09c3f7a72149486c49d995c26d95e05a43b6b5dec432faf09363129c"
     },
     {
       "id": "WYFI:capacity:quarterly-bridge-missing",
@@ -4057,7 +4097,7 @@
       "severity": "gap",
       "title": "Funding and dilution have only static coverage",
       "explanation": "The asset model subtracts current claims and divides by shares including planned issuance. It does not prove that construction, maturities, covenants, restricted cash and partner interests can be financed through time.",
-      "calculation": "45.1m existing shares + 8.69m modeled issuance; net debt 259m, committed debt 0m, senior claims 0m.",
+      "calculation": "45.1m existing shares + 8.82m modeled issuance; net debt 259m, committed debt 0m, senior claims 0m.",
       "evidence": [
         {
           "label": "Model inputs: data.json → companies.WYFI; filing verification not dated here"
@@ -4065,7 +4105,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "178ee44af2f496660f6e47925b280f5da3bbf765cc9d41b70b00806ea837dcd2"
+      "fingerprint": "730429c58fa58b13ce1072237bc1b1b4d9458065f2edee97878f4f95d4dfa243"
     }
   ],
   "policy": {
@@ -4102,11 +4142,11 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-09-16T18:48:41.588Z",
-  "attemptedAt": "2026-09-16T18:48:41.588Z",
-  "lastSuccessAt": "2026-09-16T18:48:41.588Z",
+  "checkedAt": "2026-09-16T19:20:36.230Z",
+  "attemptedAt": "2026-09-16T19:20:36.230Z",
+  "lastSuccessAt": "2026-09-16T19:20:36.230Z",
   "sourceHash": "2d4ec267fa014202009e792af1ebd911284931566685ffa5b0ea3c5a98378183",
-  "quoteHash": "77312980a91217712170dfd92db5585384e51e5c1d071533c5a6b61777fce7f2",
+  "quoteHash": "00e7991245d18fddebfd4b6d4941b71327f416a287c8624ad7cff3e8f0207416",
   "modelHash": "b980de54959c21c607c28142454e1d8bbc10c21960c08042ad2f8b4e91bed36d",
   "provenance": {
     "data": {
@@ -4116,10 +4156,10 @@
     },
     "quotes": {
       "file": "market-prices.json",
-      "hash": "77312980a91217712170dfd92db5585384e51e5c1d071533c5a6b61777fce7f2",
+      "hash": "00e7991245d18fddebfd4b6d4941b71327f416a287c8624ad7cff3e8f0207416",
       "status": "ready",
-      "checkedAt": "2026-09-16T18:48:23.352Z",
-      "asOf": "2026-09-16T18:48:23.351Z",
+      "checkedAt": "2026-09-16T19:20:21.600Z",
+      "asOf": "2026-09-16T19:20:21.600Z",
       "failedTickers": [],
       "priceCount": 22
     },
@@ -4139,7 +4179,7 @@
     },
     "run": {
       "trigger": "workflow_run",
-      "commit": "0c05c8fd0b0cb130f1d8fc08b123363c2e30e4a4"
+      "commit": "c92fcf964d3dd42aa26f6e7ea552071a6e31078d"
     }
   },
   "cadence": {
