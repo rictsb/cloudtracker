@@ -2689,9 +2689,9 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-09-16T14:36:04.207Z",
-  "attemptedAt": "2026-09-16T14:36:04.207Z",
-  "lastSuccessAt": "2026-09-16T14:36:04.207Z",
+  "checkedAt": "2026-09-16T14:37:05.161Z",
+  "attemptedAt": "2026-09-16T14:37:05.161Z",
+  "lastSuccessAt": "2026-09-16T14:37:05.161Z",
   "sourceHash": "2d4ec267fa014202009e792af1ebd911284931566685ffa5b0ea3c5a98378183",
   "quoteHash": "e823aa1c7b87db538ae2ca00f098e94e1a711f916915ea095ab6b648c0a4a40f",
   "modelHash": "38b2e24868a9635a10d55ae0a84ff97cdd227501a934cf26b19a42ec56bb9826",
@@ -2725,8 +2725,8 @@
       ]
     },
     "run": {
-      "trigger": "local",
-      "commit": null
+      "trigger": "push",
+      "commit": "a5e4f4a2842f108d5084feb985750f230ddd2014"
     }
   },
   "cadence": {
