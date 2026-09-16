@@ -324,8 +324,10 @@ check('Book-derived regional pricing review requires a complete matching owner b
   c.contractedPct = 100;
   c.sites[0].region = 'au';
   c.contracts = [{ id: 'book', effective: true, totalRevM: 5000, termYrs: 5, mw: 100 }];
-  const changed = copy(d); changed.companies[0].signedRate /= d.config.regions.au.rateMul;
+  const changed = copy(d); changed.companies[0].signedRegionFactor = 1;
   assertImpact(finding(run(d, fixtureMarks), id), staticValue(d), staticValue(changed));
+  assert.equal(changed.companies[0].signedRate, c.signedRate, 'scenario preserves the sourced signed rate');
+  assert.equal(finding(run(changed, fixtureMarks), id), undefined, 'normalized signed factor resolves this finding');
   c.sites[0].region = 'mid';
   assert.equal(finding(run(d, fixtureMarks), id), undefined, 'a US region factor of one is not a second discount');
   c.sites[0].region = 'au';
@@ -335,6 +337,77 @@ check('Book-derived regional pricing review requires a complete matching owner b
   assert.ok(result.findings.some(f => f.ticker === 'TEST' && f.family === 'economics' && f.severity === 'gap'));
   c.contracts = [];
   assert.equal(finding(run(d, fixtureMarks), id), undefined, 'missing book cannot corroborate signed rate');
+});
+
+check('Optional signed geography retains exact legacy values and keeps unsigned pricing separate', () => {
+  const d = staticFixture(), c = d.companies[0];
+  c.contractedPct = 70; c.termYrs = 5; c.sites[0].region = 'au'; c.sites[0].yr = 2028;
+  const e = createEngine(d), s = c.sites[0], baseline = e.value(c), rates = e.siteRates(c, s);
+  const unsignedEconomicValue = (r, v) => {
+    const signedYears = Math.max(0, s.yr + ((s.mo || 1) - 1) / 12 - e.NOW);
+    const signedValue = v.gross * r.contractedRate / r.eff * v.hair / Math.pow(1 + e.A.disc / 100, signedYears);
+    return v.ev - signedValue;
+  };
+  const unsignedBefore = unsignedEconomicValue(rates, e.siteValue(c, s));
+  assert.equal(e.signedRegionFactorOf(c, s), d.config.regions.au.rateMul);
+  c.signedRegionFactor = d.config.regions.au.rateMul;
+  assert.deepEqual(e.value(c), baseline, 'explicit current factor equals the implicit legacy model exactly');
+  const signedBefore = rates.contractedRate;
+  c.signedRegionFactor = 1;
+  const normalized = e.siteRates(c, s);
+  near(normalized.contractedRate, signedBefore / d.config.regions.au.rateMul);
+  assert.equal(normalized.spotRate, rates.spotRate);
+  assert.equal(normalized.prevailing, rates.prevailing);
+  assert.equal(normalized.signedRate, rates.signedRate);
+  near(unsignedEconomicValue(normalized, e.siteValue(c, s)), unsignedBefore);
+  // Test unsigned-only capacity through the full value path, including future ramp.
+  c.sites.push({ ...s, n: 'Unsigned future site', prov: 'rumored', yr: 2029 });
+  const unsigned = e.siteValue(c, c.sites[1]);
+  delete c.signedRegionFactor;
+  assert.deepEqual(e.siteValue(c, c.sites[1]), unsigned, 'unsigned site EV is completely unchanged');
+});
+
+check('SHAZ normalization retains its 16.8 signed rate and changes no unrelated company', () => {
+  const d = copy(data), shaz = company(d, 'SHAZ'), before = createEngine(d);
+  Object.assign(before.ctx, copy(snapshot.marks));
+  const originals = new Map(d.companies.map(c => [c.tk, before.value(c)]));
+  assert.equal(shaz.signedRate, 16.8);
+  delete shaz.signedRegionFactor; // Fixed regression fixture for the original additional discount.
+  const reviewed = finding(run(d), 'SHAZ:economics:signed-rate-region');
+  assert.ok(reviewed);
+  assert.deepEqual(reviewed.scenario.changes.company, { signedRegionFactor: 1 });
+  shaz.signedRegionFactor = 1;
+  const after = createEngine(d); Object.assign(after.ctx, copy(snapshot.marks));
+  near(reviewed.impact.alternative, after.value(shaz).target);
+  assert.ok(reviewed.impact.pct > 25 && reviewed.impact.pct < 28, 'the original approximately 26% scenario is retained');
+  assert.equal(shaz.signedRate, 16.8);
+  assert.equal(finding(run(d), 'SHAZ:economics:signed-rate-region'), undefined);
+  for (const c of d.companies) if (c.tk !== 'SHAZ' && c.stake?.tk !== 'SHAZ') assert.deepEqual(after.value(c), originals.get(c.tk), c.tk + ' must not change');
+  // A future tracked shareholder should continue receiving the normal stake look-through.
+  const holder = { ...copy(staticFixture('holdco').companies[0]), tk: 'HOLDER', stake: { tk: 'SHAZ', pct: .6 } };
+  d.companies.push(holder);
+  const stakeEngine = createEngine(d); Object.assign(stakeEngine.ctx, copy(snapshot.marks));
+  const v = stakeEngine.value(shaz);
+  near(stakeEngine.stakeValue(holder), .6 * shaz.shares / v.fundedShares * v.equityPre);
+});
+
+check('Invalid signed geography overrides fail review without changing fallback behavior', () => {
+  for (const invalid of [null, undefined, 0, -1, 2.01, Infinity, NaN, '1']) {
+    const d = staticFixture(), c = d.companies[0]; c.sites[0].region = 'au';
+    const before = staticValue(d);
+    c.signedRegionFactor = invalid;
+    const result = run(d, fixtureMarks);
+    assert.equal(finding(result, 'TEST:economics:signed-region-factor').severity, 'error', String(invalid));
+    assert.deepEqual(staticValue(d), before, 'invalid input cannot alter valuation');
+  }
+  for (const model of ['landlord', 'holdco']) {
+    const d = staticFixture(model); d.companies[0].signedRegionFactor = 1;
+    assert.equal(finding(run(d, fixtureMarks), 'TEST:economics:signed-region-factor').severity, 'error', model);
+  }
+  for (const valid of [.001, 1, 2]) {
+    const d = staticFixture(); d.companies[0].signedRegionFactor = valid;
+    assert.equal(finding(run(d, fixtureMarks), 'TEST:economics:signed-region-factor'), undefined);
+  }
 });
 
 check('Look-through concentration and claims request ownership evidence without inventing an NCI error', () => {

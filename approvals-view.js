@@ -49,16 +49,26 @@
 
   function ghToken() { try { return localStorage.getItem('cv-gh-token') || ''; } catch (e) { return ''; } }
 
-  /* ---- data load: exactly once, failure swallowed (production app.js:329) ---- */
-  let PROPOSALS = null, loadStarted = false, loadSettled = false;
+  /* ---- initial load plus an explicit refresh of the published proposal queue ---- */
+  let PROPOSALS = null, loadStarted = false, loadSettled = false, loadError = false, decisionsInFlight = 0;
   function ensureLoad() {
     if (loadStarted || typeof fetch !== 'function' || typeof document === 'undefined') return;
-    loadStarted = true;
+    loadStarted = true; loadError = false;
     fetch('proposals.json', { cache: 'no-store' })
-      .then(r => r.ok ? r.json() : null)
-      .then(j => { PROPOSALS = j; })
-      .catch(() => {})
+      .then(r => { if (!r.ok) throw new Error('proposal queue unavailable'); return r.json(); })
+      .then(j => {
+        if (!j || !Array.isArray(j.items)) throw new Error('proposal queue invalid');
+        PROPOSALS = j;
+        if (root.CVApp && root.CVApp.setPending) root.CVApp.setPending(j.items.filter(i => i.status === 'pending').length);
+      })
+      .catch(() => { PROPOSALS = null; loadError = true; })
       .then(() => { loadSettled = true; (root.CVApp && root.CVApp.refresh()); });
+  }
+  function refreshProposals() {
+    if ((loadStarted && !loadSettled) || decisionsInFlight) return;
+    loadStarted = false; loadSettled = false;
+    ensureLoad();
+    (root.CVApp && root.CVApp.refresh());
   }
 
   /* ============================================================================
@@ -128,6 +138,7 @@
       return;
     }
     /* Production decision flow (app.js:430-434) — dead while DRY is true; integration flips the constant. */
+    decisionsInFlight++;
     card.querySelectorAll('[data-ap-dec]').forEach(x => x.disabled = true); if (msg) msg.textContent = 'saving…';
     try {
       const P = await ghDecide(id, status); PROPOSALS = P;
@@ -139,13 +150,14 @@
     } catch (e) {
       if (msg) msg.textContent = 'failed: ' + e.message;
       card.querySelectorAll('[data-ap-dec]').forEach(x => x.disabled = false);
-    }
+    } finally { decisionsInFlight--; }
   }
 
   /* ---- one document-level delegated listener, own data-ap-* attributes only ---- */
   if (typeof document !== 'undefined' && !root.__apWired) {
     root.__apWired = true;
     document.addEventListener('click', e => {
+      if (e.target.closest('[data-ap-refresh]')) { refreshProposals(); return; }
       const dec = e.target.closest('[data-ap-dec]');
       if (dec) { onDecide(dec); return; }
       if (e.target.closest('[data-ap-close]')) { const d = document.getElementById('drawer'); if (d && d.open) d.close(); return; }
@@ -179,7 +191,7 @@
 
   function statusStrip(pend, done) {
     const m = (label, value, note) => root.UI ? root.UI.metric(label, value, note) : `<div class="metric"><div class="metric-label">${label}</div><div class="metric-value">${value}</div><div class="metric-note">${note}</div></div>`;
-    return `<div class="metric-strip ap-strip ap-section-gap">${m('Awaiting a decision', String(pend.length), 'New proposals arrive with the morning publish')}${m('Updated', esc(fmtD(PROPOSALS.asOf)), 'proposals.json · published daily by the Spark')}${m('Decisions recorded', String(done.length), 'Applied, declined and error outcomes')}</div>`;
+    return `<div class="metric-strip ap-strip ap-section-gap">${m('Awaiting a decision', String(pend.length), 'Published proposals ready for your review')}${m('Updated', esc(fmtD(PROPOSALS.asOf)), 'Latest published proposal queue')}${m('Decisions recorded', String(done.length), 'Applied, declined and error outcomes')}</div>`;
   }
 
   function pendingCard(p, tok) {
@@ -205,7 +217,8 @@
   function assumptionPreview(p) {
     const num = x => Number.isFinite(x) ? x.toLocaleString('en-US',{maximumFractionDigits:3}) : 'Unavailable';
     const money = x => Number.isFinite(x) ? '$' + x.toFixed(2) : 'Unavailable';
-    const changes = (p.changes || []).map(c => `<tr><td>${esc(c.scope === 'global' ? 'Shared' : c.ticker)} · ${esc((c.path || []).join('.'))}</td><td>${esc(num(c.current))}</td><td>${esc(num(c.proposed))}</td><td>${esc(c.unit)}</td></tr>`).join('');
+    const inputLabel = c => c.path?.length === 1 && c.path[0] === 'signedRegionFactor' ? 'Signed-contract geography multiplier' : (c.path || []).join('.');
+    const changes = (p.changes || []).map(c => `<tr><td>${esc(c.scope === 'global' ? 'Shared' : c.ticker)} · ${esc(inputLabel(c))}</td><td>${esc(num(c.current))}</td><td>${esc(num(c.proposed))}</td><td>${esc(c.unit)}</td></tr>`).join('');
     const impact = (p.review?.impact || []).map(r => `<tr><td><b>${esc(r.ticker)}</b><br><span class="muted small">${esc(r.modelBasis)}</span></td><td>${esc(money(r.base))}</td><td>${esc(money(r.proposed))}</td><td>${esc(money(r.delta))}${r.pct == null ? '' : ' (' + esc(num(r.pct)) + '%)'}</td></tr>`).join('');
     const metrics = (p.review?.impact || []).map(r => {
       const rows = Object.entries(r.baseMetrics || {}).map(([k,v]) => `<span>${esc(k)}</span><strong>${esc(num(v))} → ${esc(num(r.proposedMetrics?.[k]))}</strong>`).join('');
@@ -240,14 +253,17 @@
     const tok = ghToken();
     let h = tokenPanel(tok);
     if (isDry()) h += dryBanner(!DRY);
+    const refreshing = loadStarted && !loadSettled;
+    h += `<div class="ap-actions ap-section-gap"><button class="button" data-ap-refresh="1" ${refreshing || decisionsInFlight ? 'disabled' : ''} aria-busy="${refreshing}">${refreshing ? 'Refreshing proposals…' : 'Refresh proposals'}</button><span class="small muted">Load newly published proposals.</span></div>`;
     if (!loadSettled) return h + `<section class="panel ap-section-gap"><div class="loading">Loading proposals…</div></section>`;
+    if (loadError) return h + `<section class="panel ap-section-gap"><div class="empty" role="status">Could not load the proposal queue. Use Refresh proposals to try again.</div></section>` + FOOTNOTE;
     if (!PROPOSALS) return h + `<section class="panel ap-section-gap"><div class="empty">no proposals yet — the Spark publishes proposals.json each morning</div></section>` + FOOTNOTE;
     const items = PROPOSALS.items || [];
     const pend = items.filter(x => x.status === 'pending');
     const done = items.filter(x => x.status !== 'pending').sort((a, b) => String(b.decided || '').localeCompare(String(a.decided || '')));
     h += statusStrip(pend, done);
     h += `<div class="date-rule ap-section-gap"><span>${pend.length} awaiting a decision · updated ${esc(fmtD(PROPOSALS.asOf))}</span><span>Nothing changes without a click</span></div>`;
-    if (!pend.length) h += `<section class="panel"><div class="empty"><strong>Nothing waiting.</strong>New proposals arrive with the morning publish.</div></section>`;
+    if (!pend.length) h += `<section class="panel"><div class="empty"><strong>Nothing waiting.</strong>Research requests appear here once a specific change has been prepared for approval.</div></section>`;
     else h += pend.map(x => pendingCard(x, tok)).join('');
     h += historyPanel(done);
     h += FOOTNOTE;

@@ -133,7 +133,7 @@
   const OPS_STRAP={
     assumptions:'Economic consistency across the universe — findings, evidence and proposed changes.',
     news:'What the curated sources said, summarised — one item per video, newest first. Never a valuation input.',
-    approvals:'Statements from the sources that the tracker does not yet reflect. Yes puts it in; No declines it. Nothing changes without a click.',
+    approvals:'Review proposed model changes and research notes. Numerical changes show the current assumption, proposed value and valuation impact. Nothing changes until you approve.',
     portfolio:'The paper portfolio — the model’s views, sized daily against the market · hypothetical, paper only.',
     checks:'Data unit tests — run live in this browser against the deployed data, on every load.'
   };

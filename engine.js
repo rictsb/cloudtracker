@@ -50,6 +50,10 @@
     // Contracts are DOLLARS+TERM facts; MW is often inference — so the company carries a `signedRate`
     // ($/MW·yr, basis-noted, checks-reconciled vs the registry) rather than per-contract rate binding.
     function signedRateOf(c){return c.signedRate||A.rate;}
+    // A company-local signed book can already include geography. An explicit factor
+    // adjusts only that signed income; absent/invalid overrides preserve the legacy
+    // site-region factor, and the assumption checks reject invalid overrides.
+    function signedRegionFactorOf(c,s){return c.model==='owner'&&Number.isFinite(c.signedRegionFactor)&&c.signedRegionFactor>0&&c.signedRegionFactor<=2?c.signedRegionFactor:(REGION[s.region]&&REGION[s.region].rateMul)||1;}
     function genAccessOf(c){return c.genAccess!=null?c.genAccess:1;}       // frontier-allocation factor on UNSIGNED/re-sign rates (1.0 = frontier access)
     function leaseUp(){return A.leaseUp!=null?A.leaseUp:1;}               // lease-up / spot realization on the uncontracted slice (base 1.0 = scarcity view: energized capacity gets rented; 0.42 = consensus spread)
     function siteRates(c,s){
@@ -63,7 +67,7 @@
       const rm=(REGION[s.region]&&REGION[s.region].rateMul)||1;   // geography rate factor (US 1.0, EU/AU < 1)
       const yrs=Math.max(0,s.yr+((s.mo||1)-1)/12-NOW);
       const prevailing=A.rate*rm*Math.pow(1+gpuTrendEff()/100,yrs)*genAccessOf(c);  // gen-curve rate at this vintage, for this operator's silicon access
-      const contractedRate=ls*signedRateOf(c)*rm, spotRate=(1-ls)*prevailing*leaseUp();
+      const contractedRate=ls*signedRateOf(c)*signedRegionFactorOf(c,s), spotRate=(1-ls)*prevailing*leaseUp();
       return{eff:contractedRate+spotRate,contractedRate,spotRate,prevailing,yrs,lock,signedRate:signedRateOf(c)};
     }
     function tierOf(c){return TIERS[c.tier]||TIERS.proven||{name:'—',capSpread:0,multFactor:1};}
@@ -117,7 +121,7 @@
 
     return { A, BASE, ctx, CFG, YEAR, NOW, HORIZON, SLIDERS, REGION, CONST, TIERS, PROV, PROV_OP, COMPANIES,
              priceOf, btcPrice, ethPrice, stakeValue, legacyOf, prevailingRate, ownerRate, effTrend, leaseUp,
-             sizeFactor, leaseOf, gpuTrendEff, signedRateOf, genAccessOf, siteRates, tierOf, siteValue, value };
+             sizeFactor, leaseOf, gpuTrendEff, signedRateOf, signedRegionFactorOf, genAccessOf, siteRates, tierOf, siteValue, value };
   }
 
   return { createEngine };

@@ -4,7 +4,7 @@
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
-const RULE_VERSION = 'assumption-approvals-v1';
+const RULE_VERSION = 'assumption-approvals-v2';
 const ROOT = __dirname;
 const copy = x => JSON.parse(JSON.stringify(x));
 // Shared with the scheduled reviewer; importing either module performs no work.
@@ -15,7 +15,7 @@ const COMPANY_FIELDS = {
   shares:[0.000001,1000000,'million shares'], netDebt:[-1000000,1000000,'USD million'],
   plannedRaise:[0,1000000,'USD million'], committedDebt:[0,1000000,'USD million'], seniorClaims:[0,1000000,'USD million'],
   contractedPct:[0,100,'percent'], termYrs:[0,50,'years'], signedRate:[0.000001,100,'USD million/IT MW/year'],
-  genAccess:[0,2,'multiple'], equityDiscount:[0,0.99,'fraction']
+  genAccess:[0,2,'multiple'], signedRegionFactor:[0.000001,2,'multiple'], equityDiscount:[0,0.99,'fraction']
 };
 // Scalars whose units and dependency treatment are explicit in onepager-core.js. Convertible
 // SERIES, principal, dates, prepayment calendars and generated fields are deliberately excluded.
@@ -49,8 +49,19 @@ function locate(data, c) {
     target = target[k];
   }
   const key = c.path.at(-1);
+  // This single optional scalar has a canonical implied value. Do not generalize
+  // missing-path writes: a mixed-region signed book has no one current multiplier.
+  if (c.scope === 'company' && c.path.length === 1 && key === 'signedRegionFactor') {
+    if (target.model !== 'owner') throw new Error('signed-region factor requires an owner model');
+    if (!own(target,key)) {
+      const E = require('./engine.js').createEngine(data);
+      const factors = [...new Set((target.sites || []).filter(s => E.siteRates(target,s).contractedRate > 0).map(s => E.signedRegionFactorOf(target,s)))];
+      if (factors.length !== 1 || !Number.isFinite(factors[0])) throw new Error('signed-region factor requires one unambiguous current signed-site multiplier');
+      return {target,key,value:factors[0]};
+    }
+  }
   if (!own(target,key) || typeof target[key] !== 'number' || !Number.isFinite(target[key])) throw new Error('field is not an existing finite number: ' + changeKey(c));
-  return { target, key };
+  return { target, key, value:target[key] };
 }
 function validateChanges(data, changes) {
   if (!Array.isArray(changes) || !changes.length || changes.length > 60) throw new Error('proposal requires 1–60 explicit numerical changes');
@@ -67,8 +78,8 @@ function validateChanges(data, changes) {
     if (!Number.isFinite(c.current) || !Number.isFinite(c.proposed) || c.current === c.proposed) throw new Error('change must contain different finite current/proposed numbers: ' + id);
     if (c.proposed < rule[0] || c.proposed > rule[1]) throw new Error('proposed number outside allowed range: ' + id);
     if (c.unit !== rule[2]) throw new Error('unit must be "' + rule[2] + '" for ' + id);
-    const {target,key} = locate(data,c);
-    if (target[key] !== c.current) throw new Error('stale current value: ' + id + '; rebase and review again');
+    const {value} = locate(data,c);
+    if (value !== c.current) throw new Error('stale current value: ' + id + '; rebase and review again');
   }
 }
 function applyChanges(data, changes) {

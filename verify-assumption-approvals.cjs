@@ -61,6 +61,29 @@ group('finance fields retain known units and enforce dependent debt/share constr
   reject({...input,changes:[{scope:'company',ticker:c.tk,path:['page','finance','DEBT0'],current:c.page.finance.DEBT0,proposed:1,unit:'USD billion'}]},/convertible principal/);
   reject({...input,changes:[{scope:'company',ticker:c.tk,path:['page','finance','CONV'],current:c.page.finance.CONV,proposed:1,unit:'USD billion'}]},/allow-list/);
 });
+group('signed geography proposals expose a unique implied current factor without changing the source rate',()=>{
+  const fixture=clone(data), shaz=fixture.companies.find(c=>c.tk==='SHAZ');delete shaz.signedRegionFactor;
+  const change={scope:'company',ticker:'SHAZ',path:['signedRegionFactor'],current:0.7,proposed:1,unit:'multiple'};
+  const before=JSON.stringify(fixture), local={...opts,data:fixture};
+  const p=A.draftProposal({...input,title:'Offline geography consistency fixture',changes:[change]},local);
+  assert.equal(JSON.stringify(fixture),before);assert.equal(p.status,'pending');
+  assert.deepEqual(p.review.impact.map(r=>r.ticker),['SHAZ']);assert.ok(p.review.impact[0].proposed>p.review.impact[0].base);
+  assert.equal(W.processQueue({items:[p]},fixture,local).attempted,0);
+  const out=W.processQueue({items:[{...p,status:'accepted'}]},fixture,local);
+  assert.deepEqual(out.errors,[]);const after=out.data.companies.find(c=>c.tk==='SHAZ');
+  assert.equal(after.signedRegionFactor,1);assert.equal(after.signedRate,shaz.signedRate);
+  assert.equal(JSON.stringify(fixture),before);
+  const changed=clone(fixture);changed.companies.find(c=>c.tk==='SHAZ').sites[0].region='us';
+  assert.throws(()=>A.validateProposal(p,{...local,data:changed}),/source inputs changed/);
+  const mixed=clone(fixture);mixed.companies.find(c=>c.tk==='SHAZ').sites.push({...shaz.sites[0],region:'us'});
+  assert.throws(()=>A.validateChanges(mixed,[change]),/unambiguous/);
+  const empty=clone(fixture);empty.companies.find(c=>c.tk==='SHAZ').contractedPct=0;
+  assert.throws(()=>A.validateChanges(empty,[change]),/unambiguous/);
+  assert.throws(()=>A.validateChanges(fixture,[{...change,ticker:'APLD'}]),/owner model/);
+  assert.throws(()=>A.validateChanges(fixture,[{...change,current:0.8}]),/stale/);
+  for(const proposed of [0,-1,2.1])assert.throws(()=>A.validateChanges(fixture,[{...change,proposed}]),/range/);
+  assert.throws(()=>A.validateChanges(fixture,[{...change,path:['missingScalar']}]),/allow-list/);
+});
 group('numerical approval cannot introduce hard economic failures hidden from structural checks',()=>{
   const c=data.companies.find(c=>c.tk==='NBIS');
   // A large share count forces an out-of-money series irrespective of a later

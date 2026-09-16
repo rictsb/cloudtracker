@@ -25,7 +25,48 @@ async function harness(snapshot = fixture, opts = {}) {
   assert.ok(updates, 'load settled');
   return { html: ctx.AssumptionView.render(), calls, ctx, handlers };
 }
+async function verifyProposalRefresh() {
+  const calls = [], badges = [], handlers = {}, pendingFetches = [];
+  let refreshes = 0;
+  const ctx = vm.createContext({ console, URL, URLSearchParams, Date,
+    location: { pathname: '/approvals', search: '' },
+    localStorage: { getItem: () => '' },
+    document: { addEventListener: (type, fn) => { handlers[type] = fn; }, getElementById: () => null },
+    fetch: (url, init = {}) => { calls.push({ url, ...init }); return new Promise(resolve => pendingFetches.push(resolve)); },
+    CVApp: { refresh: () => { refreshes++; }, setPending: n => badges.push(n) }
+  });
+  ctx.window = ctx;
+  vm.runInContext(fs.readFileSync(__dirname + '/approvals-view.js', 'utf8'), ctx);
+  const clickRefresh = () => handlers.click({ target: { closest: sel => sel === '[data-ap-refresh]' ? {} : null } });
+  const settle = async (queue, ok = true) => { pendingFetches.shift()({ ok, json: async () => clone(queue) }); await new Promise(r => setTimeout(r, 0)); };
+  assert.match(ctx.ApprovalsView.render(), /data-ap-refresh="1" disabled aria-busy="true"/);
+  clickRefresh(); ctx.ApprovalsView.render();
+  assert.equal(calls.length, 1, 'initial load and repeated render cannot fetch duplicates');
+  const note = { id: 'hive', tk: 'HIVE', kind: 'log', title: 'Existing research note', status: 'pending', created: '2026-09-16' };
+  await settle({ asOf: '2026-09-16', items: [note] });
+  assert.match(ctx.ApprovalsView.render(), /Refresh proposals<\/button>/);
+  assert.equal(badges.at(-1), 1);
+  clickRefresh(); clickRefresh();
+  assert.equal(calls.length, 2, 'concurrent refresh clicks share one load');
+  assert.match(ctx.ApprovalsView.render(), /Refreshing proposals/);
+  const numerical = { id: 'shaz', tk: 'SHAZ', kind: 'assumption', title: 'Normalize signed geography', status: 'pending', created: '2026-09-16',
+    changes: [{ scope: 'company', ticker: 'SHAZ', path: ['signedRegionFactor'], current: .7, proposed: 1, unit: 'multiplier' }], review: { impact: [] } };
+  await settle({ asOf: '2026-09-16', items: [note, numerical] });
+  const html = ctx.ApprovalsView.render();
+  assert.match(html, /prop-shaz/); assert.match(html, /Signed-contract geography multiplier/);
+  assert.match(html, /data-ap-id="shaz" disabled>Approve numerical change/);
+  assert.equal(badges.at(-1), 2, 'refresh updates the pending badge from the new queue');
+  clickRefresh(); await settle(null, false);
+  assert.match(ctx.ApprovalsView.render(), /Could not load the proposal queue/);
+  assert.ok(!ctx.ApprovalsView.render().includes('id="prop-shaz"'), 'failed refresh cannot present stale proposals as fresh');
+  clickRefresh(); await settle({ asOf: '2026-09-16', items: [] });
+  assert.match(ctx.ApprovalsView.render(), /Nothing waiting/);
+  assert.equal(badges.at(-1), 0);
+  assert.ok(refreshes >= 4, 'each completed load refreshes the view');
+  assert.ok(calls.every(c => c.url === 'proposals.json' && c.cache === 'no-store' && !c.method), 'refresh only performs uncached published-queue GETs');
+}
 (async () => {
+  await verifyProposalRefresh();
   const live = await harness(fixture, { token: true });
   assert.ok(live.html.includes('-40.0%') && !live.html.includes('-4,000'), 'percentage units retained');
   assert.ok(live.html.includes('&lt;script&gt;') && !live.html.includes('<script>bad'), 'finding content escaped');
@@ -64,5 +105,5 @@ async function harness(snapshot = fixture, opts = {}) {
   assert.throws(() => recordResearch({ items: [proposal] }, fixture, ready), /linked/);
   assert.equal(recordResearch({ items: [{ ...proposal, findingIds: [finding.id] }] }, fixture, ready).assumptionResearch.findings[finding.id].proposalId, 'change-1');
   assert.throws(() => recordResearch(q, fixture, { ...input, findings: [{ ...input.findings[0], sources: [{ label: 'Bad', url: 'javascript:alert(1)' }] }] }), /public/);
-  console.log('Assumption view and research recording: freshness, units, safety, coverage and read-only loading passed.');
+  console.log('Assumption view and research recording: freshness, units, safety, coverage, proposal refresh and read-only loading passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });

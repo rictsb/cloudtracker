@@ -5,7 +5,7 @@ const crypto = require('node:crypto');
 const { createEngine } = require('./engine.js');
 const { assemble } = require('./onepager.js');
 const OP = require('./onepager-core.js');
-const RULE_VERSION = '1.1.0';
+const RULE_VERSION = '1.1.1';
 const FAMILIES = ['capacity', 'economics', 'funding'];
 const RESEARCH = new Set(['IREN', 'CRWV', 'NBIS']);
 const finite = Number.isFinite;
@@ -142,14 +142,14 @@ function analyze(data, marks = {}, options = {}) {
       if (complete) {
         const bookRate = sum(contracts, x => x.totalRevM) / sum(contracts, x => x.mw * x.termYrs);
         const signedSites = asset.segs.filter(v => v.contractedEV > 0);
-        const factors = [...new Set(signedSites.map(v => engine.REGION[v.s.region]?.rateMul || 1))];
+        const factors = [...new Set(signedSites.map(v => engine.signedRegionFactorOf(c, v.s)))];
         if (Math.abs(c.signedRate / bookRate - 1) <= .10 && factors.length === 1 && factors[0] < .90) add(c, 'economics', 'signed-rate-region', 'review', 'Contract-derived pricing receives another regional discount',
           'The company-specific signed rate agrees with its own effective contract registry, yet the engine applies a further geography factor to that signed income. If those contracts already reflect local pricing, the same regional effect may be counted twice. Registry estimates remain estimates.',
           `${fmt(sum(contracts, x => x.totalRevM))}m contract value / ${fmt(sum(contracts, x => x.mw * x.termYrs))} MW-years = ${fmt(bookRate)}m/MW-year; model signed rate ${fmt(c.signedRate)} × regional factor ${fmt(factors[0])} = ${fmt(c.signedRate * factors[0])}m/MW-year before contract-share weighting.`,
           [...evidence, { label: `Model signed-rate basis: ${c.basis?.signedRate || 'not supplied'}` }],
           'Confirm whether signedRate is already company-local or a US-equivalent anchor. Reconcile signed dollars before applying geography; keep any regional assumptions for unsigned business separate.',
           { contracts, signedRate: c.signedRate, sites: c.sites, factors, basis: c.basis?.signedRate },
-          assetScenario(c, { company: { signedRate: c.signedRate / factors[0] } }, 'Neutralize the additional regional discount on signed income only'));
+          assetScenario(c, { company: { signedRegionFactor: 1 } }, 'Neutralize the additional regional discount on signed income only'));
       }
     }
     if (c.stake && positive(c.stake.pct)) {
@@ -179,6 +179,11 @@ function analyze(data, marks = {}, options = {}) {
       tests: Object.fromEntries(FAMILIES.map(f => [f, { status: 'consistent', summary: 'Arithmetic checks passed within available model coverage.' }])), metrics: {} };
     companies.push(row);
     const src = [evidence(`Model inputs: data.json → companies.${c.tk}; filing verification ${c.verified?.filings || (typeof c.verified === 'string' ? c.verified : 'not dated here')}`)];
+    if (Object.hasOwn(c, 'signedRegionFactor') && (c.model !== 'owner' || !finite(c.signedRegionFactor) || c.signedRegionFactor <= 0 || c.signedRegionFactor > 2)) add(c, 'economics', 'signed-region-factor', 'error', 'Signed-income geography factor is invalid',
+      'An explicit signed-income geography factor is supported only for an owner model and must be a finite number greater than zero and no greater than two. Without a valid override the calculator retains the site-region factor.',
+      `Model ${c.model}; supplied factor ${String(c.signedRegionFactor)}.`, src,
+      'Correct or remove the override before approving a numerical change; retain the reported signed rate and the separate unsigned geography assumption.',
+      { model: c.model, signedRegionFactor: c.signedRegionFactor });
     if (holdco) for (const f of ['capacity', 'economics']) row.tests[f] = { status: 'not-applicable', summary: 'Holding-company assets require a look-through claim analysis; GPU/MW parity does not apply.' };
     const badCapital = ['shares', 'price'].filter(k => !positive(c[k]));
     for (const k of ['netDebt', 'plannedRaise', 'committedDebt', 'seniorClaims']) if ((k === 'netDebt' || c[k] != null) && (!finite(c[k]) || (k !== 'netDebt' && c[k] < 0))) badCapital.push(k);
