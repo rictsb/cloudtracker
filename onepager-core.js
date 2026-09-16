@@ -85,15 +85,15 @@
   function sensitivities(L, CAPQ, F, ARRC, PX) {
     const base = waterfall(L, CAPQ, F, ARRC).ps;
     const S = [
-      ['Base', {}],
+      [F.MULT_PREMIUM ? 'Default · DCF multiple +' + F.MULT_PREMIUM + '×' : 'Base', {}],
       ['Debt at 8% instead of ' + Math.round(F.RATE * 100) + '%', { rate: .08 }],
       ['Equity raised at today’s price, not $' + F.EQ_PX, { eqPx: PX }],
       ['Prepayments kept as funding, never credited back', { noCredit: true }],
       ['Converts carried as debt, not converted', { convAsDebt: true }],
       ['Restricted cash excluded', { noRestricted: true }],
       ['Revenue −10% every quarter', { revScale: .9 }],
-      ['Multiple −0.5×', { mult: F.MULT - .5 }],
-      ['Multiple +0.5×', { mult: F.MULT + .5 }],
+      [F.MULT_PREMIUM === .5 ? 'DCF-derived multiple · no premium' : 'Multiple −0.5×', { mult: F.MULT - .5 }],
+      [F.MULT_PREMIUM ? 'Multiple +0.5× above default' : 'Multiple +0.5×', { mult: F.MULT + .5 }],
     ];
     return S.map(([n, o]) => { const r = waterfall(L, CAPQ, F, ARRC, o); return { name: n, ps: r.ps, delta: r.ps - base, nd: r.ndc, sh: r.dil, eq: r.eqTot }; });
   }

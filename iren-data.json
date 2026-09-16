@@ -1280,12 +1280,17 @@
       ]
     ],
     "stepsMax": 20,
-    "footer": "$5.07m normalized cash per earning IT MW; 3.81× revenue from the shared DCF.",
+    "footer": "$5.07m normalized cash per earning IT MW; 3.81× revenue from the shared DCF. The house default adds 0.5×, giving 4.31× revenue.",
     "regimes": [
       [
-        "Modeled contract / spot mix",
-        3.812417198023443,
+        "House default (+0.5×)",
+        4.312417198023443,
         "base"
+      ],
+      [
+        "DCF-derived multiple (no premium)",
+        3.812417198023443,
+        ""
       ],
       [
         "Contracted, 3-yr renewal regime",
@@ -1303,8 +1308,8 @@
         ""
       ]
     ],
-    "regimesMax": 4,
-    "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
+    "regimesMax": 5,
+    "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime. Default valuation includes a separate 0.5× house premium above the DCF-derived multiple. All sensitivities vary around this default; the no-premium case remains available."
   },
   "finance": {
     "M": 0.65,
@@ -1597,7 +1602,9 @@
       "spotShell": 0.5
     },
     "basis": "debt 7% (converts 0.9% cash coupon, 10-K Note 23), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $55 plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, capped calls, 10-K Notes 17/23) convert at the model 2030 price; restricted cash $1.724bn counted; prepaid forwards 14.5m shares returned Dec-29/Jun-30",
-    "MULT": 3.812417198023443
+    "MULT": 4.312417198023443,
+    "DCF_MULT": 3.812417198023443,
+    "MULT_PREMIUM": 0.5
   },
   "labels": {},
   "rr": 56.826,
@@ -1676,10 +1683,11 @@
     ],
     [
       "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
-      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption."
+      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption.",
+      "<b>House default, 15 September 2026.</b> Add 0.5× to the DCF-derived EV/revenue multiple for IREN. This is a valuation judgment, separate from operating cash-flow assumptions. The no-premium case remains available; other sensitivities are measured from the new default."
     ],
     [
-      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
+      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs, plus the separately disclosed 0.5× house premium.",
       "<b>Separate clocks.</b> Model policy revision is dated 15 September 2026; financial disclosures and reference share prices retain their original dates. This is not a refreshed market quotation."
     ]
   ],
@@ -2723,65 +2731,65 @@
       {
         "id": "base",
         "label": "Shared pricing base",
-        "valuePerShare": 122.93886466253481,
+        "valuePerShare": 146.83439127805482,
         "runRateBn": 56.826,
-        "multiple": 3.812417198023443,
+        "multiple": 4.312417198023443,
         "note": "Existing book, same-hardware renewals and shared new-business pricing."
       },
       {
         "id": "newdown",
         "label": "New prices −20%",
-        "valuePerShare": 70.31347511502138,
+        "valuePerShare": 90.60178022692763,
         "runRateBn": 47.8104,
-        "multiple": 3.4072058097439335,
+        "multiple": 3.9072058097439335,
         "note": "Shared new-business prices 20% lower; original existing-book rates protected."
       },
       {
         "id": "newup",
         "label": "New prices +20%",
-        "valuePerShare": 175.13003331779188,
+        "valuePerShare": 202.8166504509427,
         "runRateBn": 65.8416,
-        "multiple": 4.109197083369308,
+        "multiple": 4.609197083369308,
         "note": "Shared new-business prices 20% higher; original existing-book rates protected."
       },
       {
         "id": "renewdown",
         "label": "Renewal prices −20%",
-        "valuePerShare": 118.52435098499551,
+        "valuePerShare": 142.07943804207528,
         "runRateBn": 56.016400000000004,
-        "multiple": 3.78120761185202,
+        "multiple": 4.28120761185202,
         "note": "Same hardware renews at 80% of its original all-in price."
       },
       {
         "id": "retention",
         "label": "80% renewal retention",
-        "valuePerShare": 126.50638872268182,
+        "valuePerShare": 150.74269129936783,
         "runRateBn": 57.6364,
-        "multiple": 3.826569761200017,
+        "multiple": 4.326569761200017,
         "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions."
       },
       {
         "id": "longterm",
         "label": "Five-year new business, lower price",
-        "valuePerShare": 81.42751568729996,
+        "valuePerShare": 102.47976646493768,
         "runRateBn": 50.0644,
-        "multiple": 3.3919061266880792,
+        "multiple": 3.8919061266880792,
         "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years."
       },
       {
         "id": "slip",
         "label": "Delivery slips two quarters",
-        "valuePerShare": 88.66609217220079,
+        "valuePerShare": 109.34409491746223,
         "runRateBn": 49.1744,
-        "multiple": 3.8217581493738444,
+        "multiple": 4.321758149373844,
         "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar."
       },
       {
         "id": "joint",
         "label": "Joint downside",
-        "valuePerShare": 31.745186003917034,
+        "valuePerShare": 45.580141433731015,
         "runRateBn": 38.9964,
-        "multiple": 3.282843667488769,
+        "multiple": 3.782843667488769,
         "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar."
       }
     ]

@@ -20,6 +20,30 @@ for (const tk of names) {
   models[tk].base = assemble(company, data.researchPricing);
 }
 
+check('IREN house default adds one half-turn without changing its operating or funding inputs', () => {
+  const { company, base } = models.IREN, original = JSON.stringify(company), unadjusted = copy(company);
+  delete unadjusted.page.valuationMultiplePremium;
+  const underlying = assemble(unadjusted, data.researchPricing);
+  const previousHigh = OP.waterfall(underlying.L, underlying.CAPQ, underlying.F, underlying.ARRC, { mult: underlying.F.MULT + .5 });
+  near(base.F.MULT, underlying.F.MULT + .5, 'default premium');
+  near(base.F.DCF_MULT, underlying.F.MULT, 'unadjusted multiple retained');
+  near(base.W.ps, previousHigh.ps, 'default equals original higher-multiple sensitivity');
+  assert.deepEqual(base.L, underlying.L, 'operating ledger unchanged');
+  assert.deepEqual(base.CAPQ, underlying.CAPQ, 'capex unchanged');
+  near(base.W.eqTot, underlying.W.eqTot, 'funding unchanged');
+  near(base.W.last.nd, underlying.W.last.nd, 'net debt unchanged');
+  const sensitivities = OP.sensitivities(base.L, base.CAPQ, base.F, base.ARRC, company.page.px.v);
+  near(sensitivities[7].ps, underlying.W.ps, 'no-premium sensitivity restores original value');
+  assert.match(sensitivities[0].name, /Default/);
+  assert.match(sensitivities[7].name, /no premium/);
+  near(assemble(company, data.researchPricing).W.ps, previousHigh.ps, 'reassembly does not compound premium');
+  assert.equal(JSON.stringify(company), original, 'source remains immutable');
+  for (const tk of ['CRWV', 'NBIS']) {
+    assert.equal(models[tk].company.page.valuationMultiplePremium, undefined, tk + ' has no premium');
+    near(models[tk].base.F.MULT, OP.steadyMultiple(models[tk].base.pg.steady.inputs).blend, tk + ' retains DCF-derived multiple');
+  }
+});
+
 /* Reconstruct credit dates using published receipts and explicit schedule fields, without
    the calculator's array indexes or liability output. The map uses absolute calendar quarters. */
 function credits(model) {

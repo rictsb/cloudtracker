@@ -6197,10 +6197,11 @@
      ],
      [
       "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
-      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption."
+      "<b>Equipment life is separate.</b> A contract expiry does not remove the GPUs or install a newer generation. Existing equipment renews at its own rate; the long-run maintenance reserve is a house assumption.",
+      "<b>House default, 15 September 2026.</b> Add 0.5× to the DCF-derived EV/revenue multiple for IREN. This is a valuation judgment, separate from operating cash-flow assumptions. The no-premium case remains available; other sensitivities are measured from the new default."
      ],
      [
-      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
+      "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs, plus the separately disclosed 0.5× house premium.",
       "<b>Separate clocks.</b> Model policy revision is dated 15 September 2026; financial disclosures and reference share prices retain their original dates. This is not a refreshed market quotation."
      ]
     ],
@@ -6763,7 +6764,8 @@
      "spotW": 0.025,
      "H": 60,
      "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
-    }
+    },
+    "valuationMultiplePremium": 0.5
    }
   },
   {

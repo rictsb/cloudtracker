@@ -82,7 +82,7 @@
     return { tk, name: P.name, rev, costs, refresh: refreshC, shell, tax, keep, own,
       roic: keep / own, payback: own / (rev * 0.85),
       ebitdaMW: steps['Cash profit'] != null ? steps['Cash profit'] : rev * P.finance.M,
-      capex, ebitda30, mw30, commissionedMW: horizon[2], mwNow: t0row[3], rr: P.rr, mult: P.finance.MULT,
+      capex, ebitda30, mw30, commissionedMW: horizon[2], mwNow: t0row[3], rr: P.rr, mult: P.finance.MULT, multiplePremium: P.finance.MULT_PREMIUM || 0,
       ps: W.ps, px: P.px.v, dil: W.dil, nd: W.last.nd, liab: W.liab, owed: W.last.owed,
       eq: W.eqTot, year: P.year, cashMargin: P.finance.M, normalizedMargin: st.inputs?.M, pricing: P.pricing || null, asOf: P.asOf, modelAsOf: P.pricing?.asOf || P.modelAsOf,
       evArr: (P.evArr.sh * P.px.v / 1000 + P.evArr.nd) / P.evArr.arr,
@@ -199,12 +199,12 @@
       ['Capital the company itself puts into one MW', c => '$' + f0(c.own) + 'm'],
       ['Cash return on that capital', c => (c.roic * 100).toFixed(0) + '%'],
       ['Payback on own capex, after direct costs', c => f1(c.payback) + ' yr'],
-      ['$1 of run-rate is worth', c => c.mult.toFixed(2) + '×']
+      ['$1 of run-rate is worth', c => c.mult.toFixed(2) + '×' + (c.multiplePremium ? '<small>Includes +' + c.multiplePremium.toFixed(1) + '× house premium</small>' : '')]
     ];
     const econRows = econDefs.map(([k, fn]) => '<tr><td class="k">' + k + '</td>' + NAMES.map(tk => '<td>' + fn(CO[tk]) + '</td>').join('') + '</tr>');
     const legend = '<div class="chart-legend">' + NAMES.map(tk => '<span><i class="swatch" style="background:' + color(tk) + '"></i>' + esc(short(tk)) + '</span>').join('') + '<span class="muted">one IT MW · one year · $m</span></div>';
     const perMW = '<section class="report-section">' + heading('03', 'What one megawatt keeps', heroKeep) +
-      '<div class="panel report-section"><div class="chart-header"><div><h2>One megawatt, one year</h2><p>Each report’s steady-state basis · $m per earning IT MW-year</p></div></div><div class="chart cmp-chart">' + perMWChart() + '</div>' + legend + '<div class="chart-note">The modeled horizon revenue yield feeds each company’s operating-cost, replacement and shell assumptions. Tenant rent remains inside running costs; owned buildings remain in the shell line. The resulting multiple is recomputed from those economics.</div></div>' +
+      '<div class="panel report-section"><div class="chart-header"><div><h2>One megawatt, one year</h2><p>Each report’s steady-state basis · $m per earning IT MW-year</p></div></div><div class="chart cmp-chart">' + perMWChart() + '</div>' + legend + '<div class="chart-note">The modeled horizon revenue yield feeds each company’s operating-cost, replacement and shell assumptions. Tenant rent remains inside running costs; owned buildings remain in the shell line. The DCF-derived multiple is recomputed from those economics. Any separate house premium is disclosed in the table below.</div></div>' +
       '<div class="panel">' + cmpTable('cmp-econ', 'One megawatt', tk => '<th scope="col"><a href="' + esc(reportHref(tk)) + '">' + esc(short(tk)) + '</a></th>', econRows, 'Per-megawatt economics, recomputed from each report’s data file. Rows link the column heads to the full reports.') + '</div></section>' + notes(CMP.notes && CMP.notes.economics);
 
     /* card 3 — the 2030 picture (compare.js:57-59, 11 horizon rows + the value bars) */

@@ -76,7 +76,10 @@ function assemble(c, market, scenario) {
     const last = QQ.at(-1), inputs = { ...pg.steadyInputs, rev: last.rev * 4 / last.itMW,
       term: delta.newTermYears ?? pg.steadyInputs.term, spotShare: (last.rev - last.revC) / last.rev };
     const multiples = OP.steadyMultiple(inputs);
-    F.MULT = multiples.blend;
+    const premium = pg.valuationMultiplePremium ?? 0;
+    if (!Number.isFinite(premium) || premium < 0) throw new Error(c.tk + ': invalid valuation multiple premium');
+    F.MULT = multiples.blend + premium;
+    if (premium) { F.DCF_MULT = multiples.blend; F.MULT_PREMIUM = premium; }
     const eb = inputs.rev * inputs.M, shell = inputs.shell / inputs.shellLife;
     const reserve = inputs.gpu * inputs.swap / inputs.life + inputs.gpu * inputs.fail;
     const tax = Math.max(0, eb - inputs.gpu * inputs.swap / inputs.life - shell) * inputs.tax;
@@ -86,11 +89,11 @@ function assemble(c, market, scenario) {
       ['Cash profit',r2(eb),'sub'],['GPU refresh + spares',-r2(reserve),'d'],
       ...(shell ? [['Shell 25-yr',-r2(shell),'d']] : []),['Tax 21%',-r2(tax),'d'],['Owner keeps',r2(keep),'total']],
       stepsMax: Math.ceil(inputs.rev / 2) * 2,
-      footer: '$'+keep.toFixed(2)+'m normalized cash per earning IT MW; '+F.MULT.toFixed(2)+'× revenue from the shared DCF.',
-      regimes: [['Modeled contract / spot mix',multiples.blend,'base'],['Contracted, '+inputs.term+'-yr renewal regime',multiples.contracted,''],
+      footer: '$'+keep.toFixed(2)+'m normalized cash per earning IT MW; '+multiples.blend.toFixed(2)+'× revenue from the shared DCF.'+(premium?' The house default adds '+premium.toFixed(1)+'×, giving '+F.MULT.toFixed(2)+'× revenue.':''),
+      regimes: [...(premium?[['House default (+'+premium.toFixed(1)+'×)',F.MULT,'base'],['DCF-derived multiple (no premium)',multiples.blend,'']]:[['Modeled contract / spot mix',multiples.blend,'base']]),['Contracted, '+inputs.term+'-yr renewal regime',multiples.contracted,''],
         ['Spot only, '+Math.round((inputs.W+inputs.spotW)*100)+'% discount',multiples.spot,''],
         ['Flat post-horizon pricing',OP.steadyMultiple({...inputs,g:0}).blend,'']],
-      regimesMax: Math.ceil(Math.max(multiples.blend,multiples.contracted,multiples.spot)),basis:inputs.basis };
+      regimesMax: Math.ceil(Math.max(F.MULT,multiples.contracted,multiples.spot)),basis:inputs.basis+(premium?' Default valuation includes a separate '+premium.toFixed(1)+'× house premium above the DCF-derived multiple. All sensitivities vary around this default; the no-premium case remains available.':'') };
   }
   const W = OP.waterfall(L, CAPQ, F, ARRC);
   const last = QQ.at(-1);
