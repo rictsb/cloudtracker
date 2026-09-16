@@ -2,6 +2,8 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Comparison header simplified (2026-09-15, owner-directed): remove the CRWV / IREN / NBIS Research shortcut beside Model assumptions.
+
 - IREN default valuation (2026-09-15, owner-directed): promote the +0.5× EV/revenue case into the canonical house default (currently 4.3124× and $146.83/share), disclose the premium separately from the DCF-derived multiple, and retain the no-premium case in sensitivities. Report, quarterly ledger and comparison values share the new default; operating forecasts and the other companies' defaults are unchanged.
 
 - Research power checkpoints (2026-09-15, owner-directed): all three campus timelines now include a compact year-end table of cumulative energised IT power, gross power and earning IT capacity, drawn from the canonical Q4 ledger including the opening fleet.
