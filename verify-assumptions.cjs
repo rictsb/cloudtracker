@@ -16,6 +16,33 @@ const run = (d = data, marks = snapshot) => analyze(d, marks, opts);
 const finding = (r, id) => r.findings.find(f => f.id === id);
 const company = (d, tk) => d.companies.find(c => c.tk === tk);
 const near = (a, b) => assert.ok(Number.isFinite(a) && Math.abs(a - b) < 1e-8, `${a} ≠ ${b}`);
+const staticFixture = (model = 'owner') => ({
+  config: copy(data.config),
+  companies: [{ tk: 'TEST', name: 'Synthetic review fixture', model, tier: 'proven',
+    shares: 100, sharesReported: 100, price: 10, netDebt: 0, plannedRaise: 0,
+    contractedPct: 0, termYrs: 7, signedRate: 10, legacyEV: 0,
+    sites: model === 'holdco' ? [] : [{ n: 'Synthetic 100 MW site', mw: 100,
+      owned: true, region: 'mid', yr: 2026, mo: 1, prov: 'disclosed' }] }]
+});
+const fixtureMarks = { prices: { TEST: 10, HELD: 10 }, priceDates: { TEST: '2026-09-16', HELD: '2026-09-16' }, btc: 60000, eth: 3000 };
+const staticValue = (d, tk = 'TEST', marks = fixtureMarks, configure = () => {}) => {
+  const e = createEngine(d);
+  Object.assign(e.ctx, copy(marks)); configure(e);
+  return e.value(company(d, tk));
+};
+const assertImpact = (f, original, alternative) => {
+  assert.ok(f, 'expected a material review finding');
+  assert.equal(f.severity, 'review');
+  near(f.impact.base, original.target); near(f.impact.alternative, alternative.target);
+  near(f.impact.delta, alternative.target - original.target);
+  near(f.impact.pct, (alternative.target - original.target) / Math.abs(original.target) * 100);
+  assert.equal(f.impact.pctUnit, 'percent');
+  assert.equal(f.scenario.kind, 'asset');
+  near(f.alternativeMetrics.enterpriseValueM, alternative.ev);
+  near(f.alternativeMetrics.claimsM, alternative.claims);
+  near(f.alternativeMetrics.fundedSharesM, alternative.fundedShares);
+  near(f.alternativeMetrics.newSharesM, alternative.newShares);
+};
 let passes = 0, failures = 0;
 function check(label, fn) { try { fn(); passes++; console.log('PASS: ' + label); } catch (e) { failures++; console.error('FAIL: ' + label + '\n  ' + e.stack); } }
 const base = run();
@@ -30,13 +57,22 @@ check('All names are covered without passing missing operating or funding eviden
     if (c.model === 'holdco') { assert.equal(c.tests.capacity.status, 'not-applicable'); assert.equal(c.tests.economics.status, 'not-applicable'); }
     else assert.notEqual(c.tests.capacity.status, 'consistent');
   }
-  assert.ok(base.findings.length < 120, 'grouped company findings, not a flag for every tranche');
+  for (const c of base.companies) assert.ok(base.findings.filter(f => f.ticker === c.ticker).length <= 20,
+    `${c.ticker}: grouped economic questions, not a finding for every tranche`);
 });
 
 check('Analysis leaves recursively frozen model and quote inputs untouched', () => {
   const d = freeze(copy(data)), p = freeze(copy(snapshot)), before = JSON.stringify([d, p]);
   run(d, p);
   assert.equal(JSON.stringify([d, p]), before);
+});
+
+check('Analysis never freezes or mutates mutable caller data while running asset stresses', () => {
+  const d = copy(data), p = copy(snapshot), before = JSON.stringify([d, p]);
+  const objects = x => x && typeof x === 'object' ? [x, ...Object.values(x).flatMap(objects)] : [];
+  run(d, p);
+  assert.equal(JSON.stringify([d, p]), before);
+  assert.ok(objects([d, p]).every(x => !Object.isFrozen(x)), 'caller objects remain mutable');
 });
 
 check('Fresh quote wrappers and raw marks select the same per-company price', () => {
@@ -225,6 +261,113 @@ check('Reviews remain visible in the matrix while coverage gaps remain explicit'
     assert.equal(r.tests.economics.status, 'review');
     assert.match(r.tests.economics.summary, /coverage gaps/);
   }
+});
+
+check('Unsigned realization reviews require both concentration and material canonical value impact', () => {
+  const d = staticFixture(), id = 'TEST:economics:unsigned-realization';
+  const original = staticValue(d), alternative = staticValue(d, 'TEST', fixtureMarks, e => { e.A.leaseUp *= .8; });
+  assertImpact(finding(run(d, fixtureMarks), id), original, alternative);
+  near(alternative.target / original.target, .8);
+  // Large net cash makes the same operating stress immaterial to common value.
+  d.companies[0].netDebt = -100000;
+  assert.equal(finding(run(d, fixtureMarks), id), undefined);
+  // A signed lease has no unsigned realization exposure.
+  const signed = staticFixture('landlord');
+  signed.companies[0].sites[0].leaseId = 'signed';
+  signed.companies[0].leases = [{ id: 'signed', effective: true, mw: 100, noiPerMWyr: 1, termYrs: 20 }];
+  assert.equal(finding(run(signed, fixtureMarks), id), undefined);
+});
+
+check('Static issuance stress uses the reference mark and only flags substantial new shares', () => {
+  const d = staticFixture(), c = d.companies[0], id = 'TEST:funding:issuance-price';
+  c.price = 100; // The frozen market mark is $10, not this fallback value.
+  c.plannedRaise = 260;
+  const f = finding(run(d, fixtureMarks), id);
+  assertImpact(f, staticValue(d), staticValue(d, 'TEST', fixtureMarks, e => { e.ctx.prices.TEST *= .8; }));
+  near(staticValue(d).newShares, 26);
+  c.plannedRaise = 250;
+  assert.equal(finding(run(d, fixtureMarks), id), undefined, '25% boundary is not greater than 25%');
+  c.plannedRaise = 0;
+  assert.equal(finding(run(d, fixtureMarks), id), undefined);
+});
+
+check('Modeled shares below a reported count request reconciliation rather than asserting an error', () => {
+  const d = staticFixture(), c = d.companies[0], id = 'TEST:funding:shares-below-reported';
+  c.shares = 98.9;
+  const changed = copy(d); changed.companies[0].shares = c.sharesReported;
+  assertImpact(finding(run(d, fixtureMarks), id), staticValue(d), staticValue(changed));
+  c.shares = 99;
+  assert.equal(finding(run(d, fixtureMarks), id), undefined);
+  delete c.sharesReported;
+  const result = run(d, fixtureMarks);
+  assert.equal(finding(result, id), undefined);
+  assert.notEqual(result.companies[0].tests.funding.status, 'consistent', 'missing reported shares cannot establish complete funding coverage');
+});
+
+check('Signed lease capitalization stress raises the cap floor through the canonical engine', () => {
+  const d = staticFixture('landlord'), c = d.companies[0], id = 'TEST:economics:lease-capitalization';
+  c.sites[0].leaseId = 'signed';
+  c.leases = [{ id: 'signed', effective: true, mw: 100, noiPerMWyr: 1, termYrs: 10, grossTotalM: 1200 }];
+  const original = staticValue(d), changed = copy(d);
+  changed.config.constants.capFloor += 1;
+  const f = finding(run(d, fixtureMarks), id);
+  assertImpact(f, original, staticValue(changed));
+  assert.ok(original.segs[0].gross > c.leases[0].mw * c.leases[0].noiPerMWyr * c.leases[0].termYrs,
+    'fixture capitalization exceeds undiscounted original-term NOI');
+  assert.match(f.explanation + ' ' + f.calculation + ' ' + f.evidence.map(x => x.label).join(' '), /term|finite|renewal/i);
+  d.config.dials.capRate = 20;
+  assert.equal(finding(run(d, fixtureMarks), id), undefined, 'floor is not binding and term exceeds capitalization duration');
+});
+
+check('Book-derived regional pricing review requires a complete matching owner book', () => {
+  const d = staticFixture(), c = d.companies[0], id = 'TEST:economics:signed-rate-region';
+  c.contractedPct = 100;
+  c.sites[0].region = 'au';
+  c.contracts = [{ id: 'book', effective: true, totalRevM: 5000, termYrs: 5, mw: 100 }];
+  const changed = copy(d); changed.companies[0].signedRate /= d.config.regions.au.rateMul;
+  assertImpact(finding(run(d, fixtureMarks), id), staticValue(d), staticValue(changed));
+  c.sites[0].region = 'mid';
+  assert.equal(finding(run(d, fixtureMarks), id), undefined, 'a US region factor of one is not a second discount');
+  c.sites[0].region = 'au';
+  c.contracts.push({ id: 'incomplete', effective: true, totalRevM: 100, termYrs: 5 });
+  let result = run(d, fixtureMarks);
+  assert.equal(finding(result, id), undefined, 'partial book must not be treated as a complete matching rate');
+  assert.ok(result.findings.some(f => f.ticker === 'TEST' && f.family === 'economics' && f.severity === 'gap'));
+  c.contracts = [];
+  assert.equal(finding(run(d, fixtureMarks), id), undefined, 'missing book cannot corroborate signed rate');
+});
+
+check('Look-through concentration and claims request ownership evidence without inventing an NCI error', () => {
+  const d = staticFixture('holdco'), c = d.companies[0];
+  const held = { ...copy(c), tk: 'HELD', name: 'Synthetic held company', btc: 1000, plannedRaise: 200 };
+  d.companies.push(held); c.stake = { tk: 'HELD', pct: .6 }; c.seniorClaims = 1;
+  const id = 'TEST:funding:lookthrough-ownership', result = run(d, fixtureMarks), f = finding(result, id);
+  assert.ok(f); assert.equal(f.severity, 'review');
+  assert.match(f.calculation + ' ' + f.explanation, /shares|ownership/i);
+  assert.match(f.calculation + ' ' + f.explanation, /claim/i);
+  assert.match(f.calculation, /60m held before future issuance/);
+  assert.match(f.calculation, /stake value 30m/);
+  assert.equal(result.companies.find(x => x.ticker === 'TEST').tests.economics.status, 'not-applicable');
+  assert.equal(result.companies.find(x => x.ticker === 'TEST').tests.funding.status, 'review');
+  assert.ok(!result.findings.some(x => x.ticker === 'TEST' && x.severity === 'error'));
+  // Stake is below 25% of assets, but a claim above 25% of its value still needs review.
+  c.legacyEV = 200; c.seniorClaims = 10;
+  assert.equal(finding(run(d, fixtureMarks), id).severity, 'review');
+  c.seniorClaims = 0;
+  assert.equal(finding(run(d, fixtureMarks), id), undefined);
+});
+
+check('Crypto concentration is an eligible treasury stress with unchanged senior claims', () => {
+  const d = staticFixture('holdco'), c = d.companies[0], id = 'TEST:funding:treasury-claims';
+  c.btc = 1000; c.legacyEV = 40; c.netDebt = 10; c.seniorClaims = 5;
+  const original = staticValue(d), alternative = staticValue(d, 'TEST', fixtureMarks, e => { e.ctx.btc *= .8; e.ctx.eth *= .8; });
+  const result = run(d, fixtureMarks), f = finding(result, id);
+  assertImpact(f, original, alternative);
+  near(alternative.claims, original.claims);
+  assert.equal(result.companies[0].tests.economics.status, 'not-applicable');
+  assert.ok(!result.findings.some(x => x.severity === 'error'));
+  c.legacyEV = 60;
+  assert.equal(finding(run(d, fixtureMarks), id), undefined, '50% is not a greater-than-50% concentration');
 });
 
 console.log(`${passes} assumption review groups passed; ${failures} failed.`);

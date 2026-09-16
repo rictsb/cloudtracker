@@ -5,7 +5,7 @@ const crypto = require('node:crypto');
 const { createEngine } = require('./engine.js');
 const { assemble } = require('./onepager.js');
 const OP = require('./onepager-core.js');
-const RULE_VERSION = '1.0.0';
+const RULE_VERSION = '1.1.0';
 const FAMILIES = ['capacity', 'economics', 'funding'];
 const RESEARCH = new Set(['IREN', 'CRWV', 'NBIS']);
 const finite = Number.isFinite;
@@ -42,7 +42,9 @@ function analyze(data, marks = {}, options = {}) {
     purpose: 'Economic consistency and evidence review; findings never edit model assumptions.',
     rules: RULE_VERSION,
     thresholds: { peerRevenueDeviation: .25, capacityIdleShare: .20, priceSensitivityGap: .10,
-      gpuDensityPerITMW: [10, 2000], annualRevenueMillionPerITMW: [.05, 100] },
+      gpuDensityPerITMW: [10, 2000], annualRevenueMillionPerITMW: [.05, 100],
+      unsignedEVShare: .50, unsignedRealizationEffect: .10, newSharesToExisting: .25,
+      signedFloorEVShare: .20, signedResidualEVShare: .10, stakeEVShare: .25, claimToStake: .25, treasuryEVShare: .50 },
     thresholdBasis: 'Broad house triage bands, not empirical market limits or price targets. Deviations request investigation.',
     peerScope: 'Research GPU operators only, with matched modeled earning IT MW; landlord NOI and holding-company assets are separate.',
     quarterBasis: 'Annualized quarter revenue = quarter revenue × 4. Earning IT MW is the model-effective billable capacity used for that quarter; it is not a separately observed December exit capacity. Ramp fractions are quarter-step approximations.',
@@ -70,6 +72,103 @@ function analyze(data, marks = {}, options = {}) {
     const alt = OP.waterfall(m.L, m.CAPQ, m.F, m.ARRC, opts);
     return { impact: impact(m.W.ps, alt.ps, label, 'USD per share; canonical research funding waterfall, operating forecast unchanged.'),
       scenario: { kind: 'waterfall', options: opts, label }, alternativeMetrics: { debtBn: alt.last.nd, sharesM: alt.dil, equityRaisedBn: alt.eqTot } };
+  }
+  function assetScenario(c, changes, label) {
+    try {
+      const d = clone(data), company = d.companies.find(x => x.tk === c.tk);
+      Object.assign(company, changes.company || {});
+      Object.assign(d.config.constants, changes.constants || {});
+      const e = createEngine(d);
+      Object.assign(e.ctx, clone(engine.ctx));
+      Object.assign(e.A, changes.dials || {});
+      if (changes.price != null) e.ctx.prices[c.tk] = changes.price;
+      for (const key of ['btc', 'eth']) if (changes[key] != null) e.ctx[key] = changes[key];
+      const before = engine.value(c), after = e.value(company);
+      return { impact: impact(before.target, after.target, label, 'USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast.'),
+        scenario: { kind: 'asset', changes, label }, alternativeMetrics: { enterpriseValueM: after.ev, claimsM: after.claims, fundedSharesM: after.fundedShares, newSharesM: after.newShares } };
+    } catch (error) { return { scenarioError: error.message }; }
+  }
+  function reviewAssetAssumptions(c, row, asset, src) {
+    if (!asset || !positive(asset.ev) || !finite(asset.target)) return;
+    const evidence = [...src, { label: 'Canonical asset engine: current site values, claims and funded share count; no new filing verification is implied.' }];
+    row.metrics.unsignedEVShare = asset.expectedEV / asset.ev;
+    row.metrics.assetClaimsM = asset.claims;
+    row.metrics.assetEnterpriseValueM = asset.ev;
+    if (asset.expectedEV / asset.ev >= policy.thresholds.unsignedEVShare) {
+      const current = engine.leaseUp(), stressed = current * .8;
+      const s = assetScenario(c, { dials: { leaseUp: stressed } }, `Unsigned realization ${fmt(current * 100)}% → ${fmt(stressed * 100)}%`);
+      if (Math.abs(s.impact?.pct || 0) >= policy.thresholds.unsignedRealizationEffect * 100) add(c, 'economics', 'unsigned-realization', 'review', 'Unsigned business drives a material part of equity value',
+        'The model capitalizes capacity without executed contracts at the assumed lease-up or spot realization. Existing provenance haircuts already apply, but they do not establish customer demand or realization at the assumed rate. This measures the exposure without requiring a quarterly model.',
+        `${fmt(asset.expectedEV)}m unsigned site EV / ${fmt(asset.ev)}m total modeled EV = ${fmt(asset.expectedEV / asset.ev * 100)}%; realization ${fmt(current * 100)}% → ${fmt(stressed * 100)}% with signed business unchanged.`, evidence,
+        'Underwrite tenant conversion, price, utilization and timing for the unsigned blocks. Explain the assumed realization and distinguish secured power from customer-accepted capacity.',
+        { sites: c.sites, contractedPct: c.contractedPct, signedRate: c.signedRate, termYrs: c.termYrs, config: data.config, asset }, s);
+    }
+    if (positive(c.shares) && asset.newShares / c.shares > policy.thresholds.newSharesToExisting) {
+      const price = engine.priceOf(c);
+      const s = assetScenario(c, { price: price * .8 }, 'Same planned equity dollars issued at a 20% lower price');
+      add(c, 'funding', 'issuance-price', 'review', 'Planned issuance is large relative to existing shares',
+        'The asset model issues the entire planned equity raise at the reference share price. A large raise makes the execution price and financing sequence material. This is an issuance-price sensitivity; it does not claim that the share price will fall.',
+        `${fmt(asset.equityRaise)}m planned raise / $${fmt(price)} = ${fmt(asset.newShares)}m new shares, ${fmt(asset.newShares / c.shares * 100)}% of ${fmt(c.shares)}m existing shares; funded denominator ${fmt(asset.fundedShares)}m.`,
+        [...evidence, { label: `Model funding basis: ${c.basis?.plannedRaise || 'not supplied'}` }],
+        'Reconcile committed versus assumed funding, issue prices, staged draws and potential convertible dilution; test whether funding access persists at lower share prices.',
+        { shares: c.shares, plannedRaise: c.plannedRaise, dilutionStress: engine.A.dilutionStress, price, basis: c.basis?.plannedRaise }, s);
+    }
+    if (positive(c.sharesReported) && positive(c.shares) && c.shares < c.sharesReported * .99) add(c, 'funding', 'shares-below-reported', 'review', 'Valuation share count is below the reported share count',
+      'The model denominator is smaller than its own reported-share field. Dates, repurchases, share classes or a stale field could explain the difference; until reconciled, the per-share result needs review.',
+      `${fmt(c.shares)}m model shares vs ${fmt(c.sharesReported)}m reported shares (${fmt((c.shares / c.sharesReported - 1) * 100)}%).`,
+      [...evidence, { label: `Model share basis: ${c.basis?.shares || 'not supplied'}` }],
+      'Reconcile basic outstanding, diluted awards, if-converted debt and as-of dates. Do not select a denominator merely because it raises or lowers value.',
+      { shares: c.shares, sharesReported: c.sharesReported, basis: c.basis?.shares },
+      assetScenario(c, { company: { shares: c.sharesReported } }, 'Use the reported-share field before modeled new issuance'));
+    if (c.model === 'landlord') {
+      const signed = asset.segs.filter(v => engine.leaseOf(c, v.s));
+      const floor = (engine.CONST.capFloor || 6.5) / 100;
+      const boundEV = sum(signed.filter(v => Math.abs(v.calc.cap - floor) < 1e-9), v => v.contractedEV);
+      const tail = signed.map(v => { const l = engine.leaseOf(c, v.s); return { name: v.s.n, lease: l.id, years: l.termYrs,
+        value: v.contractedEV, initialTermNOI: v.s.mw * l.noiPerMWyr * l.termYrs }; })
+        .filter(v => positive(v.initialTermNOI) && v.value > v.initialTermNOI * 1.05);
+      const excess = sum(tail, v => v.value - v.initialTermNOI);
+      if (boundEV / asset.ev >= policy.thresholds.signedFloorEVShare || excess / asset.ev >= policy.thresholds.signedResidualEVShare) add(c, 'economics', 'lease-capitalization', 'review', 'Signed lease value depends on the cap-rate floor and residual value',
+        'Signed leases capitalize term-average NOI and classify the full asset value as contracted. The cap-rate floor can erase tenant-tier differences. Where that value exceeds even undiscounted full initial-term NOI, it necessarily relies on residual property value or future use beyond the initial lease; that residual is not signed rent.',
+        `${fmt(boundEV)}m signed EV is pinned to the ${fmt(floor * 100)}% floor (${fmt(boundEV / asset.ev * 100)}% of total EV). ` + (tail.length ? tail.slice(0, 4).map(v => `${v.name}: ${fmt(v.value)}m contracted EV vs ${fmt(v.initialTermNOI)}m undiscounted full ${fmt(v.years)}-year NOI`).join('; ') + (tail.length > 4 ? `; ${tail.length - 4} further blocks` : '') : 'No mapped block exceeds its full initial-term NOI in this comparison; credit and capitalization assumptions still require justification.'),
+        [...evidence, { label: `Model landlord tier ${c.tier}; base cap ${fmt(engine.A.capRate)}%, tier spread ${fmt(engine.tierOf(c).capSpread)} points, signed compression ${fmt(engine.CONST.capCompress * 100)}%, floor ${fmt(floor * 100)}%.` }],
+        'Separate contracted cash flows from post-expiry residual value. Justify cap rates by tenant credit, contract duration, termination rights and asset quality; review whether the signed-only floor label overstates contractual protection.',
+        { leases: c.leases, sites: c.sites, tier: c.tier, config: data.config, boundEV, tail },
+        assetScenario(c, { constants: { capFloor: floor * 100 + 1 } }, `Cap-rate floor ${fmt(floor * 100)}% → ${fmt(floor * 100 + 1)}%; no change to lease NOI`));
+    }
+    if (c.model === 'owner' && positive(c.signedRate)) {
+      const contracts = (c.contracts || []).filter(x => x.effective !== false);
+      const complete = contracts.length && contracts.every(x => positive(x.totalRevM) && positive(x.mw) && positive(x.termYrs));
+      if (complete) {
+        const bookRate = sum(contracts, x => x.totalRevM) / sum(contracts, x => x.mw * x.termYrs);
+        const signedSites = asset.segs.filter(v => v.contractedEV > 0);
+        const factors = [...new Set(signedSites.map(v => engine.REGION[v.s.region]?.rateMul || 1))];
+        if (Math.abs(c.signedRate / bookRate - 1) <= .10 && factors.length === 1 && factors[0] < .90) add(c, 'economics', 'signed-rate-region', 'review', 'Contract-derived pricing receives another regional discount',
+          'The company-specific signed rate agrees with its own effective contract registry, yet the engine applies a further geography factor to that signed income. If those contracts already reflect local pricing, the same regional effect may be counted twice. Registry estimates remain estimates.',
+          `${fmt(sum(contracts, x => x.totalRevM))}m contract value / ${fmt(sum(contracts, x => x.mw * x.termYrs))} MW-years = ${fmt(bookRate)}m/MW-year; model signed rate ${fmt(c.signedRate)} × regional factor ${fmt(factors[0])} = ${fmt(c.signedRate * factors[0])}m/MW-year before contract-share weighting.`,
+          [...evidence, { label: `Model signed-rate basis: ${c.basis?.signedRate || 'not supplied'}` }],
+          'Confirm whether signedRate is already company-local or a US-equivalent anchor. Reconcile signed dollars before applying geography; keep any regional assumptions for unsigned business separate.',
+          { contracts, signedRate: c.signedRate, sites: c.sites, factors, basis: c.basis?.signedRate },
+          assetScenario(c, { company: { signedRate: c.signedRate / factors[0] } }, 'Neutralize the additional regional discount on signed income only'));
+      }
+    }
+    if (c.stake && positive(c.stake.pct)) {
+      const investee = data.companies.find(x => x.tk === c.stake.tk), stakeValue = engine.stakeValue(c);
+      if (investee && positive(stakeValue) && (stakeValue / asset.ev >= policy.thresholds.stakeEVShare || (c.seniorClaims || 0) / stakeValue >= policy.thresholds.claimToStake)) add(c, 'funding', 'lookthrough-ownership', 'review', 'Subsidiary ownership and parent claims need a common share basis',
+        'The asset engine applies an ownership percentage to the subsidiary and then applies its planned dilution. It also deducts parent-level claims. Held shares, the subsidiary denominator and the entity scope of minority claims must reconcile; otherwise ownership can be diluted twice or minority interests deducted twice. Separate preferred claims can remain valid.',
+        `${fmt(c.stake.pct * 100)}% × ${fmt(investee.shares)}m ${investee.tk} model shares implies ${fmt(c.stake.pct * investee.shares)}m held before future issuance; stake value ${fmt(stakeValue)}m; separate parent senior claims ${fmt(c.seniorClaims || 0)}m.`,
+        [...evidence, { label: `Model ownership basis: ${c.basis?.stake || 'not supplied'}` }, { label: `Model senior-claim basis: ${c.basis?.seniorClaims || 'not supplied'}` }],
+        'Reconcile documented shares held to the current subsidiary basic/diluted denominator. Map each claim to its legal entity; reconcile proportionate valuation with consolidated-value-less-minority treatment before proposing a change.',
+        { stake: c.stake, investeeShares: investee.shares, investeeRaise: investee.plannedRaise, seniorClaims: c.seniorClaims, basis: c.basis, stakeValue });
+    }
+    const treasury = (c.btc || 0) * engine.btcPrice() / 1e6 + (c.eth || 0) * engine.ethPrice() / 1e6;
+    if (treasury / asset.ev > policy.thresholds.treasuryEVShare) add(c, 'funding', 'treasury-claims', 'review', 'Treasury assets dominate; associated claims need reconciliation',
+      'Most modeled enterprise value comes from marked crypto holdings. Free versus pledged units, purchase obligations, derivatives and related-party balances must use a consistent valuation perimeter. A correct multiplication of coins by price does not settle which assets and claims belong to common equity.',
+      `${fmt(treasury)}m marked treasury / ${fmt(asset.ev)}m modeled EV = ${fmt(treasury / asset.ev * 100)}%; ${fmt(c.btc || 0)} BTC, ${fmt(c.eth || 0)} ETH; total deducted claims ${fmt(asset.claims)}m.`,
+      [...evidence, { label: `Model treasury basis: ${c.basis?.btc || c.basis?.eth || 'not supplied'}` }, { label: `Model debt perimeter: ${c.basis?.netDebt || 'not supplied'}` }],
+      'Reconcile unencumbered holdings, pledged collateral, associated liabilities and related-party eliminations using the same date and legal-entity perimeter.',
+      { btc: c.btc, eth: c.eth, btcPrice: engine.btcPrice(), ethPrice: engine.ethPrice(), claims: asset.claims, basis: c.basis },
+      assetScenario(c, { btc: engine.btcPrice() * .8, eth: engine.ethPrice() * .8 }, 'Crypto reference prices 20% lower; asset and claim perimeter unchanged'));
   }
   const commonSources = (data.researchPricing?.sources || []).map(s => typeof s === 'string' ? evidence('Referenced pricing source; forward curve remains a house assumption', s) : evidence(`${s.title || 'Pricing source'}: ${s.supports || 'Context for the house pricing assumption'}`, s.url));
 
@@ -109,6 +208,7 @@ function analyze(data, marks = {}, options = {}) {
       row.metrics.siteCapacityBasis = 'Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.';
     }
     if (!research) {
+      reviewAssetAssumptions(c, row, asset, src);
       if (!holdco) {
         add(c, 'capacity', 'quarterly-bridge-missing', 'gap', 'Energized-to-earning capacity is not modeled quarterly',
           'The site register records credited economic MW and commissioning dates, but has no separate installed, accepted and billable-capacity ledger. This cannot pass the revenue-per-earning-MW test.',

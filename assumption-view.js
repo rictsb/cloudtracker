@@ -3,7 +3,7 @@
 (function (root) {
   'use strict';
   const API = 'https://api.github.com/repos/rictsb/cloudtracker/contents/';
-  const FAMILIES = { capacity: 'Capacity → revenue', economics: 'Equipment economics', funding: 'Funding → equity' };
+  const FAMILIES = { capacity: 'Capacity → revenue', economics: 'Operating economics', funding: 'Funding → equity' };
   const LABELS = { consistent: 'Reconciled', review: 'Review', error: 'Error', insufficient: 'Incomplete', 'not-applicable': 'Not applicable' };
   let snapshot = null, queue = null, state = 'idle', error = '', sourceMatch = null, quoteMatch = null, loadedAt = 0;
   let filter = { ticker: '', family: '', severity: 'actionable', showKept: false }, busy = false;
