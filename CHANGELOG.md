@@ -2,6 +2,8 @@
 
 The single record of what changed. One line per change, newest first.
 
+- SHAZ review proposal (2026-09-16): queued the requested geography-policy correction, signed-income multiplier 0.7→1.0, with a canonical $113.37→$143.21/share impact preview and primary-source limitations. Pending owner approval; adopted rate, contract book and valuation inputs are unchanged.
+
 - Assumption approval support (2026-09-16, owner-directed): permits an explicit signed-income geography multiplier with a validated implicit current value; keeps all existing valuations unchanged until an owner approves a proposal. Adds a refresh control and plain-English input label to Approvals.
 
 - Assumption Review breadth (2026-09-16, owner-directed): adds numerical scrutiny of the asset-model universe: unsigned demand, equity-issuance sensitivity, share counts, landlord cap-rate/residual assumptions, signed-price geography, subsidiary ownership and treasury claims. Tests now distinguish missing detail from material assumptions that can already be challenged. Financial inputs and portfolio records are unchanged.

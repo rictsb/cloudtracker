@@ -1,5 +1,5 @@
 {
-  "ruleVersion": "1.1.0",
+  "ruleVersion": "1.1.1",
   "asOf": "2026-09-16",
   "summary": {
     "companies": 22,
@@ -889,7 +889,7 @@
         "sharesM": 448.66402707295566,
         "equityRaisedBn": 19.235500000000002
       },
-      "fingerprint": "524f14fac62205857f9ff1beb9b4ee0fbebd35cd13355f7c5b2da318f6a55727"
+      "fingerprint": "86ee1eeb6f4ab787b547650a51132c769e6ee79db7ffbc0aa70203d57347db9b"
     },
     {
       "id": "CRWV:economics:terminal-price-growth",
@@ -926,7 +926,7 @@
         "sharesM": 862.823134608949,
         "equityRaisedBn": 20.169
       },
-      "fingerprint": "9ec7b313a34b2269f69170d434105741210f7ebac9ad954328a43aaafadf8db0"
+      "fingerprint": "6bf0e24ed97e04ca6248eefec60ac72b680ca4b791d31d514185db509b2b2d83"
     },
     {
       "id": "IREN:economics:terminal-price-growth",
@@ -963,7 +963,7 @@
         "sharesM": 746.7570239195902,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "b5626d392b228d18085130d7ca375d0f4f462605ad883c0a1a96c1c0e8216acd"
+      "fingerprint": "205f5d67c0cdd23a3ff10eb5d996e3b8dfa9151e0c00fd3ccf50a4224e1305b5"
     },
     {
       "id": "SHAZ:economics:signed-rate-region",
@@ -998,7 +998,7 @@
         "kind": "asset",
         "changes": {
           "company": {
-            "signedRate": 24.000000000000004
+            "signedRegionFactor": 1
           }
         },
         "label": "Neutralize the additional regional discount on signed income only"
@@ -1009,7 +1009,7 @@
         "fundedSharesM": 59.242301943198804,
         "newSharesM": 9.342301943198803
       },
-      "fingerprint": "18fba7b3a76c061407ee43e82ed2ef87d5edae3dd333094a72477b4f6f1dca0d"
+      "fingerprint": "15589553d0cb18c7c3e4d0e62c4ee3994f8eeffd0a74c934082c7c7a63eee4ff"
     },
     {
       "id": "KEEL:economics:unsigned-realization",
@@ -1052,7 +1052,7 @@
         "fundedSharesM": 617.57,
         "newSharesM": 0
       },
-      "fingerprint": "bbb23e2dd22f5cff496054a34c61aeae2aa4fe4b7a091523169c1492670cb75c"
+      "fingerprint": "a2a457a1bb92a4baa77177c97a432042e257ffc477fc49de2bd3fb64e4c70477"
     },
     {
       "id": "SLNH:economics:unsigned-realization",
@@ -1095,7 +1095,7 @@
         "fundedSharesM": 896.7639130434784,
         "newSharesM": 652.1739130434784
       },
-      "fingerprint": "d12af75d89fcc530e38fd2eac3ca53908ab0c4dd284c2961fec80a1c4038c1f0"
+      "fingerprint": "3b1a070bb9926787afa387273c19852afe64d879d0fe048dfa65c9e147380349"
     },
     {
       "id": "NUAI:economics:unsigned-realization",
@@ -1138,7 +1138,7 @@
         "fundedSharesM": 140.18235294117648,
         "newSharesM": 18.38235294117647
       },
-      "fingerprint": "ef60f30763e367b133f005865cb68dd032bad7ac4617abcf51a309afd13918eb"
+      "fingerprint": "c7886a5be419137e02c2ccef6f8d85cfcc52cff50d022d6fd9ae3db3e33b2a01"
     },
     {
       "id": "MARA:economics:unsigned-realization",
@@ -1181,7 +1181,7 @@
         "fundedSharesM": 515.8165714285715,
         "newSharesM": 133.92857142857144
       },
-      "fingerprint": "33c15ba1476204760054fbd7f6976500a3cfbfd4b31dbde62ac7f15839994be0"
+      "fingerprint": "0163b1682922b0c3dabdfcdd0d6334ea8f8cf6d90bdad8e03c69c391266c9a0b"
     },
     {
       "id": "HIVE:economics:unsigned-realization",
@@ -1224,7 +1224,7 @@
         "fundedSharesM": 420.7649152542373,
         "newSharesM": 101.69491525423729
       },
-      "fingerprint": "1ac1bd8ed97c016fe53b314a66ffb9dc87bc5b4e4b9be87255b0a95446a43914"
+      "fingerprint": "6a04105f0360b81c6f8c8822dae100fac8312a0f83d89c2a890dc2b3acaf1fd3"
     },
     {
       "id": "FRMI:economics:unsigned-realization",
@@ -1267,7 +1267,7 @@
         "fundedSharesM": 1347.5707070707072,
         "newSharesM": 707.070707070707
       },
-      "fingerprint": "47a4791eabb5260d19f06d50395b4be8b9f88f2f850d42b9921d46ad9a92f814"
+      "fingerprint": "cac51226778678c8c260d68de478b9d484e91551fde6051624dbe5c4ac794680"
     },
     {
       "id": "SLNH:funding:issuance-price",
@@ -1311,7 +1311,7 @@
         "fundedSharesM": 1059.807391304348,
         "newSharesM": 815.2173913043479
       },
-      "fingerprint": "8d447846b7970927281fcd6514e831d6803c31960fdf8c9015d0c1282e1281e1"
+      "fingerprint": "a1a368a23938cd8b3564d3bf95ab5d180a135ecd8da1e50a1eb89b123e644892"
     },
     {
       "id": "CIFR:economics:unsigned-realization",
@@ -1354,7 +1354,7 @@
         "fundedSharesM": 548.8382526564344,
         "newSharesM": 70.83825265643446
       },
-      "fingerprint": "263e7ffb497ec27c3b8149628f8042413ca90ce96fd09cf644e7de80c709dc49"
+      "fingerprint": "57cb1755e07d506ed8c4eca2cf9923becdd4b6e023d6e3bd2833a428b805f3d9"
     },
     {
       "id": "APLD:economics:lease-capitalization",
@@ -1400,7 +1400,7 @@
         "fundedSharesM": 420.81632653061223,
         "newSharesM": 40.816326530612244
       },
-      "fingerprint": "27980ab752fd7df03a11f529b1654f042f616062d64a401dc040fdf05be21515"
+      "fingerprint": "21884461e7734f011ed92cdaf6f3a1c685c6058d8c22fb7fa5bf2860ca9c9a24"
     },
     {
       "id": "BTDR:economics:unsigned-realization",
@@ -1443,7 +1443,7 @@
         "fundedSharesM": 440.9090909090909,
         "newSharesM": 90.9090909090909
       },
-      "fingerprint": "528e327272622c942f35491fb0d4e8799cf285d6900016a121635fb847583855"
+      "fingerprint": "c493812e14654e4536d7b6cb65681e1b499a28a5662932e93cb8168eb627488e"
     },
     {
       "id": "RIOT:economics:unsigned-realization",
@@ -1486,7 +1486,7 @@
         "fundedSharesM": 434.1713729308666,
         "newSharesM": 12.171372930866601
       },
-      "fingerprint": "d86c1b48b90c0310df823697d3f3183a03941bab6f2c1a336c729b0b2a8e84f1"
+      "fingerprint": "dadad7dbc84f878726a3f7e1eb4ea7c89ccfefeb9ef738dfbdcc6d624d28e2ac"
     },
     {
       "id": "ABTC:funding:treasury-claims",
@@ -1534,7 +1534,7 @@
         "fundedSharesM": 72.82,
         "newSharesM": 0
       },
-      "fingerprint": "5806c5eb53cbe9d8ec621708be5934af8625089e52c9076fde258b4e432c51c8"
+      "fingerprint": "80b2b6e6f30b38c45e96c1bbcaf94db6e89ad11621f7496d6fe166b0d5975e49"
     },
     {
       "id": "CLSK:economics:unsigned-realization",
@@ -1577,7 +1577,7 @@
         "fundedSharesM": 350.16602316602314,
         "newSharesM": 23.166023166023166
       },
-      "fingerprint": "3e9e09424e612e06f22abef0f793cf424f1240442bf674a59e0a74a94d46f51c"
+      "fingerprint": "0f59f944675e0fc196d734c3c28e4fc6b2cf14de0f65661f165f8401741d94ef"
     },
     {
       "id": "HUT:economics:lease-capitalization",
@@ -1623,7 +1623,7 @@
         "fundedSharesM": 139.14780998038788,
         "newSharesM": 5.447809980387884
       },
-      "fingerprint": "b4c2fed40125de0905370d2e5f24358220a829a22c8198e0cfc6d81bc4015946"
+      "fingerprint": "55c2e692e11a60c154920efe33a5c608199d64dc444ec99f2d99153cd3c981ef"
     },
     {
       "id": "FRMI:funding:issuance-price",
@@ -1667,7 +1667,7 @@
         "fundedSharesM": 1524.3383838383838,
         "newSharesM": 883.8383838383837
       },
-      "fingerprint": "b67be08d289273ebacfad9ef7d495c5daca1e9deac508694deb6d91af893e235"
+      "fingerprint": "ec977b8c69fe08de03b81bcd90433f96d4065d78a4fd4d2e8bc9e73887466d9f"
     },
     {
       "id": "CORZ:economics:lease-capitalization",
@@ -1713,7 +1713,7 @@
         "fundedSharesM": 474.0877192982456,
         "newSharesM": 35.08771929824561
       },
-      "fingerprint": "9a776c3091730bebfea5c759f0505e7e91083138db078637bb1195ac97399e54"
+      "fingerprint": "87db0d889c8323fd498bc194927e57a3b174ffa64480fcae0425b94cc5ff5421"
     },
     {
       "id": "GLXY:economics:lease-capitalization",
@@ -1759,7 +1759,7 @@
         "fundedSharesM": 485.75067750677505,
         "newSharesM": 67.75067750677506
       },
-      "fingerprint": "e1f41c14ded027b96a2d8957cb7531d52b77f7478dee99d79fa2dc5d266b6011"
+      "fingerprint": "60e4981d57c580848b700d4582a946dde68977d8557457f5f0334703e0bd9b07"
     },
     {
       "id": "WULF:economics:lease-capitalization",
@@ -1805,7 +1805,7 @@
         "fundedSharesM": 783.1900718484651,
         "newSharesM": 39.19007184846505
       },
-      "fingerprint": "5e86c9660922ad2a32565848e3646bc6d8b9362f38367f107d9469f4e210fafc"
+      "fingerprint": "ed19509abd2ae9211b839f60eccf99fe6e19d95bf35e4bafa0ee86e3e2bf04c2"
     },
     {
       "id": "IREN:funding:equity-issuance-price",
@@ -1845,7 +1845,7 @@
         "sharesM": 829.2673171575569,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "ebfecb022d9a8b52c574a112a948655c7546b84bd98112b75e7ada9d5fa69f8a"
+      "fingerprint": "b2de96cf126585859d8f50e9e7fc5f2f4f87b260e85701f097de84eeaa2924b3"
     },
     {
       "id": "WYFI:economics:lease-capitalization",
@@ -1891,7 +1891,7 @@
         "fundedSharesM": 53.65675984027382,
         "newSharesM": 8.556759840273816
       },
-      "fingerprint": "64d1c09151dfaa4ec824692212668a0a8ffe1c0aeb67ad09fa6f08f81bb4dddf"
+      "fingerprint": "44e26c5207012a7f4207b017f021805314b6c7a5a9a3294087a31415bbb9610f"
     },
     {
       "id": "NBIS:economics:spot-price-step",
@@ -1928,7 +1928,7 @@
         "debtBn": 74.45318087410034,
         "sharesM": 466.77505291414326
       },
-      "fingerprint": "90f95e8806d77177878e29288558037fb5a85ad4d647551af56b73e0071890a7"
+      "fingerprint": "1839f20ad88dfdca0d0106772b37bb5644d48a3b636d89e1a0b96b1973f4731d"
     },
     {
       "id": "MARA:funding:issuance-price",
@@ -1972,7 +1972,7 @@
         "fundedSharesM": 549.2987142857143,
         "newSharesM": 167.4107142857143
       },
-      "fingerprint": "6dda078e3c9391154e2d6212287a0538b7790f9ce9201064fc523d61e82ccc3f"
+      "fingerprint": "59bd28ae1914976fdcee8ddd19bac49a6916c30f925860bcffc2fbe3bf6768fc"
     },
     {
       "id": "HIVE:funding:issuance-price",
@@ -2016,7 +2016,7 @@
         "fundedSharesM": 446.1886440677966,
         "newSharesM": 127.1186440677966
       },
-      "fingerprint": "92027d0fafdbdb0b6d8ac12df64626b78791eb093f122f101e2a712aac24becf"
+      "fingerprint": "22984d3b19d370fc0866db618078865b1731dd0ff6525c82b0a4b395e8416fe4"
     },
     {
       "id": "CIFR:economics:lease-capitalization",
@@ -2062,7 +2062,7 @@
         "fundedSharesM": 548.8382526564344,
         "newSharesM": 70.83825265643446
       },
-      "fingerprint": "6bf730187cb6bcf4b81225b8b99b1af038d1ea6be2f0ebd7ddb7ffe8e606619f"
+      "fingerprint": "a4c8cfe4073d4ec5ab34a1481efd4e549a25b8455d17924046d07727619995be"
     },
     {
       "id": "IREN:economics:spot-price-step",
@@ -2099,7 +2099,7 @@
         "debtBn": 43.13567909356949,
         "sharesM": 755.1077510638229
       },
-      "fingerprint": "6ce82ea1efab0bdd1d940eb140667392dd141a184272931ef467a011ef12e498"
+      "fingerprint": "fefb4bb8dbc877486205d203014b83674381a5ce191f73ed59bfa59ba3592033"
     },
     {
       "id": "BTDR:funding:issuance-price",
@@ -2143,7 +2143,7 @@
         "fundedSharesM": 463.6363636363636,
         "newSharesM": 113.63636363636363
       },
-      "fingerprint": "4ac1287712a5fd1434e4b172d499906c9288f9f708331b090e30dc4aa48d9289"
+      "fingerprint": "c33fcff7b207def405c63f04e1ba61946fce021747fe4e4f07b3f9731255cc87"
     },
     {
       "id": "CLSK:economics:lease-capitalization",
@@ -2189,7 +2189,7 @@
         "fundedSharesM": 350.16602316602314,
         "newSharesM": 23.166023166023166
       },
-      "fingerprint": "dd0a373d8b664d799c369b4261a12e9acc356741ec54160e3fffc8e8d5a4d02b"
+      "fingerprint": "c71c00472a9d7bbda17c8124f80700c265bbdaf863fdc43a6f9b88c55d2cc73f"
     },
     {
       "id": "BTBT:funding:shares-below-reported",
@@ -2235,7 +2235,7 @@
         "fundedSharesM": 362,
         "newSharesM": 0
       },
-      "fingerprint": "785fb95e5b01a35135bf8a7a5b4da9a79d3ce6a89c7ad6febe04e2958fc86606"
+      "fingerprint": "1ca8613e8e069d8fb4ee27abfb80cd00a6d37fa77650549955ff8e453ab0ba7a"
     },
     {
       "id": "BTDR:economics:lease-capitalization",
@@ -2281,7 +2281,7 @@
         "fundedSharesM": 440.9090909090909,
         "newSharesM": 90.9090909090909
       },
-      "fingerprint": "319ed19d0d17f1682e80f37979f44d1c5da84047a7b1aa4d46dad48d96105a37"
+      "fingerprint": "a7f043d26f833befe40c1eba440fc5b495fb11bc2e9d89a83988dacad7962c11"
     },
     {
       "id": "FRMI:economics:lease-capitalization",
@@ -2327,7 +2327,7 @@
         "fundedSharesM": 1347.5707070707072,
         "newSharesM": 707.070707070707
       },
-      "fingerprint": "23a1efd5afd44c2e6e8e01d5dbf0f8f276e2203fed62b0f8d06d39515765d3ef"
+      "fingerprint": "15ad62525496583362e0ee55c1cd7dbee6fb2301b25c64a09e8d9ff4100c2ea3"
     },
     {
       "id": "RIOT:economics:lease-capitalization",
@@ -2373,7 +2373,7 @@
         "fundedSharesM": 434.1713729308666,
         "newSharesM": 12.171372930866601
       },
-      "fingerprint": "5cfd40b8363a1e6fb17ad97895bb8fc70f79ab49ddb7a6da4f5cf6c5e81142a3"
+      "fingerprint": "26fdaec937ea242f5bef858d3748dc5ff81dcffbcfe6cd276cc824dd95e9e331"
     },
     {
       "id": "CRWV:economics:spot-price-step",
@@ -2410,7 +2410,7 @@
         "debtBn": 32.62186189757179,
         "sharesM": 872.720949244658
       },
-      "fingerprint": "8fec40af6c755c8fad7b9d9ebeb28881d6d0d820e400474df88b7d4035f4dcb1"
+      "fingerprint": "c21b2535e3a843a704aab7d70f8bf7d7a3149fb42e230792997b4938a60c8b27"
     },
     {
       "id": "NBIS:funding:equity-issuance-price",
@@ -2450,7 +2450,7 @@
         "sharesM": 478.57015145356877,
         "equityRaisedBn": 19.235500000000002
       },
-      "fingerprint": "a875f56000fac459593bcd9dbc6ab3da5153d35c56600dd6f510c23633e5ee15"
+      "fingerprint": "dc350d29658ccc9b45bb8d562f0380952640b9319f305ca4335b5c2d70fe6ad4"
     },
     {
       "id": "NBIS:economics:renewal-spot-substitution",
@@ -2491,7 +2491,7 @@
         "debtBn": 72.52831341923161,
         "sharesM": 466.7547686554887
       },
-      "fingerprint": "d1a1e022ec4b78697bd40719484ac8ede39446593ae68d8a9e5ff01ab89e2e97"
+      "fingerprint": "84b7df8f1011f3b7fc4f693a82d75ad3c3571badde03bec1a3f47015dbb4b117"
     },
     {
       "id": "NBIS:economics:same-hardware-renewal",
@@ -2541,7 +2541,7 @@
         "debtBn": 72.52831341923161,
         "sharesM": 466.7547686554887
       },
-      "fingerprint": "0f154776df1a8d6fa5c3c6fbf146ca55f90e2c66602d76abf70fa0f451290564"
+      "fingerprint": "a2ee14f75c3788c9b1ab827e8d0d6bc8b6848737a4973276b80619dd386c6bb6"
     },
     {
       "id": "IREN:funding:restricted-cash",
@@ -2578,7 +2578,7 @@
         "sharesM": 755.7887877315644,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "5543f418f4ee26bb20692b0d1b8c226f7b04cba1f9d3f631759623f71ba5a989"
+      "fingerprint": "77f470bcbf8304cbf2ea6c34d497563d30c22ed9346d287270ee63a95e633369"
     },
     {
       "id": "CRWV:economics:renewal-spot-substitution",
@@ -2619,7 +2619,7 @@
         "debtBn": 33.7637366562228,
         "sharesM": 873.4071913689802
       },
-      "fingerprint": "0845e74c98608474d63cdd4efffe531241b22df29460cb928ca171306767d4fd"
+      "fingerprint": "8118c0c86f5c87c786319c853ef120694ef3a5a00933bfb467e3169dadb45503"
     },
     {
       "id": "CRWV:economics:same-hardware-renewal",
@@ -2669,7 +2669,7 @@
         "debtBn": 33.7637366562228,
         "sharesM": 873.4071913689802
       },
-      "fingerprint": "35dd8ec3944491a7aea95046fe3b07af711dc3dc4614f4c03fefa49152a4256c"
+      "fingerprint": "2a167aef5fac530ce3f052ae8825a0a142d9c47b89d84cbee8a1ac2b87bc0c12"
     },
     {
       "id": "NBIS:funding:restricted-cash",
@@ -2706,7 +2706,7 @@
         "sharesM": 466.7547686554887,
         "equityRaisedBn": 19.235500000000002
       },
-      "fingerprint": "c94795695c0f4f34c52fd661b412a1809b105410b2418442c82f886344387128"
+      "fingerprint": "5d1700d135eefa854eab3cb77348d868fb02955e4ded2b7aca7eca8482b6ebed"
     },
     {
       "id": "CRWV:funding:restricted-cash",
@@ -2743,7 +2743,7 @@
         "sharesM": 873.1574259858795,
         "equityRaisedBn": 20.169
       },
-      "fingerprint": "3234c3bda4ad79103f66494a6d63ab208d8747f7f0965d47a56f7d78ce02e424"
+      "fingerprint": "16a916c545c329f335dc1dd63d0491607fb27f874ebbcc7ea8aa7093a1694d01"
     },
     {
       "id": "IREN:economics:renewal-spot-substitution",
@@ -2784,7 +2784,7 @@
         "debtBn": 43.15026972725399,
         "sharesM": 756.002276283034
       },
-      "fingerprint": "24865caf849715d05412faae78a500dcb206e6051a9d0beccc746c551fdf74b0"
+      "fingerprint": "cec1d16c43b94e7a4b0fea9d4ea85da426f2085ad3ce920c526fb5e3f2222ccc"
     },
     {
       "id": "IREN:economics:same-hardware-renewal",
@@ -2834,7 +2834,7 @@
         "debtBn": 43.15026972725399,
         "sharesM": 756.002276283034
       },
-      "fingerprint": "9b6c65f36da2be11db897a097702bfbd1e6d53b280059d6b86edb693a1772480"
+      "fingerprint": "bee14f6c6bfb8d81ce08627d4e7eeb50a92050f1e871559970534c368bbef576"
     },
     {
       "id": "BTBT:funding:lookthrough-ownership",
@@ -2860,7 +2860,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile documented shares held to the current subsidiary basic/diluted denominator. Map each claim to its legal entity; reconcile proportionate valuation with consolidated-value-less-minority treatment before proposing a change.",
-      "fingerprint": "21960dfa0e073bec0b392daf2ea7e903ad2c57b6a95a32ba2b636bc2fa6d7b61"
+      "fingerprint": "70b6feb8c1ce7e3dc547cee7f01d33e9688f51b5f3f6ba0f36c5ba72f837385d"
     },
     {
       "id": "HUT:funding:lookthrough-ownership",
@@ -2886,7 +2886,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile documented shares held to the current subsidiary basic/diluted denominator. Map each claim to its legal entity; reconcile proportionate valuation with consolidated-value-less-minority treatment before proposing a change.",
-      "fingerprint": "9c8e305dc613649106e7bd40a52f062e41d18e19f4e09a85607dd86a91143b7f"
+      "fingerprint": "c0161cfb8ba8d44e9e6768b665d638f4ccfcafce72eb45b6b8ae02024fcef5de"
     },
     {
       "id": "NBIS:funding:accreting-convertibles",
@@ -2903,7 +2903,7 @@
       ],
       "impact": null,
       "nextAction": "Map accreted redemption/conversion amounts and maturities series by series; propose a change only after sourcing the terms.",
-      "fingerprint": "2bf8e2ece2643fe9f5e4fbbd40d66fa1cd44cdc8382eb8983cbcafca29eb7c70"
+      "fingerprint": "42a91f71b3843bc457885b9ccb8a57f5863507bccf6b4e0402b0879cb0222065"
     },
     {
       "id": "ABTC:funding:funding-bridge-missing",
@@ -2920,7 +2920,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "965459851e0869dde90efee0d74c77f0bbca0830d5cc4e335d7f913719fc04d7"
+      "fingerprint": "524af60e8792efd0c00f5dfedb85a2523a089f82d3ec4791386b616c083c854f"
     },
     {
       "id": "APLD:capacity:quarterly-bridge-missing",
@@ -2937,7 +2937,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "dec3bccda67ee45d3c6b6bfec049c3f6d26e2c10b91ee008c6e28d44a71919d6"
+      "fingerprint": "c4c8c4dcfcf78545f0920cbd1bb9781af05ac3bf4c390b1017c8e0cc521e3813"
     },
     {
       "id": "APLD:economics:lease-evidence-coverage",
@@ -2960,7 +2960,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "0dcbbd51e47072e1df1cf2fd4e3ae87026b184ffb537c0c3a86347f7d17ed866"
+      "fingerprint": "2937ed4732d0e2b3765b8cdbbc675feee9aafa5ab011b556e1d39965a9dc4ba6"
     },
     {
       "id": "APLD:funding:funding-bridge-missing",
@@ -2977,7 +2977,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "7fa47dc5352819ac7d3bcb48a25efcd2070178bb4829305d16cc76c424e6a990"
+      "fingerprint": "df5e0b56009716ba46097b72fc5aaa8e1b5517e6387389f0a6dab2f4ecbccf75"
     },
     {
       "id": "BTBT:funding:funding-bridge-missing",
@@ -2994,7 +2994,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "9a4da155439b312f3b132e8cb6e06bc6a654c78be5e84ce6f4c18f7abd63aee3"
+      "fingerprint": "0be5fdf0bc0fd1312dc53805cb227b56406ed89ef5a1237c9f2d7a93a6f1f093"
     },
     {
       "id": "BTDR:capacity:quarterly-bridge-missing",
@@ -3011,7 +3011,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "71a616bcc0e786e992c91114bafee6cd5b4b4a2eea69c5c9027f316ce42805c4"
+      "fingerprint": "e192912509db5f64491a46e7e0deaaf71a70f1c3fc539995411472e3b702807b"
     },
     {
       "id": "BTDR:economics:lease-evidence-coverage",
@@ -3028,7 +3028,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "ad4b1941662a69688c6b9516d1a73fb301a0eeb577365fd3cd38cfc9bc12e468"
+      "fingerprint": "a36da5de2cb83d0a6d42340e82443f350e993b377979db770c93ff4e17bd3209"
     },
     {
       "id": "BTDR:funding:funding-bridge-missing",
@@ -3045,7 +3045,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "9eb24a605cf62f6f317cc3a1c8ff62699a4e5e1e3e46a86626b990f55b07b23e"
+      "fingerprint": "c5d6431fa02bad25b8a200b0df3e8be829beb575c5ab510d029fefdfc2d087f4"
     },
     {
       "id": "CIFR:capacity:quarterly-bridge-missing",
@@ -3062,7 +3062,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "e7188f0a210e9ee3952e4219e0560751d1cb288b39b379563555821d443e0617"
+      "fingerprint": "813f990ad15159ac229658b73aa3109cdee4db0896957a71c267ef8be8e61422"
     },
     {
       "id": "CIFR:economics:lease-evidence-coverage",
@@ -3085,7 +3085,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "e51e2181eb0b78f6d5c53cfc85b3236b7d59fcf7ce94d525a6eb3db8846a806f"
+      "fingerprint": "1bda3b5b3f17c2dc86cb5e9fac8d7664696daf1fbbfa9afc2957ae2cefb68613"
     },
     {
       "id": "CIFR:funding:funding-bridge-missing",
@@ -3102,7 +3102,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "80e1542e407e288191a82bc6c25e9490a73dc1fa9bb42e6b247a59f6b6d8c55a"
+      "fingerprint": "5766c80bdaffe620df0c6a6f3455a7419aecd7f13b7d6dce29a1a49ef8a9917b"
     },
     {
       "id": "CLSK:capacity:quarterly-bridge-missing",
@@ -3119,7 +3119,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "6c63461a616d9c18eb1af3407062fac8abe9b167a9e0eaca7ba08e79115c2776"
+      "fingerprint": "8ec0586dabf6e338892eae4aae847e61564afae684732df8cae281841b5bbe05"
     },
     {
       "id": "CLSK:economics:lease-evidence-coverage",
@@ -3136,7 +3136,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "aa87c1471e14aca371e32ab38ec4d5aed3efedfebb49ae6babd18516c1d73a68"
+      "fingerprint": "f79f86d19a74c67258352b1b916660aec41114aa3804435b69cf8b23cecf62a6"
     },
     {
       "id": "CLSK:funding:funding-bridge-missing",
@@ -3153,7 +3153,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "607d385fbba7497f286b2c3d35f799adad465696ec98c4342ffce899c5cb6f4d"
+      "fingerprint": "5435e8589d5bdc8b7e75f36243870d1004312ddad830393bfd71ab456cae25a3"
     },
     {
       "id": "CORZ:capacity:quarterly-bridge-missing",
@@ -3170,7 +3170,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "17d32f3a246264b36c21e4d446a6d8ab7f1c425d20a94eccd5a42c99f84fafe2"
+      "fingerprint": "446bb01ce6238160018de1454973b8a114d170b49a0a1414816d69c3d6be5206"
     },
     {
       "id": "CORZ:economics:lease-evidence-coverage",
@@ -3193,7 +3193,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "c0d518d880cef0ef9b6a4c8b189f098814e38b7be9e6fb239d6ab394c2d9e690"
+      "fingerprint": "afed56efe11df06a0b483cfedc604201cc374c53aff327e58ab94dcde18ef4d4"
     },
     {
       "id": "CORZ:funding:funding-bridge-missing",
@@ -3210,7 +3210,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "3a1d5a55c18b842936e3aa7ae9efb5792d7b785df6c6ecab6d5c6743b0b05342"
+      "fingerprint": "fd73129ad1b7c3e760667ee11414e9cdb2c26db36dfc6ef0d4786f2fdba252e2"
     },
     {
       "id": "CRWV:capacity:customer-mapping",
@@ -3236,7 +3236,7 @@
       ],
       "impact": null,
       "nextAction": "Source a contract-to-tranche schedule and keep inferred customer coverage explicitly labeled.",
-      "fingerprint": "9d0bbb862535752b8557487d859dba4ee8ea1e8ded2a85c90bd0b604dab9f966"
+      "fingerprint": "cac293f49abf1fed678e74d6d707e8922cdd3dc47fee52ef6b638178c1141e69"
     },
     {
       "id": "CRWV:economics:independent-gpu-evidence",
@@ -3265,7 +3265,7 @@
       ],
       "impact": null,
       "nextAction": "Build an independent fleet-generation, power, utilization and realized-price evidence table; do not derive all inputs from the same MW revenue anchor.",
-      "fingerprint": "07f6af190d4bf61787e1dda65ea0f280d5b1d387651bff4ea20a29d584404431"
+      "fingerprint": "af7221af050086caec11e60f2fcd6b8b83c9cd7b9b1decb501cc7bfb31b69df5"
     },
     {
       "id": "CRWV:funding:committed-financing-evidence",
@@ -3285,7 +3285,7 @@
       ],
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
-      "fingerprint": "2632b07d1c27c196d0693f288e2af864b2630b3603c5eec87962c2fcac78c2a4"
+      "fingerprint": "68c41c74347776deb8d1ec73ea618adfc88d10a905cc5ee334e8e290cf073d3f"
     },
     {
       "id": "FRMI:capacity:quarterly-bridge-missing",
@@ -3302,7 +3302,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "b19d3ba219e6828fd49566b3733a3afa46c85aa006fc1684cc68acf5bb1efe68"
+      "fingerprint": "24d915e332306fedca7ccee3afdbab7fd3ec19ccde1e3ba10144965980214532"
     },
     {
       "id": "FRMI:economics:lease-evidence-coverage",
@@ -3319,7 +3319,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "d22dbc8352fb35d471480f46dbd86f3187947a58f4b6ad4146548a8f7524bf35"
+      "fingerprint": "66d23b036b40dedc7fc1a0d6afd37e039d85b2fac5436255db9c107425fdbd29"
     },
     {
       "id": "FRMI:funding:funding-bridge-missing",
@@ -3336,7 +3336,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "7c06831f28a412583370bcfb712ac43711f8bb76d69c5f10f0f4197e5681603e"
+      "fingerprint": "d0944e5151b38224c365ace30cd048a61d1b120529213d94dc627f2a0a5eaaaf"
     },
     {
       "id": "GLXY:capacity:quarterly-bridge-missing",
@@ -3353,7 +3353,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "13b50d6edb78fc59151925bc6abf59fd9afcc45ac4b0bb09026ecebd1d63f0ce"
+      "fingerprint": "b94ed975a973faeaeb5ea839d0dac7e1cde5873b7bb03f35e507191f55c96e8c"
     },
     {
       "id": "GLXY:economics:lease-evidence-coverage",
@@ -3370,7 +3370,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "4e57f1f0eca02bb501d62f9db522a58e7eb55d656d7ffe19d9e29d413418c428"
+      "fingerprint": "008680381cc4a53ec500fd876d6589bc541e2184e4a3cb906fe33055c43769fa"
     },
     {
       "id": "GLXY:funding:funding-bridge-missing",
@@ -3387,7 +3387,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "48f423ba1be1f3a4b972b45eb709d2264be8bde94a0a4d63e81f3395ffc077b2"
+      "fingerprint": "5c6a29a02d009ca0af2a86618319d141ec45775b981d2a6da4c1819de955d265"
     },
     {
       "id": "HIVE:capacity:quarterly-bridge-missing",
@@ -3404,7 +3404,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "cb08431bab14e0f0c837e81d8b82ef07924fccb2bf1ce0815a54f81b1462de00"
+      "fingerprint": "3ddeec871b23a3eb0a3ce0a12c637697b4de158a757baff32e7e9a1b2a877334"
     },
     {
       "id": "HIVE:economics:gpu-evidence-coverage",
@@ -3421,7 +3421,7 @@
       ],
       "impact": null,
       "nextAction": "Source fleet counts and power density, realized all-in pricing and utilization before validating GPU economics.",
-      "fingerprint": "ba8ee2dceadf42183efc32431c6ebe882ce68526dc4c614da7c6047dd8bccdd2"
+      "fingerprint": "1d9baa6d59d79dcc5ad6ecb7fa6cfd7f084f8c33307aca3fed0aff6080bc8ec4"
     },
     {
       "id": "HIVE:funding:funding-bridge-missing",
@@ -3438,7 +3438,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "afe45b86772994bf7edaff6cfe0f45f2a4c1f9804d3b5bbdc6b3e345cd36bd17"
+      "fingerprint": "1440798bde77fd398a6439f1890a9b9d8e76979d4a71eea4dd236cae9a253a85"
     },
     {
       "id": "HUT:capacity:quarterly-bridge-missing",
@@ -3455,7 +3455,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "80dda75b59dc19966cd569fa7b88f559c6dae8dce6595712b03a9627a8d39e34"
+      "fingerprint": "06d188111f16ee21b9730e03322f9cd0e8fe5fdc28c8302b78e83cdc7596be8a"
     },
     {
       "id": "HUT:economics:lease-evidence-coverage",
@@ -3478,7 +3478,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "32080db789b177db1403805529c8bd1fb217895980048229908a7e22d768d936"
+      "fingerprint": "ffce9798b1b531f628f4b2b28d7c412d2eea38243c9f4a05688a75f66f4fb1a2"
     },
     {
       "id": "HUT:funding:funding-bridge-missing",
@@ -3495,7 +3495,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "986a67de2466f331e19d819cff4709c0bec3a45bdcfea0b5ddf3a70b04ec1147"
+      "fingerprint": "ef437940977acb5cb28f7fa78ba3b236ddca8d052b668fe886cbd7812e7c15c6"
     },
     {
       "id": "IREN:capacity:customer-mapping",
@@ -3521,7 +3521,7 @@
       ],
       "impact": null,
       "nextAction": "Source a contract-to-tranche schedule and keep inferred customer coverage explicitly labeled.",
-      "fingerprint": "36dddf531efdaec968933254b725a9d4ca6070b6c652f4d9b9195a209d1ec823"
+      "fingerprint": "987024ca084029f8c289197ca42c48c87aac6b172b34b38bfdd7c0a312f2e331"
     },
     {
       "id": "IREN:economics:independent-gpu-evidence",
@@ -3550,7 +3550,7 @@
       ],
       "impact": null,
       "nextAction": "Build an independent fleet-generation, power, utilization and realized-price evidence table; do not derive all inputs from the same MW revenue anchor.",
-      "fingerprint": "642a28b089e2890ca4d67b48a96e69f3ddb99cbbe1f2992e1fa57985ef3ce88f"
+      "fingerprint": "0f87f4193030236354549aa5500b79647507ba4f743ca06e1df149421f3c30b1"
     },
     {
       "id": "IREN:funding:committed-financing-evidence",
@@ -3570,7 +3570,7 @@
       ],
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
-      "fingerprint": "64c83909cd65a5bd951ce43b7e2096c11157c18aaee6cac0b5a81339534835cc"
+      "fingerprint": "0bedecdcd4fad6cd658c92537e9ac08c7e53b0879bf39c8bed8fe3e330a4f8e6"
     },
     {
       "id": "KEEL:capacity:quarterly-bridge-missing",
@@ -3587,7 +3587,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "8e1feb3c86f29f979b6540758b558ef7684ff0dfeb2837d9e4c344fafbdc6a1e"
+      "fingerprint": "ed751a84f30e812c7ac306003b898682cda3584b8b89fe51f058f924b5b555f6"
     },
     {
       "id": "KEEL:economics:lease-evidence-coverage",
@@ -3604,7 +3604,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "07e93859012215a618fad3f97fb8db2143616085795c2e654a5ed0849a41efb1"
+      "fingerprint": "1f91627bc1e4156b0014ebab3b2cc515128bbbea4e9d54218b947174402792ea"
     },
     {
       "id": "KEEL:funding:funding-bridge-missing",
@@ -3621,7 +3621,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "e922a053523d428bf1690164fdcc9f7ea1d4cef4e4a706552de4e32a2c9cd153"
+      "fingerprint": "358d2cb97a43976d214dfc7814004e6073952888cb9636ebfd77333ac5f46b9c"
     },
     {
       "id": "MARA:capacity:quarterly-bridge-missing",
@@ -3638,7 +3638,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "0c16c437113de4719601bda5d22583da4de7659f0a90cdf4a2b9b0fc05184569"
+      "fingerprint": "edf0665b5af4ccd1598f5a12511fb4c81c097e4bcaf8115f59ea759d0215ab74"
     },
     {
       "id": "MARA:economics:lease-evidence-coverage",
@@ -3655,7 +3655,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "2a8593713d1489ef9affbe5105c3a2b21c49c3d1845e0c2cba177e3e17e14666"
+      "fingerprint": "812c4d3da744de284e1f7366d1d2af8cf092a40710593bf88724663f81fd6c58"
     },
     {
       "id": "MARA:funding:funding-bridge-missing",
@@ -3672,7 +3672,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "4e1c94af0789f193e1a9af921945081c44c63ac5edee7d35d3e451e60216c89a"
+      "fingerprint": "3d23c3ba252867f8edc6967600bf31381ab0f19c71ccb15e446da033ea66f588"
     },
     {
       "id": "NBIS:capacity:customer-mapping",
@@ -3698,7 +3698,7 @@
       ],
       "impact": null,
       "nextAction": "Source a contract-to-tranche schedule and keep inferred customer coverage explicitly labeled.",
-      "fingerprint": "d3dadc975d0cf314c4b5a61f9b125e82cbbfcd7bd77e45d6be7c6ed6fa82b56d"
+      "fingerprint": "6a6e9d7384eb2012da22ea37b494f8061c44c7c7e0b374dfeaa8fca03f332230"
     },
     {
       "id": "NBIS:economics:independent-gpu-evidence",
@@ -3727,7 +3727,7 @@
       ],
       "impact": null,
       "nextAction": "Build an independent fleet-generation, power, utilization and realized-price evidence table; do not derive all inputs from the same MW revenue anchor.",
-      "fingerprint": "aecd139f3c81e521abadb46fe4b5cf4babecce1c7e750782ba889e2bf071744f"
+      "fingerprint": "04c887fa090ac15e1f0fbe88b38f7aed896c5b79fccec8129c4296a5e38ab162"
     },
     {
       "id": "NBIS:funding:committed-financing-evidence",
@@ -3747,7 +3747,7 @@
       ],
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
-      "fingerprint": "b64cdfd11a279ebc13e0b0b89e7df07656ef112a8b21181e89d715b74a3a3e2a"
+      "fingerprint": "fab4e37c9dabed956cc91e93caf9b4f3e4d1877757c2dd671c7d36b85760f541"
     },
     {
       "id": "NUAI:capacity:quarterly-bridge-missing",
@@ -3764,7 +3764,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "918735f57dd937c43c9b9c60bbb91bc86b584ca6536a18b0c7f7e1ac993cea75"
+      "fingerprint": "a4edc4e300b22123ec46424b58fd34be267e0a3cc940fc2806a946bb5a1aa383"
     },
     {
       "id": "NUAI:economics:lease-evidence-coverage",
@@ -3781,7 +3781,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "3a09dc15f368fa741d049c7a165bf6aedaa6fa23290757584d11c0703a7ef107"
+      "fingerprint": "48d8da9b81dd4e3c66609e8a9f5681893c13b8349f79af6e93517c631cb5cc00"
     },
     {
       "id": "NUAI:funding:funding-bridge-missing",
@@ -3798,7 +3798,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "68bacb6c9f4cfb0898d1b7681e5fd249d13a7534bfe76d60d1aea80e2b0af1f9"
+      "fingerprint": "97b135c885eca700f4fe8a834055dccf5cdd5d1767d11af659e2b02704a1a79f"
     },
     {
       "id": "RIOT:capacity:quarterly-bridge-missing",
@@ -3815,7 +3815,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "f9c74edb34f4f9b630649c5e427785bf0254fee8d52d40519ba796f33141dccb"
+      "fingerprint": "e7921619a2264e016f17b0572be61d08eded6cc88e0e3c83843cf929a9e92525"
     },
     {
       "id": "RIOT:economics:lease-evidence-coverage",
@@ -3835,7 +3835,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "965a3c6af0d073b4ece440e0f7950ec6c86538e5815138b845f000c8623d9a92"
+      "fingerprint": "7dd31f20864b5953a5b015a77de21bfaf378c8652e868117863caef249be14b4"
     },
     {
       "id": "RIOT:funding:funding-bridge-missing",
@@ -3852,7 +3852,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "337f21eb32c214067c33197ac8b3470bd4586f699d4e81d7c686dc404ed09416"
+      "fingerprint": "3b415cdaccdd25152c95ed25c9b3b011a09dd357bc7b5e735f8240c3ae5276d7"
     },
     {
       "id": "SHAZ:capacity:quarterly-bridge-missing",
@@ -3869,7 +3869,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "bab8d6ac6adfca0689647c405bc300233c08b31c4ddde9e1ba083a3653390322"
+      "fingerprint": "846a1535ea26eea36d1c1d3f5dfae85b774b5e668cc8a3b275236737a8b73370"
     },
     {
       "id": "SHAZ:economics:gpu-evidence-coverage",
@@ -3886,7 +3886,7 @@
       ],
       "impact": null,
       "nextAction": "Source fleet counts and power density, realized all-in pricing and utilization before validating GPU economics.",
-      "fingerprint": "a295f4fa173200d4a19fd5cef1dfd65a3bf429abfd89eccd16d2107a79ecdacc"
+      "fingerprint": "0462704192c4a7f1bf78712bc81ceadc5702b98d34977d00e3a580a29d35dbf4"
     },
     {
       "id": "SHAZ:funding:funding-bridge-missing",
@@ -3903,7 +3903,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "e7cd2c6aeef71ace82368be956cc5865b05c19ab540f5fe9f85af2699f718e27"
+      "fingerprint": "0fe782f08a9240e34e2babfeaec3daa71fd94e007d66bb5c895513ba0a6e05f0"
     },
     {
       "id": "SLNH:capacity:quarterly-bridge-missing",
@@ -3920,7 +3920,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "1bdcd3cb996cf22cc123b0f42534b27dc0eb05f5e90475da159c2babdc38cb3b"
+      "fingerprint": "3739a4a0e618db03a5ac486960ad6a036249819c0f19356519e89987a20ebc9f"
     },
     {
       "id": "SLNH:economics:lease-evidence-coverage",
@@ -3937,7 +3937,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "3770a13c18245a72d056df1ea8b061eab45aa632fddfa30d6eb00e65ff40d3d7"
+      "fingerprint": "79861e094fc48fa27c20bd5787749e253ecc74604e936872f2f68b3188e8dfe9"
     },
     {
       "id": "SLNH:funding:funding-bridge-missing",
@@ -3954,7 +3954,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "970f7c959b29311a026960d2e6c9e63e3ca7cf2ddb1b672bd0acea442cc964b2"
+      "fingerprint": "e236bd33b3eb84ee06298e84f2215f966abde0a622a7da977b05b015058513ba"
     },
     {
       "id": "WULF:capacity:quarterly-bridge-missing",
@@ -3971,7 +3971,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "6a4077fef5155a0e749a2028071cb2624bcad2c06523da67cbc98a09b14aa235"
+      "fingerprint": "83993cf00be305f8ef51a1e7ac7187be76064c0b3496b3213edc4577fdfcd38f"
     },
     {
       "id": "WULF:economics:lease-evidence-coverage",
@@ -3994,7 +3994,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "f314ad5e2c079803626366ec8299274083468a4d77c3a8dba3c7bb08c38ba892"
+      "fingerprint": "efdaefcfe083a4f7db3f1beb1705a2d17eadd294662cfbe148055d66c2f0f9db"
     },
     {
       "id": "WULF:funding:funding-bridge-missing",
@@ -4011,7 +4011,7 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "6ed426ca1792ccda365e433c932bb8297ebaa1211d18196821f7740dd44611f3"
+      "fingerprint": "a03b5853f75a953ee3c55af6d2a685b0c6659d12aa47de755c48ed2ff0e8c987"
     },
     {
       "id": "WYFI:capacity:quarterly-bridge-missing",
@@ -4028,7 +4028,7 @@
       ],
       "impact": null,
       "nextAction": "Map site stages and customer acceptance to a quarterly capacity and revenue schedule.",
-      "fingerprint": "20622f01f7dfa94408c53e804c130a779439c37c745607550cbb6dff62ac4d13"
+      "fingerprint": "a4320ed56e0f0ff3c78f3cbadcaac891c8cf83893018edecf5569c57fb5ef1e3"
     },
     {
       "id": "WYFI:economics:lease-evidence-coverage",
@@ -4048,7 +4048,7 @@
       ],
       "impact": null,
       "nextAction": "Build lease cash returns and capital obligations; compare against matched landlord leases only.",
-      "fingerprint": "8ffdfae60e3f50e66c182bed4007415b21c9bae74d7d8f209b851d9e6d5d9182"
+      "fingerprint": "9b124ddb5c84e721faf8125c258fe13a2294ae6c06efd75a28d1a912abfd42d5"
     },
     {
       "id": "WYFI:funding:funding-bridge-missing",
@@ -4065,12 +4065,12 @@
       ],
       "impact": null,
       "nextAction": "Reconcile the capital table and a dated sources-and-uses bridge, including convertible settlement and minority ownership.",
-      "fingerprint": "45659d2b8e6a9abef710a4078d0d138750926735e8af9e8634ebf6cf0f894ea0"
+      "fingerprint": "6fceb82df5a59619d6299abc917c9b9af243df2455e9f26d2533673c4a9393ee"
     }
   ],
   "policy": {
     "purpose": "Economic consistency and evidence review; findings never edit model assumptions.",
-    "rules": "1.1.0",
+    "rules": "1.1.1",
     "thresholds": {
       "peerRevenueDeviation": 0.25,
       "capacityIdleShare": 0.2,
@@ -4102,12 +4102,12 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-09-16T16:45:50.614Z",
-  "attemptedAt": "2026-09-16T16:45:50.614Z",
-  "lastSuccessAt": "2026-09-16T16:45:50.614Z",
+  "checkedAt": "2026-09-16T16:52:42.585Z",
+  "attemptedAt": "2026-09-16T16:52:42.585Z",
+  "lastSuccessAt": "2026-09-16T16:52:42.585Z",
   "sourceHash": "2d4ec267fa014202009e792af1ebd911284931566685ffa5b0ea3c5a98378183",
   "quoteHash": "7058c4fa29e9d227701876270f5db5b91842dee2d029261c380ed066443694d3",
-  "modelHash": "0649717d9552977416e83b336fadb5596e279a6adf1e0af8f1aeb3293f33744f",
+  "modelHash": "b980de54959c21c607c28142454e1d8bbc10c21960c08042ad2f8b4e91bed36d",
   "provenance": {
     "data": {
       "file": "data.json",
@@ -4124,7 +4124,7 @@
       "priceCount": 22
     },
     "model": {
-      "hash": "0649717d9552977416e83b336fadb5596e279a6adf1e0af8f1aeb3293f33744f",
+      "hash": "b980de54959c21c607c28142454e1d8bbc10c21960c08042ad2f8b4e91bed36d",
       "files": [
         "assumption-core.cjs",
         "assumption-proposals.cjs",
@@ -4138,8 +4138,8 @@
       ]
     },
     "run": {
-      "trigger": "workflow_run",
-      "commit": "4bf7a31b49c2fc01e252ae8578c0d3f6ef908c16"
+      "trigger": "local",
+      "commit": null
     }
   },
   "cadence": {

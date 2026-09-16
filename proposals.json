@@ -185,6 +185,212 @@
    "applied": "2026-09-15",
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "id": "assumption-shaz-signed-geography-20260916",
+   "fp": "d295c19a7a60873fec8e4cbfe3b7ec01b7ee035b58b7deec8df08d19c69a8b25",
+   "kind": "assumption",
+   "tk": "SHAZ",
+   "title": "Remove the duplicate regional haircut from SHAZ’s adopted price anchor",
+   "created": "2026-09-16",
+   "sourceName": "Assumption Review",
+   "status": "pending",
+   "changes": [
+    {
+     "scope": "company",
+     "ticker": "SHAZ",
+     "path": [
+      "signedRegionFactor"
+     ],
+     "current": 0.7,
+     "proposed": 1,
+     "unit": "multiple"
+    }
+   ],
+   "basis": "This is an internal pricing-consistency proposal, conditional on the currently adopted expected-value anchor. Set the signed-contract geography multiplier from 0.7 to 1.0 because SHAZ’s $16.8M/IT MW/year input is already derived from its Australian/New Zealand book, not a US benchmark. The local anchor will no longer receive a second 30% regional price discount.\n\nPreserve signedRate at 16.8, all contract values, the adopted NVIDIA expected-placement estimate, contract-share and term assumptions, unsigned/re-sign pricing, regional cost margins, provenance haircuts, funding and share counts. The proposal does not independently validate the revenue anchor or turn expected placement revenue into signed guaranteed revenue.\n\nSeparate reconciliation remains necessary: the NVIDIA filing describes conditional value up to $4.88bn versus the adopted $6.9bn expectation, and two registry values round $1.32bn to $1.3bn and $950m to $1bn. Those uncertainties remain in the valuation after this change. Approving this proposal adopts only the geography treatment.",
+   "evidence": [
+    {
+     "url": "https://github.com/rictsb/cloudtracker/blob/238dd55428a1bb79e223427c23e83b11a2f5851b/data.json",
+     "sourceName": "Adopted SHAZ model inputs and signed-rate basis",
+     "date": "2026-09-16",
+     "claim": "The adopted Australian/New Zealand book implies $16.8M per IT MW-year. The engine currently multiplies that anchor by 0.7 again, reducing it to $11.76M before contract-share weighting. This proposal removes that additional pricing adjustment while preserving the adopted anchor."
+    },
+    {
+     "url": "https://github.com/rictsb/cloudtracker/blob/238dd55428a1bb79e223427c23e83b11a2f5851b/engine.js#L53",
+     "sourceName": "Canonical signed and unsigned pricing calculation",
+     "date": "2026-09-16",
+     "claim": "The optional signedRegionFactor changes only the contracted-rate component. Without an approved override the existing regional factor remains in force. Unsigned/re-sign pricing keeps its regional multiplier and realization assumptions."
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226030362/form424b3.htm",
+     "sourceName": "SEC: June 12 NVIDIA agreement reproduced in June 26 prospectus",
+     "date": "2026-06-26",
+     "claim": "The filing locates the 72MW deployment in Australia and describes a six-year arrangement with potential value up to US$4.88bn, conditional on deployment and performance. It does not independently establish the adopted US$6.9bn expected-placement value or an unconditional revenue floor."
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226033457/ex99-1.htm",
+     "sourceName": "SEC: NZ AI Lab contract announcement",
+     "date": "2026-07-16",
+     "claim": "Five-year US$1.32bn agreement for New Zealand deployment. Geography and USD denomination support a local-book basis, but the source does not establish modeled MW or the blended $16.8M rate. The registry uses rounded US$1.3bn."
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226039364/ex99-1.htm",
+     "sourceName": "SEC: global-tech customer acceptance announcement",
+     "date": "2026-08-20",
+     "claim": "Five-year US$950m agreement across Australian data centers, with staged revenue commencement. The registry uses US$1bn; this proposal leaves that rounding for separate reconciliation."
+    }
+   ],
+   "review": {
+    "sourceHash": "2d4ec267fa014202009e792af1ebd911284931566685ffa5b0ea3c5a98378183",
+    "modelHash": "b980de54959c21c607c28142454e1d8bbc10c21960c08042ad2f8b4e91bed36d",
+    "ruleVersion": "assumption-approvals-v2",
+    "impact": [
+     {
+      "ticker": "SHAZ",
+      "modelBasis": "Canonical asset valuation",
+      "unit": "USD/share",
+      "base": 113.37088181590772,
+      "proposed": 143.21485172657182,
+      "delta": 29.8439699106641,
+      "pct": 26.324193154927478,
+      "baseMetrics": {
+       "enterpriseValueM": 6305.613346783013,
+       "seniorClaimsM": -1157,
+       "equityM": 6716.352012104712,
+       "dilutedSharesM": 59.242301943198804,
+       "financingEquityM": 500
+      },
+      "proposedMetrics": {
+       "enterpriseValueM": 8270.086098595571,
+       "seniorClaimsM": -1157,
+       "equityM": 8484.377488736014,
+       "dilutedSharesM": 59.242301943198804,
+       "financingEquityM": 500
+      },
+      "quoteBasis": {
+       "price": 53.52,
+       "date": "2026-09-16T16:39:59.000Z",
+       "source": "Finnhub",
+       "financingPriceBase": 53.52,
+       "financingPriceProposed": 53.52,
+       "financingMethod": "Share issuance at shared market mark"
+      }
+     }
+    ],
+    "quoteBasis": {
+     "prices": {
+      "CRWV": 83.74,
+      "NBIS": 216.72,
+      "RIOT": 20.54,
+      "BTDR": 11,
+      "IREN": 42.89,
+      "SLNH": 1.15,
+      "GLXY": 22.14,
+      "HUT": 91.78,
+      "CIFR": 16.94,
+      "MARA": 11.2,
+      "CORZ": 17.1,
+      "WULF": 15.31,
+      "FRMI": 4.95,
+      "WYFI": 17.53,
+      "HIVE": 2.95,
+      "APLD": 24.5,
+      "ABTC": 8.07,
+      "CLSK": 12.95,
+      "BTBT": 1.49,
+      "NUAI": 5.44,
+      "KEEL": 3.41,
+      "SHAZ": 53.52
+     },
+     "priceDates": {
+      "CRWV": "2026-09-16T16:40:07.000Z",
+      "NBIS": "2026-09-16T16:40:05.000Z",
+      "RIOT": "2026-09-16T16:40:04.000Z",
+      "BTDR": "2026-09-16T16:40:05.000Z",
+      "IREN": "2026-09-16T16:40:09.000Z",
+      "SLNH": "2026-09-16T16:40:07.000Z",
+      "GLXY": "2026-09-16T16:40:04.000Z",
+      "HUT": "2026-09-16T16:40:05.000Z",
+      "CIFR": "2026-09-16T16:40:09.000Z",
+      "MARA": "2026-09-16T16:40:09.000Z",
+      "CORZ": "2026-09-16T16:40:05.000Z",
+      "WULF": "2026-09-16T16:40:04.000Z",
+      "FRMI": "2026-09-16T16:40:05.000Z",
+      "WYFI": "2026-09-16T16:40:05.000Z",
+      "HIVE": "2026-09-16T16:40:04.000Z",
+      "APLD": "2026-09-16T16:40:06.000Z",
+      "ABTC": "2026-09-16T16:39:32.000Z",
+      "CLSK": "2026-09-16T16:40:05.000Z",
+      "BTBT": "2026-09-16T16:39:14.000Z",
+      "NUAI": "2026-09-16T16:40:00.000Z",
+      "KEEL": "2026-09-16T16:40:05.000Z",
+      "SHAZ": "2026-09-16T16:39:59.000Z"
+     },
+     "priceFetchedAt": {
+      "CRWV": "2026-09-16T16:40:27.308Z",
+      "NBIS": "2026-09-16T16:40:27.172Z",
+      "RIOT": "2026-09-16T16:40:27.177Z",
+      "BTDR": "2026-09-16T16:40:27.176Z",
+      "IREN": "2026-09-16T16:40:27.230Z",
+      "SLNH": "2026-09-16T16:40:27.249Z",
+      "GLXY": "2026-09-16T16:40:27.241Z",
+      "HUT": "2026-09-16T16:40:27.281Z",
+      "CIFR": "2026-09-16T16:40:27.305Z",
+      "MARA": "2026-09-16T16:40:27.322Z",
+      "CORZ": "2026-09-16T16:40:27.329Z",
+      "WULF": "2026-09-16T16:40:27.371Z",
+      "FRMI": "2026-09-16T16:40:27.439Z",
+      "WYFI": "2026-09-16T16:40:27.389Z",
+      "HIVE": "2026-09-16T16:40:27.381Z",
+      "APLD": "2026-09-16T16:40:27.438Z",
+      "ABTC": "2026-09-16T16:40:27.440Z",
+      "CLSK": "2026-09-16T16:40:27.464Z",
+      "BTBT": "2026-09-16T16:40:27.500Z",
+      "NUAI": "2026-09-16T16:40:27.575Z",
+      "KEEL": "2026-09-16T16:40:27.494Z",
+      "SHAZ": "2026-09-16T16:40:27.530Z"
+     },
+     "priceSources": {
+      "CRWV": "Finnhub",
+      "NBIS": "Finnhub",
+      "RIOT": "Finnhub",
+      "BTDR": "Finnhub",
+      "IREN": "Finnhub",
+      "SLNH": "Finnhub",
+      "GLXY": "Finnhub",
+      "HUT": "Finnhub",
+      "CIFR": "Finnhub",
+      "MARA": "Finnhub",
+      "CORZ": "Finnhub",
+      "WULF": "Finnhub",
+      "FRMI": "Finnhub",
+      "WYFI": "Finnhub",
+      "HIVE": "Finnhub",
+      "APLD": "Finnhub",
+      "ABTC": "Finnhub",
+      "CLSK": "Finnhub",
+      "BTBT": "Finnhub",
+      "NUAI": "Finnhub",
+      "KEEL": "Finnhub",
+      "SHAZ": "Finnhub"
+     },
+     "btc": 75650.005,
+     "eth": 2389.345,
+     "cryptoDates": {
+      "btc": "2026-09-16T16:40:27.599Z",
+      "eth": "2026-09-16T16:40:27.607Z"
+     },
+     "asOf": "2026-09-16T16:40:27.607Z",
+     "fetchedAt": "2026-09-16T16:40:27.607Z"
+    },
+    "quoteHash": "7058c4fa29e9d227701876270f5db5b91842dee2d029261c380ed066443694d3",
+    "quoteTolerance": {
+     "economicMetricRelative": 0.005,
+     "economicMetricAbsolute": 0.000001
+    },
+    "impactHash": "4cf05c64ab0384b315d372224048a3ed2136418a425721e3f6b77d8a4b9f479d"
+   },
+   "findingId": "SHAZ:economics:signed-rate-region"
   }
  ],
  "seen": [],
@@ -203,6 +409,50 @@
    "reason": "Our valuations are based n the fact that unsigned capacity will be sold",
    "reviewAfter": "2026-11-20",
    "updatedAt": "2026-09-16T16:45:26.910Z"
+  }
+ },
+ "assumptionResearch": {
+  "checkedAt": "2026-09-16T16:53:40.031Z",
+  "scope": "SHAZ signed-rate geography request only: canonical pricing policy reconciled to adopted model inputs and primary Australian/New Zealand contract disclosures. Underlying expected-placement price and contract rounding remain unresolved.",
+  "reviewedFindingIds": [
+   "SHAZ:economics:signed-rate-region"
+  ],
+  "findings": {
+   "SHAZ:economics:signed-rate-region": {
+    "fingerprint": "15589553d0cb18c7c3e4d0e62c4ee3994f8eeffd0a74c934082c7c7a63eee4ff",
+    "ticker": "SHAZ",
+    "reviewedAt": "2026-09-16T16:53:40.031Z",
+    "conclusion": "This is an internal pricing-consistency proposal, conditional on the currently adopted expected-value anchor. Set the signed-contract geography multiplier from 0.7 to 1.0 because SHAZ’s $16.8M/IT MW/year input is already derived from its Australian/New Zealand book, not a US benchmark. The local anchor will no longer receive a second 30% regional price discount.\n\nPreserve signedRate at 16.8, all contract values, the adopted NVIDIA expected-placement estimate, contract-share and term assumptions, unsigned/re-sign pricing, regional cost margins, provenance haircuts, funding and share counts. The proposal does not independently validate the revenue anchor or turn expected placement revenue into signed guaranteed revenue.\n\nSeparate reconciliation remains necessary: the NVIDIA filing describes conditional value up to $4.88bn versus the adopted $6.9bn expectation, and two registry values round $1.32bn to $1.3bn and $950m to $1bn. Those uncertainties remain in the valuation after this change. Approving this proposal adopts only the geography treatment.",
+    "status": "proposal-ready",
+    "sources": [
+     {
+      "label": "Adopted SHAZ model inputs and signed-rate basis",
+      "url": "https://github.com/rictsb/cloudtracker/blob/238dd55428a1bb79e223427c23e83b11a2f5851b/data.json",
+      "date": "2026-09-16"
+     },
+     {
+      "label": "Canonical signed and unsigned pricing calculation",
+      "url": "https://github.com/rictsb/cloudtracker/blob/238dd55428a1bb79e223427c23e83b11a2f5851b/engine.js#L53",
+      "date": "2026-09-16"
+     },
+     {
+      "label": "SEC: June 12 NVIDIA agreement reproduced in June 26 prospectus",
+      "url": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226030362/form424b3.htm",
+      "date": "2026-06-26"
+     },
+     {
+      "label": "SEC: NZ AI Lab contract announcement",
+      "url": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226033457/ex99-1.htm",
+      "date": "2026-07-16"
+     },
+     {
+      "label": "SEC: global-tech customer acceptance announcement",
+      "url": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226039364/ex99-1.htm",
+      "date": "2026-08-20"
+     }
+    ],
+    "proposalId": "assumption-shaz-signed-geography-20260916"
+   }
   }
  }
 }
