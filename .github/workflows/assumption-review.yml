@@ -1,0 +1,92 @@
+# Offline numerical review. The job changes only its generated review snapshot.
+# workflow_run covers GITHUB_TOKEN commits, which do not trigger push workflows.
+name: assumption-review
+on:
+  push:
+    branches: [main]
+    paths:
+      - data.json
+      - market-prices.json
+      - assumption-core.cjs
+      - assumption-proposals.cjs
+      - assumption-review.cjs
+      - verify-assumption-*.cjs
+      - engine.js
+      - model-data.js
+      - ramp-core.js
+      - onepager.js
+      - onepager-core.js
+      - export-research.js
+      - checks-core.js
+      - .github/workflows/assumption-review.yml
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch: {}
+  workflow_run:
+    workflows: [refresh-market-quotes, apply-proposals, portfolio-daily]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: write
+concurrency:
+  group: assumption-review-main
+  cancel-in-progress: false
+jobs:
+  review:
+    # Never run privileged workflow_run code from a fork or a non-main branch.
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Review latest inputs and publish current result
+        id: review
+        run: |
+          set -euo pipefail
+          test "${GITHUB_ACTIONS:-}" = "true"
+          git config user.name "assumption-review-bot"
+          git config user.email "actions@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            # Safe only in this disposable Actions checkout. Recompute after a
+            # conflict so a new quote or approved model change is never lost.
+            git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+            git reset --hard refs/remotes/origin/main
+            export GITHUB_SHA="$(git rev-parse HEAD)"
+            review_status=0
+            node assumption-review.cjs || review_status=$?
+            if [ ! -f assumption-review.json ]; then
+              echo "::error::Reviewer did not produce a current success or failure snapshot."
+              exit 1
+            fi
+            git add assumption-review.json
+            if ! git diff --cached --quiet; then
+              git commit -m "review: refresh economic assumptions"
+              if ! git push origin HEAD:main; then
+                echo "Main changed; recompute the review from its latest inputs ($attempt/3)."
+                continue
+              fi
+            fi
+            echo "status=$review_status" >> "$GITHUB_OUTPUT"
+            node -e 'const r=require("./assumption-review.json"); console.log("Economic review: "+r.status+". "+JSON.stringify(r.summary)); if(r.error)console.log("Failure: "+r.error);' >> "$GITHUB_STEP_SUMMARY"
+            # Failure snapshots publish before the job fails: the page must not
+            # claim that an earlier successful run is the current review.
+            exit "$review_status"
+          done
+          echo "::error::Could not publish a review after 3 attempts."
+          exit 1
+      - name: Verify served inputs and research calculations
+        if: success()
+        env:
+          SITE_URL: ${{ vars.ASSUMPTION_SITE_URL || 'https://cloudtracker.onrender.com' }}
+        run: |
+          set -euo pipefail
+          node assumption-review.cjs --verify-live "$SITE_URL" --attempts 10 --interval-ms 20000 | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Report failure
+        if: failure()
+        run: echo "The numerical review or publication verification failed. See the failed step; model assumptions were not changed by this job." >> "$GITHUB_STEP_SUMMARY"

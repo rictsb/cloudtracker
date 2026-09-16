@@ -31,3 +31,11 @@ jobs:
         run: node verify-market-research.cjs
       - name: Verify shared market snapshot publication
         run: node verify-quote-snapshot.cjs
+      - name: Verify economic review and coverage
+        run: node verify-assumptions.cjs
+      - name: Verify background review and publication checks
+        run: node verify-assumption-runner.cjs
+      - name: Verify numerical approval guards
+        run: node verify-assumption-approvals.cjs
+      - name: Verify review page and evidence recording
+        run: node verify-assumption-view.cjs

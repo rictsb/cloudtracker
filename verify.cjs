@@ -7,6 +7,8 @@ process.env.CT_ROOT=base;
 const gen=require(path.join(base,'export-research.js'));
 const {assemble}=require(path.join(base,'onepager.js'));
 const data=JSON.parse(fs.readFileSync(path.join(base,'data.json'),'utf8'));
+const irenSource=data.companies.find(c=>c.tk==='IREN');
+const irenAssetBaseline=require(path.join(base,'engine.js')).createEngine(data).value(irenSource).target;
 const p=JSON.parse(fs.readFileSync(path.join(base,'iren-data.json'),'utf8'));
 const context=vm.createContext({console,URLSearchParams,TextEncoder,TextDecoder,btoa,atob,setTimeout,clearTimeout,AbortController,fetch:async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(base,String(url).split('/').at(-1)),'utf8'))})});
 for(const file of ['engine.js','ramp-core.js','onepager-core.js','model-data.js','research-data.js','checks-core.js','portfolio-core.js','approvals-core.js','research-view.js','coverage-view.js','contracts-view.js','news-view.js','checks-view.js','portfolio-view.js','approvals-view.js','report-graphics.js','report-layout.js','report-view.js','compare-view.js'])vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
@@ -66,7 +68,7 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
     }
   }
   model=context.CloudModel.reset();
-  assert.equal(model.companies.find(c=>c.ticker==='IREN').target.toFixed(2),'289.63');
+  close(model.companies.find(c=>c.ticker==='IREN').target,irenAssetBaseline,'reset restores current canonical asset assumptions');
   for(const ramp of Object.values(model.ramps))for(const q of ramp.quarters){
     close(q.signedRevenueM+q.futureContractRevenueM+q.spotRevenueM,q.revenueM);
     assert.ok(q.earningITMW>=0&&q.earningGPUs>=0);
@@ -85,12 +87,12 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
   context.CloudModel.setMarks({prices:{KEEL:0}});
   assert.equal(context.CloudModel.current.companies.find(c=>c.ticker==='KEEL').priceAsOf,null);
   model=context.CloudModel.clearMarks();
-  assert.equal(model.meta.priceAsOf,null);assert.equal(model.companies.find(c=>c.ticker==='IREN').price,41.09);
+  assert.equal(model.meta.priceAsOf,null);assert.equal(model.companies.find(c=>c.ticker==='IREN').price,irenSource.price);
   model=context.CloudModel.reset();
-  assert.equal(model.companies.find(c=>c.ticker==='IREN').target.toFixed(2),'289.63');
+  close(model.companies.find(c=>c.ticker==='IREN').target,irenAssetBaseline,'clearing marks restores current canonical asset assumptions');
   const r=context.OnePager.waterfall(p.L,p.CAPQ,p.finance,p.ARRC);
   // Research prices move when the authorized shared curve changes. Reconcile the
-  // generated report with canonical data/math; keep the separate asset target pinned.
+  // generated report with canonical data/math and the separate asset value with its inputs.
   close(r.ps,assemble(data.companies.find(c=>c.tk==='IREN'),data.researchPricing).W.ps);
   close(r.ev-r.ndc-r.liab+(p.finance.NONCORE||0),r.ps*r.dil/1000*r.DF);
   const scenarioKeys=['base','rate8','equityPrice','noCredit','convAsDebt','noRestricted','rev90','multLow','multHigh'];
@@ -280,5 +282,5 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
   assert.deepStrictEqual(JSON.parse(JSON.stringify(browserChecks)),JSON.parse(JSON.stringify(nodeChecks)),'Browser and CLI checks differ');
   const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
   for(const match of html.matchAll(/(?:src|href)="(\/(?:[\w.-]+\/)*[\w.-]+\.(?:js|css|svg))"/g))assert.ok(fs.existsSync(path.join(base,match[1])),match[1]);
-  console.log(`PASS: ${companyChecks} company comparisons across ${cases.length} cases; ramp revenue bridges; ${pages.length} complete graphical report states x 3 names (${Object.entries(repFixture).map(([tk,value])=>tk+' $'+value.toFixed(2)).join(' / ')}), all 9 valuation sensitivities plus pricing/renewal paths, matched earned-MW denominators, base ledger invariance and convert reconciliation + compare; canonical research assembly + data freshness; asset-engine fixed-target parity; 7 research states; live-mark propagation; 7 wave-2 views incl. approvals byte-contract; local asset paths.`);
+  console.log(`PASS: ${companyChecks} company comparisons across ${cases.length} cases; ramp revenue bridges; ${pages.length} complete graphical report states x 3 names (${Object.entries(repFixture).map(([tk,value])=>tk+' $'+value.toFixed(2)).join(' / ')}), all 9 valuation sensitivities plus pricing/renewal paths, matched earned-MW denominators, base ledger invariance and convert reconciliation + compare; canonical research assembly + data freshness; asset-engine canonical baseline parity; 7 research states; live-mark propagation; 7 wave-2 views incl. approvals byte-contract; local asset paths.`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

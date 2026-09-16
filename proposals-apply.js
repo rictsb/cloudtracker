@@ -1,64 +1,91 @@
 #!/usr/bin/env node
-/* Applies ACCEPTED proposals (proposals.json, spec §6g) to data.json.
-   Run by the apply-proposals GitHub Action whenever proposals.json changes on main (a Yes on the
-   Approvals screen commits a decision; this turns it into the fact). Never applies anything that
-   is not status 'accepted'. Refuses to write if the data checks would get worse. */
-const fs = require('fs');
-const path = require('path');
-const { runChecks } = require('./checks-core.js');
-const ROOT = __dirname;
-const P = JSON.parse(fs.readFileSync(path.join(ROOT, 'proposals.json'), 'utf8'));
-const raw = fs.readFileSync(path.join(ROOT, 'data.json'), 'utf8');
-const D = JSON.parse(raw);
-const today = new Date().toISOString().slice(0, 10);
-
-const todo = (P.items || []).filter(p => p.status === 'accepted' && !p.applied);
-if (!todo.length) { console.log('no accepted proposals to apply'); process.exit(0); }
-
-// Stable finding IDs, not totals (audit review 2026-09-15): a proposal is judged by the
-// failures it INTRODUCES — resolving an unrelated failure can never offset a new one, and a
-// warning-count change never blocks an honest disclosure.
-const findingID = m => `${m.group}|${m.tk}|${m.level}|${m.msg}`;
-const beforeFails = new Set(runChecks(JSON.parse(raw)).msgs.filter(m => m.level === 'fail').map(findingID));
-const lines = [];
-for (const p of todo) {
-  const c = D.companies.find(x => x.tk === p.tk);
-  if (!c) { p.status = 'error'; p.error = 'unknown ticker'; continue; }
-  if (p.kind === 'log') {
-    c.log = c.log || [];
-    const e = Object.assign({}, p.proposed);
-    if (!c.log.some(l => l.d === e.d && l.x === e.x)) c.log.unshift(e);
-    c.log.sort((a, b) => String(b.d || '').localeCompare(String(a.d || '')));
-  } else if (p.kind === 'site') {
-    const s = (c.sites || []).find(x => x.n === p.site);
-    if (!s) { p.status = 'error'; p.error = 'site not found: ' + p.site; continue; }
-    // Expected-current precondition (audit probe P6): a proposal drafted against data that has
-    // since changed must be rebased through research, never written over the newer fact.
-    const stale = Object.entries(p.current || {}).find(([k, val]) => JSON.stringify(s[k]) !== JSON.stringify(val));
-    if (stale) { p.status = 'error'; p.error = `stale: expected current ${stale[0]}=${JSON.stringify(stale[1])}, data now has ${JSON.stringify(s[stale[0]])} — rebase against current data`; continue; }
-    Object.assign(s, p.proposed);
-  } else if (p.kind === 'catalyst') {
-    c.catalysts = c.catalysts || [];
-    if (!c.catalysts.includes(p.proposed.text)) c.catalysts.unshift(p.proposed.text);
-  } else { p.status = 'error'; p.error = 'unknown kind ' + p.kind; continue; }
-  p.applied = today;
-  lines.push(`- ${p.tk}: ${p.title} — approved on the Approvals screen ${p.decided || today}, applied ${today} (proposal ${p.id}; source ${p.sourceName || 'McNallie Money (YouTube)'}${p.evidence && p.evidence[0] ? ', ' + p.evidence[0].url : ''}).`);
+/* Applies owner-ACCEPTED proposals (§6g and Assumption Review). The Action is the
+   only writer. Every item is staged and checked independently; an invalid item cannot
+   partially change the model or prevent an unrelated valid approval from being saved. */
+'use strict';
+const fs=require('node:fs'), path=require('node:path');
+const ROOT=__dirname;
+const copy=x=>JSON.parse(JSON.stringify(x));
+const findingID=m=>`${m.group}|${m.tk}|${m.level}|${m.msg}`;
+function failures(data){return new Set(require('./checks-core.js').runChecks(data).msgs.filter(m=>m.level==='fail').map(findingID));}
+function legacyChange(data,p){
+  const c=data.companies.find(x=>x.tk===p.tk);
+  if(!c)throw new Error('unknown ticker');
+  if(p.kind==='log'){
+    c.log=c.log||[]; const e=Object.assign({},p.proposed);
+    if(!c.log.some(l=>l.d===e.d&&l.x===e.x))c.log.unshift(e);
+    c.log.sort((a,b)=>String(b.d||'').localeCompare(String(a.d||'')));
+  }else if(p.kind==='site'){
+    const s=(c.sites||[]).find(x=>x.n===p.site);
+    if(!s)throw new Error('site not found: '+p.site);
+    const stale=Object.entries(p.current||{}).find(([k,val])=>JSON.stringify(s[k])!==JSON.stringify(val));
+    if(stale)throw new Error(`stale: expected current ${stale[0]}=${JSON.stringify(stale[1])}, data now has ${JSON.stringify(s[stale[0]])} — rebase against current data`);
+    Object.assign(s,p.proposed);
+  }else if(p.kind==='catalyst'){
+    c.catalysts=c.catalysts||[];
+    if(!c.catalysts.includes(p.proposed.text))c.catalysts.unshift(p.proposed.text);
+  }else throw new Error('unknown kind '+p.kind);
 }
-
-const introduced = runChecks(D).msgs.filter(m => m.level === 'fail').map(findingID).filter(id => !beforeFails.has(id));
-if (introduced.length) {
-  for (const p of todo) if (p.applied === today) { p.status = 'error'; p.error = `not applied: would introduce ${introduced.length} new check failure(s): ${introduced.slice(0, 3).join('; ')}`; delete p.applied; }
-  fs.writeFileSync(path.join(ROOT, 'proposals.json'), JSON.stringify(P, null, 1) + '\n');
-  console.log(`REFUSED: would introduce new failures — data.json untouched, proposals marked error:\n  ` + introduced.join('\n  '));
-  process.exit(1);
+function buildResearchPayloads(data){
+  const {buildPayload,buildCompare}=require('./export-research.js'), {waterfall}=require('./onepager-core.js');
+  const result={};
+  for(const c of data.companies.filter(c=>c.page&&c.ramp)){
+    const payload=buildPayload(c.tk,data), w=waterfall(payload.L,payload.CAPQ,payload.finance,payload.ARRC);
+    if(![w.ps,w.ev,w.dil,w.last.nd].every(Number.isFinite)||w.dil<=0)throw new Error(c.tk+': invalid regenerated research waterfall');
+    result[c.tk.toLowerCase()+'-data.json']=payload;
+  }
+  result['compare-data.json']=buildCompare(data);
+  return result;
 }
-
-fs.writeFileSync(path.join(ROOT, 'data.json'), JSON.stringify(D, null, 1) + '\n');
-fs.writeFileSync(path.join(ROOT, 'proposals.json'), JSON.stringify(P, null, 1) + '\n');
-if (lines.length) {
-  const cl = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8').split('\n');
-  const at = cl.findIndex(l => l.startsWith('- '));
-  cl.splice(at < 0 ? cl.length : at, 0, ...lines);
-  fs.writeFileSync(path.join(ROOT, 'CHANGELOG.md'), cl.join('\n'));
+function processQueue(queue,data,options={}){
+  const P=copy(queue), baseline=copy(data), root=options.root||ROOT, today=options.today||new Date().toISOString().slice(0,10);
+  let D=copy(data), payloads=null; const lines=[],errors=[];
+  const todo=(P.items||[]).filter(p=>p.status==='accepted'&&!p.applied);
+  for(const p of todo){
+    try{
+      let candidate=copy(D), generated=null;
+      if(p.kind==='assumption'){
+        const A=require('./assumption-proposals.cjs');
+        // All items bind to the same pre-batch source. Before each write the preview is
+        // reproduced on the accumulated candidate too, blocking interacting changes.
+        A.validateProposal(p,{data:baseline,marks:options.marks,root});
+        candidate=A.applyChanges(D,p.changes);
+        A.assertMatchingImpact(p.review.impact,A.evaluateImpact(D,candidate,p.changes,p.review.quoteBasis));
+        A.noNewFailures(D,candidate);
+        generated=buildResearchPayloads(candidate);
+      }else legacyChange(candidate,p);
+      const before=failures(D), introduced=[...failures(candidate)].filter(id=>!before.has(id));
+      if(introduced.length)throw new Error(`would introduce ${introduced.length} new check failure(s): ${introduced.slice(0,3).join('; ')}`);
+      if(!generated&&payloads)generated=buildResearchPayloads(candidate);
+      D=candidate;
+      if(generated)payloads=generated;
+      p.applied=today; delete p.error;
+      if(p.kind==='assumption')p.validation={sourceHash:require('./assumption-review.cjs').hashJSON(D),modelHash:p.review.modelHash,checkedAt:options.now||new Date().toISOString(),publishedVerified:false};
+      lines.push(`- ${p.tk}: ${p.title} — approved on the Approvals screen ${p.decided||today}, applied ${today} (proposal ${p.id}; source ${p.sourceName||'McNallie Money (YouTube)'}${p.evidence?.[0]?', '+p.evidence[0].url:''}).`);
+    }catch(e){p.status='error';p.error='not applied: '+e.message;delete p.applied;errors.push({id:p.id,error:p.error});}
+  }
+  return {data:D,queue:P,payloads,lines,errors,attempted:todo.length};
 }
-console.log(`applied ${lines.length} proposal(s):\n` + lines.join('\n'));
+module.exports={processQueue,buildResearchPayloads};
+if(require.main===module){
+  try{
+    const read=name=>JSON.parse(fs.readFileSync(path.join(ROOT,name),'utf8'));
+    const out=processQueue(read('proposals.json'),read('data.json'),{marks:read('market-prices.json')});
+    if(!out.attempted){console.log('no accepted proposals to apply');process.exitCode=0;}
+    else{
+      const staged={'proposals.json':JSON.stringify(out.queue,null,1)+'\n'};
+      if(out.lines.length){
+        staged['data.json']=JSON.stringify(out.data,null,1)+'\n';
+        for(const [name,payload] of Object.entries(out.payloads||{}))staged[name]=JSON.stringify(payload,null,2)+'\n';
+        const cl=fs.readFileSync(path.join(ROOT,'CHANGELOG.md'),'utf8').split('\n'),at=cl.findIndex(l=>l.startsWith('- '));
+        cl.splice(at<0?cl.length:at,0,...out.lines);staged['CHANGELOG.md']=cl.join('\n');
+      }
+      // Files are committed together only after the Action's validation gates pass.
+      for(const [name,content] of Object.entries(staged))fs.writeFileSync(path.join(ROOT,name),content);
+      console.log(`applied ${out.lines.length} proposal(s); ${out.errors.length} blocked`);
+      for(const e of out.errors)console.log(e.id+': '+e.error);
+      // Handled rejections are saved to the queue. A nonzero exit before git commit would
+      // strand the error status and repeatedly retry the same approval on every run.
+    }
+  }catch(e){console.error(e.stack||e.message);process.exitCode=1;}
+}

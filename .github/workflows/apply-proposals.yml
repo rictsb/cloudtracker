@@ -36,11 +36,19 @@ jobs:
             git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
             git reset --hard refs/remotes/origin/main
             node proposals-apply.js | tee -a "${RUNNER_TEMP}/apply-proposals.log"
-            if git diff --quiet -- data.json proposals.json CHANGELOG.md; then
+            if git diff --quiet -- data.json proposals.json CHANGELOG.md iren-data.json crwv-data.json nbis-data.json compare-data.json; then
               echo "All accepted proposals are already saved; nothing to commit."
               exit 0
             fi
-            git add data.json proposals.json CHANGELOG.md
+            node checks.js
+            node verify.cjs
+            node verify-pricing.cjs
+            node verify-pricing-checks.cjs
+            node verify-pricing-finance.cjs
+            node verify-market-research.cjs
+            node verify-assumptions.cjs
+            node verify-assumption-approvals.cjs
+            git add data.json proposals.json CHANGELOG.md iren-data.json crwv-data.json nbis-data.json compare-data.json
             git commit -m "proposals: applied $(date -u +%F)"
             if git push origin HEAD:main; then
               exit 0

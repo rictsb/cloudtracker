@@ -2,6 +2,8 @@
 
 The single record of what changed. One line per change, newest first.
 
+- Assumption Review (2026-09-16, owner-authorized): adds an economic-review page for all 22 names, numerical/evidence coverage checks and canonical valuation sensitivities; background refresh and deployment reconciliation; expiring review decisions and source-backed numerical proposals through the existing approvals queue. Model assumptions and the paper portfolio are unchanged.
+
 - Comparison header simplified (2026-09-15, owner-directed): remove the CRWV / IREN / NBIS Research shortcut beside Model assumptions.
 
 - IREN default valuation (2026-09-15, owner-directed): promote the +0.5× EV/revenue case into the canonical house default (currently 4.3124× and $146.83/share), disclose the premium separately from the DCF-derived multiple, and retain the no-premium case in sensitivities. Report, quarterly ledger and comparison values share the new default; operating forecasts and the other companies' defaults are unchanged.

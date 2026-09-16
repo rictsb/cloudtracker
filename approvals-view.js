@@ -42,6 +42,7 @@
     if (p.kind === 'site' && p.proposed && 'mw' in p.proposed) return `Change ${p.site} from ${p.current?.mw} MW to ${p.proposed.mw} MW`;
     if (p.kind === 'site') return `Move ${p.site}'s energization from ${ym(p.current?.yr, p.current?.mo)} to ${ym(p.proposed?.yr, p.proposed?.mo)}`;
     if (p.kind === 'catalyst') return `Add a catalyst to ${name}`;
+    if (p.kind === 'assumption') return p.title;
     return p.title || p.kind;
   }
   function propStatement(p) { const e = (p.evidence || [])[0] || {}; return e.claim || (p.proposed && p.proposed.x) || p.title || ''; }
@@ -76,13 +77,16 @@
     if (isDry()) throw new Error('dry-run — the write path is disabled');
     const tok = ghToken(); if (!tok) throw new Error('no GitHub token on this device');
     const api = API_URL;
+    const shown = (PROPOSALS?.items || []).find(p => p.id === id);
+    if (!shown) throw new Error('proposal is no longer displayed — reload the queue');
+    const identity = Core().decisionIdentity(shown);
     const H = { Authorization: 'Bearer ' + tok, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
     for (let attempt = 0; attempt < 3; attempt++) {
       const r = await fetch(api + '?ref=main', { headers: H, cache: 'no-store' });
       if (r.status === 401) throw new Error('GitHub rejected the token (401) — paste a fresh one');
       if (!r.ok) throw new Error('GitHub read failed: HTTP ' + r.status);
       const j = await r.json(); const P = JSON.parse(Core().b64dec(j.content));
-      const commit = Core().buildCommit(P, id, status, new Date().toISOString().slice(0, 10));
+      const commit = Core().buildCommit(P, id, status, new Date().toISOString().slice(0, 10), identity);
       const w = await fetch(api, { method: 'PUT', headers: { ...H, 'Content-Type': 'application/json' }, body: JSON.stringify({ message: commit.message, content: commit.content, sha: j.sha, branch: 'main' }) });
       if (w.status === 409 || w.status === 422) { await new Promise(r2 => setTimeout(r2, 1500)); continue; }
       if (!w.ok) throw new Error('GitHub write failed: HTTP ' + w.status);
@@ -130,7 +134,7 @@
       // Badge recomputes from the write's returned file (spec must_preserve), not the boot fetch.
       const pend = (P.items || []).filter(i => i.status === 'pending').length;
       if (root.CVApp && root.CVApp.setPending) root.CVApp.setPending(pend);
-      if (msg) msg.textContent = status === 'accepted' ? 'saved — the site updates in a few minutes' : 'saved';
+      if (msg) msg.textContent = status === 'accepted' ? 'approval saved — application and validation are pending' : 'saved';
       setTimeout(() => { (root.CVApp && root.CVApp.refresh()); }, 900);
     } catch (e) {
       if (msg) msg.textContent = 'failed: ' + e.message;
@@ -184,7 +188,7 @@
     const eu = safeUrl(e.url);
     const watch = eu && /[&?]t=\d+s/.test(eu) ? ` · <a href="${esc(eu)}" target="_blank" rel="noopener">watch at ${tsLabel(parseInt(eu.match(/[&?]t=(\d+)s/)[1]))}</a>` : '';
     const src = `${esc(SAID_BY[e.by] || e.by || '')}${e.title ? (eu ? `, in <a href="${esc(eu)}" target="_blank" rel="noopener">${esc(e.title.split(' | ')[0])}</a>` : `, in ${esc(e.title.split(' | ')[0])}`) : ''}${e.d ? ` (${esc(fmtD(e.d))})` : ''}${watch}`;
-    const raw = p.kind === 'site' ? `site "${p.site}": ${JSON.stringify(p.current)} → ${JSON.stringify(p.proposed)}` : JSON.stringify(p.proposed, null, 1);
+    const raw = p.kind === 'site' ? `site "${p.site}": ${JSON.stringify(p.current)} → ${JSON.stringify(p.proposed)}` : JSON.stringify(p.kind === 'assumption' ? {changes:p.changes,review:p.review} : p.proposed, null, 1);
     const enabled = isDry() || tok;   // dry-run: enabled without a token; live: disabled until a token is saved
     return `<section class="panel ap-card" id="prop-${esc(p.id)}"><div class="padded">
       <div class="feed-meta">Proposed ${esc(fmtD(p.created))} · from ${esc(p.sourceName || 'the curated sources')}</div>
@@ -192,16 +196,35 @@
       <p class="ap-stmt">${esc(propStatement(p))}</p>
       <div class="ap-src">${src}</div>
       ${e.quote ? `<blockquote class="ap-quote">“${esc(e.quote)}”</blockquote>` : ''}
-      <div class="ap-actions"><button class="button primary" data-ap-dec="accepted" data-ap-id="${esc(p.id)}" ${enabled ? '' : 'disabled'}>Yes, ${p.kind === 'log' ? 'add it' : 'change it'}</button><button class="button" data-ap-dec="rejected" data-ap-id="${esc(p.id)}" ${enabled ? '' : 'disabled'}>No</button><span class="ap-pmsg" aria-live="polite"></span></div>
+      ${p.kind === 'assumption' ? assumptionPreview(p) : ''}
+      <div class="ap-actions"><button class="button primary" data-ap-dec="accepted" data-ap-id="${esc(p.id)}" ${enabled ? '' : 'disabled'}>${p.kind === 'assumption' ? 'Approve numerical change' : `Yes, ${p.kind === 'log' ? 'add it' : 'change it'}`}</button><button class="button" data-ap-dec="rejected" data-ap-id="${esc(p.id)}" ${enabled ? '' : 'disabled'}>${p.kind === 'assumption' ? 'Reject proposal' : 'No'}</button><span class="ap-pmsg" aria-live="polite"></span></div>
       <details class="ap-rawbox"><summary class="text-button"><span class="ap-when-closed">Show the exact change</span><span class="ap-when-open">Hide the exact change</span></summary><pre class="ap-raw">${esc(raw)}</pre></details>
     </div></section>`;
+  }
+
+  function assumptionPreview(p) {
+    const num = x => Number.isFinite(x) ? x.toLocaleString('en-US',{maximumFractionDigits:3}) : 'Unavailable';
+    const money = x => Number.isFinite(x) ? '$' + x.toFixed(2) : 'Unavailable';
+    const changes = (p.changes || []).map(c => `<tr><td>${esc(c.scope === 'global' ? 'Shared' : c.ticker)} · ${esc((c.path || []).join('.'))}</td><td>${esc(num(c.current))}</td><td>${esc(num(c.proposed))}</td><td>${esc(c.unit)}</td></tr>`).join('');
+    const impact = (p.review?.impact || []).map(r => `<tr><td><b>${esc(r.ticker)}</b><br><span class="muted small">${esc(r.modelBasis)}</span></td><td>${esc(money(r.base))}</td><td>${esc(money(r.proposed))}</td><td>${esc(money(r.delta))}${r.pct == null ? '' : ' (' + esc(num(r.pct)) + '%)'}</td></tr>`).join('');
+    const metrics = (p.review?.impact || []).map(r => {
+      const rows = Object.entries(r.baseMetrics || {}).map(([k,v]) => `<span>${esc(k)}</span><strong>${esc(num(v))} → ${esc(num(r.proposedMetrics?.[k]))}</strong>`).join('');
+      const q = r.quoteBasis || {};
+      return `<details class="ap-rawbox"><summary class="text-button">${esc(r.ticker)}: revenue, funding and share bridge</summary><div class="ledger">${rows}</div><p class="small muted">${esc(q.financingMethod)}. Issuance price: ${esc(money(q.financingPriceBase))} → ${esc(money(q.financingPriceProposed))}. Market reference: ${esc(money(q.price))}${q.date ? ' at ' + esc(q.date) : ' (date unavailable)'} · ${esc(q.source)}.</p>${r.assetAlternative ? `<p class="small muted">${esc(r.assetAlternative.label)}: ${esc(money(r.assetAlternative.base))} → ${esc(money(r.assetAlternative.proposed))}.</p>` : ''}</details>`;
+    }).join('');
+    const sources = (p.evidence || []).map(e => {
+      let url = ''; try {const u=new URL(e.url); if(['https:','http:'].includes(u.protocol))url=u.href;} catch (_) {}
+      const excerpts = [...new Set([e.claim,e.quote].filter(x => typeof x === 'string' && x.trim()))];
+      return `<li>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(e.sourceName || e.title || 'Source evidence')}</a>` : esc(e.sourceName || e.title || 'Source evidence')}${e.date ? ' · '+esc(e.date) : ''}${excerpts.map(x => ': '+esc(x)).join('')}</li>`;
+    }).join('');
+    return `<div class="method-block"><h3>Proposed assumptions</h3><div class="table-wrap"><table><thead><tr><th>Input</th><th>Current</th><th>Proposed</th><th>Unit</th></tr></thead><tbody>${changes}</tbody></table></div><p>${esc(p.basis)}</p><ul>${sources}</ul></div><div class="method-block"><h3>Value per share</h3><div class="table-wrap"><table><thead><tr><th>Company</th><th>Current</th><th>Proposed</th><th>Change</th></tr></thead><tbody>${impact}</tbody></table></div>${metrics}<p class="small muted">The complete bundle is revalidated against its source data, model version and impact before application. A changed source or material market impact requires a fresh proposal. Approval, application and published verification are separate steps.</p></div>`;
   }
 
   function historyPanel(done) {
     if (!done.length) return '';
     const shown = done.slice(0, 25);
     const rows = shown.map(p => {
-      const word = p.status === 'applied' || (p.status === 'accepted' && p.applied) ? 'Applied' : p.status === 'accepted' ? 'Approved, applying' : p.status === 'rejected' ? 'Declined' : 'Could not apply';
+      const word = p.status === 'applied' || (p.status === 'accepted' && p.applied) ? (p.validation?.publishedVerified ? 'Verified published' : 'Applied') : p.status === 'accepted' ? 'Approved, applying' : p.status === 'rejected' ? 'Declined' : 'Could not apply';
       const cls = word === 'Applied' ? 'ok' : word === 'Declined' ? 'no' : word === 'Could not apply' ? 'err' : '';
       return `<div class="ap-done"><span class="ap-done-word ${cls}">${word}</span> ${esc(fmtD(p.applied || p.decided))} · <b>${esc(p.tk)}</b> — ${esc(propStatement(p))}${p.error ? ` <span class="muted">(${esc(p.error)})</span>` : ''}</div>`;
     }).join('');
@@ -209,7 +232,7 @@
   }
 
   /* Production's legend (app.js:427) — preserved verbatim. */
-  const FOOTNOTE = `<p class="table-explainer ap-section-gap">Each proposal is one statement from a curated source that the tracker does not yet reflect. <b>Yes</b> writes it into the model with a changelog line and the site updates within a few minutes; <b>No</b> declines it for good. Site changes move a company's value; notes added to a record do not.</p>`;
+  const FOOTNOTE = `<p class="table-explainer ap-section-gap">Approve records your decision. The application job validates the proposed change before updating the model and publishing it. Numerical proposals include an explicit impact preview; stale proposals return an error for fresh review. Reject preserves the proposal fingerprint so the same recommendation is not raised again. Notes added to a record do not change value.</p>`;
 
   function render(p) {
     ensureLoad();

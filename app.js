@@ -128,17 +128,18 @@
     ]).filter(x=>!search||`${x.co} ${x.counterparty} ${x.source}`.toLowerCase().includes(search.toLowerCase()));
     return `<section class="panel"><div class="panel-header"><div><h2>Signed contract register</h2><p>${rows.length} contracts shown · signed and effective in the source</p></div></div><div class="table-scroll"><table class="plain-table"><thead><tr><th>Company / counterparty</th><th>Type</th><th>Signed</th><th class="num">Contract value</th><th class="num">Term</th><th>Source basis</th></tr></thead><tbody>${rows.map(r=>`<tr><td><a href="/company/${esc(r.co)}">${esc(r.co)}</a><div style="margin-top:4px;max-width:230px">${esc(r.counterparty)}</div></td><td>${r.kindLabel}</td><td class="nowrap">${esc(r.signed||'Not supplied')}</td><td class="num">${r.valM!=null?`${big(r.valM)}<div class="company-sub" style="margin-top:2px">${r.valBasis}</div>`:'—'}</td><td class="num">${r.termYrs?n(r.termYrs,1)+' years':'—'}</td><td><details><summary>View source note</summary><p>${esc(r.source||'No additional source note supplied.')}</p></details></td></tr>`).join('')||'<tr><td colspan="6"><div class="empty">No signed contracts match this filter.</div></td></tr>'}</tbody></table></div><div class="chart-note">Contract value is the total signed value over the stated term — take-or-pay contract revenue for GPU compute, gross base-term value for data-centre leases; the basis is labelled on each row. It is not annual revenue, recognised revenue or equity value.</div></section>`;
   }
-  const OPS_TABS=[['news','News','/news'],['approvals','Approvals','/approvals'],['portfolio','Portfolio','/portfolio'],['checks','Checks','/checks']];
+  const OPS_TABS=[['assumptions','Assumption Review','/research/assumptions'],['news','News','/news'],['approvals','Approvals','/approvals'],['portfolio','Portfolio','/portfolio'],['checks','Checks','/checks']];
   function opsSubnav(active){return `<nav class="subnav" aria-label="Operations">${OPS_TABS.map(([k,l,href])=>`<a href="${href}" ${active===k?'aria-current="page"':''}>${l}${k==='approvals'&&OPS.pending?`<span class="ops-count">${OPS.pending}</span>`:''}${k==='checks'&&OPS.checks?`<span class="ops-dot ${OPS.checks.cls}" title="Data checks: ${esc(OPS.checks.label)}"></span>`:''}</a>`).join('')}</nav>`;}
   const OPS_STRAP={
+    assumptions:'Economic consistency across the universe — findings, evidence and proposed changes.',
     news:'What the curated sources said, summarised — one item per video, newest first. Never a valuation input.',
     approvals:'Statements from the sources that the tracker does not yet reflect. Yes puts it in; No declines it. Nothing changes without a click.',
     portfolio:'The paper portfolio — the model’s views, sized daily against the market · hypothetical, paper only.',
     checks:'Data unit tests — run live in this browser against the deployed data, on every load.'
   };
   function opsPage(key,p){
-    const V={news:window.NewsView,approvals:window.ApprovalsView,portfolio:window.PortfolioView,checks:window.ChecksView}[key];
-    if(V&&V.render)return `<div class="page-top"><div><div class="eyebrow">Operations</div><h1>${key[0].toUpperCase()+key.slice(1)}</h1><p class="page-description">${OPS_STRAP[key]||''}</p></div></div>${opsSubnav(key)}${V.render(p)}`;
+    const V={assumptions:window.AssumptionView,news:window.NewsView,approvals:window.ApprovalsView,portfolio:window.PortfolioView,checks:window.ChecksView}[key];
+    if(V&&V.render)return `<div class="page-top"><div><div class="eyebrow">Operations</div><h1>${key==='assumptions'?'Assumption Review':key[0].toUpperCase()+key.slice(1)}</h1><p class="page-description">${OPS_STRAP[key]||''}</p></div></div>${opsSubnav(key)}${V.render(p)}`;
     const D={
       news:{h:'News',what:'the curated video digest — one item per video from the curated sources, summarised on the DGX Spark, newest first, never a valuation input',file:'news.json',job:'The Spark publishes news.json each morning; that pipeline is unchanged.'},
       approvals:{h:'Approvals',what:'the operator decision desk — each pending Spark proposal with its claim, quote and exact change, decided with a click',file:'proposals.json',job:'The Spark publishes proposals.json daily and the apply-proposals Action applies accepted decisions; both are unchanged.'},
@@ -170,7 +171,7 @@
     fetch('/proposals.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(p=>{
       OPS.pending=p&&Array.isArray(p.items)?p.items.filter(i=>i.status==='pending').length:0;
       updateOpsBadges();
-      if(['/news','/approvals','/portfolio','/checks'].includes(location.pathname))render();
+      if(['/news','/approvals','/portfolio','/checks','/research/assumptions'].includes(location.pathname))render();
     }).catch(()=>{});
   }
   function render(){
@@ -182,6 +183,7 @@
       const setNav=name=>document.querySelectorAll('[data-nav]').forEach(a=>a.dataset.nav===name?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
       main.classList.toggle('iren-page',['/iren','/crwv','/nbis'].includes(path));
       if(['/iren','/crwv','/nbis'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong></div>';setNav('research');document.title=tk+' — Compute / Value';}
+      else if(path==='/research/assumptions'){main.innerHTML=opsPage('assumptions',p);setNav('operations');document.title='Assumption Review — Compute / Value';}
       else if(path==='/research/compare'){main.innerHTML=window.CompareView?CompareView.render(p):'<div class="empty"><strong>The comparison could not load.</strong></div>';setNav('research');document.title='Megawatt comparison — Compute / Value';}
       else if(['/news','/approvals','/portfolio','/checks'].includes(path)){const key=path.slice(1);main.innerHTML=opsPage(key,p);setNav('operations');document.title=key[0].toUpperCase()+key.slice(1)+' — Compute / Value';}
       return;
@@ -190,6 +192,7 @@
     main.classList.toggle('iren-page',['/iren','/crwv','/nbis'].includes(path));
     if(['/iren','/crwv','/nbis'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong><button class="button" onclick="location.reload()">Reload preview</button></div>';nav='research';document.title=tk+' — Compute / Value';}
     else if(path==='/research/compare'){main.innerHTML=window.CompareView?CompareView.render(p):'<div class="empty"><strong>The comparison could not load.</strong><button class="button" onclick="location.reload()">Reload preview</button></div>';nav='research';document.title='Megawatt comparison — Compute / Value';}
+    else if(path==='/research/assumptions'){main.innerHTML=opsPage('assumptions',p);nav='operations';document.title='Assumption Review — Compute / Value';}
     else if(path==='/research'){main.innerHTML=window.ResearchView.render(M,p);nav='research';document.title='Research — Compute / Value';}
     else if(path==='/infrastructure'){main.innerHTML=infrastructure(p);nav='infrastructure';document.title='Infrastructure — Compute / Value';}
     else if(['/news','/approvals','/portfolio','/checks'].includes(path)){const key=path.slice(1);main.innerHTML=opsPage(key,p);nav='operations';document.title=key[0].toUpperCase()+key.slice(1)+' — Compute / Value';}

@@ -107,3 +107,14 @@ Live prices: Finnhub (stocks) + Coinbase (BTC, ETH), hourly + manual ↻. Cap-ra
 - Committed project bonds are charged; **uncommitted** future build capex is not — it shows as the per-name "funding gap" estimate in the facts panel.
 - Lease-up defaults to 1.0 — a deliberate scarcity conviction (energized capacity gets rented), not an oversight; dial to 0.42 for the consensus board.
 - A relative-value signal, not investment advice.
+
+
+## Assumption Review operations
+
+Open `/research/assumptions` for the economic inbox. Numerical runs are automatic; use `node assumption-review.cjs` locally or dispatch `assumption-review.yml` to refresh. Numerical freshness and external-evidence review are different clocks. The daily analyst heartbeat (with a broader Monday review) needs this computer and Codex running; hosted numerical checks do not.
+
+To draft a reviewed numerical change, create a temporary JSON object with `title`, `basis`, `findingId` (or `findingIds`), `changes` and `evidence`. A change names `scope` (`global` or `company`), `ticker` for a company, an explicit path array, numeric `current` and `proposed` values, and exact units. For example, a global renewal-retention field is `["researchPricing","renewal","retention"]` with unit `fraction`. Sources need a public `url`, a descriptive `title`, `sourceName`, `claim` or `quote`, and a source date when known. Run `node assumption-proposals.cjs --input /tmp/proposal.json --check` to validate/preview, then without `--check` to append a pending proposal. Never apply it locally or accept it on the user's behalf. Commit queue-only changes against current main; on conflicts re-read and regenerate rather than overwriting the Spark's items or decisions.
+
+Record the actual research scope using `node assumption-research.cjs --input /tmp/research.json [--check]`. Input: `{scope, findings:[{findingId,fingerprint,status,conclusion,sources:[{label,url,date}],proposalId?}]}`. Research outcomes are `needs-evidence`, `explained` or `proposal-ready`; the last requires an existing pending numerical proposal. It never adjusts inputs or marks a finding kept. Retain current assumptions only through an explicit owner decision.
+
+Keep review notifications limited to material new evidence, ready proposals, changed decisions and failures requiring action. Do not repeatedly notify on unchanged gaps. No comparison is valid merely because all companies use the same assumption; test physical units, economic return and funding separately.
