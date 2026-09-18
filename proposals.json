@@ -391,10 +391,41 @@
     "impactHash": "4cf05c64ab0384b315d372224048a3ed2136418a425721e3f6b77d8a4b9f479d"
    },
    "findingId": "SHAZ:economics:signed-rate-region"
+  },
+  {
+   "fp": "cccc2306797b6cee",
+   "tk": "NBIS",
+   "kind": "log",
+   "site": null,
+   "title": "log: Nebius announced GPU rate increases, raising B300 rates from $7.85 to $9.50 per hour.",
+   "current": null,
+   "proposed": {
+    "d": "2026-09-17",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — GPU Rates Increase | Latest IREN, GLXY, NBIS, WULF, BTDR & KEEL Stock News | Bes, 2026-09-17",
+    "x": "Nebius announced GPU rate increases, raising B300 rates from $7.85 to $9.50 per hour. — \"The B300 sees the biggest jump, and that's gone to $9.50.\" (executive)"
+   },
+   "evidence": [
+    {
+     "d": "2026-09-17",
+     "quote": "The B300 sees the biggest jump, and that's gone to $9.50.",
+     "claim": "Nebius announced GPU rate increases, raising B300 rates from $7.85 to $9.50 per hour.",
+     "by": "executive",
+     "url": "https://www.youtube.com/watch?v=j2FWAT1GJbs&t=1882s",
+     "title": "GPU Rates Increase | Latest IREN, GLXY, NBIS, WULF, BTDR & KEEL Stock News | Best AI Stocks in 2026"
+    }
+   ],
+   "id": "p-2026-09-18-NBIS-001",
+   "created": "2026-09-18",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [],
- "asOf": "2026-09-17",
+ "asOf": "2026-09-18",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",

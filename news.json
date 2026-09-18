@@ -1,5 +1,5 @@
 {
- "asOf": "2026-09-17",
+ "asOf": "2026-09-18",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,63 @@
   }
  ],
  "items": [
+  {
+   "id": "j2FWAT1GJbs",
+   "src": "mcnallie-money",
+   "d": "2026-09-17",
+   "title": "GPU Rates Increase | Latest IREN, GLXY, NBIS, WULF, BTDR & KEEL Stock News | Best AI Stocks in 2026",
+   "headline": "GPU Rates Increase — Latest IREN, GLXY, NBIS, WULF, BTDR & KEEL Stock News",
+   "url": "https://www.youtube.com/watch?v=j2FWAT1GJbs",
+   "kind": "news",
+   "minutes": 51,
+   "tickers": [
+    "IREN",
+    "BTDR",
+    "WULF",
+    "NBIS",
+    "CORZ",
+    "ABTC",
+    "HUT",
+    "RIOT",
+    "SLNH",
+    "HIVE",
+    "BTBT",
+    "MARA",
+    "CLSK",
+    "GLXY",
+    "APLD",
+    "CRWV"
+   ],
+   "main": [
+    "IREN",
+    "BTDR",
+    "WULF",
+    "NBIS",
+    "CORZ"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "NBIS",
+     "claim": "Nebius announced GPU rate increases, raising B300 rates from $7.85 to $9.50 per hour.",
+     "by": "executive",
+     "tag": "big",
+     "t": 1882
+    },
+    {
+     "tk": "BTDR",
+     "claim": "Bitdeer signed an LOI in Bhutan for 30 MW of hydro/solar capacity with potential expansion to 500 MW.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 809
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "vJcFc3blfIc",
    "src": "mcnallie-money",
@@ -6366,70 +6423,6 @@
     "Investors should verify Nebius' exact GPU pricing increases against official sources; Applied Digital's contract terms (e.g., 15-year duration, $7.5B/$18.2B values) and campus details in SEC filings; NVIDIA's Q1 financials and Q2 guidance in their earnings release; Anthropic's Q2 revenue/operating profit projections and SpaceX deal terms from official announcements."
    ],
    "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "kLfN69L1EBs",
-   "src": "mcnallie-money",
-   "d": "2026-05-20",
-   "title": "Huge Soluna News | Latest NBIS & BE Deal | Top AI Stocks to Watch | AI Stock News | HUT, CLSK & WULF",
-   "headline": "Huge Soluna News — Latest NBIS & BE Deal",
-   "url": "https://www.youtube.com/watch?v=kLfN69L1EBs",
-   "kind": "news",
-   "minutes": 36,
-   "tickers": [
-    "SLNH",
-    "NBIS",
-    "HIVE",
-    "CLSK",
-    "WULF",
-    "RIOT",
-    "CORZ",
-    "BTDR",
-    "GLXY",
-    "MARA",
-    "APLD",
-    "HUT",
-    "BTBT"
-   ],
-   "main": [
-    "SLNH",
-    "NBIS",
-    "HIVE",
-    "CLSK",
-    "WULF",
-    "RIOT",
-    "CORZ"
-   ],
-   "summary": "1. The video discusses recent news from AI infrastructure companies including Soluna (SLNH), Nebius (NBIS), Hut 8 Mining Corp (HUT), TeraWulf Inc. (WULF) and CleanSpark, covering deals, capacity expansions, financing moves and market performance.\n\n2. Key facts by company:\n   - HIVE Blockchain Technologies Ltd (HIVE): Achieved 25 exahash target before Thanksgiving; Paraguay sites contribute ~2% of global hash rate; GPUs converted to HPC after Ethereum proof-of-stake event in September 2023; 20 million annualized revenue from HPC by end of last year; approaching $1 billion market capitalization\n   - Nebius (NBIS): Signed deal with Bloom Energy for $2.6 billion total monthly service fees over 10 years; minimum guaranteed 250 MW capacity, up to 328 MW system installed capacity in three phases; 1.2 GW Pennsylvania AI factory announced alongside Q1 earnings; expects 3 deals by end of year\n   - Soluna Holdings (SLNH): Acquired full ownership of Project Dorothy 1B for $8.8 million; owns entire consolidation of Dorothy 1 campus; purchased Briscoe wind farm (150 MW generation facility) for $53 million; cleaned up balance sheet, converted preference shares to equity; 4.3 GW power pipeline\n   - Hut 8 Mining Corp (HUT): Announced $16 million investment in West Feliciana Parish, Louisiana water infrastructure expansion including new well and system enhancements; Riverbend campus designed with closed-loop cooling minimizing ongoing water demand; phase one economic impact includes over 1,000 construction workers at peak plus 75 direct permanent jobs\n   - TeraWulf Inc. (WULF): Delivering 250-500 MW annually; signed deals with FluidStack and Core42; facilities require quick funding upon deal signing\n\n3. Host's view: The hosts are optimistic about the sector, noting that companies like HIVE, IronNet (IREN) and CleanSpark have shown rapid growth potential. They highlight Riot Platforms Inc.'s (RIOT) prime Texas sites as undervalued with potential to add ~$47 per share if a hyperscaler signs at Corsicana facility. The hosts sound confident in the long-term prospects of companies executing on HPC pivots.\n\n4. Worth checking: Verify Nebius's 1.2 GW Pennsylvania AI factory announcement and expected deal timeline; confirm Soluna Holdings' $53 million Briscoe wind farm acquisition details and preference share conversion terms; check Hut 8 Mining Corp's $16 million Louisiana water infrastructure investment specifics and job creation numbers; validate TeraWulf Inc.'s funding capabilities for signed deals.",
-   "brief": "Recent news from AI infrastructure companies including Soluna (SLNH), Nebius (NBIS), Hut 8 Mining Corp (HUT), TeraWulf Inc. (WULF) and CleanSpark, covering deals, capacity expansions, financing moves and market performance.",
-   "facts": [
-    "HIVE Blockchain Technologies Ltd (HIVE): Achieved 25 exahash target before Thanksgiving; Paraguay sites contribute ~2% of global hash rate; GPUs converted to HPC after Ethereum proof-of-stake event in September 2023; 20 million annualized revenue from HPC by end of last year; approaching $1 billion market capitalization",
-    "Nebius (NBIS): Signed deal with Bloom Energy for $2.6 billion total monthly service fees over 10 years; minimum guaranteed 250 MW capacity, up to 328 MW system installed capacity in three phases; 1.2 GW Pennsylvania AI factory announced alongside Q1 earnings; expects 3 deals by end of year",
-    "Soluna Holdings (SLNH): Acquired full ownership of Project Dorothy 1B for $8.8 million; owns entire consolidation of Dorothy 1 campus; purchased Briscoe wind farm (150 MW generation facility) for $53 million; cleaned up balance sheet, converted preference shares to equity; 4.3 GW power pipeline",
-    "Hut 8 Mining Corp (HUT): Announced $16 million investment in West Feliciana Parish, Louisiana water infrastructure expansion including new well and system enhancements; Riverbend campus designed with closed-loop cooling minimizing ongoing water demand; phase one economic impact includes over 1,000 construction workers at peak plus 75 direct permanent jobs",
-    "TeraWulf Inc. (WULF): Delivering 250-500 MW annually; signed deals with FluidStack and Core42; facilities require quick funding upon deal signing"
-   ],
-   "view": "The hosts are optimistic about the sector, noting that companies like HIVE, IronNet (IREN) and CleanSpark have shown rapid growth potential. They highlight Riot Platforms Inc.'s (RIOT) prime Texas sites as undervalued with potential to add ~$47 per share if a hyperscaler signs at Corsicana facility. The hosts sound confident in the long-term prospects of companies executing on HPC pivots.",
-   "verify": [
-    "Verify Nebius's 1.2 GW Pennsylvania AI factory announcement and expected deal timeline; confirm Soluna Holdings' $53 million Briscoe wind farm acquisition details and preference share conversion terms; check Hut 8 Mining Corp's $16 million Louisiana water infrastructure investment specifics and job creation numbers; validate TeraWulf Inc.'s funding capabilities for signed deals."
-   ],
-   "signal": [
-    {
-     "tk": "SLNH",
-     "claim": "Soluna's flagship sites include Catty 2 and Dorothy 3 with over 300 MW of potential capacity for HPC/AI.",
-     "by": "host",
-     "tag": "notable",
-     "t": 548
-    },
-    {
-     "tk": "NBIS",
-     "claim": "Nebius signed a contract with Bloom Energy for monthly rental fees totaling 2.6 USDbn over 10 years.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    }
-   ],
    "sponsored": []
   }
  ]
