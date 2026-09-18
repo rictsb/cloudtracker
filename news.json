@@ -43,11 +43,20 @@
     "NBIS",
     "CORZ"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent developments in the AI infrastructure sector, focusing on rising GPU spot pricing and its impact on companies like IREN (Iris Energy), GLXY (Galaxy Digital), NBIS (Nebius Technologies), WULF (TeraWulf Inc.), BTDR (Bitdeer Technologies) and KEEL (Kiel Acquisition Corp).\n\n2. Key facts by company:\n- **BTDR**: Produced 1,310 Bitcoin in August, a 6% increase from July; total global contracted capacity of 3 gigawatts with over 1.7 gigawatts energised; GPU deployed increased by 2% in August to include B300s; annual recurring revenue rose 13% to $86 million.\n- **WULF**: Received an overweight rating and a $30 price target from Equity Research based on net asset value; director Michael Buccella purchased 6,085 shares at ~$14.80 (~$89,000); expected adjusted funds from operations of $1.50 per share by 2030.\n- **KEEL**: Hosting five Q&A sessions in Scrubgrass Township for a potential 1.3 gigawatts site; construction underway at Moses Lake (18-megawatt site).\n- **GLXY**: Named as a founding validator on ARK's mainnet, securing the network from launch and receiving economic upside.\n- **NBIS**: Increased rates across all GPU types: B300 to $9.50 (+$1.65), B200 to $8.50 (+$1); AI revenue grew 514% YoY to $574.9 million in Q2; adjusted EBITDA of $236.2 million profit (vs. $21M loss YoY).\n- **IREN**: Share price reached a high of $46.17 before pulling back to ~$43.50.\n\n3. Host's view: The hosts are bullish on the sector, noting that rising GPU rates and longer residual values for GPUs could drive significant revenue growth. They highlight insider buying as a positive signal and expect companies like WULF and BTDR to benefit from their expansion strategies. Price targets mentioned include $30 for WULF (215% upside) and $250 for CoreWeave.\n\n4. Worth checking: Verify the residual value percentages of GPUs (e.g., B200 at 160%, A100/H100 at ~90%) against official filings or industry reports; confirm the proposed $1 million per megawatt community investment fee in New York state; validate the adjusted EBITDA figures for NBIS and the net asset valuation methodology used by Equity Research for WULF.",
+   "brief": "Recent developments in the AI infrastructure sector, focusing on rising GPU spot pricing and its impact on companies like IREN (Iris Energy), GLXY (Galaxy Digital), NBIS (Nebius Technologies), WULF (TeraWulf Inc.), BTDR (Bitdeer Technologies) and KEEL (Kiel Acquisition Corp).",
+   "facts": [
+    "**BTDR**: Produced 1,310 Bitcoin in August, a 6% increase from July; total global contracted capacity of 3 gigawatts with over 1.7 gigawatts energised; GPU deployed increased by 2% in August to include B300s; annual recurring revenue rose 13% to $86 million.",
+    "**WULF**: Received an overweight rating and a $30 price target from Equity Research based on net asset value; director Michael Buccella purchased 6,085 shares at ~$14.80 (~$89,000); expected adjusted funds from operations of $1.50 per share by 2030.",
+    "**KEEL**: Hosting five Q&A sessions in Scrubgrass Township for a potential 1.3 gigawatts site; construction underway at Moses Lake (18-megawatt site).",
+    "**GLXY**: Named as a founding validator on ARK's mainnet, securing the network from launch and receiving economic upside.",
+    "**NBIS**: Increased rates across all GPU types: B300 to $9.50 (+$1.65), B200 to $8.50 (+$1); AI revenue grew 514% YoY to $574.9 million in Q2; adjusted EBITDA of $236.2 million profit (vs. $21M loss YoY).",
+    "**IREN**: Share price reached a high of $46.17 before pulling back to ~$43.50."
+   ],
+   "view": "The hosts are bullish on the sector, noting that rising GPU rates and longer residual values for GPUs could drive significant revenue growth. They highlight insider buying as a positive signal and expect companies like WULF and BTDR to benefit from their expansion strategies. Price targets mentioned include $30 for WULF (215% upside) and $250 for CoreWeave.",
+   "verify": [
+    "Verify the residual value percentages of GPUs (e.g., B200 at 160%, A100/H100 at ~90%) against official filings or industry reports; confirm the proposed $1 million per megawatt community investment fee in New York state; validate the adjusted EBITDA figures for NBIS and the net asset valuation methodology used by Equity Research for WULF."
+   ],
    "signal": [
     {
      "tk": "NBIS",
