@@ -422,10 +422,41 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "299ecf8b812415fe",
+   "tk": "BTDR",
+   "kind": "log",
+   "site": null,
+   "title": "log: Bitdeer (BTDR) achieved a combined self-mining and co-mining hash rate of over 100 EH/s by",
+   "current": null,
+   "proposed": {
+    "d": "2026-09-18",
+    "t": "opinion",
+    "s": "[secondary] McNallie Money (YouTube) — Latest AI Stock Price Targets | Top IREN, SLNH, BTDR, MARA & WYFI News | Best AI, 2026-09-18",
+    "x": "Bitdeer (BTDR) achieved a combined self-mining and co-mining hash rate of over 100 EH/s by the end of August. — \"over 100 exahash. The first mining company to achieve that level there.\" (host)"
+   },
+   "evidence": [
+    {
+     "d": "2026-09-18",
+     "quote": "over 100 exahash. The first mining company to achieve that level there.",
+     "claim": "Bitdeer (BTDR) achieved a combined self-mining and co-mining hash rate of over 100 EH/s by the end of August.",
+     "by": "host",
+     "url": "https://www.youtube.com/watch?v=dtLJ5n0cnmw",
+     "title": "Latest AI Stock Price Targets | Top IREN, SLNH, BTDR, MARA & WYFI News | Best AI Stocks to Watch"
+    }
+   ],
+   "id": "p-2026-09-19-BTDR-001",
+   "created": "2026-09-19",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [],
- "asOf": "2026-09-18",
+ "asOf": "2026-09-19",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
