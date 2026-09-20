@@ -1,8 +1,31 @@
 {
   "version": 1,
-  "checkedAt": "2026-09-20T06:22:39.717Z",
-  "status": "ready",
-  "failedTickers": [],
+  "checkedAt": "2026-09-20T06:53:34.912Z",
+  "status": "partial",
+  "failedTickers": [
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "BTDR",
+    "IREN",
+    "SLNH",
+    "GLXY",
+    "HUT",
+    "CIFR",
+    "MARA",
+    "CORZ",
+    "WULF",
+    "FRMI",
+    "WYFI",
+    "HIVE",
+    "APLD",
+    "ABTC",
+    "CLSK",
+    "BTBT",
+    "NUAI",
+    "KEEL",
+    "SHAZ"
+  ],
   "failedCrypto": [],
   "universe": [
     "CRWV",
@@ -125,13 +148,13 @@
       "KEEL": "Finnhub",
       "SHAZ": "Finnhub"
     },
-    "btc": 80431.965,
-    "eth": 2578.92,
+    "btc": 80346.005,
+    "eth": 2573.415,
     "cryptoDates": {
-      "btc": "2026-09-20T06:22:39.707Z",
-      "eth": "2026-09-20T06:22:39.716Z"
+      "btc": "2026-09-20T06:53:34.907Z",
+      "eth": "2026-09-20T06:53:34.912Z"
     },
-    "asOf": "2026-09-20T06:22:39.716Z",
-    "fetchedAt": "2026-09-20T06:22:39.716Z"
+    "asOf": "2026-09-20T06:53:34.912Z",
+    "fetchedAt": "2026-09-20T06:53:34.912Z"
   }
 }
