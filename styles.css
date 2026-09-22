@@ -235,3 +235,5 @@ table.cmp td.trend{font-size:10.5px;letter-spacing:.04em;text-transform:uppercas
 
 /* Every market reference carries its own provider clock and fallback state. */
 .quote-clock{display:block;max-width:170px;margin-top:4px;white-space:normal;font-size:10px;line-height:1.4;font-weight:400;color:var(--muted);overflow-wrap:anywhere}.table-model .quote-clock{margin-left:auto}.comparison .quote-clock{min-height:14px;margin-left:auto}.research-card .research-prices{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;margin-top:14px}.research-card .research-prices strong{font-variant-numeric:tabular-nums}.research-card .quote-clock{max-width:none;font-size:10px;margin-top:6px}@media(max-width:600px){.comparison .quote-clock{font-size:9px;line-height:1.4}.comparison td{vertical-align:top}}
+
+.catalyst-filters{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.catalyst-filters input[type=checkbox]{width:16px;height:16px}.catalyst-board td:nth-child(4){min-width:260px;white-space:normal}.catalyst-board td:nth-child(6){white-space:normal;min-width:120px;color:var(--muted)}.catalyst-board details p{max-width:640px}

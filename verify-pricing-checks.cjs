@@ -25,7 +25,7 @@ function rejects(mutator, id) {
 function browserChecker(rampFunction = Ramp.rampQuarters) {
   const context = { rampQuarters: rampFunction };
   context.self = context;
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname, 'checks-core.js'), 'utf8'), context);
+  for (const file of ['engine.js', 'catalyst-core.js', 'checks-core.js']) vm.runInNewContext(fs.readFileSync(path.join(__dirname, file), 'utf8'), context);  // same modules index.html loads
   return d => context.ChecksCore.runChecks(d, TODAY);
 }
 let passed = 0;

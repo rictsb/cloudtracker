@@ -230,7 +230,7 @@
     if(e.target.id==='company-search'){query=e.target.value;$('#company-rows').innerHTML=companyRows();$('#company-count').textContent=`${filteredCompanies().length} of ${M.companies.length} companies`;}
     if(e.target.dataset.dial){const k=e.target.dataset.dial;overrides[k]=Number(e.target.value);M=CloudModel.recalculate(overrides);render();$('#dial-value-'+k).textContent=sliderValue(M.assumptions.find(a=>a.key===k));$('#assumption-target').textContent=money(M.companies.find(c=>c.ticker==='IREN').target);$('#assumption-case').textContent=priceCaption();}
   });
-  document.addEventListener('change',e=>{const map={'site-company':'company','site-evidence':'evidence','research-company':'company'};if(map[e.target.id])updateQuery(map[e.target.id],e.target.value);});
+  document.addEventListener('change',e=>{const map={'site-company':'company','site-evidence':'evidence','research-company':'company','research-kind':'kind'};if(map[e.target.id])updateQuery(map[e.target.id],e.target.value);if(e.target.id==='research-dated')updateQuery('dated',e.target.checked?'1':'');});
   drawer.addEventListener('click',e=>{if(e.target===drawer){const r=drawer.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right)closeDrawer();}});
   drawer.addEventListener('close',()=>returnFocus?.focus?.());
   window.addEventListener('popstate',render);

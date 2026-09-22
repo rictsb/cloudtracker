@@ -3,9 +3,9 @@
    - the site's "Checks" tab (live in the browser, on every load)
    Deterministic/offline only; research checks live in the weekly sweep (see WIKI). */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory(require('./ramp-core.js'));
-  else root.ChecksCore = factory(root);
-})(typeof self !== 'undefined' ? self : this, function (ramp) {
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./ramp-core.js'), require('./catalyst-core.js'), require('./engine.js'));
+  else root.ChecksCore = factory(root, null, null);
+})(typeof self !== 'undefined' ? self : this, function (ramp, CatalystCoreDep, EngineDep) {
 
   // Date.parse normalizes impossible dates such as 2026-02-30. Compare the UTC
   // calendar representation too, so freshness cannot be manufactured by rollover.
@@ -31,6 +31,9 @@
   ];
 
   function runChecks(d, todayISO, pf) {
+    // catalyst-core + engine: injected in node; resolved from the page at run time in the browser (any script order)
+    const CatalystCore = CatalystCoreDep || (typeof globalThis !== 'undefined' && globalThis.CatalystCore) || null;
+    const Engine = EngineDep || (typeof globalThis !== 'undefined' && globalThis.Engine) || null;
     const cfg = d.config, cos = d.companies;
     const NOWY = cfg.referenceYear + ((cfg.referenceMonth || 1) - 1) / 12;
     const todayDay = todayISO == null ? new Date().toISOString().slice(0, 10) : todayISO;
@@ -208,6 +211,29 @@
         failIf('fresh', r.tk, !(r.score >= -5 && r.score <= 5), `outlook ${r.tk}: surprise score ${r.score} out of -5..5`);
         failIf('fresh', r.tk, r.date != null && !isoDate(r.date), `outlook ${r.tk}: invalid earnings date ${r.date}`, 'outlook.earnings.date');
       });
+      // Catalyst board (spec §6 screen 8): structure via catalyst-core, and every impact must APPLY and PRICE —
+      // the board never renders a broken op. Names with no row at all are a coverage gap for the sweep.
+      const cats = OL.catalysts || [];
+      failIf('fresh', null, !!cats.length && !(CatalystCore && Engine), 'catalyst-core.js / engine.js not loaded — catalyst impacts cannot be verified');
+      warnIf('fresh', null, !cats.length, 'outlook.catalysts empty — the catalyst board has nothing to rank');
+      const ids = cats.map(r => r.id);
+      failIf('fresh', null, new Set(ids).size !== ids.length, 'outlook.catalysts: duplicate ids');
+      cats.forEach(r => {
+        const errs = CatalystCore ? CatalystCore.validate(r, d) : [];
+        errs.forEach(e => failIf('fresh', r.tk, true, `catalyst ${r.id || '?'}: ${e}`));
+        if (!errs.length && r.impact != null && CatalystCore && Engine) {
+          let imp; try { imp = CatalystCore.impactOf(Engine, d, r); } catch (e) { imp = { error: e && e.message ? e.message : 'threw' }; }
+          failIf('fresh', r.tk, !!imp.error, `catalyst ${r.id}: impact does not price — ${imp.error}`);
+          if (!imp.error) {
+            failIf('fresh', r.tk, !Number.isFinite(imp.target1), `catalyst ${r.id}: non-finite target after impact`);
+            warnIf('fresh', r.tk, Math.abs(imp.delta) < 1e-9 && Math.abs(imp.dfloor) < 1e-9, `catalyst ${r.id}: impact prices to zero effect on target and floor — describe it better or set impact null`);
+            warnIf('fresh', r.tk, Math.abs(imp.pct) > 1.5, `catalyst ${r.id}: impact moves the target ${(imp.pct * 100).toFixed(0)}% — re-check the op`);
+          }
+        }
+        warnIf('fresh', r.tk, r.by && isoDate(r.by) && days(r.by) != null && days(r.by) > 0, `catalyst ${r.id}: hard date ${r.by} has passed — resolve or re-date`);
+        (r.drivers || []).forEach(dr => warnIf('fresh', r.tk, !/\[[a-z0-9-]+\]\s*$/.test(String(dr)), `catalyst ${r.id}: driver without a trailing [source] tag`));
+      });
+      if (cats.length) ctks.forEach(tk => warnIf('fresh', tk, !cats.some(r => r.tk === tk), `no catalyst rows for ${tk} — coverage gap on the board`));
     }
 
     /* ---- companies ---- */

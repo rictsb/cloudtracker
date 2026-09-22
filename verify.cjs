@@ -11,7 +11,7 @@ const irenSource=data.companies.find(c=>c.tk==='IREN');
 const irenAssetBaseline=require(path.join(base,'engine.js')).createEngine(data).value(irenSource).target;
 const p=JSON.parse(fs.readFileSync(path.join(base,'iren-data.json'),'utf8'));
 const context=vm.createContext({console,URLSearchParams,TextEncoder,TextDecoder,btoa,atob,setTimeout,clearTimeout,AbortController,fetch:async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(path.join(base,String(url).split('/').at(-1)),'utf8'))})});
-for(const file of ['engine.js','ramp-core.js','onepager-core.js','model-data.js','research-data.js','checks-core.js','portfolio-core.js','approvals-core.js','research-view.js','coverage-view.js','contracts-view.js','news-view.js','checks-view.js','portfolio-view.js','approvals-view.js','report-graphics.js','report-layout.js','report-view.js','compare-view.js'])vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
+for(const file of ['engine.js','ramp-core.js','catalyst-core.js','onepager-core.js','model-data.js','research-data.js','checks-core.js','portfolio-core.js','approvals-core.js','research-view.js','coverage-view.js','contracts-view.js','news-view.js','checks-view.js','portfolio-view.js','approvals-view.js','report-graphics.js','report-layout.js','report-view.js','compare-view.js'])vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
 const close=(a,b,label='')=>assert.ok(Math.abs(a-b)<1e-8*Math.max(1,Math.abs(b)),`${label?label+': ':''}${a} != ${b}`);
 // Export freshness must survive platform-level floating-point jitter without
 // accepting changed evidence, missing fields or material financial differences.
@@ -277,8 +277,8 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
   // the serialized exporter contract rather than its pre-serialization shape.
   for(const tk of ['IREN','CRWV','NBIS'])assertCanonicalJSON(JSON.parse(JSON.stringify(gen.buildPayload(tk))),JSON.parse(P3[tk.toLowerCase()]),tk+'-data.json stale — rerun export-research.js');
   assertCanonicalJSON(JSON.parse(JSON.stringify(gen.buildCompare())),JSON.parse(cmpRaw),'compare-data.json stale — rerun export-research.js --compare');
-  const nodeChecks=require('./checks-core.js').runChecks(data,'2026-09-15');
-  const browserChecks=context.ChecksCore.runChecks(data,'2026-09-15');
+  const nodeChecks=require('./checks-core.js').runChecks(data,'2026-09-22');
+  const browserChecks=context.ChecksCore.runChecks(data,'2026-09-22');
   assert.deepStrictEqual(JSON.parse(JSON.stringify(browserChecks)),JSON.parse(JSON.stringify(nodeChecks)),'Browser and CLI checks differ');
   const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
   for(const match of html.matchAll(/(?:src|href)="(\/(?:[\w.-]+\/)*[\w.-]+\.(?:js|css|svg))"/g))assert.ok(fs.existsSync(path.join(base,match[1])),match[1]);
