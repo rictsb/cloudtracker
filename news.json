@@ -1,5 +1,5 @@
 {
- "asOf": "2026-09-22",
+ "asOf": "2026-09-23",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,49 @@
   }
  ],
  "items": [
+  {
+   "id": "pvORYG3oGL8",
+   "src": "mcnallie-money",
+   "d": "2026-09-22",
+   "title": "Texas Halts Data Center Permits | Latest MARA, RIOT, KEEL, BTBT & MOVE Stock News | AI Stocks Now",
+   "headline": "Texas Halts Data Center Permits",
+   "url": "https://www.youtube.com/watch?v=pvORYG3oGL8",
+   "kind": "news",
+   "minutes": 43,
+   "tickers": [
+    "MARA",
+    "RIOT",
+    "BTDR",
+    "IREN",
+    "GLXY",
+    "HUT",
+    "HIVE",
+    "KEEL",
+    "WULF",
+    "CLSK"
+   ],
+   "main": [
+    "MARA",
+    "RIOT",
+    "BTDR",
+    "IREN"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "KEEL",
+     "claim": "Keel Infrastructure is advertising for a Site Operations Coordinator and Site Director at its Moses Lake facility.",
+     "by": "guest",
+     "tag": "scoop",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "AHyaqKlT3KU",
    "src": "mcnallie-money",
@@ -6452,73 +6495,6 @@
      "by": "executive",
      "tag": "notable",
      "t": 1057
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "bC4SBUp6rMw",
-   "src": "mcnallie-money",
-   "d": "2026-05-25",
-   "title": "WhiteFiber Deal Analysis | Latest HPC & AI Deal News | Top AI Stocks Now | FUFU, BITZ, KEEL & HIVE",
-   "headline": "WhiteFiber Deal Analysis",
-   "url": "https://www.youtube.com/watch?v=bC4SBUp6rMw",
-   "kind": "news",
-   "minutes": 49,
-   "tickers": [
-    "BTDR",
-    "KEEL",
-    "HIVE",
-    "RIOT",
-    "HUT",
-    "CLSK",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "CRWV",
-    "NBIS",
-    "MARA",
-    "CORZ",
-    "WULF",
-    "CIFR"
-   ],
-   "main": [
-    "BTDR",
-    "KEEL",
-    "HIVE",
-    "RIOT"
-   ],
-   "summary": "1. The video discusses recent developments in the AI/HPC sector, including deals, financing activities, and guidance from companies such as White Fiber (Wi-Fi), Kiel Infrastructure, Soluna Holdings, Hive Blockchain, and Riot Platforms.\n\n2. Key facts by company:\n   - Wi-Fi: Announced a $160 million investment-grade technology center in Paris, France, for advanced NVIDIA GPU systems; service commences July 2026 with prepayments including 12 months of fees plus project-level financing closing June 2026.\n   - Kiel Infrastructure: CEO Ben Gagnon expects three deals by year-end, with sites at Moses Lake (18 MW), Panther Creek, and Sharon; $500 million cash on hand for development.\n   - Soluna Holdings: CFO Michael Peachy and CEO John Belazare aim to start construction in 2026 and energize Cottey 2 in 2027; have a $500 million ATM facility available.\n   - Hive Blockchain: Announced a sovereign data opportunity with a 320 MW deal; previously secured a 70 MW co-location deal in New Brunswick driving ~$85M/year revenue at ~$1.75M/MW.\n   - Riot Platforms: CEO Jason Les discussed the Corsicana facility, aiming for high-quality tenants and financing terms to achieve valuation targets.\n\n3. Host's view:\n   The host is optimistic about the sector, highlighting significant upside potential from deals such as Riot’s potential $1.5B/year revenue at Corsicana (adding ~$42-43/share) and Wi-Fi’s Paris deal. They emphasize that companies without announced deals (e.g., Bitfarms) have substantial room for growth once they secure contracts.\n\n4. Worth checking:\n   - Verify the specifics of Wi-Fi's $160M Paris deal, including megawatt capacity and revenue per MW.\n   - Confirm Kiel Infrastructure’s ability to fund three deals by year-end given their cash position and typical debt/equity ratios in the industry.\n   - Validate Soluna Holdings’ timeline for Cottey 2 construction start (2026) and energization (2027).\n   - Check details of Hive Blockchain’s 320 MW sovereign data deal, including site specifics and financial terms.\n   - Assess Riot Platforms’ assumptions about achievable revenue ($1.5B/year) and valuation impact at Corsicana.",
-   "brief": "Recent developments in the AI/HPC sector, including deals, financing activities, and guidance from companies such as White Fiber (Wi-Fi), Kiel Infrastructure, Soluna Holdings, Hive Blockchain, and Riot Platforms.",
-   "facts": [
-    "Wi-Fi: Announced a $160 million investment-grade technology center in Paris, France, for advanced NVIDIA GPU systems; service commences July 2026 with prepayments including 12 months of fees plus project-level financing closing June 2026.",
-    "Kiel Infrastructure: CEO Ben Gagnon expects three deals by year-end, with sites at Moses Lake (18 MW), Panther Creek, and Sharon; $500 million cash on hand for development.",
-    "Soluna Holdings: CFO Michael Peachy and CEO John Belazare aim to start construction in 2026 and energize Cottey 2 in 2027; have a $500 million ATM facility available.",
-    "Hive Blockchain: Announced a sovereign data opportunity with a 320 MW deal; previously secured a 70 MW co-location deal in New Brunswick driving ~$85M/year revenue at ~$1.75M/MW.",
-    "Riot Platforms: CEO Jason Les discussed the Corsicana facility, aiming for high-quality tenants and financing terms to achieve valuation targets."
-   ],
-   "view": "The host is optimistic about the sector, highlighting significant upside potential from deals such as Riot’s potential $1.5B/year revenue at Corsicana (adding ~$42-43/share) and Wi-Fi’s Paris deal. They emphasize that companies without announced deals (e.g., Bitfarms) have substantial room for growth once they secure contracts.",
-   "verify": [
-    "Verify the specifics of Wi-Fi's $160M Paris deal, including megawatt capacity and revenue per MW.",
-    "Confirm Kiel Infrastructure’s ability to fund three deals by year-end given their cash position and typical debt/equity ratios in the industry.",
-    "Validate Soluna Holdings’ timeline for Cottey 2 construction start (2026) and energization (2027).",
-    "Check details of Hive Blockchain’s 320 MW sovereign data deal, including site specifics and financial terms.",
-    "Assess Riot Platforms’ assumptions about achievable revenue ($1.5B/year) and valuation impact at Corsicana."
-   ],
-   "signal": [
-    {
-     "tk": "RIOT",
-     "claim": "A single large client deal at Riot's Corsicana site could generate $1.5 billion in annual revenue.",
-     "by": "host",
-     "tag": "big",
-     "t": null
-    },
-    {
-     "tk": "KEEL",
-     "claim": "Keel Infrastructure aims to sign three deals by the end of the year.",
-     "by": "executive",
-     "tag": "notable",
-     "t": 1454
     }
    ],
    "sponsored": []
