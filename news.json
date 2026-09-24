@@ -1,5 +1,5 @@
 {
- "asOf": "2026-09-23",
+ "asOf": "2026-09-24",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,47 @@
   }
  ],
  "items": [
+  {
+   "id": "Sl_UT9gwOMY",
+   "src": "mcnallie-money",
+   "d": "2026-09-23",
+   "title": "Top IREN, KEEL, GLXY, HUT, ABTC, HIVE, SLNH, WULF & WYFI Stock News | Best AI Stocks to Watch Now",
+   "headline": "Top IREN, KEEL, GLXY, HUT, ABTC, HIVE, SLNH, WULF & WYFI Stock News",
+   "url": "https://www.youtube.com/watch?v=Sl_UT9gwOMY",
+   "kind": "news",
+   "minutes": 44,
+   "tickers": [
+    "IREN",
+    "RIOT",
+    "HUT",
+    "GLXY",
+    "WULF",
+    "SLNH",
+    "BTDR",
+    "MARA",
+    "HIVE",
+    "ABTC",
+    "CORZ",
+    "CRWV",
+    "NBIS",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "RIOT",
+    "HUT",
+    "GLXY",
+    "WULF",
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [],
+   "sponsored": []
+  },
   {
    "id": "pvORYG3oGL8",
    "src": "mcnallie-money",
@@ -6445,61 +6486,6 @@
      "by": "guest",
      "tag": "notable",
      "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "q1TpgYbSVD0",
-   "src": "mcnallie-money",
-   "d": "2026-05-26",
-   "title": "Huge TeraWulf News | AI Stocks Have Lift Off | Top AI Stock to Watch Now | IREN, CORZ, SLNH & WULF",
-   "headline": "Huge TeraWulf News — AI Stocks Have Lift Off",
-   "url": "https://www.youtube.com/watch?v=q1TpgYbSVD0",
-   "kind": "news",
-   "minutes": 26,
-   "tickers": [
-    "WULF",
-    "CORZ",
-    "IREN",
-    "SLNH",
-    "BTDR",
-    "HIVE",
-    "MARA",
-    "CLSK",
-    "HUT",
-    "CRWV",
-    "RIOT",
-    "APLD",
-    "NBIS"
-   ],
-   "main": [
-    "WULF",
-    "CORZ",
-    "IREN",
-    "SLNH"
-   ],
-   "summary": "1. The video discusses recent positive developments and price surges in AI infrastructure stocks, particularly highlighting TeraWulf's new Kentucky site acquisition and Core Scientific's board appointment.\n\n2. Key facts by company:\n   - CORZ (Core Scientific): Appointed Steve Smith to the board; Smith has 35 years of data center experience and previously grew Equinix revenue from $400M to $4B.\n   - WULF (TeraWulf): Acquired a 285-acre site in Kentucky capable of supporting over 1GW of capacity; first 500MW expected H2 2028, additional 500MW targeted for H2 2030. Announced $290M AI infrastructure solutions deal with Schneider Electric at Lake Mariner.\n   - IREN (Iris Energy): Mentioned as one of the top four companies with major deals signed.\n   - SLNH (Soluna Holdings): Market cap increased to ~$325M from previous $20-30M range; stock up 20% today.\n\n3. Host's view: The host is very bullish on AI infrastructure stocks, stating they have \"lift off\" and calling it an \"absolute massive start\". They highlight significant share price increases for companies like Hut 8 (nearly 40x from $2.54) and Cipher/IREN (~559% in one year). The host sounds highly confident about the sector's prospects.\n\n4. Worth checking: \n   - Verify Core Scientific's deal terms with CoreWeave, specifically that they were paid ~$6B to build sites without repayment obligation.\n   - Confirm TeraWulf's Kentucky site details including acreage (285 acres within 1,000-acre park), capacity (1GW+), and phased delivery timeline (500MW H2 2028, additional 500MW H2 2030).\n   - Check if Steve Smith's background at Equinix (revenue growth from $400M to $4B) is accurately stated.",
-   "brief": "Recent positive developments and price surges in AI infrastructure stocks, particularly highlighting TeraWulf's new Kentucky site acquisition and Core Scientific's board appointment.",
-   "facts": [
-    "CORZ (Core Scientific): Appointed Steve Smith to the board; Smith has 35 years of data center experience and previously grew Equinix revenue from $400M to $4B.",
-    "WULF (TeraWulf): Acquired a 285-acre site in Kentucky capable of supporting over 1GW of capacity; first 500MW expected H2 2028, additional 500MW targeted for H2 2030. Announced $290M AI infrastructure solutions deal with Schneider Electric at Lake Mariner.",
-    "IREN (Iris Energy): Mentioned as one of the top four companies with major deals signed.",
-    "SLNH (Soluna Holdings): Market cap increased to ~$325M from previous $20-30M range; stock up 20% today."
-   ],
-   "view": "The host is very bullish on AI infrastructure stocks, stating they have \"lift off\" and calling it an \"absolute massive start\". They highlight significant share price increases for companies like Hut 8 (nearly 40x from $2.54) and Cipher/IREN (~559% in one year). The host sounds highly confident about the sector's prospects.",
-   "verify": [
-    "Verify Core Scientific's deal terms with CoreWeave, specifically that they were paid ~$6B to build sites without repayment obligation.",
-    "Confirm TeraWulf's Kentucky site details including acreage (285 acres within 1,000-acre park), capacity (1GW+), and phased delivery timeline (500MW H2 2028, additional 500MW H2 2030).",
-    "Check if Steve Smith's background at Equinix (revenue growth from $400M to $4B) is accurately stated."
-   ],
-   "signal": [
-    {
-     "tk": "CORZ",
-     "claim": "Core Scientific previously entered a deal with CoreWeave valued at approximately $6 billion.",
-     "by": "executive",
-     "tag": "notable",
-     "t": 1057
     }
    ],
    "sponsored": []
