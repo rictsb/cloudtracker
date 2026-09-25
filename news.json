@@ -34,11 +34,15 @@
    "main": [
     "IREN"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is an interview with Kent Draper (CCO of IREN) discussing IREN's Q4/full-year 2026 results, customer contracts, GPU financing, CapEx plans and execution capabilities.\n\n2. Key facts by company:\n- IREN: Signed multi-year contracts with NVIDIA ($700M ARR ramping early 2027), Perplexity, Cohere, Prometheus, Figure AI, Higgsfield AI and a leading frontier AI lab; $4B contracted ARR for 2026 capacity (currently at $1B operating ARR); acquired Mirantis (adds software stack) and a European development platform with projects in Spain; secured >5GW binding grid power; raised $19B funding last 12 months ($3B via ATM); $25-30B CapEx program for 2027 to deliver 500MW IT load, including GPU/data center CapEx up to June 27 for air/liquid-cooled deployments and early-stage CapEx for 2028+ projects; $14B of the $25-30B already funded (cash + committed debt); targeting additional $8B GPU debt financing/prepayments; ~$3.5B remaining on $6B ATM program; secured 2GW at Sweetwater site, qualified more capacity in ERCOT's batch zero process; Badajoz Spain project has 300MW secured; Bundy Australia project is 800MW; Childress and Sweetwater sites not reliant on new 765kV transmission lines; Horizon phases 2-4 are replicas of phase 1 (handed over to Microsoft); targeting diversified customer base including end users; contracted at $23M/MW for recent deals, seeing north of that; short-term contracts at $40-50M/MW; GPU financing secured at 9% cost of debt (90% of GPU CapEx), plus ~50% prepayments = 140% financing vs GPU CapEx; exemplar cloud status with NVIDIA for B300s/GB300s.\n\n3. Host's view: The host is bullish on IREN, calling the GPU financing a \"breakthrough\" and highlighting the $4B ARR target as a key milestone. They sound confident about IREN's execution capabilities after delivering Horizon 1 to Microsoft and believe investors should focus on the secured power portfolio and future revenue potential.\n\n4. Worth checking: Investors should verify against filings: the exact terms of the NVIDIA contract ($700M ARR, ramp timing), specifics of the $2.8B sub-investment grade financing (9% cost, 90% GPU CapEx coverage), details of the European acquisition and its development projects in Spain, the exact capacity qualified in ERCOT's batch zero process beyond Sweetwater's 2GW, and the current utilization/prepayments against the remaining ATM capacity ($3.5B).",
+   "brief": "The video is an interview with Kent Draper (CCO of IREN) discussing IREN's Q4/full-year 2026 results, customer contracts, GPU financing, CapEx plans and execution capabilities.",
+   "facts": [
+    "IREN: Signed multi-year contracts with NVIDIA ($700M ARR ramping early 2027), Perplexity, Cohere, Prometheus, Figure AI, Higgsfield AI and a leading frontier AI lab; $4B contracted ARR for 2026 capacity (currently at $1B operating ARR); acquired Mirantis (adds software stack) and a European development platform with projects in Spain; secured >5GW binding grid power; raised $19B funding last 12 months ($3B via ATM); $25-30B CapEx program for 2027 to deliver 500MW IT load, including GPU/data center CapEx up to June 27 for air/liquid-cooled deployments and early-stage CapEx for 2028+ projects; $14B of the $25-30B already funded (cash + committed debt); targeting additional $8B GPU debt financing/prepayments; ~$3.5B remaining on $6B ATM program; secured 2GW at Sweetwater site, qualified more capacity in ERCOT's batch zero process; Badajoz Spain project has 300MW secured; Bundy Australia project is 800MW; Childress and Sweetwater sites not reliant on new 765kV transmission lines; Horizon phases 2-4 are replicas of phase 1 (handed over to Microsoft); targeting diversified customer base including end users; contracted at $23M/MW for recent deals, seeing north of that; short-term contracts at $40-50M/MW; GPU financing secured at 9% cost of debt (90% of GPU CapEx), plus ~50% prepayments = 140% financing vs GPU CapEx; exemplar cloud status with NVIDIA for B300s/GB300s."
+   ],
+   "view": "The host is bullish on IREN, calling the GPU financing a \"breakthrough\" and highlighting the $4B ARR target as a key milestone. They sound confident about IREN's execution capabilities after delivering Horizon 1 to Microsoft and believe investors should focus on the secured power portfolio and future revenue potential.",
+   "verify": [
+    "Investors should verify against filings: the exact terms of the NVIDIA contract ($700M ARR, ramp timing), specifics of the $2.8B sub-investment grade financing (9% cost, 90% GPU CapEx coverage), details of the European acquisition and its development projects in Spain, the exact capacity qualified in ERCOT's batch zero process beyond Sweetwater's 2GW, and the current utilization/prepayments against the remaining ATM capacity ($3.5B)."
+   ],
    "signal": [
     {
      "tk": "IREN",
@@ -94,11 +98,20 @@
     "CORZ",
     "BTBT"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is an update from two retail investors discussing their AI infrastructure and Bitcoin mining stock portfolios, recent returns, top holdings, price targets, and strategy for the remainder of 2026.\n\n2. Key facts by company:\n- IREN: Host Bryce's largest holding at ~20% of his portfolio; he is \"extremely bullish\" on its CSP model with payback periods decreasing and revenue per MW potentially reaching $50-$60M according to Jensen.\n- RIOT: Host Anthony mentions if Riot signs a contract for all 756MW at Corsicana at current rates (~$2.4M/MW), it could add ~$30/share to the stock (current price ~$25).\n- WULF, CIFR: Both reached over $30/share in June; next big contracts could drive them forward.\n- KEEL: Host Anthony sold shares around 22 Jun at $7/share when the price was $7 pre-deals; he expects significant upside if Keel signs deals at Moses Lake/Sharon or Panther Creek sites.\n\n3. Host's view:\nBryce is \"extremely bullish\" on IREN and has set price targets of $125 for IREN, $55 for RIOT/WULF/CIFR/KEEL. He sounds confident in these targets if companies sign more contracts. Anthony also sees Riot reaching ~$55 with a full Corsicana contract and believes Keel could surge from current levels if it secures deals.\n\n4. Worth checking:\n- Verify IREN's actual revenue per MW figures and payback periods against company filings.\n- Confirm the exact size (756MW) and status of RIOT's Corsicana site expansion plans in official disclosures.\n- Check KEEL's actual progress on its Moses Lake, Sharon and Panther Creek sites via regulatory filings.",
+   "brief": "The video is an update from two retail investors discussing their AI infrastructure and Bitcoin mining stock portfolios, recent returns, top holdings, price targets, and strategy for the remainder of 2026.",
+   "facts": [
+    "IREN: Host Bryce's largest holding at ~20% of his portfolio; he is \"extremely bullish\" on its CSP model with payback periods decreasing and revenue per MW potentially reaching $50-$60M according to Jensen.",
+    "RIOT: Host Anthony mentions if Riot signs a contract for all 756MW at Corsicana at current rates (~$2.4M/MW), it could add ~$30/share to the stock (current price ~$25).",
+    "WULF, CIFR: Both reached over $30/share in June; next big contracts could drive them forward.",
+    "KEEL: Host Anthony sold shares around 22 Jun at $7/share when the price was $7 pre-deals; he expects significant upside if Keel signs deals at Moses Lake/Sharon or Panther Creek sites."
+   ],
+   "view": "Bryce is \"extremely bullish\" on IREN and has set price targets of $125 for IREN, $55 for RIOT/WULF/CIFR/KEEL. He sounds confident in these targets if companies sign more contracts. Anthony also sees Riot reaching ~$55 with a full Corsicana contract and believes Keel could surge from current levels if it secures deals.",
+   "verify": [
+    "Verify IREN's actual revenue per MW figures and payback periods against company filings.",
+    "Confirm the exact size (756MW) and status of RIOT's Corsicana site expansion plans in official disclosures.",
+    "Check KEEL's actual progress on its Moses Lake, Sharon and Panther Creek sites via regulatory filings."
+   ],
    "signal": [
     {
      "tk": "RIOT",
