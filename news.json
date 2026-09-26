@@ -1,5 +1,5 @@
 {
- "asOf": "2026-09-25",
+ "asOf": "2026-09-26",
  "windowDays": 120,
  "sources": [
   {
@@ -6407,98 +6407,6 @@
     "Verify the non-cash fair value adjustments impacting net income against SEC filings.",
     "Confirm details of the fire at the Ethiopia facility and its impact on Q2 operations.",
     "Check customer retention rates and cloud mining revenue growth in official reports."
-   ],
-   "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "BLak6oggluo",
-   "src": "mcnallie-money",
-   "d": "2026-05-28",
-   "title": "IREN & RIOT Price Targets | Latest BTBT & DMGI News | Top AI Stocks to Watch | AI Stock News Today",
-   "headline": "IREN & RIOT Price Targets",
-   "url": "https://www.youtube.com/watch?v=BLak6oggluo",
-   "kind": "news",
-   "minutes": 36,
-   "tickers": [
-    "IREN",
-    "RIOT",
-    "BTBT",
-    "CORZ",
-    "HUT",
-    "WULF",
-    "CLSK",
-    "APLD",
-    "SLNH",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "MARA"
-   ],
-   "main": [
-    "IREN",
-    "RIOT",
-    "BTBT"
-   ],
-   "summary": "1. The video discusses recent news and price targets for AI infrastructure stocks, focusing on BitDigital's financing deal and Ethereum purchase, DMG Blockchain's CEO interview confirming a potential HPC deal by year-end, and Riot Platforms' valuation sensitivity analysis based on a hypothetical 756 MW contract at its Corsicana site.\n\n2. Key facts:\n   - BTBT: Purchased an additional $20 million of ETH (8,568 coins) at ~$2,334/ETH; total holdings now 158,461 ETH.\n   - DMGI: CEO Sheldon Bennett expects to close an HPC deal by year-end; received a C$0.40 price target from an analyst.\n   - IREN: Received a $99 price target from Cantor Fitzgerald (previously $61), based on its current GPU orders and expected $4.3B run rate revenue by EOY 2026, excluding future capacity at Sweetwater, Oklahoma or Spain sites.\n   - RIOT: Valuation sensitivity analysis suggests a hypothetical 756 MW deal at Corsicana could imply a $50.38/share price (assuming $2M/MW revenue, 80% EBITDA margin, 20x multiple), with ~$15 of this potentially already priced in.\n\n3. Host's view:\n   - The host is bullish on the AI infrastructure sector, noting that companies signing HPC deals are seeing significant re-rates. They believe Riot's Corsicana site has substantial upside potential if a large deal is announced and suggest Iron Energy could be worth much more than its $99 target once all capacity is factored in. The tone is confident and enthusiastic about the sector's growth prospects.\n\n4. Worth checking:\n   - Verify BitDigital's total ETH holdings (158,461) against company filings.\n   - Confirm DMG Blockchain's CEO Sheldon Bennett actually stated a deal would close by year-end.\n   - Check if Cantor Fitzgerald's $99 price target for IREN explicitly excludes future capacity at Sweetwater, Oklahoma and Spain sites.\n   - Validate the assumptions in Riot Platforms' valuation sensitivity analysis (revenue/MW, EBITDA margins, capex costs) against industry benchmarks.",
-   "brief": "Recent news and price targets for AI infrastructure stocks, focusing on BitDigital's financing deal and Ethereum purchase, DMG Blockchain's CEO interview confirming a potential HPC deal by year-end, and Riot Platforms' valuation sensitivity analysis based on a hypothetical 756 MW contract at its Corsicana site.",
-   "facts": [
-    "BTBT: Purchased an additional $20 million of ETH (8,568 coins) at ~$2,334/ETH; total holdings now 158,461 ETH.",
-    "DMGI: CEO Sheldon Bennett expects to close an HPC deal by year-end; received a C$0.40 price target from an analyst.",
-    "IREN: Received a $99 price target from Cantor Fitzgerald (previously $61), based on its current GPU orders and expected $4.3B run rate revenue by EOY 2026, excluding future capacity at Sweetwater, Oklahoma or Spain sites.",
-    "RIOT: Valuation sensitivity analysis suggests a hypothetical 756 MW deal at Corsicana could imply a $50.38/share price (assuming $2M/MW revenue, 80% EBITDA margin, 20x multiple), with ~$15 of this potentially already priced in."
-   ],
-   "view": "The host is bullish on the AI infrastructure sector, noting that companies signing HPC deals are seeing significant re-rates. They believe Riot's Corsicana site has substantial upside potential if a large deal is announced and suggest Iron Energy could be worth much more than its $99 target once all capacity is factored in. The tone is confident and enthusiastic about the sector's growth prospects.",
-   "verify": [
-    "Verify BitDigital's total ETH holdings (158,461) against company filings.",
-    "Confirm DMG Blockchain's CEO Sheldon Bennett actually stated a deal would close by year-end.",
-    "Check if Cantor Fitzgerald's $99 price target for IREN explicitly excludes future capacity at Sweetwater, Oklahoma and Spain sites.",
-    "Validate the assumptions in Riot Platforms' valuation sensitivity analysis (revenue/MW, EBITDA margins, capex costs) against industry benchmarks."
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "Cantor has raised its price target for IREN to $99.",
-     "by": "thirdparty",
-     "tag": "big",
-     "t": 1884
-    },
-    {
-     "tk": "RIOT",
-     "claim": "An analysis suggests that a single client deal at the Corsicana site could drive RIOT's share price to $50.38.",
-     "by": "host",
-     "tag": "notable",
-     "t": 1633
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "krCo5LjStq8",
-   "src": "mcnallie-money",
-   "d": "2026-05-28",
-   "title": "DMG Blockchain Q2 Earnings Q&A | Canadian AI Stocks to Watch | Top AI Stock News Now | DMGI",
-   "headline": "DMG Blockchain Q2 Earnings Q&A",
-   "url": "https://www.youtube.com/watch?v=krCo5LjStq8",
-   "kind": "interview",
-   "minutes": 43,
-   "tickers": [],
-   "main": [],
-   "summary": "1. The video discusses DMG Blockchain's Q2 2026 earnings and its strategy shift towards AI/HPC hosting.\n\n2. Key facts by company:\n   - DMGI: \n     - Achieved a mining cost of $50k per Bitcoin in Q2, down from $65k previously.\n     - Fleet efficiency improved to approximately 21.4 joules per tera hash; no plans for major hardware refreshes in the next 12-18 months.\n     - Partnering with Malahat First Nation on an AI/HPC data center (hybrid compute model); agreement expected by year-end 2026.\n     - Christina Lake site has an 85 MW substation, expandable to 170 MW; exploring gas hookups for backup generation (up to 150 MW available).\n     - Boardman, Oregon site acquisition delayed due to unresolved issues with the seller; still considered strategic for US expansion.\n\n3. Host's view:\n   - The host is optimistic about DMGI’s AI/HPC pivot and its potential to attract hyperscalers/neoclouds given low power costs (30-40 CAD/MWh).\n   - They highlight that DMG’s Canadian assets could be attractive compared to high-cost regions like PGM.\n   - No specific price targets or valuations are provided, but the host emphasizes the company's strong balance sheet and Bitcoin holdings.\n\n4. Worth checking:\n   - Verify the specifics of the Malahat First Nation partnership agreement (definitive terms, timeline).\n   - Confirm details on power expansion plans at Christina Lake (firm vs non-firm capacity, gas hookup feasibility).\n   - Check for updates on the Boardman site acquisition and any material changes to the deal.",
-   "brief": "DMG Blockchain's Q2 2026 earnings and its strategy shift towards AI/HPC hosting.",
-   "facts": [
-    "DMGI:",
-    "Achieved a mining cost of $50k per Bitcoin in Q2, down from $65k previously.",
-    "Fleet efficiency improved to approximately 21.4 joules per tera hash; no plans for major hardware refreshes in the next 12-18 months.",
-    "Partnering with Malahat First Nation on an AI/HPC data center (hybrid compute model); agreement expected by year-end 2026.",
-    "Christina Lake site has an 85 MW substation, expandable to 170 MW; exploring gas hookups for backup generation (up to 150 MW available).",
-    "Boardman, Oregon site acquisition delayed due to unresolved issues with the seller; still considered strategic for US expansion."
-   ],
-   "view": "The host is optimistic about DMGI’s AI/HPC pivot and its potential to attract hyperscalers/neoclouds given low power costs (30-40 CAD/MWh). They highlight that DMG’s Canadian assets could be attractive compared to high-cost regions like PGM. No specific price targets or valuations are provided, but the host emphasizes the company's strong balance sheet and Bitcoin holdings.",
-   "verify": [
-    "Verify the specifics of the Malahat First Nation partnership agreement (definitive terms, timeline).",
-    "Confirm details on power expansion plans at Christina Lake (firm vs non-firm capacity, gas hookup feasibility).",
-    "Check for updates on the Boardman site acquisition and any material changes to the deal."
    ],
    "signal": [],
    "sponsored": []
