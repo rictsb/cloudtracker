@@ -1,5 +1,5 @@
 {
- "asOf": "2026-09-28",
+ "asOf": "2026-09-29",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,55 @@
   }
  ],
  "items": [
+  {
+   "id": "xQb8V-Nlndw",
+   "src": "mcnallie-money",
+   "d": "2026-09-28",
+   "title": "Latest DMGI, ABTC, HUT, IREN, BTDR, SLNH, RIOT & MARA  News | Top AI Stocks to Watch Now | AI News",
+   "headline": "Latest DMGI, ABTC, HUT, IREN, BTDR, SLNH, RIOT & MARA  News",
+   "url": "https://www.youtube.com/watch?v=xQb8V-Nlndw",
+   "kind": "news",
+   "minutes": 38,
+   "tickers": [
+    "SLNH",
+    "BTDR",
+    "ABTC",
+    "HUT",
+    "IREN",
+    "CORZ",
+    "WULF",
+    "CIFR",
+    "APLD",
+    "BTBT",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "SLNH",
+    "BTDR",
+    "ABTC",
+    "HUT"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN handed over its first 50 MW of power to Microsoft.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "W1Z_O1zlZlc",
    "src": "mcnallie-money",
