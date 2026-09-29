@@ -4062,9 +4062,9 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-09-29T05:03:52.333Z",
-  "attemptedAt": "2026-09-29T05:03:52.333Z",
-  "lastSuccessAt": "2026-09-29T05:03:52.333Z",
+  "checkedAt": "2026-09-29T09:48:25.897Z",
+  "attemptedAt": "2026-09-29T09:48:25.897Z",
+  "lastSuccessAt": "2026-09-29T09:48:25.897Z",
   "sourceHash": "8087a3ed4f445cacacdf7d087e0d9f7e0e5b7fc01438733e237e8c5933dd1617",
   "quoteHash": "90d3d8cb475d59d389b40407a921f84fe8d1d60b5916f1e90e6ac2d8e28851c9",
   "modelHash": "c73c02a7a563fad45c60783e5eadd2c033fc3655f133418092396ba2eb601109",
@@ -4098,8 +4098,8 @@
       ]
     },
     "run": {
-      "trigger": "workflow_run",
-      "commit": "febe3e8544d40d69045ce208026ba80df88aea63"
+      "trigger": "schedule",
+      "commit": "45120399f1788c36871fe332b395d94add751e81"
     }
   },
   "cadence": {
