@@ -1,5 +1,5 @@
 {
- "asOf": "2026-09-29",
+ "asOf": "2026-09-30",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,46 @@
   }
  ],
  "items": [
+  {
+   "id": "zUqvfFN7yAQ",
+   "src": "mcnallie-money",
+   "d": "2026-09-29",
+   "title": "Latest IREN, KEEL, BTDR, MOVE, CORZ, & RIOT News | Crusoe & Anthropic News | AI Takes The Hot Seat",
+   "headline": "Latest IREN, KEEL, BTDR, MOVE, CORZ, & RIOT News",
+   "url": "https://www.youtube.com/watch?v=zUqvfFN7yAQ",
+   "kind": "news",
+   "minutes": 52,
+   "tickers": [
+    "IREN",
+    "CORZ",
+    "BTDR",
+    "HUT",
+    "WULF",
+    "CIFR",
+    "APLD",
+    "SLNH",
+    "BTBT",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "CLSK",
+    "KEEL",
+    "ABTC"
+   ],
+   "main": [
+    "IREN",
+    "CORZ",
+    "BTDR"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [],
+   "sponsored": []
+  },
   {
    "id": "xQb8V-Nlndw",
    "src": "mcnallie-money",
@@ -6325,58 +6365,6 @@
      "claim": "White Fiber plans to market the next tranche of capacity at NC1 during summer 2026.",
      "by": "executive",
      "tag": "call",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "yVydWWwDhJg",
-   "src": "mcnallie-money",
-   "d": "2026-06-01",
-   "title": "Huge IREN News Out Now | DMG Deal News | Nvidia GTC & NBIS | AI Stocks to Watch Now | Top BTDR News",
-   "headline": "Huge IREN News Out Now — DMG Deal News",
-   "url": "https://www.youtube.com/watch?v=yVydWWwDhJg",
-   "kind": "news",
-   "minutes": 51,
-   "tickers": [
-    "IREN",
-    "BTDR",
-    "NBIS",
-    "ABTC",
-    "CRWV",
-    "CORZ",
-    "WULF",
-    "CLSK",
-    "HIVE",
-    "HUT"
-   ],
-   "main": [
-    "IREN",
-    "BTDR",
-    "NBIS"
-   ],
-   "summary": "1. The video covers recent developments in AI infrastructure stocks including NVIDIA's GTC speech, DMG Blockchain signing a 50MW LOI for an AI data center at Christina Lake, Nebius receiving positive mentions from NVIDIA and making all-time highs, Bitdeer launching the SealMiner DL1 Hydro for altcoin mining and producing 206.2 BTC last week, Iron Energy partnering with BE Networks to validate network architecture for its 50,000 GPU deployment using DSX Air Simulation technology and securing $3.65 billion in financing at a blended rate of ~6%.\n\n2. Key facts by company:\n- DMG Blockchain (DMGI): Signed LOI for 50MW AI data center at Christina Lake; deal includes annual escalations over 12 years + three 5-year renewal options; targeting first phase delivery Dec 31, 2026.\n- Nebius: Received positive mention from NVIDIA CEO Jensen Huang at GTC speech; stock up ~17% to all-time highs.\n- Bitdeer (BTDR): Launched SealMiner DL1 Hydro for altcoin mining (Litecoin, Dogecoin); produced 206.2 BTC last week (sold daily).\n- Iron Energy (IREN): Partnered with BE Networks to validate network architecture using DSX Air Simulation technology; secured $3.65 billion financing at blended rate of ~6% ($2.1B U.S. private placement at SOFR+2.13%, $1.55B delayed drawdown term loan at SOFR+2.25%).\n\n3. Host's view: The host is very bullish on AI infrastructure stocks, calling the current environment \"the start of something much bigger\" and stating \"this has got a long, long way to go before we see what he would say is like any type of pullback.\" They emphasize that companies with signed deals are re-rating quickly (e.g. DMG up 49% on its LOI) and highlight Iron Energy's massive scale ($3.65B financing for GPUs).\n\n4. Worth checking: \n- Verify the exact terms of DMG Blockchain's Christina Lake deal including power costs, client identity and CAPEX requirements.\n- Confirm Nebius' contract details and margins from SEC filings.\n- Check Bitdeer's actual altcoin mining economics vs Bitcoin mining profitability.\n- Review Iron Energy's financing documents for precise interest rates, covenants and collateral terms.",
-   "brief": "Recent developments in AI infrastructure stocks including NVIDIA's GTC speech, DMG Blockchain signing a 50MW LOI for an AI data center at Christina Lake, Nebius receiving positive mentions from NVIDIA and making all-time highs, Bitdeer launching the SealMiner DL1 Hydro for altcoin mining and producing 206.2 BTC last week, Iron Energy partnering with BE Networks to validate network architecture for its 50,000 GPU deployment using DSX Air Simulation technology and securing $3.65 billion in financing at a blended rate of ~6%.",
-   "facts": [
-    "DMG Blockchain (DMGI): Signed LOI for 50MW AI data center at Christina Lake; deal includes annual escalations over 12 years + three 5-year renewal options; targeting first phase delivery Dec 31, 2026.",
-    "Nebius: Received positive mention from NVIDIA CEO Jensen Huang at GTC speech; stock up ~17% to all-time highs.",
-    "Bitdeer (BTDR): Launched SealMiner DL1 Hydro for altcoin mining (Litecoin, Dogecoin); produced 206.2 BTC last week (sold daily).",
-    "Iron Energy (IREN): Partnered with BE Networks to validate network architecture using DSX Air Simulation technology; secured $3.65 billion financing at blended rate of ~6% ($2.1B U.S. private placement at SOFR+2.13%, $1.55B delayed drawdown term loan at SOFR+2.25%)."
-   ],
-   "view": "The host is very bullish on AI infrastructure stocks, calling the current environment \"the start of something much bigger\" and stating \"this has got a long, long way to go before we see what he would say is like any type of pullback.\" They emphasize that companies with signed deals are re-rating quickly (e.g. DMG up 49% on its LOI) and highlight Iron Energy's massive scale ($3.65B financing for GPUs).",
-   "verify": [
-    "Verify the exact terms of DMG Blockchain's Christina Lake deal including power costs, client identity and CAPEX requirements.",
-    "Confirm Nebius' contract details and margins from SEC filings.",
-    "Check Bitdeer's actual altcoin mining economics vs Bitcoin mining profitability.",
-    "Review Iron Energy's financing documents for precise interest rates, covenants and collateral terms."
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN secured 3.65 USDbn in GPU financing, which is the highest publicly rated GPU financing ever announced.",
-     "by": "executive",
-     "tag": "big",
      "t": null
     }
    ],
