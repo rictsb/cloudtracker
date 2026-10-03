@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-02",
+ "asOf": "2026-10-03",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,56 @@
   }
  ],
  "items": [
+  {
+   "id": "qnAhqghxfxA",
+   "src": "mcnallie-money",
+   "d": "2026-10-02",
+   "title": "Top HUT, CORZ, DMG, RIOT, WULF, IREN, CRWV, MARA, BTDR, GLXY, BTBT & APLD Stock News | AI Stocks",
+   "headline": "Top HUT, CORZ, DMG, RIOT, WULF, IREN, CRWV, MARA, BTDR, GLXY, BTBT & APLD Stock News",
+   "url": "https://www.youtube.com/watch?v=qnAhqghxfxA",
+   "kind": "news",
+   "minutes": 34,
+   "tickers": [
+    "APLD",
+    "GLXY",
+    "CORZ",
+    "IREN",
+    "WULF",
+    "BTDR",
+    "HUT",
+    "RIOT",
+    "SLNH",
+    "BTBT",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "APLD",
+    "GLXY",
+    "CORZ",
+    "IREN",
+    "WULF",
+    "BTDR"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "GLXY",
+     "claim": "Galaxy has secured its first large lease at the Helios site for 800 MW of gross capacity, including 533 MW with CoreWeave.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 630
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "P5EAfTC5DvY",
    "src": "mcnallie-money",
@@ -6303,54 +6353,6 @@
      "t": 188
     }
    ],
-   "sponsored": []
-  },
-  {
-   "id": "HzKp6NYySmE",
-   "src": "mcnallie-money",
-   "d": "2026-06-04",
-   "title": "CLSK Valuation Analysis | Top AI Stocks to Watch Now | HUT Stock News | Latest AI Stock News Today",
-   "headline": "CLSK Valuation Analysis — Top AI Stocks to Watch Now",
-   "url": "https://www.youtube.com/watch?v=HzKp6NYySmE",
-   "kind": "news",
-   "minutes": 38,
-   "tickers": [
-    "CLSK",
-    "HUT",
-    "IREN",
-    "BTDR",
-    "GLXY",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA"
-   ],
-   "main": [
-    "CLSK",
-    "HUT"
-   ],
-   "summary": "1. The video discusses recent developments in AI infrastructure and Bitcoin mining companies, including financing deals for data centres (Hut 8), production updates (CleanSpark) and valuation analysis.\n\n2. Key facts by company:\n   - Hut 8: Launched a $4.25 billion senior secured note due 2042 to fund the 352 MW Beacon Point data center in Texas; Mark Edelman joined as SVP Finance & IR with experience in $75B financings\n   - CleanSpark: Mined 671 BTC in May (up from 604 in April); Hash rate stable at 46.2 EH; Total power under contract is 1.8 GW, using 808 MW for mining; HODL increased to 13,470 BTC (valued at $991M)\n   - Bitdeer: Building own machines and heading towards 100 exahash; Largest public miner fleet with ~1.7 GW operational\n   - Core Scientific: Will have 400-450 MW energized by end-June\n\n3. Host's view:\n   The host is bullish on AI infrastructure companies pivoting from Bitcoin mining, seeing significant upside potential as they secure large HPC contracts. They highlight that Hut 8 and CleanSpark could add substantial value per share if their development pipelines are executed successfully.\n\n4. Worth checking: \n   - Hut 8's $16.8B contracted revenues claim\n   - CleanSpark's 1.8 GW power under contract and 835 MW total capacity across three sites\n   - Bitdeer's operational power (1.7 GW) and developed pipeline (1.4 GW)\n   - Core Scientific's guidance of 400-450 MW energized by end-June",
-   "brief": "Recent developments in AI infrastructure and Bitcoin mining companies, including financing deals for data centres (Hut 8), production updates (CleanSpark) and valuation analysis.",
-   "facts": [
-    "Hut 8: Launched a $4.25 billion senior secured note due 2042 to fund the 352 MW Beacon Point data center in Texas; Mark Edelman joined as SVP Finance & IR with experience in $75B financings",
-    "CleanSpark: Mined 671 BTC in May (up from 604 in April); Hash rate stable at 46.2 EH; Total power under contract is 1.8 GW, using 808 MW for mining; HODL increased to 13,470 BTC (valued at $991M)",
-    "Bitdeer: Building own machines and heading towards 100 exahash; Largest public miner fleet with ~1.7 GW operational",
-    "Core Scientific: Will have 400-450 MW energized by end-June"
-   ],
-   "view": "The host is bullish on AI infrastructure companies pivoting from Bitcoin mining, seeing significant upside potential as they secure large HPC contracts. They highlight that Hut 8 and CleanSpark could add substantial value per share if their development pipelines are executed successfully.",
-   "verify": [
-    "Hut 8's $16.8B contracted revenues claim",
-    "CleanSpark's 1.8 GW power under contract and 835 MW total capacity across three sites",
-    "Bitdeer's operational power (1.7 GW) and developed pipeline (1.4 GW)",
-    "Core Scientific's guidance of 400-450 MW energized by end-June"
-   ],
-   "signal": [],
    "sponsored": []
   }
  ]
