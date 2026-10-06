@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-05",
+ "asOf": "2026-10-06",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,57 @@
   }
  ],
  "items": [
+  {
+   "id": "APF-Z0dYLVE",
+   "src": "mcnallie-money",
+   "d": "2026-10-06",
+   "title": "TeraWulf Site Update | Latest CORZ, HIVE, BTDR, WULF, GLXY & BTBT Stock News | Top AI Stocks Now",
+   "headline": "TeraWulf Site Update — Latest CORZ, HIVE, BTDR, WULF, GLXY & BTBT Stock News",
+   "url": "https://www.youtube.com/watch?v=APF-Z0dYLVE",
+   "kind": "news",
+   "minutes": 30,
+   "tickers": [
+    "WULF",
+    "BTDR",
+    "HIVE",
+    "CORZ",
+    "BTBT",
+    "IREN",
+    "HUT",
+    "GLXY",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "WULF",
+    "BTDR",
+    "HIVE",
+    "CORZ",
+    "BTBT"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "WULF",
+     "claim": "TeraWulf has increased its contracted power at the Muskie site from 500 MW to 1 GW.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 1402
+    },
+    {
+     "tk": "HIVE",
+     "claim": "Hive Digital Technologies targets 120,000 GPUs in the next 12 to 18 months.",
+     "by": "guest",
+     "tag": "notable",
+     "t": 1250
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "qnAhqghxfxA",
    "src": "mcnallie-money",
