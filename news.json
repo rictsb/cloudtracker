@@ -37,11 +37,20 @@
     "CORZ",
     "BTBT"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent developments in the AI infrastructure and Bitcoin mining sectors, including updates from companies like TeraWulf (WULF), Core Scientific (CORZ), Bitdeer (BTDR), Hive Digital Technologies (HIVE) subsidiary BuzzHPC, and others.\n\n2. Key facts by company:\n- WULF: Contracted power increased to 1 GW at Muskie site; phase two pulled forward to 2029–2030; amended Kentucky Power agreement doubles contract capacity.\n- CORZ: Oklahoma site visited by Senator Fricks; Denton flagship AI site has 260 MW of compute power; Muscogee site phase one completed, phase two to be completed in 2027.\n- BTDR: Mined and sold 292.3 Bitcoin last week; on track for ~1,250–1,300 Bitcoin/month; Malaysia co-location deal (121 MW) and US sites expanding.\n- HIVE: BuzzHPC is Canada's largest sovereign AI cloud; targeting 120,000 GPUs in next 12–18 months; 400 MW gross power capacity.\n\n3. Host's view:\nThe host is optimistic about the growth potential of these companies, highlighting their increasing compute power, GPU targets, and strategic moves to expand infrastructure. They express confidence that the sector will recover from recent stock declines once positive news emerges post-midterms.\n\n4. Worth checking:\n- Verify TeraWulf's amended Kentucky Power agreement details in SEC filings.\n- Confirm Hive Digital Technologies' 120,000 GPU target and timeline.\n- Check Bitdeer's Bitcoin production numbers against company disclosures.",
+   "brief": "Recent developments in the AI infrastructure and Bitcoin mining sectors, including updates from companies like TeraWulf (WULF), Core Scientific (CORZ), Bitdeer (BTDR), Hive Digital Technologies (HIVE) subsidiary BuzzHPC, and others.",
+   "facts": [
+    "WULF: Contracted power increased to 1 GW at Muskie site; phase two pulled forward to 2029–2030; amended Kentucky Power agreement doubles contract capacity.",
+    "CORZ: Oklahoma site visited by Senator Fricks; Denton flagship AI site has 260 MW of compute power; Muscogee site phase one completed, phase two to be completed in 2027.",
+    "BTDR: Mined and sold 292.3 Bitcoin last week; on track for ~1,250–1,300 Bitcoin/month; Malaysia co-location deal (121 MW) and US sites expanding.",
+    "HIVE: BuzzHPC is Canada's largest sovereign AI cloud; targeting 120,000 GPUs in next 12–18 months; 400 MW gross power capacity."
+   ],
+   "view": "The host is optimistic about the growth potential of these companies, highlighting their increasing compute power, GPU targets, and strategic moves to expand infrastructure. They express confidence that the sector will recover from recent stock declines once positive news emerges post-midterms.",
+   "verify": [
+    "Verify TeraWulf's amended Kentucky Power agreement details in SEC filings.",
+    "Confirm Hive Digital Technologies' 120,000 GPU target and timeline.",
+    "Check Bitdeer's Bitcoin production numbers against company disclosures."
+   ],
    "signal": [
     {
      "tk": "WULF",
