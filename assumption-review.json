@@ -735,13 +735,13 @@
         "price": 1.46,
         "priceAsOf": "2026-10-07T20:00:00.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 2.7215499466920816,
+        "assetValuePerShare": 2.721735914163428,
         "modelSharesM": 349,
         "plannedRaiseM": 0,
         "assetFundedSharesM": 349,
         "unsignedEVShare": 0,
         "assetClaimsM": 322.05,
-        "assetEnterpriseValueM": 1271.8709313955364
+        "assetEnterpriseValueM": 1271.9358340430363
       }
     },
     {
@@ -1481,7 +1481,7 @@
         "kind": "asset",
         "changes": {
           "btc": 66670.05200000001,
-          "eth": 2056.144
+          "eth": 2056.46
         },
         "label": "Crypto reference prices 20% lower; asset and claim perimeter unchanged"
       },
@@ -1491,7 +1491,7 @@
         "fundedSharesM": 72.82,
         "newSharesM": 0
       },
-      "fingerprint": "296dcbb51f41eb8cd5c6c7ef0395d88c2d9218f79f7f95cad3b3c43c965b3d24"
+      "fingerprint": "17604f9bc8c5ec51b43065c2cd1e5c353e86be226f2dfc4ff94d4cd5b5ad3f1e"
     },
     {
       "id": "RIOT:economics:unsigned-realization",
@@ -2211,10 +2211,10 @@
         }
       ],
       "impact": {
-        "base": 2.7215499466920816,
-        "alternative": 2.6238147276119794,
-        "delta": -0.09773521908010219,
-        "pct": -3.591160220994468,
+        "base": 2.721735914163428,
+        "alternative": 2.6239940166934703,
+        "delta": -0.09774189746995754,
+        "pct": -3.5911602209944817,
         "pctUnit": "percent",
         "label": "Use the reported-share field before modeled new issuance",
         "basis": "USD per share; canonical asset engine with the stated assumption changed. Other inputs and existing provenance haircuts are retained. This is a sensitivity, not a replacement forecast."
@@ -2230,12 +2230,12 @@
         "label": "Use the reported-share field before modeled new issuance"
       },
       "alternativeMetrics": {
-        "enterpriseValueM": 1271.8709313955364,
+        "enterpriseValueM": 1271.9358340430363,
         "claimsM": 322.05,
         "fundedSharesM": 362,
         "newSharesM": 0
       },
-      "fingerprint": "3def5ade6757b4d94ebf234fe9e0f1a5206a48d42dfc9e66bd7728eeb9229e04"
+      "fingerprint": "4c0ab409b26248298463588d72db6ca555b3d4dc5b1598d9450dcff5b51b2025"
     },
     {
       "id": "BTDR:economics:lease-capitalization",
@@ -4062,11 +4062,11 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-10-07T21:20:37.372Z",
-  "attemptedAt": "2026-10-07T21:20:37.372Z",
-  "lastSuccessAt": "2026-10-07T21:20:37.372Z",
+  "checkedAt": "2026-10-07T21:22:20.447Z",
+  "attemptedAt": "2026-10-07T21:22:20.447Z",
+  "lastSuccessAt": "2026-10-07T21:22:20.447Z",
   "sourceHash": "8087a3ed4f445cacacdf7d087e0d9f7e0e5b7fc01438733e237e8c5933dd1617",
-  "quoteHash": "e7958e91795dc35d24150c82449349fa9530f3d95f952a722fa3e4342985140b",
+  "quoteHash": "b1125cf9e58ecd14baee42706bda7961b0669059679750d32012bb2a71ba8228",
   "modelHash": "c73c02a7a563fad45c60783e5eadd2c033fc3655f133418092396ba2eb601109",
   "provenance": {
     "data": {
@@ -4076,10 +4076,10 @@
     },
     "quotes": {
       "file": "market-prices.json",
-      "hash": "e7958e91795dc35d24150c82449349fa9530f3d95f952a722fa3e4342985140b",
+      "hash": "b1125cf9e58ecd14baee42706bda7961b0669059679750d32012bb2a71ba8228",
       "status": "ready",
-      "checkedAt": "2026-10-07T21:20:21.852Z",
-      "asOf": "2026-10-07T21:20:21.852Z",
+      "checkedAt": "2026-10-07T21:22:07.415Z",
+      "asOf": "2026-10-07T21:22:07.414Z",
       "failedTickers": [],
       "priceCount": 22
     },
@@ -4099,7 +4099,7 @@
     },
     "run": {
       "trigger": "workflow_run",
-      "commit": "67e52b5a05b7dadf7e9cae380359893962cd281a"
+      "commit": "c076479ad7c0d9261849b0c56a09ce088c4b5192"
     }
   },
   "cadence": {
