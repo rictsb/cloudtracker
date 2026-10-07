@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-05",
+ "asOf": "2026-10-06",
  "backtestThrough": "2026-07-02",
  "priceSource": "yahoo",
  "params": {
@@ -24,73 +24,95 @@
   "benchEvery": 21
  },
  "state": {
-  "lambda": 0.75,
+  "lambda": 0.756766917293233,
   "names": {
    "CRWV": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "NBIS": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "RIOT": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "BTDR": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "IREN": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "SLNH": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "GLXY": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "HUT": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "CIFR": {
-    "m": 1
+    "m": 1,
+    "opp": 1
    },
    "MARA": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "CORZ": {
-    "m": 1
+    "m": 1,
+    "opp": 1
    },
    "WULF": {
-    "m": 1
+    "m": 1,
+    "opp": 1
    },
    "FRMI": {
-    "m": 1
+    "m": 1,
+    "opp": 1
    },
    "WYFI": {
-    "m": 1
+    "m": 1,
+    "opp": 1
    },
    "HIVE": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "APLD": {
-    "m": 1
+    "m": 1,
+    "opp": 1
    },
    "ABTC": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "CLSK": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "NUAI": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    },
    "KEEL": {
-    "m": 1
+    "m": 1,
+    "opp": 1
    },
    "SHAZ": {
-    "m": 1
+    "m": 1,
+    "opp": 0
    }
   },
-  "lastGateNote": 317
+  "lastGateNote": 317,
+  "lastLearnLen": 318
  },
  "suspect": {
   "CRWV": 0,
@@ -117,28 +139,28 @@
   "SHAZ": 0
  },
  "lastFresh": {
-  "CRWV": "2026-10-05",
-  "NBIS": "2026-10-05",
-  "RIOT": "2026-10-05",
-  "BTDR": "2026-10-05",
-  "IREN": "2026-10-05",
-  "SLNH": "2026-10-05",
-  "GLXY": "2026-10-05",
-  "HUT": "2026-10-05",
-  "CIFR": "2026-10-05",
-  "MARA": "2026-10-05",
-  "CORZ": "2026-10-05",
-  "WULF": "2026-10-05",
-  "FRMI": "2026-10-05",
-  "WYFI": "2026-10-05",
-  "HIVE": "2026-10-05",
-  "APLD": "2026-10-05",
-  "ABTC": "2026-10-05",
-  "CLSK": "2026-10-05",
-  "BTBT": "2026-10-05",
-  "NUAI": "2026-10-05",
-  "KEEL": "2026-10-05",
-  "SHAZ": "2026-10-05"
+  "CRWV": "2026-10-06",
+  "NBIS": "2026-10-06",
+  "RIOT": "2026-10-06",
+  "BTDR": "2026-10-06",
+  "IREN": "2026-10-06",
+  "SLNH": "2026-10-06",
+  "GLXY": "2026-10-06",
+  "HUT": "2026-10-06",
+  "CIFR": "2026-10-06",
+  "MARA": "2026-10-06",
+  "CORZ": "2026-10-06",
+  "WULF": "2026-10-06",
+  "FRMI": "2026-10-06",
+  "WYFI": "2026-10-06",
+  "HIVE": "2026-10-06",
+  "APLD": "2026-10-06",
+  "ABTC": "2026-10-06",
+  "CLSK": "2026-10-06",
+  "BTBT": "2026-10-06",
+  "NUAI": "2026-10-06",
+  "KEEL": "2026-10-06",
+  "SHAZ": "2026-10-06"
  },
  "exclude": {
   "BTBT": "Richard 2026-07-06: special case (holdco/SOTP discount vehicle) — out of the paper book pending review; stays in the tracker for HUT/WYFI look-throughs"
@@ -194,5 +216,5 @@
   },
   "lastReb": 298
  },
- "dayIdx": 317
+ "dayIdx": 318
 }
