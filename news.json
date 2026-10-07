@@ -99,11 +99,25 @@
     "RIOT",
     "HUT"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses the top 5 co-location deals by revenue per megawatt in the AI infrastructure sector and provides updates on companies like Applied Digital (APLD), Dark Horse, White Fiber (WYFI), Galaxy (GLXY), Riot Platforms (RIOT), TerraWulf (WULF) and Hut 8 Mining Corp. (HUT).\n\n2. Key facts by company:\n   - APLD: Secured up to 1 GW in Finland; hyperscalers already talking to them.\n   - Dark Horse: Contracted 50 MW of power in Kentucky, doubling their portfolio; total contracted power now ~100 MW in the Tennessee Valley Authority region.\n   - WYFI: Deal with NScale at NC1 facility for £865M over 10 years (3% annual escalators and build charges); includes 40 MW critical IT deployed in two phases; blended contract value of £2.2M per megawatt/year.\n   - GLXY: Helios site has potential for 3.6 GW when fully authorized; deal with CoreWeave for $2.28M/MW/year.\n   - RIOT: Deal with Anthropic at Rockdale facility for $2.38M/MW/year (20-year initial term, two five-year extensions); estimated annual NOI of 80-90% margin ($455M/year revenues).\n   - WULF: Muskie site deal for $2.4M/MW/year; capacity doubled to 1 GW from 500 MW; second phase brought forward to 2029 (subject to Kentucky approvals).\n   - BTDR: Deal with Anthropic at Tidal facility in Norway for $2.43M/MW/year (16-year lease, potential further eight years); implied revenue of ~$294M/year across base term.\n   - HUT: Groundbreaking at Louisiana Riverbend site; 100% net operating income from deals.\n\n3. Host's view:\n   - The host is confident in the co-location strategy due to less risk compared to CSP contracts, though they acknowledge rising GPU rates benefit both strategies.\n   - They highlight that revenue per megawatt is just one metric and note other factors like cost of capital, PUE, site size, and hybrid models affect overall returns.\n   - The host sounds optimistic about the sector's growth potential (CAGR estimates 9.3%-14.5%) and expects rising tide to lift all boats.\n\n4. Worth checking:\n   - Verify build costs for WYFI's NC1 facility (believed <$10M/MW due to existing building).\n   - Confirm RIOT's Rockdale site cost ($12-16M/MW including $2M/MW accelerator).\n   - Check if BTDR's Norway PUE of 1.1 is best among discussed companies.\n   - Verify HUT's net operating income from deals (claimed 100% pass-through).",
+   "brief": "The top 5 co-location deals by revenue per megawatt in the AI infrastructure sector and provides updates on companies like Applied Digital (APLD), Dark Horse, White Fiber (WYFI), Galaxy (GLXY), Riot Platforms (RIOT), TerraWulf (WULF) and Hut 8 Mining Corp. (HUT).",
+   "facts": [
+    "APLD: Secured up to 1 GW in Finland; hyperscalers already talking to them.",
+    "Dark Horse: Contracted 50 MW of power in Kentucky, doubling their portfolio; total contracted power now ~100 MW in the Tennessee Valley Authority region.",
+    "WYFI: Deal with NScale at NC1 facility for £865M over 10 years (3% annual escalators and build charges); includes 40 MW critical IT deployed in two phases; blended contract value of £2.2M per megawatt/year.",
+    "GLXY: Helios site has potential for 3.6 GW when fully authorized; deal with CoreWeave for $2.28M/MW/year.",
+    "RIOT: Deal with Anthropic at Rockdale facility for $2.38M/MW/year (20-year initial term, two five-year extensions); estimated annual NOI of 80-90% margin ($455M/year revenues).",
+    "WULF: Muskie site deal for $2.4M/MW/year; capacity doubled to 1 GW from 500 MW; second phase brought forward to 2029 (subject to Kentucky approvals).",
+    "BTDR: Deal with Anthropic at Tidal facility in Norway for $2.43M/MW/year (16-year lease, potential further eight years); implied revenue of ~$294M/year across base term.",
+    "HUT: Groundbreaking at Louisiana Riverbend site; 100% net operating income from deals."
+   ],
+   "view": "The host is confident in the co-location strategy due to less risk compared to CSP contracts, though they acknowledge rising GPU rates benefit both strategies. They highlight that revenue per megawatt is just one metric and note other factors like cost of capital, PUE, site size, and hybrid models affect overall returns. The host sounds optimistic about the sector's growth potential (CAGR estimates 9.3%-14.5%) and expects rising tide to lift all boats.",
+   "verify": [
+    "Verify build costs for WYFI's NC1 facility (believed <$10M/MW due to existing building).",
+    "Confirm RIOT's Rockdale site cost ($12-16M/MW including $2M/MW accelerator).",
+    "Check if BTDR's Norway PUE of 1.1 is best among discussed companies.",
+    "Verify HUT's net operating income from deals (claimed 100% pass-through)."
+   ],
    "signal": [],
    "sponsored": []
   },
