@@ -484,10 +484,41 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "371ac51cea5fa0fa",
+   "tk": "IREN",
+   "kind": "log",
+   "site": null,
+   "title": "log: IREN was selected as one of nine companies for Alberta's energy system operator group for ",
+   "current": null,
+   "proposed": {
+    "d": "2026-10-08",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — Why Are AI Stocks Selling Off? | APLD Q1 | Latest IREN, KEEL, BTBT, CRWV, DRK, M, 2026-10-08",
+    "x": "IREN was selected as one of nine companies for Alberta's energy system operator group for large load connections. (guest)"
+   },
+   "evidence": [
+    {
+     "d": "2026-10-08",
+     "quote": null,
+     "claim": "IREN was selected as one of nine companies for Alberta's energy system operator group for large load connections.",
+     "by": "guest",
+     "url": "https://www.youtube.com/watch?v=IwBNhdodcSs",
+     "title": "Why Are AI Stocks Selling Off? | APLD Q1 | Latest IREN, KEEL, BTBT, CRWV, DRK, MOVE, HUT & SLNH News"
+    }
+   ],
+   "id": "p-2026-10-08-IREN-001",
+   "created": "2026-10-08",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [],
- "asOf": "2026-10-07",
+ "asOf": "2026-10-08",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",

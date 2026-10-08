@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-07",
+ "asOf": "2026-10-08",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,52 @@
   }
  ],
  "items": [
+  {
+   "id": "IwBNhdodcSs",
+   "src": "mcnallie-money",
+   "d": "2026-10-08",
+   "title": "Why Are AI Stocks Selling Off? | APLD Q1 | Latest IREN, KEEL, BTBT, CRWV, DRK, MOVE, HUT & SLNH News",
+   "headline": "Why Are AI Stocks Selling Off?",
+   "url": "https://www.youtube.com/watch?v=IwBNhdodcSs",
+   "kind": "news",
+   "minutes": 46,
+   "tickers": [
+    "APLD",
+    "IREN",
+    "BTBT",
+    "CRWV",
+    "HUT",
+    "SLNH",
+    "CORZ",
+    "WULF",
+    "CLSK",
+    "BTDR",
+    "GLXY"
+   ],
+   "main": [
+    "APLD",
+    "IREN",
+    "BTBT",
+    "CRWV",
+    "HUT",
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN was selected as one of nine companies for Alberta's energy system operator group for large load connections.",
+     "by": "guest",
+     "tag": "scoop",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "APF-Z0dYLVE",
    "src": "mcnallie-money",
@@ -6205,83 +6251,6 @@
     {
      "tk": "APLD",
      "claim": "The host estimates Applied Digital's share price could reach $78.05 based on deal analysis.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "cyrxriWBhDA",
-   "src": "mcnallie-money",
-   "d": "2026-06-09",
-   "title": "SLNH News Out Now | CIFR Prices Notes | Top AI Stocks to Watch in 2026 | Latest FUFU & HIVE News",
-   "headline": "SLNH News Out Now — CIFR Prices Notes",
-   "url": "https://www.youtube.com/watch?v=cyrxriWBhDA",
-   "kind": "news",
-   "minutes": 50,
-   "tickers": [
-    "SLNH",
-    "CIFR",
-    "HIVE",
-    "CORZ",
-    "IREN",
-    "HUT",
-    "BTDR",
-    "GLXY",
-    "WULF",
-    "APLD",
-    "BTBT",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK"
-   ],
-   "main": [
-    "SLNH",
-    "CIFR",
-    "HIVE",
-    "CORZ"
-   ],
-   "summary": "1. The video discusses recent developments in the AI infrastructure and Bitcoin mining sectors, covering updates from companies like Bitfufu (FUFU), Cipher Mining (CIFR), Hive Blockchain (HIVE) and Soluna Holdings (SLNH).\n\n2. Key facts by company:\n   - CIFR: Secured $810 million financing at 6% interest for its Stingray site; the deal is a 30-year contract with an escalator clause of 3% per annum.\n   - HIVE: Aiming to increase GPU count from 11,000 to 100,000 by 2028; targeting $660 million in annualized revenue run rate (ARR) by 2028; partnered with Bell Canada and NVIDIA for a sovereign Canadian AI agreement at its Buzz HPC subsidiary.\n   - SLNH: Regained NASDAQ compliance after previously being at risk of delisting due to low share price; formed a joint venture with Metroblocks for a 350+ MW site (Catty 2) in Texas, with phase one targeting 100 MW critical IT load and a potential 14% internal rate of return.\n   - FUFU: Increased self-mined Bitcoin by 181% month-over-month to 90 BTC; total operational power decreased from 404 MW in April to 346 MW in May.\n\n3. Host's view:\nThe hosts maintain an optimistic stance on the AI infrastructure sector, highlighting that companies like BitZero (BTDR) and Kiel (KEEL) have seen significant share price increases due to deal announcements. They emphasize the importance of taking profits amid market volatility but express confidence in the long-term prospects for HPC-focused companies.\n\n4. Worth checking:\nInvestors should verify the specifics of financing terms, such as interest rates and contract durations, directly with company filings rather than relying solely on summaries from retail investor channels. Additionally, revenue projections and GPU deployment targets (e.g., Hive's 100,000 GPUs by 2028) should be cross-referenced with official corporate communications or regulatory disclosures.",
-   "brief": "Recent developments in the AI infrastructure and Bitcoin mining sectors, covering updates from companies like Bitfufu (FUFU), Cipher Mining (CIFR), Hive Blockchain (HIVE) and Soluna Holdings (SLNH).",
-   "facts": [
-    "CIFR: Secured $810 million financing at 6% interest for its Stingray site; the deal is a 30-year contract with an escalator clause of 3% per annum.",
-    "HIVE: Aiming to increase GPU count from 11,000 to 100,000 by 2028; targeting $660 million in annualized revenue run rate (ARR) by 2028; partnered with Bell Canada and NVIDIA for a sovereign Canadian AI agreement at its Buzz HPC subsidiary.",
-    "SLNH: Regained NASDAQ compliance after previously being at risk of delisting due to low share price; formed a joint venture with Metroblocks for a 350+ MW site (Catty 2) in Texas, with phase one targeting 100 MW critical IT load and a potential 14% internal rate of return.",
-    "FUFU: Increased self-mined Bitcoin by 181% month-over-month to 90 BTC; total operational power decreased from 404 MW in April to 346 MW in May."
-   ],
-   "view": "The hosts maintain an optimistic stance on the AI infrastructure sector, highlighting that companies like BitZero (BTDR) and Kiel (KEEL) have seen significant share price increases due to deal announcements. They emphasize the importance of taking profits amid market volatility but express confidence in the long-term prospects for HPC-focused companies.",
-   "verify": [
-    "Investors should verify the specifics of financing terms, such as interest rates and contract durations, directly with company filings rather than relying solely on summaries from retail investor channels. Additionally, revenue projections and GPU deployment targets (e.g., Hive's 100,000 GPUs by 2028) should be cross-referenced with official corporate communications or regulatory disclosures."
-   ],
-   "signal": [
-    {
-     "tk": "HIVE",
-     "claim": "Hive Digital Technologies aims to install approximately 100,000 GPUs by the end of its target period.",
-     "by": "host",
-     "tag": "big",
-     "t": null
-    },
-    {
-     "tk": "CIFR",
-     "claim": "Cipher's Stingray site provides 70 MW of compute power.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "CORZ",
-     "claim": "Core Scientific is delivering up to 590 MW of compute power for CoreWeave by the end of this year.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "SLNH",
-     "claim": "Soluna Holdings completed a definitive JV with Metroblocks for a 350+ MW AI HPC hosting project.",
      "by": "host",
      "tag": "notable",
      "t": null
