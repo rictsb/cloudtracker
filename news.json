@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-08",
+ "asOf": "2026-10-09",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,51 @@
   }
  ],
  "items": [
+  {
+   "id": "Z6YeGxXFUTQ",
+   "src": "mcnallie-money",
+   "d": "2026-10-09",
+   "title": "Analyze This! | AI Selloff | Latest ABTC, HUT, DMG, WYFI, BTDR, SLNH, HIVE, MARA & IREN Stock News",
+   "headline": "Analyze This! — AI Selloff",
+   "url": "https://www.youtube.com/watch?v=Z6YeGxXFUTQ",
+   "kind": "news",
+   "minutes": 40,
+   "tickers": [
+    "IREN",
+    "BTDR",
+    "HIVE",
+    "CORZ",
+    "WULF",
+    "APLD",
+    "HUT",
+    "SLNH",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "BTDR",
+    "HIVE",
+    "CORZ",
+    "WULF",
+    "APLD"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN is handing over Horizon 2, 3, and 4 sites to Microsoft by the end of this year.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 2020
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "IwBNhdodcSs",
    "src": "mcnallie-money",
@@ -6152,119 +6197,6 @@
      "by": "host",
      "tag": "notable",
      "t": 2087
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "nHdEu4CJqDk",
-   "src": "mcnallie-money",
-   "d": "2026-06-10",
-   "title": "Keel Infrastructure CEO Q&A | Ben Gagnon Convertible Notes Update | Top AI Stocks to Watch | KEEL",
-   "headline": "Keel Infrastructure CEO Q&A",
-   "url": "https://www.youtube.com/watch?v=nHdEu4CJqDk",
-   "kind": "interview",
-   "minutes": 26,
-   "tickers": [
-    "KEEL",
-    "APLD",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK",
-    "BTDR",
-    "GLXY",
-    "HUT",
-    "IREN",
-    "WULF",
-    "CIFR",
-    "BTBT",
-    "HIVE"
-   ],
-   "main": [
-    "KEEL"
-   ],
-   "summary": "1. The video is an interview with Keel Infrastructure (KEEL) CEO Ben Gagnon discussing their recent $458 million convertible note raise and its implications for the company's growth strategy.\n\n2. Key facts by company:\n   - KEEL: Completed a $458 million liquidity raise via convertible notes; net proceeds are ~$445 million. This follows previous raises at favorable terms, with this one having a slightly lower coupon rate (1.25%) and higher effective conversion rate compared to prior ones. The company now has nearly $1 billion on its balance sheet, with Bitcoin representing <15% of Treasury (down from 30%). KEEL aims to use the funds to secure expansion capacity beyond their current pipeline.\n   - KEEL: CEO Ben Gagnon expresses increased confidence in signing three deals by year-end 2026. The company will announce deals within 48 hours of signing, rather than timing around earnings calls.\n\n3. Host's view:\n   - The host is bullish on KEEL, framing the convertible raise as a strategic move to strengthen their balance sheet and accelerate growth. They highlight the favorable terms of the financing and express confidence in management's ability to execute on leasing deals.\n\n4. Worth checking:\n   - Verify the exact terms and proceeds from the $458 million convertible note against SEC filings.\n   - Confirm KEEL's current cash position, Bitcoin holdings percentage, and specific plans for deploying the raised capital.\n   - Monitor subsequent announcements regarding deal signings and progress on permitting/leasing at their sites (Panther Creek, Sharon, Moses Lake).",
-   "brief": "The video is an interview with Keel Infrastructure (KEEL) CEO Ben Gagnon discussing their recent $458 million convertible note raise and its implications for the company's growth strategy.",
-   "facts": [
-    "KEEL: Completed a $458 million liquidity raise via convertible notes; net proceeds are ~$445 million. This follows previous raises at favorable terms, with this one having a slightly lower coupon rate (1.25%) and higher effective conversion rate compared to prior ones. The company now has nearly $1 billion on its balance sheet, with Bitcoin representing <15% of Treasury (down from 30%). KEEL aims to use the funds to secure expansion capacity beyond their current pipeline.",
-    "KEEL: CEO Ben Gagnon expresses increased confidence in signing three deals by year-end 2026. The company will announce deals within 48 hours of signing, rather than timing around earnings calls."
-   ],
-   "view": "The host is bullish on KEEL, framing the convertible raise as a strategic move to strengthen their balance sheet and accelerate growth. They highlight the favorable terms of the financing and express confidence in management's ability to execute on leasing deals.",
-   "verify": [
-    "Verify the exact terms and proceeds from the $458 million convertible note against SEC filings.",
-    "Confirm KEEL's current cash position, Bitcoin holdings percentage, and specific plans for deploying the raised capital.",
-    "Monitor subsequent announcements regarding deal signings and progress on permitting/leasing at their sites (Panther Creek, Sharon, Moses Lake)."
-   ],
-   "signal": [
-    {
-     "tk": "KEEL",
-     "claim": "Keel Infrastructure's convertible note was seven times oversubscribed.",
-     "by": "executive",
-     "tag": "big",
-     "t": 517
-    },
-    {
-     "tk": "KEEL",
-     "claim": "Keel Infrastructure expects to announce new deals within 24 to 48 hours of signing.",
-     "by": "executive",
-     "tag": "call",
-     "t": 835
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "zRUeCi9Pg1M",
-   "src": "mcnallie-money",
-   "d": "2026-06-10",
-   "title": "Applied Digital Valuation Analysis | Latest KEEL & HUT Stock News | Best AI Stocks to Watch Now",
-   "headline": "Applied Digital Valuation Analysis",
-   "url": "https://www.youtube.com/watch?v=zRUeCi9Pg1M",
-   "kind": "news",
-   "minutes": 44,
-   "tickers": [
-    "APLD",
-    "HUT",
-    "KEEL",
-    "IREN",
-    "CORZ",
-    "WULF",
-    "CIFR",
-    "BTDR",
-    "GLXY",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "CLSK",
-    "SLNH",
-    "BTBT",
-    "HIVE"
-   ],
-   "main": [
-    "APLD"
-   ],
-   "summary": "1. The video discusses recent developments in the AI infrastructure sector, including financing activities by Hut 8 (HUT) and Keel Infrastructure (KEEL), a valuation analysis of Applied Digital's (APLD) contracted deals, and broader trends in AI demand.\n\n2. Key facts:\n   - APLD: Signed a 210 MW lease at Delta Forge Two site for $5.2B base term revenue over 15 years; total contracted portfolio now $36B with potential to reach $86B including renewals; priced $1.59B senior secured notes at 7% due 2031.\n   - HUT: Closed a $4.25B senior secured note at BAA2 investment grade rating and 6.129% coupon due 2042 for Beacon Point facility (352 MW, six data halls).\n   - KEEL: Raised $458M via convertible notes with 1.25% coupon due Jan-30; conversion price $7.41, cap call $11.86 (100% premium); net proceeds ~$454M.\n   - Mike Alfred increased SLNH stake to 200K shares.\n\n3. Host's view:\n   - Applied Digital is \"thinking future-wise\" with deals mapped out to 2028 but trades at half the implied value of its contracts; current share price factors in about $20 of the potential ~$78/share from deals.\n   - Keel's convertible note is a \"stepping stone\" strategy before securing senior debt once they land hyperscale clients; cap call may be unnecessary if share price doubles to ~$11.86.\n   - SpaceX's 100 GW compute target by 2030 validates AI demand but Applied Digital and peers have power access now, creating a \"sweet spot.\"\n\n4. Worth checking:\n   - Verify Hut 8's Beacon Point facility details (352 MW, six data halls) against filings.\n   - Confirm Keel's pipeline capacity (2.2 GW across sites in Pennsylvania/Washington).\n   - Check Applied Digital's contracted portfolio ($36B base, $86B with renewals) and financing terms ($1.59B notes at 7%) in SEC disclosures.",
-   "brief": "Recent developments in the AI infrastructure sector, including financing activities by Hut 8 (HUT) and Keel Infrastructure (KEEL), a valuation analysis of Applied Digital's (APLD) contracted deals, and broader trends in AI demand.",
-   "facts": [
-    "APLD: Signed a 210 MW lease at Delta Forge Two site for $5.2B base term revenue over 15 years; total contracted portfolio now $36B with potential to reach $86B including renewals; priced $1.59B senior secured notes at 7% due 2031.",
-    "HUT: Closed a $4.25B senior secured note at BAA2 investment grade rating and 6.129% coupon due 2042 for Beacon Point facility (352 MW, six data halls).",
-    "KEEL: Raised $458M via convertible notes with 1.25% coupon due Jan-30; conversion price $7.41, cap call $11.86 (100% premium); net proceeds ~$454M.",
-    "Mike Alfred increased SLNH stake to 200K shares."
-   ],
-   "view": "Applied Digital is \"thinking future-wise\" with deals mapped out to 2028 but trades at half the implied value of its contracts; current share price factors in about $20 of the potential ~$78/share from deals. Keel's convertible note is a \"stepping stone\" strategy before securing senior debt once they land hyperscale clients; cap call may be unnecessary if share price doubles to ~$11.86. SpaceX's 100 GW compute target by 2030 validates AI demand but Applied Digital and peers have power access now, creating a \"sweet spot.\"",
-   "verify": [
-    "Verify Hut 8's Beacon Point facility details (352 MW, six data halls) against filings.",
-    "Confirm Keel's pipeline capacity (2.2 GW across sites in Pennsylvania/Washington).",
-    "Check Applied Digital's contracted portfolio ($36B base, $86B with renewals) and financing terms ($1.59B notes at 7%) in SEC disclosures."
-   ],
-   "signal": [
-    {
-     "tk": "APLD",
-     "claim": "The host estimates Applied Digital's share price could reach $78.05 based on deal analysis.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
     }
    ],
    "sponsored": []
