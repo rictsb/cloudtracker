@@ -38,11 +38,25 @@
     "WULF",
     "APLD"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses a significant selloff in AI infrastructure stocks due to macroeconomic factors like rising Treasury yields (over 5%) and high capital expenditure requirements ($10-16 million per MW for co-location, up to $50 million/MW with GPUs), impacting companies' ability to secure financing and deliver returns quickly.\n\n2. Key facts by company:\n   - Applied Digital: Paid 7% on its $1.59 billion senior secured notes; this results in over $105 million/year in interest payments.\n   - Bitdeer: Signed a new 67 MW deal in Malaysia (A901 campus) targeting full energization by Q2 2027, bringing total Malaysian pipeline to 273.5 MW and overall active pipeline value to over $10 billion.\n   - Core Scientific: Has a revolver priced at SOFR + 1.75%.\n   - DMG: Ranked #11 in Business in Vancouver's top 100 fastest-growing companies (2026); converting non-firm power to firm power, currently at 15 MW firm with plans to expand.\n   - Hut8: Stock down nearly 11% intraday; has a $1+ billion revolver priced at SOFR + 1.75%.\n   - Iron Energy: Achieved NVIDIA exemplar class status on HGX B300 and GB300 NVL72 systems; Microsoft validated performance; Horizon 2,3,4 (carbon copies of first site) to be handed over by year-end.\n   - Soluna: Published white paper showing cooling fluids are FDA-classified as generally recognized as safe in food, align with ASHRAE standards, and have low toxicity to aquatic life.\n\n3. Host's view:\n   The hosts remain confident in the sector's fundamentals despite the selloff, emphasizing that every company with power will secure contracts. They highlight execution as key and note buying opportunities at current prices (e.g., one host bought Keel at $7 in June, now at $3.15). They sound analytical but maintain conviction.\n\n4. Worth checking:\n   - Bitdeer's claim of a >$10 billion active pipeline.\n   - DMG's 30-year lease terms for co-location deals.\n   - Iron Energy's claim that Microsoft/NVIDIA validated performance (vs SemiAnalysis rating).\n   - Soluna's white paper claims about cooling fluid safety.\n   - Applied Digital's $105M/year interest cost calculation.",
+   "brief": "A significant selloff in AI infrastructure stocks due to macroeconomic factors like rising Treasury yields (over 5%) and high capital expenditure requirements ($10-16 million per MW for co-location, up to $50 million/MW with GPUs), impacting companies' ability to secure financing and deliver returns quickly.",
+   "facts": [
+    "Applied Digital: Paid 7% on its $1.59 billion senior secured notes; this results in over $105 million/year in interest payments.",
+    "Bitdeer: Signed a new 67 MW deal in Malaysia (A901 campus) targeting full energization by Q2 2027, bringing total Malaysian pipeline to 273.5 MW and overall active pipeline value to over $10 billion.",
+    "Core Scientific: Has a revolver priced at SOFR + 1.75%.",
+    "DMG: Ranked #11 in Business in Vancouver's top 100 fastest-growing companies (2026); converting non-firm power to firm power, currently at 15 MW firm with plans to expand.",
+    "Hut8: Stock down nearly 11% intraday; has a $1+ billion revolver priced at SOFR + 1.75%.",
+    "Iron Energy: Achieved NVIDIA exemplar class status on HGX B300 and GB300 NVL72 systems; Microsoft validated performance; Horizon 2,3,4 (carbon copies of first site) to be handed over by year-end.",
+    "Soluna: Published white paper showing cooling fluids are FDA-classified as generally recognized as safe in food, align with ASHRAE standards, and have low toxicity to aquatic life."
+   ],
+   "view": "The hosts remain confident in the sector's fundamentals despite the selloff, emphasizing that every company with power will secure contracts. They highlight execution as key and note buying opportunities at current prices (e.g., one host bought Keel at $7 in June, now at $3.15). They sound analytical but maintain conviction.",
+   "verify": [
+    "Bitdeer's claim of a >$10 billion active pipeline.",
+    "DMG's 30-year lease terms for co-location deals.",
+    "Iron Energy's claim that Microsoft/NVIDIA validated performance (vs SemiAnalysis rating).",
+    "Soluna's white paper claims about cooling fluid safety.",
+    "Applied Digital's $105M/year interest cost calculation."
+   ],
    "signal": [
     {
      "tk": "IREN",
