@@ -31,11 +31,21 @@
     "BTDR",
     "CLSK"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is a members-only update from retail investors Bryce and Anthony discussing their recent AI infrastructure stock trades during a market pullback, including specific buys, sells, portfolio allocations, and price targets.\n\n2. Key facts by company:\n- IRON (Iris Energy): Host Bryce bought 116 shares at $36.72 on Oct 8th.\n- BTDR (Bitdeer): Host Bryce bought 80 shares just north of $10 on Oct 8th; host Anthony bought 1,400 shares at $9.64. Bitdeer has ~12% global hash rate, mines >1,200 BTC/month, and has $10B in compute contracts.\n- WULF (TeraWulf): Host Bryce bought 75 shares sub-$15 and 10 more in another account; host Anthony bought shares at $13.74. TeraWolf kept promises on debt reduction and deal announcements.\n- RIOT: Host Anthony bought 750 shares at $16.85, bringing his total to 10,450 shares.\n- KEEL (Kiel): Host Anthony bought 5,000 shares at $3.05, increasing his position to >55,000 shares.\n\n3. Host's view:\nBryce and Anthony are bullish on their picks despite recent pullbacks. Bryce has price targets of $125 for IRON and $65 for WULF. They believe companies like Bitdeer (underappreciated), TeraWolf (executing well) and Iris Energy (hit piece is \"BS\") have strong fundamentals. Both hosts sound confident redeploying profits into these names, aiming to grow their portfolios significantly.\n\n4. Worth checking:\n- Verify Bitdeer's stated 12% global hash rate, >1,200 BTC/month mining output, $10B compute contracts and SEAL Miner A4 efficiency (<10J/TH).\n- Confirm TeraWolf's debt reduction actions and deal announcements match company disclosures.\n- Check Iris Energy's public rebuttal to the \"semi-analysis\" hit piece mentioned by hosts.",
+   "brief": "The video is a members-only update from retail investors Bryce and Anthony discussing their recent AI infrastructure stock trades during a market pullback, including specific buys, sells, portfolio allocations, and price targets.",
+   "facts": [
+    "IRON (Iris Energy): Host Bryce bought 116 shares at $36.72 on Oct 8th.",
+    "BTDR (Bitdeer): Host Bryce bought 80 shares just north of $10 on Oct 8th; host Anthony bought 1,400 shares at $9.64. Bitdeer has ~12% global hash rate, mines >1,200 BTC/month, and has $10B in compute contracts.",
+    "WULF (TeraWulf): Host Bryce bought 75 shares sub-$15 and 10 more in another account; host Anthony bought shares at $13.74. TeraWolf kept promises on debt reduction and deal announcements.",
+    "RIOT: Host Anthony bought 750 shares at $16.85, bringing his total to 10,450 shares.",
+    "KEEL (Kiel): Host Anthony bought 5,000 shares at $3.05, increasing his position to >55,000 shares."
+   ],
+   "view": "Bryce and Anthony are bullish on their picks despite recent pullbacks. Bryce has price targets of $125 for IRON and $65 for WULF. They believe companies like Bitdeer (underappreciated), TeraWolf (executing well) and Iris Energy (hit piece is \"BS\") have strong fundamentals. Both hosts sound confident redeploying profits into these names, aiming to grow their portfolios significantly.",
+   "verify": [
+    "Verify Bitdeer's stated 12% global hash rate, >1,200 BTC/month mining output, $10B compute contracts and SEAL Miner A4 efficiency (<10J/TH).",
+    "Confirm TeraWolf's debt reduction actions and deal announcements match company disclosures.",
+    "Check Iris Energy's public rebuttal to the \"semi-analysis\" hit piece mentioned by hosts."
+   ],
    "signal": [
     {
      "tk": "BTDR",
@@ -79,11 +89,26 @@
     "HIVE",
     "CORZ"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent developments and price targets in the AI infrastructure sector, including OpenAI's revenue projections, TSMC's Q3 results, Host Digital's entry into the market via reverse merger, Dark Horse's partnerships, Hive's supply chain insights, IRON's construction progress at Sweetwater, TerraWulf's financing strategy, Riot Platforms' community engagement and Morgan Stanley's updated price targets for several stocks.\n\n2. Key facts by company:\n- OpenAI: $70 billion ARR projected by end of 2026; IPO delayed to next year; raising additional $30 billion from investors like Abu Dhabi/MGX\n- TSMC: Q3 revenue $46.7B (+50.9% YoY); net income +77.4%, diluted EPS +36%\n- IRON (Iris Energy): Market cap ~$14B; 480MW HPC coming online by end of year; Sweetwater site construction progressing rapidly\n- Host Digital: Reverse merger into Healthy Choice Wellness; trading on NYSE since Sep 18; legacy members own 96% shares; 15-year $1.25B lease for 43MW in Oklahoma (expandable to ~$3.2B)\n- Dark Horse: Added 4 partners (Empyrex, Covectis, Perpetual Grid, Barge) for TVA sites; Barge has 7.5GW data center master planning experience\n- Hive Blockchain: Highlighted long lead times for AI components (GPUs 20-30 weeks, memory 40-50 weeks)\n- TerraWulf (WULF): Paul Prager owns ~50M shares/warrants/awards (~10% of company); insider ownership ~30-40%; targeting $12M+/MW build costs\n- Riot Platforms (RIOT): Largest taxpayer in Rockdale/Dawson school districts\n\n3. Host's view: The hosts are generally bullish on the sector, noting that while recent stock performance has been poor (\"50%, 60% pullback\"), fundamentals remain strong. They express confidence in companies like IRON and TerraWulf based on execution capabilities and insider ownership. They sound optimistic about price targets from Morgan Stanley (e.g., WULF $65 target with 371% upside, HUT $275 target).\n\n4. Worth checking: \n- OpenAI's $70B ARR projection by end of 2026\n- IRON's claim that their valuation could reach ~$80B if given same multiple as OpenAI\n- Host Digital's $2M/MW revenue figure for Oklahoma lease\n- TerraWulf's financing strategy details and Paul Prager's share count\n- Morgan Stanley price targets (e.g. WULF $65, HUT $275)",
+   "brief": "Recent developments and price targets in the AI infrastructure sector, including OpenAI's revenue projections, TSMC's Q3 results, Host Digital's entry into the market via reverse merger, Dark Horse's partnerships, Hive's supply chain insights, IRON's construction progress at Sweetwater, TerraWulf's financing strategy, Riot Platforms' community engagement and Morgan Stanley's updated price targets for several stocks.",
+   "facts": [
+    "OpenAI: $70 billion ARR projected by end of 2026; IPO delayed to next year; raising additional $30 billion from investors like Abu Dhabi/MGX",
+    "TSMC: Q3 revenue $46.7B (+50.9% YoY); net income +77.4%, diluted EPS +36%",
+    "IRON (Iris Energy): Market cap ~$14B; 480MW HPC coming online by end of year; Sweetwater site construction progressing rapidly",
+    "Host Digital: Reverse merger into Healthy Choice Wellness; trading on NYSE since Sep 18; legacy members own 96% shares; 15-year $1.25B lease for 43MW in Oklahoma (expandable to ~$3.2B)",
+    "Dark Horse: Added 4 partners (Empyrex, Covectis, Perpetual Grid, Barge) for TVA sites; Barge has 7.5GW data center master planning experience",
+    "Hive Blockchain: Highlighted long lead times for AI components (GPUs 20-30 weeks, memory 40-50 weeks)",
+    "TerraWulf (WULF): Paul Prager owns ~50M shares/warrants/awards (~10% of company); insider ownership ~30-40%; targeting $12M+/MW build costs",
+    "Riot Platforms (RIOT): Largest taxpayer in Rockdale/Dawson school districts"
+   ],
+   "view": "The hosts are generally bullish on the sector, noting that while recent stock performance has been poor (\"50%, 60% pullback\"), fundamentals remain strong. They express confidence in companies like IRON and TerraWulf based on execution capabilities and insider ownership. They sound optimistic about price targets from Morgan Stanley (e.g., WULF $65 target with 371% upside, HUT $275 target).",
+   "verify": [
+    "OpenAI's $70B ARR projection by end of 2026",
+    "IRON's claim that their valuation could reach ~$80B if given same multiple as OpenAI",
+    "Host Digital's $2M/MW revenue figure for Oklahoma lease",
+    "TerraWulf's financing strategy details and Paul Prager's share count",
+    "Morgan Stanley price targets (e.g. WULF $65, HUT $275)"
+   ],
    "signal": [
     {
      "tk": "HUT",
