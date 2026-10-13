@@ -515,10 +515,41 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "95f74469e17a9a1a",
+   "tk": "IREN",
+   "kind": "log",
+   "site": null,
+   "title": "log: Anthropic is one of two potential Frontier Model Labs partnered with IREN.",
+   "current": null,
+   "proposed": {
+    "d": "2026-10-13",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — Top BTBT, WULF, BTDR, DRK, HUT, ABTC, GLXY, APLD & IREN Stock News | AI Stocks t, 2026-10-13",
+    "x": "Anthropic is one of two potential Frontier Model Labs partnered with IREN. — \"Anthropic announced as one of two potential Frontier Model Labs or AI Model Labs partnered with Iron.\" (thirdparty)"
+   },
+   "evidence": [
+    {
+     "d": "2026-10-13",
+     "quote": "Anthropic announced as one of two potential Frontier Model Labs or AI Model Labs partnered with Iron.",
+     "claim": "Anthropic is one of two potential Frontier Model Labs partnered with IREN.",
+     "by": "thirdparty",
+     "url": "https://www.youtube.com/watch?v=3_Uzt08PJFc",
+     "title": "Top BTBT, WULF, BTDR, DRK, HUT, ABTC, GLXY, APLD & IREN Stock News | AI Stocks to Watch Now"
+    }
+   ],
+   "id": "p-2026-10-13-IREN-001",
+   "created": "2026-10-13",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [],
- "asOf": "2026-10-12",
+ "asOf": "2026-10-13",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",

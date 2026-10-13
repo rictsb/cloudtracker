@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-12",
+ "asOf": "2026-10-13",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,77 @@
   }
  ],
  "items": [
+  {
+   "id": "3_Uzt08PJFc",
+   "src": "mcnallie-money",
+   "d": "2026-10-13",
+   "title": "Top BTBT, WULF, BTDR, DRK, HUT, ABTC, GLXY, APLD & IREN Stock News | AI Stocks to Watch Now",
+   "headline": "Top BTBT, WULF, BTDR, DRK, HUT, ABTC, GLXY, APLD & IREN Stock News",
+   "url": "https://www.youtube.com/watch?v=3_Uzt08PJFc",
+   "kind": "news",
+   "minutes": 33,
+   "tickers": [
+    "BTBT",
+    "WULF",
+    "BTDR",
+    "HUT",
+    "ABTC",
+    "GLXY",
+    "APLD",
+    "IREN",
+    "MARA",
+    "SLNH",
+    "CORZ",
+    "CRWV",
+    "NBIS"
+   ],
+   "main": [
+    "BTBT",
+    "WULF",
+    "BTDR",
+    "HUT",
+    "ABTC",
+    "GLXY",
+    "APLD",
+    "IREN"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "Anthropic is one of two potential Frontier Model Labs partnered with IREN.",
+     "by": "thirdparty",
+     "tag": "big",
+     "t": null
+    },
+    {
+     "tk": "SLNH",
+     "claim": "Soluna has a 100 MW facility known as CATI 2.",
+     "by": "host",
+     "tag": "notable",
+     "t": 375
+    },
+    {
+     "tk": "CORZ",
+     "claim": "Core Scientific will hand over 590 MW of sites to CoreWeave by 2027.",
+     "by": "host",
+     "tag": "call",
+     "t": 790
+    },
+    {
+     "tk": "IREN",
+     "claim": "IREN will hand over the entirety of Horizons 1 through 4 to Microsoft by 2027.",
+     "by": "host",
+     "tag": "call",
+     "t": 798
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "IhXdkMO5PJI",
    "src": "mcnallie-money",
@@ -6186,35 +6257,6 @@
      "t": null
     }
    ],
-   "sponsored": []
-  },
-  {
-   "id": "Ki1-W_oAw1I",
-   "src": "mcnallie-money",
-   "d": "2026-06-14",
-   "title": "Latest AI Stock To Watch 2026 | Iveda Solutions | Top AI Stock News Now | IVDA Stock",
-   "headline": "Latest AI Stock To Watch 2026",
-   "url": "https://www.youtube.com/watch?v=Ki1-W_oAw1I",
-   "kind": "news",
-   "minutes": 14,
-   "tickers": [],
-   "main": [],
-   "summary": "1. The video is a sponsored overview of iVEDA Solutions (IVDA), an AI-enabled security and surveillance company, covering its history, product offerings like iVEDA AI, Cerebro IoT platform, and recent developments such as zero-shot AI detection.\n\n2. Key facts by company:\n   - IVDA: Founded in 2005; listed on NASDAQ since 2022 under ticker IVDA\n   - IVDA: Over 70,000 installed cameras, 300+ completed projects, services in 19 countries\n   - IVDA: Launched real-time zero-shot AI detection on June 1st, allowing custom AI models from natural language prompts (e.g., \"shoplifting\")\n   - IVDA: CEO David Lai called this launch the \"greatest leap forward yet\" in real-time AI video analytics\n   - IVDA: Subscription model for iVEDA AI with packages ranging $99-$340/month\n\n3. Host's view:\n   - The host is positive on IVDA, highlighting its diversified product portfolio (AI surveillance, IoT, drone tech), recurring revenue model via subscriptions, and recent AI advancements as potential growth drivers\n   - No specific price targets or valuations given; the host sounds enthusiastic but notes this is their first coverage of IVDA\n\n4. Worth checking:\n   - Verify iVEDA's claim of being certified by U.S. Department of Homeland Security under Safety Act DT&E designation\n   - Confirm details of government contracts mentioned (DHS, FBI) and partnerships with telecom companies like Verizon\n   - Check if the 70,000 installed cameras figure is current or historical",
-   "brief": "The video is a sponsored overview of iVEDA Solutions (IVDA), an AI-enabled security and surveillance company, covering its history, product offerings like iVEDA AI, Cerebro IoT platform, and recent developments such as zero-shot AI detection.",
-   "facts": [
-    "IVDA: Founded in 2005; listed on NASDAQ since 2022 under ticker IVDA",
-    "IVDA: Over 70,000 installed cameras, 300+ completed projects, services in 19 countries",
-    "IVDA: Launched real-time zero-shot AI detection on June 1st, allowing custom AI models from natural language prompts (e.g., \"shoplifting\")",
-    "IVDA: CEO David Lai called this launch the \"greatest leap forward yet\" in real-time AI video analytics",
-    "IVDA: Subscription model for iVEDA AI with packages ranging $99-$340/month"
-   ],
-   "view": "The host is positive on IVDA, highlighting its diversified product portfolio (AI surveillance, IoT, drone tech), recurring revenue model via subscriptions, and recent AI advancements as potential growth drivers No specific price targets or valuations given; the host sounds enthusiastic but notes this is their first coverage of IVDA",
-   "verify": [
-    "Verify iVEDA's claim of being certified by U.S. Department of Homeland Security under Safety Act DT&E designation",
-    "Confirm details of government contracts mentioned (DHS, FBI) and partnerships with telecom companies like Verizon",
-    "Check if the 70,000 installed cameras figure is current or historical"
-   ],
-   "signal": [],
    "sponsored": []
   }
  ]
