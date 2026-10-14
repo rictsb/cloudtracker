@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-13",
+ "asOf": "2026-10-14",
  "windowDays": 120,
  "sources": [
   {
@@ -6214,57 +6214,6 @@
      "claim": "TeraWulf and Bitdeer are in advanced negotiations for potential incremental deals within the next 30 to 60 days.",
      "by": "guest",
      "tag": "call",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "Vy_5VS9ZGck",
-   "src": "mcnallie-money",
-   "d": "2026-06-15",
-   "title": "Latest IREN News | GPU Pricing Analysis | SPCX, MSFT & Anthropic AI Deals | Top AI Stocks to Watch",
-   "headline": "Latest IREN News — GPU Pricing Analysis",
-   "url": "https://www.youtube.com/watch?v=Vy_5VS9ZGck",
-   "kind": "news",
-   "minutes": 36,
-   "tickers": [
-    "IREN",
-    "BTBT",
-    "BTDR",
-    "CORZ",
-    "CRWV",
-    "GLXY",
-    "HIVE",
-    "HUT",
-    "MARA",
-    "NBIS",
-    "SLNH",
-    "WULF"
-   ],
-   "main": [
-    "IREN"
-   ],
-   "summary": "1. The video discusses recent developments in AI infrastructure, including GPU pricing trends and major contracts signed by SpaceX with Anthropic and Google; it also covers updates from IREN (Iris Energy) regarding their acquisition of Nostrum Group and the implications for their expansion into Europe.\n\n2. Key facts:\n   - IREN: Acquired Nostrum Group, securing 490 MW of power in Spain to serve AI compute demand in Europe.\n   - SpaceX: Signed a deal with Anthropic worth $1.25 billion per month (for 220,000 NVIDIA GPUs) and another with Google for $920 million per month (for 110,000 NVIDIA GPUs).\n   - Nebius: Spot pricing for NVIDIA GPUs ranges from $3.85/hour (H100s) to $7.85/hour (B300s).\n   - IREN's Microsoft deal at Childress: Annual revenue of $1.94 billion ($25,500 per GPU annually; $2.91 per GPU hour).\n\n3. Host's view:\n   - The host is optimistic about the AI infrastructure sector, noting that GPU pricing and demand are rising significantly.\n   - They highlight that IREN could potentially shift strategy from co-location deals to becoming a cloud service provider (CSP) given the higher rates seen in recent contracts.\n\n4. Worth checking:\n   - Verify the exact terms of IREN's Nostrum Group acquisition, including power costs and timelines for deployment in Spain.\n   - Confirm the specifics of SpaceX's deals with Anthropic and Google, such as contract durations and GPU types used.\n   - Validate Nebius' spot pricing data against official sources or filings.",
-   "brief": "Recent developments in AI infrastructure, including GPU pricing trends and major contracts signed by SpaceX with Anthropic and Google; it also covers updates from IREN (Iris Energy) regarding their acquisition of Nostrum Group and the implications for their expansion into Europe.",
-   "facts": [
-    "IREN: Acquired Nostrum Group, securing 490 MW of power in Spain to serve AI compute demand in Europe.",
-    "SpaceX: Signed a deal with Anthropic worth $1.25 billion per month (for 220,000 NVIDIA GPUs) and another with Google for $920 million per month (for 110,000 NVIDIA GPUs).",
-    "Nebius: Spot pricing for NVIDIA GPUs ranges from $3.85/hour (H100s) to $7.85/hour (B300s).",
-    "IREN's Microsoft deal at Childress: Annual revenue of $1.94 billion ($25,500 per GPU annually; $2.91 per GPU hour)."
-   ],
-   "view": "The host is optimistic about the AI infrastructure sector, noting that GPU pricing and demand are rising significantly. They highlight that IREN could potentially shift strategy from co-location deals to becoming a cloud service provider (CSP) given the higher rates seen in recent contracts.",
-   "verify": [
-    "Verify the exact terms of IREN's Nostrum Group acquisition, including power costs and timelines for deployment in Spain.",
-    "Confirm the specifics of SpaceX's deals with Anthropic and Google, such as contract durations and GPU types used.",
-    "Validate Nebius' spot pricing data against official sources or filings."
-   ],
-   "signal": [
-    {
-     "tk": "WULF",
-     "claim": "The Bitcoin mining difficulty decreased by 10% recently.",
-     "by": "host",
-     "tag": "big",
      "t": null
     }
    ],
