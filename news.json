@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-14",
+ "asOf": "2026-10-15",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,62 @@
   }
  ],
  "items": [
+  {
+   "id": "txHt88cawRU",
+   "src": "mcnallie-money",
+   "d": "2026-10-14",
+   "title": "AI Selloff Explained | Top IREN, HUT, WULF, DMGI, GLXY, CORZ, WYFI, HIVE & SLNH News | AI Headwinds",
+   "headline": "AI Selloff Explained — Top IREN, HUT, WULF, DMGI, GLXY, CORZ, WYFI, HIVE & SLNH News",
+   "url": "https://www.youtube.com/watch?v=txHt88cawRU",
+   "kind": "news",
+   "minutes": 65,
+   "tickers": [
+    "IREN",
+    "HUT",
+    "WULF",
+    "CORZ",
+    "GLXY",
+    "SLNH",
+    "ABTC",
+    "BTDR",
+    "RIOT",
+    "MARA",
+    "CLSK",
+    "NBIS",
+    "HIVE",
+    "BTBT"
+   ],
+   "main": [
+    "IREN",
+    "HUT",
+    "WULF",
+    "CORZ",
+    "GLXY",
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "HUT",
+     "claim": "Hut 8 is expanding its Riverbend campus in Louisiana with a potential for 1,245 MW of total IT capacity.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 2285
+    },
+    {
+     "tk": "CORZ",
+     "claim": "Cantor has issued an overweight rating and a $39 price target for Core Scientific.",
+     "by": "thirdparty",
+     "tag": "notable",
+     "t": 3225
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "3_Uzt08PJFc",
    "src": "mcnallie-money",
@@ -6095,123 +6151,6 @@
     {
      "tk": "CORZ",
      "claim": "Core Scientific is expected to deliver between 400 and 450 megawatts by mid-2026.",
-     "by": "guest",
-     "tag": "call",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "l7UpjOIkJDA",
-   "src": "mcnallie-money",
-   "d": "2026-06-16",
-   "title": "Top CIFR News Out Now | Latest AIBZ Stock Updates | CORZ Delivering Sites | Top AI Stocks in 2026",
-   "headline": "Top CIFR News Out Now — Latest AIBZ Stock Updates",
-   "url": "https://www.youtube.com/watch?v=l7UpjOIkJDA",
-   "kind": "news",
-   "minutes": 29,
-   "tickers": [
-    "CIFR",
-    "CORZ",
-    "BTDR",
-    "IREN",
-    "HUT",
-    "WULF",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK"
-   ],
-   "main": [
-    "CIFR",
-    "CORZ",
-    "BTDR"
-   ],
-   "summary": "1. The video discusses recent developments and news in the AI infrastructure sector, including updates from companies like BitZero (AIBZ), Cypher Digital (CIFR) and Core Scientific (CORZ), as well as insights from an interview with Matt Siegel of VanEck.\n\n2. Key facts by company:\n   - AIBZ: 110 MW deal in Norway; $2.6 billion binding letter for 15-year lease; annual revenues of $151 million over the lease term; 85% net operating income margin.\n   - CIFR: Hired Bill Blevins from ERCOT as head of grid strategies; closed $810 million private offering at 6% senior secured notes due in 2031; funding construction of Stingray HPC data centre in Andrews, Texas.\n   - CORZ: Delivered 65 MW site in Marble, North Carolina; on track to deliver entire 590 MW contract with CoreWeave by end of 2026.\n\n3. Host's view:\n   The host is very bullish on the AI infrastructure sector and believes it is experiencing a \"melt-up\". They are confident that companies like Cypher Digital (CIFR) and TeraWulf (WULF) will be standout players moving forward, citing their ability to secure deals and financing. The host also highlights the significant returns some investors have seen in the sector over the past year.\n\n4. Worth checking:\n   - BitZero's claim of $151 million annual revenues from the Norway deal.\n   - Cypher Digital's reported 85% net operating income margin.\n   - Core Scientific's timeline for delivering the entire 590 MW contract with CoreWeave by end of 2026.",
-   "brief": "Recent developments and news in the AI infrastructure sector, including updates from companies like BitZero (AIBZ), Cypher Digital (CIFR) and Core Scientific (CORZ), as well as insights from an interview with Matt Siegel of VanEck.",
-   "facts": [
-    "AIBZ: 110 MW deal in Norway; $2.6 billion binding letter for 15-year lease; annual revenues of $151 million over the lease term; 85% net operating income margin.",
-    "CIFR: Hired Bill Blevins from ERCOT as head of grid strategies; closed $810 million private offering at 6% senior secured notes due in 2031; funding construction of Stingray HPC data centre in Andrews, Texas.",
-    "CORZ: Delivered 65 MW site in Marble, North Carolina; on track to deliver entire 590 MW contract with CoreWeave by end of 2026."
-   ],
-   "view": "The host is very bullish on the AI infrastructure sector and believes it is experiencing a \"melt-up\". They are confident that companies like Cypher Digital (CIFR) and TeraWulf (WULF) will be standout players moving forward, citing their ability to secure deals and financing. The host also highlights the significant returns some investors have seen in the sector over the past year.",
-   "verify": [
-    "BitZero's claim of $151 million annual revenues from the Norway deal.",
-    "Cypher Digital's reported 85% net operating income margin.",
-    "Core Scientific's timeline for delivering the entire 590 MW contract with CoreWeave by end of 2026."
-   ],
-   "signal": [
-    {
-     "tk": "CORZ",
-     "claim": "Core Scientific is on track to deliver its full 590 MW contract with CoreWeave by the end of 2026.",
-     "by": "guest",
-     "tag": "notable",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "So32kriFefQ",
-   "src": "mcnallie-money",
-   "d": "2026-06-16",
-   "title": "Wall Street Analyst | Matthew Sigel Q&A | Head of Digital Asset Research | Top AI Stocks to Watch",
-   "headline": "Wall Street Analyst — Matthew Sigel Q&A",
-   "url": "https://www.youtube.com/watch?v=So32kriFefQ",
-   "kind": "interview",
-   "minutes": 61,
-   "tickers": [
-    "IREN",
-    "CORZ",
-    "WULF",
-    "BTDR",
-    "MARA",
-    "CLSK",
-    "HUT",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "GLXY",
-    "CIFR"
-   ],
-   "main": [
-    "IREN",
-    "CORZ",
-    "WULF",
-    "BTDR",
-    "MARA",
-    "CLSK"
-   ],
-   "summary": "1. The video is a discussion with Matthew Sigel, Head of Digital Assets Research at VanEck, covering Bitcoin's cycle, miners transitioning to AI/HPC hosting, and key players in this space.\n\n2. Key facts by company:\n- **BTDR (Bitdeer)**: Controls close to 10% of the global hash rate.\n- **MARA (Marathon Digital Holdings)**: Shopping its entire portfolio via Starwood; CleanSpark is doing the same.\n- **HUT (Hut 8 Mining Corp.)**: Signing triple net leases, resulting in 100% gross margin for Hut 8 on those deals.\n- **CIFR (Cipher Mining Inc.)**: Has a triple net lease deal with Google via FluidStack, giving away stock as part of the deal.\n- **WULF (TeraWulf Inc.)**: In advanced negotiations and expected to announce an incremental deal in the next 30-60 days.\n- **IREN (Iris Energy)**: Business model involves running GPUs themselves, potentially leading to larger overall profit dollars but lower margins compared to triple net lease models.\n- **BTDR & WULF**: Two names signaling \"advanced negotiations\" for deals, likely catalysts in the next 30-60 days.\n\n3. Host's view (Matthew Sigel):\n- Stance: Bullish on miners transitioning to AI/HPC due to earnings growth and cheap valuations compared to data center peers. Prefers companies with triple net leases (e.g., Hut 8, Cipher) for lower volatility.\n- Price targets/valuations: Uses a bottom-up, site-by-site analysis with probability weighting for energization, permits, and leases. Expects EBITDA multiples of 10-12x for high-quality AI HPC miners by 2028-2029, with potential re-rating towards data center REIT multiples (20x+).\n- Confidence: Confident in the arbitrage opportunity from Bitcoin mining's high cost of capital (~20%) to GPU financing at ~6%. Expects SpaceX IPO success could benefit miners via leases or acquisitions.\n\n4. Worth checking:\n- Verify claims about specific deal terms, such as Hut 8's triple net lease resulting in 100% gross margin and Cipher giving stock for its Google/FluidStack deal.\n- Confirm the status of Bitdeer and TeraWulf being in \"advanced negotiations\" for deals expected within 30-60 days.",
-   "brief": "The video is a discussion with Matthew Sigel, Head of Digital Assets Research at VanEck, covering Bitcoin's cycle, miners transitioning to AI/HPC hosting, and key players in this space.",
-   "facts": [
-    "**BTDR (Bitdeer)**: Controls close to 10% of the global hash rate.",
-    "**MARA (Marathon Digital Holdings)**: Shopping its entire portfolio via Starwood; CleanSpark is doing the same.",
-    "**HUT (Hut 8 Mining Corp.)**: Signing triple net leases, resulting in 100% gross margin for Hut 8 on those deals.",
-    "**CIFR (Cipher Mining Inc.)**: Has a triple net lease deal with Google via FluidStack, giving away stock as part of the deal.",
-    "**WULF (TeraWulf Inc.)**: In advanced negotiations and expected to announce an incremental deal in the next 30-60 days.",
-    "**IREN (Iris Energy)**: Business model involves running GPUs themselves, potentially leading to larger overall profit dollars but lower margins compared to triple net lease models.",
-    "**BTDR & WULF**: Two names signaling \"advanced negotiations\" for deals, likely catalysts in the next 30-60 days."
-   ],
-   "view": "Stance: Bullish on miners transitioning to AI/HPC due to earnings growth and cheap valuations compared to data center peers. Prefers companies with triple net leases (e.g., Hut 8, Cipher) for lower volatility. Price targets/valuations: Uses a bottom-up, site-by-site analysis with probability weighting for energization, permits, and leases. Expects EBITDA multiples of 10-12x for high-quality AI HPC miners by 2028-2029, with potential re-rating towards data center REIT multiples (20x+). Confidence: Confident in the arbitrage opportunity from Bitcoin mining's high cost of capital (~20%) to GPU financing at ~6%. Expects SpaceX IPO success could benefit miners via leases or acquisitions.",
-   "verify": [
-    "Verify claims about specific deal terms, such as Hut 8's triple net lease resulting in 100% gross margin and Cipher giving stock for its Google/FluidStack deal.",
-    "Confirm the status of Bitdeer and TeraWulf being in \"advanced negotiations\" for deals expected within 30-60 days."
-   ],
-   "signal": [
-    {
-     "tk": "WULF",
-     "claim": "TeraWulf and Bitdeer are in advanced negotiations for potential incremental deals within the next 30 to 60 days.",
      "by": "guest",
      "tag": "call",
      "t": null

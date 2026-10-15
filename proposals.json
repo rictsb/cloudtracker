@@ -32,37 +32,6 @@
    "sourceName": "McNallie Money (YouTube)"
   },
   {
-   "fp": "b63cb9eceac96641",
-   "tk": "KEEL",
-   "kind": "log",
-   "site": null,
-   "title": "log: KEEL is investigating a 100 million USD data center in Moses Lake that previously used cry",
-   "current": null,
-   "proposed": {
-    "d": "2026-08-24",
-    "t": "opinion",
-    "s": "[secondary] McNallie Money (YouTube) — Latest KEEL, SLNH & WULF Site Updates | Top WYFI News | Bitcoin Price Action | A, 2026-08-24",
-    "x": "KEEL is investigating a 100 million USD data center in Moses Lake that previously used crypto mining. — \"You can see a $100 million data center in Moses Lake address listed former-use crypto mining.\" (host)"
-   },
-   "evidence": [
-    {
-     "d": "2026-08-24",
-     "quote": "You can see a $100 million data center in Moses Lake address listed former-use crypto mining.",
-     "claim": "KEEL is investigating a 100 million USD data center in Moses Lake that previously used crypto mining.",
-     "by": "host",
-     "url": "https://www.youtube.com/watch?v=p3b45Kj7o18&t=1273s",
-     "title": "Latest KEEL, SLNH & WULF Site Updates | Top WYFI News | Bitcoin Price Action | AI Stocks to Watch"
-    }
-   ],
-   "id": "p-2026-09-14-KEEL-002",
-   "created": "2026-09-14",
-   "status": "accepted",
-   "decided": "2026-09-14",
-   "applied": "2026-09-14",
-   "sourceId": "mcnallie-money",
-   "sourceName": "McNallie Money (YouTube)"
-  },
-  {
    "fp": "adfcda4c7de3fd91",
    "tk": "HIVE",
    "kind": "log",
@@ -548,8 +517,10 @@
    "sourceName": "McNallie Money (YouTube)"
   }
  ],
- "seen": [],
- "asOf": "2026-10-14",
+ "seen": [
+  "b63cb9eceac96641"
+ ],
+ "asOf": "2026-10-15",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
