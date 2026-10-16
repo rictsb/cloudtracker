@@ -94,68 +94,6 @@
    "sourceName": "McNallie Money (YouTube)"
   },
   {
-   "fp": "ca72db58e18ba29b",
-   "tk": "IREN",
-   "kind": "log",
-   "site": null,
-   "title": "log: Short-term AI compute contracts are now ranging from 30 to 40 million USD per MW.",
-   "current": null,
-   "proposed": {
-    "d": "2026-09-11",
-    "t": "contract",
-    "s": "[secondary] McNallie Money (YouTube) — Latest IREN, KEEL, BTBT & WULF Stock News | Top AI Stocks to Watch | New Batch Z, 2026-09-11",
-    "x": "Short-term AI compute contracts are now ranging from 30 to 40 million USD per MW. — \"sub-one-year... contracts, now in the 30 to 40 million range per megawatt\" (executive: Dan Roberts)"
-   },
-   "evidence": [
-    {
-     "d": "2026-09-11",
-     "quote": "sub-one-year... contracts, now in the 30 to 40 million range per megawatt",
-     "claim": "Short-term AI compute contracts are now ranging from 30 to 40 million USD per MW.",
-     "by": "executive",
-     "url": "https://www.youtube.com/watch?v=0l_sqbevRnI",
-     "title": "Latest IREN, KEEL, BTBT & WULF Stock News | Top AI Stocks to Watch | New Batch Zero Analysis"
-    }
-   ],
-   "id": "p-2026-09-14-IREN-005",
-   "created": "2026-09-14",
-   "status": "accepted",
-   "decided": "2026-09-15",
-   "applied": "2026-09-15",
-   "sourceId": "mcnallie-money",
-   "sourceName": "McNallie Money (YouTube)"
-  },
-  {
-   "fp": "83a624d3aff98111",
-   "tk": "RIOT",
-   "kind": "log",
-   "site": null,
-   "title": "log: Riot Platforms' ERCOT sites at Rockdale and Corsicana are already energized and not subjec",
-   "current": null,
-   "proposed": {
-    "d": "2026-09-07",
-    "t": "note",
-    "s": "[secondary] McNallie Money (YouTube) — RIOT Q2 Earnings CEO Q&A | Corsicana LOI & Frontier AI Lab Deal | AI Stocks to W, 2026-09-07",
-    "x": "Riot Platforms' ERCOT sites at Rockdale and Corsicana are already energized and not subject to the Batch Zero process. — \"Riot sites with with with Rockdale and Corsicana are already energized base load. So they are not a part of this batch zero process.\" (executive: Jason Les)"
-   },
-   "evidence": [
-    {
-     "d": "2026-09-07",
-     "quote": "Riot sites with with with Rockdale and Corsicana are already energized base load. So they are not a part of this batch zero process.",
-     "claim": "Riot Platforms' ERCOT sites at Rockdale and Corsicana are already energized and not subject to the Batch Zero process.",
-     "by": "executive",
-     "url": "https://www.youtube.com/watch?v=1azA8TDB0CI&t=810s",
-     "title": "RIOT Q2 Earnings CEO Q&A | Corsicana LOI & Frontier AI Lab Deal | AI Stocks to Watch | RIOT Stock"
-    }
-   ],
-   "id": "p-2026-09-14-RIOT-006",
-   "created": "2026-09-14",
-   "status": "accepted",
-   "decided": "2026-09-15",
-   "applied": "2026-09-15",
-   "sourceId": "mcnallie-money",
-   "sourceName": "McNallie Money (YouTube)"
-  },
-  {
    "id": "assumption-shaz-signed-geography-20260916",
    "fp": "d295c19a7a60873fec8e4cbfe3b7ec01b7ee035b58b7deec8df08d19c69a8b25",
    "kind": "assumption",
@@ -515,12 +453,45 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "dca0c0b0f7a55182",
+   "tk": "KEEL",
+   "kind": "log",
+   "site": null,
+   "title": "log: Keel is looking at a potential 75 MW data center site in South Allentown, Pennsylvania.",
+   "current": null,
+   "proposed": {
+    "d": "2026-10-15",
+    "t": "opinion",
+    "s": "[secondary] McNallie Money (YouTube) — How Low Can We Go? | AI Stock Sell Off Continues | Latest KEEL, BTBT, CRWV, GLXY, 2026-10-15",
+    "x": "Keel is looking at a potential 75 MW data center site in South Allentown, Pennsylvania. — \"convert a vacant 224,000 square foot warehouse into a 75-megawatt data center\" (host)"
+   },
+   "evidence": [
+    {
+     "d": "2026-10-15",
+     "quote": "convert a vacant 224,000 square foot warehouse into a 75-megawatt data center",
+     "claim": "Keel is looking at a potential 75 MW data center site in South Allentown, Pennsylvania.",
+     "by": "host",
+     "url": "https://www.youtube.com/watch?v=bD_oif-rsxo&t=2037s",
+     "title": "How Low Can We Go? | AI Stock Sell Off Continues | Latest KEEL, BTBT, CRWV, GLXY, RIOT & CORZ News"
+    }
+   ],
+   "id": "p-2026-10-16-KEEL-001",
+   "created": "2026-10-16",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
-  "b63cb9eceac96641"
+  "83a624d3aff98111",
+  "b63cb9eceac96641",
+  "ca72db58e18ba29b"
  ],
- "asOf": "2026-10-15",
+ "asOf": "2026-10-16",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
