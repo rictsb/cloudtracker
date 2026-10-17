@@ -90,11 +90,19 @@
     "CORZ",
     "BTDR"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is a members-only update where two hosts discuss their recent AI infrastructure stock purchases during a market pullback and share their portfolio allocations.\n\n2. Key facts by company:\n- CIFR: Host bought 1000 shares at $11/share; stock later dropped to ~$9.70.\n- WULF: Host expects them to hit 250-500 MW/year deployment target; Morgan Stanley price target is $17.50, bull case over $100.\n\n3. Host's view:\n- Stance: Confident in long-term AI infrastructure fundamentals despite short-term volatility and debt concerns for companies building data centers.\n- Price targets/valuations: Believes WULF could exceed Morgan Stanley's $65 PT if deployment continues; IRON is severely undervalued with potential to reach all-time highs again.\n- Confidence: Very convicted on IRON, largest position by far; feels good about buying during pullback as part of long-term strategy.\n\n4. Worth checking:\n- Verify WULF's actual MW deployment guidance vs host's 250-500 MW/year claim\n- Check if Morgan Stanley actually published $65 PT and >$100 bull case for WULF\n- Confirm IRON's actual contracted service provider rates vs host's view they're \"through the roof\"\n- Verify Core Scientific's exact deal terms with Microsoft (host says $6B build cost at 7-8% interest)",
+   "brief": "The video is a members-only update where two hosts discuss their recent AI infrastructure stock purchases during a market pullback and share their portfolio allocations.",
+   "facts": [
+    "CIFR: Host bought 1000 shares at $11/share; stock later dropped to ~$9.70.",
+    "WULF: Host expects them to hit 250-500 MW/year deployment target; Morgan Stanley price target is $17.50, bull case over $100."
+   ],
+   "view": "Stance: Confident in long-term AI infrastructure fundamentals despite short-term volatility and debt concerns for companies building data centers. Price targets/valuations: Believes WULF could exceed Morgan Stanley's $65 PT if deployment continues; IRON is severely undervalued with potential to reach all-time highs again. Confidence: Very convicted on IRON, largest position by far; feels good about buying during pullback as part of long-term strategy.",
+   "verify": [
+    "Verify WULF's actual MW deployment guidance vs host's 250-500 MW/year claim",
+    "Check if Morgan Stanley actually published $65 PT and >$100 bull case for WULF",
+    "Confirm IRON's actual contracted service provider rates vs host's view they're \"through the roof\"",
+    "Verify Core Scientific's exact deal terms with Microsoft (host says $6B build cost at 7-8% interest)"
+   ],
    "signal": [
     {
      "tk": "CORZ",
