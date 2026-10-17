@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-16",
+ "asOf": "2026-10-17",
  "windowDays": 120,
  "sources": [
   {
@@ -61,6 +61,47 @@
      "by": "host",
      "tag": "notable",
      "t": 543
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "Iy3fHCiQMZE",
+   "src": "mcnallie-money",
+   "d": "2026-10-16",
+   "title": "PA Power Play | Channel Members Only | Week of October 16",
+   "headline": "PA Power Play — Channel Members Only",
+   "url": "https://www.youtube.com/watch?v=Iy3fHCiQMZE",
+   "kind": "news",
+   "minutes": 24,
+   "tickers": [
+    "IREN",
+    "WULF",
+    "CIFR",
+    "CORZ",
+    "BTDR",
+    "RIOT",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "WULF",
+    "CIFR",
+    "CORZ",
+    "BTDR"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "CORZ",
+     "claim": "Core Scientific signed a 20 year minimum contract with Anthropic at the Rockdale site.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
     }
    ],
    "sponsored": []
@@ -6114,65 +6155,6 @@
      "tk": "RIOT",
      "claim": "The speaker predicts Riot (RIOT) could reach $50 to $60 if the Corsicana site secures a contract.",
      "by": "host",
-     "tag": "call",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "vbwQ4m27niA",
-   "src": "mcnallie-money",
-   "d": "2026-06-18",
-   "title": "Huge HIVE Deal News Out Now | Top AI Stocks to Watch Now | IREN Price Target & BTDR Stock Analysis",
-   "headline": "Huge HIVE Deal News Out Now",
-   "url": "https://www.youtube.com/watch?v=vbwQ4m27niA",
-   "kind": "news",
-   "minutes": 38,
-   "tickers": [
-    "HIVE",
-    "IREN",
-    "BTDR",
-    "HUT",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "CORZ",
-    "CLSK",
-    "NBIS",
-    "RIOT",
-    "MARA"
-   ],
-   "main": [
-    "HIVE",
-    "IREN",
-    "BTDR"
-   ],
-   "summary": "1. The video discusses recent developments and stock performance in the AI infrastructure sector, focusing on Hive's new deals and comparing them to other companies' contracts.\n\n2. Key facts by company:\n   - HIVE: Acquired a 32 MW data center in Bowdoin for an undisclosed sum; signed a $220 million three-year contract with Bell Canada and Cohere to deploy ~2,304 NVIDIA Grace Blackwell GPUs at Bell's facility in Merritt, British Columbia.\n   - IREN: Jeffries initiated coverage with a buy rating and $79 price target.\n\n3. Host's view:\n   - The host is bullish on Hive following its recent deals, noting the improved per-unit economics compared to IronNet's (IREN) earlier contract with Microsoft. They expect Hive's stock to perform well based on Cantor Fitzgerald's $8 price target.\n   - The host remains confident in IronNet despite slower deal announcements, emphasizing their large pipeline and strategic positioning.\n\n4. Worth checking:\n   - Verify the specific terms of Hive's GPU deployment costs and depreciation for its Bell Canada contract.\n   - Confirm the exact number of GPUs (2,304) and financial details ($220 million over three years) for Hive's partnership with Bell Canada and Cohere.",
-   "brief": "Recent developments and stock performance in the AI infrastructure sector, focusing on Hive's new deals and comparing them to other companies' contracts.",
-   "facts": [
-    "HIVE: Acquired a 32 MW data center in Bowdoin for an undisclosed sum; signed a $220 million three-year contract with Bell Canada and Cohere to deploy ~2,304 NVIDIA Grace Blackwell GPUs at Bell's facility in Merritt, British Columbia.",
-    "IREN: Jeffries initiated coverage with a buy rating and $79 price target."
-   ],
-   "view": "The host is bullish on Hive following its recent deals, noting the improved per-unit economics compared to IronNet's (IREN) earlier contract with Microsoft. They expect Hive's stock to perform well based on Cantor Fitzgerald's $8 price target. The host remains confident in IronNet despite slower deal announcements, emphasizing their large pipeline and strategic positioning.",
-   "verify": [
-    "Verify the specific terms of Hive's GPU deployment costs and depreciation for its Bell Canada contract.",
-    "Confirm the exact number of GPUs (2,304) and financial details ($220 million over three years) for Hive's partnership with Bell Canada and Cohere."
-   ],
-   "signal": [
-    {
-     "tk": "HIVE",
-     "claim": "Hive Digital Technologies announced a three-year contract valued at approximately $220 million with Bell Canada and Cohere.",
-     "by": "executive",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "BTDR",
-     "claim": "Bitdeer is targeting two phases for its Norway site energization by Q4 2026.",
-     "by": "executive",
      "tag": "call",
      "t": null
     }
