@@ -40,11 +40,25 @@
     "GLXY",
     "KEEL"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses the recent sell-off in AI infrastructure stocks (e.g., IREN, KEEL, CRWV, RIOT, HUT, WULF) and analyzes price targets from Wall Street analysts amidst rising interest rates and NIMBYism concerns.\n\n2. Key facts by company:\n   - **IREN**: Kent Draper stated they have $7B+ in cash/equivalents; Morningstar cut fair value estimate to $37 citing financing risks.\n   - **KEEL**: Cantor Fitzgerald cut price target from $5 to $4 (still overweight); 7 buy/1 sell ratings, avg PT $6.42; stock was >$7 intraday on June 22nd but now ~$2.50.\n   - **CRWV**: JP Morgan reiterated OW rating and $125 PT; only 105MW of Core Scientific deal remains to be handed over (total 590MW).\n   - **HUT**: Eric Jackson (Ironhold) said stock could 10-20x in 5 years, potentially reaching $2,000 by 2030; Maxin Group raised estimates citing Louisiana site progress.\n   - **WULF**: Morgan Stanley bull case PT is $104.50; another bank cut PT to $30 from $37 (still OW).\n   - **GLXY**: BTIG maintained buy rating and $45 PT (>150% upside).\n\n3. Host's view: The hosts remain bullish long-term on the AI infrastructure sector, viewing the current sell-off as a buying opportunity despite short-term volatility. They acknowledge Wall Street analysts are mixed but emphasize that many price targets still imply significant upside from current depressed prices.\n\n4. Worth checking:\n   - Verify IREN's actual cash/equivalents position and financing details against SEC filings.\n   - Confirm KEEL's permitting status for Moses Lake, Panther Creek and Sharon sites.\n   - Check CRWV's exact remaining MW to be handed over from Core Scientific deal.\n   - Validate HUT's Louisiana site development progress and funding specifics.\n   - Verify WULF's debt reduction targets and site energization timelines.\n   - Confirm GLXY's Helios site client (CoreWeave) and phase completion details.",
+   "brief": "The recent sell-off in AI infrastructure stocks (e.g., IREN, KEEL, CRWV, RIOT, HUT, WULF) and analyzes price targets from Wall Street analysts amidst rising interest rates and NIMBYism concerns.",
+   "facts": [
+    "**IREN**: Kent Draper stated they have $7B+ in cash/equivalents; Morningstar cut fair value estimate to $37 citing financing risks.",
+    "**KEEL**: Cantor Fitzgerald cut price target from $5 to $4 (still overweight); 7 buy/1 sell ratings, avg PT $6.42; stock was >$7 intraday on June 22nd but now ~$2.50.",
+    "**CRWV**: JP Morgan reiterated OW rating and $125 PT; only 105MW of Core Scientific deal remains to be handed over (total 590MW).",
+    "**HUT**: Eric Jackson (Ironhold) said stock could 10-20x in 5 years, potentially reaching $2,000 by 2030; Maxin Group raised estimates citing Louisiana site progress.",
+    "**WULF**: Morgan Stanley bull case PT is $104.50; another bank cut PT to $30 from $37 (still OW).",
+    "**GLXY**: BTIG maintained buy rating and $45 PT (>150% upside)."
+   ],
+   "view": "The hosts remain bullish long-term on the AI infrastructure sector, viewing the current sell-off as a buying opportunity despite short-term volatility. They acknowledge Wall Street analysts are mixed but emphasize that many price targets still imply significant upside from current depressed prices.",
+   "verify": [
+    "Verify IREN's actual cash/equivalents position and financing details against SEC filings.",
+    "Confirm KEEL's permitting status for Moses Lake, Panther Creek and Sharon sites.",
+    "Check CRWV's exact remaining MW to be handed over from Core Scientific deal.",
+    "Validate HUT's Louisiana site development progress and funding specifics.",
+    "Verify WULF's debt reduction targets and site energization timelines.",
+    "Confirm GLXY's Helios site client (CoreWeave) and phase completion details."
+   ],
    "signal": [
     {
      "tk": "HUT",
