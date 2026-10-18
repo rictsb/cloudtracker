@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-17",
+ "asOf": "2026-10-18",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,53 @@
   }
  ],
  "items": [
+  {
+   "id": "bvifPDJiUDM",
+   "src": "mcnallie-money",
+   "d": "2026-10-17",
+   "title": "More AI Woes | AI Stock Selloff | Latest IREN, KEEL, CRWV, RIOT, HUT, WULF & GLXY Stock News Now",
+   "headline": "More AI Woes — AI Stock Selloff",
+   "url": "https://www.youtube.com/watch?v=bvifPDJiUDM",
+   "kind": "news",
+   "minutes": 55,
+   "tickers": [
+    "IREN",
+    "HUT",
+    "CRWV",
+    "WULF",
+    "GLXY",
+    "KEEL",
+    "BTDR",
+    "HIVE",
+    "MARA",
+    "CORZ",
+    "CLSK",
+    "BTBT"
+   ],
+   "main": [
+    "IREN",
+    "HUT",
+    "CRWV",
+    "WULF",
+    "GLXY",
+    "KEEL"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "HUT",
+     "claim": "Eric Jackson forecasts that HUT could be a 2000 USD stock in five to seven years.",
+     "by": "guest",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "hM1mTdQFjv8",
    "src": "mcnallie-money",
@@ -6114,57 +6161,6 @@
      "by": "thirdparty",
      "tag": "notable",
      "t": 1781
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "EhPCoelXMcI",
-   "src": "mcnallie-money",
-   "d": "2026-06-19",
-   "title": "PA Power Play | Channel Members Only | Week of Jun 19",
-   "headline": "PA Power Play — Channel Members Only",
-   "url": "https://www.youtube.com/watch?v=EhPCoelXMcI",
-   "kind": "members",
-   "minutes": 14,
-   "tickers": [
-    "IREN",
-    "RIOT",
-    "CLSK",
-    "CORZ",
-    "WULF",
-    "HIVE",
-    "MARA",
-    "BTBT"
-   ],
-   "main": [
-    "IREN",
-    "RIOT",
-    "CLSK",
-    "CORZ",
-    "WULF",
-    "HIVE"
-   ],
-   "summary": "1. The video details two retail investors' recent trades in AI infrastructure and bitcoin mining stocks, their covered call strategies, profit-taking from rallies, and portfolio allocations.\n\n2. Key facts by company:\n- Riot Platforms (Riot): Sold 500 shares at $28.50; Anthony still holds ~60-65% of his Riot position.\n- Cipher Mining (Cipher): Sold 500 shares at $28; Anthony sold another 5,000 shares at $29.50.\n- IronNet (Iron/IronNet/Iris): Top holding for both investors (~11% each).\n- Core Scientific (Core Scientific): Sold 500 shares at $29.50.\n- Keel (Keel): Sold 2,575 shares at $6.32; Anthony still holds ~23k shares across accounts.\n\n3. Host's view: Both hosts are taking profits after significant rallies, with covered calls and limit orders. They express confidence in their core holdings (Riot, Cipher, IronNet) but caution that the sector could turn quickly. Anthony mentions considering reallocating to cash for life goals, while Bryce uses options strategies to lock in gains.\n\n4. Worth checking: Verify the hosts' stated profit percentages, share counts sold vs held, and average cost bases against their disclosed trading activity. Confirm if the mentioned 52-week highs align with actual price data at the time of recording.",
-   "brief": "The video details two retail investors' recent trades in AI infrastructure and bitcoin mining stocks, their covered call strategies, profit-taking from rallies, and portfolio allocations.",
-   "facts": [
-    "Riot Platforms (Riot): Sold 500 shares at $28.50; Anthony still holds ~60-65% of his Riot position.",
-    "Cipher Mining (Cipher): Sold 500 shares at $28; Anthony sold another 5,000 shares at $29.50.",
-    "IronNet (Iron/IronNet/Iris): Top holding for both investors (~11% each).",
-    "Core Scientific (Core Scientific): Sold 500 shares at $29.50.",
-    "Keel (Keel): Sold 2,575 shares at $6.32; Anthony still holds ~23k shares across accounts."
-   ],
-   "view": "Both hosts are taking profits after significant rallies, with covered calls and limit orders. They express confidence in their core holdings (Riot, Cipher, IronNet) but caution that the sector could turn quickly. Anthony mentions considering reallocating to cash for life goals, while Bryce uses options strategies to lock in gains.",
-   "verify": [
-    "Verify the hosts' stated profit percentages, share counts sold vs held, and average cost bases against their disclosed trading activity. Confirm if the mentioned 52-week highs align with actual price data at the time of recording."
-   ],
-   "signal": [
-    {
-     "tk": "RIOT",
-     "claim": "The speaker predicts Riot (RIOT) could reach $50 to $60 if the Corsicana site secures a contract.",
-     "by": "host",
-     "tag": "call",
-     "t": null
     }
    ],
    "sponsored": []
