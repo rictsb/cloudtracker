@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-19",
+ "asOf": "2026-10-20",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,64 @@
   }
  ],
  "items": [
+  {
+   "id": "iRnMBPYxPyA",
+   "src": "mcnallie-money",
+   "d": "2026-10-19",
+   "title": "AI Relief Rally? | Latest IREN, GLXY, APLD, WULF, BTBT, BTDR, HUT & HOST Stock News | Top AI Stocks",
+   "headline": "AI Relief Rally? — Latest IREN, GLXY, APLD, WULF, BTBT, BTDR, HUT & HOST Stock News",
+   "url": "https://www.youtube.com/watch?v=iRnMBPYxPyA",
+   "kind": "news",
+   "minutes": 48,
+   "tickers": [
+    "IREN",
+    "CORZ",
+    "APLD",
+    "WULF",
+    "BTDR",
+    "HUT",
+    "GLXY",
+    "MARA",
+    "BTBT",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "CLSK",
+    "SLNH"
+   ],
+   "main": [
+    "IREN",
+    "CORZ",
+    "APLD",
+    "WULF",
+    "BTDR",
+    "HUT",
+    "GLXY"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "GLXY",
+     "claim": "StoneX reiterated a Buy rating on Galaxy with a price target of $57.",
+     "by": "thirdparty",
+     "tag": "big",
+     "t": 1366
+    },
+    {
+     "tk": "HUT",
+     "claim": "HUT8's Silver Basin project involves a 204 MW solar farm in Pecos County.",
+     "by": "thirdparty",
+     "tag": "scoop",
+     "t": 1769
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "bvifPDJiUDM",
    "src": "mcnallie-money",

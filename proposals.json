@@ -484,6 +484,68 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "f69f5e37317d9adf",
+   "tk": "HUT",
+   "kind": "log",
+   "site": null,
+   "title": "log: HUT8's Silver Basin project involves a 204 MW solar farm in Pecos County.",
+   "current": null,
+   "proposed": {
+    "d": "2026-10-19",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — AI Relief Rally? | Latest IREN, GLXY, APLD, WULF, BTBT, BTDR, HUT & HOST Stock N, 2026-10-19",
+    "x": "HUT8's Silver Basin project involves a 204 MW solar farm in Pecos County. — \"uncovering what appears to be 180 megawatt behind-the-meter solar project... netting its load against a 204-megawatt Tegate to Solar Farm\" (thirdparty)"
+   },
+   "evidence": [
+    {
+     "d": "2026-10-19",
+     "quote": "uncovering what appears to be 180 megawatt behind-the-meter solar project... netting its load against a 204-megawatt Tegate to Solar Farm",
+     "claim": "HUT8's Silver Basin project involves a 204 MW solar farm in Pecos County.",
+     "by": "thirdparty",
+     "url": "https://www.youtube.com/watch?v=iRnMBPYxPyA&t=1769s",
+     "title": "AI Relief Rally? | Latest IREN, GLXY, APLD, WULF, BTBT, BTDR, HUT & HOST Stock News | Top AI Stocks"
+    }
+   ],
+   "id": "p-2026-10-20-HUT-001",
+   "created": "2026-10-20",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "b8c89d23dce10001",
+   "tk": "GLXY",
+   "kind": "log",
+   "site": null,
+   "title": "log: StoneX reiterated a Buy rating on Galaxy with a price target of $57.",
+   "current": null,
+   "proposed": {
+    "d": "2026-10-19",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — AI Relief Rally? | Latest IREN, GLXY, APLD, WULF, BTBT, BTDR, HUT & HOST Stock N, 2026-10-19",
+    "x": "StoneX reiterated a Buy rating on Galaxy with a price target of $57. — \"Stone X have reiterated a buy rating on the company there with a maintained price target of $57.\" (thirdparty)"
+   },
+   "evidence": [
+    {
+     "d": "2026-10-19",
+     "quote": "Stone X have reiterated a buy rating on the company there with a maintained price target of $57.",
+     "claim": "StoneX reiterated a Buy rating on Galaxy with a price target of $57.",
+     "by": "thirdparty",
+     "url": "https://www.youtube.com/watch?v=iRnMBPYxPyA&t=1366s",
+     "title": "AI Relief Rally? | Latest IREN, GLXY, APLD, WULF, BTBT, BTDR, HUT & HOST Stock News | Top AI Stocks"
+    }
+   ],
+   "id": "p-2026-10-20-GLXY-002",
+   "created": "2026-10-20",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
@@ -491,7 +553,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-10-19",
+ "asOf": "2026-10-20",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
