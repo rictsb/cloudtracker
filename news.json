@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-20",
+ "asOf": "2026-10-21",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,76 @@
   }
  ],
  "items": [
+  {
+   "id": "Qi2svyN2cOM",
+   "src": "mcnallie-money",
+   "d": "2026-10-20",
+   "title": "AI Stocks to Watch Right Now | Top BTDR, CORZ, HIVE, HOST, HUT, IREN, SLNH, WYFI Stock News",
+   "headline": "AI Stocks to Watch Right Now",
+   "url": "https://www.youtube.com/watch?v=Qi2svyN2cOM",
+   "kind": "news",
+   "minutes": 53,
+   "tickers": [
+    "BTDR",
+    "CORZ",
+    "HIVE",
+    "HUT",
+    "IREN",
+    "SLNH",
+    "GLXY",
+    "WULF",
+    "CIFR",
+    "APLD",
+    "BTBT",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "BTDR",
+    "CORZ",
+    "HIVE",
+    "HUT",
+    "IREN",
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "BTDR",
+     "claim": "Bitdeer's has increased its total hash rate to 111 EH/s after adding 9.5 EH/s in a single month.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 408
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "pXDnWNaHT10",
+   "src": "mcnallie-money",
+   "d": "2026-10-20",
+   "title": "Latest Minerals Royalty Stock | Empress Royalty Corp | Top Mining & Metals Stock News | EMPR",
+   "headline": "Latest Minerals Royalty Stock",
+   "url": "https://www.youtube.com/watch?v=pXDnWNaHT10",
+   "kind": "other",
+   "minutes": 15,
+   "tickers": [],
+   "main": [],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [],
+   "sponsored": []
+  },
   {
    "id": "iRnMBPYxPyA",
    "src": "mcnallie-money",
@@ -6164,89 +6234,6 @@
     "Check WULF's expansion timelines (Justified CB3/CB4, Project Muskie phases)."
    ],
    "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "t7o9fUo2rDo",
-   "src": "mcnallie-money",
-   "d": "2026-06-22",
-   "title": "Latest KEEL Stock News | HUT Price Target | Top HIVE & FUFU News | Galaxy Digital Analysis | GLXY",
-   "headline": "Latest KEEL Stock News — HUT Price Target",
-   "url": "https://www.youtube.com/watch?v=t7o9fUo2rDo",
-   "kind": "news",
-   "minutes": 40,
-   "tickers": [
-    "KEEL",
-    "HIVE",
-    "GLXY",
-    "HUT",
-    "CLSK",
-    "IREN",
-    "BTBT",
-    "RIOT",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "CORZ",
-    "BTDR"
-   ],
-   "main": [
-    "KEEL",
-    "HIVE",
-    "GLXY",
-    "HUT",
-    "CLSK",
-    "IREN"
-   ],
-   "summary": "1. The video discusses recent developments in AI infrastructure and Bitcoin mining companies, including stock price movements, capacity expansions, financing activities, and strategic shifts.\n\n2. Key facts by company:\n- Kiel (KEEL): \n  - Share price up over 800% in the past year.\n  - Valuation now exceeds $4 billion.\n  - Expects to sign three HPC deals by end of 2026; two could close by summer 2026.\n  - Washington site has 18 MW gross power (13-14 MW compute).\n  - Sharon and Panther Creek sites have significant power capacity.\n  - Joined Russell 3000 index on June 26, 2026.\n  - CFO and CEO participated in a fireside chat with Alliance Global Partners.\n\n- Bitfufu: \n  - Initiated $5 million Class A share repurchase program over 24 months starting June 24, 2026.\n  - Funded using existing cash; purchases via open market, Rule 10B-18 framework and private transactions.\n  - Board cites solid financial position despite short-term Bitcoin price fluctuations.\n\n- Hive (HIVE): \n  - Annualized HPC revenue run rate increased from $19 million at end of 2025 to $105 million by Q2 2026.\n  - Targeting $200 million annualized revenue by end of 2026.\n  - New Brunswick co-location deal adds ~$85 million/year, implying +$4.38/share value.\n  - Using NVIDIA GB200 GPUs; Columbia University testing Paraguay site for AI training.\n\n- Hut8 (HUT): \n  - Lucid Capital initiated coverage with $226 price target.\n  - Potential 400 MW project could add >$58/share value using 15x EBITDA multiple and 90% margins.\n  - Total pipeline heading towards 9 GW power; two big deals already signed.\n\n- Galaxy (GLXY): \n  - Helios site has potential for 3.4 GW power capacity, expandable to 1.63 GW compute.\n  - CoreWeave deal delivers 526 MW compute in three phases: 133 MW (phase 1), 260 MW (phase 2), 133 MW (phase 3).\n  - PUE ~1.5; full build-out could yield >2.2 GW compute.\n\n- IronNet (IREN): \n  - Share price down ~4-5% amid market impatience despite $76/share peak in 2025.\n  - Focusing on direct delivery of 6 GW power capacity via CSP route.\n\n3. Host's view:\n- Confident on KEEL's ability to sign deals, noting share price reflects high expectations.\n- Bullish on HIVE's execution, with co-location deal alone implying significant value.\n- Sees Hut8 as undervalued relative to Lucid's $226 target given pipeline potential.\n- Highlights Galaxy's Helios site as a strategic asset with massive expansion capacity.\n\n4. Worth checking:\n- Verify KEEL's specific power capacity and compute conversion ratios for Washington, Sharon and Panther Creek sites.\n- Confirm HIVE's exact revenue run rate targets and timeline for reaching $200 million.\n- Validate Hut8's total pipeline capacity (9 GW) and assumptions used in Lucid's valuation model.\n- Check Galaxy's actual PUE metrics and expansion approvals for Helios site.",
-   "brief": "Recent developments in AI infrastructure and Bitcoin mining companies, including stock price movements, capacity expansions, financing activities, and strategic shifts.",
-   "facts": [
-    "Kiel (KEEL):",
-    "Share price up over 800% in the past year.",
-    "Valuation now exceeds $4 billion.",
-    "Expects to sign three HPC deals by end of 2026; two could close by summer 2026.",
-    "Washington site has 18 MW gross power (13-14 MW compute).",
-    "Sharon and Panther Creek sites have significant power capacity.",
-    "Joined Russell 3000 index on June 26, 2026.",
-    "CFO and CEO participated in a fireside chat with Alliance Global Partners.",
-    "Bitfufu:",
-    "Initiated $5 million Class A share repurchase program over 24 months starting June 24, 2026.",
-    "Funded using existing cash; purchases via open market, Rule 10B-18 framework and private transactions.",
-    "Board cites solid financial position despite short-term Bitcoin price fluctuations.",
-    "Hive (HIVE):",
-    "Annualized HPC revenue run rate increased from $19 million at end of 2025 to $105 million by Q2 2026.",
-    "Targeting $200 million annualized revenue by end of 2026.",
-    "New Brunswick co-location deal adds ~$85 million/year, implying +$4.38/share value.",
-    "Using NVIDIA GB200 GPUs; Columbia University testing Paraguay site for AI training.",
-    "Hut8 (HUT):",
-    "Lucid Capital initiated coverage with $226 price target.",
-    "Potential 400 MW project could add >$58/share value using 15x EBITDA multiple and 90% margins.",
-    "Total pipeline heading towards 9 GW power; two big deals already signed.",
-    "Galaxy (GLXY):",
-    "Helios site has potential for 3.4 GW power capacity, expandable to 1.63 GW compute.",
-    "CoreWeave deal delivers 526 MW compute in three phases: 133 MW (phase 1), 260 MW (phase 2), 133 MW (phase 3).",
-    "PUE ~1.5; full build-out could yield >2.2 GW compute.",
-    "IronNet (IREN):",
-    "Share price down ~4-5% amid market impatience despite $76/share peak in 2025.",
-    "Focusing on direct delivery of 6 GW power capacity via CSP route."
-   ],
-   "view": "Confident on KEEL's ability to sign deals, noting share price reflects high expectations. Bullish on HIVE's execution, with co-location deal alone implying significant value. Sees Hut8 as undervalued relative to Lucid's $226 target given pipeline potential. Highlights Galaxy's Helios site as a strategic asset with massive expansion capacity.",
-   "verify": [
-    "Verify KEEL's specific power capacity and compute conversion ratios for Washington, Sharon and Panther Creek sites.",
-    "Confirm HIVE's exact revenue run rate targets and timeline for reaching $200 million.",
-    "Validate Hut8's total pipeline capacity (9 GW) and assumptions used in Lucid's valuation model.",
-    "Check Galaxy's actual PUE metrics and expansion approvals for Helios site."
-   ],
-   "signal": [
-    {
-     "tk": "HUT",
-     "claim": "Lucid Capital has a price target of 226 USD for Hut 8.",
-     "by": "thirdparty",
-     "tag": "notable",
-     "t": 1781
-    }
-   ],
    "sponsored": []
   }
  ]
