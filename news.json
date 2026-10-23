@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-22",
+ "asOf": "2026-10-23",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,55 @@
   }
  ],
  "items": [
+  {
+   "id": "I9OlqJFR1Mk",
+   "src": "mcnallie-money",
+   "d": "2026-10-22",
+   "title": "AI Selloff Continues | Top 5 AI Value Stocks | Latest NBIS, KEEL, DMGI, DRK, HIVE, SLNH & BTDR News",
+   "headline": "AI Selloff Continues — Top 5 AI Value Stocks",
+   "url": "https://www.youtube.com/watch?v=I9OlqJFR1Mk",
+   "kind": "news",
+   "minutes": 53,
+   "tickers": [
+    "BTDR",
+    "HIVE",
+    "SLNH",
+    "IREN",
+    "HUT",
+    "WULF",
+    "APLD",
+    "BTBT",
+    "NBIS",
+    "CORZ"
+   ],
+   "main": [
+    "BTDR",
+    "HIVE",
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "NBIS",
+     "claim": "Nebius secured a $3.5 billion secured facility with Citibank to fund data center development and GPU procurement.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "BTDR",
+     "claim": "Bitdeer signed a 16-year co-location lease at the Tidal location using NVIDIA GPUs for Anthropic.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "8Yyq2femixc",
    "src": "mcnallie-money",
@@ -6209,83 +6258,6 @@
      "t": null
     }
    ],
-   "sponsored": []
-  },
-  {
-   "id": "bgS3K-PGKoA",
-   "src": "mcnallie-money",
-   "d": "2026-06-24",
-   "title": "New KEEL, CLSK & MARA Price Targets! | Latest IREN Oklahoma News | Top AI Stocks to Watch in 2026",
-   "headline": "New KEEL, CLSK & MARA Price Targets!",
-   "url": "https://www.youtube.com/watch?v=bgS3K-PGKoA",
-   "kind": "news",
-   "minutes": 40,
-   "tickers": [
-    "IREN",
-    "CLSK",
-    "MARA",
-    "WULF",
-    "BTDR",
-    "CORZ",
-    "SLNH",
-    "NBIS",
-    "RIOT",
-    "BTBT",
-    "HIVE",
-    "APLD",
-    "KEEL"
-   ],
-   "main": [
-    "IREN",
-    "CLSK",
-    "MARA",
-    "WULF",
-    "BTDR",
-    "CORZ"
-   ],
-   "summary": "1. The video discusses recent developments in the AI infrastructure and Bitcoin mining sectors, including government initiatives in nuclear energy, CoreWeave's expansion into Europe, White Fiber's facility progress, and updated price targets from Citizens for MARA, CLSK and KEEL.\n\n2. Key facts by company:\n- **IREN**: Oklahoma data center tax abatement delayed; 85% tax abatement proposed.\n- **CRWV**: Expanding European footprint with two renewable-powered Stockholm campuses; total of eight sites in Europe; $3.5B invested in UK; one GW active, three GW contracted.\n- **BTDR**: Tidal 1 & 2 Norway project imminent partner announcement expected.\n- **SLNH**: Acquired first wind farm at 150 MW power capacity in Silverton.\n- **MARA**: Citizens price target $24 (20x 2028 EV/EBITDA); JV with Starwood reduces capital intensity; 2.2 GW operational, 2.5 GW pipeline.\n- **CLSK**: Citizens price target $27 (25x 2027 EV/EBITDA); 1.2 GW power suitable for AI/HPC workloads.\n- **KEEL**: Citizens price target $10 (28x 2028 EV/EBITDA); three deals expected at Moses Lake, Sharon and Panther Creek sites; PUE ratio ~1.25.\n\n3. Host's view: The host is bullish on the sector overall but emphasizes doing due diligence beyond just stock prices. They highlight that while Citizens' price targets use varying multiples (20x-28x), even conservative 15x multiples show significant upside potential. The host sounds confident in their analysis, referencing past successes and caution from previous market cycles.\n\n4. Worth checking: Verify the specific power capacities suitable for AI/HPC workloads at MARA, CLSK and KEEL; confirm the exact EV/EBITDA multiples used by Citizens for each company's price target; validate the status of IREN's Oklahoma tax abatement negotiations and White Fiber's facility progress against official filings.",
-   "brief": "Recent developments in the AI infrastructure and Bitcoin mining sectors, including government initiatives in nuclear energy, CoreWeave's expansion into Europe, White Fiber's facility progress, and updated price targets from Citizens for MARA, CLSK and KEEL.",
-   "facts": [
-    "**IREN**: Oklahoma data center tax abatement delayed; 85% tax abatement proposed.",
-    "**CRWV**: Expanding European footprint with two renewable-powered Stockholm campuses; total of eight sites in Europe; $3.5B invested in UK; one GW active, three GW contracted.",
-    "**BTDR**: Tidal 1 & 2 Norway project imminent partner announcement expected.",
-    "**SLNH**: Acquired first wind farm at 150 MW power capacity in Silverton.",
-    "**MARA**: Citizens price target $24 (20x 2028 EV/EBITDA); JV with Starwood reduces capital intensity; 2.2 GW operational, 2.5 GW pipeline.",
-    "**CLSK**: Citizens price target $27 (25x 2027 EV/EBITDA); 1.2 GW power suitable for AI/HPC workloads.",
-    "**KEEL**: Citizens price target $10 (28x 2028 EV/EBITDA); three deals expected at Moses Lake, Sharon and Panther Creek sites; PUE ratio ~1.25."
-   ],
-   "view": "The host is bullish on the sector overall but emphasizes doing due diligence beyond just stock prices. They highlight that while Citizens' price targets use varying multiples (20x-28x), even conservative 15x multiples show significant upside potential. The host sounds confident in their analysis, referencing past successes and caution from previous market cycles.",
-   "verify": [
-    "Verify the specific power capacities suitable for AI/HPC workloads at MARA, CLSK and KEEL; confirm the exact EV/EBITDA multiples used by Citizens for each company's price target; validate the status of IREN's Oklahoma tax abatement negotiations and White Fiber's facility progress against official filings."
-   ],
-   "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "Bhs8Pm_JUe0",
-   "src": "mcnallie-money",
-   "d": "2026-06-24",
-   "title": "Latest Copper Stock To Watch | Gunnison Copper | Top Mining Stock News 2026 | GCU Stock",
-   "headline": "Latest Copper Stock To Watch",
-   "url": "https://www.youtube.com/watch?v=Bhs8Pm_JUe0",
-   "kind": "news",
-   "minutes": 11,
-   "tickers": [],
-   "main": [],
-   "summary": "1. The video provides an update on Gunnison Copper Corp (GCU), covering its recent production milestones, macroeconomic drivers in the copper market, and upcoming catalysts including a major drilling program.\n\n2. Key facts:\n   - GUNNISON COPPER CORP (GCU): Produced 225,000 pounds of copper cathode from Johnson Camp Mine; generated over $1M gross proceeds.\n   - GUNNISON COPPER CORP (GCU): Copper sold to Amazon Web Services for US data centers.\n   - GUNNISON COPPER CORP (GCU): Controls Cochise mining district in Arizona with 12 known deposits across an 8km corridor; Gunnison project holds 864M tons copper resources.\n   - GUNNISON COPPER CORP (GCU): PEA shows $1.96B NPV at 8% discount rate, 22% IRR, 3.9-year payback based on $4.60/lb copper price; potential to supply up to 11% of US refined copper production.\n   - GUNNISON COPPER CORP (GCU): Launched district-wide drilling program with up to 120 drill holes totaling ~138,000 feet/42,000 meters in June.\n\n3. Host's view: The host is bullish on Gunnison Copper, highlighting its valuation gap compared to peers trading at higher price-to-NAV multiples and the potential for a re-rating as copper prices remain elevated around $6/lb. They sound confident about the company's growth prospects given its strategic positioning in US supply chains.\n\n4. Worth checking: Investors should verify the PEA assumptions including the 864M tons resource estimate, projected NPV/IRR figures, and the specifics of the government funding/tax credits mentioned against official filings or corporate presentations.",
-   "brief": "The video provides an update on Gunnison Copper Corp (GCU), covering its recent production milestones, macroeconomic drivers in the copper market, and upcoming catalysts including a major drilling program.",
-   "facts": [
-    "GUNNISON COPPER CORP (GCU): Produced 225,000 pounds of copper cathode from Johnson Camp Mine; generated over $1M gross proceeds.",
-    "GUNNISON COPPER CORP (GCU): Copper sold to Amazon Web Services for US data centers.",
-    "GUNNISON COPPER CORP (GCU): Controls Cochise mining district in Arizona with 12 known deposits across an 8km corridor; Gunnison project holds 864M tons copper resources.",
-    "GUNNISON COPPER CORP (GCU): PEA shows $1.96B NPV at 8% discount rate, 22% IRR, 3.9-year payback based on $4.60/lb copper price; potential to supply up to 11% of US refined copper production.",
-    "GUNNISON COPPER CORP (GCU): Launched district-wide drilling program with up to 120 drill holes totaling ~138,000 feet/42,000 meters in June."
-   ],
-   "view": "The host is bullish on Gunnison Copper, highlighting its valuation gap compared to peers trading at higher price-to-NAV multiples and the potential for a re-rating as copper prices remain elevated around $6/lb. They sound confident about the company's growth prospects given its strategic positioning in US supply chains.",
-   "verify": [
-    "Investors should verify the PEA assumptions including the 864M tons resource estimate, projected NPV/IRR figures, and the specifics of the government funding/tax credits mentioned against official filings or corporate presentations."
-   ],
-   "signal": [],
    "sponsored": []
   }
  ]
