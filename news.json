@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-23",
+ "asOf": "2026-10-24",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,65 @@
   }
  ],
  "items": [
+  {
+   "id": "B95XNLf62lk",
+   "src": "mcnallie-money",
+   "d": "2026-10-23",
+   "title": "Soluna & Applied JV | John Belizaire CEO Q&A | Strategy & Outlook | Top AI Stocks to Watch | SLNH",
+   "headline": "Soluna & Applied JV — John Belizaire CEO Q&A",
+   "url": "https://www.youtube.com/watch?v=B95XNLf62lk",
+   "kind": "interview",
+   "minutes": 53,
+   "tickers": [
+    "SLNH",
+    "APLD",
+    "CORZ",
+    "BTDR",
+    "RIOT",
+    "MARA",
+    "CIFR",
+    "HIVE"
+   ],
+   "main": [
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "SLNH",
+     "claim": "Soluna Holdings has reached 206 MW of energized data center capacity across Texas and Kentucky.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "SLNH",
+     "claim": "Soluna Holdings was identified in an ERCOT audit as having two real projects totaling 266 MW.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "SLNH",
+     "claim": "Soluna Holdings' joint venture with Applied Digital aims to reduce capital needs for the first 50 MW of Dorothy 3 by half.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "SLNH",
+     "claim": "Soluna Holdings expects to close the Dorothy 3 joint venture and the CronoScale lease by the end of 2026.",
+     "by": "executive",
+     "tag": "call",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "I9OlqJFR1Mk",
    "src": "mcnallie-money",
@@ -6208,66 +6267,6 @@
      "by": "guest",
      "tag": "notable",
      "t": 1766
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "c8-77YRdtgA",
-   "src": "mcnallie-money",
-   "d": "2026-06-25",
-   "title": "Huge HIVE News Out Now | New IREN Partnership News | MU, CRWV & WYFI Price Targets | AI Stocks",
-   "headline": "Huge HIVE News Out Now — New IREN Partnership News",
-   "url": "https://www.youtube.com/watch?v=c8-77YRdtgA",
-   "kind": "news",
-   "minutes": 46,
-   "tickers": [
-    "HIVE",
-    "IREN",
-    "CRWV",
-    "CORZ",
-    "BTDR",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "RIOT",
-    "MARA",
-    "CLSK",
-    "GLXY"
-   ],
-   "main": [
-    "HIVE",
-    "IREN",
-    "CRWV",
-    "CORZ",
-    "BTDR"
-   ],
-   "summary": "1. The video discusses recent developments in AI infrastructure and Bitcoin mining companies, including Hive Digital Technologies' partnership and financing deal, CoreWeave's price targets from analysts, Micron's strong earnings report, Bitdeer's co-mining agreement, and IronNet's controversial sponsorship of the Golden State Warriors.\n\n2. Key facts by company:\n   - HIVE: Announced a non-binding LOI with an investment-grade sovereign Swedish technology company for up to 10 years at its 32 MW Bowdoin site in Sweden; plans to upgrade the facility to support ~10,000 NVIDIA GB300 GPUs using hybrid liquid and air cooling. Also secured $100 million via 0% senior notes due in 2031 (with potential for an additional $50 million) to fund capital investments.\n   - CRWV: Received price targets of $167 from Cancer and $250 from Rosenblatt; has a significant deal with CORZ for 590 MW, expected to be energized by end-2026/early-2027. Currently trading around $100/share.\n   - MU: Reported Q3 revenue of $41.5 billion (vs. estimate of ~$36 billion), adjusted EPS of $25.11 (vs. estimate of $20.83), and gross margins of 84.9% (vs. estimate of 81.7%). Guided to ~$50 billion revenue for Q4, with adjusted EPS of $30–32 and gross margins increasing to 86%. JP Morgan raised its price target from $550 to $1,540.\n   - BTDR: Partnered with Sphere 3D on a 30 MW co-mining agreement using older A2 models; has ~1.7 GW energized and another ~1.4 GW of power ready for near-term energization. Monthly updates detail mining, hosting, machine production, and HPC transition progress.\n   - IREN: Partnered with the Golden State Warriors on a multi-year jersey patch deal starting in the 2026–27 season; also sponsors Australia's Sydney Swans AFL team and is the main sponsor for the RAISE AI conference (July 7–9). Daniel Roberts emphasized the move’s long-term benefits for brand awareness.\n   - CORZ: Partnered with Cadillac to support its AI compute needs and feature on its Formula One cars.\n\n3. Host's view:\n   The hosts are bullish on the sector, noting that Micron's strong earnings validate the AI infrastructure cycle. They highlight CoreWeave's price targets ($167–$250) as evidence of significant upside potential. While acknowledging short-term challenges like Bitcoin's low price and Q2 headwinds for miners, they emphasize that companies with signed deals (e.g., CRWV, CORZ) are well-positioned. The hosts defend IREN's Warriors sponsorship as a strategic long-term play for brand visibility despite criticism.\n\n4. Worth checking:\n   - Verify the terms of HIVE’s non-binding LOI and financing details in SEC filings.\n   - Confirm CoreWeave’s deal with CORZ (590 MW by end-2026/early-2027) and its 1 GW available power for future contracts.\n   - Validate Micron's Q3 results ($41.5 billion revenue, $25.11 adjusted EPS, 84.9% gross margins) and Q4 guidance (~$50 billion revenue, $30–32 adjusted EPS, 86% gross margins).\n   - Check Bitdeer’s energized capacity (~1.7 GW) and near-term power availability (~1.4 GW).",
-   "brief": "Recent developments in AI infrastructure and Bitcoin mining companies, including Hive Digital Technologies' partnership and financing deal, CoreWeave's price targets from analysts, Micron's strong earnings report, Bitdeer's co-mining agreement, and IronNet's controversial sponsorship of the Golden State Warriors.",
-   "facts": [
-    "HIVE: Announced a non-binding LOI with an investment-grade sovereign Swedish technology company for up to 10 years at its 32 MW Bowdoin site in Sweden; plans to upgrade the facility to support ~10,000 NVIDIA GB300 GPUs using hybrid liquid and air cooling. Also secured $100 million via 0% senior notes due in 2031 (with potential for an additional $50 million) to fund capital investments.",
-    "CRWV: Received price targets of $167 from Cancer and $250 from Rosenblatt; has a significant deal with CORZ for 590 MW, expected to be energized by end-2026/early-2027. Currently trading around $100/share.",
-    "MU: Reported Q3 revenue of $41.5 billion (vs. estimate of ~$36 billion), adjusted EPS of $25.11 (vs. estimate of $20.83), and gross margins of 84.9% (vs. estimate of 81.7%). Guided to ~$50 billion revenue for Q4, with adjusted EPS of $30–32 and gross margins increasing to 86%. JP Morgan raised its price target from $550 to $1,540.",
-    "BTDR: Partnered with Sphere 3D on a 30 MW co-mining agreement using older A2 models; has ~1.7 GW energized and another ~1.4 GW of power ready for near-term energization. Monthly updates detail mining, hosting, machine production, and HPC transition progress.",
-    "IREN: Partnered with the Golden State Warriors on a multi-year jersey patch deal starting in the 2026–27 season; also sponsors Australia's Sydney Swans AFL team and is the main sponsor for the RAISE AI conference (July 7–9). Daniel Roberts emphasized the move’s long-term benefits for brand awareness.",
-    "CORZ: Partnered with Cadillac to support its AI compute needs and feature on its Formula One cars."
-   ],
-   "view": "The hosts are bullish on the sector, noting that Micron's strong earnings validate the AI infrastructure cycle. They highlight CoreWeave's price targets ($167–$250) as evidence of significant upside potential. While acknowledging short-term challenges like Bitcoin's low price and Q2 headwinds for miners, they emphasize that companies with signed deals (e.g., CRWV, CORZ) are well-positioned. The hosts defend IREN's Warriors sponsorship as a strategic long-term play for brand visibility despite criticism.",
-   "verify": [
-    "Verify the terms of HIVE’s non-binding LOI and financing details in SEC filings.",
-    "Confirm CoreWeave’s deal with CORZ (590 MW by end-2026/early-2027) and its 1 GW available power for future contracts.",
-    "Validate Micron's Q3 results ($41.5 billion revenue, $25.11 adjusted EPS, 84.9% gross margins) and Q4 guidance (~$50 billion revenue, $30–32 adjusted EPS, 86% gross margins).",
-    "Check Bitdeer’s energized capacity (~1.7 GW) and near-term power availability (~1.4 GW)."
-   ],
-   "signal": [
-    {
-     "tk": "BTDR",
-     "claim": "VanEck reports that Bitdeer is in advanced negotiations for a significant deal.",
-     "by": "thirdparty",
-     "tag": "notable",
-     "t": null
     }
    ],
    "sponsored": []

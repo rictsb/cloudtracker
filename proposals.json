@@ -546,6 +546,37 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "13eee444d16bfbdb",
+   "tk": "SLNH",
+   "kind": "log",
+   "site": null,
+   "title": "log: Soluna Holdings expects to close the Dorothy 3 joint venture and the CronoScale lease by t",
+   "current": null,
+   "proposed": {
+    "d": "2026-10-23",
+    "t": "contract",
+    "s": "[secondary] McNallie Money (YouTube) — Soluna & Applied JV | John Belizaire CEO Q&A | Strategy & Outlook | Top AI Stock, 2026-10-23",
+    "x": "Soluna Holdings expects to close the Dorothy 3 joint venture and the CronoScale lease by the end of 2026. (executive: John Belizaire)"
+   },
+   "evidence": [
+    {
+     "d": "2026-10-23",
+     "quote": null,
+     "claim": "Soluna Holdings expects to close the Dorothy 3 joint venture and the CronoScale lease by the end of 2026.",
+     "by": "executive",
+     "url": "https://www.youtube.com/watch?v=B95XNLf62lk",
+     "title": "Soluna & Applied JV | John Belizaire CEO Q&A | Strategy & Outlook | Top AI Stocks to Watch | SLNH"
+    }
+   ],
+   "id": "p-2026-10-24-SLNH-001",
+   "created": "2026-10-24",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
@@ -553,7 +584,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-10-23",
+ "asOf": "2026-10-24",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
