@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-24",
+ "asOf": "2026-10-25",
  "windowDays": 120,
  "sources": [
   {
@@ -6226,61 +6226,6 @@
     "Check if ONE's IronCap PQC technology actually received US patent allowance as claimed."
    ],
    "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "OlCnlIUyqlQ",
-   "src": "mcnallie-money",
-   "d": "2026-06-26",
-   "title": "Latest HIVE News | BTDR Stock Analysis | Top AI Stocks to Watch Right Now | How Low Will Bitcoin Go?",
-   "headline": "Latest HIVE News — BTDR Stock Analysis",
-   "url": "https://www.youtube.com/watch?v=OlCnlIUyqlQ",
-   "kind": "news",
-   "minutes": 34,
-   "tickers": [
-    "HIVE",
-    "BTDR",
-    "CORZ",
-    "CLSK",
-    "MARA",
-    "IREN",
-    "HUT",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "GLXY"
-   ],
-   "main": [
-    "HIVE",
-    "BTDR",
-    "CORZ",
-    "CLSK",
-    "MARA"
-   ],
-   "summary": "1. The video discusses recent developments in Bitcoin mining and AI infrastructure stocks, including financing deals, capacity expansions, and market sentiment.\n\n2. Key facts by company:\n- Hive Blockchain (HIVE): Announced a $115M upsize to its private offering of 0% exchangeable notes due July 2031; proceeds will fund GPU and data center build-out.\n- Bitdeer (BTDR): Won the AI Cloud Platform of the Year award for the second consecutive year; has nearly 90 EH/s hash rate, making it the largest in North America public markets.\n\n3. Host's view: The host is optimistic about the long-term potential of AI infrastructure stocks but cautious about current Bitcoin mining economics due to low hash prices (~$30/PH/day). They highlight that even efficient miners are struggling to cover all costs and expect a significant shift towards HPC hosting in 2027 as new facilities come online.\n\n4. Worth checking: Verify Hive's implied share price increase calculations for its 25 MW co-location deal ($1.25/share) and Bitdeer's claim of nearly 90 EH/s hash rate against public filings or Hashrate Index data.",
-   "brief": "Recent developments in Bitcoin mining and AI infrastructure stocks, including financing deals, capacity expansions, and market sentiment.",
-   "facts": [
-    "Hive Blockchain (HIVE): Announced a $115M upsize to its private offering of 0% exchangeable notes due July 2031; proceeds will fund GPU and data center build-out.",
-    "Bitdeer (BTDR): Won the AI Cloud Platform of the Year award for the second consecutive year; has nearly 90 EH/s hash rate, making it the largest in North America public markets."
-   ],
-   "view": "The host is optimistic about the long-term potential of AI infrastructure stocks but cautious about current Bitcoin mining economics due to low hash prices (~$30/PH/day). They highlight that even efficient miners are struggling to cover all costs and expect a significant shift towards HPC hosting in 2027 as new facilities come online.",
-   "verify": [
-    "Verify Hive's implied share price increase calculations for its 25 MW co-location deal ($1.25/share) and Bitdeer's claim of nearly 90 EH/s hash rate against public filings or Hashrate Index data."
-   ],
-   "signal": [
-    {
-     "tk": "BTDR",
-     "claim": "Bitdeer has grown its hash rate from 6x to 90x in the last two years.",
-     "by": "guest",
-     "tag": "notable",
-     "t": 1766
-    }
-   ],
    "sponsored": []
   }
  ]
