@@ -4318,16 +4318,16 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-10-26T19:07:39.836Z",
-  "attemptedAt": "2026-10-26T19:07:39.836Z",
-  "lastSuccessAt": "2026-10-26T19:07:39.836Z",
-  "sourceHash": "8087a3ed4f445cacacdf7d087e0d9f7e0e5b7fc01438733e237e8c5933dd1617",
+  "checkedAt": "2026-10-26T19:28:21.566Z",
+  "attemptedAt": "2026-10-26T19:28:21.566Z",
+  "lastSuccessAt": "2026-10-26T19:28:21.566Z",
+  "sourceHash": "d9bcfa11a0b16d9a75484059293727722cbc973834385c2b01b132451319a0b4",
   "quoteHash": "55d3c6bc32f68499e4996a1594c550dd561273cdafe094f961b4999112ab573b",
-  "modelHash": "c73c02a7a563fad45c60783e5eadd2c033fc3655f133418092396ba2eb601109",
+  "modelHash": "eb48cf058390afffea09b84c7edbf61ba020d3e7cffe49ae108b63ca75464e9d",
   "provenance": {
     "data": {
       "file": "data.json",
-      "hash": "8087a3ed4f445cacacdf7d087e0d9f7e0e5b7fc01438733e237e8c5933dd1617",
+      "hash": "d9bcfa11a0b16d9a75484059293727722cbc973834385c2b01b132451319a0b4",
       "asOf": null
     },
     "quotes": {
@@ -4340,7 +4340,7 @@
       "priceCount": 22
     },
     "model": {
-      "hash": "c73c02a7a563fad45c60783e5eadd2c033fc3655f133418092396ba2eb601109",
+      "hash": "eb48cf058390afffea09b84c7edbf61ba020d3e7cffe49ae108b63ca75464e9d",
       "files": [
         "assumption-core.cjs",
         "assumption-proposals.cjs",
@@ -4354,8 +4354,8 @@
       ]
     },
     "run": {
-      "trigger": "workflow_run",
-      "commit": "24d728fb18eb5bc65748184bd45277ce1ba400be"
+      "trigger": "push",
+      "commit": "4492e7323e8784882701d0801ab857338ea8c2d9"
     }
   },
   "cadence": {
