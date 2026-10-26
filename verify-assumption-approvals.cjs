@@ -17,7 +17,7 @@ let proposal;
 group('canonical preview is immutable and covers the shared research universe',()=>{
   const before=JSON.stringify(data);proposal=A.draftProposal(input,opts);
   assert.equal(JSON.stringify(data),before);assert.equal(proposal.status,'pending');assert.equal(proposal.tk,'ALL');
-  assert.deepEqual(proposal.review.impact.map(r=>r.ticker),['CRWV','IREN','NBIS']);
+  assert.deepEqual(proposal.review.impact.map(r=>r.ticker),['CRWV','IREN','NBIS','SHAZ']);   // every research-modelled name (page + ramp) is previewed; SHAZ's main-comparison preference is a separate ruling
   for(const row of proposal.review.impact){const c=data.companies.find(c=>c.tk===row.ticker);assert.equal(row.quoteBasis.financingPriceBase,c.page.finance.EQ_PX);assert.ok(Number.isFinite(row.base));assert.ok(row.assetAlternative);}
   assert.doesNotThrow(()=>A.validateProposal(proposal,opts));
 });
@@ -120,7 +120,7 @@ group('worker only applies accepted numerical bundles and regenerates canonical 
   const accepted=clone(proposal);accepted.status='accepted';accepted.decided='2026-09-16';
   const out=W.processQueue({items:[accepted]},data,{marks,root,today:'2026-09-16'});
   assert.deepEqual(out.errors,[]);assert.equal(out.data.researchPricing.renewal.retention,testRetention);assert.equal(out.queue.items[0].applied,'2026-09-16');
-  assert.deepEqual(Object.keys(out.payloads).sort(),['compare-data.json','crwv-data.json','iren-data.json','nbis-data.json']);
+  assert.deepEqual(Object.keys(out.payloads).sort(),['compare-data.json','crwv-data.json','iren-data.json','nbis-data.json','shaz-data.json']);
   assert.equal(out.queue.items[0].validation.publishedVerified,false);assert.equal(data.researchPricing.renewal.retention,input.changes[0].current);
 });
 group('one failed numerical item cannot mutate data or deadlock unrelated legacy approvals',()=>{

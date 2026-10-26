@@ -33,7 +33,7 @@ function test(name, fn) { fn(); passed++; console.log('PASS ' + name); }
 
 test('adopted pricing baseline has zero data failures', () => {
   assert.ok(data.researchPricing);
-  assert.equal(data.companies.filter(c => c.ramp?.pricing).length, 3);
+  assert.equal(data.companies.filter(c => c.ramp?.pricing).length, 4);
   const result = check(data);
   assert.equal(result.summary.fail, 0, JSON.stringify(result.msgs.filter(m => m.level === 'fail')));
 });

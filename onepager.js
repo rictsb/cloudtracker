@@ -41,7 +41,8 @@ function assemble(c, market, scenario) {
   const gantt = pg.gantt || (() => { const by = {}; R.tranches.forEach(t => { (by[t.campus] = by[t.campus] || []).push([t.n, t.itMW, t.energize, t.rev, t.rampQtrs, (t.contract?.signedShare ?? t.signed ?? 0) > 0 ? 1 : 0]); });
     return Object.entries(by).map(([campus, rows]) => [campus, R.tranches.filter(t => t.campus === campus).reduce((a, t) => a + t.grossMW, 0), rows, null]); })();
   /* capex by energisation quarter: an override in page.capexQ (verified numbers), else rules per generation and build type */
-  const CAPQ = pg.capexQ || (() => { const out = {}, ru = pg.capexRules; R.tranches.forEach(t => { const air = /air|retrofit/i.test(t.n) || (t.air === true); const g = (ru.gpu[air ? t.gen + '-air' : t.gen] || ru.gpu[t.gen]) * (ru.inflate[t.energize.slice(0, 4)] || 1);
+  const dropped = delta.dropUnsigned ? new Set(R.tranches.filter(t => !(t.signed > 0)).map(t => t.id)) : null;   // signed-book-only scenario: no capex for tranches that contribute no capacity
+  const CAPQ = (delta.dropUnsigned && pg.capexQSigned) || pg.capexQ || (() => { const out = {}, ru = pg.capexRules; R.tranches.forEach(t => { if (dropped && dropped.has(t.id)) return; const air = /air|retrofit/i.test(t.n) || (t.air === true); const g = (ru.gpu[air ? t.gen + '-air' : t.gen] || ru.gpu[t.gen]) * (ru.inflate[t.energize.slice(0, 4)] || 1);
     const sh = t.shellPerMW != null ? t.shellPerMW : (air ? ru.shell.air : ru.shell.liquid); const o = out[t.energize] = out[t.energize] || [0, 0]; o[0] += Math.round(g * t.itMW); o[1] += Math.round(sh * t.itMW); }); return out; })();
   const rr = L[L.length - 1][7] * 4 / 1000, year = L[L.length - 1][0].slice(0, 4);
   // Purchases remain on the committed capex calendar when delivery slips. Modeled customer
@@ -85,9 +86,9 @@ function assemble(c, market, scenario) {
     const tax = Math.max(0, eb - inputs.gpu * inputs.swap / inputs.life - shell) * inputs.tax;
     const keep = eb - reserve - shell - tax;
     pg.steady = { inputs, steps: [['Revenue',r2(inputs.rev),'total'],
-      [c.tk === 'CRWV' ? 'Running costs incl. rent' : 'Running costs',-r2(inputs.rev-eb),'d'],
+      [(pg.labels && pg.labels.shell === 'lease') ? 'Running costs incl. rent' : 'Running costs',-r2(inputs.rev-eb),'d'],
       ['Cash profit',r2(eb),'sub'],['GPU refresh + spares',-r2(reserve),'d'],
-      ...(shell ? [['Shell 25-yr',-r2(shell),'d']] : []),['Tax 21%',-r2(tax),'d'],['Owner keeps',r2(keep),'total']],
+      ...(shell ? [['Shell 25-yr',-r2(shell),'d']] : []),['Tax '+Math.round(inputs.tax*100)+'%',-r2(tax),'d'],['Owner keeps',r2(keep),'total']],
       stepsMax: Math.ceil(inputs.rev / 2) * 2,
       footer: '$'+keep.toFixed(2)+'m normalized cash per earning IT MW; '+multiples.blend.toFixed(2)+'× revenue from the shared DCF.'+(premium?' The house default adds '+premium.toFixed(1)+'×, giving '+F.MULT.toFixed(2)+'× revenue.':''),
       regimes: [...(premium?[['House default (+'+premium.toFixed(1)+'×)',F.MULT,'base'],['DCF-derived multiple (no premium)',multiples.blend,'']]:[['Modeled contract / spot mix',multiples.blend,'base']]),['Contracted, '+inputs.term+'-yr renewal regime',multiples.contracted,''],

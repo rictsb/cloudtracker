@@ -181,16 +181,16 @@
     // them down with it — only the model-backed routes degrade.
     if(!M){
       const setNav=name=>document.querySelectorAll('[data-nav]').forEach(a=>a.dataset.nav===name?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
-      main.classList.toggle('iren-page',['/iren','/crwv','/nbis'].includes(path));
-      if(['/iren','/crwv','/nbis'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong></div>';setNav('research');document.title=tk+' — Compute / Value';}
+      main.classList.toggle('iren-page',['/iren','/crwv','/nbis','/shaz'].includes(path));
+      if(['/iren','/crwv','/nbis','/shaz'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong></div>';setNav('research');document.title=tk+' — Compute / Value';}
       else if(path==='/research/assumptions'){main.innerHTML=opsPage('assumptions',p);setNav('operations');document.title='Assumption Review — Compute / Value';}
       else if(path==='/research/compare'){main.innerHTML=window.CompareView?CompareView.render(p):'<div class="empty"><strong>The comparison could not load.</strong></div>';setNav('research');document.title='Megawatt comparison — Compute / Value';}
       else if(['/news','/approvals','/portfolio','/checks'].includes(path)){const key=path.slice(1);main.innerHTML=opsPage(key,p);setNav('operations');document.title=key[0].toUpperCase()+key.slice(1)+' — Compute / Value';}
       return;
     }
     main.classList.toggle('compare-page',path==='/'||path==='/index.html');
-    main.classList.toggle('iren-page',['/iren','/crwv','/nbis'].includes(path));
-    if(['/iren','/crwv','/nbis'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong><button class="button" onclick="location.reload()">Reload preview</button></div>';nav='research';document.title=tk+' — Compute / Value';}
+    main.classList.toggle('iren-page',['/iren','/crwv','/nbis','/shaz'].includes(path));
+    if(['/iren','/crwv','/nbis','/shaz'].includes(path)){const tk=path.slice(1).toUpperCase();main.innerHTML=window.ReportView?ReportView.render(tk,p):'<div class="empty"><strong>The research report could not load.</strong><button class="button" onclick="location.reload()">Reload preview</button></div>';nav='research';document.title=tk+' — Compute / Value';}
     else if(path==='/research/compare'){main.innerHTML=window.CompareView?CompareView.render(p):'<div class="empty"><strong>The comparison could not load.</strong><button class="button" onclick="location.reload()">Reload preview</button></div>';nav='research';document.title='Megawatt comparison — Compute / Value';}
     else if(path==='/research/assumptions'){main.innerHTML=opsPage('assumptions',p);nav='operations';document.title='Assumption Review — Compute / Value';}
     else if(path==='/research'){main.innerHTML=window.ResearchView.render(M,p);nav='research';document.title='Research — Compute / Value';}
@@ -212,7 +212,7 @@
   function exportCSV(){const rows=[['Company','Name','Market reference USD','Quote as of','Quote source/status','Asset signed-only USD','Preferred model value USD','Model basis','Model as of','Implied upside percent','Capacity contracted percent'],...filteredCompanies().map(c=>[c.ticker,c.name,c.price,c.priceReference?.asOf||'',c.priceReference?.label||priceLabel(c),c.floor??'',c.target??'',c.summaryBasis||'Asset model',c.modelAsOf||'',Number.isFinite(c.upside)?c.upside*100:'',c.type==='holdco'?'':c.contractedPct])];const csv=rows.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));const a=document.createElement('a');a.href=url;a.download='compute-value-comparison-snapshot.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#announcement').textContent='Comparison exported as CSV.';}
   async function loadPreferredResearch(){
     if(!window.ResearchData)return;
-    await Promise.allSettled(ResearchData.tickers.map(tk=>ResearchData.load(tk)));
+    await Promise.allSettled((ResearchData.reports||ResearchData.tickers).map(tk=>ResearchData.load(tk)));
     CVApp.refresh();
   }
   document.addEventListener('click',e=>{const action=e.target.closest('[data-action]');if(action){const a=action.dataset.action;

@@ -147,9 +147,10 @@
       { ticker: 'IREN', url: '/iren', title: 'IREN', text: 'Power, delivery, earnings and funding in one research report.', feature: true },
       { ticker: 'CRWV', url: '/crwv', title: 'CoreWeave', text: 'Capacity, contract renewals and funding through to per-share value.' },
       { ticker: 'NBIS', url: '/nbis', title: 'Nebius', text: 'The build-out, earnings and balance sheet behind the research valuation.' },
+      { ticker: 'SHAZ', url: '/shaz', title: 'Sharon AI', text: 'The contracted book, the NVIDIA floor and the capital stack behind the research valuation.' },
       { ticker: 'IREN · CRWV · NBIS', url: '/research/compare', title: 'The same megawatt, three balance sheets', text: 'Gating factors, per-megawatt economics and the 2030 picture, recomputed side by side from the three research models.', date: compareAsOf }
     ].map(card => {
-      const P=RD?.get(card.ticker),ref=RD?.supports(card.ticker)?RD.reference(card.ticker):null,value=RD?.value(card.ticker);
+      const P=RD?.get(card.ticker),ref=(RD?.hasReport?RD.hasReport(card.ticker):RD?.supports(card.ticker))?RD.reference(card.ticker):null,value=RD?.value(card.ticker);
       const modelDate=P?.modelAsOf||P?.pricing?.asOf||P?.asOf||card.date;
       const prices=ref?'<div class="research-prices"><span>Market <strong>'+(ref.value>0?'$'+ref.value.toFixed(2):'Unavailable')+'</strong></span><span>Research <strong>'+(Number.isFinite(value)?'$'+value.toFixed(2):RD.status(card.ticker).error?'Unavailable':'Loading…')+'</strong></span></div><small class="quote-clock">'+esc(ref.label)+'</small>':'';
       return '<a class="research-card'+(card.feature?' feature':'')+'" href="'+esc(card.url)+'"><div class="eyebrow">'+card.ticker+' · '+(ref?'Research DCF':'Comparison')+'</div><h2>'+card.title+'</h2><p>'+card.text+'</p>'+prices+'<div class="card-bottom"><span>'+(modelDate?'Model · '+esc(date(modelDate)):'Model loading')+'</span><span>Open report →</span></div></a>';

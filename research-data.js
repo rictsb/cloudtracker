@@ -2,13 +2,13 @@
    quotes. Their dated cash-flow values supply the preferred summary values for these names. */
 (function(root){
   'use strict';
-  const TICKERS=['IREN','CRWV','NBIS'], entries={};
+  const TICKERS=['IREN','CRWV','NBIS'], REPORTS=['IREN','CRWV','NBIS','SHAZ'], entries={};   // TICKERS: preferred on the main comparison (spec §6j); REPORTS: standalone research reports that load (spec §6d)
   const usable=x=>typeof x==='number'&&Number.isFinite(x)&&x>0;
   const validDate=x=>typeof x==='string'&&/^\d{4}-\d{2}-\d{2}(?:T.*)?$/.test(x)&&Number.isFinite(Date.parse(x));
   const clock=x=>validDate(x)?new Date(x).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/New_York',timeZoneName:'short'}):'time unavailable';
-  const supports=tk=>TICKERS.includes(tk);
+  const supports=tk=>TICKERS.includes(tk), hasReport=tk=>REPORTS.includes(tk);
   function load(tk){
-    if(!supports(tk))return Promise.reject(new Error('No preferred research model for '+tk));
+    if(!hasReport(tk))return Promise.reject(new Error('No preferred research model for '+tk));
     const old=entries[tk];
     if(old?.P)return Promise.resolve(old.P);
     if(old?.pending)return old.pending;
@@ -57,6 +57,6 @@
       upside:Number.isFinite(target)&&price>0?target/price-1:null,summaryBasis:'Research DCF',summaryHref:'/'+c.ticker.toLowerCase(),
       modelAsOf:P?.modelAsOf||P?.pricing?.asOf||P?.asOf||null,researchStatus:P?'ready':st?.error?'unavailable':'loading',researchError:st?.error||null};
   }
-  root.ResearchData={tickers:TICKERS.slice(),supports,load,get,reference,displayPayload,summaryCompany,
+  root.ResearchData={tickers:TICKERS.slice(),reports:REPORTS.slice(),supports,hasReport,load,get,reference,displayPayload,summaryCompany,
     value:tk=>entries[tk]?.base?.ps??null,status:tk=>({loaded:!!entries[tk]?.P,error:entries[tk]?.error||null})};
 })(typeof window!=='undefined'?window:globalThis);

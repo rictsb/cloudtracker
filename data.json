@@ -10282,6 +10282,1046 @@
    "verified": {
     "capital": "2026-08-24",
     "contracts": "2026-08-24"
+   },
+   "page": {
+    "asOf": "2026-10-26",
+    "modelAsOf": "2026-10-26",
+    "kicker": "Sharon AI · NASDAQ: SHAZ · from the Q2-26 10-Q, the 6 Aug results and the 1 Oct facility 8-K",
+    "title": "Sharon AI: from MW to $",
+    "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
+    "px": {
+     "v": 26.99,
+     "note": "Finnhub, 19 Oct"
+    },
+    "evArr": {
+     "sh": 42.2,
+     "nd": -0.81,
+     "arr": 0.4
+    },
+    "facts": [
+     [
+      "Shares out",
+      "42.2m",
+      "35.8m Class A + B, 5 Aug, + 6.4m pre-funded warrants"
+     ],
+     [
+      "Net cash",
+      "$0.8bn",
+      "$1.86bn cash − $1.05bn converts, 30 Jun"
+     ],
+     [
+      "Contract value",
+      "$8.8bn",
+      "TCV, 6 Aug · NVIDIA at the floor"
+     ]
+    ],
+    "hero": {
+     "power": [
+      "212",
+      "MW secured · 120 MW contracted to customers"
+     ],
+     "capex": [
+      "~$4bn",
+      "NVIDIA block hardware committed, 10-Q"
+     ]
+    },
+    "capacity": {
+     "rows": [
+      [
+       "Secured AI Factory capacity",
+       212,
+       "20 Aug 2026 · NEXTDC up to 87 MW incl. the 72 MW NVIDIA site, GreenSquareDC 15, New Zealand 14, +80 MW with no site disclosed"
+      ],
+      [
+       "Contracted to customers",
+       120,
+       "take-or-pay, 20 Aug 2026"
+      ],
+      [
+       "NVIDIA block",
+       72,
+       "NEXTDC amended service order · five phases Apr–Aug 2027 · ~$623m over the term"
+      ],
+      [
+       "Energising in H2-26",
+       27,
+       "ESDS 15 MW, global-tech 10 MW (first cluster accepted 20 Aug), merchant 2 MW"
+      ]
+     ],
+     "max": 212
+    },
+    "arrLabel": "Energized contractual run-rate, including assumed renewals and new signings; earning revenue is shown separately.",
+    "fromQ": "2025Q4",
+    "prints": {
+     "2025Q4": 1.57
+    },
+    "arr": {
+     "cap": "Annualized earned revenue is split into existing book (including estimates), assumed renewals, assumed new contracts and spot. Full-capacity contracted run-rate is a separate measure.",
+     "folds": []
+    },
+    "tiles": [
+     [
+      "Cash",
+      "$1.86bn",
+      "30 Jun · + $13m certificates of deposit"
+     ],
+     [
+      "Converts",
+      "$1.05bn",
+      "6.00% 2031 at $48.24 · 4.75% 2032 at $99.66"
+     ],
+     [
+      "GPU facility",
+      "$356m",
+      "9.95% fixed, senior secured SPV, 28 Sep"
+     ],
+     [
+      "Hardware committed",
+      "~$4bn",
+      "NVIDIA block · $256m prepaid to WWT"
+     ]
+    ],
+    "fund": {
+     "cost": 42,
+     "max": 55,
+     "rows": [
+      [
+       "Contracted MW",
+       [
+        [
+         6.3,
+         "var(--s1)",
+         "customer prepayment — 15% of the GPU cost (deposits of $144m stood against the first two contracts at 30 June)"
+        ],
+        [
+         33.6,
+         "var(--s2)",
+         "GPU financing at 80% of cost (the Sep-26 SPV facility: 9.95% fixed, Goldman Sachs and private credit)"
+        ],
+        [
+         2.1,
+         "var(--s4)",
+         "equity — the balance"
+        ]
+       ]
+      ],
+      [
+       "Unsigned MW",
+       [
+        [
+         21,
+         "var(--s2)",
+         "GPU financing at 50%"
+        ],
+        [
+         21,
+         "var(--s4)",
+         "equity — the gap to $42m"
+        ]
+       ]
+      ]
+     ],
+     "cap": "how ONE IT megawatt of new build is paid for · $m per MW, against $42m of GPUs and ancillaries (B300/GB300 clusters) · the shell is leased from NEXTDC, GreenSquareDC and a New Zealand provider, rent inside EBITDA"
+    },
+    "bridge": {
+     "label": "Capex to deploy the 120 MW contracted",
+     "lo": 5.7,
+     "hi": 6,
+     "max": 6.5,
+     "range": "$5.7–6.0bn",
+     "quote": "“approximately $4 billion” of hardware committed for the NVIDIA block (10-Q) plus ~$42m per MW on 48 MW of customer clusters, less $256m already prepaid",
+     "segs": [
+      [
+       1.86,
+       "var(--s1)",
+       "cash at 30 June"
+      ],
+      [
+       0.5,
+       "var(--s2)",
+       "the $356m GPU facility and $144m of customer deposits"
+      ],
+      [
+       3.4,
+       "var(--sunk)",
+       "further GPU-backed facilities (“the first in an expected series”), prepayments on new contracts, equity"
+      ]
+     ],
+     "total": "≈ $5.8bn",
+     "cap": "funding the contracted book · $bn"
+    },
+    "capexQ": {
+     "2026Q2": [
+      210,
+      0
+     ],
+     "2026Q3": [
+      630,
+      0
+     ],
+     "2026Q4": [
+      865,
+      0
+     ],
+     "2027Q1": [
+      1838,
+      0
+     ],
+     "2027Q2": [
+      1250,
+      0
+     ],
+     "2027Q3": [
+      744,
+      0
+     ],
+     "2027Q4": [
+      1350,
+      0
+     ],
+     "2028Q1": [
+      1350,
+      0
+     ],
+     "2028Q2": [
+      1440,
+      0
+     ]
+    },
+    "capexQSigned": {
+     "2026Q2": [
+      210,
+      0
+     ],
+     "2026Q3": [
+      630,
+      0
+     ],
+     "2026Q4": [
+      865,
+      0
+     ],
+     "2027Q1": [
+      1838,
+      0
+     ],
+     "2027Q2": [
+      1250,
+      0
+     ],
+     "2027Q3": [
+      744,
+      0
+     ]
+    },
+    "capexBasis": "by energisation quarter, $m: the NVIDIA block at the filed ~$4bn hardware commitment (10-Q: “committed to procure additional high-performance computing hardware and related infrastructure for approximately $4 billion” = ~$56m per IT MW incl. networking, storage and the VAST data layer), less the $256m of deposits already paid to WWT Australia by 30 June, paid ahead of the Apr–Aug 2027 phases; the B300/GB300 customer clusters at $42m per IT MW (SemiAnalysis per-deal capex $39–44m per MW, $75–83k per GPU); the uncontracted 92 MW at $45m per MW (Rubin-era); no shell capex — every data centre is leased colocation",
+    "finance": {
+     "M": 0.6,
+     "W": 0.105,
+     "SH0": 43.32,
+     "EQ_SHARE": 0.1,
+     "EQ_PX": 27,
+     "DEBT0": 1.055,
+     "CASH0": 1.861,
+     "RATE": 0.0995,
+     "TAX": 0.25,
+     "MINCASH": 0.15,
+     "CONV": 1.05,
+     "CONV_RATE": 0.0517,
+     "CASH_R": 0.0127,
+     "FWD": 0,
+     "SERIES": [
+      [
+       0.35,
+       48.24,
+       null
+      ],
+      [
+       0.7,
+       99.66,
+       null
+      ]
+     ],
+     "T0": "2026Q3",
+     "HORIZON": 4.33,
+     "AMORT": 0.2,
+     "EQ_FROM": 2027,
+     "GPU_LIFE": 5,
+     "SHELL_LIFE": 25,
+     "NONCORE": 0,
+     "prepay": {
+      "ratio": 0.15,
+      "startQ": 0,
+      "termQ": 20,
+      "openingOwed": 0.144,
+      "credits": [
+       {
+        "from": "2026Q3",
+        "n": 20,
+        "amt": 0.144
+       }
+      ],
+      "special": {
+       "2026Q4": {
+        "replaceG": 0.5
+       },
+       "2027Q1": {
+        "replaceG": 1.25
+       },
+       "2027Q2": {
+        "replaceG": 1.25
+       },
+       "2027Q3": {
+        "replaceG": 0.494
+       }
+      },
+      "basis": "Customer deposits of $143.9m at 30 Jun 2026 (10-Q) against the ESDS and global-technology contracts — cash security held in escrow, released on acceptance (8-K 20 Aug 2026) and, for the first cluster, applied to repay Facility A of the GPU-backed loan (8-K 1 Oct 2026); carried as the opening prepayment balance, credited over twenty quarters. NVIDIA pays no prepayment: the block’s ~$3.75bn of hardware is excluded from the prepayment base in the quarters it is paid (special.replaceG). Future contracts: prepayment at execution “allows Sharon AI to submit the purchase order” (Q2 deck) — modelled at 15% of GPU capex on contracted capacity, credited evenly over the five-year term (SemiAnalysis: “credited equally throughout contract life”). Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry. Explicit opening-balance credits retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "creditTiming": {
+       "mode": "first-quarters",
+       "quarters": 20
+      }
+     },
+     "cover": {
+      "ctrPre": 0.15,
+      "ctrGpu": 0.8,
+      "ctrShell": 0,
+      "spotGpu": 0.5,
+      "spotShell": 0
+     },
+     "wfMarginBasis": "the quarterly waterfall runs at 60% EBITDA: the company guides to ~75% gross margin, SemiAnalysis’s contract-level margins after colocation ($100/kW-month) and power ($0.05/kWh) are 88–91%, and Bloomberg consensus carries ~50% in 2027 once corporate costs and the NVIDIA revenue share are charged; 60% sits between the tenant peers (CoreWeave 57–59%) and the company’s guide",
+     "basis": "debt 9.95% (the US$356m senior secured GPU-backed SPV facility of 28 Sep 2026, fixed, excluding fees; Facility A $150m repaid from the escrowed customer deposit on acceptance, Facility B $206m a bullet term loan), 20%/yr pool amortisation (GPU facilities sized to the five-year contracts), $150m cash floor; lenders advance 80% of GPU cost on contracted capacity (SemiAnalysis sizes up to 80% LTC at 1.3× DSCR), 50% on spot; no shell capex — every site is leased colocation (NEXTDC, GreenSquareDC, a New Zealand provider), rent inside EBITDA, the ~$623m NEXTDC 72 MW commitment and the GreenSquareDC 120-month term are service contracts, not debt; 10% of capex from 2027 as policy equity at $27 (the 19 Oct 2026 mark) plus the residual the flywheel cannot cover; the two convertible series (6.00% due May 2031 $350m at $48.24, 4.75% due Jun 2032 $700m at $99.66, no capped calls, carried at fair value $1.007bn in the 10-Q, principal $1.05bn used here) convert only if the model’s 2030 price clears the strike; certificates of deposit $12.7m counted; fully diluted before converts 43.32m = 35.667m Class A + 0.136m Class B (160 votes a share, one economic share) + 6.375m pre-funded warrants at $0.0001 + 1.139m options and RSUs (10-Q anti-dilutive list); the 22.25m SPAC warrants (SHAZW) are exercisable for only 444,982 shares in aggregate and are ignored; the 1.2m-share plan increase and annual evergreen (28 Aug 2026) are not counted"
+    },
+    "steadyInputs": {
+     "M": 0.6,
+     "gpu": 42,
+     "shell": 0,
+     "shellLife": 25,
+     "swap": 0.55,
+     "life": 4,
+     "fail": 0.03,
+     "tax": 0.25,
+     "W": 0.105,
+     "g": 0.06,
+     "gY": 5,
+     "term": 5,
+     "spotW": 0.025,
+     "H": 60,
+     "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Running costs at the 60% forecast margin (colocation rent, power, managed services and overhead inside it; no shell). A 55% refresh reserve every four years plus 3% annual spares on $42m of GPUs and ancillaries per IT MW is a long-run house allowance, not compulsory retirement at a contract expiry. Tax 25% (US parent, Australian operating subsidiaries). Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every five years in that terminal regime (the book is five-year paper)."
+    },
+    "labels": {
+     "shell": "lease",
+     "shellRow": "Capex — shell (leased colocation; rent inside EBITDA)",
+     "shellDebt": "lease-funded shell",
+     "debt": "Debt",
+     "energised": "energised"
+    },
+    "notes": [
+     [
+      "<b>212 MW secured, 120 MW contracted.</b> Every megawatt is leased colocation: NEXTDC Melbourne and Sydney (up to 87 MW, including the 72 MW NVIDIA site), GreenSquareDC (15 MW, 120-month term from a September 2026 ready-for-service date), a New Zealand provider (14 MW) and 80 MW added on 20 August with no site named.<span class=\"src\">Q2-26 10-Q · 8-K 20 Aug</span>",
+      "<b>The NVIDIA site lands in 2027.</b> The amended and restated NEXTDC service order for 72 MW deploys in five phases from April to August 2027 and commits ~$623m over its term; the company is “substantially dependent on NEXTDC”.<span class=\"src\">10-Q commitments note and risk factors</span>",
+      "<b>Beyond 212 MW is not modelled.</b> Management speaks of a “gigawatt-scale” ambition across Australia, New Zealand and Asia-Pacific; the page stops at the secured footprint, and the signed-book-only scenario stops at 120 MW.<span class=\"src\">8-K 1 Oct 2026</span>"
+     ],
+     [
+      "<b>64,600 GPUs by 2027Q3</b> on the contracted book — 40,000 GB300 for NVIDIA, 8,208 B300 for ESDS, ~7,000 in New Zealand, ~4,752 for the global technology company, 2,048 for the AI platform, ~2,500 merchant. The company says 68,000+ by mid-2027.<span class=\"src\">8-Ks · 1 Oct release · SemiAnalysis counts</span>",
+      "<b>Five-year book life.</b> SemiAnalysis models a five-year depreciation schedule; consensus D&A implies the same. The refresh reserve here is a house allowance, not the accounting life.<span class=\"src\">SemiAnalysis · Bloomberg consensus</span>",
+      "<b>Density is the company’s own.</b> 40,000 GB300 on 72 MW is 556 per MW (~1.8 kW all-in); the ESDS cluster 547 per MW. The house 400 per MW used on the other pages would put ~30% more megawatts behind the same GPUs.<span class=\"src\">8-K 12 Jun · 8-K 1 Apr</span>"
+     ],
+     [
+      "<b>Contract cohorts.</b> The signed book keeps its filed all-in rate until expiry: ESDS $3.48, the AI platform $4.16, New Zealand $4.31, the global technology company $4.56 per GPU-hour — $16.7–19.0m per IT MW-year, the top of the GB300 ladder. New capacity uses the shared house curve.",
+      "<b>The NVIDIA block is a floor, not a price.</b> Up to $4.88bn over six years on 40,000 GPUs is $2.32 per GPU-hour on average; capacity reserved for NVIDIA can be sold to third parties with NVIDIA taking an undisclosed share above the floor. The page carries $3.29 (owner ruling, 3 Aug 2026); the floor and a 40%-share placement are scenarios.<span class=\"src\">8-K 12 Jun 2026 · SemiAnalysis</span>",
+      "<b>Evidence.</b> Contract dollars and terms are filed; GPU counts on two contracts are inferred; no customer is named except ESDS and NVIDIA. The ESDS counterparty was challenged in a 30 April short report that filings do not rebut."
+     ],
+     [
+      "<b>Prepay, then borrow against the contract.</b> Customer prepayment at execution funds the purchase order; the inaugural $356m GPU-backed SPV facility (9.95% fixed, 28 Sep 2026) is “the first in an expected series”, with Facility A repaid from the escrowed customer deposit on acceptance.<span class=\"src\">Q2 deck · 8-K 1 Oct 2026</span>",
+      "<b>$2.6bn raised in ten months.</b> $125m IPO (Feb), $100m pre-IPO notes (converted at $12.53), $350m 6.00% converts (May), $900m of equity and pre-funded warrants at $68.73 plus $700m 4.75% converts (June), $74m from the TCDC sale, $356m of GPU debt (Sep).<span class=\"src\">10-Q · 8-Ks</span>",
+      "<b>The catch:</b> the NVIDIA block alone needs ~$4bn of hardware against $1.86bn of cash. At today’s price the residual equity in the model is raised at $27, against a June placement at $68.73; the converts (strikes $48.24 and $99.66) stay debt unless the price recovers.<span class=\"src\">funding stack · summary table</span>"
+     ],
+     [
+      "<b>Costs are rent and power.</b> SemiAnalysis’s inputs — colocation $100 per kW-month, power $0.05/kWh — leave 88–91% contract-level margins; the company guides ~75% gross; consensus carries ~50% EBITDA in 2027 once overhead and the NVIDIA share are charged. The page runs 60%.<span class=\"src\">SemiAnalysis · Bloomberg</span>",
+      "<b>Capex is $42m per MW on the customer clusters and ~$56m on the NVIDIA block</b> ($4bn committed for 72 MW, including networking, storage and the VAST layer). No shell: the landlord’s capital sits in the rent.<span class=\"src\">10-Q · SemiAnalysis per-deal capex</span>",
+      "<b>Maintenance, not replacement.</b> Tray swap at 55% of GPU cost every four years plus 3%/yr spares — the same house allowance as the other pages — on a five-year take-or-pay book that fully recovers the hardware inside the term.<span class=\"src\">model</span>"
+     ],
+     [
+      "<b>Some equity, not none.</b> Base: 10% of the 2027–28 build plus whatever the prepayments, the GPU facilities and operating cash cannot cover, issued at $27 — the bridge shows the count. The June placement was at $68.73; the price has since fallen by more than half.<span class=\"src\">8-K 17 Jun 2026 · Finnhub</span>",
+      "<b>The NVIDIA economics are the swing.</b> Floor versus placement moves the 72 MW block between $2.32 and $3.49 per GPU-hour; every $1 per GPU-hour on the block is ~$175m a year retained. The signed-book-only scenario shows what the 120 MW contracted today is worth on its own.<span class=\"src\">scenarios · SemiAnalysis</span>",
+      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> Pick your multiple.<span class=\"src\">after the raise</span>"
+     ]
+    ],
+    "footer": {
+     "sources": "Q2-26 10-Q (filed 6 Aug 2026, amended 11 Aug) and the Q2 results release and deck; Q1-26 10-Q; FY25 10-K (31 Mar 2026); 8-Ks for the ESDS (1 Apr), global technology company (14 May), NVIDIA (12 Jun), New Zealand (16 Jul) and AI-platform (4 Aug) contracts, the 2031 and 2032 convertible notes (26 Apr, 18 May, 17 and 22 Jun), the June equity placement, the first acceptance (20 Aug), the equity-plan amendment (28 Aug), the GPU-backed facility (1 Oct) and its syndicated facility agreement; SemiAnalysis “Sharon AI: From 4MW to 132MW” (3 Aug 2026, owner export); Bloomberg BEst consensus (3 Aug 2026, owner export); Finnhub for the market reference.",
+     "model": "Shared pricing and contract-cohort model (spec §6i). Existing commitments, estimated coverage, same-hardware renewals and new business are distinguished. Pricing, expiry and continuity assumptions are exposed with their evidence. Company financing and capex retain the dated research snapshot."
+    }
+   },
+   "ramp": {
+    "asOf": "2026-10-26",
+    "basis": "Quarterly GPU-ramp overlay for Sharon AI (playbook §6e, tenant variant, drafted 2026-10-26) — DISPLAY ONLY. Capacity is leased colocation (NEXTDC up to 87 MW incl. the 72 MW NVIDIA site, GreenSquareDC 15 MW, a New Zealand provider 14 MW, and 80 MW added 20 Aug 2026 with no site disclosed): 212 MW secured, 120 MW contracted to customers. Every signed tranche carries the all-in $/GPU-hr that its filed contract dollars ÷ term ÷ GPUs ÷ 8,760 h imply: ESDS $1.25bn/5yr/8,208 B300 = $3.48; global technology company $950m/5yr/~4,752 GB300 (count inferred) = $4.56; New Zealand AI lab $1.32bn/5yr/~7,000 (inferred) = $4.31; global AI platform $373m/5yr/2,048 B300 = $4.16; the NVIDIA block up to $4.88bn/6yr/40,000 GB300 = a $2.32 floor, carried at $3.29 per the owner’s 3 Aug 2026 ruling (expected third-party placement less NVIDIA’s share), with the floor as a scenario. Timing follows the filings: ESDS and the global-tech clusters earn from Q3–Q4 2026 (first acceptance 20 Aug 2026), the NZ and $373m contracts from Q1 2027, the NVIDIA 72 MW in five NEXTDC phases Apr–Aug 2027 (10-Q amended service order, ~$623m over the term). The 92 MW of secured-but-uncontracted capacity is modelled energising 2027Q4–2028Q2 at the shared §6i curve, 90% contracted — a house assumption; the “signed book only” scenario removes it with its capex. Densities are the company’s own (GB300 ~556 per MW on the NVIDIA site, B300 ~547, GB300 clusters 475–500; Rubin at the house 250). Reported revenue before Q3-26 is sub-$2m a quarter and lumpy; the calibration uses Q1-26 and Q2-26. Gross MW shown at 1.3× IT as a display assumption (not disclosed).",
+    "chain": [
+     {
+      "id": "secured",
+      "link": "secured colocation → monetised in-window",
+      "fn": "Σ tranche itMW · gross = IT × 1.3 (display)",
+      "value": "212 MW secured (120 contracted) → 211 MW modelled by 2028Q2; nothing beyond the secured footprint",
+      "assumption": "The company reports secured and contracted MW only; both are read as IT MW (NEXTDC sells critical IT load). The gigawatt-scale ambition (1 Oct 2026 release) is not modelled.",
+      "range": "120–212 MW by 2028",
+      "moves": "run-rate and capex in proportion"
+     },
+     {
+      "id": "energise",
+      "link": "secured MW → energised MW by quarter",
+      "fn": "step function on each tranche energize quarter",
+      "value": "~27 MW energising in H2-26 (ESDS 15, global tech 10, merchant 2), 120 MW by 2027Q3 (NZ 14 and the $373m deal in Q1, NVIDIA 72 in Apr–Aug 2027), 212 MW by 2028Q2",
+      "assumption": "Customer-contract dates from the 8-Ks; the NVIDIA phases from the 10-Q service-order schedule; the uncontracted 92 MW is a house schedule after the NVIDIA phases.",
+      "range": "±2 quarters on every tranche after 2026",
+      "moves": "one quarter of slip on the NVIDIA phases ≈ −$0.3bn of 2027 revenue"
+     },
+     {
+      "id": "derate",
+      "link": "gross MW → critical IT MW",
+      "fn": "secured MW taken as IT MW (colocation contracts are written in IT kW)",
+      "value": "1.0 by definition; gross shown at 1.3×",
+      "assumption": "GreenSquareDC and NEXTDC bill “monthly recurring fees based on contracted kilowatt capacity” (10-Q); the PUE is the landlord’s.",
+      "range": "1.0",
+      "moves": "nothing"
+     },
+     {
+      "id": "density",
+      "link": "critical IT MW → GPU count",
+      "fn": "gpus = disclosed GPU count per contract; unsigned at 500 GB300 / 250 Rubin per MW",
+      "value": "NVIDIA 556 per MW (40,000 / 72), ESDS 547 (8,208 / 15), NZ 500, global tech 475; fleet 64,600 GPUs by 2027Q3 vs the company’s 68,000+ by mid-2027",
+      "assumption": "All-in ~1.8–2.1 kW per GPU at the IT boundary on NVL72-class deployments; Rubin not disclosed.",
+      "range": "±15% per contract",
+      "moves": "displayed $/GPU-hr only on signed capacity; revenue on unsigned"
+     },
+     {
+      "id": "hours",
+      "link": "GPUs → GPU-hours",
+      "fn": "live GPUs × 2,190 hr/qtr",
+      "value": "take-or-pay: every reserved GPU bills whether or not it is used",
+      "assumption": "Four of the five customer contracts are described as take-or-pay (10-Q, Q2 deck); the NVIDIA floor is a minimum-revenue commitment; the merchant clusters sell short-tenor paper.",
+      "range": "n/a on the signed book",
+      "moves": "nothing"
+     },
+     {
+      "id": "ramp",
+      "link": "first revenue → full rate",
+      "fn": "contracted share bills from acceptance (one quarter); merchant clusters sell down over eight",
+      "value": "ESDS phase 1 Q3-26, phase 2 Q4-26; global tech in stages Q3–Q4 2026; NZ across Q1–Q2 2027",
+      "assumption": "Acceptance-based billing on the take-or-pay book (first acceptance printed 20 Aug 2026).",
+      "range": "±1 quarter",
+      "moves": "timing only"
+     },
+     {
+      "id": "rate",
+      "link": "GPU-hours → revenue",
+      "fn": "revenue = GPU-hours × (signed rate on the existing book + shared curve on new business + shared spot on the rest)",
+      "value": "signed book $3.48–4.56 per GPU-hr ($16.7–19.0m per IT MW-yr); NVIDIA block $3.29 carried ($2.32 floor); unsigned at $18–19m per IT MW-yr on the §6i curve",
+      "assumption": "The third-party prints sit at the top of the GB300 ladder because they were signed in H1-26 scarcity; the NVIDIA economics are a floor plus an undisclosed revenue share.",
+      "range": "$2.32–3.49 on the NVIDIA block; ±20% on new business",
+      "moves": "±$1 per GPU-hr on the NVIDIA block ≈ ±$175m/yr retained (SemiAnalysis)"
+     }
+    ],
+    "calibration": {
+     "rampMult": 1,
+     "appliesTo": "the uncontracted share of each tranche only",
+     "fittedOn": "2026Q1–2026Q2 reported revenue (two quarters)",
+     "basis": "The company reported $0.29m in Q1-26 and $1.9m in Q2-26 (10-Q); Q4-25 was $1.57m and Q1-25 $0.33m — a lumpy, sub-scale merchant fleet (432 GPUs at Sep-25) before the take-or-pay book starts billing in Q3-26. The legacy fleet is carried at $0.30/GPU-hr and the merchant clusters at 70% contracted on an eight-quarter sell-down, which reproduces the two quarters; Q4-25 is shown as a print but not fitted. There is no multi-quarter revenue history to calibrate a sell-down leg; rampMult 1."
+    },
+    "actualsSource": "Q2-26 10-Q (filed 6 Aug 2026, amended 11 Aug): revenue $294k Q1-26, $1.9m Q2-26",
+    "actuals": {
+     "2026Q1": {
+      "aiRevM": 0.29
+     },
+     "2026Q2": {
+      "aiRevM": 1.9
+     }
+    },
+    "earningRate": 2.48,
+    "consensusSource": "Bloomberg BEst consensus pulled 3 Aug 2026 (owner export): revenue Q3-26 $36.6m, Q4-26 $117.9m, Q1-27 $225.7m, Q2-27 $346.3m, Q3-27 $412m, Q4-27 $497.7m; CY27 $1.48bn, CY28 $2.91bn — the street extends capacity well past the secured 212 MW",
+    "consensus": {
+     "2026Q3": [
+      36.6,
+      36.6
+     ],
+     "2026Q4": [
+      117.9,
+      117.9
+     ],
+     "2027Q1": [
+      225.7,
+      225.7
+     ],
+     "2027Q2": [
+      346.3,
+      346.3
+     ],
+     "2027Q3": [
+      412,
+      412
+     ],
+     "2027Q4": [
+      497.7,
+      497.7
+     ],
+     "2028Q1": [
+      609.7,
+      609.7
+     ],
+     "2028Q2": [
+      685.7,
+      685.7
+     ]
+    },
+    "spot": {
+     "2024": 2.5,
+     "2025": 2.5,
+     "2026": 2.4,
+     "2027": 11.7,
+     "2028": 11.7,
+     "2029": 11.7,
+     "2030": 11.7
+    },
+    "spotMult": {
+     "hopper": 0.21,
+     "blackwell": 0.854,
+     "rubin": 1.366,
+     "next": 1.707
+    },
+    "attach": 0,
+    "tranches": [
+     {
+      "n": "Legacy H100/H200 fleet (432 GPUs)",
+      "campus": "NEXTDC Melbourne · legacy",
+      "grossMW": 0.9,
+      "itMW": 0.7,
+      "gpus": 432,
+      "gen": "hopper",
+      "energize": "2025Q3",
+      "rev": "2025Q4",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 0.3,
+      "signed": 1,
+      "id": "shaz-ramp-01",
+      "contract": {
+       "termYears": 1,
+       "endQ": "2026Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226036377/form10-q.htm",
+       "note": "Reported revenue before Q3-26 is sub-$2m a quarter and lumpy (Q4-25 $1.57m, Q1-26 $0.29m, Q2-26 $1.9m); the legacy fleet is carried at the rate that reproduces Q1-26."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "M3 Supercluster · 1,016 B200/H200 (short-tenor)",
+      "campus": "NEXTDC M3 Melbourne",
+      "grossMW": 2.1,
+      "itMW": 1.6,
+      "gpus": 1016,
+      "gen": "blackwell",
+      "energize": "2025Q4",
+      "rev": "2026Q2",
+      "rampQtrs": 8,
+      "ctr": 0.7,
+      "rate": 3.99,
+      "signed": 0.7,
+      "id": "shaz-ramp-02",
+      "contract": {
+       "termYears": 1,
+       "endQ": "2027Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "SemiAnalysis, “Sharon AI: From 4MW to 132MW – AI Cloud Model”, 3 Aug 2026 (owner export, ~/Research/SHAZ/inbox-text)",
+       "note": "SemiAnalysis prices the merchant clusters on one-year paper at prevailing rates ($36m/yr); reported revenue says they sold down slowly — 70% contracted, eight-quarter sell-down."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Cisco Secure AI Factory · 1,024 B300 (short-tenor)",
+      "campus": "NEXTDC S3 Sydney",
+      "grossMW": 2.6,
+      "itMW": 2,
+      "gpus": 1024,
+      "gen": "blackwell",
+      "energize": "2026Q1",
+      "rev": "2026Q2",
+      "rampQtrs": 8,
+      "ctr": 0.7,
+      "rate": 4.3,
+      "signed": 0.7,
+      "id": "shaz-ramp-03",
+      "contract": {
+       "termYears": 1,
+       "endQ": "2027Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "source": "SemiAnalysis, “Sharon AI: From 4MW to 132MW – AI Cloud Model”, 3 Aug 2026 (owner export, ~/Research/SHAZ/inbox-text)",
+       "note": "As above ($39m/yr at $4.30/GPU-hr per SemiAnalysis)."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "ESDS · 8,208 B300 · phase 1 (5 MW)",
+      "campus": "Existing provider, Australia · ESDS",
+      "grossMW": 6.5,
+      "itMW": 5,
+      "gpus": 2736,
+      "gen": "blackwell",
+      "energize": "2026Q2",
+      "rev": "2026Q3",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 3.48,
+      "signed": 1,
+      "id": "shaz-ramp-04",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "disclosed",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226014475/ex99-1.htm",
+       "note": "US$1.25bn over five years for an 8,000-GPU B300 cluster (8-K 1 Apr 2026) = $3.48/GPU-hr all-in on 8,208 GPUs; customer option to extend two years. Counterparty: ESDS Software Solutions — a 30 Apr 2026 short report questioned its capacity to pay; not rebutted in filings."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "ESDS · phase 2 (10 MW)",
+      "campus": "Existing provider, Australia · ESDS",
+      "grossMW": 13,
+      "itMW": 10,
+      "gpus": 5472,
+      "gen": "blackwell",
+      "energize": "2026Q3",
+      "rev": "2026Q4",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 3.48,
+      "signed": 1,
+      "id": "shaz-ramp-05",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "disclosed",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226014475/ex99-1.htm",
+       "note": "US$1.25bn over five years for an 8,000-GPU B300 cluster (8-K 1 Apr 2026) = $3.48/GPU-hr all-in on 8,208 GPUs; customer option to extend two years. Counterparty: ESDS Software Solutions — a 30 Apr 2026 short report questioned its capacity to pay; not rebutted in filings."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Global technology company · NEXTDC S6 Sydney · phase 1 (accepted 20 Aug)",
+      "campus": "NEXTDC S6 Sydney",
+      "grossMW": 6.5,
+      "itMW": 5,
+      "gpus": 2376,
+      "gen": "blackwell",
+      "energize": "2026Q3",
+      "rev": "2026Q3",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 4.56,
+      "signed": 1,
+      "id": "shaz-ramp-06",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "disclosed",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226022897/ex99-1.htm",
+       "note": "US$950m over five years with a global technology company with major Asia-Pacific presence, across multiple NEXTDC data centres (8-K 14 May 2026); first cluster accepted 20 Aug 2026, escrowed cash security released. GPU count inferred (~4,752 GB300, SemiAnalysis residual of the 62,000 fleet) → $4.56/GPU-hr."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Global technology company · phase 2",
+      "campus": "NEXTDC S6 Sydney",
+      "grossMW": 6.5,
+      "itMW": 5,
+      "gpus": 2376,
+      "gen": "blackwell",
+      "energize": "2026Q4",
+      "rev": "2026Q4",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 4.56,
+      "signed": 1,
+      "id": "shaz-ramp-07",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2031Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "disclosed",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226022897/ex99-1.htm",
+       "note": "US$950m over five years with a global technology company with major Asia-Pacific presence, across multiple NEXTDC data centres (8-K 14 May 2026); first cluster accepted 20 Aug 2026, escrowed cash security released. GPU count inferred (~4,752 GB300, SemiAnalysis residual of the 62,000 fleet) → $4.56/GPU-hr."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Global AI platform · 2,048 B300 (US$373m, 5-yr)",
+      "campus": "NEXTDC Australia · AI platform",
+      "grossMW": 4.8,
+      "itMW": 3.7,
+      "gpus": 2048,
+      "gen": "blackwell",
+      "energize": "2026Q4",
+      "rev": "2027Q1",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 4.16,
+      "signed": 1,
+      "id": "shaz-ramp-08",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "disclosed",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226035925/ex99-1.htm",
+       "note": "US$373m five-year take-or-pay, initial deployment 2,048 B300, revenue from Q1 2027 (8-K 4 Aug 2026) = $4.16/GPU-hr all-in; 3.7 MW at the ESDS density."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Global AI lab · New Zealand · ~7,000 GB300 (US$1.32bn, 5-yr)",
+      "campus": "New Zealand · third-party data centre",
+      "grossMW": 18.2,
+      "itMW": 14,
+      "gpus": 7000,
+      "gen": "blackwell",
+      "energize": "2027Q1",
+      "rev": "2027Q1",
+      "rampQtrs": 2,
+      "ctr": 1,
+      "rate": 4.31,
+      "signed": 1,
+      "id": "shaz-ramp-09",
+      "contract": {
+       "termYears": 5,
+       "endQ": "2032Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226033457/ex99-1.htm",
+       "note": "US$1.32bn over five years, revenue commencing across Q1–Q2 2027 (8-K 16 Jul 2026); 14 MW secured in New Zealand (10-Q). GPU count not disclosed — ~7,000 at ~2.0 kW/GPU (SemiAnalysis) → $4.31/GPU-hr."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "NVIDIA block · NEXTDC 72 MW · phases 1–3 (Apr–Jun 2027)",
+      "campus": "NEXTDC 72 MW · NVIDIA block",
+      "grossMW": 46.8,
+      "itMW": 36,
+      "gpus": 20000,
+      "gen": "blackwell",
+      "energize": "2027Q2",
+      "rev": "2027Q2",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 3.29,
+      "signed": 1,
+      "id": "shaz-ramp-10",
+      "contract": {
+       "termYears": 6,
+       "endQ": "2033Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226028370/form8-k.htm",
+       "note": "Master Cloud Services Agreement with NVIDIA, 8 Jun 2026: up to US$4.88bn over six years on up to 40,000 GB300 at a 72 MW NEXTDC site, all phases ending on one date = a $2.32/GPU-hr average floor. Capacity reserved for NVIDIA may be sold to third parties with NVIDIA taking an undisclosed share above the floor. Carried at $3.29/GPU-hr — the owner’s ruling of 3 Aug 2026 (SemiAnalysis 50%-share mid case; the shared house curve less a 50% share gives $3.43 over 2027–30). The floor is the “floor” scenario."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "NVIDIA block · phases 4–5 (Jul–Aug 2027)",
+      "campus": "NEXTDC 72 MW · NVIDIA block",
+      "grossMW": 46.8,
+      "itMW": 36,
+      "gpus": 20000,
+      "gen": "blackwell",
+      "energize": "2027Q3",
+      "rev": "2027Q3",
+      "rampQtrs": 1,
+      "ctr": 1,
+      "rate": 3.29,
+      "signed": 1,
+      "id": "shaz-ramp-11",
+      "contract": {
+       "termYears": 6,
+       "endQ": "2033Q3",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "disclosed",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226028370/form8-k.htm",
+       "note": "Master Cloud Services Agreement with NVIDIA, 8 Jun 2026: up to US$4.88bn over six years on up to 40,000 GB300 at a 72 MW NEXTDC site, all phases ending on one date = a $2.32/GPU-hr average floor. Capacity reserved for NVIDIA may be sold to third parties with NVIDIA taking an undisclosed share above the floor. Carried at $3.29/GPU-hr — the owner’s ruling of 3 Aug 2026 (SemiAnalysis 50%-share mid case; the shared house curve less a 50% share gives $3.43 over 2027–30). The floor is the “floor” scenario."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Secured, uncontracted · 2027Q4 (the +80 MW of 20 Aug 2026)",
+      "campus": "Secured AI Factory capacity · unallocated",
+      "grossMW": 39,
+      "itMW": 30,
+      "gpus": 15000,
+      "gen": "blackwell",
+      "energize": "2027Q4",
+      "rev": "2027Q4",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 4.11,
+      "signed": 0,
+      "id": "shaz-ramp-12",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2030Q4",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "allocationBasis": "unmapped-future",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226039364/ex99-1.htm",
+       "note": "Secured capacity stepped up 80 MW to 212 MW “for deployment across 2026 and 2027” (8-K 20 Aug 2026); no customer, site or hardware disclosed. Priced on the shared curve ($18m per IT MW-yr at 500 GB300 per MW = $4.11/GPU-hr), 90% contracted."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Secured, uncontracted · 2028Q1",
+      "campus": "Secured AI Factory capacity · unallocated",
+      "grossMW": 39,
+      "itMW": 30,
+      "gpus": 7500,
+      "gen": "rubin",
+      "energize": "2028Q1",
+      "rev": "2028Q1",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.68,
+      "signed": 0,
+      "id": "shaz-ramp-13",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q1",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "allocationBasis": "unmapped-future",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226039364/ex99-1.htm",
+       "note": "As above; 2028 deployments assumed Vera Rubin at the house density of 250 per MW ($19m per IT MW-yr = $8.68/GPU-hr)."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     },
+     {
+      "n": "Secured, uncontracted · 2028Q2",
+      "campus": "Secured AI Factory capacity · unallocated",
+      "grossMW": 41.6,
+      "itMW": 32,
+      "gpus": 8000,
+      "gen": "rubin",
+      "energize": "2028Q2",
+      "rev": "2028Q2",
+      "rampQtrs": 2,
+      "ctr": 0.9,
+      "rate": 8.68,
+      "signed": 0,
+      "id": "shaz-ramp-14",
+      "contract": {
+       "termYears": 3,
+       "endQ": "2031Q2",
+       "expiryBasis": "estimated",
+       "priceBasis": "inferred",
+       "commitmentBasis": "assumed",
+       "allocationBasis": "unmapped-future",
+       "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226039364/ex99-1.htm",
+       "note": "As above."
+      },
+      "newBusiness": {
+       "termYears": 3,
+       "priceBasis": "assumed",
+       "source": "data.researchPricing",
+       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
+      }
+     }
+    ],
+    "scenarios": [
+     {
+      "id": "base",
+      "name": "Base",
+      "note": "As modelled: 212 MW secured, 120 MW contracted, NVIDIA block at the owner-ruled $3.29/GPU-hr.",
+      "d": {}
+     },
+     {
+      "id": "newdown",
+      "name": "New prices −20%",
+      "note": "New-business prices on the uncontracted 92 MW 20% below the shared curve.",
+      "d": {
+       "newRateMult": 0.8
+      }
+     },
+     {
+      "id": "newup",
+      "name": "New prices +20%",
+      "note": "New-business prices 20% above the shared curve.",
+      "d": {
+       "newRateMult": 1.2
+      }
+     },
+     {
+      "id": "renewdown",
+      "name": "Renewals −20%",
+      "note": "Contracts renew at 80% of their original all-in rate.",
+      "d": {
+       "renewalRateMult": 0.8
+      }
+     },
+     {
+      "id": "retention",
+      "name": "Retention 80%",
+      "note": "Only 80% of expiring capacity renews; the rest moves to the shared spot curve, which is priced above this book’s contract rates — so this case raises the value rather than lowering it.",
+      "d": {
+       "renewalRetention": 0.8
+      }
+     },
+     {
+      "id": "longterm",
+      "name": "Five-year new contracts −15%",
+      "note": "New business signed on five-year terms at a 15% lower price.",
+      "d": {
+       "newTermYears": 5,
+       "newRateMult": 0.85
+      }
+     },
+     {
+      "id": "floor",
+      "name": "NVIDIA at the floor",
+      "note": "The 72 MW block earns only the contractual minimum: $4.88bn over six years = $2.32/GPU-hr average — no third-party placement above the floor.",
+      "d": {
+       "rateById": {
+        "shaz-ramp-10": 2.32,
+        "shaz-ramp-11": 2.32
+       }
+      }
+     },
+     {
+      "id": "placement",
+      "name": "NVIDIA block placed, 40% share",
+      "note": "Full third-party placement with NVIDIA taking 40% of the spread above the floor: $3.49/GPU-hr six-year average (SemiAnalysis).",
+      "d": {
+       "rateById": {
+        "shaz-ramp-10": 3.49,
+        "shaz-ramp-11": 3.49
+       }
+      }
+     },
+     {
+      "id": "signedonly",
+      "name": "Signed book only (120 MW)",
+      "note": "No lease-up of the 92 MW of secured-but-uncontracted capacity: it is removed with its capex. The value of what is contracted today.",
+      "d": {
+       "dropUnsigned": true
+      }
+     },
+     {
+      "id": "slip",
+      "name": "Slip 2 quarters",
+      "note": "Every tranche from 2027Q1 energises and earns two quarters later — the NEXTDC phases, New Zealand and the lease-up.",
+      "d": {
+       "slipQtrs": 2,
+       "from": 5
+      }
+     },
+     {
+      "id": "joint",
+      "name": "Joint downside",
+      "note": "Signed book only, NVIDIA at the floor, two quarters of slip, renewals −20% and spot −30%.",
+      "d": {
+       "dropUnsigned": true,
+       "rateById": {
+        "shaz-ramp-10": 2.32,
+        "shaz-ramp-11": 2.32
+       },
+       "slipQtrs": 2,
+       "from": 5,
+       "renewalRateMult": 0.8,
+       "spotMult": 0.7
+      }
+     }
+    ],
+    "pricing": {
+     "effectiveQ": "2026Q3",
+     "defaultTermYears": 5,
+     "softwarePremium": 0,
+     "basis": "The signed book keeps its filed all-in rates to each contract’s expiry (five years from first revenue; six on the NVIDIA block, all phases ending together). New business on the uncontracted 92 MW uses the shared curve on three-year terms; renewals retain hardware and original rates."
+    }
    }
   }
  ],

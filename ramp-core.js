@@ -19,6 +19,8 @@ function rampApplySc(t,d){
   if(d.genDensity&&d.genDensity[t.gen])o.gpus=Math.round(t.gpus*d.genDensity[t.gen]);
   if(d.vintageMult&&d.vintageMult[t.energize.slice(0,4)]!=null)o.rate=o.rate*d.vintageMult[t.energize.slice(0,4)];   // per-vintage (energise-year) rate multiplier — scenario only
   if(d.genRateCap&&d.genRateCap[t.gen]!=null&&!(t.signed>=1))o.rate=Math.min(o.rate,d.genRateCap[t.gen]);   // per-generation $/GPU-hr cap — scenario only
+  if(d.rateById&&t.id!=null&&d.rateById[t.id]!=null)o.rate=d.rateById[t.id];   // per-tranche $/GPU-hr override by tranche id — scenario only (e.g. a contractual floor)
+  if(d.dropUnsigned&&!(t.signed>0)){o.itMW=0;o.gpus=0;o.grossMW=0;}   // signed-book-only view: unsigned tranches contribute no capacity, revenue or capex — scenario only
   if(d.ctrMult!=null){const sg=t.signed||0;o.ctr=sg+(t.ctr-sg)*d.ctrMult;}
   if(d.slipQtrs){const from=d.from!=null?d.from:-99;
     if(RAMP_QS(t.energize)>=from){o.energize=RAMP_QL(RAMP_QS(t.energize)+d.slipQtrs);o.rev=RAMP_QL(RAMP_QS(t.rev)+d.slipQtrs);}}
@@ -97,6 +99,7 @@ function researchRate(rate,t,d,isExisting,age){
   if(d.vintageMult&&d.vintageMult[t.energize.slice(0,4)]!=null)rate*=d.vintageMult[t.energize.slice(0,4)];
   if(!isExisting&&d.genRateCap&&d.genRateCap[t.gen]!=null)rate=Math.min(rate,d.genRateCap[t.gen]);
   if(d.vintageDecay)rate*=Math.pow(1-d.vintageDecay,Math.max(0,age));
+  if(d.rateById&&t.id!=null&&d.rateById[t.id]!=null)rate=d.rateById[t.id];   // per-tranche override applies to every cohort of that tranche
   return rate;
 }
 function rampPricedTranche(R,original,s,market,d){

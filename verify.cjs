@@ -150,10 +150,10 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
   // and the R2 contract checks still cover engine byte-parity and data freshness.
   // The authored narrative HTML legitimately contains the word "undefined" (e.g. an NBIS factor
   // note), so these states allow at most the authored count rather than banning the token.
-  const P3={iren:fs.readFileSync(path.join(base,'iren-data.json'),'utf8'),crwv:fs.readFileSync(path.join(base,'crwv-data.json'),'utf8'),nbis:fs.readFileSync(path.join(base,'nbis-data.json'),'utf8')};
+  const P3={iren:fs.readFileSync(path.join(base,'iren-data.json'),'utf8'),crwv:fs.readFileSync(path.join(base,'crwv-data.json'),'utf8'),nbis:fs.readFileSync(path.join(base,'nbis-data.json'),'utf8'),shaz:fs.readFileSync(path.join(base,'shaz-data.json'),'utf8')};
   const cmpRaw=fs.readFileSync(path.join(base,'compare-data.json'),'utf8');
   const undefCount=s=>(s.match(/undefined/g)||[]).length;
-  ['IREN','CRWV','NBIS'].forEach(tk=>context.ReportView.render(tk,new URLSearchParams('')));
+  ['IREN','CRWV','NBIS','SHAZ'].forEach(tk=>context.ReportView.render(tk,new URLSearchParams('')));
   context.CompareView.render(new URLSearchParams(''));
   await settle();await settle();
   const repFixture={};
@@ -174,7 +174,7 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
     while((tag=tags.exec(html))){depth+=tag[0].startsWith('</')?-1:1;if(!depth)return html.slice(hit.index,tags.lastIndex);}
     assert.fail('unclosed '+id);
   };
-  for(const [tk,raw] of [['IREN',P3.iren],['CRWV',P3.crwv],['NBIS',P3.nbis]]){
+  for(const [tk,raw] of [['IREN',P3.iren],['CRWV',P3.crwv],['NBIS',P3.nbis],['SHAZ',P3.shaz]]){
     const D=JSON.parse(raw),W=context.OnePager.waterfall(D.L,D.CAPQ,D.finance,D.ARRC);
     const company=data.companies.find(c=>c.tk===tk),assembled=assemble(company,data.researchPricing);
     close(W.ps,assembled.W.ps);
@@ -267,7 +267,7 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
   assert.ok(denominatorRegressions>0,'pricing fixtures no longer distinguish the original mismatched ARR/MW ratio');
   const ch=context.CompareView.render(new URLSearchParams(''));
   assert.ok(!/NaN|\[object Object\]/.test(ch),'compare emits NaN');
-  assert.ok(undefCount(ch)<=undefCount(cmpRaw)+undefCount(P3.iren)+undefCount(P3.crwv)+undefCount(P3.nbis),'compare emits unauthored undefined');
+  assert.ok(undefCount(ch)<=undefCount(cmpRaw)+undefCount(P3.iren)+undefCount(P3.crwv)+undefCount(P3.nbis)+undefCount(P3.shaz),'compare emits unauthored undefined');
   assert.ok(ch.length>2000,'compare suspiciously empty');
   assert.ok(ch.includes('Shared pricing, different revenue books'),'shared pricing comparison missing');
   assert.ok(ch.includes('Contract revenue / contracted earning IT MW'),'comparison reintroduced an unmatched ARR/MW basis');
@@ -275,12 +275,12 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
   // is not a reference implementation and must not cause CI to skip freshness.
   // Optional undefined object fields are absent from JSON by definition; compare
   // the serialized exporter contract rather than its pre-serialization shape.
-  for(const tk of ['IREN','CRWV','NBIS'])assertCanonicalJSON(JSON.parse(JSON.stringify(gen.buildPayload(tk))),JSON.parse(P3[tk.toLowerCase()]),tk+'-data.json stale — rerun export-research.js');
+  for(const tk of ['IREN','CRWV','NBIS','SHAZ'])assertCanonicalJSON(JSON.parse(JSON.stringify(gen.buildPayload(tk))),JSON.parse(P3[tk.toLowerCase()]),tk+'-data.json stale — rerun export-research.js');
   assertCanonicalJSON(JSON.parse(JSON.stringify(gen.buildCompare())),JSON.parse(cmpRaw),'compare-data.json stale — rerun export-research.js --compare');
   const nodeChecks=require('./checks-core.js').runChecks(data,'2026-09-22');
   const browserChecks=context.ChecksCore.runChecks(data,'2026-09-22');
   assert.deepStrictEqual(JSON.parse(JSON.stringify(browserChecks)),JSON.parse(JSON.stringify(nodeChecks)),'Browser and CLI checks differ');
   const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
   for(const match of html.matchAll(/(?:src|href)="(\/(?:[\w.-]+\/)*[\w.-]+\.(?:js|css|svg))"/g))assert.ok(fs.existsSync(path.join(base,match[1])),match[1]);
-  console.log(`PASS: ${companyChecks} company comparisons across ${cases.length} cases; ramp revenue bridges; ${pages.length} complete graphical report states x 3 names (${Object.entries(repFixture).map(([tk,value])=>tk+' $'+value.toFixed(2)).join(' / ')}), all 9 valuation sensitivities plus pricing/renewal paths, matched earned-MW denominators, base ledger invariance and convert reconciliation + compare; canonical research assembly + data freshness; asset-engine canonical baseline parity; 7 research states; live-mark propagation; 7 wave-2 views incl. approvals byte-contract; local asset paths.`);
+  console.log(`PASS: ${companyChecks} company comparisons across ${cases.length} cases; ramp revenue bridges; ${pages.length} complete graphical report states x 4 names (${Object.entries(repFixture).map(([tk,value])=>tk+' $'+value.toFixed(2)).join(' / ')}), all 9 valuation sensitivities plus pricing/renewal paths, matched earned-MW denominators, base ledger invariance and convert reconciliation + compare; canonical research assembly + data freshness; asset-engine canonical baseline parity; 7 research states; live-mark propagation; 7 wave-2 views incl. approvals byte-contract; local asset paths.`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

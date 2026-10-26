@@ -8,7 +8,7 @@ const serial = q => Number(q.slice(0, 4)) * 4 + Number(q.slice(-1)) - 1;
 const near = (actual, expected, label, tolerance = 1e-8) => assert.ok(Number.isFinite(actual) && Math.abs(actual - expected) <= tolerance, `${label}: ${actual} vs ${expected}`);
 const browser = vm.createContext({ console });
 vm.runInContext(fs.readFileSync(__dirname + '/onepager-core.js', 'utf8'), browser, { filename: 'onepager-core.js' });
-const names = ['IREN', 'CRWV', 'NBIS'], models = {};
+const names = ['IREN', 'CRWV', 'NBIS', 'SHAZ'], models = {};
 let passed = 0, failed = 0;
 function check(label, fn) {
   try { fn(); passed++; console.log('PASS: ' + label); }
@@ -38,7 +38,7 @@ check('IREN house default adds one half-turn without changing its operating or f
   assert.match(sensitivities[7].name, /no premium/);
   near(assemble(company, data.researchPricing).W.ps, previousHigh.ps, 'reassembly does not compound premium');
   assert.equal(JSON.stringify(company), original, 'source remains immutable');
-  for (const tk of ['CRWV', 'NBIS']) {
+  for (const tk of ['CRWV', 'NBIS', 'SHAZ']) {
     assert.equal(models[tk].company.page.valuationMultiplePremium, undefined, tk + ' has no premium');
     near(models[tk].base.F.MULT, OP.steadyMultiple(models[tk].base.pg.steady.inputs).blend, tk + ' retains DCF-derived multiple');
   }
@@ -72,7 +72,9 @@ check('Every scenario preserves source data and the original capex purchase cale
   for (const tk of names) {
     const { company, base, cases } = models[tk], before = JSON.stringify(company);
     for (const { scenario, model } of cases) {
-      assert.deepEqual(model.CAPQ, base.CAPQ, tk + '/' + scenario.id + ' purchase dates');
+      if (scenario.d && scenario.d.dropUnsigned) {   // signed-book-only view: uncontracted tranches leave with their capex (spec §6i); every remaining purchase keeps its date
+        for (const [q, v] of Object.entries(model.CAPQ)) assert.ok(base.CAPQ[q] && v[0] <= base.CAPQ[q][0] + 1e-9, tk + '/' + scenario.id + ' adds capex at ' + q);
+      } else assert.deepEqual(model.CAPQ, base.CAPQ, tk + '/' + scenario.id + ' purchase dates');
       assert.deepEqual(model.F.prepay.credits, company.page.finance.prepay.credits, tk + '/' + scenario.id + ' fixed opening credits');
       assert.deepEqual(model.F.prepay.special, company.page.finance.prepay.special, tk + '/' + scenario.id + ' special receipts');
       assert.ok(Number.isFinite(model.W.ps), tk + '/' + scenario.id + ' finite value');

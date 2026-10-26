@@ -328,6 +328,7 @@
           const legacyRevAt = (q, d) => {
             d = d || {}; let rev = 0, gpus = 0, itmw = 0;
             for (const t of T) {
+              if (d.dropUnsigned && !(t.signed > 0)) continue;
               const rm = d.rampMult || 1, c2 = d.cal != null ? d.cal : cal;
               const slip = (d.slipQtrs && qs(t.energize) >= (d.from != null ? d.from : -99)) ? d.slipQtrs : 0;
               const rs = qs(t.rev) + slip;
@@ -341,6 +342,7 @@
               if (d.vintageDecay) rate *= Math.pow(1 - d.vintageDecay, Math.max(0, (q - rs) / 4));
               if (d.vintageMult && d.vintageMult[t.energize.slice(0, 4)] != null) rate *= d.vintageMult[t.energize.slice(0, 4)];
               if (d.genRateCap && d.genRateCap[t.gen] != null && !(t.signed >= 1)) rate = Math.min(rate, d.genRateCap[t.gen]);
+              if (d.rateById && t.id != null && d.rateById[t.id] != null) rate = d.rateById[t.id];
               rev += gp * f * (ctr * rate + (1 - ctr) * spot * (R.spotMult[t.gen] || 1)) * 2190 / 1e6;
               gpus += gp * f; itmw += t.itMW * f;
             }

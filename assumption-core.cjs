@@ -485,4 +485,4 @@ function analyze(data, marks = {}, options = {}) {
   // Non-finite diagnostics remain explicitly unavailable in the JSON artifact.
   return JSON.parse(JSON.stringify(output, (key, v) => typeof v === 'number' && !finite(v) ? null : v));
 }
-module.exports = { RULE_VERSION, analyze };
+module.exports = { RULE_VERSION, analyze, RESEARCH };

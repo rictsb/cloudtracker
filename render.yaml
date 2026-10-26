@@ -38,6 +38,9 @@ routes:
     source: /nbis
     destination: /index.html
   - type: rewrite
+    source: /shaz
+    destination: /index.html
+  - type: rewrite
     source: /infrastructure
     destination: /index.html
   - type: rewrite

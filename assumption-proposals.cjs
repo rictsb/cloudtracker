@@ -120,7 +120,10 @@ function evaluateImpact(data, next, changes, snapshot) {
   const marks=normalizeMarks(snapshot), E0=markedEngine(data,marks), E1=markedEngine(next,marks), {assemble}=require('./onepager.js');
   return affectedTickers(data,changes).map(ticker => {
     const c0=data.companies.find(c=>c.tk===ticker), c1=next.companies.find(c=>c.tk===ticker);
-    const a0=E0.value(c0), a1=E1.value(c1), research=!!(c0.ramp && c0.page);
+    // A name is previewed on its research waterfall when the main comparison prefers that value (assumption-core RESEARCH) or when the change touches research inputs (global pricing, page or ramp paths); other names with a report keep the asset model they display.
+    const hasReport=!!(c0.ramp && c0.page), preferred=require('./assumption-core.cjs').RESEARCH.has(ticker);
+    const touchesResearch=changes.some(ch=>ch.scope==='global'||(ch.scope==='company'&&ch.ticker===ticker&&['page','ramp'].includes((ch.path||[])[0])));
+    const a0=E0.value(c0), a1=E1.value(c1), research=hasReport && (preferred || touchesResearch);
     const m0=research ? assemble(c0,data.researchPricing) : null, m1=research ? assemble(c1,next.researchPricing) : null;
     const base=research?m0.W.ps:a0.target, proposed=research?m1.W.ps:a1.target;
     const row={ticker,modelBasis:research?'Canonical quarterly research waterfall':'Canonical asset valuation',unit:'USD/share',base,proposed,
