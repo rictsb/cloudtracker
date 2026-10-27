@@ -37,11 +37,21 @@
     "BTDR",
     "SLNH"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent developments in the AI infrastructure sector including Anthropic's IPO filing, Elon Musk's comments on NeoClouds and power/cooling bottlenecks, updates from companies like IREN (Iris Energy), WULF (TeraWulf) and SLNH (Soluna Holdings), and Bitcoin mining results from BTDR (Bitdeer).\n\n2. Key facts by company:\n   - **IREN**: 450 MW of power to be released by end of year, with another ~4-5 GW post-2027; handed over Horizon 1 building to Microsoft for commissioning.\n   - **WULF**: Partnered with NVIDIA on Minerva AIOps platform for data center monitoring; Q1 earnings scheduled for November 5th.\n   - **SLNH**: Repaid $28.7M of generic capital debt, reducing total debt by 76% to $9.2M; hired Sadie Arabello as People Operations Manager.\n   - **BTDR**: Produced 83.4 Bitcoin in the week (over 40/day); operates over 110 EH/s and has 335 MW contracted AI capacity.\n\n3. Host's view: The host is optimistic about long-term prospects for well-capitalized, vertically integrated companies like IREN that own land/power and have hyperscaler contracts. They see current stock prices as potentially undervalued given future revenue potential from AI infrastructure buildouts, though acknowledge near-term challenges with funding and execution.\n\n4. Worth checking:\n   - Whether IREN's Horizon 1 site will start generating revenue in Q4 as implied.\n   - Specific terms of WULF's partnership with NVIDIA on Minerva platform (revenue impact vs just claims).\n   - Details of SLNH's debt repayment sources beyond the $19.1M paid in August/October.\n   - BTDR's actual power costs and margins given their high Bitcoin production.",
+   "brief": "Recent developments in the AI infrastructure sector including Anthropic's IPO filing, Elon Musk's comments on NeoClouds and power/cooling bottlenecks, updates from companies like IREN (Iris Energy), WULF (TeraWulf) and SLNH (Soluna Holdings), and Bitcoin mining results from BTDR (Bitdeer).",
+   "facts": [
+    "**IREN**: 450 MW of power to be released by end of year, with another ~4-5 GW post-2027; handed over Horizon 1 building to Microsoft for commissioning.",
+    "**WULF**: Partnered with NVIDIA on Minerva AIOps platform for data center monitoring; Q1 earnings scheduled for November 5th.",
+    "**SLNH**: Repaid $28.7M of generic capital debt, reducing total debt by 76% to $9.2M; hired Sadie Arabello as People Operations Manager.",
+    "**BTDR**: Produced 83.4 Bitcoin in the week (over 40/day); operates over 110 EH/s and has 335 MW contracted AI capacity."
+   ],
+   "view": "The host is optimistic about long-term prospects for well-capitalized, vertically integrated companies like IREN that own land/power and have hyperscaler contracts. They see current stock prices as potentially undervalued given future revenue potential from AI infrastructure buildouts, though acknowledge near-term challenges with funding and execution.",
+   "verify": [
+    "Whether IREN's Horizon 1 site will start generating revenue in Q4 as implied.",
+    "Specific terms of WULF's partnership with NVIDIA on Minerva platform (revenue impact vs just claims).",
+    "Details of SLNH's debt repayment sources beyond the $19.1M paid in August/October.",
+    "BTDR's actual power costs and margins given their high Bitcoin production."
+   ],
    "signal": [
     {
      "tk": "BTDR",
