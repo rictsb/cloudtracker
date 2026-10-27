@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-26",
+ "asOf": "2026-10-27",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,50 @@
   }
  ],
  "items": [
+  {
+   "id": "r-7vI4g2nAw",
+   "src": "mcnallie-money",
+   "d": "2026-10-26",
+   "title": "Elon Slams Neoclouds | Anthropic Files IPO | Latest IREN, WULF, BTDR & SLNH Stock News | AI Stocks",
+   "headline": "Elon Slams Neoclouds — Anthropic Files IPO",
+   "url": "https://www.youtube.com/watch?v=r-7vI4g2nAw",
+   "kind": "news",
+   "minutes": 53,
+   "tickers": [
+    "IREN",
+    "WULF",
+    "BTDR",
+    "SLNH",
+    "MARA",
+    "CORZ",
+    "APLD",
+    "CRWV",
+    "NBIS",
+    "HUT",
+    "GLXY"
+   ],
+   "main": [
+    "IREN",
+    "WULF",
+    "BTDR",
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "BTDR",
+     "claim": "Bitdeer has a total hashrate of over 110 EH/s.",
+     "by": "host",
+     "tag": "notable",
+     "t": 2871
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "B95XNLf62lk",
    "src": "mcnallie-money",
