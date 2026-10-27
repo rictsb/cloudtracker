@@ -50,8 +50,8 @@
         "revenuePerEnergizedITMWM": 17.25974066442857,
         "contractRevenuePerEarningITMWM": 16.974760524814602,
         "modeledGPUHourPrice": 6.2733819473738315,
-        "valuePerShare": 242.6305098158181,
-        "dilutedSharesM": 873.2501910331869,
+        "valuePerShare": 242.6305098158071,
+        "dilutedSharesM": 873.2501910331862,
         "fundingEquityBn": 20.169,
         "horizonNetDebtBn": 32.166360921261656,
         "futureCustomerCreditsPVBn": 54.61206076701501,
@@ -228,8 +228,8 @@
         "revenuePerEnergizedITMWM": 18.816572231752506,
         "contractRevenuePerEarningITMWM": 18.888077661818183,
         "modeledGPUHourPrice": 8.566115051916501,
-        "valuePerShare": 146.83439127805482,
-        "dilutedSharesM": 755.9906784071151,
+        "valuePerShare": 146.83439127801878,
+        "dilutedSharesM": 755.9906784071112,
         "fundingEquityBn": 14.570199999999998,
         "horizonNetDebtBn": 42.76240793995206,
         "futureCustomerCreditsPVBn": 31.25296236390538,
@@ -869,9 +869,9 @@
       ],
       "impact": {
         "base": 268.2092441421448,
-        "alternative": 160.41640051390021,
-        "delta": -107.79284362824461,
-        "pct": -40.189831626801364,
+        "alternative": 152.09899395102036,
+        "delta": -116.11025019112446,
+        "pct": -43.29092032696258,
         "pctUnit": "percent",
         "label": "Flat post-horizon prices, existing refresh assumptions",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -889,7 +889,7 @@
         "sharesM": 448.66402707295566,
         "equityRaisedBn": 19.235500000000002
       },
-      "fingerprint": "86ee1eeb6f4ab787b547650a51132c769e6ee79db7ffbc0aa70203d57347db9b"
+      "fingerprint": "ff87f7c7f17841b142dd7a33a689b724d65607b9af8e1ffc51b809fd62784757"
     },
     {
       "id": "CRWV:economics:terminal-price-growth",
@@ -905,10 +905,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158181,
-        "alternative": 149.7022530406681,
-        "delta": -92.92825677515,
-        "pct": -38.30031797966886,
+        "base": 242.6305098158071,
+        "alternative": 149.70225304050481,
+        "delta": -92.92825677530229,
+        "pct": -38.300317979733364,
         "pctUnit": "percent",
         "label": "Flat post-horizon prices, existing refresh assumptions",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -923,10 +923,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 32.166360921261656,
-        "sharesM": 862.823134608949,
+        "sharesM": 862.8231346089193,
         "equityRaisedBn": 20.169
       },
-      "fingerprint": "6bf0e24ed97e04ca6248eefec60ac72b680ca4b791d31d514185db509b2b2d83"
+      "fingerprint": "dc8b457569e73fe66e4710e9ccc1b057f935810e3fa51ed64caed69fe40649d9"
     },
     {
       "id": "IREN:economics:terminal-price-growth",
@@ -942,10 +942,10 @@
         }
       ],
       "impact": {
-        "base": 146.83439127805482,
-        "alternative": 92.45181010362546,
-        "delta": -54.38258117442936,
-        "pct": -37.0366783292935,
+        "base": 146.83439127801878,
+        "alternative": 92.45181010364499,
+        "delta": -54.3825811743738,
+        "pct": -37.03667832926475,
         "pctUnit": "percent",
         "label": "Flat post-horizon prices, existing refresh assumptions",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -960,10 +960,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 42.76240793995206,
-        "sharesM": 746.7570239195902,
+        "sharesM": 746.7570239195956,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "205f5d67c0cdd23a3ff10eb5d996e3b8dfa9151e0c00fd3ccf50a4224e1305b5"
+      "fingerprint": "e0569f9508121ca47cd68e6ba8e6512d9f7265eeef9d2a7d1d1d74aa9d52cf84"
     },
     {
       "id": "IREN:funding:equity-issuance-price",
@@ -982,10 +982,10 @@
         }
       ],
       "impact": {
-        "base": 146.83439127805482,
-        "alternative": 104.94336829801577,
-        "delta": -41.891022980039054,
-        "pct": -28.529435519442842,
+        "base": 146.83439127801878,
+        "alternative": 104.94336829799838,
+        "delta": -41.89102298002041,
+        "pct": -28.529435519437147,
         "pctUnit": "percent",
         "label": "Equity issued at the reference share price",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -1000,10 +1000,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 42.76240793995206,
-        "sharesM": 1057.7650867900654,
+        "sharesM": 1057.7650867900618,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "6d6f862799b990034cb11411f2d535444e3a669fa6b516e5456c50bca63ba363"
+      "fingerprint": "fafac5342fe51e20f46ce8001df2131ca24e41b9ce6625872b877d57ad6fb351"
     },
     {
       "id": "SHAZ:economics:signed-rate-region",
@@ -1637,10 +1637,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158181,
-        "alternative": 209.37939613497224,
-        "delta": -33.25111368084586,
-        "pct": -13.704423943257149,
+        "base": 242.6305098158071,
+        "alternative": 209.3793961349646,
+        "delta": -33.25111368084251,
+        "pct": -13.704423943256389,
         "pctUnit": "percent",
         "label": "Equity issued at the reference share price",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -1655,10 +1655,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 32.166360921261656,
-        "sharesM": 1011.929267914023,
+        "sharesM": 1011.9292679140223,
         "equityRaisedBn": 20.169
       },
-      "fingerprint": "ea5110b9090a83802ff1d0ce73fd7fa52be7f05a2718d9bd34562744ca986c75"
+      "fingerprint": "7f316b0ca57e4cc2fa2797ff85c96fba8f2eba58e92c1e1e2889f659140cc38f"
     },
     {
       "id": "CLSK:economics:unsigned-realization",
@@ -2334,10 +2334,10 @@
         }
       ],
       "impact": {
-        "base": 146.83439127805482,
-        "alternative": 139.0152648289952,
-        "delta": -7.81912644905961,
-        "pct": -5.3251328799755235,
+        "base": 146.83439127801878,
+        "alternative": 139.0152648289451,
+        "delta": -7.8191264490736785,
+        "pct": -5.325132879986412,
         "pctUnit": "percent",
         "label": "20% lower spot pricing",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2353,9 +2353,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 55.4336,
         "debtBn": 43.13567909356949,
-        "sharesM": 755.1077510638229
+        "sharesM": 755.1077510638169
       },
-      "fingerprint": "fefb4bb8dbc877486205d203014b83674381a5ce191f73ed59bfa59ba3592033"
+      "fingerprint": "9e5647c3b3079ec106a8cc1e2bbabf0695d5d74c4371d07153639c369060bf1e"
     },
     {
       "id": "NUAI:funding:issuance-price",
@@ -2645,10 +2645,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158181,
-        "alternative": 235.21937108490636,
-        "delta": -7.411138730911745,
-        "pct": -3.0544957996162863,
+        "base": 242.6305098158071,
+        "alternative": 235.21937108489317,
+        "delta": -7.411138730913933,
+        "pct": -3.0544957996173268,
         "pctUnit": "percent",
         "label": "20% lower spot pricing",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2664,9 +2664,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 118.972,
         "debtBn": 32.62186189757179,
-        "sharesM": 872.720949244658
+        "sharesM": 872.720949244657
       },
-      "fingerprint": "c21b2535e3a843a704aab7d70f8bf7d7a3149fb42e230792997b4938a60c8b27"
+      "fingerprint": "71c4b72400faa16a741e41c2d1c2051521758b80ab313a961248ac4b9ab214f3"
     },
     {
       "id": "NBIS:economics:renewal-spot-substitution",
@@ -2773,10 +2773,10 @@
         }
       ],
       "impact": {
-        "base": 146.83439127805482,
-        "alternative": 144.96988082887358,
-        "delta": -1.864510449181239,
-        "pct": -1.2698050047760847,
+        "base": 146.83439127801878,
+        "alternative": 144.96988082883468,
+        "delta": -1.8645104491841096,
+        "pct": -1.2698050047783513,
         "pctUnit": "percent",
         "label": "Restricted cash excluded from funding",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -2791,10 +2791,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 44.97940596828504,
-        "sharesM": 755.7887877315644,
+        "sharesM": 755.7887877315602,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "77f470bcbf8304cbf2ea6c34d497563d30c22ed9346d287270ee63a95e633369"
+      "fingerprint": "06f79ac7501201688586f9e5ad9df107ef1871457d492b46cd443cde79c517a4"
     },
     {
       "id": "CRWV:economics:renewal-spot-substitution",
@@ -2813,10 +2813,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158181,
-        "alternative": 244.91970082568392,
-        "delta": 2.2891910098658173,
-        "pct": 0.9434885215398312,
+        "base": 242.6305098158071,
+        "alternative": 244.91970082567352,
+        "delta": 2.289191009866414,
+        "pct": 0.9434885215401199,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2833,9 +2833,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 122.512,
         "debtBn": 33.7637366562228,
-        "sharesM": 873.4071913689802
+        "sharesM": 873.4071913689795
       },
-      "fingerprint": "8118c0c86f5c87c786319c853ef120694ef3a5a00933bfb467e3169dadb45503"
+      "fingerprint": "a8fa8679c1adb03a62f12d913328b5a6bbaa75859d1d44189cc746e4c7f2f59a"
     },
     {
       "id": "CRWV:economics:same-hardware-renewal",
@@ -2863,10 +2863,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158181,
-        "alternative": 244.91970082568392,
-        "delta": 2.2891910098658173,
-        "pct": 0.9434885215398312,
+        "base": 242.6305098158071,
+        "alternative": 244.91970082567352,
+        "delta": 2.289191009866414,
+        "pct": 0.9434885215401199,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2883,9 +2883,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 122.512,
         "debtBn": 33.7637366562228,
-        "sharesM": 873.4071913689802
+        "sharesM": 873.4071913689795
       },
-      "fingerprint": "2a167aef5fac530ce3f052ae8825a0a142d9c47b89d84cbee8a1ac2b87bc0c12"
+      "fingerprint": "b646e502be4ae076b4cbcb9f95c1343c7ca98f16b4f678bec974d757db1a63ab"
     },
     {
       "id": "NBIS:funding:restricted-cash",
@@ -2938,10 +2938,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158181,
-        "alternative": 241.2979224750825,
-        "delta": -1.3325873407356141,
-        "pct": -0.5492249683468031,
+        "base": 242.6305098158071,
+        "alternative": 241.29792247507115,
+        "delta": -1.3325873407359552,
+        "pct": -0.5492249683469687,
         "pctUnit": "percent",
         "label": "Restricted cash excluded from funding",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -2956,10 +2956,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 33.993903819631235,
-        "sharesM": 873.1574259858795,
+        "sharesM": 873.1574259858787,
         "equityRaisedBn": 20.169
       },
-      "fingerprint": "16a916c545c329f335dc1dd63d0491607fb27f874ebbcc7ea8aa7093a1694d01"
+      "fingerprint": "5b2e79b4588234c99dcb8a9869f61bf30f678f105cf073a6d78c5ef4db77d6ba"
     },
     {
       "id": "IREN:economics:renewal-spot-substitution",
@@ -2978,10 +2978,10 @@
         }
       ],
       "impact": {
-        "base": 146.83439127805482,
-        "alternative": 146.94295832262804,
-        "delta": 0.10856704457322053,
-        "pct": 0.07393843065527554,
+        "base": 146.83439127801878,
+        "alternative": 146.94295832259215,
+        "delta": 0.10856704457336264,
+        "pct": 0.07393843065539046,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2998,9 +2998,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 56.9884,
         "debtBn": 43.15026972725399,
-        "sharesM": 756.002276283034
+        "sharesM": 756.0022762830303
       },
-      "fingerprint": "cec1d16c43b94e7a4b0fea9d4ea85da426f2085ad3ce920c526fb5e3f2222ccc"
+      "fingerprint": "5c1122c0fded53706d5824b4918a956b0c4189c0397b580d897a372504ee0f03"
     },
     {
       "id": "IREN:economics:same-hardware-renewal",
@@ -3028,10 +3028,10 @@
         }
       ],
       "impact": {
-        "base": 146.83439127805482,
-        "alternative": 146.94295832262804,
-        "delta": 0.10856704457322053,
-        "pct": 0.07393843065527554,
+        "base": 146.83439127801878,
+        "alternative": 146.94295832259215,
+        "delta": 0.10856704457336264,
+        "pct": 0.07393843065539046,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -3048,9 +3048,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 56.9884,
         "debtBn": 43.15026972725399,
-        "sharesM": 756.002276283034
+        "sharesM": 756.0022762830303
       },
-      "fingerprint": "bee14f6c6bfb8d81ce08627d4e7eeb50a92050f1e871559970534c368bbef576"
+      "fingerprint": "6dcd037094e63aea1a69221879c9b898da00fe26bb38354ba4ff94e5963109aa"
     },
     {
       "id": "BTBT:funding:lookthrough-ownership",
@@ -4318,16 +4318,16 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-10-27T02:18:25.465Z",
-  "attemptedAt": "2026-10-27T02:18:25.465Z",
-  "lastSuccessAt": "2026-10-27T02:18:25.465Z",
-  "sourceHash": "1254d838c12a45d6981d099e6013a877e1cfa6306496a9333b5d3225fe49740b",
+  "checkedAt": "2026-10-27T02:28:29.786Z",
+  "attemptedAt": "2026-10-27T02:28:29.786Z",
+  "lastSuccessAt": "2026-10-27T02:28:29.786Z",
+  "sourceHash": "85699abd5127703bdfd30c73a5701e854608e32efbcaac7b6b575fba6ef253bc",
   "quoteHash": "0dcd8938b9fdbb69c9233029d53aa90b4eb968437bb0128c6e6ca4f593f40ac6",
-  "modelHash": "eb48cf058390afffea09b84c7edbf61ba020d3e7cffe49ae108b63ca75464e9d",
+  "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
   "provenance": {
     "data": {
       "file": "data.json",
-      "hash": "1254d838c12a45d6981d099e6013a877e1cfa6306496a9333b5d3225fe49740b",
+      "hash": "85699abd5127703bdfd30c73a5701e854608e32efbcaac7b6b575fba6ef253bc",
       "asOf": null
     },
     "quotes": {
@@ -4340,7 +4340,7 @@
       "priceCount": 22
     },
     "model": {
-      "hash": "eb48cf058390afffea09b84c7edbf61ba020d3e7cffe49ae108b63ca75464e9d",
+      "hash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
       "files": [
         "assumption-core.cjs",
         "assumption-proposals.cjs",
@@ -4354,8 +4354,8 @@
       ]
     },
     "run": {
-      "trigger": "workflow_run",
-      "commit": "12b512b1f428fd8479c26de7824c6c2c09553e39"
+      "trigger": "push",
+      "commit": "23e88dcc55a1cb5532c4374f39f9b33a02737ae6"
     }
   },
   "cadence": {
