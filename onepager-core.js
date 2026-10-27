@@ -69,16 +69,18 @@
     // An opening-balance residual with no repayment calendar remains an obligation. Carry it
     // at face value until sourced timing exists; the deliberately uncredited sensitivity waives it.
     const unscheduledOwed=o.noCredit?0:Math.max(0,last.owed-scheduledOwed); liab+=unscheduledOwed;
-    const sh30 = last.sh - FWD; let S = 0, convSh = 0;
+    const sh30 = last.sh - FWD; let S = 0, convSh = 0, otm = 0;   // otm: principal of the series the horizon price does not clear — they stay debt
     const NC = F.NONCORE || 0;   // non-core stakes and assets, $bn at the horizon (added to equity, not to EV)
     if (o.convAsDebt) { S = (ev - (last.nd + CONV) - liab + NC) / sh30 * 1000; }
-    else for (let it = 0; it < 40; it++) { S = (ev - last.nd - liab + NC) / (sh30 + convSh) * 1000; convSh = SERIES.reduce((a, s) => a + s[0] / s[1] * 1000 * (S > s[1] ? 1 : 0) * (s[2] ? (1 - Math.max(0, Math.min(s[2], S) - s[1]) / S) : 1), 0); }   // a series converts only when the horizon price clears its conversion price; a capped call (s[2]) nets the shares between strike and cap
-    const dil = sh30 + convSh, ps = S / DF, addb = o.convAsDebt ? 0 : CONV * CONV_RATE * (1 - TAX) * 1000;
+    else { let o0 = otm, c0 = convSh, stable = false;   // a series converts only when the horizon price clears its conversion price; a capped call (s[2]) nets the shares between strike and cap
+      for (let it = 0; it < 40; it++) { o0 = otm; c0 = convSh; S = (ev - last.nd - liab + NC - o0) / (sh30 + c0) * 1000; otm = SERIES.reduce((a, s) => a + (S > s[1] ? 0 : s[0]), 0); convSh = SERIES.reduce((a, s) => a + s[0] / s[1] * 1000 * (S > s[1] ? 1 : 0) * (s[2] ? (1 - Math.max(0, Math.min(s[2], S) - s[1]) / S) : 1), 0); if (otm === o0 && Math.abs(convSh - c0) < 1e-9) { stable = true; break; } }
+      if (!stable) { const alt = (ev - last.nd - liab + NC - otm) / (sh30 + convSh) * 1000; if (otm !== o0 && alt < S) S = alt; else { otm = o0; convSh = c0; } } }   // a series sitting on its strike flips in and out each pass: carry it the way that gives the lower price, so S, otm and convSh always agree
+    const dil = sh30 + convSh, ps = S / DF, addb = o.convAsDebt ? 0 : (CONV - otm) * CONV_RATE * (1 - TAX) * 1000;   // the coupon add-back belongs only to the series that convert
     C.forEach(c => { if (!/Q4$/.test(c.q)) return; const ys = C.filter(x => x.q.slice(0, 4) === c.q.slice(0, 4) && x.r);
       if (ys.length === 4) c.epsYE = (ys.reduce((s, x) => s + x.r.ni, 0) + addb) / (c.r.sh + convSh - (c.q.slice(0, 4) === L[N - 1][0].slice(0, 4) ? FWD : 0)); });
     const hy = L[N - 1][0].slice(0, 4), Y = C.filter(x => x.q.startsWith(hy) && x.r), S30 = k => Y.reduce((s, x) => s + x.r[k], 0) / 1000;
     const pl = { rev: S30('eb') / M, eb: S30('eb'), da: S30('da'), intr: S30('intr'), tax: S30('tax'), ni: S30('ni'), dag: S30('dag'), debtAvg: Y.reduce((s, x) => s + x.r.debt, 0) / Math.max(1, Y.length) };
-    return { C, N, last, rr, ev, DF, liab, scheduledOwed, unscheduledOwed, sh30, S, convSh, dil, ps, addb, pl, eqTot, issued: last.sh - SH0, year: hy, ndc: last.nd + (o.convAsDebt ? CONV : 0) };
+    return { C, N, last, rr, ev, DF, liab, scheduledOwed, unscheduledOwed, sh30, S, convSh, dil, ps, addb, pl, eqTot, issued: last.sh - SH0, year: hy, otmDebt: o.convAsDebt ? 0 : otm, ndc: last.nd + (o.convAsDebt ? CONV : otm) };
   }
 
   /* the standard sensitivities every page shows the same way */

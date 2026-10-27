@@ -259,7 +259,7 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
     const markedNote=(D.notes||[]).flat().find(s=>/<b>/.test(String(s)));
     if(markedNote)assert.ok(defaultHTML.includes(markedNote),tk+' markup-bearing note is not rendered as markup (C12)');
     const baseRegime=(D.steady&&D.steady.regimes||[]).find(rg=>Math.abs(rg[1]-D.finance.MULT)<1e-9);
-    if(baseRegime)close((D.rr*baseRegime[1]-W.last.nd-W.liab+(D.finance.NONCORE||0))/W.DF*1000/W.dil,W.ps);
+    if(baseRegime)close((D.rr*baseRegime[1]-W.ndc-W.liab+(D.finance.NONCORE||0))/W.DF*1000/W.dil,W.ps);   // ndc: net debt incl. any convert series the horizon price does not clear
     const eps=(W.pl.ni*1000+W.addb)/W.dil;
     assert.ok(defaultHTML.includes('$'+N(eps,1))||defaultHTML.includes('$'+N(eps,2)),tk+' EPS not rendered in the income detail');
     repFixture[tk]=W.ps;

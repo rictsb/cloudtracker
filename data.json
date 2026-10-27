@@ -10290,13 +10290,13 @@
     "title": "Sharon AI: from MW to $",
     "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
     "px": {
-     "v": 26.99,
-     "note": "Finnhub, 19 Oct"
+     "v": 23.5,
+     "note": "Finnhub, 26 Oct"
     },
     "evArr": {
      "sh": 38.5,
      "nd": -0.81,
-     "arr": 0.3
+     "arr": 0.57
     },
     "facts": [
      [
@@ -10507,11 +10507,11 @@
      "W": 0.105,
      "SH0": 39.5,
      "EQ_SHARE": 0.1,
-     "EQ_PX": 27,
-     "DEBT0": 1.061,
+     "EQ_PX": 23.5,
+     "DEBT0": 1.055,
      "CASH0": 1.861,
      "RATE": 0.0995,
-     "TAX": 0.25,
+     "TAX": 0.3,
      "MINCASH": 0.15,
      "CONV": 1.05,
      "CONV_RATE": 0.0517,
@@ -10548,6 +10548,9 @@
         "amt": 0.144
        }
       ],
+      "alreadyReceived": {
+       "2026Q4": 0.144
+      },
       "special": {
        "2026Q4": {
         "replaceG": 0.5
@@ -10560,23 +10563,32 @@
        },
        "2027Q3": {
         "replaceG": 1
+       },
+       "2027Q4": {
+        "replaceG": 1.59
+       },
+       "2028Q1": {
+        "replaceG": 1.59
+       },
+       "2028Q2": {
+        "replaceG": 1.696
        }
       },
-      "basis": "Customer deposits of $143.9m at 30 Jun 2026 (10-Q: a company-specific line with no note, policy or counterparty; nil at 31 March) — 15.1% of the $950m contract or 11.4% of the ESDS Service Order; ESDS’s own filings describe an advance of ~INR 1,100–1,200 crore (~$124–140m) on the Sharon AI order, amortised monthly over the contract from go-live, while the Service Order calls for $140m of security by letter of credit (ESDS’s June balance sheet shows letters of credit nil); carried as the opening prepayment balance, credited over twenty quarters from Q4-26. The global-technology customer’s escrowed cash security was released on acceptance of the initial deployment (8-K 20 Aug 2026); the facility agreement expects Facility A to be prepaid from a customer deposit held in escrow on acceptance under a later Service Order 2, which no filing yet reports. Future contracts: the company’s stated policy is 10–20% of contract value as prepayment at signing, funding the GPU purchase order (10-K) — modelled at 20% of GPU capex on contracted capacity (~12% of contract value), credited evenly over the five-year term. NVIDIA pays no prepayment: the block’s ~$4bn of hardware is excluded from the prepayment base in the quarters it is paid (special.replaceG). Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry. Explicit opening-balance credits retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "basis": "Customer deposits of $143.9m at 30 Jun 2026 (10-Q: a company-specific line with no note, policy or counterparty; nil at 31 March) — 15.1% of the $950m contract or 11.4% of the ESDS Service Order; ESDS’s own filings describe an advance of ~INR 1,100–1,200 crore (~$124–140m) on the Sharon AI order, amortised monthly over the contract from go-live, while the Service Order calls for $140m of security by letter of credit (ESDS’s June balance sheet shows letters of credit nil); carried as the opening prepayment balance, credited over twenty quarters from Q4-26. The global-technology customer’s escrowed cash security was released on acceptance of the initial deployment (8-K 20 Aug 2026); the facility agreement expects Facility A to be prepaid from a customer deposit held in escrow on acceptance under a later Service Order 2, which no filing yet reports. Future contracts: the company’s stated policy is 10–20% of contract value as prepayment at signing, funding the GPU purchase order (10-K) — modelled at 20% of GPU capex on contracted capacity (~12% of contract value), credited evenly over the five-year term. NVIDIA pays no prepayment: the block’s ~$4bn of hardware is excluded from the prepayment base in the quarters it is paid (special.replaceG); the $144m already on the balance sheet is netted from the Q4-26 receipt (alreadyReceived) so the ESDS advance is not counted twice; and no prepayment is credited on the uncontracted 92 MW — contracts that do not exist yet earn none (§6e) — so the lease-up quarters 2027Q4–2028Q2 are excluded from the base as well. Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry. Explicit opening-balance credits retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
       "creditTiming": {
        "mode": "first-quarters",
        "quarters": 20
       }
      },
      "cover": {
-      "ctrPre": 0.2,
+      "ctrPre": 0,
       "ctrGpu": 0.8,
       "ctrShell": 0,
       "spotGpu": 0.5,
       "spotShell": 0
      },
      "wfMarginBasis": "the quarterly waterfall runs at 60% EBITDA: the company guides to ~75% gross margin (Q2-26 printed 60.6% gross and 30.6% adjusted EBITDA on $1.9m of revenue), SemiAnalysis’s contract-level margins after colocation ($100/kW-month) and power ($0.05/kWh) are 88–91%, and Bloomberg consensus carries 47–50% EBITDA through the 2026 ramp quarters and 55.3% for CY27 ($820m on $1.48bn) once corporate costs and the NVIDIA revenue share are charged; 60% sits between the tenant peers (CoreWeave 57–59%) and the company’s guide; the NVIDIA tranche rate is already net of NVIDIA’s share",
-     "basis": "debt 9.95% — the US$356m senior secured GPU-backed SPV facility of 28 Sep 2026 (borrowers SAI AU No. 1 and No. 3; Tranche A up to $150m at 7.25% stepping to 9.95%, repaid from the escrowed customer deposit on acceptance; Tranche B $206m fixed 9.95% with an 18-month make-whole; bullet at 42 months from first utilisation with an excess-cash sweep, DSRA, gross-LTV covenant on depreciated server cost; parent guarantee until Tranche A is repaid; Goldman Sachs and private-credit lenders, Jarden arranger; the “first in an expected series”), 20%/yr pool amortisation (GPU facilities sized to the five-year contracts and swept), $150m cash floor; lenders advance 80% of GPU cost on contracted capacity (SemiAnalysis sizes up to 80% LTC at 1.3× DSCR), 50% on spot; no shell capex — every site is leased colocation (non-cancellable operating leases, generally five-year terms, off balance sheet until service starts), rent inside EBITDA; 10% of capex from 2027 as policy equity at $27 (the 19 Oct 2026 mark) plus the residual the flywheel cannot cover, discounted 4.18 years from the 26 Oct 2026 page date to end-2030; the two convertible series (6.00% due May 2031 $350m, initial conversion price $48.24, Oaktree-anchored; 4.75% due Jun 2032 $700m at $99.66; no capped calls; both indentures reset the conversion price on any “Degressive Issuance” — an equity sale below the conversion price — down to the issue price with floors of $40.201 and $68.73, and the model’s own equity at $27 is such a sale, so the series are carried at their floor prices (8.7m and 10.2m shares); carried at fair value $1.007bn in the 10-Q, principal $1.05bn used here; forced conversion on the 2032s only far above the strike; initial conversion shares 7.26m and 7.02m at the initial prices) convert only if the model’s 2030 price clears the strike; finance leases $4.8m at 5.87% and a $6k note residual in DEBT0; the USD.AI ($500m) and Digital Alpha ($200m) facilities remain subject to documentation with no draw disclosed and are not counted; certificates of deposit $12.7m counted; fully diluted before converts 39.5m = 38.342m Class A + 0.136m Class B (160 votes a share, identical economics, no conversion or sunset) at 15 Sep 2026 after the 6.375m pre-funded warrants were exercised in full (3.7m on 30 Jun, 2.675m on 15 Sep by Situational Awareness, now 21.1%) + 0.923m RSUs + 0.034m options at $6.71 + ~0.07m other warrant shares; the 22.25m SPAC warrants (SHAZW, strike $575 post-split) convert to only 444,982 shares and are ignored; the 2.4m-share plan reserve and 3% annual evergreen from 2027 are not counted; no earnout exists"
+     "basis": "debt 9.95% — the US$356m senior secured GPU-backed SPV facility of 28 Sep 2026 (borrowers SAI AU No. 1 and No. 3; Tranche A up to $150m at 7.25% stepping to 9.95%, repaid from the escrowed customer deposit on acceptance; Tranche B $206m fixed 9.95% with an 18-month make-whole; bullet at 42 months from first utilisation with an excess-cash sweep, DSRA, gross-LTV covenant on depreciated server cost; parent guarantee until Tranche A is repaid; Goldman Sachs and private-credit lenders, Jarden arranger; the “first in an expected series”), 20%/yr pool amortisation (GPU facilities sized to the five-year contracts and swept), $150m cash floor; lenders advance 80% of GPU cost on contracted capacity (SemiAnalysis sizes up to 80% LTC at 1.3× DSCR) and no more — the prepayment is netted, not added to the lenders’ cover — 50% on spot; no shell capex — every site is leased colocation (non-cancellable operating leases, generally five-year terms, off balance sheet until service starts), rent inside EBITDA; 10% of capex from 2027 as policy equity at $23.50 (the 26 Oct 2026 mark; the June placement was at $68.73) plus the residual the flywheel cannot cover, discounted 4.18 years from the 26 Oct 2026 page date to end-2030; the two convertible series (6.00% due May 2031 $350m, initial conversion price $48.24, Oaktree-anchored; 4.75% due Jun 2032 $700m at $99.66; no capped calls; both indentures reset the conversion price on any “Degressive Issuance” — an equity sale below the conversion price — down to the issue price with floors of $40.201 and $68.73, and the model’s own equity at $23.50 is such a sale, so the series are carried at their floor prices (8.7m and 10.2m shares) and a series the model’s 2030 price does not clear stays debt at the tie-out; carried at fair value $1.007bn in the 10-Q, principal $1.05bn used here; forced conversion on the 2032s only far above the strike; initial conversion shares 7.26m and 7.02m at the initial prices) convert only if the model’s 2030 price clears the strike; finance leases $4.8m at 5.87% and a $6k note residual in DEBT0 (the $6.1m SPAC-warrant fair-value liability is not debt and is excluded); the USD.AI ($500m) and Digital Alpha ($200m) facilities remain subject to documentation with no draw disclosed and are not counted; certificates of deposit $12.7m counted; fully diluted before converts 39.5m = 38.342m Class A + 0.136m Class B (160 votes a share, identical economics, no conversion or sunset) at 15 Sep 2026 after the 6.375m pre-funded warrants were exercised in full (3.7m on 30 Jun, 2.675m on 15 Sep by Situational Awareness, now 21.1%) + 0.923m RSUs + 0.034m options at $6.71 + ~0.07m other warrant shares; the 22.25m SPAC warrants (SHAZW, strike $575 post-split) convert to only 444,982 shares and are ignored; the 2.4m-share plan reserve and 3% annual evergreen from 2027 are not counted; no earnout exists"
     },
     "steadyInputs": {
      "M": 0.6,
@@ -10586,14 +10598,14 @@
      "swap": 0.55,
      "life": 4,
      "fail": 0.03,
-     "tax": 0.25,
+     "tax": 0.3,
      "W": 0.105,
      "g": 0.06,
      "gY": 5,
      "term": 5,
      "spotW": 0.025,
      "H": 60,
-     "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Running costs at the 60% forecast margin (colocation rent, power, managed services and overhead inside it; no shell). A 55% refresh reserve every four years plus 3% annual spares on $53m of GPUs and ancillaries per IT MW (the filed commitments weighted across the five contracts; $48–56m per MW each) is a long-run house allowance, not compulsory retirement at a contract expiry. Tax 25% (US parent, Australian operating subsidiaries). Post-horizon market growth of 6% for five years is the shared house assumption on every page; it takes the 2030 horizon revenue of ~$18m per IT MW to ~$24m by 2035, above the shared curve’s flat $21m extension — holding it flat is worth −$29 a share and is an open owner ruling. New/renewed contracts reprice every five years in that terminal regime (the book is five-year paper)."
+     "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Running costs at the 60% forecast margin (colocation rent, power, managed services and overhead inside it; no shell). A 55% refresh reserve every four years plus 3% annual spares on $53m of GPUs and ancillaries per IT MW (the filed commitments weighted across the five contracts; $48–56m per MW each) is a long-run house allowance, not compulsory retirement at a contract expiry. Tax 30% — the Australian statutory company rate for the operating subsidiaries (the FY25 10-K rate reconciliation shows Australia 3.6 points above the US 21% federal rate; the base-rate-entity 25% applies only below A$50m of turnover). Post-horizon market growth of 6% for five years is the shared house assumption on every page; it takes the 2030 horizon revenue of ~$18m per IT MW to ~$24m by 2035, above the shared curve’s flat $21m extension — holding it flat is worth −$29 a share and is an open owner ruling. New/renewed contracts reprice every five years in that terminal regime (the book is five-year paper)."
     },
     "labels": {
      "shell": "lease",
@@ -10604,8 +10616,8 @@
     },
     "notes": [
      [
-      "<b>212 MW secured, 120 MW contracted.</b> Every megawatt is leased colocation: NEXTDC Melbourne and Sydney (87 MW, including the 72 MW NVIDIA site at M2), GreenSquareDC SYD1 (15 MW, 120-month term, online 19 Oct 2026), a New Zealand provider (14 MW, Q1 2027), other providers ~16 MW and 80 MW added on 20 August with no partner named.<span class=\"src\">Q2-26 10-Q · 8-K 20 Aug · GreenSquareDC 19 Oct</span>",
-      "<b>The NVIDIA site lands in 2027.</b> The amended and restated NEXTDC service order for 72 MW deploys in five phases from April to August 2027 and commits ~$623m over an undisclosed term; NEXTDC had 12 MW delivered and 60 MW of liquid-to-chip capacity under construction at M2 at 30 June. The company is “substantially dependent on NEXTDC”.<span class=\"src\">10-Q commitments note · NEXTDC FY26 report</span>",
+      "<b>212 MW secured, 120 MW contracted.</b> Every megawatt is leased colocation: NEXTDC Melbourne and Sydney (87 MW, including the 72 MW NVIDIA site at M2), GreenSquareDC SYD1 (15 MW, 120-month term, online 19 Oct 2026), a New Zealand provider (14 MW, Q1 2027), other providers ~16 MW and 80 MW added on 20 August with no partner named. DigiCo is named as a current host with no disclosed megawatts, and the former Visy paper mill at Ettamogah near Albury was bought on 16 September (price undisclosed, no development application, no megawatts) — an owned site outside the 212 MW.<span class=\"src\">Q2-26 10-Q · FY25 10-K · 8-K 20 Aug · GreenSquareDC 19 Oct · ABC 16 Sep</span>",
+      "<b>The NVIDIA site lands in 2027.</b> The amended and restated NEXTDC service order for 72 MW deploys in five phases from April to August 2027 and commits ~$623m over an undisclosed term; NEXTDC had 12 MW delivered and 60 MW of liquid-to-chip capacity under construction at M2 at 30 June. The company is “substantially dependent on NEXTDC”. NEXTDC’s 21 October update concerns M3, where Jemena suspended the 66 kV works in September and does not expect to recommence them before February 2027 (next grid increase FY2028; NEXTDC’s FY27 revenue guide cut to A$475–500m); Sharon’s M3 exposure is ~2 MW per Cantor, press-tier, and the update says nothing about M2.<span class=\"src\">10-Q commitments note · NEXTDC FY26 report · NEXTDC ASX 21 Oct</span>",
       "<b>Beyond 212 MW is not modelled.</b> Management speaks of a “gigawatt-scale” ambition across Australia, New Zealand and Asia-Pacific and says capacity is only announced with a customer and financing in place; the page stops at the secured footprint, and the signed-book-only scenario stops at 120 MW.<span class=\"src\">8-K 1 Oct 2026 · Q2 call</span>"
      ],
      [
@@ -10614,14 +10626,14 @@
       "<b>Density is the company’s own.</b> 40,000 GB300 on 72 MW is 556 per MW (~1.8 kW all-in); the ESDS cluster 547 per MW; the global-tech clusters 481. No filing states kW per GPU. The house 400 per MW used on the other pages would put ~30% more megawatts behind the same GPUs.<span class=\"src\">8-K 12 Jun · Service Order No. 1 · June deck</span>"
      ],
      [
-      "<b>Contract cohorts.</b> The signed book keeps its filed all-in rate until expiry: ESDS $3.52, the global technology company $3.75, the AI platform $4.16, New Zealand $4.31 per GPU-hour — $15.8–18.9m per IT MW-year; management guides ~$15m per MW including storage. New capacity uses the shared house curve.",
+      "<b>Contract cohorts.</b> The signed book keeps its filed all-in rate until expiry: ESDS $3.52, the global technology company $3.75, the AI platform $4.16, New Zealand $4.31 per GPU-hour — $15.8–18.9m per IT MW-year; management guides ~$15m per MW including storage. New capacity uses the shared house curve. The company’s own measures: TCV over $8.8bn, and a 15 May 2026 guide of at least $470m exit-2026 revenue run-rate — the page’s Q4-26 revenue, $117.5m × 4, reproduces it.<span class=\"src\">8-Ks · Service Order No. 1 · Q1 call 15 May · 8-K 1 Oct</span>",
       "<b>The NVIDIA block is a floor, not a price.</b> Up to $4.88bn over six years on 40,000 GPUs is $2.32 per GPU-hour on average — NVIDIA’s maximum payment, which falls as capacity is sold to third parties; Sharon keeps the anchor price on capacity it sells and shares the spread above it at an undisclosed rate. The page carries $3.29 (owner ruling, 3 Aug 2026); the floor and a 40%-share placement are scenarios. No placement has printed, and reports of a pause in NVIDIA’s wider programme are unaddressed.<span class=\"src\">8-K 12 Jun 2026 · NVIDIA Q2 FY27 10-Q · SemiAnalysis</span>",
-      "<b>Evidence.</b> Contract dollars and terms are filed; the ESDS Service Order is public; GPU counts on two contracts are inferred; no customer is named except ESDS and NVIDIA. ESDS (CRISIL A-/Positive) has paid a ~$135m advance on its order but the $140m letter of credit the Service Order requires is not confirmed by either side; its go-live slipped from 16 Sep to early November."
+      "<b>Evidence.</b> Contract dollars and terms are filed; the ESDS Service Order is public; GPU counts on two contracts are inferred; no customer is named except ESDS and NVIDIA. ESDS (CRISIL A-/Positive) has paid a ~$135m advance on its order but the $140m letter of credit the Service Order requires is not confirmed by either side; its go-live slipped from 16 Sep to early November. Of 13 tranches, 10 carry an estimated expiry, 6 an unverified price and 3 an assumed commitment; the 2028 Vera Rubin tranches use a house density (250 per MW) and a rate derived from the shared curve, with no company pricing.<span class=\"src\">tranche table · ESDS Q1 FY27 call · CRISIL · GreenSquareDC 19 Oct</span>"
      ],
      [
-      "<b>Prepay, then borrow against the contract.</b> Policy is 10–20% of contract value at signing to fund the purchase order; the inaugural $356m GPU-backed SPV facility (Tranche A $150m at 7.25% stepping to 9.95%, Tranche B $206m at 9.95%, 42-month bullet with a cash sweep) is “the first in an expected series”, with Tranche A repaid from the escrowed customer deposit on acceptance.<span class=\"src\">10-K · Q2 deck · 8-K 1 Oct 2026 and facility agreement</span>",
+      "<b>Prepay, then borrow against the contract.</b> Policy is 10–20% of contract value at signing to fund the purchase order; the inaugural $356m GPU-backed SPV facility (Tranche A $150m at 7.25% stepping to 9.95%, Tranche B $206m at 9.95%, 42-month bullet with a cash sweep) is “the first in an expected series”, with Tranche A repaid from the escrowed customer deposit on acceptance. Its one-month availability period from 28 September ends about 28 October and the amount drawn is undisclosed; the net-cash tile is 30 June, and the Q3 10-Q is due by 16 November 2026.<span class=\"src\">10-K · Q2 deck · 8-K 1 Oct 2026 and facility agreement</span>",
       "<b>$2.6bn raised in ten months.</b> $103m pre-IPO notes (converted at $12.53), $74m from the TCDC sale, $125m IPO at $30 (Feb), $350m 6.00% converts (May), $900m of equity and pre-funded warrants at $68.73 plus $700m 4.75% converts (June), $356m of GPU debt (Sep). The USD.AI ($500m) and Digital Alpha ($200m) facilities remain undocumented and undrawn.<span class=\"src\">10-Q · 8-Ks · S-1/A 20 Aug</span>",
-      "<b>The catch:</b> $6.1bn of hardware is committed on the contracted book against $1.86bn of cash. At today’s price the residual equity in the model is raised at $27, against a June placement at $68.73 (Situational Awareness now holds 21.1% at a ~$65 cost); the converts (strikes $48.24 and $99.66) stay debt unless the price recovers.<span class=\"src\">funding stack · summary table · 13D/A 17 Sep</span>"
+      "<b>The catch:</b> $6.1bn of hardware is committed on the contracted book against $1.86bn of cash. At today’s price the residual equity in the model is raised at $23.50, against a June placement at $68.73 (Situational Awareness now holds 21.1% at a ~$65 cost); the converts (strikes $48.24 and $99.66) stay debt unless the price recovers.<span class=\"src\">funding stack · summary table · 13D/A 17 Sep</span>"
      ],
      [
       "<b>Costs are rent and power.</b> SemiAnalysis’s inputs — colocation $100 per kW-month, power $0.05/kWh — leave 88–91% contract-level margins; the NEXTDC 72 MW order ($623m, establishment fees plus monthly charges, power passed through separately) implies $0.9–1.7m per MW-year depending on its undisclosed term, most consistent with a five-to-six-year billing term at $120–144 per kW-month; the company guides ~75% gross; consensus carries 47–50% EBITDA through the ramp quarters and 55% for 2027 once overhead and the NVIDIA share are charged. The page runs 60% in every quarter and in the terminal MW.<span class=\"src\">SemiAnalysis · 10-Q · Bloomberg</span>",
@@ -10629,9 +10641,9 @@
       "<b>Maintenance, not replacement.</b> Tray swap at 55% of GPU cost every four years plus 3%/yr spares — the same house allowance as the other pages — on a five-year take-or-pay book that recovers the hardware inside the term at these rates (gross payback 2.1–2.9 years on the customer clusters, 4.9 at the NVIDIA floor).<span class=\"src\">model · research pack</span>"
      ],
      [
-      "<b>Some equity, not none.</b> Base: 10% of the 2027–28 build plus whatever the prepayments, the GPU facilities and operating cash cannot cover, issued at $27 — the bridge shows the count. The June placement was at $68.73; the price has since fallen by more than half, with a 52% drop between 6 and 23 October on no filing.<span class=\"src\">8-K 17 Jun 2026 · Finnhub</span>",
+      "<b>Some equity, not none.</b> Base: 10% of the 2027–28 build plus whatever the prepayments, the GPU facilities and operating cash cannot cover, issued at $23.50 — the bridge shows the count. The June placement was at $68.73; the price has since fallen by more than half: $48 on 6 October to $23 on 23 October, with four days down more than 10% (8, 14, 16 and 22 October) around NEXTDC’s 19 October halt and 21 October M3 update, a 2× leveraged SHAZ ETF registered on 9 October, and no Sharon filing.<span class=\"src\">8-K 17 Jun 2026 · stockanalysis · Finnhub</span>",
       "<b>The NVIDIA economics are the swing.</b> Floor versus placement moves the 72 MW block between $2.32 and $3.49 per GPU-hour; every $1 per GPU-hour on the block is ~$175m a year retained. The signed-book-only scenario shows what the 120 MW contracted today is worth on its own.<span class=\"src\">scenarios · SemiAnalysis</span>",
-      "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> Pick your multiple.<span class=\"src\">after the raise</span>"
+      "<b>Reconciled value.</b> Quarterly revenue passes through the debt, prepayment and dilution waterfall; the terminal multiple is recalculated from the displayed steady-state inputs with no house premium. Both convert series are out of the money at the model’s own horizon price (reset-floor strikes $40.20 and $68.73) and stay debt. Pricing policy is dated 15 September 2026; disclosures and the market reference keep their own dates.<span class=\"src\">model · 8-K/A 22 Jun · indentures</span>"
      ]
     ],
     "footer": {

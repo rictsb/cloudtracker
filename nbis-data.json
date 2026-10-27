@@ -2847,7 +2847,7 @@
       {
         "id": "newdown",
         "label": "New prices −20%",
-        "valuePerShare": 169.1249619278051,
+        "valuePerShare": 160.89643035866592,
         "runRateBn": 72.7372,
         "multiple": 2.930328934441472,
         "note": "Shared new-business prices 20% lower; original existing-book rates protected."
@@ -2879,7 +2879,7 @@
       {
         "id": "longterm",
         "label": "Five-year new business, lower price",
-        "valuePerShare": 185.5847161255311,
+        "valuePerShare": 177.29334537865583,
         "runRateBn": 75.914,
         "multiple": 2.912968660530065,
         "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years."
@@ -2887,7 +2887,7 @@
       {
         "id": "slip",
         "label": "Delivery slips two quarters",
-        "valuePerShare": 203.65003985380898,
+        "valuePerShare": 200.34428926895703,
         "runRateBn": 75.1456,
         "multiple": 3.2364267703909966,
         "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar."
@@ -2895,7 +2895,7 @@
       {
         "id": "joint",
         "label": "Joint downside",
-        "valuePerShare": 84.7409817787717,
+        "valuePerShare": 64.74291611404239,
         "runRateBn": 58.9216,
         "multiple": 2.7672783809772694,
         "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar."

@@ -223,7 +223,7 @@
       ['Equity raised', c => c.r ? f0(c.r.eq) : ''], ['Debt drawn', c => c.r ? f0(c.r.draw) : ''],
       ['Interest — debt at ' + p0(F.RATE) + (CONV ? ', converts at ' + n((F.CONV_RATE || 0) * 100, 1) + '%' : ''), c => c.r ? f0(c.r.intr) : ''],
       ['sec', 'Balance sheet'], [lb.debt + (CONV ? ' ex converts' : '') + ', $bn', c => c.r ? n(c.r.debt, 1) : ''],
-      CONV ? ['Convertible notes, $bn — equity at the tie-out', c => c.r ? n(CONV, 1) : ''] : null,
+      CONV ? ['Convertible notes, $bn — equity at the tie-out when the horizon price clears the strike, debt otherwise', c => c.r ? n(CONV, 1) : ''] : null,
       ['Cash, $bn', c => c.r ? n(c.r.cash, 1) : ''], ['Net debt' + (CONV ? ' ex converts' : '') + ', $bn', c => c.r ? n(c.r.nd, 1) : '', c => c.r && c.r.nd < 0 ? 'pos' : ''],
       ['Prepayments owed to customers, $bn', c => c.r ? n(c.r.owed, 1) : ''], ['Shares outstanding, m' + (CONV ? ' — before the converts' : ''), c => c.r ? f0(c.r.sh) : ''],
       ['sec', 'Earnings'], ['Net income, $m', c => c.r ? f0(c.r.ni) : '', c => c.r && c.r.ni < 0 ? 'neg' : ''],

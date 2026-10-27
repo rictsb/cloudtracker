@@ -2731,7 +2731,7 @@
       {
         "id": "base",
         "label": "Shared pricing base",
-        "valuePerShare": 146.83439127805482,
+        "valuePerShare": 146.83439127801878,
         "runRateBn": 56.826,
         "multiple": 4.312417198023443,
         "note": "Existing book, same-hardware renewals and shared new-business pricing."
@@ -2739,7 +2739,7 @@
       {
         "id": "newdown",
         "label": "New prices −20%",
-        "valuePerShare": 90.60178022692763,
+        "valuePerShare": 90.60178022695015,
         "runRateBn": 47.8104,
         "multiple": 3.9072058097439335,
         "note": "Shared new-business prices 20% lower; original existing-book rates protected."
@@ -2747,7 +2747,7 @@
       {
         "id": "newup",
         "label": "New prices +20%",
-        "valuePerShare": 202.8166504509427,
+        "valuePerShare": 202.81665045093752,
         "runRateBn": 65.8416,
         "multiple": 4.609197083369308,
         "note": "Shared new-business prices 20% higher; original existing-book rates protected."
@@ -2755,7 +2755,7 @@
       {
         "id": "renewdown",
         "label": "Renewal prices −20%",
-        "valuePerShare": 142.07943804207528,
+        "valuePerShare": 142.07943804203134,
         "runRateBn": 56.016400000000004,
         "multiple": 4.28120761185202,
         "note": "Same hardware renews at 80% of its original all-in price."
@@ -2763,7 +2763,7 @@
       {
         "id": "retention",
         "label": "80% renewal retention",
-        "valuePerShare": 150.74269129936783,
+        "valuePerShare": 150.74269129933708,
         "runRateBn": 57.6364,
         "multiple": 4.326569761200017,
         "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions."
@@ -2771,7 +2771,7 @@
       {
         "id": "longterm",
         "label": "Five-year new business, lower price",
-        "valuePerShare": 102.47976646493768,
+        "valuePerShare": 102.47976646494712,
         "runRateBn": 50.0644,
         "multiple": 3.8919061266880792,
         "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years."
@@ -2779,7 +2779,7 @@
       {
         "id": "slip",
         "label": "Delivery slips two quarters",
-        "valuePerShare": 109.34409491746223,
+        "valuePerShare": 109.3440949174682,
         "runRateBn": 49.1744,
         "multiple": 4.321758149373844,
         "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar."
@@ -2787,7 +2787,7 @@
       {
         "id": "joint",
         "label": "Joint downside",
-        "valuePerShare": 45.580141433731015,
+        "valuePerShare": 44.37095530320966,
         "runRateBn": 38.9964,
         "multiple": 3.782843667488769,
         "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar."
