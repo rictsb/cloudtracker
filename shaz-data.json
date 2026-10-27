@@ -2,7 +2,7 @@
   "tk": "SHAZ",
   "name": "Sharon AI Holdings",
   "asOf": "2026-10-26",
-  "kicker": "Sharon AI · NASDAQ: SHAZ · from the Q2-26 10-Q, the 6 Aug results and the 1 Oct facility 8-K",
+  "kicker": "Sharon AI · NASDAQ: SHAZ · from the Q2-26 10-Q, the 6 Aug results, the 1 Oct facility 8-K and the research pack",
   "title": "Sharon AI: from MW to $",
   "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
   "px": {
@@ -10,9 +10,9 @@
     "note": "Finnhub, 19 Oct"
   },
   "evArr": {
-    "sh": 42.2,
+    "sh": 38.5,
     "nd": -0.81,
-    "arr": 0.4
+    "arr": 0.3
   },
   "arrLabel": "Energized contractual run-rate, including assumed renewals and new signings; earning revenue is shown separately.",
   "capacity": {
@@ -20,7 +20,7 @@
       [
         "Secured AI Factory capacity",
         212,
-        "20 Aug 2026 · NEXTDC up to 87 MW incl. the 72 MW NVIDIA site, GreenSquareDC 15, New Zealand 14, +80 MW with no site disclosed"
+        "20 Aug 2026 · NEXTDC 87 MW incl. the 72 MW NVIDIA site, GreenSquareDC 15, New Zealand 14, other providers ~16, +80 MW with an unnamed partner"
       ],
       [
         "Contracted to customers",
@@ -30,12 +30,12 @@
       [
         "NVIDIA block",
         72,
-        "NEXTDC amended service order · five phases Apr–Aug 2027 · ~$623m over the term"
+        "NEXTDC M2 amended service order · five phases Apr–Aug 2027 · ~$623m over the term"
       ],
       [
         "Energising in H2-26",
-        27,
-        "ESDS 15 MW, global-tech 10 MW (first cluster accepted 20 Aug), merchant 2 MW"
+        37,
+        "global-tech 12 MW (first cluster accepted 20 Aug), ESDS 15 MW at GreenSquare SYD1 (online 19 Oct), AI platform 4, merchant 4"
       ]
     ],
     "max": 212
@@ -61,11 +61,11 @@
       2.1,
       [
         [
-          "M3 Supercluster · 1,016 B200/H200 (short-tenor)",
+          "M3 Supercluster · 1,016 H200 (short-tenor)",
           1.6,
           "2025Q4",
           "2026Q2",
-          8,
+          6,
           1
         ]
       ],
@@ -78,30 +78,22 @@
         [
           "Cisco Secure AI Factory · 1,024 B300 (short-tenor)",
           2,
-          "2026Q1",
-          "2026Q2",
-          8,
+          "2026Q3",
+          "2026Q4",
+          4,
           1
         ]
       ],
       null
     ],
     [
-      "Existing provider, Australia · ESDS",
+      "GreenSquareDC SYD1 Sydney · ESDS",
       19.5,
       [
         [
-          "ESDS · 8,208 B300 · phase 1 (5 MW)",
-          5,
-          "2026Q2",
-          "2026Q3",
-          1,
-          1
-        ],
-        [
-          "ESDS · phase 2 (10 MW)",
-          10,
-          "2026Q3",
+          "ESDS · 8,208 B300 · GreenSquareDC SYD1 (15 MW)",
+          15,
+          "2026Q4",
           "2026Q4",
           1,
           1
@@ -111,11 +103,11 @@
     ],
     [
       "NEXTDC S6 Sydney",
-      13,
+      15.6,
       [
         [
           "Global technology company · NEXTDC S6 Sydney · phase 1 (accepted 20 Aug)",
-          5,
+          6,
           "2026Q3",
           "2026Q3",
           1,
@@ -123,7 +115,7 @@
         ],
         [
           "Global technology company · phase 2",
-          5,
+          6,
           "2026Q4",
           "2026Q4",
           1,
@@ -163,11 +155,11 @@
       null
     ],
     [
-      "NEXTDC 72 MW · NVIDIA block",
+      "NEXTDC M2 Melbourne · NVIDIA block",
       93.6,
       [
         [
-          "NVIDIA block · NEXTDC 72 MW · phases 1–3 (Apr–Jun 2027)",
+          "NVIDIA block · NEXTDC M2 72 MW · phases 1–3 (Apr–Jun 2027)",
           36,
           "2027Q2",
           "2027Q2",
@@ -220,270 +212,270 @@
   "Q": [
     [
       "2026Q3",
-      48.8,
-      48.1,
-      44.6,
-      12,
-      32,
-      6054,
+      26.2,
+      26.1,
+      23.7,
+      7,
+      13,
+      3659,
       {
-        "hopper": 432,
-        "blackwell": 5622,
+        "hopper": 771,
+        "blackwell": 2888,
         "rubin": 0,
         "next": 0
       }
     ],
     [
       "2026Q4",
-      116.2,
-      115.2,
-      110,
-      27,
-      43,
-      14157,
+      116.3,
+      115.8,
+      110.7,
+      29,
+      45,
+      15180,
       {
-        "hopper": 432,
-        "blackwell": 13725,
+        "hopper": 940,
+        "blackwell": 14240,
         "rubin": 0,
         "next": 0
       }
     ],
     [
       "2027Q1",
-      175.2,
-      168.5,
-      161.7,
-      38,
-      61,
-      19960,
+      174.7,
+      170.2,
+      162.4,
+      40,
+      64,
+      21153,
       {
-        "hopper": 432,
-        "blackwell": 19528,
+        "hopper": 1109,
+        "blackwell": 20044,
         "rubin": 0,
         "next": 0
       }
     ],
     [
       "2027Q2",
-      355.6,
-      347.2,
-      338.8,
-      82,
-      108,
-      43715,
+      356.5,
+      350.1,
+      339.5,
+      84,
+      110,
+      45079,
       {
-        "hopper": 432,
-        "blackwell": 43283,
+        "hopper": 1279,
+        "blackwell": 43800,
         "rubin": 0,
         "next": 0
       }
     ],
     [
       "2027Q3",
-      503,
-      493,
-      482.9,
-      118,
-      155,
-      63970,
+      505.3,
+      496.9,
+      483.6,
+      121,
+      157,
+      65504,
       {
-        "hopper": 432,
-        "blackwell": 63538,
+        "hopper": 1448,
+        "blackwell": 64056,
         "rubin": 0,
         "next": 0
       }
     ],
     [
       "2027Q4",
-      583.5,
-      555.3,
-      482.9,
-      134,
-      194,
-      71725,
+      582.4,
+      557.6,
+      483.6,
+      136,
+      196,
+      73004,
       {
-        "hopper": 432,
-        "blackwell": 71293,
+        "hopper": 1448,
+        "blackwell": 71556,
         "rubin": 0,
         "next": 0
       }
     ],
     [
       "2028Q1",
-      741.2,
-      681.8,
-      482.9,
-      164,
-      233,
-      83230,
+      736.8,
+      682.5,
+      483.6,
+      166,
+      235,
+      84254,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 3750,
         "next": 0
       }
     ],
     [
       "2028Q2",
-      900.8,
-      814.3,
-      482.9,
-      195,
-      274,
-      90980,
+      896.5,
+      815,
+      483.6,
+      197,
+      277,
+      92004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 11500,
         "next": 0
       }
     ],
     [
       "2028Q3",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2028Q4",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2029Q1",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2029Q2",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2029Q3",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2029Q4",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2030Q1",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2030Q2",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2030Q3",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
     ],
     [
       "2030Q4",
-      983.2,
-      882.7,
-      482.9,
-      211,
-      274,
-      94980,
+      978.9,
+      883.4,
+      483.6,
+      213,
+      277,
+      96004,
       {
-        "hopper": 432,
-        "blackwell": 79048,
+        "hopper": 1448,
+        "blackwell": 79056,
         "rubin": 15500,
         "next": 0
       }
@@ -497,23 +489,23 @@
     ],
     [
       "2026Q1",
-      0.05,
-      0.05
+      0.03,
+      0.03
     ],
     [
       "2026Q2",
-      0.14,
-      0.14
+      0.03,
+      0.03
     ],
     [
       "2026Q3",
-      0.4,
-      0.35
+      0.15,
+      0.09
     ],
     [
       "2026Q4",
       0.57,
-      0.51
+      0.52
     ],
     [
       "2027Q1",
@@ -527,7 +519,7 @@
     ],
     [
       "2027Q3",
-      1.98,
+      1.99,
       1.93
     ],
     [
@@ -537,7 +529,7 @@
     ],
     [
       "2028Q1",
-      2.98,
+      2.99,
       1.93
     ],
     [
@@ -615,340 +607,336 @@
     ],
     [
       "2026Q1",
-      6,
-      4,
+      3,
+      2,
       0.7,
-      2472,
+      1448,
       432,
       432,
       0.3,
       0.3,
       0.3,
       0.3,
-      19.3,
+      null,
       0.29,
       null
     ],
     [
       "2026Q2",
-      12,
-      9,
-      1.2,
-      5208,
-      687,
-      611,
-      2.2,
-      1.9,
-      1.9,
-      1.49,
-      16.7,
+      3,
+      2,
+      1,
+      1448,
+      601,
+      551,
+      1.4,
+      1.3,
+      1.3,
+      1.04,
+      null,
       1.9,
       null
     ],
     [
       "2026Q3",
-      32,
-      24,
-      11.6,
-      13056,
-      6054,
-      5112,
-      48.8,
-      48.1,
-      44.6,
-      3.68,
-      17.4,
+      13,
+      10,
+      7.2,
+      5360,
+      3659,
+      2888,
+      26.2,
+      26.1,
+      23.7,
+      3.27,
+      16.5,
       null,
       36.6
     ],
     [
       "2026Q4",
-      43,
-      33,
-      27.1,
-      17480,
-      14157,
-      12960,
-      116.2,
-      115.2,
-      110,
-      3.75,
-      19.5,
+      45,
+      35,
+      29,
+      18504,
+      15180,
+      13984,
+      116.3,
+      115.8,
+      110.7,
+      3.5,
+      17.1,
       null,
       117.9
     ],
     [
       "2027Q1",
-      61,
-      47,
-      38.2,
-      24480,
-      19960,
-      18508,
-      175.2,
-      168.5,
-      161.7,
-      4.01,
+      64,
+      49,
+      40.5,
+      25504,
+      21153,
+      19532,
+      174.7,
+      170.2,
+      162.4,
+      3.77,
       18.9,
       null,
       225.7
     ],
     [
       "2027Q2",
-      108,
-      83,
-      81.7,
-      44480,
-      43715,
-      42008,
-      355.6,
-      347.2,
-      338.8,
-      3.71,
+      110,
+      85,
+      84.2,
+      45504,
+      45079,
+      43032,
+      356.5,
+      350.1,
+      339.5,
+      3.61,
       16,
       null,
       346.3
     ],
     [
       "2027Q3",
-      155,
-      119,
-      118.1,
-      64480,
-      63970,
-      62008,
-      503,
-      493,
-      482.9,
-      3.59,
+      157,
+      121,
+      121,
+      65504,
+      65504,
+      63032,
+      505.3,
+      496.9,
+      483.6,
+      3.52,
       16,
       null,
       412
     ],
     [
       "2027Q4",
-      194,
-      149,
-      133.6,
-      79480,
-      71725,
-      62008,
-      583.5,
-      555.3,
-      482.9,
-      3.71,
+      196,
+      151,
+      136,
+      80504,
+      73004,
+      63032,
+      582.4,
+      557.6,
+      483.6,
+      3.64,
       18,
       null,
       497.7
     ],
     [
       "2028Q1",
-      233,
-      179,
-      164,
-      86980,
-      83230,
-      62008,
-      741.2,
-      681.8,
-      482.9,
-      4.07,
+      235,
+      181,
+      166,
+      88004,
+      84254,
+      63032,
+      736.8,
+      682.5,
+      483.6,
+      3.99,
       19,
       null,
       609.7
     ],
     [
       "2028Q2",
-      274,
-      211,
-      195,
-      94980,
-      90980,
-      62008,
-      900.8,
-      814.3,
-      482.9,
-      4.52,
+      277,
+      213,
+      197,
+      96004,
+      92004,
+      63032,
+      896.5,
+      815,
+      483.6,
+      4.45,
       19,
       null,
       685.7
     ],
     [
       "2028Q3",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2028Q4",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2029Q1",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2029Q2",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2029Q3",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2029Q4",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2030Q1",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2030Q2",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2030Q3",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ],
     [
       "2030Q4",
-      274,
-      211,
-      211,
-      94980,
-      94980,
-      62008,
-      983.2,
-      882.7,
-      482.9,
-      4.73,
+      277,
+      213,
+      213,
+      96004,
+      96004,
+      63032,
+      978.9,
+      883.4,
+      483.6,
+      4.66,
       null,
       null,
       null
     ]
   ],
   "CAPQ": {
-    "2026Q2": [
-      210,
-      0
-    ],
     "2026Q3": [
-      630,
+      517,
       0
     ],
     "2026Q4": [
-      865,
+      1400,
       0
     ],
     "2027Q1": [
-      1838,
+      1632,
       0
     ],
     "2027Q2": [
@@ -956,33 +944,33 @@
       0
     ],
     "2027Q3": [
-      744,
+      1000,
       0
     ],
     "2027Q4": [
-      1350,
+      1500,
       0
     ],
     "2028Q1": [
-      1350,
+      1500,
       0
     ],
     "2028Q2": [
-      1440,
+      1600,
       0
     ]
   },
   "ARRC": {
     "2025Q4": 0.03,
-    "2026Q1": 0.05,
-    "2026Q2": 0.14,
-    "2026Q3": 0.4,
+    "2026Q1": 0.03,
+    "2026Q2": 0.03,
+    "2026Q3": 0.15,
     "2026Q4": 0.57,
     "2027Q1": 0.83,
     "2027Q2": 1.41,
-    "2027Q3": 1.98,
+    "2027Q3": 1.99,
     "2027Q4": 2.47,
-    "2028Q1": 2.98,
+    "2028Q1": 2.99,
     "2028Q2": 3.53,
     "2028Q3": 3.53,
     "2028Q4": 3.53,
@@ -996,26 +984,21 @@
     "2030Q4": 3.53
   },
   "fund": {
-    "cost": 42,
-    "max": 55,
+    "cost": 50,
+    "max": 60,
     "rows": [
       [
         "Contracted MW",
         [
           [
-            6.3,
+            10,
             "var(--s1)",
-            "customer prepayment — 15% of the GPU cost (deposits of $144m stood against the first two contracts at 30 June)"
+            "customer prepayment — 20% of the GPU cost (policy 10–20% of contract value at signing; ESDS paid ~$135m in advance)"
           ],
           [
-            33.6,
+            40,
             "var(--s2)",
-            "GPU financing at 80% of cost (the Sep-26 SPV facility: 9.95% fixed, Goldman Sachs and private credit)"
-          ],
-          [
-            2.1,
-            "var(--s4)",
-            "equity — the balance"
+            "GPU financing at 80% of cost (the Sep-26 SPV facility: 9.95% fixed on Tranche B, Goldman Sachs and private credit)"
           ]
         ]
       ],
@@ -1023,27 +1006,27 @@
         "Unsigned MW",
         [
           [
-            21,
+            25,
             "var(--s2)",
             "GPU financing at 50%"
           ],
           [
-            21,
+            25,
             "var(--s4)",
-            "equity — the gap to $42m"
+            "equity — the gap to $50m"
           ]
         ]
       ]
     ],
-    "cap": "how ONE IT megawatt of new build is paid for · $m per MW, against $42m of GPUs and ancillaries (B300/GB300 clusters) · the shell is leased from NEXTDC, GreenSquareDC and a New Zealand provider, rent inside EBITDA"
+    "cap": "how ONE IT megawatt of new build is paid for · $m per MW, against ~$50m of GPUs and ancillaries (filed commitments $48–56m per MW) · the shell is leased from NEXTDC, GreenSquareDC and a New Zealand provider, rent inside EBITDA"
   },
   "bridge": {
     "label": "Capex to deploy the 120 MW contracted",
-    "lo": 5.7,
-    "hi": 6,
+    "lo": 5.8,
+    "hi": 6.1,
     "max": 6.5,
-    "range": "$5.7–6.0bn",
-    "quote": "“approximately $4 billion” of hardware committed for the NVIDIA block (10-Q) plus ~$42m per MW on 48 MW of customer clusters, less $256m already prepaid",
+    "range": "$5.8–6.1bn",
+    "quote": "filed hardware commitments: NVIDIA ~$4.0bn, ESDS ~$0.72bn, New Zealand $0.77bn, global technology company ~$0.40bn, AI platform $0.22bn (10-Q commitments note, Q2 deck), less $303m already paid to vendors",
     "segs": [
       [
         1.86,
@@ -1067,7 +1050,7 @@
   "steady": {
     "inputs": {
       "M": 0.6,
-      "gpu": 42,
+      "gpu": 50,
       "shell": 0,
       "shellLife": 25,
       "swap": 0.55,
@@ -1080,76 +1063,76 @@
       "term": 5,
       "spotW": 0.025,
       "H": 60,
-      "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Running costs at the 60% forecast margin (colocation rent, power, managed services and overhead inside it; no shell). A 55% refresh reserve every four years plus 3% annual spares on $42m of GPUs and ancillaries per IT MW is a long-run house allowance, not compulsory retirement at a contract expiry. Tax 25% (US parent, Australian operating subsidiaries). Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every five years in that terminal regime (the book is five-year paper).",
-      "rev": 18.63904262604739,
-      "spotShare": 0.10218213997608935
+      "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Running costs at the 60% forecast margin (colocation rent, power, managed services and overhead inside it; no shell). A 55% refresh reserve every four years plus 3% annual spares on $50m of GPUs and ancillaries per IT MW (the filed commitments run $48–56m per MW on the customer clusters and the NVIDIA block) is a long-run house allowance, not compulsory retirement at a contract expiry. Tax 25% (US parent, Australian operating subsidiaries). Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every five years in that terminal regime (the book is five-year paper).",
+      "rev": 18.38270379542535,
+      "spotShare": 0.09749609851517571
     },
     "steps": [
       [
         "Revenue",
-        18.64,
+        18.38,
         "total"
       ],
       [
         "Running costs incl. rent",
-        -7.46,
+        -7.35,
         "d"
       ],
       [
         "Cash profit",
-        11.18,
+        11.03,
         "sub"
       ],
       [
         "GPU refresh + spares",
-        -7.04,
+        -8.38,
         "d"
       ],
       [
         "Tax 25%",
-        -1.35,
+        -1.04,
         "d"
       ],
       [
         "Owner keeps",
-        2.8,
+        1.62,
         "total"
       ]
     ],
     "stepsMax": 20,
-    "footer": "$2.80m normalized cash per earning IT MW; 2.70× revenue from the shared DCF.",
+    "footer": "$1.62m normalized cash per earning IT MW; 2.21× revenue from the shared DCF.",
     "regimes": [
       [
         "Modeled contract / spot mix",
-        2.7021566576159284,
+        2.2120128303232316,
         "base"
       ],
       [
         "Contracted, 5-yr renewal regime",
-        2.7265997057412292,
+        2.2245138326979275,
         ""
       ],
       [
         "Spot only, 13% discount",
-        2.4873891340011913,
+        2.0962932929524345,
         ""
       ],
       [
         "Flat post-horizon pricing",
-        1.8217731986803474,
+        1.3318192528228348,
         ""
       ]
     ],
     "regimesMax": 3,
-    "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Running costs at the 60% forecast margin (colocation rent, power, managed services and overhead inside it; no shell). A 55% refresh reserve every four years plus 3% annual spares on $42m of GPUs and ancillaries per IT MW is a long-run house allowance, not compulsory retirement at a contract expiry. Tax 25% (US parent, Australian operating subsidiaries). Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every five years in that terminal regime (the book is five-year paper)."
+    "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Running costs at the 60% forecast margin (colocation rent, power, managed services and overhead inside it; no shell). A 55% refresh reserve every four years plus 3% annual spares on $50m of GPUs and ancillaries per IT MW (the filed commitments run $48–56m per MW on the customer clusters and the NVIDIA block) is a long-run house allowance, not compulsory retirement at a contract expiry. Tax 25% (US parent, Australian operating subsidiaries). Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every five years in that terminal regime (the book is five-year paper)."
   },
   "finance": {
     "M": 0.6,
     "W": 0.105,
-    "SH0": 43.32,
+    "SH0": 39.5,
     "EQ_SHARE": 0.1,
     "EQ_PX": 27,
-    "DEBT0": 1.055,
+    "DEBT0": 1.061,
     "CASH0": 1.861,
     "RATE": 0.0995,
     "TAX": 0.25,
@@ -1178,13 +1161,13 @@
     "SHELL_LIFE": 25,
     "NONCORE": 0,
     "prepay": {
-      "ratio": 0.15,
+      "ratio": 0.2,
       "startQ": 0,
       "termQ": 20,
       "openingOwed": 0.144,
       "credits": [
         {
-          "from": "2026Q3",
+          "from": "2026Q4",
           "n": 20,
           "amt": 0.144
         }
@@ -1200,10 +1183,10 @@
           "replaceG": 1.25
         },
         "2027Q3": {
-          "replaceG": 0.494
+          "replaceG": 1
         }
       },
-      "basis": "Customer deposits of $143.9m at 30 Jun 2026 (10-Q) against the ESDS and global-technology contracts — cash security held in escrow, released on acceptance (8-K 20 Aug 2026) and, for the first cluster, applied to repay Facility A of the GPU-backed loan (8-K 1 Oct 2026); carried as the opening prepayment balance, credited over twenty quarters. NVIDIA pays no prepayment: the block’s ~$3.75bn of hardware is excluded from the prepayment base in the quarters it is paid (special.replaceG). Future contracts: prepayment at execution “allows Sharon AI to submit the purchase order” (Q2 deck) — modelled at 15% of GPU capex on contracted capacity, credited evenly over the five-year term (SemiAnalysis: “credited equally throughout contract life”). Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry. Explicit opening-balance credits retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "basis": "Customer deposits of $143.9m at 30 Jun 2026 (10-Q, unattributed) — ESDS’s own filings describe an advance of ~INR 1,100–1,200 crore (~$130–140m) on the Sharon AI order, amortised monthly over the contract from go-live, and the ESDS Service Order calls for $140m of security; carried as the opening prepayment balance, credited over twenty quarters from Q4-26. The global-technology customer’s escrowed cash security was released on acceptance (8-K 20 Aug 2026) and Facility A of the GPU-backed loan is repaid from it (8-K 1 Oct 2026). Future contracts: the company’s stated policy is 10–20% of contract value as prepayment at signing, funding the GPU purchase order (10-K) — modelled at 20% of GPU capex on contracted capacity (~12% of contract value), credited evenly over the five-year term. NVIDIA pays no prepayment: the block’s ~$4bn of hardware is excluded from the prepayment base in the quarters it is paid (special.replaceG). Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry. Explicit opening-balance credits retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
       "creditTiming": {
         "mode": "first-quarters",
         "quarters": 20
@@ -1211,14 +1194,14 @@
       "creditSchedules": {
         "2026Q3": [
           {
-            "weight": 0.6666666666666666,
+            "weight": 0.18918918918918917,
             "startQ": 1,
-            "termQ": 20,
+            "termQ": 4,
             "serviceQ": "2026Q4",
-            "endQ": "2031Q4"
+            "endQ": "2027Q4"
           },
           {
-            "weight": 0.3333333333333333,
+            "weight": 0.8108108108108107,
             "startQ": 0,
             "termQ": 20,
             "serviceQ": "2026Q3",
@@ -1227,14 +1210,21 @@
         ],
         "2026Q4": [
           {
-            "weight": 0.574712643678161,
+            "weight": 0.6072874493927126,
             "startQ": 0,
             "termQ": 20,
             "serviceQ": "2026Q4",
             "endQ": "2031Q4"
           },
           {
-            "weight": 0.4252873563218391,
+            "weight": 0.24291497975708504,
+            "startQ": 0,
+            "termQ": 20,
+            "serviceQ": "2026Q4",
+            "endQ": "2031Q4"
+          },
+          {
+            "weight": 0.14979757085020243,
             "startQ": 1,
             "termQ": 20,
             "serviceQ": "2027Q1",
@@ -1298,15 +1288,15 @@
       }
     },
     "cover": {
-      "ctrPre": 0.15,
+      "ctrPre": 0.2,
       "ctrGpu": 0.8,
       "ctrShell": 0,
       "spotGpu": 0.5,
       "spotShell": 0
     },
-    "wfMarginBasis": "the quarterly waterfall runs at 60% EBITDA: the company guides to ~75% gross margin, SemiAnalysis’s contract-level margins after colocation ($100/kW-month) and power ($0.05/kWh) are 88–91%, and Bloomberg consensus carries ~50% in 2027 once corporate costs and the NVIDIA revenue share are charged; 60% sits between the tenant peers (CoreWeave 57–59%) and the company’s guide",
-    "basis": "debt 9.95% (the US$356m senior secured GPU-backed SPV facility of 28 Sep 2026, fixed, excluding fees; Facility A $150m repaid from the escrowed customer deposit on acceptance, Facility B $206m a bullet term loan), 20%/yr pool amortisation (GPU facilities sized to the five-year contracts), $150m cash floor; lenders advance 80% of GPU cost on contracted capacity (SemiAnalysis sizes up to 80% LTC at 1.3× DSCR), 50% on spot; no shell capex — every site is leased colocation (NEXTDC, GreenSquareDC, a New Zealand provider), rent inside EBITDA, the ~$623m NEXTDC 72 MW commitment and the GreenSquareDC 120-month term are service contracts, not debt; 10% of capex from 2027 as policy equity at $27 (the 19 Oct 2026 mark) plus the residual the flywheel cannot cover; the two convertible series (6.00% due May 2031 $350m at $48.24, 4.75% due Jun 2032 $700m at $99.66, no capped calls, carried at fair value $1.007bn in the 10-Q, principal $1.05bn used here) convert only if the model’s 2030 price clears the strike; certificates of deposit $12.7m counted; fully diluted before converts 43.32m = 35.667m Class A + 0.136m Class B (160 votes a share, one economic share) + 6.375m pre-funded warrants at $0.0001 + 1.139m options and RSUs (10-Q anti-dilutive list); the 22.25m SPAC warrants (SHAZW) are exercisable for only 444,982 shares in aggregate and are ignored; the 1.2m-share plan increase and annual evergreen (28 Aug 2026) are not counted",
-    "MULT": 2.7021566576159284
+    "wfMarginBasis": "the quarterly waterfall runs at 60% EBITDA: the company guides to ~75% gross margin (Q2-26 printed 60.6% gross and 30.6% adjusted EBITDA on $1.9m of revenue), SemiAnalysis’s contract-level margins after colocation ($100/kW-month) and power ($0.05/kWh) are 88–91%, and Bloomberg consensus carries ~50% EBITDA in 2027 once corporate costs and the NVIDIA revenue share are charged; 60% sits between the tenant peers (CoreWeave 57–59%) and the company’s guide; the NVIDIA tranche rate is already net of NVIDIA’s share",
+    "basis": "debt 9.95% — the US$356m senior secured GPU-backed SPV facility of 28 Sep 2026 (borrowers SAI AU No. 1 and No. 3; Tranche A up to $150m at 7.25% stepping to 9.95%, repaid from the escrowed customer deposit on acceptance; Tranche B $206m fixed 9.95% with an 18-month make-whole; bullet at 42 months from first utilisation with an excess-cash sweep, DSRA, gross-LTV covenant on depreciated server cost; parent guarantee until Tranche A is repaid; Goldman Sachs and private-credit lenders, Jarden arranger; the “first in an expected series”), 20%/yr pool amortisation (GPU facilities sized to the five-year contracts and swept), $150m cash floor; lenders advance 80% of GPU cost on contracted capacity (SemiAnalysis sizes up to 80% LTC at 1.3× DSCR), 50% on spot; no shell capex — every site is leased colocation (non-cancellable operating leases, generally five-year terms, off balance sheet until service starts), rent inside EBITDA; 10% of capex from 2027 as policy equity at $27 (the 19 Oct 2026 mark) plus the residual the flywheel cannot cover; the two convertible series (6.00% due May 2031 $350m at $48.24, Oaktree-anchored; 4.75% due Jun 2032 $700m at $99.66; no capped calls; carried at fair value $1.007bn in the 10-Q, principal $1.05bn used here; forced conversion on the 2032s only far above the strike) convert only if the model’s 2030 price clears the strike; finance leases $4.8m at 5.87% and a $6k note residual in DEBT0; the USD.AI ($500m) and Digital Alpha ($200m) facilities remain subject to documentation with no draw disclosed and are not counted; certificates of deposit $12.7m counted; fully diluted before converts 39.5m = 38.342m Class A + 0.136m Class B (160 votes a share, identical economics, no conversion or sunset) at 15 Sep 2026 after the 6.375m pre-funded warrants were exercised in full (3.7m on 30 Jun, 2.675m on 15 Sep by Situational Awareness, now 21.1%) + 0.923m RSUs + 0.034m options at $6.71 + ~0.07m other warrant shares; the 22.25m SPAC warrants (SHAZW, strike $575 post-split) convert to only 444,982 shares and are ignored; the 2.4m-share plan reserve and 3% annual evergreen from 2027 are not counted; no earnout exists",
+    "MULT": 2.2120128303232316
   },
   "labels": {
     "shell": "lease",
@@ -1315,7 +1305,7 @@
     "debt": "Debt",
     "energised": "energised"
   },
-  "rr": 3.9328000000000003,
+  "rr": 3.9156,
   "year": "2030",
   "gpuMax": 250000,
   "arrMax": 15,
@@ -1325,15 +1315,15 @@
       "MW secured · 120 MW contracted to customers"
     ],
     "capex": [
-      "~$4bn",
-      "NVIDIA block hardware committed, 10-Q"
+      "~$6.1bn",
+      "hardware committed on the contracted book, 10-Q and Q2 deck"
     ]
   },
   "facts": [
     [
       "Shares out",
-      "42.2m",
-      "35.8m Class A + B, 5 Aug, + 6.4m pre-funded warrants"
+      "38.5m",
+      "Class A 38.34m + B 0.14m, 15 Sep · pre-funded warrants exercised"
     ],
     [
       "Net cash",
@@ -1360,42 +1350,42 @@
     [
       "GPU facility",
       "$356m",
-      "9.95% fixed, senior secured SPV, 28 Sep"
+      "7.25–9.95% senior secured SPV, 28 Sep · 42-month bullet"
     ],
     [
       "Hardware committed",
-      "~$4bn",
-      "NVIDIA block · $256m prepaid to WWT"
+      "~$6.1bn",
+      "five contracts · $303m prepaid to vendors"
     ]
   ],
   "notes": [
     [
-      "<b>212 MW secured, 120 MW contracted.</b> Every megawatt is leased colocation: NEXTDC Melbourne and Sydney (up to 87 MW, including the 72 MW NVIDIA site), GreenSquareDC (15 MW, 120-month term from a September 2026 ready-for-service date), a New Zealand provider (14 MW) and 80 MW added on 20 August with no site named.<span class=\"src\">Q2-26 10-Q · 8-K 20 Aug</span>",
-      "<b>The NVIDIA site lands in 2027.</b> The amended and restated NEXTDC service order for 72 MW deploys in five phases from April to August 2027 and commits ~$623m over its term; the company is “substantially dependent on NEXTDC”.<span class=\"src\">10-Q commitments note and risk factors</span>",
-      "<b>Beyond 212 MW is not modelled.</b> Management speaks of a “gigawatt-scale” ambition across Australia, New Zealand and Asia-Pacific; the page stops at the secured footprint, and the signed-book-only scenario stops at 120 MW.<span class=\"src\">8-K 1 Oct 2026</span>"
+      "<b>212 MW secured, 120 MW contracted.</b> Every megawatt is leased colocation: NEXTDC Melbourne and Sydney (87 MW, including the 72 MW NVIDIA site at M2), GreenSquareDC SYD1 (15 MW, 120-month term, online 19 Oct 2026), a New Zealand provider (14 MW, Q1 2027), other providers ~16 MW and 80 MW added on 20 August with no partner named.<span class=\"src\">Q2-26 10-Q · 8-K 20 Aug · GreenSquareDC 19 Oct</span>",
+      "<b>The NVIDIA site lands in 2027.</b> The amended and restated NEXTDC service order for 72 MW deploys in five phases from April to August 2027 and commits ~$623m over an undisclosed term; NEXTDC had 12 MW delivered and 60 MW of liquid-to-chip capacity under construction at M2 at 30 June. The company is “substantially dependent on NEXTDC”.<span class=\"src\">10-Q commitments note · NEXTDC FY26 report</span>",
+      "<b>Beyond 212 MW is not modelled.</b> Management speaks of a “gigawatt-scale” ambition across Australia, New Zealand and Asia-Pacific and says capacity is only announced with a customer and financing in place; the page stops at the secured footprint, and the signed-book-only scenario stops at 120 MW.<span class=\"src\">8-K 1 Oct 2026 · Q2 call</span>"
     ],
     [
-      "<b>64,600 GPUs by 2027Q3</b> on the contracted book — 40,000 GB300 for NVIDIA, 8,208 B300 for ESDS, ~7,000 in New Zealand, ~4,752 for the global technology company, 2,048 for the AI platform, ~2,500 merchant. The company says 68,000+ by mid-2027.<span class=\"src\">8-Ks · 1 Oct release · SemiAnalysis counts</span>",
-      "<b>Five-year book life.</b> SemiAnalysis models a five-year depreciation schedule; consensus D&A implies the same. The refresh reserve here is a house allowance, not the accounting life.<span class=\"src\">SemiAnalysis · Bloomberg consensus</span>",
-      "<b>Density is the company’s own.</b> 40,000 GB300 on 72 MW is 556 per MW (~1.8 kW all-in); the ESDS cluster 547 per MW. The house 400 per MW used on the other pages would put ~30% more megawatts behind the same GPUs.<span class=\"src\">8-K 12 Jun · 8-K 1 Apr</span>"
+      "<b>64,600 GPUs by 2027Q3</b> on the contracted book — 40,000 GB300 for NVIDIA, 8,208 B300 for ESDS, ~7,000 in New Zealand, 5,776 for the global technology company, 2,048 for the AI platform, ~2,500 merchant. The company says 68,000+ by mid-2027; NVIDIA’s 9 Sep 2026 Australia release names Sharon AI at up to 68,000.<span class=\"src\">8-Ks · June deck · 1 Oct release</span>",
+      "<b>Short book lives, long contracts.</b> The accounting policy depreciates computer equipment over two to five years; management describes a 3–5 year contract plus two or more years of residual life. The refresh reserve here is a house allowance, not the accounting life.<span class=\"src\">FY25 10-K · Q1-26 deck</span>",
+      "<b>Density is the company’s own.</b> 40,000 GB300 on 72 MW is 556 per MW (~1.8 kW all-in); the ESDS cluster 547 per MW; the global-tech clusters 481. No filing states kW per GPU. The house 400 per MW used on the other pages would put ~30% more megawatts behind the same GPUs.<span class=\"src\">8-K 12 Jun · Service Order No. 1 · June deck</span>"
     ],
     [
-      "<b>Contract cohorts.</b> The signed book keeps its filed all-in rate until expiry: ESDS $3.48, the AI platform $4.16, New Zealand $4.31, the global technology company $4.56 per GPU-hour — $16.7–19.0m per IT MW-year, the top of the GB300 ladder. New capacity uses the shared house curve.",
-      "<b>The NVIDIA block is a floor, not a price.</b> Up to $4.88bn over six years on 40,000 GPUs is $2.32 per GPU-hour on average; capacity reserved for NVIDIA can be sold to third parties with NVIDIA taking an undisclosed share above the floor. The page carries $3.29 (owner ruling, 3 Aug 2026); the floor and a 40%-share placement are scenarios.<span class=\"src\">8-K 12 Jun 2026 · SemiAnalysis</span>",
-      "<b>Evidence.</b> Contract dollars and terms are filed; GPU counts on two contracts are inferred; no customer is named except ESDS and NVIDIA. The ESDS counterparty was challenged in a 30 April short report that filings do not rebut."
+      "<b>Contract cohorts.</b> The signed book keeps its filed all-in rate until expiry: ESDS $3.52, the global technology company $3.75, the AI platform $4.16, New Zealand $4.31 per GPU-hour — $15.8–18.9m per IT MW-year; management guides ~$15m per MW including storage. New capacity uses the shared house curve.",
+      "<b>The NVIDIA block is a floor, not a price.</b> Up to $4.88bn over six years on 40,000 GPUs is $2.32 per GPU-hour on average — NVIDIA’s maximum payment, which falls as capacity is sold to third parties; Sharon keeps the anchor price on capacity it sells and shares the spread above it at an undisclosed rate. The page carries $3.29 (owner ruling, 3 Aug 2026); the floor and a 40%-share placement are scenarios. No placement has printed, and reports of a pause in NVIDIA’s wider programme are unaddressed.<span class=\"src\">8-K 12 Jun 2026 · NVIDIA Q2 FY27 10-Q · SemiAnalysis</span>",
+      "<b>Evidence.</b> Contract dollars and terms are filed; the ESDS Service Order is public; GPU counts on two contracts are inferred; no customer is named except ESDS and NVIDIA. ESDS (CRISIL A-/Positive) has paid a ~$135m advance on its order but the $140m letter of credit the Service Order requires is not confirmed by either side; its go-live slipped from 16 Sep to early November."
     ],
     [
-      "<b>Prepay, then borrow against the contract.</b> Customer prepayment at execution funds the purchase order; the inaugural $356m GPU-backed SPV facility (9.95% fixed, 28 Sep 2026) is “the first in an expected series”, with Facility A repaid from the escrowed customer deposit on acceptance.<span class=\"src\">Q2 deck · 8-K 1 Oct 2026</span>",
-      "<b>$2.6bn raised in ten months.</b> $125m IPO (Feb), $100m pre-IPO notes (converted at $12.53), $350m 6.00% converts (May), $900m of equity and pre-funded warrants at $68.73 plus $700m 4.75% converts (June), $74m from the TCDC sale, $356m of GPU debt (Sep).<span class=\"src\">10-Q · 8-Ks</span>",
-      "<b>The catch:</b> the NVIDIA block alone needs ~$4bn of hardware against $1.86bn of cash. At today’s price the residual equity in the model is raised at $27, against a June placement at $68.73; the converts (strikes $48.24 and $99.66) stay debt unless the price recovers.<span class=\"src\">funding stack · summary table</span>"
+      "<b>Prepay, then borrow against the contract.</b> Policy is 10–20% of contract value at signing to fund the purchase order; the inaugural $356m GPU-backed SPV facility (Tranche A $150m at 7.25% stepping to 9.95%, Tranche B $206m at 9.95%, 42-month bullet with a cash sweep) is “the first in an expected series”, with Tranche A repaid from the escrowed customer deposit on acceptance.<span class=\"src\">10-K · Q2 deck · 8-K 1 Oct 2026 and facility agreement</span>",
+      "<b>$2.6bn raised in ten months.</b> $103m pre-IPO notes (converted at $12.53), $74m from the TCDC sale, $125m IPO at $30 (Feb), $350m 6.00% converts (May), $900m of equity and pre-funded warrants at $68.73 plus $700m 4.75% converts (June), $356m of GPU debt (Sep). The USD.AI ($500m) and Digital Alpha ($200m) facilities remain undocumented and undrawn.<span class=\"src\">10-Q · 8-Ks · S-1/A 20 Aug</span>",
+      "<b>The catch:</b> $6.1bn of hardware is committed on the contracted book against $1.86bn of cash. At today’s price the residual equity in the model is raised at $27, against a June placement at $68.73 (Situational Awareness now holds 21.1% at a ~$65 cost); the converts (strikes $48.24 and $99.66) stay debt unless the price recovers.<span class=\"src\">funding stack · summary table · 13D/A 17 Sep</span>"
     ],
     [
-      "<b>Costs are rent and power.</b> SemiAnalysis’s inputs — colocation $100 per kW-month, power $0.05/kWh — leave 88–91% contract-level margins; the company guides ~75% gross; consensus carries ~50% EBITDA in 2027 once overhead and the NVIDIA share are charged. The page runs 60%.<span class=\"src\">SemiAnalysis · Bloomberg</span>",
-      "<b>Capex is $42m per MW on the customer clusters and ~$56m on the NVIDIA block</b> ($4bn committed for 72 MW, including networking, storage and the VAST layer). No shell: the landlord’s capital sits in the rent.<span class=\"src\">10-Q · SemiAnalysis per-deal capex</span>",
-      "<b>Maintenance, not replacement.</b> Tray swap at 55% of GPU cost every four years plus 3%/yr spares — the same house allowance as the other pages — on a five-year take-or-pay book that fully recovers the hardware inside the term.<span class=\"src\">model</span>"
+      "<b>Costs are rent and power.</b> SemiAnalysis’s inputs — colocation $100 per kW-month, power $0.05/kWh — leave 88–91% contract-level margins; the NEXTDC 72 MW order implies $0.9–1.7m per MW-year depending on its undisclosed term; the company guides ~75% gross; consensus carries ~50% EBITDA in 2027 once overhead and the NVIDIA share are charged. The page runs 60%.<span class=\"src\">SemiAnalysis · 10-Q · Bloomberg</span>",
+      "<b>Capex is $48–56m per MW on the filed commitments</b> ($6.1bn on ~115 MW: NVIDIA ~$4bn for 72 MW including networking, storage and the VAST layer; New Zealand $765m for 14 MW; ESDS $720m for 15 MW) against a $39m per MW management guide. No shell: the landlord’s capital sits in the rent.<span class=\"src\">10-Q · Q2 deck · Q1 call</span>",
+      "<b>Maintenance, not replacement.</b> Tray swap at 55% of GPU cost every four years plus 3%/yr spares — the same house allowance as the other pages — on a five-year take-or-pay book that recovers the hardware inside the term at these rates (gross payback 2.1–2.9 years on the customer clusters, 4.9 at the NVIDIA floor).<span class=\"src\">model · research pack</span>"
     ],
     [
-      "<b>Some equity, not none.</b> Base: 10% of the 2027–28 build plus whatever the prepayments, the GPU facilities and operating cash cannot cover, issued at $27 — the bridge shows the count. The June placement was at $68.73; the price has since fallen by more than half.<span class=\"src\">8-K 17 Jun 2026 · Finnhub</span>",
+      "<b>Some equity, not none.</b> Base: 10% of the 2027–28 build plus whatever the prepayments, the GPU facilities and operating cash cannot cover, issued at $27 — the bridge shows the count. The June placement was at $68.73; the price has since fallen by more than half, with a 52% drop between 6 and 23 October on no filing.<span class=\"src\">8-K 17 Jun 2026 · Finnhub</span>",
       "<b>The NVIDIA economics are the swing.</b> Floor versus placement moves the 72 MW block between $2.32 and $3.49 per GPU-hour; every $1 per GPU-hour on the block is ~$175m a year retained. The signed-book-only scenario shows what the 120 MW contracted today is worth on its own.<span class=\"src\">scenarios · SemiAnalysis</span>",
       "<b>EPS is the long-run anchor.</b> <span id=\"nEps\"></span> Pick your multiple.<span class=\"src\">after the raise</span>"
     ]
@@ -1405,10 +1395,10 @@
     "cap": "Annualized earned revenue is split into existing book (including estimates), assumed renewals, assumed new contracts and spot. Full-capacity contracted run-rate is a separate measure."
   },
   "footer": {
-    "sources": "Q2-26 10-Q (filed 6 Aug 2026, amended 11 Aug) and the Q2 results release and deck; Q1-26 10-Q; FY25 10-K (31 Mar 2026); 8-Ks for the ESDS (1 Apr), global technology company (14 May), NVIDIA (12 Jun), New Zealand (16 Jul) and AI-platform (4 Aug) contracts, the 2031 and 2032 convertible notes (26 Apr, 18 May, 17 and 22 Jun), the June equity placement, the first acceptance (20 Aug), the equity-plan amendment (28 Aug), the GPU-backed facility (1 Oct) and its syndicated facility agreement; SemiAnalysis “Sharon AI: From 4MW to 132MW” (3 Aug 2026, owner export); Bloomberg BEst consensus (3 Aug 2026, owner export); Finnhub for the market reference.",
+    "sources": "Q2-26 10-Q (filed 6 Aug 2026, amended 11 Aug) and the Q2 results release and deck; Q1-26 10-Q with the ESDS Service Order (Ex. 10.17); FY25 10-K (31 Mar 2026); 8-Ks for the ESDS (1 Apr), global technology company (14 May), NVIDIA (12 Jun), New Zealand (16 Jul) and AI-platform (4 Aug) contracts, the 2031 and 2032 convertible notes (26 Apr, 18 May, 17 and 22 Jun), the June equity placement, the first acceptance (20 Aug), the equity-plan amendment (28 Aug), the GPU-backed facility (1 Oct) and its syndicated facility agreement; the 13D/A of Situational Awareness (17 Sep); NVIDIA’s Q2 FY27 10-Q; NEXTDC’s FY26 report and 21 Oct 2026 update; GreenSquareDC releases (21 Sep, 19 Oct); ESDS Software Solutions results, call and CRISIL rating (Sep 2026); the Q1 and Q2 2026 call transcripts; SemiAnalysis “Sharon AI: From 4MW to 132MW” (3 Aug 2026, owner export); Bloomberg BEst consensus (3 Aug 2026, owner export); Finnhub for the market reference. Research pack: ~/Research/SHAZ/SHAZ.json.",
     "model": "Shared pricing and contract-cohort model (spec §6i). Existing commitments, estimated coverage, same-hardware renewals and new business are distinguished. Pricing, expiry and continuity assumptions are exposed with their evidence. Company financing and capex retain the dated research snapshot."
   },
-  "capexBasis": "by energisation quarter, $m: the NVIDIA block at the filed ~$4bn hardware commitment (10-Q: “committed to procure additional high-performance computing hardware and related infrastructure for approximately $4 billion” = ~$56m per IT MW incl. networking, storage and the VAST data layer), less the $256m of deposits already paid to WWT Australia by 30 June, paid ahead of the Apr–Aug 2027 phases; the B300/GB300 customer clusters at $42m per IT MW (SemiAnalysis per-deal capex $39–44m per MW, $75–83k per GPU); the uncontracted 92 MW at $45m per MW (Rubin-era); no shell capex — every data centre is leased colocation",
+  "capexBasis": "by energisation quarter, $m, from the filed hardware commitments per contract: ESDS ~$720m (10-Q; ~$733m in the Aug S-1/A) and the global technology company ~$400m paid on delivery in Q3–Q4 2026 less the $303m of vendor prepayments on the June balance sheet (WWT $256m, Lenovo $33m, VAST $13m); the AI platform $217m and New Zealand $765m (Q2 deck) in Q4-26 and Q1-27; the NVIDIA block ~$4bn (10-Q: “committed to procure additional high-performance computing hardware and related infrastructure for approximately $4 billion” = ~$56m per IT MW incl. networking, storage and the VAST data layer) paid ahead of the Apr–Aug 2027 phases; the uncontracted 92 MW at $50m per MW (between the $39m per MW management guide and the ~$53m per MW the filed commitments imply); no shell capex — every data centre is leased colocation",
   "prints": {
     "2026Q1": 0.29,
     "2026Q2": 1.9,
@@ -1528,187 +1518,187 @@
       "allocationBasis": "Unmapped future tranches energizing from 2027Q1 use the shared new-business curve. Power leases do not establish customer compute prices. Existing and in-flight 2026 book and identifiable disclosed future commitments retain their own rates. This cutoff is a house allocation convention, not a statement that disclosed backlog excludes future sites. The legacy-book-allocation sensitivity tests the uncertainty."
     },
     "summary": {
-      "earningITMW": 211,
-      "contractedEarningITMW": 200.72000000000003,
-      "totalRevenueRunRateBn": 3.932837994096,
-      "contractRevenueRunRateBn": 3.53097219168,
-      "contractRevenuePerMW": 17.591531445197287,
-      "totalRevenuePerMW": 18.63904262604739,
-      "existingRevenueBn": 1.9317783264,
+      "earningITMW": 213,
+      "contractedEarningITMW": 202.72000000000003,
+      "totalRevenueRunRateBn": 3.9155159084255997,
+      "contractRevenueRunRateBn": 3.5337683836799996,
+      "contractRevenuePerMW": 17.431769848460927,
+      "totalRevenuePerMW": 18.38270379542535,
+      "existingRevenueBn": 1.9345745183999998,
       "renewalRevenueBn": 0.53899386528,
       "newRevenueBn": 1.0602,
-      "spotRevenueBn": 0.40186580241599995,
-      "confirmedExistingRevenueBn": 1.9317783264,
-      "arrExisting": 1.9317783264000001,
+      "spotRevenueBn": 0.3817475247456,
+      "confirmedExistingRevenueBn": 1.9345745183999998,
+      "arrExisting": 1.9345745184,
       "arrRenewal": 0.53899386528,
       "arrNew": 1.0602,
-      "arrContracted": 3.53097219168,
-      "estimatedExpiryCount": 11,
+      "arrContracted": 3.53376838368,
+      "estimatedExpiryCount": 10,
       "unverifiedPriceCount": 6,
       "assumedCommitmentCount": 3
     },
     "quarters": [
       {
         "quarter": "2026Q3",
-        "existingBn": 0.19241709672,
+        "existingBn": 0.10429214496,
         "renewalBn": 0,
         "newBn": 0,
-        "spotBn": 0.0027470378880000003,
-        "earningITMW": 11.6,
-        "contractedEarningITMW": 11.33
+        "spotBn": 0.000448568064,
+        "earningITMW": 7.233333333333333,
+        "contractedEarningITMW": 7.073333333333333
       },
       {
         "quarter": "2026Q4",
-        "existingBn": 0.45948769308,
+        "existingBn": 0.46201610064,
         "renewalBn": 0.001135296,
         "newBn": 0,
-        "spotBn": 0.004120556832,
-        "earningITMW": 27.05,
-        "contractedEarningITMW": 26.645
+        "spotBn": 0.0020517573888000004,
+        "earningITMW": 29,
+        "contractedEarningITMW": 28.61
       },
       {
         "quarter": "2027Q1",
-        "existingBn": 0.67274701104,
+        "existingBn": 0.6796862275200001,
         "renewalBn": 0.001135296,
         "newBn": 0,
-        "spotBn": 0.026783619408000003,
-        "earningITMW": 38.2,
-        "contractedEarningITMW": 37.66
+        "spotBn": 0.017817865228800002,
+        "earningITMW": 40.46666666666667,
+        "contractedEarningITMW": 39.84666666666667
       },
       {
         "quarter": "2027Q2",
-        "existingBn": 1.3553703264,
-        "renewalBn": 0.0335469018,
+        "existingBn": 1.3784168352000001,
+        "renewalBn": 0.0218504184,
         "newBn": 0,
-        "spotBn": 0.033479524260000004,
-        "earningITMW": 81.65,
-        "contractedEarningITMW": 80.975
+        "spotBn": 0.025633413187200006,
+        "earningITMW": 84.23333333333333,
+        "contractedEarningITMW": 83.38333333333333
       },
       {
         "quarter": "2027Q3",
-        "existingBn": 1.9317783264,
-        "renewalBn": 0.04002922296,
+        "existingBn": 1.9615749408000003,
+        "renewalBn": 0.025993442880000005,
         "newBn": 0,
-        "spotBn": 0.040175429112000005,
-        "earningITMW": 118.1,
-        "contractedEarningITMW": 117.28999999999999
+        "spotBn": 0.033448961145600004,
+        "earningITMW": 121,
+        "contractedEarningITMW": 119.92
       },
       {
         "quarter": "2027Q4",
-        "existingBn": 1.9317783264,
-        "renewalBn": 0.04651154412,
+        "existingBn": 1.9345745183999998,
+        "renewalBn": 0.05299386528,
         "newBn": 0.24300000000000002,
-        "spotBn": 0.11251745996399999,
-        "earningITMW": 133.55,
-        "contractedEarningITMW": 131.10500000000002
+        "spotBn": 0.09909508714559999,
+        "earningITMW": 136,
+        "contractedEarningITMW": 133.42000000000002
       },
       {
         "quarter": "2028Q1",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 0.7425,
-        "spotBn": 0.23736101781599997,
-        "earningITMW": 164,
-        "contractedEarningITMW": 158.42000000000002
+        "spotBn": 0.21724274014559997,
+        "earningITMW": 166,
+        "contractedEarningITMW": 160.42000000000002
       },
       {
         "quarter": "2028Q2",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.2726,
-        "spotBn": 0.34586417361599997,
-        "earningITMW": 195,
-        "contractedEarningITMW": 186.32000000000002
+        "spotBn": 0.32574589594559994,
+        "earningITMW": 197,
+        "contractedEarningITMW": 188.32000000000002
       },
       {
         "quarter": "2028Q3",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2028Q4",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2029Q1",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2029Q2",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2029Q3",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2029Q4",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2030Q1",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2030Q2",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2030Q3",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.05299386528,
         "newBn": 1.5462,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       },
       {
         "quarter": "2030Q4",
-        "existingBn": 1.9317783264,
+        "existingBn": 1.9345745183999998,
         "renewalBn": 0.53899386528,
         "newBn": 1.0602,
-        "spotBn": 0.40186580241599995,
-        "earningITMW": 211,
-        "contractedEarningITMW": 200.72000000000003
+        "spotBn": 0.3817475247456,
+        "earningITMW": 213,
+        "contractedEarningITMW": 202.72000000000003
       }
     ],
     "cohorts": [
@@ -1733,11 +1723,11 @@
         "newRenewalRatePerMW": null,
         "earningRevenueBn": 0.001135296,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226036377/form10-q.htm",
-        "note": "Reported revenue before Q3-26 is sub-$2m a quarter and lumpy (Q4-25 $1.57m, Q1-26 $0.29m, Q2-26 $1.9m); the legacy fleet is carried at the rate that reproduces Q1-26."
+        "note": "Reported revenue before Q4-26 is sub-$2m a quarter and lumpy (Q4-25 $1.57m, Q1-26 $0.29m, Q2-26 $1.9m; FY25 ~82% from three customers); the legacy fleet is carried at the rate that reproduces Q1-26."
       },
       {
-        "name": "M3 Supercluster · 1,016 B200/H200 (short-tenor)",
-        "gen": "blackwell",
+        "name": "M3 Supercluster · 1,016 H200 (short-tenor)",
+        "gen": "hopper",
         "itMW": 1.6,
         "contractShare": 0.7,
         "modeledContractShare": 0.7,
@@ -1754,9 +1744,9 @@
         "nextExpiryQ": "2033Q2",
         "existingRenewalRatePerMW": 22.194773999999995,
         "newRenewalRatePerMW": null,
-        "earningRevenueBn": 0.05153673248640001,
+        "earningRevenueBn": 0.031418454816,
         "source": "SemiAnalysis, “Sharon AI: From 4MW to 132MW – AI Cloud Model”, 3 Aug 2026 (owner export, ~/Research/SHAZ/inbox-text)",
-        "note": "SemiAnalysis prices the merchant clusters on one-year paper at prevailing rates ($36m/yr); reported revenue says they sold down slowly — 70% contracted, eight-quarter sell-down."
+        "note": "SemiAnalysis prices the merchant clusters on one-year paper at prevailing rates ($36m/yr); reported revenue says they sold down slowly — 70% contracted, six-quarter sell-down. 1,016 H200 live per the 10-K; the 1,000 Lenovo-financed B200 are not confirmed energised. NEXTDC’s M3 grid expansion is deferred to FY28 (Jemena), ~2 MW exposure."
       },
       {
         "name": "Cisco Secure AI Factory · 1,024 B300 (short-tenor)",
@@ -1765,8 +1755,8 @@
         "contractShare": 0.7,
         "modeledContractShare": 0.7,
         "newBusinessShare": 0,
-        "firstRevenue": "2026Q2",
-        "endQ": "2027Q2",
+        "firstRevenue": "2026Q4",
+        "endQ": "2027Q4",
         "expiryBasis": "estimated",
         "priceBasis": "inferred",
         "commitmentBasis": "assumed",
@@ -1774,40 +1764,17 @@
         "newTermYears": 3,
         "ratePerMW": 19.286016,
         "newRatePerMW": null,
-        "nextExpiryQ": "2033Q2",
+        "nextExpiryQ": "2033Q4",
         "existingRenewalRatePerMW": 19.286016,
         "newRenewalRatePerMW": null,
         "earningRevenueBn": 0.0538890756096,
         "source": "SemiAnalysis, “Sharon AI: From 4MW to 132MW – AI Cloud Model”, 3 Aug 2026 (owner export, ~/Research/SHAZ/inbox-text)",
-        "note": "As above ($39m/yr at $4.30/GPU-hr per SemiAnalysis)."
+        "note": "Announced 23 Feb 2026; the 10-K lists S3 as planned with energisation unconfirmed, so it earns from Q4-26 here ($39m/yr at $4.30/GPU-hr per SemiAnalysis on a four-quarter sell-down)."
       },
       {
-        "name": "ESDS · 8,208 B300 · phase 1 (5 MW)",
+        "name": "ESDS · 8,208 B300 · GreenSquareDC SYD1 (15 MW)",
         "gen": "blackwell",
-        "itMW": 5,
-        "contractShare": 1,
-        "modeledContractShare": 1,
-        "newBusinessShare": 0,
-        "firstRevenue": "2026Q3",
-        "endQ": "2031Q3",
-        "expiryBasis": "estimated",
-        "priceBasis": "disclosed",
-        "commitmentBasis": "disclosed",
-        "termYears": 5,
-        "newTermYears": 3,
-        "ratePerMW": 16.681282560000003,
-        "newRatePerMW": null,
-        "nextExpiryQ": "2031Q3",
-        "existingRenewalRatePerMW": 16.681282560000003,
-        "newRenewalRatePerMW": null,
-        "earningRevenueBn": 0.08340641280000001,
-        "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226014475/ex99-1.htm",
-        "note": "US$1.25bn over five years for an 8,000-GPU B300 cluster (8-K 1 Apr 2026) = $3.48/GPU-hr all-in on 8,208 GPUs; customer option to extend two years. Counterparty: ESDS Software Solutions — a 30 Apr 2026 short report questioned its capacity to pay; not rebutted in filings."
-      },
-      {
-        "name": "ESDS · phase 2 (10 MW)",
-        "gen": "blackwell",
-        "itMW": 10,
+        "itMW": 15,
         "contractShare": 1,
         "modeledContractShare": 1,
         "newBusinessShare": 0,
@@ -1818,19 +1785,19 @@
         "commitmentBasis": "disclosed",
         "termYears": 5,
         "newTermYears": 3,
-        "ratePerMW": 16.681282560000003,
+        "ratePerMW": 16.873021440000002,
         "newRatePerMW": null,
         "nextExpiryQ": "2031Q4",
-        "existingRenewalRatePerMW": 16.681282560000003,
+        "existingRenewalRatePerMW": 16.873021440000002,
         "newRenewalRatePerMW": null,
-        "earningRevenueBn": 0.16681282560000002,
-        "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226014475/ex99-1.htm",
-        "note": "US$1.25bn over five years for an 8,000-GPU B300 cluster (8-K 1 Apr 2026) = $3.48/GPU-hr all-in on 8,208 GPUs; customer option to extend two years. Counterparty: ESDS Software Solutions — a 30 Apr 2026 short report questioned its capacity to pay; not rebutted in filings."
+        "earningRevenueBn": 0.25309532160000003,
+        "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226023769/ex10-17.htm",
+        "note": "Service Order No. 1 (filed with the Q1-26 10-Q): $1,264.2m over 60 months on 8,208 B300 — GPUs $1,187.2m at $3.30/GPU-hr plus storage, support and firewall = $3.52 all-in; invoiced monthly in advance; $140m security; no convenience termination for 36 months; two-year extension by negotiation. Site: GreenSquare SYD1 Stage 1, 15 MW online 19 Oct 2026; ESDS says go-live in early November 2026 (the 16 Sep delivery date was missed). Counterparty: ESDS Software Solutions (CRISIL A-/Positive, 16 Sep 2026); a 30 Apr 2026 short report questioned its capacity to pay; ESDS says it has paid an advance of ~INR 1,100–1,200 crore on this order."
       },
       {
         "name": "Global technology company · NEXTDC S6 Sydney · phase 1 (accepted 20 Aug)",
         "gen": "blackwell",
-        "itMW": 5,
+        "itMW": 6,
         "contractShare": 1,
         "modeledContractShare": 1,
         "newBusinessShare": 0,
@@ -1841,19 +1808,19 @@
         "commitmentBasis": "disclosed",
         "termYears": 5,
         "newTermYears": 3,
-        "ratePerMW": 18.98214912,
+        "ratePerMW": 15.8118,
         "newRatePerMW": null,
         "nextExpiryQ": "2031Q3",
-        "existingRenewalRatePerMW": 18.98214912,
+        "existingRenewalRatePerMW": 15.8118,
         "newRenewalRatePerMW": null,
-        "earningRevenueBn": 0.0949107456,
+        "earningRevenueBn": 0.0948708,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226022897/ex99-1.htm",
-        "note": "US$950m over five years with a global technology company with major Asia-Pacific presence, across multiple NEXTDC data centres (8-K 14 May 2026); first cluster accepted 20 Aug 2026, escrowed cash security released. GPU count inferred (~4,752 GB300, SemiAnalysis residual of the 62,000 fleet) → $4.56/GPU-hr."
+        "note": "US$950m over five years with a global technology company with major Asia-Pacific presence, across multiple NEXTDC data centres (8-K 14 May 2026); the June 2026 deck gives 5,776 GPUs → $3.75/GPU-hr all-in, ~12 MW; first cluster accepted 20 Aug 2026 with the escrowed cash security released (8-K); ~$400m of hardware, 20% deposit paid (10-Q)."
       },
       {
         "name": "Global technology company · phase 2",
         "gen": "blackwell",
-        "itMW": 5,
+        "itMW": 6,
         "contractShare": 1,
         "modeledContractShare": 1,
         "newBusinessShare": 0,
@@ -1864,14 +1831,14 @@
         "commitmentBasis": "disclosed",
         "termYears": 5,
         "newTermYears": 3,
-        "ratePerMW": 18.98214912,
+        "ratePerMW": 15.8118,
         "newRatePerMW": null,
         "nextExpiryQ": "2031Q4",
-        "existingRenewalRatePerMW": 18.98214912,
+        "existingRenewalRatePerMW": 15.8118,
         "newRenewalRatePerMW": null,
-        "earningRevenueBn": 0.0949107456,
+        "earningRevenueBn": 0.0948708,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226022897/ex99-1.htm",
-        "note": "US$950m over five years with a global technology company with major Asia-Pacific presence, across multiple NEXTDC data centres (8-K 14 May 2026); first cluster accepted 20 Aug 2026, escrowed cash security released. GPU count inferred (~4,752 GB300, SemiAnalysis residual of the 62,000 fleet) → $4.56/GPU-hr."
+        "note": "US$950m over five years with a global technology company with major Asia-Pacific presence, across multiple NEXTDC data centres (8-K 14 May 2026); the June 2026 deck gives 5,776 GPUs → $3.75/GPU-hr all-in, ~12 MW; first cluster accepted 20 Aug 2026 with the escrowed cash security released (8-K); ~$400m of hardware, 20% deposit paid (10-Q)."
       },
       {
         "name": "Global AI platform · 2,048 B300 (US$373m, 5-yr)",
@@ -1894,7 +1861,7 @@
         "newRenewalRatePerMW": null,
         "earningRevenueBn": 0.0746323968,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226035925/ex99-1.htm",
-        "note": "US$373m five-year take-or-pay, initial deployment 2,048 B300, revenue from Q1 2027 (8-K 4 Aug 2026) = $4.16/GPU-hr all-in; 3.7 MW at the ESDS density."
+        "note": "US$373m five-year take-or-pay, initial deployment 2,048 B300, revenue from Q1 2027 (8-K 4 Aug 2026) = $4.16/GPU-hr all-in; ~$217m of hardware (Q2 deck) — $106k per GPU, the richest build in the book; 3.7 MW at the ESDS density."
       },
       {
         "name": "Global AI lab · New Zealand · ~7,000 GB300 (US$1.32bn, 5-yr)",
@@ -1917,10 +1884,10 @@
         "newRenewalRatePerMW": null,
         "earningRevenueBn": 0.2642892,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226033457/ex99-1.htm",
-        "note": "US$1.32bn over five years, revenue commencing across Q1–Q2 2027 (8-K 16 Jul 2026); 14 MW secured in New Zealand (10-Q). GPU count not disclosed — ~7,000 at ~2.0 kW/GPU (SemiAnalysis) → $4.31/GPU-hr."
+        "note": "US$1.32bn over five years, revenue commencing across Q1–Q2 2027 (8-K 16 Jul 2026); 14 MW secured in New Zealand with commencement Q1 2027 (10-Q); ~$765m of hardware (Q2 deck) = $54.7m per MW. GPU count not disclosed — ~7,000 at ~2.0 kW/GPU (SemiAnalysis) → $4.31/GPU-hr."
       },
       {
-        "name": "NVIDIA block · NEXTDC 72 MW · phases 1–3 (Apr–Jun 2027)",
+        "name": "NVIDIA block · NEXTDC M2 72 MW · phases 1–3 (Apr–Jun 2027)",
         "gen": "blackwell",
         "itMW": 36,
         "contractShare": 1,
@@ -1940,7 +1907,7 @@
         "newRenewalRatePerMW": null,
         "earningRevenueBn": 0.576408,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226028370/form8-k.htm",
-        "note": "Master Cloud Services Agreement with NVIDIA, 8 Jun 2026: up to US$4.88bn over six years on up to 40,000 GB300 at a 72 MW NEXTDC site, all phases ending on one date = a $2.32/GPU-hr average floor. Capacity reserved for NVIDIA may be sold to third parties with NVIDIA taking an undisclosed share above the floor. Carried at $3.29/GPU-hr — the owner’s ruling of 3 Aug 2026 (SemiAnalysis 50%-share mid case; the shared house curve less a 50% share gives $3.43 over 2027–30). The floor is the “floor” scenario."
+        "note": "Master Cloud Services Agreement and Order Form 1 with NVIDIA, 8 Jun 2026 (not filed): contract value “up to” US$4.88bn over six years on up to 40,000 GB300 at the 72 MW NEXTDC M2 site, all phases ending on one date — NVIDIA’s maximum take-or-pay, which decreases as capacity is sold to third parties (NVIDIA Q2 FY27 10-Q), i.e. a $2.32/GPU-hr average floor on Sharon’s revenue ($3.65 in year one stepping to $0.99 in year six per SemiAnalysis). Sharon keeps the anchor price on capacity sold to end customers and shares the spread above it at an undisclosed rate; no third-party placement on the block has been announced through 26 Oct 2026, and WSJ-sourced reports (28 Aug 2026) of a pause in NVIDIA’s wider credit-support programme are unaddressed by either company. Carried at $3.29/GPU-hr — the owner’s ruling of 3 Aug 2026 (SemiAnalysis 50%-share mid case; the shared house curve less a 50% share gives $3.43 over 2027–30). The floor is the “floor” scenario. ~$4bn of hardware committed (10-Q)."
       },
       {
         "name": "NVIDIA block · phases 4–5 (Jul–Aug 2027)",
@@ -1963,7 +1930,7 @@
         "newRenewalRatePerMW": null,
         "earningRevenueBn": 0.576408,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226028370/form8-k.htm",
-        "note": "Master Cloud Services Agreement with NVIDIA, 8 Jun 2026: up to US$4.88bn over six years on up to 40,000 GB300 at a 72 MW NEXTDC site, all phases ending on one date = a $2.32/GPU-hr average floor. Capacity reserved for NVIDIA may be sold to third parties with NVIDIA taking an undisclosed share above the floor. Carried at $3.29/GPU-hr — the owner’s ruling of 3 Aug 2026 (SemiAnalysis 50%-share mid case; the shared house curve less a 50% share gives $3.43 over 2027–30). The floor is the “floor” scenario."
+        "note": "Master Cloud Services Agreement and Order Form 1 with NVIDIA, 8 Jun 2026 (not filed): contract value “up to” US$4.88bn over six years on up to 40,000 GB300 at the 72 MW NEXTDC M2 site, all phases ending on one date — NVIDIA’s maximum take-or-pay, which decreases as capacity is sold to third parties (NVIDIA Q2 FY27 10-Q), i.e. a $2.32/GPU-hr average floor on Sharon’s revenue ($3.65 in year one stepping to $0.99 in year six per SemiAnalysis). Sharon keeps the anchor price on capacity sold to end customers and shares the spread above it at an undisclosed rate; no third-party placement on the block has been announced through 26 Oct 2026, and WSJ-sourced reports (28 Aug 2026) of a pause in NVIDIA’s wider credit-support programme are unaddressed by either company. Carried at $3.29/GPU-hr — the owner’s ruling of 3 Aug 2026 (SemiAnalysis 50%-share mid case; the shared house curve less a 50% share gives $3.43 over 2027–30). The floor is the “floor” scenario. ~$4bn of hardware committed (10-Q)."
       },
       {
         "name": "Secured, uncontracted · 2027Q4 (the +80 MW of 20 Aug 2026)",
@@ -1987,7 +1954,7 @@
         "newRenewalRatePerMW": 18.000000000000004,
         "earningRevenueBn": 0.6172922519999999,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226039364/ex99-1.htm",
-        "note": "Secured capacity stepped up 80 MW to 212 MW “for deployment across 2026 and 2027” (8-K 20 Aug 2026); no customer, site or hardware disclosed. Priced on the shared curve ($18m per IT MW-yr at 500 GB300 per MW = $4.11/GPU-hr), 90% contracted."
+        "note": "Secured capacity stepped up 80 MW to 212 MW with an unnamed Australian partner “for deployment across 2026 and 2027” (8-K 20 Aug 2026; CEO: 212 MW deployed by end-2027); no customer, site or hardware disclosed. Priced on the shared curve ($18m per IT MW-yr at 500 GB300 per MW = $4.11/GPU-hr), 90% contracted."
       },
       {
         "name": "Secured, uncontracted · 2028Q1",
@@ -2011,7 +1978,7 @@
         "newRenewalRatePerMW": 19,
         "earningRevenueBn": 0.618003054,
         "source": "https://www.sec.gov/Archives/edgar/data/2068385/000149315226039364/ex99-1.htm",
-        "note": "As above; 2028 deployments assumed Vera Rubin at the house density of 250 per MW ($19m per IT MW-yr = $8.68/GPU-hr)."
+        "note": "As above; 2028 deployments assumed Vera Rubin at the house density of 250 per MW ($19m per IT MW-yr = $8.68/GPU-hr). The CEO has not priced Vera Rubin (late 2027 / early 2028)."
       },
       {
         "name": "Secured, uncontracted · 2028Q2",
@@ -2053,89 +2020,89 @@
       {
         "id": "base",
         "label": "Base",
-        "valuePerShare": 76.58358472278093,
-        "runRateBn": 3.9328000000000003,
-        "multiple": 2.7021566576159284,
+        "valuePerShare": 59.816844269501104,
+        "runRateBn": 3.9156,
+        "multiple": 2.2120128303232316,
         "note": "As modelled: 212 MW secured, 120 MW contracted, NVIDIA block at the owner-ruled $3.29/GPU-hr."
       },
       {
         "id": "newdown",
         "label": "New prices −20%",
-        "valuePerShare": 60.92641558798727,
-        "runRateBn": 3.6235999999999997,
-        "multiple": 2.4982236770069526,
+        "valuePerShare": 41.73288669672539,
+        "runRateBn": 3.6064000000000003,
+        "multiple": 1.9658457768240496,
         "note": "New-business prices on the uncontracted 92 MW 20% below the shared curve."
       },
       {
         "id": "newup",
         "label": "New prices +20%",
-        "valuePerShare": 91.81011510183991,
-        "runRateBn": 4.242,
-        "multiple": 2.8769886971562086,
+        "valuePerShare": 71.09451716129735,
+        "runRateBn": 4.2248,
+        "multiple": 2.422876317051867,
         "note": "New-business prices 20% above the shared curve."
       },
       {
         "id": "renewdown",
         "label": "Renewals −20%",
-        "valuePerShare": 72.24694322127597,
-        "runRateBn": 3.8251999999999997,
-        "multiple": 2.634722754907546,
+        "valuePerShare": 54.929694741790314,
+        "runRateBn": 3.8076,
+        "multiple": 2.130637993272264,
         "note": "Contracts renew at 80% of their original all-in rate."
       },
       {
         "id": "retention",
         "label": "Retention 80%",
-        "valuePerShare": 82.83297832481371,
-        "runRateBn": 4.1011999999999995,
-        "multiple": 2.782425436972474,
+        "valuePerShare": 60.68688618924186,
+        "runRateBn": 4.0672,
+        "multiple": 2.3092056668239036,
         "note": "Only 80% of expiring capacity renews; the rest moves to the shared spot curve, which is priced above this book’s contract rates — so this case raises the value rather than lowering it."
       },
       {
         "id": "longterm",
         "label": "Five-year new contracts −15%",
-        "valuePerShare": 65.28390009528418,
-        "runRateBn": 3.7008,
-        "multiple": 2.5523241447003766,
+        "valuePerShare": 46.9698228914096,
+        "runRateBn": 3.6835999999999998,
+        "multiple": 2.0311718991400016,
         "note": "New business signed on five-year terms at a 15% lower price."
       },
       {
         "id": "floor",
         "label": "NVIDIA at the floor",
-        "valuePerShare": 62.85471370082474,
-        "runRateBn": 3.5928,
-        "multiple": 2.4761483977066576,
-        "note": "The 72 MW block earns only the contractual minimum: $4.88bn over six years = $2.32/GPU-hr average — no third-party placement above the floor."
+        "valuePerShare": 38.047843160625625,
+        "runRateBn": 3.5756,
+        "multiple": 1.9391854763307348,
+        "note": "The 72 MW block earns only the contractual minimum: up to $4.88bn over six years = $2.32/GPU-hr average — no third-party placement above the floor."
       },
       {
         "id": "placement",
         "label": "NVIDIA block placed, 40% share",
-        "valuePerShare": 80.3611025778722,
-        "runRateBn": 4.002800000000001,
-        "multiple": 2.744091181224833,
+        "valuePerShare": 64.2294852111699,
+        "runRateBn": 3.9856,
+        "multiple": 2.2626044979913913,
         "note": "Full third-party placement with NVIDIA taking 40% of the spread above the floor: $3.49/GPU-hr six-year average (SemiAnalysis)."
       },
       {
         "id": "signedonly",
         "label": "Signed book only (120 MW)",
-        "valuePerShare": 58.8752836124925,
-        "runRateBn": 2.0384,
-        "multiple": 2.507791378708313,
+        "valuePerShare": 42.490652396730404,
+        "runRateBn": 2.0212,
+        "multiple": 1.9290761601943103,
         "note": "No lease-up of the 92 MW of secured-but-uncontracted capacity: it is removed with its capex. The value of what is contracted today."
       },
       {
         "id": "slip",
         "label": "Slip 2 quarters",
-        "valuePerShare": 66.39114372657461,
-        "runRateBn": 3.96,
-        "multiple": 2.718484714506993,
+        "valuePerShare": 48.71862854505081,
+        "runRateBn": 3.9424,
+        "multiple": 2.2317128317575814,
         "note": "Every tranche from 2027Q1 energises and earns two quarters later — the NEXTDC phases, New Zealand and the lease-up."
       },
       {
         "id": "joint",
         "label": "Joint downside",
-        "valuePerShare": 29.39118020254573,
-        "runRateBn": 1.6716,
-        "multiple": 1.9329004077166996,
+        "valuePerShare": 10.927473519931855,
+        "runRateBn": 1.6604,
+        "multiple": 1.232053064212835,
         "note": "Signed book only, NVIDIA at the floor, two quarters of slip, renewals −20% and spot −30%."
       }
     ]
