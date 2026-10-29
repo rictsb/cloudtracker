@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-28",
+ "asOf": "2026-10-29",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,69 @@
   }
  ],
  "items": [
+  {
+   "id": "qhQvt6Ih3AY",
+   "src": "mcnallie-money",
+   "d": "2026-10-28",
+   "title": "Latest Financing & Fed News | Top KEEL, IREN, NVDA, BTDR & HIVE Stock News | AI Stocks to Watch Now",
+   "headline": "Latest Financing & Fed News",
+   "url": "https://www.youtube.com/watch?v=qhQvt6Ih3AY",
+   "kind": "news",
+   "minutes": 53,
+   "tickers": [
+    "IREN",
+    "HIVE",
+    "BTDR",
+    "CORZ",
+    "KEEL",
+    "HUT",
+    "WULF",
+    "CIFR",
+    "APLD",
+    "SLNH",
+    "BTBT",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "HIVE",
+    "BTDR",
+    "CORZ"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN and NVIDIA intend to support the deployment of up to 5 GW of NVIDIA DSX-aligned AI infrastructure.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "BTDR",
+     "claim": "BlackRock has purchased a 4.8% stake in Bitdeer.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "KEEL",
+     "claim": "The Quebec Superior Court invalidated Hydro-Quebec's decree to hike electricity rates for data centers and mining.",
+     "by": "thirdparty",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "Mz2rp5T_EH0",
    "src": "mcnallie-money",
@@ -6146,96 +6209,6 @@
      "by": "executive",
      "tag": "notable",
      "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "mwDkMJHgsg4",
-   "src": "mcnallie-money",
-   "d": "2026-06-30",
-   "title": "Latest Biotech Stock to Watch Now | MindWalk Holdings | Top AI Stock News Today | HYFT Stock",
-   "headline": "Latest Biotech Stock to Watch Now",
-   "url": "https://www.youtube.com/watch?v=mwDkMJHgsg4",
-   "kind": "news",
-   "minutes": 13,
-   "tickers": [],
-   "main": [],
-   "summary": "1. The video provides an update on MindWalk Holdings (HYFT), a bio-native AI company focused on drug discovery, covering its recent developments, partnerships and financial performance.\n\n2. Key facts:\n   - HYFT: \n     - Partnered with AMD to accelerate AI drug discovery using AMD Instinct GPUs and EPYC processors\n     - Signed first recurring SaaS contract for Lens AI platform with big pharma\n     - Revenue up 52% YoY to $4.2M in most recent quarter, third consecutive quarter of YoY growth\n     - Gross margin 59%, cash balance $14.2M\n     - Launched Reef IQ biological context layer for AI drug discovery on June 10th\n     - Dengue program: HYFT computational prediction identified pan serotype structural target, immunization data showed cross-reactive antibodies against all four dengue serotypes (June 2nd press release)\n     - CEO Jennifer Bath said HYFT identifies functionally constrained patterns conventional sequence analysis would not prioritize\n\n3. Host's view:\n   - The host is bullish on HYFT, calling it a \"very exciting company\" at the intersection of AI and drug discovery\n   - Notes shares are up 51% in past year despite recent pullback to $1.58 \n   - Highlights Jones Research buy rating with $5 price target (15th April) and average consensus PT of $4 vs current ~$1.60 share price\n   - Sounds confident citing HYFT's partnerships, revenue growth, and recent catalysts\n\n4. Worth checking:\n   - Verify MindWalk's claim that 19 out of top 20 global pharma companies use their technology\n   - Confirm details of first Lens AI SaaS contract with big pharma \n   - Check if Jones Research $5 price target is still current (initiated 15th April)\n   - Look into specifics of dengue program results and Reef IQ launch",
-   "brief": "The video provides an update on MindWalk Holdings (HYFT), a bio-native AI company focused on drug discovery, covering its recent developments, partnerships and financial performance.",
-   "facts": [
-    "HYFT:",
-    "Partnered with AMD to accelerate AI drug discovery using AMD Instinct GPUs and EPYC processors",
-    "Signed first recurring SaaS contract for Lens AI platform with big pharma",
-    "Revenue up 52% YoY to $4.2M in most recent quarter, third consecutive quarter of YoY growth",
-    "Gross margin 59%, cash balance $14.2M",
-    "Launched Reef IQ biological context layer for AI drug discovery on June 10th",
-    "Dengue program: HYFT computational prediction identified pan serotype structural target, immunization data showed cross-reactive antibodies against all four dengue serotypes (June 2nd press release)",
-    "CEO Jennifer Bath said HYFT identifies functionally constrained patterns conventional sequence analysis would not prioritize"
-   ],
-   "view": "The host is bullish on HYFT, calling it a \"very exciting company\" at the intersection of AI and drug discovery Notes shares are up 51% in past year despite recent pullback to $1.58 Highlights Jones Research buy rating with $5 price target (15th April) and average consensus PT of $4 vs current ~$1.60 share price Sounds confident citing HYFT's partnerships, revenue growth, and recent catalysts",
-   "verify": [
-    "Verify MindWalk's claim that 19 out of top 20 global pharma companies use their technology",
-    "Confirm details of first Lens AI SaaS contract with big pharma",
-    "Check if Jones Research $5 price target is still current (initiated 15th April)",
-    "Look into specifics of dengue program results and Reef IQ launch"
-   ],
-   "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "G095XH19tKA",
-   "src": "mcnallie-money",
-   "d": "2026-06-30",
-   "title": "AI Earnings Season Expectations | Latest SLNH, BTBT & WULF News | Top AI Stocks to Watch Right Now",
-   "headline": "AI Earnings Season Expectations",
-   "url": "https://www.youtube.com/watch?v=G095XH19tKA",
-   "kind": "news",
-   "minutes": 27,
-   "tickers": [
-    "IREN",
-    "BTBT",
-    "WULF",
-    "SLNH",
-    "CORZ",
-    "BTDR",
-    "HUT",
-    "CLSK",
-    "MARA",
-    "RIOT",
-    "GLXY",
-    "HIVE"
-   ],
-   "main": [
-    "IREN",
-    "BTBT",
-    "WULF",
-    "SLNH",
-    "CORZ",
-    "BTDR",
-    "HUT"
-   ],
-   "summary": "1. The video discusses earnings expectations for AI infrastructure companies (miners pivoting to HPC hosting) amid Bitcoin price declines, covering recent news and key developments in the sector.\n\n2. Key facts by company:\n- IREN: Energized Sweetwater One (300 MW), moving mining machines from Childress to free up 450 MW gross power, expanding HPC in British Columbia.\n- BTBT: Holds 162,080 ETH ($254M) and 27,043,750 WULF shares ($1.02B). Net asset value $3.18/share vs $1.80 share price (43% discount).\n- WULF: First hybrid energy storage prototype shipped to MARA for grid-responsive load management.\n- MARA: Partnering with Tay Power Solutions on battery storage systems, production deployments planned later this year.\n\n3. Host's view:\nThe host is optimistic about the long-term prospects of AI infrastructure companies despite short-term Bitcoin price challenges and earnings pressures. They highlight that many stocks are trading below net asset value (e.g., BTBT at 43% discount) and expect significant deals to be announced during Q2 earnings season to offset poor mining results.\n\n4. Worth checking:\n- Verify BTBT's ETH holdings, WULF share count, and associated valuations against company filings.\n- Confirm MARA's battery storage deployment timeline with Tay Power Solutions.\n- Check if IREN has officially energized Sweetwater One (300 MW) and freed up 450 MW at Childress.",
-   "brief": "Earnings expectations for AI infrastructure companies (miners pivoting to HPC hosting) amid Bitcoin price declines, covering recent news and key developments in the sector.",
-   "facts": [
-    "IREN: Energized Sweetwater One (300 MW), moving mining machines from Childress to free up 450 MW gross power, expanding HPC in British Columbia.",
-    "BTBT: Holds 162,080 ETH ($254M) and 27,043,750 WULF shares ($1.02B). Net asset value $3.18/share vs $1.80 share price (43% discount).",
-    "WULF: First hybrid energy storage prototype shipped to MARA for grid-responsive load management.",
-    "MARA: Partnering with Tay Power Solutions on battery storage systems, production deployments planned later this year."
-   ],
-   "view": "The host is optimistic about the long-term prospects of AI infrastructure companies despite short-term Bitcoin price challenges and earnings pressures. They highlight that many stocks are trading below net asset value (e.g., BTBT at 43% discount) and expect significant deals to be announced during Q2 earnings season to offset poor mining results.",
-   "verify": [
-    "Verify BTBT's ETH holdings, WULF share count, and associated valuations against company filings.",
-    "Confirm MARA's battery storage deployment timeline with Tay Power Solutions.",
-    "Check if IREN has officially energized Sweetwater One (300 MW) and freed up 450 MW at Childress."
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN is moving machines to Childress to create an extra 450 MW of gross power capacity outside of the Microsoft deal.",
-     "by": "executive",
-     "tag": "notable",
-     "t": 418
     }
    ],
    "sponsored": []
