@@ -42,11 +42,20 @@
     "BTDR",
     "CORZ"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video covers recent developments in AI infrastructure stocks: Fed rate decisions, financing news (Hive's $129M loan), NVIDIA's DSX pod technology, and updates from companies like Iron Energy (IREN) and Kiel (KEEL).\n\n2. Key facts by company:\n- IREN: Closed a $363M equipment financing deal with Wingspire for deployed AI compute; featured in NVIDIA's DSX pod video showcasing its Texas site.\n- KEEL: Won a Quebec court ruling against Hydro-Quebec's proposed 91% electricity rate hike for data centers (from $0.13/kWh to $0.24/kWh); highlighted in an article about microgrid technology growth forecasts ($8B-$21.2B by 2030).\n- HIVE: Subsidiary BuzzHPC secured a $129M fixed-rate loan at 9% interest for its Cohear GPU cluster; the deal covers 80% of the cost, with Hive owning the GPUs outright after three years.\n- BTDR: BlackRock bought a 4.8% stake in Bitdeer; produces Seal Miner A4 machines (one of the most efficient on market) and has 110 EH/s self-mining hash rate.\n\n3. Host's view:\nThe host is bullish on AI infrastructure stocks, noting that Wall Street price targets remain high despite recent pullbacks. They highlight Iron Energy's potential as a future hyperscaler with nearly 6 GW of power and Bitdeer's multi-pronged revenue approach (AI, mining, SealMiner platform). The host sounds confident about the sector's long-term prospects.\n\n4. Worth checking:\n- Verify IREN's $363M equipment financing details in SEC filings.\n- Confirm KEEL's Quebec court ruling against Hydro-Quebec and its impact on electricity rates.\n- Check HIVE's loan terms for BuzzHPC's Cohear GPU cluster ($129M at 9% interest) in company disclosures.",
+   "brief": "Recent developments in AI infrastructure stocks: Fed rate decisions, financing news (Hive's $129M loan), NVIDIA's DSX pod technology, and updates from companies like Iron Energy (IREN) and Kiel (KEEL).",
+   "facts": [
+    "IREN: Closed a $363M equipment financing deal with Wingspire for deployed AI compute; featured in NVIDIA's DSX pod video showcasing its Texas site.",
+    "KEEL: Won a Quebec court ruling against Hydro-Quebec's proposed 91% electricity rate hike for data centers (from $0.13/kWh to $0.24/kWh); highlighted in an article about microgrid technology growth forecasts ($8B-$21.2B by 2030).",
+    "HIVE: Subsidiary BuzzHPC secured a $129M fixed-rate loan at 9% interest for its Cohear GPU cluster; the deal covers 80% of the cost, with Hive owning the GPUs outright after three years.",
+    "BTDR: BlackRock bought a 4.8% stake in Bitdeer; produces Seal Miner A4 machines (one of the most efficient on market) and has 110 EH/s self-mining hash rate."
+   ],
+   "view": "The host is bullish on AI infrastructure stocks, noting that Wall Street price targets remain high despite recent pullbacks. They highlight Iron Energy's potential as a future hyperscaler with nearly 6 GW of power and Bitdeer's multi-pronged revenue approach (AI, mining, SealMiner platform). The host sounds confident about the sector's long-term prospects.",
+   "verify": [
+    "Verify IREN's $363M equipment financing details in SEC filings.",
+    "Confirm KEEL's Quebec court ruling against Hydro-Quebec and its impact on electricity rates.",
+    "Check HIVE's loan terms for BuzzHPC's Cohear GPU cluster ($129M at 9% interest) in company disclosures."
+   ],
    "signal": [
     {
      "tk": "IREN",
