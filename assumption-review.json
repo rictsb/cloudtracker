@@ -4274,11 +4274,11 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-10-29T02:14:31.801Z",
-  "attemptedAt": "2026-10-29T02:14:31.801Z",
-  "lastSuccessAt": "2026-10-29T02:14:31.801Z",
+  "checkedAt": "2026-10-29T02:16:11.704Z",
+  "attemptedAt": "2026-10-29T02:16:11.704Z",
+  "lastSuccessAt": "2026-10-29T02:16:11.704Z",
   "sourceHash": "85699abd5127703bdfd30c73a5701e854608e32efbcaac7b6b575fba6ef253bc",
-  "quoteHash": "da199b134e53dc6391992687843dbd5501e4ff4f422af6fea29b9e855349aa3d",
+  "quoteHash": "6acdaa28a2c6dfee68776dafdde2aa1f3dede2a38e0253a24164d81be2c459f9",
   "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
   "provenance": {
     "data": {
@@ -4288,10 +4288,10 @@
     },
     "quotes": {
       "file": "market-prices.json",
-      "hash": "da199b134e53dc6391992687843dbd5501e4ff4f422af6fea29b9e855349aa3d",
+      "hash": "6acdaa28a2c6dfee68776dafdde2aa1f3dede2a38e0253a24164d81be2c459f9",
       "status": "ready",
-      "checkedAt": "2026-10-29T02:14:13.759Z",
-      "asOf": "2026-10-29T02:14:13.759Z",
+      "checkedAt": "2026-10-29T02:15:55.609Z",
+      "asOf": "2026-10-29T02:15:55.608Z",
       "failedTickers": [],
       "priceCount": 22
     },
@@ -4311,7 +4311,7 @@
     },
     "run": {
       "trigger": "workflow_run",
-      "commit": "8471be67ba1aea5e571ad0470cba55ce3a0689ee"
+      "commit": "5fe05f9508259b7ab927f0b63610400261c58853"
     }
   },
   "cadence": {
