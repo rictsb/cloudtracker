@@ -577,6 +577,37 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "8b361be7c80128c9",
+   "tk": "HUT",
+   "kind": "log",
+   "site": null,
+   "title": "log: HUT is developing the Riverbend project in Louisiana which has approximately 900 MW of con",
+   "current": null,
+   "proposed": {
+    "d": "2026-10-29",
+    "t": "contract",
+    "s": "[secondary] McNallie Money (YouTube) — Eric Jackson AI Stock Outlook | IREN, CIFR, WULF, & HUT | Top AI Stocks to Watch, 2026-10-29",
+    "x": "HUT is developing the Riverbend project in Louisiana which has approximately 900 MW of contracted power. — \"this site with, you know, 9    00 odd megawatts contracted\" (guest: Eric Jackson)"
+   },
+   "evidence": [
+    {
+     "d": "2026-10-29",
+     "quote": "this site with, you know, 9    00 odd megawatts contracted",
+     "claim": "HUT is developing the Riverbend project in Louisiana which has approximately 900 MW of contracted power.",
+     "by": "guest",
+     "url": "https://www.youtube.com/watch?v=5-OQgD7-GEw&t=863s",
+     "title": "Eric Jackson AI Stock Outlook | IREN, CIFR, WULF, & HUT | Top AI Stocks to Watch | EMJ Capital"
+    }
+   ],
+   "id": "p-2026-10-30-HUT-001",
+   "created": "2026-10-30",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
@@ -584,7 +615,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-10-29",
+ "asOf": "2026-10-30",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",

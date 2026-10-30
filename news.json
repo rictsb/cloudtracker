@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-29",
+ "asOf": "2026-10-30",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,69 @@
   }
  ],
  "items": [
+  {
+   "id": "5-OQgD7-GEw",
+   "src": "mcnallie-money",
+   "d": "2026-10-29",
+   "title": "Eric Jackson AI Stock Outlook | IREN, CIFR, WULF, & HUT | Top AI Stocks to Watch | EMJ Capital",
+   "headline": "Eric Jackson AI Stock Outlook",
+   "url": "https://www.youtube.com/watch?v=5-OQgD7-GEw",
+   "kind": "interview",
+   "minutes": 53,
+   "tickers": [
+    "IREN",
+    "HUT",
+    "CIFR",
+    "WULF",
+    "BTDR",
+    "GLXY",
+    "CRWV",
+    "NBIS",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "HUT",
+    "CIFR",
+    "WULF"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "HUT",
+     "claim": "HUT has a price target of 2000 USD.",
+     "by": "host",
+     "tag": "notable",
+     "t": 1680
+    },
+    {
+     "tk": "HUT",
+     "claim": "HUT uses project-level debt for its Riverbend and Beacon Point projects to avoid recourse to the parent company.",
+     "by": "guest",
+     "tag": "notable",
+     "t": 648
+    },
+    {
+     "tk": "CRWV",
+     "claim": "CoreWeave has received a financial partnership or backstop from NVIDIA to purchase excess capacity through the early 2030s.",
+     "by": "guest",
+     "tag": "notable",
+     "t": 1096
+    },
+    {
+     "tk": "HUT",
+     "claim": "HUT is developing the Riverbend project in Louisiana which has approximately 900 MW of contracted power.",
+     "by": "guest",
+     "tag": "scoop",
+     "t": 863
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "qhQvt6Ih3AY",
    "src": "mcnallie-money",
@@ -6169,53 +6232,6 @@
      "tk": "IREN",
      "claim": "IREN issued NVIDIA a five-year right to purchase up to 30 million shares of Ordinary Stock at $70 per share.",
      "by": "host",
-     "tag": "notable",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "0GSeVNzkff8",
-   "src": "mcnallie-money",
-   "d": "2026-07-01",
-   "title": "BTDR Valuation Analysis | Top ABTC & HIVE News Now | AI Stocks to Watch | Latest AI Stock News Today",
-   "headline": "BTDR Valuation Analysis — Top ABTC & HIVE News Now",
-   "url": "https://www.youtube.com/watch?v=0GSeVNzkff8",
-   "kind": "news",
-   "minutes": 30,
-   "tickers": [
-    "BTDR",
-    "ABTC",
-    "HIVE",
-    "WULF",
-    "CLSK",
-    "MARA",
-    "IREN",
-    "HUT"
-   ],
-   "main": [
-    "BTDR"
-   ],
-   "summary": "1. The video provides an updated valuation analysis for Bitdeer (BTDR) following its Tidal Norway co-location deal announcement, discusses recent news from ABTC (reverse stock split to maintain NASDAQ listing) and Hive Blockchain (HIVE; $130M senior secured note), and offers general commentary on the AI infrastructure sector's volatility.\n\n2. Key facts by company:\n- BTDR: 1.74 GW operational power + 1.3 GW pipeline = 3 GW total; Tidal Norway site is 225 MW across two phases with Capex estimated at $8M-$12M/MW and contract duration of 10-20 years.\n- HIVE: Closed a second senior secured note for $130M (includes $15M overallotment option), bringing Q2 2026 total to $245M; net proceeds ~$124.5M will fund GPU/data centre growth, capital contributions, and general corporate purposes; note is zero-coupon due in 2031 with a cap call at $8.52/share.\n- ABTC: Approved a 15-for-1 reverse stock split (effective post-market close June 28) to regain NASDAQ compliance after share price fell below $1 for extended period; total shares reduced from 1.09B to 73M.\n\n3. Host's view:\nThe host expresses confidence in the long-term prospects of AI infrastructure stocks despite recent volatility, viewing pullbacks as buying opportunities. They highlight that companies have learned lessons from past cycles (e.g., reducing debt) and are now better positioned. For BTDR specifically, they believe its Tidal Norway deal could add significant value ($12.05/share based on their model) that is not yet reflected in the current share price.\n\n4. Worth checking:\n- Verify BTDR's exact operational/pipeline power capacity (3 GW total stated).\n- Confirm HIVE's use of proceeds for the $130M note and cap call details.\n- Check ABTC's post-split share structure (73M total shares) against official filings.\n- Validate the host's valuation assumptions for BTDR's Tidal Norway deal ($2M/MW revenue, 1.1 PUE, 80% EBITDA margins).",
-   "brief": "The video provides an updated valuation analysis for Bitdeer (BTDR) following its Tidal Norway co-location deal announcement, discusses recent news from ABTC (reverse stock split to maintain NASDAQ listing) and Hive Blockchain (HIVE; $130M senior secured note), and offers general commentary on the AI infrastructure sector's volatility.",
-   "facts": [
-    "BTDR: 1.74 GW operational power + 1.3 GW pipeline = 3 GW total; Tidal Norway site is 225 MW across two phases with Capex estimated at $8M-$12M/MW and contract duration of 10-20 years.",
-    "HIVE: Closed a second senior secured note for $130M (includes $15M overallotment option), bringing Q2 2026 total to $245M; net proceeds ~$124.5M will fund GPU/data centre growth, capital contributions, and general corporate purposes; note is zero-coupon due in 2031 with a cap call at $8.52/share.",
-    "ABTC: Approved a 15-for-1 reverse stock split (effective post-market close June 28) to regain NASDAQ compliance after share price fell below $1 for extended period; total shares reduced from 1.09B to 73M."
-   ],
-   "view": "The host expresses confidence in the long-term prospects of AI infrastructure stocks despite recent volatility, viewing pullbacks as buying opportunities. They highlight that companies have learned lessons from past cycles (e.g., reducing debt) and are now better positioned. For BTDR specifically, they believe its Tidal Norway deal could add significant value ($12.05/share based on their model) that is not yet reflected in the current share price.",
-   "verify": [
-    "Verify BTDR's exact operational/pipeline power capacity (3 GW total stated).",
-    "Confirm HIVE's use of proceeds for the $130M note and cap call details.",
-    "Check ABTC's post-split share structure (73M total shares) against official filings.",
-    "Validate the host's valuation assumptions for BTDR's Tidal Norway deal ($2M/MW revenue, 1.1 PUE, 80% EBITDA margins)."
-   ],
-   "signal": [
-    {
-     "tk": "BTDR",
-     "claim": "Bitdeer produces close to 30 Bitcoin every day, more than any other North American public listed miner.",
-     "by": "executive",
      "tag": "notable",
      "t": null
     }
