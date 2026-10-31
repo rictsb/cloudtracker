@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-30",
+ "asOf": "2026-10-31",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,41 @@
   }
  ],
  "items": [
+  {
+   "id": "u-z21oQInBE",
+   "src": "mcnallie-money",
+   "d": "2026-10-30",
+   "title": "Huge Binance Hack | Hyperscale Earnings & CapEx | Top IREN, WYFI, HOST, BTBT, CORZ & SLNH Stock News",
+   "headline": "Huge Binance Hack — Hyperscale Earnings & CapEx",
+   "url": "https://www.youtube.com/watch?v=u-z21oQInBE",
+   "kind": "news",
+   "minutes": 46,
+   "tickers": [
+    "IREN",
+    "WULF",
+    "CORZ",
+    "BTBT",
+    "HIVE",
+    "CLSK",
+    "MARA",
+    "APLD",
+    "SLNH",
+    "BTDR",
+    "HUT"
+   ],
+   "main": [
+    "IREN",
+    "WULF",
+    "CORZ"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [],
+   "sponsored": []
+  },
   {
    "id": "5-OQgD7-GEw",
    "src": "mcnallie-money",
@@ -6169,81 +6204,6 @@
     {
      "tk": "IREN",
      "claim": "IREN issued 800 million USD in RSUs to co-CEOs and co-founders Dan and Will Roberts.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "6Nu0jNRTjwg",
-   "src": "mcnallie-money",
-   "d": "2026-07-02",
-   "title": "IREN Fallout | Latest IREN RSU Grant & Hiring News | Updated IREN Valuation Analysis | Top AI Stocks",
-   "headline": "IREN Fallout — Latest IREN RSU Grant & Hiring News",
-   "url": "https://www.youtube.com/watch?v=6Nu0jNRTjwg",
-   "kind": "news",
-   "minutes": 43,
-   "tickers": [
-    "IREN",
-    "BTDR",
-    "CORZ",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK",
-    "HUT"
-   ],
-   "main": [
-    "IREN"
-   ],
-   "summary": "1. The video is a detailed analysis of IRON's (Iris Energy) recent RSU grants, hiring news and overall valuation outlook amidst market volatility.\n\n2. Key facts by company:\n- IREN: Appointed Canby Aghealy as Chief Product Officer (ex-Oracle VP) and Michael Noodleman as Chief Development Officer (20 years at Google/Cyrus One/Beal). Announced $800M RSU grants to co-CEOs Daniel Roberts & Will Payne, vesting over 4 years with a 2-year holding period. Total shares owned post-RSU: 23.6M each ($900M value at current prices). Independent director Mike Halford received ~6,600 shares (total 127,606 since IPO) and has been buying shares personally.\n- IREN: 5GW secured power portfolio. NVIDIA partnership includes right to purchase up to 30M shares at $70 exercise price. Power pipeline: Horizon 1-4 (300MW), Childress expansion (400MW), Sweetwater energized (300MW), Canal Flats (30MW). Total capacity by EOY 2026: 480MW, growing to 1.2GW by EOY 2027.\n- IREN: Valuation analysis indicates $154/share potential based on 500MW compute power at 80% EBITDA margins and 20x multiple.\n\n3. Host's view:\n- The hosts maintain a bullish long-term stance on IRON, emphasizing the company is still in early stages of its AI infrastructure transition with significant growth ahead. They view recent RSU grants as aligning management incentives despite short-term market reactions. Valuation models suggest substantial upside potential ($154/share) once full capacity comes online.\n\n4. Worth checking:\n- Verify RSU vesting schedules and holding periods from SEC filings\n- Confirm NVIDIA partnership terms including share purchase rights\n- Validate power pipeline timelines (480MW EOY 2026, 1.2GW EOY 2027)\n- Check actual compute power conversion ratios (730MW power = ~500MW compute)",
-   "brief": "The video is a detailed analysis of IRON's (Iris Energy) recent RSU grants, hiring news and overall valuation outlook amidst market volatility.",
-   "facts": [
-    "IREN: Appointed Canby Aghealy as Chief Product Officer (ex-Oracle VP) and Michael Noodleman as Chief Development Officer (20 years at Google/Cyrus One/Beal). Announced $800M RSU grants to co-CEOs Daniel Roberts & Will Payne, vesting over 4 years with a 2-year holding period. Total shares owned post-RSU: 23.6M each ($900M value at current prices). Independent director Mike Halford received ~6,600 shares (total 127,606 since IPO) and has been buying shares personally.",
-    "IREN: 5GW secured power portfolio. NVIDIA partnership includes right to purchase up to 30M shares at $70 exercise price. Power pipeline: Horizon 1-4 (300MW), Childress expansion (400MW), Sweetwater energized (300MW), Canal Flats (30MW). Total capacity by EOY 2026: 480MW, growing to 1.2GW by EOY 2027.",
-    "IREN: Valuation analysis indicates $154/share potential based on 500MW compute power at 80% EBITDA margins and 20x multiple."
-   ],
-   "view": "The hosts maintain a bullish long-term stance on IRON, emphasizing the company is still in early stages of its AI infrastructure transition with significant growth ahead. They view recent RSU grants as aligning management incentives despite short-term market reactions. Valuation models suggest substantial upside potential ($154/share) once full capacity comes online.",
-   "verify": [
-    "Verify RSU vesting schedules and holding periods from SEC filings",
-    "Confirm NVIDIA partnership terms including share purchase rights",
-    "Validate power pipeline timelines (480MW EOY 2026, 1.2GW EOY 2027)",
-    "Check actual compute power conversion ratios (730MW power = ~500MW compute)"
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN has a secured power portfolio of 5 GW.",
-     "by": "executive",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "IREN",
-     "claim": "IREN announced the approval of $800 million in RSU grants to co-CEOs and senior team members.",
-     "by": "executive",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "IREN",
-     "claim": "The new RSU grants for IREN executives include a four-year vesting period and a two-year holding period.",
-     "by": "guest",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "IREN",
-     "claim": "IREN issued NVIDIA a five-year right to purchase up to 30 million shares of Ordinary Stock at $70 per share.",
      "by": "host",
      "tag": "notable",
      "t": null
