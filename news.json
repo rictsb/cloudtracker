@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-31",
+ "asOf": "2026-11-01",
  "windowDays": 120,
  "sources": [
   {
@@ -6160,68 +6160,6 @@
     "Check if permits are fully in hand for the N2 project spanning ~4,400 hectares or 87 claims"
    ],
    "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "GeEhn5xwtGI",
-   "src": "mcnallie-money",
-   "d": "2026-07-03",
-   "title": "Eric Jackson AI Stock Outlook | IREN, CIFR, OPEN, & HUT | Top AI Stocks to Watch | EMJ Capital",
-   "headline": "Eric Jackson AI Stock Outlook",
-   "url": "https://www.youtube.com/watch?v=GeEhn5xwtGI",
-   "kind": "interview",
-   "minutes": 59,
-   "tickers": [
-    "IREN",
-    "CIFR",
-    "HUT",
-    "BTDR",
-    "GLXY",
-    "WULF",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK",
-    "NUAI"
-   ],
-   "main": [
-    "IREN",
-    "CIFR",
-    "HUT"
-   ],
-   "summary": "1. The video is an interview with EMJ Capital's Eric Jackson discussing his investment outlook on AI infrastructure stocks like IREN, CIFR and OPEN, as well as his views on Bitcoin miners transitioning into the sector.\n\n2. Key facts by company:\n- IREN: \n  - Has a $800M RSU grant for co-founders Dan & Will Roberts.\n  - The RSUs are 4-year vested with an additional 2-year lock-in period; no performance metrics attached.\n  - Plans to add 730MW of power by end of next year (currently has 480MW in AI space).\n  - Hosts view IREN as a potential disruptor to CoreWeave and Nebius via its partnership with NVIDIA/Mirantis.\n- CIFR: \n  - Eric Jackson remains bullish on CIFR, noting it held up well during recent Bitcoin weakness despite being smaller than IREN (more leverage both ways).\n  - No new specific capacity or deal updates provided for CIFR.\n\n3. Host's view:\n- Eric Jackson is very bullish on IREN and CIFR long-term but acknowledges the stocks are more dangerous now as they've become popular.\n- He believes vertical integration will improve IREN's GPU economics over time.\n- For portfolio management, he uses AI models to predict Bitcoin regimes (bullish/mixed/bearish) and adjusts position sizes accordingly.\n\n4. Worth checking:\n- Verify IREN's RSU grant details in SEC filings (amounts, vesting schedule).\n- Confirm IREN's power capacity expansion targets (730MW by end of next year).\n- Check if CIFR has provided any recent operational updates or contract announcements.\n- Review EMJ Capital's AI model performance claims for Bitcoin price predictions.",
-   "brief": "The video is an interview with EMJ Capital's Eric Jackson discussing his investment outlook on AI infrastructure stocks like IREN, CIFR and OPEN, as well as his views on Bitcoin miners transitioning into the sector.",
-   "facts": [
-    "IREN:",
-    "Has a $800M RSU grant for co-founders Dan & Will Roberts.",
-    "The RSUs are 4-year vested with an additional 2-year lock-in period; no performance metrics attached.",
-    "Plans to add 730MW of power by end of next year (currently has 480MW in AI space).",
-    "Hosts view IREN as a potential disruptor to CoreWeave and Nebius via its partnership with NVIDIA/Mirantis.",
-    "CIFR:",
-    "Eric Jackson remains bullish on CIFR, noting it held up well during recent Bitcoin weakness despite being smaller than IREN (more leverage both ways).",
-    "No new specific capacity or deal updates provided for CIFR."
-   ],
-   "view": "Eric Jackson is very bullish on IREN and CIFR long-term but acknowledges the stocks are more dangerous now as they've become popular. He believes vertical integration will improve IREN's GPU economics over time. For portfolio management, he uses AI models to predict Bitcoin regimes (bullish/mixed/bearish) and adjusts position sizes accordingly.",
-   "verify": [
-    "Verify IREN's RSU grant details in SEC filings (amounts, vesting schedule).",
-    "Confirm IREN's power capacity expansion targets (730MW by end of next year).",
-    "Check if CIFR has provided any recent operational updates or contract announcements.",
-    "Review EMJ Capital's AI model performance claims for Bitcoin price predictions."
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN issued 800 million USD in RSUs to co-CEOs and co-founders Dan and Will Roberts.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    }
-   ],
    "sponsored": []
   }
  ]
