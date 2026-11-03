@@ -38,11 +38,21 @@
     "BTDR",
     "HIVE"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses AI infrastructure stock news, earnings expectations and market sentiment ahead of US midterm elections.\n\n2. Key facts by company:\n- DMGI: issued 105,100 stock options (exercise price $0.40/share) and 1,000,000 RSUs; has 9 granted patents + 2 allowed applications + 13 pending\n- HIVE: GPU rates increased - H200s from $3.99 to $5.29/hr (+33%), H100s from $2.99 to $3.99/hr (+33%)\n- IREN: signed multi-year deal with Perplexity for AI workloads on NVIDIA Blackwell Ultra GPUs at an IREN data center campus\n- MARA/MSTRG: Strategy acquired 811 BTC (~$65M) and repurchased $208M preferred shares; total BTC holdings now 849,327 (up from 848,516)\n- STRIVE: acquired 124 BTC ($10.1M avg price $80,526/BTC), total BTC now 43,124\n\n3. Host's view:\nThe host is generally positive on the sector long-term due to increasing GPU rates and demand for AI infrastructure, but acknowledges near-term headwinds from midterms and market skepticism about CapEx spending. They see opportunity in current valuations.\n\n4. Worth checking:\n- Verify DMGI's patent details against USPTO filings\n- Confirm HIVE's reported GPU rate increases with their earnings disclosures\n- Check IREN's contract announcement for specific terms/details",
+   "brief": "AI infrastructure stock news, earnings expectations and market sentiment ahead of US midterm elections.",
+   "facts": [
+    "DMGI: issued 105,100 stock options (exercise price $0.40/share) and 1,000,000 RSUs; has 9 granted patents + 2 allowed applications + 13 pending",
+    "HIVE: GPU rates increased - H200s from $3.99 to $5.29/hr (+33%), H100s from $2.99 to $3.99/hr (+33%)",
+    "IREN: signed multi-year deal with Perplexity for AI workloads on NVIDIA Blackwell Ultra GPUs at an IREN data center campus",
+    "MARA/MSTRG: Strategy acquired 811 BTC (~$65M) and repurchased $208M preferred shares; total BTC holdings now 849,327 (up from 848,516)",
+    "STRIVE: acquired 124 BTC ($10.1M avg price $80,526/BTC), total BTC now 43,124"
+   ],
+   "view": "The host is generally positive on the sector long-term due to increasing GPU rates and demand for AI infrastructure, but acknowledges near-term headwinds from midterms and market skepticism about CapEx spending. They see opportunity in current valuations.",
+   "verify": [
+    "Verify DMGI's patent details against USPTO filings",
+    "Confirm HIVE's reported GPU rate increases with their earnings disclosures",
+    "Check IREN's contract announcement for specific terms/details"
+   ],
    "signal": [
     {
      "tk": "IREN",
