@@ -608,6 +608,37 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "e719bcfd75853928",
+   "tk": "IREN",
+   "kind": "log",
+   "site": null,
+   "title": "log: IREN entered a multi-year agreement with Perplexity to run AI workloads using NVIDIA Black",
+   "current": null,
+   "proposed": {
+    "d": "2026-11-02",
+    "t": "opinion",
+    "s": "[secondary] McNallie Money (YouTube) — AI Earnings Week | Latest IREN, HIVE, BTBT, BTDR & DMGI Stock News | Top AI Stoc, 2026-11-02",
+    "x": "IREN entered a multi-year agreement with Perplexity to run AI workloads using NVIDIA Blackwell Ultra GPUs. — \"This is part of that previously announced $2.8 billion worth of new contracts... Perplexity will run the AI workloads on IREN's AI cloud using NVIDIA Blackwell Ultra GPUs.\" (host)"
+   },
+   "evidence": [
+    {
+     "d": "2026-11-02",
+     "quote": "This is part of that previously announced $2.8 billion worth of new contracts... Perplexity will run the AI workloads on IREN's AI cloud using NVIDIA Blackwell Ultra GPUs.",
+     "claim": "IREN entered a multi-year agreement with Perplexity to run AI workloads using NVIDIA Blackwell Ultra GPUs.",
+     "by": "host",
+     "url": "https://www.youtube.com/watch?v=yJq4Nobd_k8&t=1772s",
+     "title": "AI Earnings Week | Latest IREN, HIVE, BTBT, BTDR & DMGI Stock News | Top AI Stocks to Watch Now"
+    }
+   ],
+   "id": "p-2026-11-03-IREN-001",
+   "created": "2026-11-03",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
@@ -615,7 +646,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-11-02",
+ "asOf": "2026-11-03",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",

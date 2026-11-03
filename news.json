@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-02",
+ "asOf": "2026-11-03",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,58 @@
   }
  ],
  "items": [
+  {
+   "id": "yJq4Nobd_k8",
+   "src": "mcnallie-money",
+   "d": "2026-11-02",
+   "title": "AI Earnings Week | Latest IREN, HIVE, BTBT, BTDR & DMGI Stock News | Top AI Stocks to Watch Now",
+   "headline": "AI Earnings Week — Latest IREN, HIVE, BTBT, BTDR & DMGI Stock News",
+   "url": "https://www.youtube.com/watch?v=yJq4Nobd_k8",
+   "kind": "news",
+   "minutes": 34,
+   "tickers": [
+    "IREN",
+    "BTBT",
+    "BTDR",
+    "HIVE",
+    "MARA",
+    "CORZ",
+    "WULF",
+    "CLSK",
+    "CRWV",
+    "ABTC",
+    "HUT",
+    "RIOT"
+   ],
+   "main": [
+    "IREN",
+    "BTBT",
+    "BTDR",
+    "HIVE"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN entered a multi-year agreement with Perplexity to run AI workloads using NVIDIA Blackwell Ultra GPUs.",
+     "by": "host",
+     "tag": "big",
+     "t": 1772
+    },
+    {
+     "tk": "IREN",
+     "claim": "IREN has a 200 MW contract with Microsoft for its Childress site.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "u-z21oQInBE",
    "src": "mcnallie-money",
