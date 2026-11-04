@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-03",
+ "asOf": "2026-11-04",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,40 @@
   }
  ],
  "items": [
+  {
+   "id": "LDIHQvCCFmI",
+   "src": "mcnallie-money",
+   "d": "2026-11-03",
+   "title": "US Midterms & AI Impact | Latest IREN, NVDA & AAPL News | AI Stocks to Watch Today | AI Stock News",
+   "headline": "US Midterms & AI Impact — Latest IREN, NVDA & AAPL News",
+   "url": "https://www.youtube.com/watch?v=LDIHQvCCFmI",
+   "kind": "news",
+   "minutes": 33,
+   "tickers": [
+    "IREN",
+    "HUT",
+    "CORZ",
+    "WULF",
+    "BTDR",
+    "MARA",
+    "CLSK",
+    "BTBT",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT"
+   ],
+   "main": [
+    "IREN"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [],
+   "sponsored": []
+  },
   {
    "id": "yJq4Nobd_k8",
    "src": "mcnallie-money",
@@ -6132,96 +6166,6 @@
      "t": 2854
     }
    ],
-   "sponsored": []
-  },
-  {
-   "id": "YjdOLbuPyuE",
-   "src": "mcnallie-money",
-   "d": "2026-07-06",
-   "title": "Huge WULF & Anthropic Deal | NBIS Enters Spain | META Enters Compute | KEEL, ABTC & IREN News",
-   "headline": "Huge WULF & Anthropic Deal",
-   "url": "https://www.youtube.com/watch?v=YjdOLbuPyuE",
-   "kind": "news",
-   "minutes": 40,
-   "tickers": [
-    "WULF",
-    "NBIS",
-    "IREN",
-    "BTDR",
-    "GLXY",
-    "HUT",
-    "CIFR",
-    "CLSK",
-    "RIOT"
-   ],
-   "main": [
-    "WULF",
-    "NBIS",
-    "IREN"
-   ],
-   "summary": "1. The video discusses major developments in the AI infrastructure sector including a large deal between TerraWulf (WULF) and Anthropic, Nebius's (NBIS) expansion into Spain, Meta's entry into compute services, updates from Kiel Infrastructure (KEEL), ABTC, IronNet (IREN), and speculation about Anthropic entering Australia.\n\n2. Key facts by company:\n- WULF: Signed a 20-year, $19 billion deal with Anthropic for 401 MW of critical IT co-location at their Hawesville, Kentucky campus; expects initial capacity online in H2 2027 and full 401 MW ramp-up by early 2028; sold their stake in the Abernethy, Texas JV to Fluidstack for $530 million (originally purchased for $450 million); total contracted compute power now ~923 MW.\n- NBIS: Entered Spain with an 18-MW capacity agreement at Merlin Properties' Madrid data center; this is their fifth European market entry after UK, France, Finland and Iceland operations; developing additional 240 MW in France and 310 MW at Lapin-Ranta facility in Finland.\n- IREN: Announced plans for an 800-MW facility in South Australia targeting Asian markets.\n- KEEL: Appointed Ganesh Iyer (ex-Digital Realty) as president to lead commercial/pipeline expansion; CEO Ben Gagnon promised three deals by mid-late summer at Sharon, Panther Creek and Moses Lake sites.\n\n3. Host's view:\nThe host is generally bullish on the AI infrastructure sector despite recent volatility. They highlight that Meta's entry into compute caused significant share price drops across many companies (e.g., NBIS -15.6%, CRWV -13.7%) but emphasize this doesn't change long-term demand fundamentals. The host sees TerraWolf's Anthropic deal as one of the best seen, with strong metrics ($2.37M/MW/year revenue). Their valuation analysis suggests WULF shares could have significant upside from current levels.\n\n4. Worth checking:\n- Verify Meta's actual CapEx guidance for 2026 ($145B stated)\n- Confirm specifics of TerraWolf's Anthropic deal terms (revenue escalators, exact PUE)\n- Check if ABTC's reverse split ratio and Satoshi-per-share metrics are accurate\n- Validate details of Sato Technologies' Bhutan project (100MW initial capacity, expansion potential to 500MW)",
-   "brief": "Major developments in the AI infrastructure sector including a large deal between TerraWulf (WULF) and Anthropic, Nebius's (NBIS) expansion into Spain, Meta's entry into compute services, updates from Kiel Infrastructure (KEEL), ABTC, IronNet (IREN), and speculation about Anthropic entering Australia.",
-   "facts": [
-    "WULF: Signed a 20-year, $19 billion deal with Anthropic for 401 MW of critical IT co-location at their Hawesville, Kentucky campus; expects initial capacity online in H2 2027 and full 401 MW ramp-up by early 2028; sold their stake in the Abernethy, Texas JV to Fluidstack for $530 million (originally purchased for $450 million); total contracted compute power now ~923 MW.",
-    "NBIS: Entered Spain with an 18-MW capacity agreement at Merlin Properties' Madrid data center; this is their fifth European market entry after UK, France, Finland and Iceland operations; developing additional 240 MW in France and 310 MW at Lapin-Ranta facility in Finland.",
-    "IREN: Announced plans for an 800-MW facility in South Australia targeting Asian markets.",
-    "KEEL: Appointed Ganesh Iyer (ex-Digital Realty) as president to lead commercial/pipeline expansion; CEO Ben Gagnon promised three deals by mid-late summer at Sharon, Panther Creek and Moses Lake sites."
-   ],
-   "view": "The host is generally bullish on the AI infrastructure sector despite recent volatility. They highlight that Meta's entry into compute caused significant share price drops across many companies (e.g., NBIS -15.6%, CRWV -13.7%) but emphasize this doesn't change long-term demand fundamentals. The host sees TerraWolf's Anthropic deal as one of the best seen, with strong metrics ($2.37M/MW/year revenue). Their valuation analysis suggests WULF shares could have significant upside from current levels.",
-   "verify": [
-    "Verify Meta's actual CapEx guidance for 2026 ($145B stated)",
-    "Confirm specifics of TerraWolf's Anthropic deal terms (revenue escalators, exact PUE)",
-    "Check if ABTC's reverse split ratio and Satoshi-per-share metrics are accurate",
-    "Validate details of Sato Technologies' Bhutan project (100MW initial capacity, expansion potential to 500MW)"
-   ],
-   "signal": [
-    {
-     "tk": "WULF",
-     "claim": "TeraWulf inked a 20-year lease deal with Anthropic for 401 MW of compute at the Hawesville, Kentucky campus.",
-     "by": "executive",
-     "tag": "big",
-     "t": null
-    },
-    {
-     "tk": "WULF",
-     "claim": "The TeraWulf and Anthropic deal is valued at approximately 19 USDbn in contracted revenue.",
-     "by": "executive",
-     "tag": "notable",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "j_ieuD0DI1k",
-   "src": "mcnallie-money",
-   "d": "2026-07-06",
-   "title": "Latest Gold Stock To Watch 2026 | Formation Metals | Top Mining Stock News Now | FOMO Stock",
-   "headline": "Latest Gold Stock To Watch 2026",
-   "url": "https://www.youtube.com/watch?v=j_ieuD0DI1k",
-   "kind": "news",
-   "minutes": 11,
-   "tickers": [],
-   "main": [],
-   "summary": "1. The video discusses Formation Metals (FOMO), a Canadian gold exploration company with projects in Quebec and Ontario, highlighting its assets, recent developments, and potential catalysts for investors.\n\n2. Key facts by company:\n   - FOMO: \n     - Trades on the CSE under ticker FOMO and OTCQB under FOMTF\n     - Closed at 30 cents Canadian on June 23rd, up ~5% over six months and ~233% over a longer period\n     - N2 gold project in Quebec has approximately 871,000 historical ounces across six mineralized zones\n     - Fully funded 75,000 meter drill program underway with two rigs active\n     - Maiden resource estimate targeted for Q3 this year\n     - Nicobat nickel-copper-cobalt project in Ontario has a historical estimate of 5.3 million tons grading 0.25% nickel, 0.14% copper, and 0.03% cobalt\n     - Rio Titanium property in Quebec is 100% owned, 7,440 hectares, adjacent to Rio Tinto's Lacteo mine\n\n3. Host's view: \n   - The host is bullish on FOMO, noting its exposure to metals like gold, nickel, copper, cobalt and titanium which are seeing increased demand\n   - Highlights the company's clean balance sheet with $31 million Canadian in working capital and no debt\n   - Points out potential catalysts including pending drill results and a maiden resource estimate that could re-rate the stock\n   - Compares FOMO's market cap favorably to peers like Sitka Gold ($400M+ market cap) and Mayfair Gold (~$266M market cap)\n\n4. Worth checking:\n   - Verify the historical estimates of 871,000 ounces at N2 gold project and 5.3 million tons at Nicobat nickel-copper-cobalt project\n   - Confirm details of FOMO's acquisition of N2 from Wallbridge Mining in 2025\n   - Check if permits are fully in hand for the N2 project spanning ~4,400 hectares or 87 claims",
-   "brief": "Formation Metals (FOMO), a Canadian gold exploration company with projects in Quebec and Ontario, highlighting its assets, recent developments, and potential catalysts for investors.",
-   "facts": [
-    "FOMO:",
-    "Trades on the CSE under ticker FOMO and OTCQB under FOMTF",
-    "Closed at 30 cents Canadian on June 23rd, up ~5% over six months and ~233% over a longer period",
-    "N2 gold project in Quebec has approximately 871,000 historical ounces across six mineralized zones",
-    "Fully funded 75,000 meter drill program underway with two rigs active",
-    "Maiden resource estimate targeted for Q3 this year",
-    "Nicobat nickel-copper-cobalt project in Ontario has a historical estimate of 5.3 million tons grading 0.25% nickel, 0.14% copper, and 0.03% cobalt",
-    "Rio Titanium property in Quebec is 100% owned, 7,440 hectares, adjacent to Rio Tinto's Lacteo mine"
-   ],
-   "view": "The host is bullish on FOMO, noting its exposure to metals like gold, nickel, copper, cobalt and titanium which are seeing increased demand Highlights the company's clean balance sheet with $31 million Canadian in working capital and no debt Points out potential catalysts including pending drill results and a maiden resource estimate that could re-rate the stock Compares FOMO's market cap favorably to peers like Sitka Gold ($400M+ market cap) and Mayfair Gold (~$266M market cap)",
-   "verify": [
-    "Verify the historical estimates of 871,000 ounces at N2 gold project and 5.3 million tons at Nicobat nickel-copper-cobalt project",
-    "Confirm details of FOMO's acquisition of N2 from Wallbridge Mining in 2025",
-    "Check if permits are fully in hand for the N2 project spanning ~4,400 hectares or 87 claims"
-   ],
-   "signal": [],
    "sponsored": []
   }
  ]
