@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-04",
+ "asOf": "2026-11-05",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,99 @@
   }
  ],
  "items": [
+  {
+   "id": "fXAyPUh6lH8",
+   "src": "mcnallie-money",
+   "d": "2026-11-05",
+   "title": "RIOT Q3 Earnings CEO Q&A | Corsicana Deal Signed | Latest RIOT Stock News | RIOT Platforms | RIOT",
+   "headline": "RIOT Q3 Earnings CEO Q&A",
+   "url": "https://www.youtube.com/watch?v=fXAyPUh6lH8",
+   "kind": "interview",
+   "minutes": 37,
+   "tickers": [
+    "RIOT",
+    "CORZ",
+    "WULF",
+    "BTDR",
+    "GLXY",
+    "HIVE",
+    "BTBT",
+    "CLSK"
+   ],
+   "main": [
+    "RIOT"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "RIOT",
+     "claim": "Riot Platforms announced a 910 megawatt powered land lease deal at Corsicana with $28 billion in contract value over a 15-year term.",
+     "by": "executive",
+     "tag": "big",
+     "t": 180
+    },
+    {
+     "tk": "RIOT",
+     "claim": "The host estimates Riot's PUE for the Corsicana deal is around 1.1, which is impressive compared to peers.",
+     "by": "host",
+     "tag": "big",
+     "t": null
+    },
+    {
+     "tk": "RIOT",
+     "claim": "Riot Platforms expects to transition Bitcoin mining at Corsicana to the next phase around summer 2027.",
+     "by": "executive",
+     "tag": "call",
+     "t": 1831
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "TSUDp_Mp-wM",
+   "src": "mcnallie-money",
+   "d": "2026-11-04",
+   "title": "RIOT Signs Corsicana | HUT & AMD Earnings | Democrats Sweep | IREN, KEEL, HIVE, WULF & WYFI News",
+   "headline": "RIOT Signs Corsicana — HUT & AMD Earnings",
+   "url": "https://www.youtube.com/watch?v=TSUDp_Mp-wM",
+   "kind": "news",
+   "minutes": 52,
+   "tickers": [
+    "RIOT",
+    "HUT",
+    "IREN",
+    "WULF",
+    "CORZ",
+    "BTDR",
+    "GLXY"
+   ],
+   "main": [
+    "RIOT",
+    "HUT",
+    "IREN",
+    "WULF",
+    "CORZ"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "RIOT",
+     "claim": "Riot Platforms signed a 15-year agreement for 910 MW of IT capacity at its Corsicana site.",
+     "by": "executive",
+     "tag": "big",
+     "t": 1867
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "LDIHQvCCFmI",
    "src": "mcnallie-money",
@@ -6116,63 +6209,6 @@
     "Confirm NScale's $900M revolving credit facility and $14.6B valuation from March Series C."
    ],
    "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "jqiyLQUMR3M",
-   "src": "mcnallie-money",
-   "d": "2026-07-07",
-   "title": "TeraWulf CFO Q&A | TeraWulf & Anthropic Deal | Top AI Stocks to Watch in 2026 | WULF Stock",
-   "headline": "TeraWulf CFO Q&A — TeraWulf & Anthropic Deal",
-   "url": "https://www.youtube.com/watch?v=jqiyLQUMR3M",
-   "kind": "interview",
-   "minutes": 53,
-   "tickers": [
-    "WULF",
-    "APLD",
-    "BTDR",
-    "CORZ"
-   ],
-   "main": [
-    "WULF"
-   ],
-   "summary": "1. The video is an interview with Patrick Fleury (CFO of TeraWulf) discussing two major announcements: selling their stake in the Abernathy JV and signing a 20-year lease deal with Anthropic for the Hawesville site.\n\n2. Key facts by company:\n- WULF: Sold their interest in the Abernathy joint venture to FluidStack for approximately $530 million, generating a ~20% return on invested capital ($450M investment). The sale allows recycling capital into wholly owned projects.\n- WULF: Signed a 20-year lease with Anthropic at Hawesville (482 gross MW / 401 net MW) with annual escalators. Total contract value is $19 billion over the lease term, implying ~$2.37 million per megawatt. Project cost is ~$4.4 billion.\n- WULF: Targeting mid-teens levered yield on cost for projects; aiming for 10-20% equity layers in deals to avoid over-leverage.\n- WULF: Eastern Kentucky site (500 MW scaling to 1,000 MW) expected online late 2028/early 2029. Morgantown site awaiting FERC approval.\n\n3. Host's view:\n- The host is very bullish on WULF, calling the Anthropic deal \"one of the biggest deals I've seen\" and highlighting its $2.37 million/MW rate as superior to Applied Digital's ~$1.6-1.7M/MW hyperscaler deals.\n- The host references an analyst (Camps) who calculated a $37/share valuation based on the Hawesville deal alone, while Patrick Fleury gave a more conservative $20-30/share target.\n\n4. Worth checking:\n- Verify the $19B total contract value for Anthropic lease and implied $2.37M/MW rate.\n- Confirm the 10-12% NOI yield guidance for Hawesville vs. prior 8-10% at Lake Mariner.\n- Check if the 20-year lease term is indeed longer than typical industry standards (often ~15 years + options).",
-   "brief": "The video is an interview with Patrick Fleury (CFO of TeraWulf) discussing two major announcements: selling their stake in the Abernathy JV and signing a 20-year lease deal with Anthropic for the Hawesville site.",
-   "facts": [
-    "WULF: Sold their interest in the Abernathy joint venture to FluidStack for approximately $530 million, generating a ~20% return on invested capital ($450M investment). The sale allows recycling capital into wholly owned projects.",
-    "WULF: Signed a 20-year lease with Anthropic at Hawesville (482 gross MW / 401 net MW) with annual escalators. Total contract value is $19 billion over the lease term, implying ~$2.37 million per megawatt. Project cost is ~$4.4 billion.",
-    "WULF: Targeting mid-teens levered yield on cost for projects; aiming for 10-20% equity layers in deals to avoid over-leverage.",
-    "WULF: Eastern Kentucky site (500 MW scaling to 1,000 MW) expected online late 2028/early 2029. Morgantown site awaiting FERC approval."
-   ],
-   "view": "The host is very bullish on WULF, calling the Anthropic deal \"one of the biggest deals I've seen\" and highlighting its $2.37 million/MW rate as superior to Applied Digital's ~$1.6-1.7M/MW hyperscaler deals. The host references an analyst (Camps) who calculated a $37/share valuation based on the Hawesville deal alone, while Patrick Fleury gave a more conservative $20-30/share target.",
-   "verify": [
-    "Verify the $19B total contract value for Anthropic lease and implied $2.37M/MW rate.",
-    "Confirm the 10-12% NOI yield guidance for Hawesville vs. prior 8-10% at Lake Mariner.",
-    "Check if the 20-year lease term is indeed longer than typical industry standards (often ~15 years + options)."
-   ],
-   "signal": [
-    {
-     "tk": "WULF",
-     "claim": "The Hawesville site deal includes a direct lease with Anthropic for a 20 year term.",
-     "by": "executive",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "WULF",
-     "claim": "TeraWulf is waiting for FERC approval to close on the Morgantown site, expected by early August 2026.",
-     "by": "executive",
-     "tag": "notable",
-     "t": 2788
-    },
-    {
-     "tk": "WULF",
-     "claim": "The host estimates TeraWulf's share price could reach 20 to 30 USD based on current leased assets.",
-     "by": "host",
-     "tag": "notable",
-     "t": 2854
-    }
-   ],
    "sponsored": []
   }
  ]
