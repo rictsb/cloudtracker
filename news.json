@@ -31,11 +31,32 @@
    "main": [
     "RIOT"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is an interview with Riot Platforms CEO Jason Less discussing Q3 2026 earnings and a major deal to lease 910MW of capacity at their Corsicana site.\n\n2. Key facts by company:\n- RIOT: \n  - Ended Q3 2026 with $748 million in cash.\n  - Sold down majority of Bitcoin holdings over the quarter, holding ~2,400 BTC as of quarter end.\n  - AMD development phases on time; next phase delivering this month.\n  - Close to finalizing bank financing shortly for AMD.\n  - Frontier AI Lab at Rockdale project on track and budget; working towards finalizing investment grade backstop.\n  - Signed a 910MW powered land lease deal at Corsicana with $28 billion contract value over 15 years.\n  - Deal has base rent of $130/kW/month, 3% annual escalators, triple net lease structure.\n  - Total capex for Corsicana is $6 million/MW ($2M/MW site work, $4M/MW reimbursement to tenant).\n  - Average NOI over term is $1.8 billion; 33% yield on cost average NOI.\n  - First phase (400MW) delivered September 2027; next 200MW January 2028; full delivery July 2028.\n  - Will have fully delivered Corsicana and Rockdale by mid-2028 (~20 months from now).\n  - Sees potential to replicate deal structure at Rockdale in future.\n  - Interconnections already approved for both sites; hundreds of MW being pulled, long operating history.\n  - Significant employers in communities; engage with schools, fire departments, law enforcement, animal rescue, athletics.\n\n3. Host's view:\n- The host is very positive on the Corsicana deal, calling it a \"breakthrough\" and highlighting the impressive PE ratio (~1.1) compared to peers (1.45-1.5).\n- They emphasize the speed of deployment (10 months for 400MW) and low capex ($6M/MW vs $12M/MW for Tier 3 builds).\n- The host is confident this deal structure could become a norm in AI compute due to its advantages.\n\n4. Worth checking:\n- Verify the exact PE ratio calculation for the Corsicana deal against filings.\n- Confirm the timeline and specifics of the AMD financing finalization mentioned as \"shortly\".\n- Check filings for details on the investment grade backstop for the Frontier AI Lab at Rockdale.\n- Verify the exact breakdown of remaining capacity at Rockdale (mentioned as ~300-350MW available).",
+   "brief": "The video is an interview with Riot Platforms CEO Jason Less discussing Q3 2026 earnings and a major deal to lease 910MW of capacity at their Corsicana site.",
+   "facts": [
+    "RIOT:",
+    "Ended Q3 2026 with $748 million in cash.",
+    "Sold down majority of Bitcoin holdings over the quarter, holding ~2,400 BTC as of quarter end.",
+    "AMD development phases on time; next phase delivering this month.",
+    "Close to finalizing bank financing shortly for AMD.",
+    "Frontier AI Lab at Rockdale project on track and budget; working towards finalizing investment grade backstop.",
+    "Signed a 910MW powered land lease deal at Corsicana with $28 billion contract value over 15 years.",
+    "Deal has base rent of $130/kW/month, 3% annual escalators, triple net lease structure.",
+    "Total capex for Corsicana is $6 million/MW ($2M/MW site work, $4M/MW reimbursement to tenant).",
+    "Average NOI over term is $1.8 billion; 33% yield on cost average NOI.",
+    "First phase (400MW) delivered September 2027; next 200MW January 2028; full delivery July 2028.",
+    "Will have fully delivered Corsicana and Rockdale by mid-2028 (~20 months from now).",
+    "Sees potential to replicate deal structure at Rockdale in future.",
+    "Interconnections already approved for both sites; hundreds of MW being pulled, long operating history.",
+    "Significant employers in communities; engage with schools, fire departments, law enforcement, animal rescue, athletics."
+   ],
+   "view": "The host is very positive on the Corsicana deal, calling it a \"breakthrough\" and highlighting the impressive PE ratio (~1.1) compared to peers (1.45-1.5). They emphasize the speed of deployment (10 months for 400MW) and low capex ($6M/MW vs $12M/MW for Tier 3 builds). The host is confident this deal structure could become a norm in AI compute due to its advantages.",
+   "verify": [
+    "Verify the exact PE ratio calculation for the Corsicana deal against filings.",
+    "Confirm the timeline and specifics of the AMD financing finalization mentioned as \"shortly\".",
+    "Check filings for details on the investment grade backstop for the Frontier AI Lab at Rockdale.",
+    "Verify the exact breakdown of remaining capacity at Rockdale (mentioned as ~300-350MW available)."
+   ],
    "signal": [
     {
      "tk": "RIOT",
@@ -86,11 +107,20 @@
     "WULF",
     "CORZ"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses U.S. midterm election results and their potential impact on AI infrastructure companies, particularly those operating data centers in Texas; it also covers recent earnings reports from AMD, Hut 8 (HUT), Riot Platforms (RIOT) and financing updates from TeraWulf (WULF).\n\n2. Key facts by company:\n- **AMD**: Q3 2026 revenue $13.3 billion (+45% YoY), gross profit $7.2 billion (+51%), operating income $2.8 billion (+123%), diluted EPS $1.46 (+95%). Data center segment revenue $8.5 billion (up from $4.3 billion last year). Q4 guidance: $17 billion revenue, 66% YoY growth.\n- **Hut 8 (HUT)**: Net income $189.5 million due to FASB rules on Bitcoin holdings; revenues $71.1 million. 1.3 GW power under construction at Riverbend and Beacon Point sites. Extended ABTC lease at Beacon Point by two years, adding $655 million annualized NOI.\n- **Riot Platforms (RIOT)**: Signed 15-year, $28 billion triple-net powered land lease with Frontier AI Lab for Corsicana site. Deal includes 910 MW IT capacity, 1.1 PUE, $6 million/MW CapEx. First phase (400 MW) delivery by September 2027; full deployment by July 2028.\n- **TeraWulf (WULF)**: Secured Google credit backstop for $19 billion Anthropics lease at Hawesville campus. Signed definitive EPC agreement with phased completions late 2027 to Q2 2028.\n\n3. Host's view:\nThe host is bullish on Riot Platforms, calling the Corsicana deal \"game-changing\" and highlighting its unique structure (powered land lease) that minimizes CapEx while maximizing risk-adjusted returns. They note Wall Street price targets of $37-$40/share for RIOT (+130%-185% upside). The host downplays midterm election impacts on companies with approved sites, emphasizing power/land scarcity as the real value driver.\n\n4. Worth checking:\n- Riot Platforms' claim that their Corsicana deal structure is \"different\" from Rockdale leases (verify lease terms in filings).\n- Hut 8's statement that only ~5% of its power capacity is in ERCOT (cross-reference with facility disclosures).\n- TeraWulf's $19 billion Google credit backstop for Anthropics lease (confirm details in financing agreements).",
+   "brief": "U.S. midterm election results and their potential impact on AI infrastructure companies, particularly those operating data centers in Texas; it also covers recent earnings reports from AMD, Hut 8 (HUT), Riot Platforms (RIOT) and financing updates from TeraWulf (WULF).",
+   "facts": [
+    "**AMD**: Q3 2026 revenue $13.3 billion (+45% YoY), gross profit $7.2 billion (+51%), operating income $2.8 billion (+123%), diluted EPS $1.46 (+95%). Data center segment revenue $8.5 billion (up from $4.3 billion last year). Q4 guidance: $17 billion revenue, 66% YoY growth.",
+    "**Hut 8 (HUT)**: Net income $189.5 million due to FASB rules on Bitcoin holdings; revenues $71.1 million. 1.3 GW power under construction at Riverbend and Beacon Point sites. Extended ABTC lease at Beacon Point by two years, adding $655 million annualized NOI.",
+    "**Riot Platforms (RIOT)**: Signed 15-year, $28 billion triple-net powered land lease with Frontier AI Lab for Corsicana site. Deal includes 910 MW IT capacity, 1.1 PUE, $6 million/MW CapEx. First phase (400 MW) delivery by September 2027; full deployment by July 2028.",
+    "**TeraWulf (WULF)**: Secured Google credit backstop for $19 billion Anthropics lease at Hawesville campus. Signed definitive EPC agreement with phased completions late 2027 to Q2 2028."
+   ],
+   "view": "The host is bullish on Riot Platforms, calling the Corsicana deal \"game-changing\" and highlighting its unique structure (powered land lease) that minimizes CapEx while maximizing risk-adjusted returns. They note Wall Street price targets of $37-$40/share for RIOT (+130%-185% upside). The host downplays midterm election impacts on companies with approved sites, emphasizing power/land scarcity as the real value driver.",
+   "verify": [
+    "Riot Platforms' claim that their Corsicana deal structure is \"different\" from Rockdale leases (verify lease terms in filings).",
+    "Hut 8's statement that only ~5% of its power capacity is in ERCOT (cross-reference with facility disclosures).",
+    "TeraWulf's $19 billion Google credit backstop for Anthropics lease (confirm details in financing agreements)."
+   ],
    "signal": [
     {
      "tk": "RIOT",
