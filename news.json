@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-05",
+ "asOf": "2026-11-06",
  "windowDays": 120,
  "sources": [
   {
@@ -78,6 +78,58 @@
      "by": "executive",
      "tag": "call",
      "t": 1831
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "C88vIJBE-Cc",
+   "src": "mcnallie-money",
+   "d": "2026-11-05",
+   "title": "KEEL, CORZ & ABTC Earnings | AI Stocks Crashing | Top AI Stocks to Watch | RIOT, DRK, SLNH & HIVE",
+   "headline": "KEEL, CORZ & ABTC Earnings",
+   "url": "https://www.youtube.com/watch?v=C88vIJBE-Cc",
+   "kind": "news",
+   "minutes": 61,
+   "tickers": [
+    "CORZ",
+    "RIOT",
+    "IREN",
+    "ABTC",
+    "KEEL",
+    "HUT",
+    "WULF",
+    "SLNH",
+    "HIVE",
+    "BTDR",
+    "CLSK"
+   ],
+   "main": [
+    "CORZ",
+    "RIOT",
+    "IREN",
+    "ABTC",
+    "KEEL"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "RIOT",
+     "claim": "Riot Platforms announced a 28 billion USD deal at its Corsicana site for 910 MW with an AI frontier lab.",
+     "by": "host",
+     "tag": "big",
+     "t": 885
+    },
+    {
+     "tk": "CORZ",
+     "claim": "Core Scientific has delivered 485 MW of billing compute, with a total contract of 590 MW due for completion in early 202    7.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 2279
     }
    ],
    "sponsored": []
@@ -6181,64 +6233,6 @@
      "t": 1833
     }
    ],
-   "sponsored": []
-  },
-  {
-   "id": "aYmo1CIAeRE",
-   "src": "mcnallie-money",
-   "d": "2026-07-08",
-   "title": "Best AI Stocks to Watch Now | Top AI Stocks | RAISE Summit Kickoff | GLXY, CLSK, MARA & RIOT News",
-   "headline": "Best AI Stocks to Watch Now",
-   "url": "https://www.youtube.com/watch?v=aYmo1CIAeRE",
-   "kind": "news",
-   "minutes": 41,
-   "tickers": [
-    "IREN",
-    "GLXY",
-    "CLSK",
-    "MARA",
-    "RIOT",
-    "HUT",
-    "WULF",
-    "SLNH",
-    "BTDR",
-    "CRWV",
-    "NBIS",
-    "HIVE",
-    "BTBT",
-    "CORZ"
-   ],
-   "main": [
-    "IREN",
-    "GLXY",
-    "CLSK",
-    "MARA",
-    "RIOT"
-   ],
-   "summary": "1. The video covers AI infrastructure stocks' performance amid market volatility and discusses key updates from the RAISE Summit conference.\n\n2. Key facts by company:\n   - IREN: Headline sponsor of RAISE; 5 GW power capacity with NVIDIA GPUs; Microsoft contract for 200 MW at Childress site, expanding to 300 MW.\n   - WULF: Exited Texas JV due to high demand (85.5 GW total ERCOT demand, 440 GW future); Anthropic deal (401 MW) expected 18% return; raised $530M via ATM in May.\n   - MARA: ERCOT curtailment during winter storm (770 MW reduced); partnering with Starwood Digital Ventures for power generation and gas assets.\n   - RIOT: PPA at Rockdale facility allows revenue from curtailing (2025: $57M, 2024: $33.6M, 2023: $71M).\n   - HIVE: Surpassed 2% of Bitcoin global network; powers local schools in Paraguay and ice hockey team in Scandinavia.\n   - GLXY: Completed Phase 1 at Helios site (133 MW compute from 200 MW power); site expandable to 800 MW then 1.6 GW.\n   - CLSK: June production: 614 BTC, HODL now 13,924; sold 179 BTC + 250 via call exercises ($69,056/BTC).\n   - NScale: Raised $900M revolving credit facility (12-bank syndicate); $2B Series C in March valued at $14.6B.\n\n3. Host's view:\n   - The host is optimistic about the long-term prospects of AI infrastructure stocks despite recent pullbacks (~35-40% from June 22 highs). They emphasize the importance of conferences like RAISE for deal-making and brand recognition, noting IREN's strategic moves (sponsoring Golden State Warriors) to elevate its profile. The host validates WULF's ERCOT demand figures against MARA's data and highlights RIOT's ability to monetize curtailment.\n\n4. Worth checking:\n   - Verify IREN's 5 GW power capacity with NVIDIA GPUs.\n   - Confirm WULF's Anthropic deal return of ~18% and $530M ATM raise in May.\n   - Check MARA's ERCOT demand figures (85.5 GW total, 440 GW future) against official filings.\n   - Validate RIOT's curtailment revenue ($57M in 2025, $33.6M in 2024, $71M in 2023).\n   - Confirm HIVE's 2% global Bitcoin network share and community initiatives (Paraguay schools, Scandinavia ice hockey team).\n   - Verify GLXY's Helios site expansion potential to 1.6 GW.\n   - Check CLSK's June production numbers (614 BTC) and sales ($69,056/BTC).\n   - Confirm NScale's $900M revolving credit facility and $14.6B valuation from March Series C.",
-   "brief": "AI infrastructure stocks' performance amid market volatility and discusses key updates from the RAISE Summit conference.",
-   "facts": [
-    "IREN: Headline sponsor of RAISE; 5 GW power capacity with NVIDIA GPUs; Microsoft contract for 200 MW at Childress site, expanding to 300 MW.",
-    "WULF: Exited Texas JV due to high demand (85.5 GW total ERCOT demand, 440 GW future); Anthropic deal (401 MW) expected 18% return; raised $530M via ATM in May.",
-    "MARA: ERCOT curtailment during winter storm (770 MW reduced); partnering with Starwood Digital Ventures for power generation and gas assets.",
-    "RIOT: PPA at Rockdale facility allows revenue from curtailing (2025: $57M, 2024: $33.6M, 2023: $71M).",
-    "HIVE: Surpassed 2% of Bitcoin global network; powers local schools in Paraguay and ice hockey team in Scandinavia.",
-    "GLXY: Completed Phase 1 at Helios site (133 MW compute from 200 MW power); site expandable to 800 MW then 1.6 GW.",
-    "CLSK: June production: 614 BTC, HODL now 13,924; sold 179 BTC + 250 via call exercises ($69,056/BTC).",
-    "NScale: Raised $900M revolving credit facility (12-bank syndicate); $2B Series C in March valued at $14.6B."
-   ],
-   "view": "The host is optimistic about the long-term prospects of AI infrastructure stocks despite recent pullbacks (~35-40% from June 22 highs). They emphasize the importance of conferences like RAISE for deal-making and brand recognition, noting IREN's strategic moves (sponsoring Golden State Warriors) to elevate its profile. The host validates WULF's ERCOT demand figures against MARA's data and highlights RIOT's ability to monetize curtailment.",
-   "verify": [
-    "Verify IREN's 5 GW power capacity with NVIDIA GPUs.",
-    "Confirm WULF's Anthropic deal return of ~18% and $530M ATM raise in May.",
-    "Check MARA's ERCOT demand figures (85.5 GW total, 440 GW future) against official filings.",
-    "Validate RIOT's curtailment revenue ($57M in 2025, $33.6M in 2024, $71M in 2023).",
-    "Confirm HIVE's 2% global Bitcoin network share and community initiatives (Paraguay schools, Scandinavia ice hockey team).",
-    "Verify GLXY's Helios site expansion potential to 1.6 GW.",
-    "Check CLSK's June production numbers (614 BTC) and sales ($69,056/BTC).",
-    "Confirm NScale's $900M revolving credit facility and $14.6B valuation from March Series C."
-   ],
-   "signal": [],
    "sponsored": []
   }
  ]
