@@ -111,11 +111,18 @@
     "ABTC",
     "KEEL"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses the AI infrastructure sector's downturn post-midterm elections, covering earnings from ABTC, CORZ and KEEL, significant deals (Riot's $28B contract), Bitcoin's 5% drop due to Trump meter selling BTC, and price targets for RIOT.\n\n2. Key facts by company:\n- ABTC: Q3 revenue $63.4M (-$3.6M QoQ); mined 891 BTC; treasury up 5% (8,427 BTC total); cost/BTC rose from $36.5K to $42.1K; net income +$126M.\n- CORZ: Q3 location revenues $215.4M (+$78.7M QoQ); delivered 485MW billing compute capacity (590MW contract with CRWV); net income +$1.1B (boosted by warrant valuations); adjusted EBITDA +$133.6M; CAPEX $985M.\n- KEEL: Moses Lake permits secured, construction underway; unrestricted cash $780M; sold all 2,520 BTC for $192M; Q3 revenue $28M (-$40M QoQ); net loss -$62M (includes -$55M unrealized cap call loss).\n- RIOT: Signed $28B deal with Anthropic at Corsicana site (910MW capacity, 15-year term); Bernstein PT raised from $18 to $30 (113% upside).\n\n3. Host's view:\nThe host is bearish on the sector's short-term prospects due to macroeconomic pressures and political uncertainty but bullish long-term based on fundamentals. They highlight Wall Street price targets as validation of undervaluation, noting RIOT's deal with Anthropic as a major positive catalyst.\n\n4. Worth checking: Verify ABTC's treasury growth without share issuance or BTC purchases; confirm CORZ's warrant valuation impact on net income; check KEEL's permitting timelines and potential lease negotiations; validate RIOT's contract terms with Anthropic in SEC filings.",
+   "brief": "The AI infrastructure sector's downturn post-midterm elections, covering earnings from ABTC, CORZ and KEEL, significant deals (Riot's $28B contract), Bitcoin's 5% drop due to Trump meter selling BTC, and price targets for RIOT.",
+   "facts": [
+    "ABTC: Q3 revenue $63.4M (-$3.6M QoQ); mined 891 BTC; treasury up 5% (8,427 BTC total); cost/BTC rose from $36.5K to $42.1K; net income +$126M.",
+    "CORZ: Q3 location revenues $215.4M (+$78.7M QoQ); delivered 485MW billing compute capacity (590MW contract with CRWV); net income +$1.1B (boosted by warrant valuations); adjusted EBITDA +$133.6M; CAPEX $985M.",
+    "KEEL: Moses Lake permits secured, construction underway; unrestricted cash $780M; sold all 2,520 BTC for $192M; Q3 revenue $28M (-$40M QoQ); net loss -$62M (includes -$55M unrealized cap call loss).",
+    "RIOT: Signed $28B deal with Anthropic at Corsicana site (910MW capacity, 15-year term); Bernstein PT raised from $18 to $30 (113% upside)."
+   ],
+   "view": "The host is bearish on the sector's short-term prospects due to macroeconomic pressures and political uncertainty but bullish long-term based on fundamentals. They highlight Wall Street price targets as validation of undervaluation, noting RIOT's deal with Anthropic as a major positive catalyst.",
+   "verify": [
+    "Verify ABTC's treasury growth without share issuance or BTC purchases; confirm CORZ's warrant valuation impact on net income; check KEEL's permitting timelines and potential lease negotiations; validate RIOT's contract terms with Anthropic in SEC filings."
+   ],
    "signal": [
     {
      "tk": "RIOT",
