@@ -26,11 +26,22 @@
    "main": [
     "KEEL"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is an interview with Ben Gagnon (CEO of Keel Infrastructure) discussing Q3 earnings results and providing updates on the company's development projects.\n\n2. Key facts by company:\n   - KEEL: \n     - Moses Lake site is under construction, with steel structure largely in place; it represents ~4% of secured megawatts.\n     - Sharon and Panther Creek sites require project financing due to their scale.\n     - The company has not lost any negotiating parties at the table despite permitting delays.\n     - Equipment for Moses Lake is ordered and coming on site; the only optionality is GB300s or Vera Ruben GPUs.\n     - Keel is funding Moses Lake off its balance sheet, while Sharon and Panther Creek will require project financing.\n\n3. Host's view:\n   - The host (Anthony) acknowledges that deals take time to materialize but expresses confidence in Keel's approach of maintaining multiple negotiations simultaneously to drive the best outcomes for shareholders.\n   - He highlights that GPU economics are separate from demand for plugging in GPUs, and while challenging market conditions exist, he believes there are opportunities for investors.\n\n4. Worth checking:\n   - Verify the exact percentage of secured megawatts represented by Moses Lake (stated as ~4%).\n   - Confirm the specific equipment optionality (GB300s or Vera Ruben) at Moses Lake.\n   - Check if Keel has indeed maintained its balance sheet strength to fund Moses Lake without requiring project financing.",
+   "brief": "The video is an interview with Ben Gagnon (CEO of Keel Infrastructure) discussing Q3 earnings results and providing updates on the company's development projects.",
+   "facts": [
+    "KEEL:",
+    "Moses Lake site is under construction, with steel structure largely in place; it represents ~4% of secured megawatts.",
+    "Sharon and Panther Creek sites require project financing due to their scale.",
+    "The company has not lost any negotiating parties at the table despite permitting delays.",
+    "Equipment for Moses Lake is ordered and coming on site; the only optionality is GB300s or Vera Ruben GPUs.",
+    "Keel is funding Moses Lake off its balance sheet, while Sharon and Panther Creek will require project financing."
+   ],
+   "view": "The host (Anthony) acknowledges that deals take time to materialize but expresses confidence in Keel's approach of maintaining multiple negotiations simultaneously to drive the best outcomes for shareholders. He highlights that GPU economics are separate from demand for plugging in GPUs, and while challenging market conditions exist, he believes there are opportunities for investors.",
+   "verify": [
+    "Verify the exact percentage of secured megawatts represented by Moses Lake (stated as ~4%).",
+    "Confirm the specific equipment optionality (GB300s or Vera Ruben) at Moses Lake.",
+    "Check if Keel has indeed maintained its balance sheet strength to fund Moses Lake without requiring project financing."
+   ],
    "signal": [
     {
      "tk": "KEEL",
@@ -64,11 +75,16 @@
    "main": [
     "WULF"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is a YouTube interview with TeraWulf CFO Patrick Fleury discussing Q3 2026 earnings and operational updates.\n\n2. Key facts by company:\n   - WULF: HPC revenue up ~100% quarter-over-quarter; CB3 (42 MW) online since July, contributing to $46M HPC rent in Q3; CB4 (168 MW critical building) coming online imminently with data halls 3 and 4 first; annual run rate of ~$700M expected by end-Q1 next year; Lake Mariner on budget at $8-10M/MW, 75% capex spent already; Muskie site doubled to 500MW each for tenant; partnership with Fluor for EPC work at Hawesville; Google credit backstop for Hawesville leases (mandatory lease assumption first 6 years, termination payment after); 250-500 MW expansion pipeline annually through 2030.\n   - BTDR: Deal with Anthropic in Texas looks interesting but numbers may be pre-capital structure.\n\n3. Host's view: The host is bullish on WULF and the AI infrastructure sector overall; they see current valuations as attractive given upcoming catalysts like CB4/5 coming online, and expect a re-rating once cash flows materialize.\n\n4. Worth checking: Verify that Lake Mariner remains on budget at $8-10M/MW despite rising electrical labor costs; confirm Fluor's role in EPC work at Hawesville; check details of Google credit backstop for WULF leases (mandatory lease assumption vs termination payment); verify Muskie site expansion to 500MW each and approval timeline with Kentucky Public Service Commission.",
+   "brief": "The video is a YouTube interview with TeraWulf CFO Patrick Fleury discussing Q3 2026 earnings and operational updates.",
+   "facts": [
+    "WULF: HPC revenue up ~100% quarter-over-quarter; CB3 (42 MW) online since July, contributing to $46M HPC rent in Q3; CB4 (168 MW critical building) coming online imminently with data halls 3 and 4 first; annual run rate of ~$700M expected by end-Q1 next year; Lake Mariner on budget at $8-10M/MW, 75% capex spent already; Muskie site doubled to 500MW each for tenant; partnership with Fluor for EPC work at Hawesville; Google credit backstop for Hawesville leases (mandatory lease assumption first 6 years, termination payment after); 250-500 MW expansion pipeline annually through 2030.",
+    "BTDR: Deal with Anthropic in Texas looks interesting but numbers may be pre-capital structure."
+   ],
+   "view": "The host is bullish on WULF and the AI infrastructure sector overall; they see current valuations as attractive given upcoming catalysts like CB4/5 coming online, and expect a re-rating once cash flows materialize.",
+   "verify": [
+    "Verify that Lake Mariner remains on budget at $8-10M/MW despite rising electrical labor costs; confirm Fluor's role in EPC work at Hawesville; check details of Google credit backstop for WULF leases (mandatory lease assumption vs termination payment); verify Muskie site expansion to 500MW each and approval timeline with Kentucky Public Service Commission."
+   ],
    "signal": [
     {
      "tk": "WULF",
@@ -132,11 +148,20 @@
     "WULF",
     "GLXY"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video covers recent earnings reports from IREN and WULF, stock news for GLXY and KEEL, and discusses AI stocks' performance amid market volatility.\n\n2. Key facts by company:\n   - IREN: $20.3B revenue backlog (up 22% sequentially), two-thirds with investment-grade counterparties; $4B annual recurring revenue target delayed to end of January/February due to customer-requested design changes and supplier timing; signed a new five-year contract at $22M per IT megawatt with 90% GPU capex prepaid by the customer; disclosed a global power pipeline of 35 GW (up from previous 5 GW); BTIG reduced price target from $80 to $65 (still projects over 200% upside), Cantor Fitzgerald cut forecast from $99 to $47 (over 100% projected upside).\n   - WULF: HPC lease revenue hit $63M; $2.4B cash on balance sheet; 102 MW online at Lake Mariner, with 336 more under construction across CB4 and CB5; announced a 20-year Anthropic lease at Justified (401 MW critical IT, $19B contracted revenue backed by Google Credit backstop); Muskie site to double from 500 MW to 1 GW subject to Kentucky PSC approval.\n   - GLXY: CEO Mike Novogratz purchased nearly 10M shares on the open market; Helios site is a potential 3.6 GW site (over 1.6 GW already approved).\n   - KEEL: Goldman Sachs initiated coverage with $2 price target and neutral rating; Cantor Fitzgerald maintained overweight rating with $4 price target.\n\n3. Host's view:\n   The host believes the sector is close to a bottom despite recent volatility, citing strong fundamentals like rising GPU prices (Jevons Paradox), long-term contracts, and insider buying as positive indicators. They sound confident that companies will start showing significant revenues in 2027, leading to substantial upside.\n\n4. Worth checking:\n   - IREN's claim that the $4B ARR target delay was due to a customer change request (verify against Microsoft's public statements).\n   - WULF's statement that Google is providing a credit backstop for the Anthropic lease at Justified.\n   - KEEL's assertion that no customers have left the table and more have joined (confirm with company filings).",
+   "brief": "Recent earnings reports from IREN and WULF, stock news for GLXY and KEEL, and discusses AI stocks' performance amid market volatility.",
+   "facts": [
+    "IREN: $20.3B revenue backlog (up 22% sequentially), two-thirds with investment-grade counterparties; $4B annual recurring revenue target delayed to end of January/February due to customer-requested design changes and supplier timing; signed a new five-year contract at $22M per IT megawatt with 90% GPU capex prepaid by the customer; disclosed a global power pipeline of 35 GW (up from previous 5 GW); BTIG reduced price target from $80 to $65 (still projects over 200% upside), Cantor Fitzgerald cut forecast from $99 to $47 (over 100% projected upside).",
+    "WULF: HPC lease revenue hit $63M; $2.4B cash on balance sheet; 102 MW online at Lake Mariner, with 336 more under construction across CB4 and CB5; announced a 20-year Anthropic lease at Justified (401 MW critical IT, $19B contracted revenue backed by Google Credit backstop); Muskie site to double from 500 MW to 1 GW subject to Kentucky PSC approval.",
+    "GLXY: CEO Mike Novogratz purchased nearly 10M shares on the open market; Helios site is a potential 3.6 GW site (over 1.6 GW already approved).",
+    "KEEL: Goldman Sachs initiated coverage with $2 price target and neutral rating; Cantor Fitzgerald maintained overweight rating with $4 price target."
+   ],
+   "view": "The host believes the sector is close to a bottom despite recent volatility, citing strong fundamentals like rising GPU prices (Jevons Paradox), long-term contracts, and insider buying as positive indicators. They sound confident that companies will start showing significant revenues in 2027, leading to substantial upside.",
+   "verify": [
+    "IREN's claim that the $4B ARR target delay was due to a customer change request (verify against Microsoft's public statements).",
+    "WULF's statement that Google is providing a credit backstop for the Anthropic lease at Justified.",
+    "KEEL's assertion that no customers have left the table and more have joined (confirm with company filings)."
+   ],
    "signal": [
     {
      "tk": "WULF",
