@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-06",
+ "asOf": "2026-11-07",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,159 @@
   }
  ],
  "items": [
+  {
+   "id": "w-RZocejsJo",
+   "src": "mcnallie-money",
+   "d": "2026-11-07",
+   "title": "Keel Infrastructure Q3 Earnings Q&A | Ben Gagnon CEO Interview | Top AI Stocks to Watch | KEEL",
+   "headline": "Keel Infrastructure Q3 Earnings Q&A",
+   "url": "https://www.youtube.com/watch?v=w-RZocejsJo",
+   "kind": "interview",
+   "minutes": 54,
+   "tickers": [
+    "KEEL",
+    "RIOT",
+    "CORZ"
+   ],
+   "main": [
+    "KEEL"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "KEEL",
+     "claim": "KEEL avoids giving long-term exclusivity to tenants at its sites to maintain competitive tension and multiple negotiations.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 702
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "ANWVpatPf5I",
+   "src": "mcnallie-money",
+   "d": "2026-11-06",
+   "title": "TeraWulf CFO Q&A | Q3 Earnings & Site Updates | Top AI Stocks to Watch in 2026 | WULF Stock",
+   "headline": "TeraWulf CFO Q&A — Q3 Earnings & Site Updates",
+   "url": "https://www.youtube.com/watch?v=ANWVpatPf5I",
+   "kind": "interview",
+   "minutes": 59,
+   "tickers": [
+    "WULF",
+    "IREN",
+    "CORZ",
+    "RIOT",
+    "CRWV",
+    "BTDR",
+    "HUT",
+    "CLSK"
+   ],
+   "main": [
+    "WULF"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "WULF",
+     "claim": "WULF expects to reach an annual revenue run rate of approximately 700 million USD by the end of Q1 2027.",
+     "by": "executive",
+     "tag": "big",
+     "t": null
+    },
+    {
+     "tk": "WULF",
+     "claim": "WULF is utilizing a Google credit backstop for the Hawesville project to protect against Anthropic default.",
+     "by": "executive",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "WULF",
+     "claim": "WULF expects to sign a lease at the Muskie site in the first half of 2027.",
+     "by": "executive",
+     "tag": "call",
+     "t": null
+    },
+    {
+     "tk": "WULF",
+     "claim": "WULF intends to finance the Muskie project by mid-2027.",
+     "by": "executive",
+     "tag": "call",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "MOKrr5MKGyw",
+   "src": "mcnallie-money",
+   "d": "2026-11-06",
+   "title": "IREN, WULF & DRK Earnings | Latest GLXY & KEEL Stock News | Top AI Stocks to Watch Right Now",
+   "headline": "IREN, WULF & DRK Earnings",
+   "url": "https://www.youtube.com/watch?v=MOKrr5MKGyw",
+   "kind": "news",
+   "minutes": 43,
+   "tickers": [
+    "IREN",
+    "WULF",
+    "GLXY",
+    "BTDR",
+    "CORZ",
+    "APLD",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK",
+    "HIVE",
+    "SLNH",
+    "BTBT",
+    "KEEL"
+   ],
+   "main": [
+    "IREN",
+    "WULF",
+    "GLXY"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "WULF",
+     "claim": "WULF signed a 20-year Anthropic lease at Justified worth $19 billion.",
+     "by": "host",
+     "tag": "big",
+     "t": null
+    },
+    {
+     "tk": "IREN",
+     "claim": "IREN's annualized revenue target of $4 billion has slipped from end of 2026 to late January or February 2027.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    },
+    {
+     "tk": "IREN",
+     "claim": "IREN secured a $22 million five-year deal with 90% of the GPU capex prepaid by the customer.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "fXAyPUh6lH8",
    "src": "mcnallie-money",
@@ -6120,126 +6273,6 @@
     "Verify the historical mineral resource estimate at Campbell Kratzer (806k tons at 37.1% CaF2 from 1974) against current NI 43-101 standards. Confirm the details of the non-brokered private placement and insider participation in CTV’s recent filings."
    ],
    "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "fOvDXMME5aA",
-   "src": "mcnallie-money",
-   "d": "2026-07-09",
-   "title": "PA Power Play | Channel Members Only | Week of Jul 9",
-   "headline": "PA Power Play — Channel Members Only",
-   "url": "https://www.youtube.com/watch?v=fOvDXMME5aA",
-   "kind": "members",
-   "minutes": 11,
-   "tickers": [
-    "IREN",
-    "CIFR",
-    "RIOT",
-    "WULF",
-    "CLSK",
-    "BTBT",
-    "HIVE",
-    "MARA",
-    "CORZ"
-   ],
-   "main": [
-    "IREN",
-    "CIFR",
-    "RIOT",
-    "WULF",
-    "CLSK"
-   ],
-   "summary": "1. The video discusses recent trading activity in AI infrastructure stocks by two retail investors, their portfolio performance amid a market pullback since June 22nd, and their outlook on key holdings.\n\n2. Key facts:\n- IREN: Host sold covered calls at $64 strike for $390 premium (2 contracts), later bought shares at $48.98.\n- KEEL: Host sold 3,270 shares at $7 limit sell on June 22nd, then bought back 6,000 shares at $5.60 and another 5,000 at $4.50. Expects three deals to be announced by end of summer (within ~5-6 weeks).\n- RIOT: Host bought 1,000 shares at $26 limit on June 25th and 1,200 more at $21.65.\n- CORZ: Host sold 529 shares at $30.10 limit sell on June 22nd (described as all-time high) and another 500 shares in pension account at $29.50 on June 18th.\n\n3. Host's view:\n- Confident about the sector long-term, calling the recent pullback a \"blip\" that will recover with more deal news.\n- Expects KEEL to rebound with upcoming announcements.\n- Maintains high cash position (43%) for optionality during market dips.\n- No specific price targets given in this segment.\n\n4. Worth checking:\n- Verify if CORZ's $30.10 sale on June 22nd was indeed its all-time high.\n- Confirm KEEL's guidance of announcing three deals by end of summer (~5-6 weeks from July 9th).",
-   "brief": "Recent trading activity in AI infrastructure stocks by two retail investors, their portfolio performance amid a market pullback since June 22nd, and their outlook on key holdings.",
-   "facts": [
-    "IREN: Host sold covered calls at $64 strike for $390 premium (2 contracts), later bought shares at $48.98.",
-    "KEEL: Host sold 3,270 shares at $7 limit sell on June 22nd, then bought back 6,000 shares at $5.60 and another 5,000 at $4.50. Expects three deals to be announced by end of summer (within ~5-6 weeks).",
-    "RIOT: Host bought 1,000 shares at $26 limit on June 25th and 1,200 more at $21.65.",
-    "CORZ: Host sold 529 shares at $30.10 limit sell on June 22nd (described as all-time high) and another 500 shares in pension account at $29.50 on June 18th."
-   ],
-   "view": "Confident about the sector long-term, calling the recent pullback a \"blip\" that will recover with more deal news. Expects KEEL to rebound with upcoming announcements. Maintains high cash position (43%) for optionality during market dips. No specific price targets given in this segment.",
-   "verify": [
-    "Verify if CORZ's $30.10 sale on June 22nd was indeed its all-time high.",
-    "Confirm KEEL's guidance of announcing three deals by end of summer (~5-6 weeks from July 9th)."
-   ],
-   "signal": [
-    {
-     "tk": "CIFR",
-     "claim": "Cipher is expected to announce three deals during the current year.",
-     "by": "host",
-     "tag": "call",
-     "t": 326
-    },
-    {
-     "tk": "CIFR",
-     "claim": "Some of Cipher's new deals could be announced by the end of summer 2026.",
-     "by": "host",
-     "tag": "call",
-     "t": 333
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "bD5bg_jvWdk",
-   "src": "mcnallie-money",
-   "d": "2026-07-09",
-   "title": "Huge MARA Site News | META Expanding Compute | IREN Shareholder Letter | Latest Bitdeer Stock News",
-   "headline": "Huge MARA Site News — META Expanding Compute",
-   "url": "https://www.youtube.com/watch?v=bD5bg_jvWdk",
-   "kind": "news",
-   "minutes": 38,
-   "tickers": [
-    "MARA",
-    "BTDR",
-    "IREN",
-    "ABTC",
-    "BTBT",
-    "HIVE",
-    "RIOT"
-   ],
-   "main": [
-    "MARA",
-    "BTDR",
-    "IREN"
-   ],
-   "summary": "1. The video discusses recent news from Meta (data center expansion), Marathon Digital (MARA) (site acquisition), Bitdeer (BTDR) (manufacturing facility and data center development), and IronNet (IREN) (executive RSU grants).\n\n2. Key facts by company:\n   - META: Investing $10B to build a 1 GW AI-optimized campus in Alberta, Canada; expects to deploy ~7 GW of compute infra this year.\n   - MARA: Acquired two 1 GW powered land sites in Texas from HIFE (totaling 2 GW capacity); initial 1 GW due energised by Oct 2027 and remaining 1 GW by Apr 2028; deal doubles potential portfolio to 4.8 GW upon full energisation.\n   - BTDR: Breaking ground on a $36M advanced manufacturing facility in Sparks, Nevada (187k sq ft) targeting production of ≥10k Seal Miner units/month by end-2026; developing a 100 MW vertically integrated data center in Fox Creek, Alberta with projected energy cost $20–$25/MWh.\n   - IREN: Independent chair letter states latest RSU grants for co-CEOs will take combined stake to ~3% across both 2025/26 grants (no further equity until earliest FY2031); shares locked for four years post-vesting.\n\n3. Host's view:\n   - The host is bullish on the sector overall, noting Meta's Alberta investment validates AI demand and puts FUD about excess compute to bed.\n   - They see MARA's Texas deal as transformative (doubling portfolio) though early-stage; share price reacted positively (+18% intraday).\n   - Bitdeer's moves (US manufacturing, Fox Creek DC) are viewed favourably for avoiding tariffs and optimising energy costs.\n   - IREN's RSU grants are defended as reasonable given performance lock-in (shares locked until 2033) and growth trajectory.\n\n4. Worth checking:\n   - Verify MARA's Texas site power queue status/lock-in dates vs peers like IREN's Sweetwater.\n   - Confirm BTDR Fox Creek projected energy cost ($20–$25/MWh) vs industry benchmarks.\n   - Check if Meta's $10B Alberta investment aligns with typical $10–12M/MW build costs.",
-   "brief": "Recent news from Meta (data center expansion), Marathon Digital (MARA) (site acquisition), Bitdeer (BTDR) (manufacturing facility and data center development), and IronNet (IREN) (executive RSU grants).",
-   "facts": [
-    "META: Investing $10B to build a 1 GW AI-optimized campus in Alberta, Canada; expects to deploy ~7 GW of compute infra this year.",
-    "MARA: Acquired two 1 GW powered land sites in Texas from HIFE (totaling 2 GW capacity); initial 1 GW due energised by Oct 2027 and remaining 1 GW by Apr 2028; deal doubles potential portfolio to 4.8 GW upon full energisation.",
-    "BTDR: Breaking ground on a $36M advanced manufacturing facility in Sparks, Nevada (187k sq ft) targeting production of ≥10k Seal Miner units/month by end-2026; developing a 100 MW vertically integrated data center in Fox Creek, Alberta with projected energy cost $20–$25/MWh.",
-    "IREN: Independent chair letter states latest RSU grants for co-CEOs will take combined stake to ~3% across both 2025/26 grants (no further equity until earliest FY2031); shares locked for four years post-vesting."
-   ],
-   "view": "The host is bullish on the sector overall, noting Meta's Alberta investment validates AI demand and puts FUD about excess compute to bed. They see MARA's Texas deal as transformative (doubling portfolio) though early-stage; share price reacted positively (+18% intraday). Bitdeer's moves (US manufacturing, Fox Creek DC) are viewed favourably for avoiding tariffs and optimising energy costs. IREN's RSU grants are defended as reasonable given performance lock-in (shares locked until 2033) and growth trajectory.",
-   "verify": [
-    "Verify MARA's Texas site power queue status/lock-in dates vs peers like IREN's Sweetwater.",
-    "Confirm BTDR Fox Creek projected energy cost ($20–$25/MWh) vs industry benchmarks.",
-    "Check if Meta's $10B Alberta investment aligns with typical $10–12M/MW build costs."
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN co-CEOs will not receive further equity until at least the 2031 financial year.",
-     "by": "host",
-     "tag": "big",
-     "t": 1844
-    },
-    {
-     "tk": "MARA",
-     "claim": "Mara acquired 2 GW of powered land sites in Texas from HIFE.",
-     "by": "host",
-     "tag": "notable",
-     "t": 1448
-    },
-    {
-     "tk": "IREN",
-     "claim": "IREN co-CEOs' combined stake will reach approximately 3% following the latest RSU grants.",
-     "by": "host",
-     "tag": "notable",
-     "t": 1833
-    }
-   ],
    "sponsored": []
   }
  ]

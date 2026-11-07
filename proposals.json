@@ -763,6 +763,99 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "c404037f710b793f",
+   "tk": "WULF",
+   "kind": "log",
+   "site": null,
+   "title": "log: WULF expects to reach an annual revenue run rate of approximately 700 million USD by the e",
+   "current": null,
+   "proposed": {
+    "d": "2026-11-06",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — TeraWulf CFO Q&A | Q3 Earnings & Site Updates | Top AI Stocks to Watch in 2026 |, 2026-11-06",
+    "x": "WULF expects to reach an annual revenue run rate of approximately 700 million USD by the end of Q1 2027. (executive: Patrick Fleury)"
+   },
+   "evidence": [
+    {
+     "d": "2026-11-06",
+     "quote": null,
+     "claim": "WULF expects to reach an annual revenue run rate of approximately 700 million USD by the end of Q1 2027.",
+     "by": "executive",
+     "url": "https://www.youtube.com/watch?v=ANWVpatPf5I",
+     "title": "TeraWulf CFO Q&A | Q3 Earnings & Site Updates | Top AI Stocks to Watch in 2026 | WULF Stock"
+    }
+   ],
+   "id": "p-2026-11-07-WULF-001",
+   "created": "2026-11-07",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "1690f39a186d3ec8",
+   "tk": "WULF",
+   "kind": "log",
+   "site": null,
+   "title": "log: WULF expects to sign a lease at the Muskie site in the first half of 2027.",
+   "current": null,
+   "proposed": {
+    "d": "2026-11-06",
+    "t": "contract",
+    "s": "[secondary] McNallie Money (YouTube) — TeraWulf CFO Q&A | Q3 Earnings & Site Updates | Top AI Stocks to Watch in 2026 |, 2026-11-06",
+    "x": "WULF expects to sign a lease at the Muskie site in the first half of 2027. (executive: Patrick Fleury)"
+   },
+   "evidence": [
+    {
+     "d": "2026-11-06",
+     "quote": null,
+     "claim": "WULF expects to sign a lease at the Muskie site in the first half of 2027.",
+     "by": "executive",
+     "url": "https://www.youtube.com/watch?v=ANWVpatPf5I",
+     "title": "TeraWulf CFO Q&A | Q3 Earnings & Site Updates | Top AI Stocks to Watch in 2026 | WULF Stock"
+    }
+   ],
+   "id": "p-2026-11-07-WULF-002",
+   "created": "2026-11-07",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "aca3dec6eb35a0fc",
+   "tk": "WULF",
+   "kind": "log",
+   "site": null,
+   "title": "log: WULF intends to finance the Muskie project by mid-2027.",
+   "current": null,
+   "proposed": {
+    "d": "2026-11-06",
+    "t": "capital",
+    "s": "[secondary] McNallie Money (YouTube) — TeraWulf CFO Q&A | Q3 Earnings & Site Updates | Top AI Stocks to Watch in 2026 |, 2026-11-06",
+    "x": "WULF intends to finance the Muskie project by mid-2027. (executive: Patrick Fleury)"
+   },
+   "evidence": [
+    {
+     "d": "2026-11-06",
+     "quote": null,
+     "claim": "WULF intends to finance the Muskie project by mid-2027.",
+     "by": "executive",
+     "url": "https://www.youtube.com/watch?v=ANWVpatPf5I",
+     "title": "TeraWulf CFO Q&A | Q3 Earnings & Site Updates | Top AI Stocks to Watch in 2026 | WULF Stock"
+    }
+   ],
+   "id": "p-2026-11-07-WULF-003",
+   "created": "2026-11-07",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
@@ -770,7 +863,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-11-06",
+ "asOf": "2026-11-07",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
