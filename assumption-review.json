@@ -1,6 +1,6 @@
 {
   "ruleVersion": "1.1.1",
-  "asOf": "2026-11-08",
+  "asOf": "2026-11-09",
   "summary": {
     "companies": 22,
     "findings": 119,
@@ -4369,9 +4369,9 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-11-08T10:19:31.152Z",
-  "attemptedAt": "2026-11-08T10:19:31.152Z",
-  "lastSuccessAt": "2026-11-08T10:19:31.152Z",
+  "checkedAt": "2026-11-09T05:01:28.488Z",
+  "attemptedAt": "2026-11-09T05:01:28.488Z",
+  "lastSuccessAt": "2026-11-09T05:01:28.488Z",
   "sourceHash": "85699abd5127703bdfd30c73a5701e854608e32efbcaac7b6b575fba6ef253bc",
   "quoteHash": "acd44ca14632b5bae1e79185824945023b840eb79c3693c0c36154cb47e247b6",
   "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
@@ -4405,8 +4405,8 @@
       ]
     },
     "run": {
-      "trigger": "schedule",
-      "commit": "c1c00d99deaac1c26b7d174ea5153327c4c92337"
+      "trigger": "workflow_run",
+      "commit": "9dd2cce46cbde2d63e2a64430a2418c4e6d503d2"
     }
   },
   "cadence": {
