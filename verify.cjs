@@ -54,7 +54,7 @@ function assertCanonicalJSON(actual,expected,label='canonical payload',at='$'){
 }
 (async()=>{
   let model=await context.CloudModel.load();
-  assert.equal(model.companies.length,22);assert.equal(model.sites.length,194);assert.equal(model.meta.priceAsOf,null);
+  assert.equal(model.companies.length,22);assert.equal(model.sites.length,204);assert.equal(model.meta.priceAsOf,null);
   let companyChecks=0;
   const cases=[{},...model.assumptions.flatMap(a=>[{[a.key]:a.min},{[a.key]:a.max}])];
   for(const changes of cases){

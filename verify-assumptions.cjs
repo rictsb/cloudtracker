@@ -367,11 +367,11 @@ check('Optional signed geography retains exact legacy values and keeps unsigned 
   assert.deepEqual(e.siteValue(c, c.sites[1]), unsigned, 'unsigned site EV is completely unchanged');
 });
 
-check('SHAZ normalization retains its 16.8 signed rate and changes no unrelated company', () => {
+check('SHAZ normalization retains its 16.5 signed rate and changes no unrelated company', () => {
   const d = copy(data), shaz = company(d, 'SHAZ'), before = createEngine(d);
   Object.assign(before.ctx, copy(snapshot.marks));
   const originals = new Map(d.companies.map(c => [c.tk, before.value(c)]));
-  assert.equal(shaz.signedRate, 16.8);
+  assert.equal(shaz.signedRate, 16.5);
   delete shaz.signedRegionFactor; // Fixed regression fixture for the original additional discount.
   const reviewed = finding(run(d), 'SHAZ:economics:signed-rate-region');
   assert.ok(reviewed);
@@ -379,8 +379,8 @@ check('SHAZ normalization retains its 16.8 signed rate and changes no unrelated 
   shaz.signedRegionFactor = 1;
   const after = createEngine(d); Object.assign(after.ctx, copy(snapshot.marks));
   near(reviewed.impact.alternative, after.value(shaz).target);
-  assert.ok(reviewed.impact.pct > 25 && reviewed.impact.pct < 28, 'the original approximately 26% scenario is retained');
-  assert.equal(shaz.signedRate, 16.8);
+  assert.ok(reviewed.impact.pct > 18 && reviewed.impact.pct < 21, 'the approximately 19% scenario is retained (26% before the 2026-11-10 record correction lowered the contracted share)');
+  assert.equal(shaz.signedRate, 16.5);
   assert.equal(finding(run(d), 'SHAZ:economics:signed-rate-region'), undefined);
   for (const c of d.companies) if (c.tk !== 'SHAZ' && c.stake?.tk !== 'SHAZ') assert.deepEqual(after.value(c), originals.get(c.tk), c.tk + ' must not change');
   // A future tracked shareholder should continue receiving the normal stake look-through.
