@@ -4222,16 +4222,16 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-11-10T21:16:59.643Z",
-  "attemptedAt": "2026-11-10T21:16:59.643Z",
-  "lastSuccessAt": "2026-11-10T21:16:59.643Z",
-  "sourceHash": "c41b719e0ed921816c81538a512d6c2208ef6451ef550e591386253f78d856df",
+  "checkedAt": "2026-11-10T22:20:54.286Z",
+  "attemptedAt": "2026-11-10T22:20:54.286Z",
+  "lastSuccessAt": "2026-11-10T22:20:54.286Z",
+  "sourceHash": "7aa26fe866e34b6596a476504fec4f1ae5618b1cc390c6c305cb8628fec9b0e3",
   "quoteHash": "c936a5073b32cf0dcdfb6807576a3da6742b126eb214a7694ab3e582ea71f230",
   "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
   "provenance": {
     "data": {
       "file": "data.json",
-      "hash": "c41b719e0ed921816c81538a512d6c2208ef6451ef550e591386253f78d856df",
+      "hash": "7aa26fe866e34b6596a476504fec4f1ae5618b1cc390c6c305cb8628fec9b0e3",
       "asOf": null
     },
     "quotes": {
@@ -4259,7 +4259,7 @@
     },
     "run": {
       "trigger": "push",
-      "commit": "82e6dda99a9dff87773cbcdbc1d8a2427b6c09bc"
+      "commit": "4d219d8c2218bfe8bff8b22763a7baee6337f3dd"
     }
   },
   "cadence": {
