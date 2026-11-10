@@ -6,8 +6,8 @@
   "title": "IREN: from MW to $",
   "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
   "px": {
-    "v": 19.42,
-    "note": "Finnhub, 10 Nov"
+    "v": 19.73,
+    "note": "Finnhub, 10 Nov close"
   },
   "evArr": {
     "sh": 456.1,
@@ -1301,7 +1301,7 @@
     "W": 0.105,
     "SH0": 456.1,
     "EQ_SHARE": 0.1,
-    "EQ_PX": 19.42,
+    "EQ_PX": 19.73,
     "DEBT0": 10.429,
     "CASH0": 4.54,
     "RATE": 0.07,
@@ -1575,7 +1575,7 @@
       "spotGpu": 0.5,
       "spotShell": 0.5
     },
-    "basis": "debt 7% (converts 0.9% cash coupon; Microsoft-backed GPU debt SOFR+2.25% and 5.96% notes; the two GPU financings for other customers are 9.0% and 9.51% fixed — two-thirds of backlog is investment-grade, so the blend holds at ~7%), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $19.42 (the 10 Nov 2026 mark; October ATM sales averaged ~$36) plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, $6.746bn, capped calls, 10-Q) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 pro forma for the $388m term-loan draw on 1 Oct and ~$630m of October share sales: debt $10.43bn, cash $4.54bn, restricted cash $2.256bn counted; share count 456.1m = 424.36m on the 30 Oct cover + 31.7m restricted stock units (NVIDIA investment rights 30.0m and options 5.1m excluded as out of the money); prepaid forwards 14.5m shares returned Dec-29/Jun-30; discounted 4.14 years from 10 Nov 2026 to end-2030",
+    "basis": "debt 7% (converts 0.9% cash coupon; Microsoft-backed GPU debt SOFR+2.25% and 5.96% notes; the two GPU financings for other customers are 9.0% and 9.51% fixed — two-thirds of backlog is investment-grade, so the blend holds at ~7%), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $19.73 (the 10 Nov 2026 mark; October ATM sales averaged ~$36) plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, $6.746bn, capped calls, 10-Q) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 pro forma for the $388m term-loan draw on 1 Oct and ~$630m of October share sales: debt $10.43bn, cash $4.54bn, restricted cash $2.256bn counted; share count 456.1m = 424.36m on the 30 Oct cover + 31.7m restricted stock units (NVIDIA investment rights 30.0m and options 5.1m excluded as out of the money); prepaid forwards 14.5m shares returned Dec-29/Jun-30; discounted 4.14 years from 10 Nov 2026 to end-2030",
     "MULT": 4.31172232894418,
     "DCF_MULT": 3.81172232894418,
     "MULT_PREMIUM": 0.5
@@ -1662,7 +1662,7 @@
     ],
     [
       "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs, plus the separately disclosed 0.5× house premium.",
-      "<b>Separate clocks.</b> Pricing policy is dated 15 September 2026. The balance sheet is 30 September 2026, pro forma for October share sales and the 1 October term-loan draw. New equity is issued at the 10 November 2026 market reference, $19.42."
+      "<b>Separate clocks.</b> Pricing policy is dated 15 September 2026. The balance sheet is 30 September 2026, pro forma for October share sales and the 1 October term-loan draw. New equity is issued at the 10 November 2026 market reference, $19.73."
     ]
   ],
   "arr": {
@@ -2697,7 +2697,7 @@
       {
         "id": "base",
         "label": "Shared pricing base",
-        "valuePerShare": 87.47100132680184,
+        "valuePerShare": 88.25977920727385,
         "runRateBn": 56.7532,
         "multiple": 4.31172232894418,
         "note": "Existing book, same-hardware renewals and shared new-business pricing."
@@ -2705,7 +2705,7 @@
       {
         "id": "newdown",
         "label": "New prices −20%",
-        "valuePerShare": 53.19498171755531,
+        "valuePerShare": 53.71332518273449,
         "runRateBn": 47.7376,
         "multiple": 3.9056540286514,
         "note": "Shared new-business prices 20% lower; original existing-book rates protected."
@@ -2713,7 +2713,7 @@
       {
         "id": "newup",
         "label": "New prices +20%",
-        "valuePerShare": 120.80803385130676,
+        "valuePerShare": 121.89743151956057,
         "runRateBn": 65.7688,
         "multiple": 4.608985556591034,
         "note": "Shared new-business prices 20% higher; original existing-book rates protected."
@@ -2721,7 +2721,7 @@
       {
         "id": "renewdown",
         "label": "Renewal prices −20%",
-        "valuePerShare": 84.67298897816119,
+        "valuePerShare": 85.43653552234551,
         "runRateBn": 55.9432,
         "multiple": 4.28045483652504,
         "note": "Same hardware renews at 80% of its original all-in price."
@@ -2729,7 +2729,7 @@
       {
         "id": "retention",
         "label": "80% renewal retention",
-        "valuePerShare": 89.7747586619219,
+        "valuePerShare": 90.58431088818118,
         "runRateBn": 57.563199999999995,
         "multiple": 4.32591742364245,
         "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions."
@@ -2737,7 +2737,7 @@
       {
         "id": "longterm",
         "label": "Five-year new business, lower price",
-        "valuePerShare": 60.57028828852252,
+        "valuePerShare": 61.13944632964405,
         "runRateBn": 49.9912,
         "multiple": 3.890430258775592,
         "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years."
@@ -2745,7 +2745,7 @@
       {
         "id": "slip",
         "label": "Delivery slips two quarters",
-        "valuePerShare": 64.9737237307509,
+        "valuePerShare": 65.58425933109032,
         "runRateBn": 49.1016,
         "multiple": 4.320967746274542,
         "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar."
@@ -2753,7 +2753,7 @@
       {
         "id": "joint",
         "label": "Joint downside",
-        "valuePerShare": 25.383410481614504,
+        "valuePerShare": 25.630751951097086,
         "runRateBn": 38.9452,
         "multiple": 3.7818849094021916,
         "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar."

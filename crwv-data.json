@@ -1,18 +1,18 @@
 {
   "tk": "CRWV",
   "name": "CoreWeave",
-  "asOf": "2026-09-04",
-  "kicker": "CoreWeave · NASDAQ · from the Q2-26 10-Q and the 11 Aug call",
+  "asOf": "2026-11-10",
+  "kicker": "CoreWeave · NASDAQ · from the Q3-26 results release of 10 Nov and the Q2-26 10-Q",
   "title": "CoreWeave: from MW to $",
   "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
   "px": {
-    "v": 89.36,
-    "note": "Finnhub, 4 Sep"
+    "v": 48.73,
+    "note": "Finnhub, 10 Nov close"
   },
   "evArr": {
-    "sh": 551.5,
-    "nd": 30,
-    "arr": 19
+    "sh": 559,
+    "nd": 42.75,
+    "arr": 20.5
   },
   "arrLabel": "Energized contractual run-rate, including assumed renewals and new signings; earning revenue is shown separately.",
   "capacity": {
@@ -24,8 +24,8 @@
       ],
       [
         "Contracted power",
-        4200,
-        "11 Aug 2026 · plus >1.5 GW of powered land, options and LOIs"
+        4600,
+        "30 Sep 2026 · more than 1.3 GW of it international (India, Indonesia, Spain)"
       ],
       [
         "Active by end-2027",
@@ -34,8 +34,8 @@
       ],
       [
         "Active today",
-        1500,
-        "30 June · billing on take-or-pay"
+        1700,
+        "30 September · more than 1.85 GW guided for year-end"
       ]
     ],
     "max": 8000
@@ -323,21 +323,6 @@
     ]
   ],
   "Q": [
-    [
-      "2026Q3",
-      3515.7,
-      3515.7,
-      0,
-      1375,
-      2210,
-      691000,
-      {
-        "hopper": 329000,
-        "blackwell": 362000,
-        "rubin": 0,
-        "next": 0
-      }
-    ],
     [
       "2026Q4",
       4616,
@@ -910,7 +895,7 @@
       0,
       2.32,
       11,
-      null,
+      3661,
       3520
     ],
     [
@@ -1365,29 +1350,29 @@
   },
   "bridge": {
     "label": "2026 capex guide",
-    "lo": 35,
+    "lo": 37,
     "hi": 39,
     "max": 42,
-    "range": "$35–39bn",
-    "quote": "“$35 billion to $39 billion” — N. Agrawal, CFO, 11 Aug 2026",
+    "range": "$37–39bn",
+    "quote": "“full year 2026 capital expenditures of $37 billion to $39 billion, raising the low end of our prior guidance range” — Q3-26 release, 10 Nov 2026",
     "segs": [
       [
-        16.2,
+        23.6,
         "var(--s1)",
-        "H1-26 capex already spent (management definition, incl. finance leases and OEM-financed equipment)"
+        "nine-month purchases of property and equipment (cash-flow statement)"
       ],
       [
-        13,
+        9,
         "var(--s2)",
-        "H2-26: DDTL 5.0 and 5.5, OEM financing, customer prepayments"
+        "Q4-26: customer prepayments and deposits expected within three months"
       ],
       [
-        8,
+        5.4,
         "var(--sunk)",
-        "senior notes, converts, corporate"
+        "DDTLs, OEM financing, corporate"
       ]
     ],
-    "total": "≈ $37bn",
+    "total": "≈ $38bn",
     "cap": "2026 bridge · $bn"
   },
   "steady": {
@@ -1470,19 +1455,19 @@
     "basis": "Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
   },
   "finance": {
-    "M": 0.57,
+    "M": 0.59,
     "W": 0.105,
-    "SH0": 608.5,
+    "SH0": 616,
     "EQ_SHARE": 0.1,
-    "EQ_PX": 90,
-    "DEBT0": 35.55,
-    "CASH0": 5.524,
+    "EQ_PX": 48.73,
+    "DEBT0": 46.87,
+    "CASH0": 4.122,
     "RATE": 0.08,
     "TAX": 0.21,
     "MINCASH": 3,
-    "CONV": 6.5875,
-    "CONV_RATE": 0.0175,
-    "CASH_R": 1.4,
+    "CONV": 10.7875,
+    "CONV_RATE": 0.0219,
+    "CASH_R": 2.282,
     "FWD": 0,
     "SERIES": [
       [
@@ -1494,10 +1479,15 @@
         4,
         119.6,
         230
+      ],
+      [
+        4.2,
+        97.85,
+        199.7
       ]
     ],
-    "T0": "2026Q3",
-    "HORIZON": 4.33,
+    "T0": "2026Q4",
+    "HORIZON": 4.14,
     "AMORT": 0.16,
     "EQ_FROM": 2027,
     "GPU_LIFE": 6,
@@ -1506,34 +1496,25 @@
       "ratio": 0.42,
       "startQ": 16,
       "termQ": 4,
-      "openingOwed": 9.7,
+      "openingOwed": 10,
       "credits": [
         {
           "from": "2028Q1",
           "n": 12,
-          "amt": 4.85
+          "amt": 5
         },
         {
           "from": "2031Q1",
           "n": 8,
-          "amt": 4.85
+          "amt": 5
         }
       ],
-      "basis": "weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $9.7bn at 30-Jun-26 (10-Q) is the opening balance, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "basis": "weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $10.0bn at 30-Sep-26 (Q3 release) is the opening balance; the company expects ~$9bn of customer prepayments and deposits in the three months from 10 Nov 2026, which the modeled receipts on the Q4-26 and Q1-27 tranches (~$6bn) do not exceed, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
       "creditTiming": {
         "mode": "final-quarters",
         "quarters": 4
       },
       "creditSchedules": {
-        "2026Q3": [
-          {
-            "weight": 1,
-            "startQ": 16,
-            "termQ": 4,
-            "serviceQ": "2026Q3",
-            "endQ": "2031Q3"
-          }
-        ],
         "2026Q4": [
           {
             "weight": 1,
@@ -1694,8 +1675,8 @@
       "spotGpu": 0.5,
       "spotShell": 0
     },
-    "wfMarginBasis": "the quarterly waterfall runs at the printed 57% adjusted EBITDA margin (Q4-25 to Q2-26: 57/56/59%); the per-MW multiple uses 60%, a mature-MW margin between the print and management’s ~70% contract-level zone",
-    "basis": "debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75%), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $90 plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230) convert at the model 2030 price; restricted cash $1.4bn counted; fully diluted count before converts 608.5m = 551.5m basic (31 Jul 26) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs",
+    "wfMarginBasis": "the quarterly waterfall runs at 59%, the adjusted EBITDA margin printed for the first nine months of 2026 (57/56/59/62% from Q4-25 to Q3-26); the per-MW multiple uses 60%, a mature-MW margin between the print and management’s ~70% contract-level zone",
+    "basis": "debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75% and 2.875%; Q3-26 net interest $846m on ~$41bn of average debt; unsecured notes traded at mid-teens yields in the mid-October sell-off, per press reports), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $48.73 (the 10 Nov 2026 close; a 35m-share ATM has been open since mid-October) plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230; 2033 $4.2bn at $97.85 cap $199.70, issued 22 Sep 2026) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 (Q3 release): debt $46.9bn at carrying value (recourse $41.6bn, non-recourse $5.3bn), cash $4.1bn, restricted cash $2.3bn counted; fully diluted count before converts 616m = 559m weighted-average basic shares in Q3-26 (the 10-Q cover count is pending) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs; discounted 4.14 years from 10 Nov 2026 to end-2030",
     "MULT": 3.420417771404701
   },
   "labels": {
@@ -1711,63 +1692,63 @@
   "arrMax": 120,
   "hero": {
     "power": [
-      "1,500",
-      "MW active at 30 June · 4.2 GW contracted"
+      "1,700",
+      "MW active at 30 September · 4.6 GW contracted"
     ],
     "capex": [
-      "$35–39bn",
-      "2026 capex guide, 11 Aug"
+      "$37–39bn",
+      "2026 capex guide, 10 Nov"
     ]
   },
   "facts": [
     [
       "Shares out",
-      "551.5m",
-      "10-Q cover, 31 Jul"
+      "559m",
+      "Q3 weighted average · 551.5m on the 31 Jul cover"
     ],
     [
       "Net debt",
-      "$30.0bn",
-      "$35.6bn debt − $5.5bn cash"
+      "$42.7bn",
+      "$46.9bn debt − $4.1bn cash, 30 Sep"
     ],
     [
       "Backlog",
-      "$104bn",
-      "RPO $103.7bn, 30 Jun"
+      "$132.5bn",
+      "revenue backlog, 30 Sep"
     ]
   ],
   "tiles": [
     [
       "Cash",
-      "$5.5bn",
-      "+ $1.4bn restricted"
+      "$4.1bn",
+      "+ $2.3bn restricted · 30 Sep"
     ],
     [
       "Debt",
-      "$35.6bn",
-      "$6.6bn converts at 1.75%"
+      "$46.9bn",
+      "$10.8bn converts at 1.75–2.875%"
     ],
     [
       "Lease commitments",
       "$35.5bn",
-      "signed, not yet commenced"
+      "signed, not yet commenced · 30 Jun"
     ],
     [
       "2026 capex guide",
-      "$35–39bn",
-      "CFO, 11 Aug"
+      "$37–39bn",
+      "10 Nov · low end raised from $35bn"
     ]
   ],
   "notes": [
     [
-      "<b>4.2 GW contracted, 1.5 GW active.</b> Fifty-one leased data centres; no single provider delivers more than 17% of active power. Every site is rented — Core Scientific (590 MW), Applied Digital (400 MW), Galaxy Helios (525 MW), Chirisa, TierPoint, Flexential.<span class=\"src\">Q2-26 10-Q · 11 Aug call</span>",
+      "<b>4.6 GW contracted, 1.7 GW active.</b> More than 200 MW was added in the September quarter and more than 900 MW contracted; over 1.3 GW of contracted power is now outside the US. Every site is rented — Core Scientific (590 MW), Applied Digital (400 MW), Galaxy Helios (525 MW), Chirisa, TierPoint, Flexential. SemiAnalysis’s site work has year-end at ~1.96 GW against the company’s “more than 1.85 GW”, and ~3.1 GW at end-2027 — in line with the page.<span class=\"src\">Q3-26 release · SemiAnalysis 3Q26 update</span>",
       "<b>The bottleneck is powered shell, not GPUs or grid.</b> One lessor running late cost the 2025 active-power target 50 MW and cut FY25 capex from $20–23bn to $12–14bn; the delayed sites landed in Q1-26.<span class=\"src\">Q3-25 and Q4-25 calls</span>",
       "<b>2030: “at least 8 GW”.</b> Contracted 4.2 GW plus >1.5 GW of powered land, options and LOIs is ~6 GW; the model carries 7 GW by end-2030 and leaves the rest unmodelled.<span class=\"src\">Q2-26 call · tracker pipeline</span>"
     ],
     [
       "<b>~850k GPUs by Dec 2026</b> on 1.85 GW active. The company reported >250k GPUs at end-2024 on 360 MW; density per MW falls as Blackwell and Rubin racks replace Hopper.<span class=\"src\">10-K FY25 · model densities</span>",
       "<b>Six-year book life.</b> Technology equipment is depreciated over six years (five before 2023); management points to A100s re-contracted into 2029 and H100 pricing within 10% of a year earlier.<span class=\"src\">10-K Note 2 · Q4-25 and Q2-26 calls</span>",
-      "<b>Vera Rubin from Q4-27.</b> Meta’s $21bn order and Jane Street’s $6bn commitment are the first Vera Rubin deployments; CoreWeave took delivery of the first VR NVL72 rack in June 2026.<span class=\"src\">8-K 9 Apr 2026 · 8-K 15 Apr 2026</span>"
+      "<b>Vera Rubin is in production.</b> Multi-rack Vera Rubin NVL72 deployments are online with Cognition’s first production workloads — about a year ahead of the page’s first Rubin tranche, at undisclosed scale; Meta’s $21bn order and Jane Street’s $6bn commitment remain the first large deployments.<span class=\"src\">Q3-26 release · 8-Ks 9 and 15 Apr 2026</span>"
     ],
     [
       "<b>Contract cohorts.</b> Existing/inferred book keeps its original all-in rate until a disclosed or estimated expiry. Expiry ends signed coverage; continuation becomes an assumed renewal. New capacity uses one shared house curve.",
@@ -1776,8 +1757,8 @@
     ],
     [
       "<b>Success-based capex.</b> Contracted revenue more than covers capex within the contract term; each deployment is financed by a self-amortising delayed-draw term loan plus prepayments. DDTL 4.0 ($8.5bn, SOFR+225 / 5.9% fixed, non-recourse, A3) advances 90% of cost; DDTL 5.5 ($2.6bn, SOFR+550) finances 3-year contracts.<span class=\"src\">8-Ks 30 Mar, 15 May, 7 Aug 2026</span>",
-      "<b>“Weighted-average cost of debt down almost 300 bps in a year.”</b> $35.6bn of debt at 30 June: DDTLs $13.6bn, senior notes $10.0bn at 9–9.75%, converts $6.6bn at 1.75%, OEM financing $4.8bn. Interest ran $640m in Q2 against $1.51bn of adjusted EBITDA.<span class=\"src\">Q2-26 10-Q Note 8 · 11 Aug call</span>",
-      "<b>The catch:</b> prepayments are 15–25% of contract value and lenders advance 90% only against signed take-or-pay. Unsigned capacity needs ~$16.5m of equity per MW — or, as in 2025, the NVIDIA backstop and equity placements ($2bn at $87.20, $1bn at $109).<span class=\"src\">424B4 · 8-Ks 23 Jan, 15 Apr 2026</span>"
+      "<b>Debt is $46.9bn, up $11bn in a quarter.</b> Recourse $41.6bn and non-recourse $5.3bn at 30 September, including a new $4.2bn 2.875% convertible due 2033 and the $2.6bn DDTL 5.5. Net interest ran $846m in Q3 against $2.26bn of adjusted EBITDA and is guided to $1.05–1.15bn for Q4. The unsecured notes sold off to mid-teens yields in mid-October.<span class=\"src\">Q3-26 release · 8-K 22 Sep 2026 · press</span>",
+      "<b>The catch:</b> prepayments are 15–25% of contract value and lenders advance 90% only against signed take-or-pay; the company expects ~$9bn of prepayments and deposits in the next three months. Unsigned capacity needs ~$16.5m of equity per MW, and new equity now prices near $49 — the ATM has been open since mid-October — against placements at $87 and $109 earlier in the year.<span class=\"src\">Q3-26 release · 424B5 17 Sep 2026</span>"
     ],
     [
       "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
@@ -1785,7 +1766,7 @@
     ],
     [
       "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
-      "<b>Separate clocks.</b> Model policy revision is dated 15 September 2026; financial disclosures and reference share prices retain their original dates. This is not a refreshed market quotation."
+      "<b>Separate clocks.</b> Pricing policy is dated 15 September 2026. The balance sheet is 30 September 2026 from the Q3 results release; the 10-Q and its share count are pending. New equity is issued at the 10 November 2026 close, $48.73."
     ]
   ],
   "arr": {
@@ -1793,7 +1774,7 @@
     "cap": "Annualized earned revenue is split into existing book (including estimates), assumed renewals, assumed new contracts and spot. Full-capacity contracted run-rate is a separate measure."
   },
   "footer": {
-    "sources": "Q2-26 10-Q (filed 12 Aug 2026), Q1-26 10-Q, FY25 10-K (2 Mar 2026), IPO 424B4; 8-Ks for DDTL 3.0/4.0/5.0/5.5, both convertible issues, the senior notes, the NVIDIA and Jane Street placements, the OpenAI, Meta and NVIDIA order forms; FactSet corrected transcripts Q1-25 to Q2-26 (IR CDN); Core Scientific, Applied Digital and Galaxy filings for lease terms; Epoch AI satellite site assessments; SemiAnalysis ClusterMAX and public GPU index.",
+    "sources": "Q3-26 results release (8-K, 10 Nov 2026); 8-Ks of 17 and 22 Sep 2026 (ATM programme, 2033 convertible notes); SemiAnalysis “Neoclouds 3Q2026 Update” (Nov 2026, owner export) for site timing; Q2-26 10-Q (filed 12 Aug 2026), Q1-26 10-Q, FY25 10-K (2 Mar 2026), IPO 424B4; 8-Ks for DDTL 3.0/4.0/5.0/5.5, both convertible issues, the senior notes, the NVIDIA and Jane Street placements, the OpenAI, Meta and NVIDIA order forms; FactSet corrected transcripts Q1-25 to Q2-26 (IR CDN); Core Scientific, Applied Digital and Galaxy filings for lease terms; Epoch AI satellite site assessments; SemiAnalysis ClusterMAX and public GPU index.",
     "model": "Shared pricing and contract-cohort model. Existing commitments, estimated coverage, same-hardware renewals and new business are distinguished. Pricing, expiry and continuity assumptions are exposed with their evidence. Company financing and capex retain the dated research snapshot."
   },
   "capexBasis": "GPUs + ancillaries per active MW by vintage: $30m Blackwell (derived $25-37m from management capex ÷ active MW added, FY25 and H1-26), +10% on 2027 orders, Rubin ~$38m, next-gen ~$45m; no shell capex — every data centre is leased (10-K: “we lease all of our existing data centers”; $35.5bn of signed-not-commenced leases at 30-Jun-26)",
@@ -1807,7 +1788,8 @@
     "2025Q3": 1364.7,
     "2025Q4": 1572,
     "2026Q1": 2078,
-    "2026Q2": 2575
+    "2026Q2": 2575,
+    "2026Q3": 3661
   },
   "modelAsOf": "2026-09-15",
   "pricing": {
@@ -1943,15 +1925,6 @@
       "assumedCommitmentCount": 12
     },
     "quarters": [
-      {
-        "quarter": "2026Q3",
-        "existingBn": 14.062866,
-        "renewalBn": 0,
-        "newBn": 0,
-        "spotBn": 0,
-        "earningITMW": 1375,
-        "contractedEarningITMW": 1375
-      },
       {
         "quarter": "2026Q4",
         "existingBn": 18.46389,
@@ -2776,14 +2749,14 @@
       "Future prepayments and borrowing capacity are financing assumptions, not committed funding; customer credits follow modeled contract terms.",
       "Delivery-delay tests retain the original capex purchase calendar. Fixed opening credit schedules remain unchanged.",
       "Any prepayment balance without a credit calendar is deducted at face value at the horizon until its timing is sourced.",
-      "Forecast cash margin is 57%; normalized terminal margin is 60%.",
+      "Forecast cash margin is 59%; normalized terminal margin is 60%.",
       "Unmapped future tranches energizing from 2027Q1 use the shared new-business curve. Power leases do not establish customer compute prices. Existing and in-flight 2026 book and identifiable disclosed future commitments retain their own rates. This cutoff is a house allocation convention, not a statement that disclosed backlog excludes future sites. The legacy-book-allocation sensitivity tests the uncertainty."
     ],
     "sensitivities": [
       {
         "id": "base",
         "label": "Shared pricing base",
-        "valuePerShare": 242.6305098158071,
+        "valuePerShare": 196.35544190318885,
         "runRateBn": 120.818,
         "multiple": 3.420417771404701,
         "note": "Existing book, same-hardware renewals and shared new-business pricing."
@@ -2791,7 +2764,7 @@
       {
         "id": "newdown",
         "label": "New prices −20%",
-        "valuePerShare": 155.41426611214948,
+        "valuePerShare": 124.51022751014598,
         "runRateBn": 102.35839999999999,
         "multiple": 3.04114371352129,
         "note": "Shared new-business prices 20% lower; original existing-book rates protected."
@@ -2799,7 +2772,7 @@
       {
         "id": "newup",
         "label": "New prices +20%",
-        "valuePerShare": 329.9802587852457,
+        "valuePerShare": 266.81865099063765,
         "runRateBn": 139.278,
         "multiple": 3.700621054601736,
         "note": "Shared new-business prices 20% higher; original existing-book rates protected."
@@ -2807,7 +2780,7 @@
       {
         "id": "renewdown",
         "label": "Renewal prices −20%",
-        "valuePerShare": 217.87504226216566,
+        "valuePerShare": 176.44912353319668,
         "runRateBn": 115.02080000000001,
         "multiple": 3.3141875195445833,
         "note": "Same hardware renews at 80% of its original all-in price."
@@ -2815,7 +2788,7 @@
       {
         "id": "retention",
         "label": "80% renewal retention",
-        "valuePerShare": 264.5972796176813,
+        "valuePerShare": 214.0196642612665,
         "runRateBn": 127.15,
         "multiple": 3.476329414766045,
         "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions."
@@ -2823,7 +2796,7 @@
       {
         "id": "longterm",
         "label": "Five-year new business, lower price",
-        "valuePerShare": 176.91059074536068,
+        "valuePerShare": 143.07350293450207,
         "runRateBn": 106.97319999999999,
         "multiple": 3.0207709267999783,
         "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years."
@@ -2831,7 +2804,7 @@
       {
         "id": "slip",
         "label": "Delivery slips two quarters",
-        "valuePerShare": 195.4774664354222,
+        "valuePerShare": 158.1169154754958,
         "runRateBn": 107.5336,
         "multiple": 3.391441716756631,
         "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar."
@@ -2839,7 +2812,7 @@
       {
         "id": "joint",
         "label": "Joint downside",
-        "valuePerShare": 89.99836756587086,
+        "valuePerShare": 69.63154666919883,
         "runRateBn": 85.084,
         "multiple": 2.8368868357559283,
         "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar."
@@ -2847,7 +2820,7 @@
       {
         "id": "legacybook",
         "label": "Legacy book allocations retained",
-        "valuePerShare": 175.07016194750585,
+        "valuePerShare": 141.362438250475,
         "runRateBn": 106.7272,
         "multiple": 3.142531659754619,
         "note": "Keeps the prior inferred customer-price allocations on unmapped future power tranches. Tests contract coverage uncertainty; not a sourced committed-book case."

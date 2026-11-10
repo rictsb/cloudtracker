@@ -6,8 +6,8 @@
   "title": "Nebius: from MW to $",
   "sub": "Power › GPUs › CapEx › ARR › Funding › Value",
   "px": {
-    "v": 132.15,
-    "note": "Finnhub, 10 Nov"
+    "v": 134,
+    "note": "Finnhub, 10 Nov close"
   },
   "evArr": {
     "sh": 287.7,
@@ -1452,7 +1452,7 @@
     "W": 0.105,
     "SH0": 321.7,
     "EQ_SHARE": 0.1,
-    "EQ_PX": 132.15,
+    "EQ_PX": 134,
     "DEBT0": 14.25,
     "CASH0": 13.79,
     "RATE": 0.07,
@@ -1728,7 +1728,7 @@
       "spotGpu": 0.5,
       "spotShell": 0.5
     },
-    "basis": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $132.15 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030",
+    "basis": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $134.00 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030",
     "MULT": 3.245658015315159
   },
   "labels": {
@@ -1810,7 +1810,7 @@
     [
       "<b>Prepayments do the funding.</b> ~70% of Q2-26 deals carried prepayments covering 50–60% of capex; >$9bn expected in 2026; Microsoft prepaid $6.96bn of $17.4bn. Deferred revenue $6.0bn at 30 June.<span class=\"src\">Q2-26 letter · 20-F Note on Microsoft</span>",
       "<b>Converts, then secured debt.</b> Four convertible raises in 14 months — $1.0bn (Jun-25), $3.16bn (Sep-25), $4.34bn (Mar-26), $5.75bn (Aug-26); $13.4bn outstanding at original principal, accreting to $15.7bn, no capped calls — plus NVIDIA’s $2bn pre-funded warrant, a $1.15bn follow-on at $92.50 and $2.8bn of ATM at $223.60. The first secured GPU facility ($775m, SOFR+250) closed July-26; management expects “mid-single-digit billions” more against >$40bn of IG-backed contracts.<span class=\"src\">6-Ks · 17 Jul 2026 release</span>",
-      "<b>The catch:</b> prepayments and gearing follow signed contracts; the owned greenfields ($8m shell per MW) are built ahead of signing and most of the 2027 capacity is self-built. A $3.5bn 364-day Citi bridge was signed on 17 October. Unsigned capacity needs ~$19m of equity per MW, and new equity now prices near $132, not the $224 of the last ATM sales.<span class=\"src\">funding stack above · 6-K 17 Oct 2026</span>"
+      "<b>The catch:</b> prepayments and gearing follow signed contracts; the owned greenfields ($8m shell per MW) are built ahead of signing and most of the 2027 capacity is self-built. A $3.5bn 364-day Citi bridge was signed on 17 October. Unsigned capacity needs ~$19m of equity per MW, and new equity now prices near $134, not the $224 of the last ATM sales.<span class=\"src\">funding stack above · 6-K 17 Oct 2026</span>"
     ],
     [
       "<b>Common calculation, different costs.</b> The steady-state multiple is recomputed from horizon earned revenue per IT MW. Company margins, leased or owned shell costs, maintenance, tax and discount assumptions remain explicit.",
@@ -1818,7 +1818,7 @@
     ],
     [
       "<b>Reconciled value.</b> Updated quarterly revenue passes through the existing debt, prepayment and dilution waterfall. The terminal multiple is recalculated from the displayed steady-state inputs.",
-      "<b>Separate clocks.</b> Pricing policy is dated 15 September 2026. The balance sheet is 30 June 2026 pro forma for the August converts — Q3 results arrive on 12 November 2026. Site timing and the market reference ($132.15, at which new equity is issued) are dated 10 November 2026."
+      "<b>Separate clocks.</b> Pricing policy is dated 15 September 2026. The balance sheet is 30 June 2026 pro forma for the August converts — Q3 results arrive on 12 November 2026. Site timing and the market reference ($134.00, at which new equity is issued) are dated 10 November 2026."
     ]
   ],
   "arr": {
@@ -2839,7 +2839,7 @@
       {
         "id": "base",
         "label": "Shared pricing base",
-        "valuePerShare": 226.52809571809232,
+        "valuePerShare": 227.35228735118474,
         "runRateBn": 80.5656,
         "multiple": 3.245658015315159,
         "note": "Existing book, same-hardware renewals and shared new-business pricing."
@@ -2847,7 +2847,7 @@
       {
         "id": "newdown",
         "label": "New prices −20%",
-        "valuePerShare": 135.81623727886497,
+        "valuePerShare": 136.3408183455442,
         "runRateBn": 68.6584,
         "multiple": 2.9362802421576935,
         "note": "Shared new-business prices 20% lower; original existing-book rates protected."
@@ -2855,7 +2855,7 @@
       {
         "id": "newup",
         "label": "New prices +20%",
-        "valuePerShare": 313.7400831148302,
+        "valuePerShare": 314.88158368962326,
         "runRateBn": 92.4724,
         "multiple": 3.477745513596835,
         "note": "Shared new-business prices 20% higher; original existing-book rates protected."
@@ -2863,7 +2863,7 @@
       {
         "id": "renewdown",
         "label": "Renewal prices −20%",
-        "valuePerShare": 219.2786536951661,
+        "valuePerShare": 220.0764692205137,
         "runRateBn": 79.5736,
         "multiple": 3.223300327102028,
         "note": "Same hardware renews at 80% of its original all-in price."
@@ -2871,7 +2871,7 @@
       {
         "id": "retention",
         "label": "80% renewal retention",
-        "valuePerShare": 237.6515032597833,
+        "valuePerShare": 238.51616589669658,
         "runRateBn": 82.3428,
         "multiple": 3.267088672055923,
         "note": "80% renews at each contract expiry; released capacity uses the shared spot assumptions."
@@ -2879,7 +2879,7 @@
       {
         "id": "longterm",
         "label": "Five-year new business, lower price",
-        "valuePerShare": 149.4397519310797,
+        "valuePerShare": 150.00699792521328,
         "runRateBn": 71.6352,
         "multiple": 2.9178984069517173,
         "note": "New capacity signs for five years at 15% lower prices; this term spread is an assumption. The normalized post-horizon contract regime also uses five years."
@@ -2887,7 +2887,7 @@
       {
         "id": "slip",
         "label": "Delivery slips two quarters",
-        "valuePerShare": 165.13333081139677,
+        "valuePerShare": 165.77025765186096,
         "runRateBn": 70.5132,
         "multiple": 3.2460228793203654,
         "note": "Future deliveries beyond 2027Q4 slip two quarters; disclosed calendar expiries remain fixed. Capex purchases stay on the original calendar."
@@ -2895,7 +2895,7 @@
       {
         "id": "joint",
         "label": "Joint downside",
-        "valuePerShare": 56.22883472666747,
+        "valuePerShare": 56.52085478595908,
         "runRateBn": 56.0808,
         "multiple": 2.8107963239642926,
         "note": "New prices and renewal prices fall 20%, spot falls 30%, and future deliveries slip two quarters. Capex purchases stay on the original calendar."
@@ -2903,7 +2903,7 @@
       {
         "id": "legacybook",
         "label": "Legacy book allocations retained",
-        "valuePerShare": 223.79071734279657,
+        "valuePerShare": 224.6049493973812,
         "runRateBn": 80.2212,
         "multiple": 3.2379553216439763,
         "note": "Keeps the prior inferred customer-price allocations on unmapped future power tranches. Tests contract coverage uncertainty; not a sourced committed-book case."
