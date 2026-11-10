@@ -3,9 +3,9 @@
   "asOf": "2026-11-10",
   "summary": {
     "companies": 22,
-    "findings": 115,
+    "findings": 114,
     "errors": 0,
-    "reviews": 53,
+    "reviews": 52,
     "gaps": 62
   },
   "companies": [
@@ -25,14 +25,14 @@
         },
         "funding": {
           "status": "review",
-          "summary": "0 errors, 2 reviews, 1 coverage gaps."
+          "summary": "0 errors, 1 reviews, 1 coverage gaps."
         }
       },
       "metrics": {
         "price": 48.73,
         "priceAsOf": "2026-11-10T21:00:00.000Z",
         "priceBasis": "Supplied market snapshot",
-        "assetValuePerShare": 187.65951721246208,
+        "assetValuePerShare": 167.81027886190878,
         "modelSharesM": 610,
         "plannedRaiseM": 15000,
         "assetFundedSharesM": 917.8185922429715,
@@ -50,11 +50,11 @@
         "revenuePerEnergizedITMWM": 17.25974066442857,
         "contractRevenuePerEarningITMWM": 16.974760524814602,
         "modeledGPUHourPrice": 6.2733819473738315,
-        "valuePerShare": 242.6305098158071,
-        "dilutedSharesM": 873.2501910331862,
+        "valuePerShare": 196.35544190318885,
+        "dilutedSharesM": 1094.3836888391354,
         "fundingEquityBn": 20.169,
-        "horizonNetDebtBn": 32.166360921261656,
-        "futureCustomerCreditsPVBn": 54.61206076701501,
+        "horizonNetDebtBn": 34.828443196997966,
+        "futureCustomerCreditsPVBn": 53.532553180271286,
         "renewalRevenueShare": 0.2399185361353638,
         "annualizedQuarterBasis": "Annualized quarter revenue = quarter revenue × 4. Earning IT MW is the model-effective billable capacity used for that quarter; it is not a separately observed December exit capacity. Ramp fractions are quarter-step approximations.",
         "normalizedCashPerEarningITMWM": 3.8009244734294683,
@@ -102,8 +102,8 @@
         "revenuePerEnergizedITMWM": 18.33115461665529,
         "contractRevenuePerEarningITMWM": 18.603559468128857,
         "modeledGPUHourPrice": 8.3589786609519,
-        "valuePerShare": 226.52809571809232,
-        "dilutedSharesM": 528.617157607437,
+        "valuePerShare": 227.35228735118474,
+        "dilutedSharesM": 526.700828356981,
         "fundingEquityBn": 18.343,
         "horizonNetDebtBn": 69.16657743834328,
         "futureCustomerCreditsPVBn": 17.07821485450202,
@@ -228,8 +228,8 @@
         "revenuePerEnergizedITMWM": 18.792419867514095,
         "contractRevenuePerEarningITMWM": 18.888077661818183,
         "modeledGPUHourPrice": 8.56454446837082,
-        "valuePerShare": 87.47100132680184,
-        "dilutedSharesM": 1292.1877631200705,
+        "valuePerShare": 88.25977920727385,
+        "dilutedSharesM": 1280.6394776595746,
         "fundingEquityBn": 14.570199999999998,
         "horizonNetDebtBn": 42.212556619557574,
         "futureCustomerCreditsPVBn": 31.604275475699502,
@@ -868,10 +868,10 @@
         }
       ],
       "impact": {
-        "base": 226.52809571809232,
-        "alternative": 126.92940694523475,
-        "delta": -99.59868877285757,
-        "pct": -43.967477171928934,
+        "base": 227.35228735118474,
+        "alternative": 127.40764861129131,
+        "delta": -99.94463873989343,
+        "pct": -43.96025212867629,
         "pctUnit": "percent",
         "label": "Flat post-horizon prices, existing refresh assumptions",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -886,10 +886,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 69.16657743834328,
-        "sharesM": 510.52641602490394,
+        "sharesM": 508.61008677444795,
         "equityRaisedBn": 18.343
       },
-      "fingerprint": "8bc02d04fbb4edf161e9eee6307f59160a073f7e869a8d9f5c79fdae6ea45239"
+      "fingerprint": "36b2442b01ba8fd5e503c4205cf52b11915d34605abe681fd940f1fcfc917b0f"
     },
     {
       "id": "CRWV:economics:terminal-price-growth",
@@ -905,10 +905,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158071,
-        "alternative": 149.70225304050481,
-        "delta": -92.92825677530229,
-        "pct": -38.300317979733364,
+        "base": 196.35544190318885,
+        "alternative": 119.87504771561731,
+        "delta": -76.48039418757153,
+        "pct": -38.94997431508899,
         "pctUnit": "percent",
         "label": "Flat post-horizon prices, existing refresh assumptions",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -922,11 +922,11 @@
         "label": "Flat post-horizon prices, existing refresh assumptions"
       },
       "alternativeMetrics": {
-        "debtBn": 32.166360921261656,
-        "sharesM": 862.8231346089193,
+        "debtBn": 34.828443196997966,
+        "sharesM": 1089.4141485171858,
         "equityRaisedBn": 20.169
       },
-      "fingerprint": "dc8b457569e73fe66e4710e9ccc1b057f935810e3fa51ed64caed69fe40649d9"
+      "fingerprint": "bed0dfe5be23e2cafb0fb9724645e59baeac95c423111fc4c07fb32c25d3683a"
     },
     {
       "id": "IREN:economics:terminal-price-growth",
@@ -942,10 +942,10 @@
         }
       ],
       "impact": {
-        "base": 87.47100132680184,
-        "alternative": 54.27533147783625,
-        "delta": -33.19566984896559,
-        "pct": -37.95048569861766,
+        "base": 88.25977920727385,
+        "alternative": 54.78962556991022,
+        "delta": -33.47015363736363,
+        "pct": -37.92231743381159,
         "pctUnit": "percent",
         "label": "Flat post-horizon prices, existing refresh assumptions",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -960,10 +960,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 42.212556619557574,
-        "sharesM": 1283.2308059444783,
+        "sharesM": 1271.1854959910806,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "61a59c4f8d49f040930eb8c5406b3ae6e540c0b32d4f55ef2405088674faaa57"
+      "fingerprint": "3e00a2ca842b2c3c0041aaa6142a19681d0d59d310e2f6049cb1f17e55d19e6b"
     },
     {
       "id": "KEEL:economics:unsigned-realization",
@@ -1226,46 +1226,6 @@
         "newSharesM": 1794.2583732057417
       },
       "fingerprint": "d9d3af74e38797d805eb36ce0ddebda14c07e15f96a8639021cad29139208ba8"
-    },
-    {
-      "id": "CRWV:funding:equity-issuance-price",
-      "ticker": "CRWV",
-      "family": "funding",
-      "severity": "review",
-      "title": "Future equity is issued at a materially different price from the reference mark",
-      "explanation": "A fixed future issuance price changes how much of the funded operating outcome belongs to each share. The current reference mark is a sensitivity, not a forecast of future execution.",
-      "calculation": "$20.17bn raised at $90 vs reference mark $48.73; 224.1m shares issued in the base.",
-      "evidence": [
-        {
-          "label": "Model equity assumption: debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75%), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $90 plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230) convert at the model 2030 price; restricted cash $1.4bn counted; fully diluted count before converts 608.5m = 551.5m basic (31 Jul 26) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs"
-        },
-        {
-          "label": "Reference price: supplied quote if available; otherwise data.json price $48.73"
-        }
-      ],
-      "impact": {
-        "base": 242.6305098158071,
-        "alternative": 199.98574518993354,
-        "delta": -42.64476462587356,
-        "pct": -17.576010806821998,
-        "pctUnit": "percent",
-        "label": "Equity issued at the reference share price",
-        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
-      },
-      "nextAction": "Review issuance pricing and access to capital; compare the reference-price sensitivity.",
-      "scenario": {
-        "kind": "waterfall",
-        "options": {
-          "eqPx": 48.73
-        },
-        "label": "Equity issued at the reference share price"
-      },
-      "alternativeMetrics": {
-        "debtBn": 32.166360921261656,
-        "sharesM": 1059.4612073270928,
-        "equityRaisedBn": 20.169
-      },
-      "fingerprint": "3d463d40c6b54b8f65d17b971e747cc1c6efad2e24b28e2dee9f102e2a436986"
     },
     {
       "id": "MARA:economics:unsigned-realization",
@@ -2042,10 +2002,10 @@
         }
       ],
       "impact": {
-        "base": 226.52809571809232,
-        "alternative": 209.18187771392465,
-        "delta": -17.346218004167667,
-        "pct": -7.657424545586847,
+        "base": 227.35228735118474,
+        "alternative": 209.95339148324578,
+        "delta": -17.39889586793896,
+        "pct": -7.6528351971508295,
         "pctUnit": "percent",
         "label": "20% lower spot pricing",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2061,9 +2021,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 78.0236,
         "debtBn": 70.82971146638087,
-        "sharesM": 521.5465961901448
+        "sharesM": 519.6300737779056
       },
-      "fingerprint": "9c098623841e4623c9c0b90673553a16e77617ae24cc402b46f35966b2513c65"
+      "fingerprint": "ae2147fa30926a15d272f5a7a992af44dd896be7802075d023e0ba4c3b76199b"
     },
     {
       "id": "BTDR:funding:issuance-price",
@@ -2301,10 +2261,10 @@
         }
       ],
       "impact": {
-        "base": 87.47100132680184,
-        "alternative": 82.87808108445043,
-        "delta": -4.592920242351411,
-        "pct": -5.250791888378786,
+        "base": 88.25977920727385,
+        "alternative": 83.62544187995726,
+        "delta": -4.634337327316587,
+        "pct": -5.250791888378814,
         "pctUnit": "percent",
         "label": "20% lower spot pricing",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2320,9 +2280,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 55.3752,
         "debtBn": 42.55632753128214,
-        "sharesM": 1290.6994957499298
+        "sharesM": 1279.1645109388617
       },
-      "fingerprint": "5f9565ee0bd046564d3d8a5d797622f9ccd4d62a89b12a917ff1b1c80d2f151e"
+      "fingerprint": "0ea4e8b5c53e3b1115ab1e6ff963923cadfdcf9085f84a9c1ddf3c2b0494e8e7"
     },
     {
       "id": "CLSK:economics:lease-capitalization",
@@ -2566,10 +2526,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158071,
-        "alternative": 235.21937108489317,
-        "delta": -7.411138730913933,
-        "pct": -3.0544957996173268,
+        "base": 196.35544190318885,
+        "alternative": 190.38818218762663,
+        "delta": -5.967259715562221,
+        "pct": -3.039009083590523,
         "pctUnit": "percent",
         "label": "20% lower spot pricing",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2584,10 +2544,10 @@
       },
       "alternativeMetrics": {
         "annualizedRevenueBn": 118.972,
-        "debtBn": 32.62186189757179,
-        "sharesM": 872.720949244657
+        "debtBn": 35.31717372462971,
+        "sharesM": 1093.2591281106809
       },
-      "fingerprint": "71c4b72400faa16a741e41c2d1c2051521758b80ab313a961248ac4b9ab214f3"
+      "fingerprint": "1cbe9b351ee364987bbca010b8b603c00b6b7f7d5ed27e8416bb0870abcc976a"
     },
     {
       "id": "NBIS:economics:renewal-spot-substitution",
@@ -2596,7 +2556,7 @@
       "severity": "review",
       "title": "Losing renewals increases modeled value through spot resale",
       "explanation": "The canonical model moves non-renewed capacity into spot with the contracted ramp fraction. High assumed spot rates and the resulting revenue mix can offset lost renewals. This is a commercial re-leasing assumption, not a guaranteed downside cushion.",
-      "calculation": "80% retention and 20% lower renewed prices move value from $226.53 to $232.01 per share (2.42%). Retention is never increased for any modeled cohort.",
+      "calculation": "80% retention and 20% lower renewed prices move value from $227.35 to $232.85 per share (2.42%). Retention is never increased for any modeled cohort.",
       "evidence": [
         {
           "label": "Shared spot assumption: Shared realized spot assumptions inherited from the CoreWeave/Nebius model, not executable rate cards. Physical GPU density remains tranche-specific."
@@ -2606,10 +2566,10 @@
         }
       ],
       "impact": {
-        "base": 226.52809571809232,
-        "alternative": 232.0061084197878,
-        "delta": 5.478012701695491,
-        "pct": 2.418248687576803,
+        "base": 227.35228735118474,
+        "alternative": 232.85023105623065,
+        "delta": 5.497943705045913,
+        "pct": 2.418248687576823,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2626,9 +2586,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 81.5708,
         "debtBn": 69.04698296092936,
-        "sharesM": 528.617157607437
+        "sharesM": 526.700828356981
       },
-      "fingerprint": "5a84da94836be2a52286e4b046ec9b0421de705ec7798b433c4686792b4be261"
+      "fingerprint": "c770c71bfd153f8f413d513ffde2d35e4eab7651932c6f50bd09ff1d8e1cd627"
     },
     {
       "id": "NBIS:economics:same-hardware-renewal",
@@ -2656,10 +2616,10 @@
         }
       ],
       "impact": {
-        "base": 226.52809571809232,
-        "alternative": 232.0061084197878,
-        "delta": 5.478012701695491,
-        "pct": 2.418248687576803,
+        "base": 227.35228735118474,
+        "alternative": 232.85023105623065,
+        "delta": 5.497943705045913,
+        "pct": 2.418248687576823,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2676,9 +2636,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 81.5708,
         "debtBn": 69.04698296092936,
-        "sharesM": 528.617157607437
+        "sharesM": 526.700828356981
       },
-      "fingerprint": "f824673c9f91bf8534d3b025c807ca1a3d5ee6b8abb014e5b970b59f363fdd99"
+      "fingerprint": "d63bf819d2920551a40b2b7692937ceab5340ab037ea5b96b49a96b1d10077b4"
     },
     {
       "id": "IREN:funding:restricted-cash",
@@ -2690,14 +2650,14 @@
       "calculation": "$2.26bn restricted cash included with $4.54bn opening unrestricted cash.",
       "evidence": [
         {
-          "label": "Model opening cash: debt 7% (converts 0.9% cash coupon; Microsoft-backed GPU debt SOFR+2.25% and 5.96% notes; the two GPU financings for other customers are 9.0% and 9.51% fixed — two-thirds of backlog is investment-grade, so the blend holds at ~7%), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $19.42 (the 10 Nov 2026 mark; October ATM sales averaged ~$36) plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, $6.746bn, capped calls, 10-Q) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 pro forma for the $388m term-loan draw on 1 Oct and ~$630m of October share sales: debt $10.43bn, cash $4.54bn, restricted cash $2.256bn counted; share count 456.1m = 424.36m on the 30 Oct cover + 31.7m restricted stock units (NVIDIA investment rights 30.0m and options 5.1m excluded as out of the money); prepaid forwards 14.5m shares returned Dec-29/Jun-30; discounted 4.14 years from 10 Nov 2026 to end-2030"
+          "label": "Model opening cash: debt 7% (converts 0.9% cash coupon; Microsoft-backed GPU debt SOFR+2.25% and 5.96% notes; the two GPU financings for other customers are 9.0% and 9.51% fixed — two-thirds of backlog is investment-grade, so the blend holds at ~7%), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $19.73 (the 10 Nov 2026 mark; October ATM sales averaged ~$36) plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, $6.746bn, capped calls, 10-Q) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 pro forma for the $388m term-loan draw on 1 Oct and ~$630m of October share sales: debt $10.43bn, cash $4.54bn, restricted cash $2.256bn counted; share count 456.1m = 424.36m on the 30 Oct cover + 31.7m restricted stock units (NVIDIA investment rights 30.0m and options 5.1m excluded as out of the money); prepaid forwards 14.5m shares returned Dec-29/Jun-30; discounted 4.14 years from 10 Nov 2026 to end-2030"
         }
       ],
       "impact": {
-        "base": 87.47100132680184,
-        "alternative": 86.04127181366826,
-        "delta": -1.42972951313358,
-        "pct": -1.6345182877145128,
+        "base": 88.25977920727385,
+        "alternative": 86.8171569754345,
+        "delta": -1.4426222318393513,
+        "pct": -1.6345182877145232,
         "pctUnit": "percent",
         "label": "Restricted cash excluded from funding",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -2712,10 +2672,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 45.06378971094506,
-        "sharesM": 1291.7415125290888,
+        "sharesM": 1280.1972152113062,
         "equityRaisedBn": 14.570199999999998
       },
-      "fingerprint": "4d11db648df2bb0875255d261b4c4866abb79c4d5d2eb3148a90697151048984"
+      "fingerprint": "1405df9956e91d63ef4ed7cd9c62313185b7fe10e395b0cc847dcf5e42877f09"
     },
     {
       "id": "CRWV:economics:renewal-spot-substitution",
@@ -2724,7 +2684,7 @@
       "severity": "review",
       "title": "Losing renewals increases modeled value through spot resale",
       "explanation": "The canonical model moves non-renewed capacity into spot with the contracted ramp fraction. High assumed spot rates and the resulting revenue mix can offset lost renewals. This is a commercial re-leasing assumption, not a guaranteed downside cushion.",
-      "calculation": "80% retention and 20% lower renewed prices move value from $242.63 to $244.92 per share (0.94%). Retention is never increased for any modeled cohort.",
+      "calculation": "80% retention and 20% lower renewed prices move value from $196.36 to $198.2 per share (0.94%). Retention is never increased for any modeled cohort.",
       "evidence": [
         {
           "label": "Shared spot assumption: Shared realized spot assumptions inherited from the CoreWeave/Nebius model, not executable rate cards. Physical GPU density remains tranche-specific."
@@ -2734,10 +2694,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158071,
-        "alternative": 244.91970082567352,
-        "delta": 2.289191009866414,
-        "pct": 0.9434885215401199,
+        "base": 196.35544190318885,
+        "alternative": 198.19636727002685,
+        "delta": 1.8409253668380074,
+        "pct": 0.9375474135041584,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2753,10 +2713,10 @@
       },
       "alternativeMetrics": {
         "annualizedRevenueBn": 122.512,
-        "debtBn": 33.7637366562228,
-        "sharesM": 873.4071913689795
+        "debtBn": 36.41943864325682,
+        "sharesM": 1094.7169528771717
       },
-      "fingerprint": "a8fa8679c1adb03a62f12d913328b5a6bbaa75859d1d44189cc746e4c7f2f59a"
+      "fingerprint": "6691da6455bd5a2b1783c4f3319159046e7fd641c4a020fd2dff82e67840a17a"
     },
     {
       "id": "CRWV:economics:same-hardware-renewal",
@@ -2784,10 +2744,10 @@
         }
       ],
       "impact": {
-        "base": 242.6305098158071,
-        "alternative": 244.91970082567352,
-        "delta": 2.289191009866414,
-        "pct": 0.9434885215401199,
+        "base": 196.35544190318885,
+        "alternative": 198.19636727002685,
+        "delta": 1.8409253668380074,
+        "pct": 0.9375474135041584,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2803,10 +2763,47 @@
       },
       "alternativeMetrics": {
         "annualizedRevenueBn": 122.512,
-        "debtBn": 33.7637366562228,
-        "sharesM": 873.4071913689795
+        "debtBn": 36.41943864325682,
+        "sharesM": 1094.7169528771717
       },
-      "fingerprint": "b646e502be4ae076b4cbcb9f95c1343c7ca98f16b4f678bec974d757db1a63ab"
+      "fingerprint": "da97af41d89f5dd110b50cebd8322a05a31321fd2b856b4047b0f9aebac23442"
+    },
+    {
+      "id": "CRWV:funding:restricted-cash",
+      "ticker": "CRWV",
+      "family": "funding",
+      "severity": "review",
+      "title": "Restricted cash is available to the modeled funding pool",
+      "explanation": "The funding waterfall includes restricted cash alongside opening cash. Release conditions and project boundaries need evidence before treating it as interchangeable liquidity.",
+      "calculation": "$2.28bn restricted cash included with $4.12bn opening unrestricted cash.",
+      "evidence": [
+        {
+          "label": "Model opening cash: debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75% and 2.875%; Q3-26 net interest $846m on ~$41bn of average debt; unsecured notes traded at mid-teens yields in the mid-October sell-off, per press reports), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $48.73 (the 10 Nov 2026 close; a 35m-share ATM has been open since mid-October) plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230; 2033 $4.2bn at $97.85 cap $199.70, issued 22 Sep 2026) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 (Q3 release): debt $46.9bn at carrying value (recourse $41.6bn, non-recourse $5.3bn), cash $4.1bn, restricted cash $2.3bn counted; fully diluted count before converts 616m = 559m weighted-average basic shares in Q3-26 (the 10-Q cover count is pending) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs; discounted 4.14 years from 10 Nov 2026 to end-2030"
+        }
+      ],
+      "impact": {
+        "base": 196.35544190318885,
+        "alternative": 194.6393224614131,
+        "delta": -1.71611944177576,
+        "pct": -0.8739861880792059,
+        "pctUnit": "percent",
+        "label": "Restricted cash excluded from funding",
+        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
+      },
+      "nextAction": "Confirm permitted uses and release timing; review the excluded-restricted-cash case.",
+      "scenario": {
+        "kind": "waterfall",
+        "options": {
+          "noRestricted": true
+        },
+        "label": "Restricted cash excluded from funding"
+      },
+      "alternativeMetrics": {
+        "debtBn": 37.76100366593127,
+        "sharesM": 1094.0673409889478,
+        "equityRaisedBn": 20.169
+      },
+      "fingerprint": "9169cab65aca846bc033522784a294327dd6607ae987524f3fe76b5ecbce0f6b"
     },
     {
       "id": "NBIS:funding:restricted-cash",
@@ -2818,14 +2815,14 @@
       "calculation": "$1.06bn restricted cash included with $13.79bn opening unrestricted cash.",
       "evidence": [
         {
-          "label": "Model opening cash: debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $132.15 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030"
+          "label": "Model opening cash: debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $134.00 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030"
         }
       ],
       "impact": {
-        "base": 226.52809571809232,
-        "alternative": 224.9231873665252,
-        "delta": -1.6049083515671043,
-        "pct": -0.7084809266062814,
+        "base": 227.35228735118474,
+        "alternative": 225.74153975909854,
+        "delta": -1.6107475920861987,
+        "pct": -0.7084809266062592,
         "pctUnit": "percent",
         "label": "Restricted cash excluded from funding",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -2840,47 +2837,10 @@
       },
       "alternativeMetrics": {
         "debtBn": 70.44923676434072,
-        "sharesM": 528.617157607437,
+        "sharesM": 526.700828356981,
         "equityRaisedBn": 18.343
       },
-      "fingerprint": "b507ef3c44909051e27f996d83bbe20b77600cdd3a9bc6120d12c747ffd16413"
-    },
-    {
-      "id": "CRWV:funding:restricted-cash",
-      "ticker": "CRWV",
-      "family": "funding",
-      "severity": "review",
-      "title": "Restricted cash is available to the modeled funding pool",
-      "explanation": "The funding waterfall includes restricted cash alongside opening cash. Release conditions and project boundaries need evidence before treating it as interchangeable liquidity.",
-      "calculation": "$1.4bn restricted cash included with $5.52bn opening unrestricted cash.",
-      "evidence": [
-        {
-          "label": "Model opening cash: debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75%), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $90 plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230) convert at the model 2030 price; restricted cash $1.4bn counted; fully diluted count before converts 608.5m = 551.5m basic (31 Jul 26) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs"
-        }
-      ],
-      "impact": {
-        "base": 242.6305098158071,
-        "alternative": 241.29792247507115,
-        "delta": -1.3325873407359552,
-        "pct": -0.5492249683469687,
-        "pctUnit": "percent",
-        "label": "Restricted cash excluded from funding",
-        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
-      },
-      "nextAction": "Confirm permitted uses and release timing; review the excluded-restricted-cash case.",
-      "scenario": {
-        "kind": "waterfall",
-        "options": {
-          "noRestricted": true
-        },
-        "label": "Restricted cash excluded from funding"
-      },
-      "alternativeMetrics": {
-        "debtBn": 33.993903819631235,
-        "sharesM": 873.1574259858787,
-        "equityRaisedBn": 20.169
-      },
-      "fingerprint": "5b2e79b4588234c99dcb8a9869f61bf30f678f105cf073a6d78c5ef4db77d6ba"
+      "fingerprint": "5bb503ad95b6a8cf03eed6490369537aaa37bda92cdae2f5154c9b4a4d385f79"
     },
     {
       "id": "IREN:economics:renewal-spot-substitution",
@@ -2889,7 +2849,7 @@
       "severity": "review",
       "title": "Losing renewals increases modeled value through spot resale",
       "explanation": "The canonical model moves non-renewed capacity into spot with the contracted ramp fraction. High assumed spot rates and the resulting revenue mix can offset lost renewals. This is a commercial re-leasing assumption, not a guaranteed downside cushion.",
-      "calculation": "80% retention and 20% lower renewed prices move value from $87.47 to $87.54 per share (0.08%). Retention is never increased for any modeled cohort.",
+      "calculation": "80% retention and 20% lower renewed prices move value from $88.26 to $88.33 per share (0.08%). Retention is never increased for any modeled cohort.",
       "evidence": [
         {
           "label": "Shared spot assumption: Shared realized spot assumptions inherited from the CoreWeave/Nebius model, not executable rate cards. Physical GPU density remains tranche-specific."
@@ -2899,10 +2859,10 @@
         }
       ],
       "impact": {
-        "base": 87.47100132680184,
-        "alternative": 87.54066319266548,
-        "delta": 0.06966186586363676,
-        "pct": 0.07963995473582373,
+        "base": 88.25977920727385,
+        "alternative": 88.3300692554845,
+        "delta": 0.07029004821065143,
+        "pct": 0.0796399547358697,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2919,9 +2879,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 56.9156,
         "debtBn": 42.49677702834433,
-        "sharesM": 1292.2091337347358
+        "sharesM": 1280.660657285
       },
-      "fingerprint": "3f3c462daedd913543d4994c862d7bf81e60927a790eb743fd55edaf2ec430ff"
+      "fingerprint": "2e4109af62390b311eed4ad34a78239b1f59a9e39d9f256514c334abda7fe64e"
     },
     {
       "id": "IREN:economics:same-hardware-renewal",
@@ -2949,10 +2909,10 @@
         }
       ],
       "impact": {
-        "base": 87.47100132680184,
-        "alternative": 87.54066319266548,
-        "delta": 0.06966186586363676,
-        "pct": 0.07963995473582373,
+        "base": 88.25977920727385,
+        "alternative": 88.3300692554845,
+        "delta": 0.07029004821065143,
+        "pct": 0.0796399547358697,
         "pctUnit": "percent",
         "label": "Renewal retention capped at 80%; renewed prices 20% lower",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2969,9 +2929,9 @@
       "alternativeMetrics": {
         "annualizedRevenueBn": 56.9156,
         "debtBn": 42.49677702834433,
-        "sharesM": 1292.2091337347358
+        "sharesM": 1280.660657285
       },
-      "fingerprint": "b1f0395752551fc91d7bffb78993f50574a914a3b687feac4a5f6ddd3b7a27a6"
+      "fingerprint": "b8ec2cab1234d6ebe2e79845885775015f017b6e6181123fdcd6d45015b30bfb"
     },
     {
       "id": "BTBT:funding:lookthrough-ownership",
@@ -3055,12 +3015,12 @@
       "calculation": "Numeric series principal $13.43bn; dated accretion and settlement schedule unavailable.",
       "evidence": [
         {
-          "label": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $132.15 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030"
+          "label": "debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $134.00 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030"
         }
       ],
       "impact": null,
       "nextAction": "Map accreted redemption/conversion amounts and maturities series by series; propose a change only after sourcing the terms.",
-      "fingerprint": "cd99f9cf3dd802f6f406e28e8814d744a45317874ba8693a6186ea8f01ceda23"
+      "fingerprint": "607dd23f7c0a8c731a7bcea0bcadaa0ddb1d0d5aefa51b98b354bf5f3afe3e7e"
     },
     {
       "id": "ABTC:funding:funding-bridge-missing",
@@ -3431,18 +3391,18 @@
       "severity": "gap",
       "title": "An automatically funded forecast does not establish financing availability",
       "explanation": "The waterfall fills residual funding needs with assumed borrowing and equity. Aggregate advance rates and prepayment ratios do not verify committed facilities, collateral eligibility, maturity dates, covenants or project cash restrictions.",
-      "calculation": "Forecast gross draws $38.17bn + customer cash receipts $86.65bn + equity $20.17bn; diluted shares 873.25m; ending net debt $32.17bn.",
+      "calculation": "Forecast gross draws $37.53bn + customer cash receipts $84.13bn + equity $20.17bn; diluted shares 1,094.38m; ending net debt $34.83bn.",
       "evidence": [
         {
-          "label": "Model funding: debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75%), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $90 plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230) convert at the model 2030 price; restricted cash $1.4bn counted; fully diluted count before converts 608.5m = 551.5m basic (31 Jul 26) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs"
+          "label": "Model funding: debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75% and 2.875%; Q3-26 net interest $846m on ~$41bn of average debt; unsecured notes traded at mid-teens yields in the mid-October sell-off, per press reports), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $48.73 (the 10 Nov 2026 close; a 35m-share ATM has been open since mid-October) plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230; 2033 $4.2bn at $97.85 cap $199.70, issued 22 Sep 2026) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 (Q3 release): debt $46.9bn at carrying value (recourse $41.6bn, non-recourse $5.3bn), cash $4.1bn, restricted cash $2.3bn counted; fully diluted count before converts 616m = 559m weighted-average basic shares in Q3-26 (the 10-Q cover count is pending) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs; discounted 4.14 years from 10 Nov 2026 to end-2030"
         },
         {
-          "label": "Customer credits: weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $9.7bn at 30-Jun-26 (10-Q) is the opening balance, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips."
+          "label": "Customer credits: weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $10.0bn at 30-Sep-26 (Q3 release) is the opening balance; the company expects ~$9bn of customer prepayments and deposits in the three months from 10 Nov 2026, which the modeled receipts on the Q4-26 and Q1-27 tranches (~$6bn) do not exceed, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips."
         }
       ],
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
-      "fingerprint": "68c41c74347776deb8d1ec73ea618adfc88d10a905cc5ee334e8e290cf073d3f"
+      "fingerprint": "bce709461ad498f665fb82440492ba58b70d12e5968fc87966c9af112fe83662"
     },
     {
       "id": "FRMI:capacity:quarterly-bridge-missing",
@@ -3716,10 +3676,10 @@
       "severity": "gap",
       "title": "An automatically funded forecast does not establish financing availability",
       "explanation": "The waterfall fills residual funding needs with assumed borrowing and equity. Aggregate advance rates and prepayment ratios do not verify committed facilities, collateral eligibility, maturity dates, covenants or project cash restrictions.",
-      "calculation": "Forecast gross draws $62.85bn + customer cash receipts $48.35bn + equity $14.57bn; diluted shares 1,292.19m; ending net debt $42.21bn.",
+      "calculation": "Forecast gross draws $62.85bn + customer cash receipts $48.35bn + equity $14.57bn; diluted shares 1,280.64m; ending net debt $42.21bn.",
       "evidence": [
         {
-          "label": "Model funding: debt 7% (converts 0.9% cash coupon; Microsoft-backed GPU debt SOFR+2.25% and 5.96% notes; the two GPU financings for other customers are 9.0% and 9.51% fixed — two-thirds of backlog is investment-grade, so the blend holds at ~7%), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $19.42 (the 10 Nov 2026 mark; October ATM sales averaged ~$36) plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, $6.746bn, capped calls, 10-Q) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 pro forma for the $388m term-loan draw on 1 Oct and ~$630m of October share sales: debt $10.43bn, cash $4.54bn, restricted cash $2.256bn counted; share count 456.1m = 424.36m on the 30 Oct cover + 31.7m restricted stock units (NVIDIA investment rights 30.0m and options 5.1m excluded as out of the money); prepaid forwards 14.5m shares returned Dec-29/Jun-30; discounted 4.14 years from 10 Nov 2026 to end-2030"
+          "label": "Model funding: debt 7% (converts 0.9% cash coupon; Microsoft-backed GPU debt SOFR+2.25% and 5.96% notes; the two GPU financings for other customers are 9.0% and 9.51% fixed — two-thirds of backlog is investment-grade, so the blend holds at ~7%), 16%/yr pool amortisation, $3bn cash floor, 10% of capex from 2027 as policy equity at $19.73 (the 10 Nov 2026 mark; October ATM sales averaged ~$36) plus the residual; lenders advance 90% of GPUs and 65% of shell on contracted capacity, 50% on spot; converts (six series, $6.746bn, capped calls, 10-Q) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 pro forma for the $388m term-loan draw on 1 Oct and ~$630m of October share sales: debt $10.43bn, cash $4.54bn, restricted cash $2.256bn counted; share count 456.1m = 424.36m on the 30 Oct cover + 31.7m restricted stock units (NVIDIA investment rights 30.0m and options 5.1m excluded as out of the money); prepaid forwards 14.5m shares returned Dec-29/Jun-30; discounted 4.14 years from 10 Nov 2026 to end-2030"
         },
         {
           "label": "Customer credits: 50% of GPU capex on contracted capacity (FY26 release fn.4: 45-55%), credited back after month 24 to the end of term (Microsoft SOW EX-10.3 s3.2.a.iii mechanism); Microsoft $1.933bn = $483m per Horizon: three received by 30 Sep 2026 (deferred lease revenue rose $473m in the September quarter), the fourth carried on Horizon 4 delivery in 2027Q1 because fees, credits and reimbursements are under discussion (10-Q); deferred revenue $2.544bn at 30 Sep 2026 ($2,096m leases + $448m services) is the opening balance, of which ~$1.06bn is other customers; Microsoft credits run over months 25-60 from each Horizon's start (Horizon 1 from 2028Q3, Horizons 2-4 from 2029Q1); the latest five-year contract carries a 90% prepayment but the base stays at 50% Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: after eight service quarters through expiry. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips."
@@ -3727,7 +3687,7 @@
       ],
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
-      "fingerprint": "422a4ce1832dfd2845af920d176750016c6bf6f40086a16f39eea2136168c55d"
+      "fingerprint": "71c4c684bf47e00c2df130710dc91c00d7f0ce9edd3cdc5c5bf15f33bee49970"
     },
     {
       "id": "KEEL:capacity:quarterly-bridge-missing",
@@ -3893,10 +3853,10 @@
       "severity": "gap",
       "title": "An automatically funded forecast does not establish financing availability",
       "explanation": "The waterfall fills residual funding needs with assumed borrowing and equity. Aggregate advance rates and prepayment ratios do not verify committed facilities, collateral eligibility, maturity dates, covenants or project cash restrictions.",
-      "calculation": "Forecast gross draws $94.94bn + customer cash receipts $61.79bn + equity $18.34bn; diluted shares 528.62m; ending net debt $69.17bn.",
+      "calculation": "Forecast gross draws $94.94bn + customer cash receipts $61.79bn + equity $18.34bn; diluted shares 526.7m; ending net debt $69.17bn.",
       "evidence": [
         {
-          "label": "Model funding: debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $132.15 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030"
+          "label": "Model funding: debt 7% (first secured facility $775m at SOFR+250; converts 0.5-4.5% cash coupons with accreting principal), 16%/yr pool amortisation, $3bn cash floor; lenders advance 90% of GPUs and 65% of owned shell on contracted capacity, 50% on spot; 10% of capex from 2027 as policy equity at $134.00 (the 10 Nov 2026 mark; the last disclosed ATM sales averaged $223.60) plus the residual; eight convertible series at original principal $13.4bn, accreting to $15.7bn at maturity (post-Aug-26 exchange: 2029/2031 $0.175bn at $51.45; Sep-30/Sep-32 $3.16bn at $138.75; Mar-31/Mar-33 $4.34bn at $183.22/$180.31; Feb-30/Feb-34 $5.75bn at $313.46/$324.65; no capped calls) convert at the model 2030 price; restricted cash ~$1.1bn counted; fully diluted before converts 321.7m = 271.9m basic (30 Jun) + 15.8m Aug exchange + 21.1m NVIDIA pre-funded warrant + 6.2m RSUs + 6.7m options; non-core stakes (ClickHouse ~28%, Avride, Toloka, TripleTen) at the tracker mark of $5.8bn added to equity; opening cash $13.8bn = $8.04bn at 30 Jun (Q2-26 6-K) + $5.75bn August converts; restricted cash $1.056bn (cash-flow statement; $830m in other current assets); a $3.5bn Citi senior secured bridge (Term SOFR + 2.75% stepping to 3.50%, due 16 Oct 2027) was signed on 17 Oct 2026 — the amount drawn is undisclosed and a draw raises cash and debt equally, so it is not in the opening balances; discounted 4.14 years from 10 Nov 2026 to end-2030"
         },
         {
           "label": "Customer credits: ~70% of Q2-26 deals carried prepayments covering 50-60% of associated capex (Q2-26 letter) → 45% of GPU cost on contracted capacity; Microsoft prepaid $6.96bn of $17.39bn (40% of TCV, 20-F), credited through reduced monthly instalments from the start of each tranche → credited pro rata from month 1 over 2 years on mid-term deals (termQ 8, startQ 0); deferred revenue $5.98bn at 30-Jun-26 is the opening balance, credited over 20 quarters (Microsoft-weighted) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: first eight service quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips."
@@ -3904,7 +3864,7 @@
       ],
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
-      "fingerprint": "ca2d7cb2737c0f740e1045c09601d2283d0cc8339b65a7df401b251e79ed6d3c"
+      "fingerprint": "090efa6748742be6f9deb34ef0198003cd929aece09ef8c0bc38aee3112ca63e"
     },
     {
       "id": "NUAI:capacity:quarterly-bridge-missing",
@@ -4262,16 +4222,16 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-11-10T21:13:44.907Z",
-  "attemptedAt": "2026-11-10T21:13:44.907Z",
-  "lastSuccessAt": "2026-11-10T21:13:44.907Z",
-  "sourceHash": "767165216b7a7cfcbb9d937b07b5b65ce1017907e2a54331029f03b560aa211e",
+  "checkedAt": "2026-11-10T21:16:59.643Z",
+  "attemptedAt": "2026-11-10T21:16:59.643Z",
+  "lastSuccessAt": "2026-11-10T21:16:59.643Z",
+  "sourceHash": "c41b719e0ed921816c81538a512d6c2208ef6451ef550e591386253f78d856df",
   "quoteHash": "c936a5073b32cf0dcdfb6807576a3da6742b126eb214a7694ab3e582ea71f230",
   "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
   "provenance": {
     "data": {
       "file": "data.json",
-      "hash": "767165216b7a7cfcbb9d937b07b5b65ce1017907e2a54331029f03b560aa211e",
+      "hash": "c41b719e0ed921816c81538a512d6c2208ef6451ef550e591386253f78d856df",
       "asOf": null
     },
     "quotes": {
@@ -4298,8 +4258,8 @@
       ]
     },
     "run": {
-      "trigger": "workflow_run",
-      "commit": "5f1f64489ca1a40662136bba36a05833a4d8f1b9"
+      "trigger": "push",
+      "commit": "82e6dda99a9dff87773cbcdbc1d8a2427b6c09bc"
     }
   },
   "cadence": {
