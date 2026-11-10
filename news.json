@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-09",
+ "asOf": "2026-11-10",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,97 @@
   }
  ],
  "items": [
+  {
+   "id": "Ha0g9wvNsOk",
+   "src": "mcnallie-money",
+   "d": "2026-11-09",
+   "title": "Top NVDA News | Latest GLXY, BTDR, BTBT, SLNH & HIVE News | IREN Price Targets | AI Stock News",
+   "headline": "Top NVDA News — Latest GLXY, BTDR, BTBT, SLNH & HIVE News",
+   "url": "https://www.youtube.com/watch?v=Ha0g9wvNsOk",
+   "kind": "news",
+   "minutes": 59,
+   "tickers": [
+    "IREN",
+    "RIOT",
+    "BTDR",
+    "WULF",
+    "CORZ",
+    "GLXY",
+    "HUT",
+    "BTBT",
+    "SLNH",
+    "HIVE",
+    "CIFR",
+    "APLD",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "RIOT",
+    "BTDR",
+    "WULF",
+    "CORZ"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "RIOT",
+     "claim": "Riot has a deal with Anthropic for 910 MW of compute power at the Corsicana site for the next 15 years.",
+     "by": "executive",
+     "tag": "big",
+     "t": 370
+    },
+    {
+     "tk": "IREN",
+     "claim": "IREN expects a run rate of 4 USDbn in annual revenue by end of January 2027.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 2437
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "Mas1NOqGNxI",
+   "src": "mcnallie-money",
+   "d": "2026-11-09",
+   "title": "DarkHorse Technologies CEO Q&A | Q3 Earnings | Top AI Stocks to Watch in 2026 | DRK Stock",
+   "headline": "DarkHorse Technologies CEO Q&A",
+   "url": "https://www.youtube.com/watch?v=Mas1NOqGNxI",
+   "kind": "interview",
+   "minutes": 34,
+   "tickers": [
+    "IREN",
+    "HUT",
+    "BTDR",
+    "GLXY",
+    "CORZ",
+    "WULF",
+    "CIFR",
+    "APLD",
+    "SLNH",
+    "BTBT",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [],
+   "sponsored": []
+  },
   {
    "id": "w-RZocejsJo",
    "src": "mcnallie-money",
