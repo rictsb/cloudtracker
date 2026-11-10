@@ -41,11 +41,24 @@
     "WULF",
     "CORZ"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent developments in the AI infrastructure sector, including NVIDIA's CEO controversy, regulatory updates affecting data centre construction, earnings reports from companies like Bit Digital (BTBT) and Hive Blockchain (HIVE), price target revisions for stocks such as AMD, CoreWeave (CRWV), IronNet (IREN), and TeraWulf (WULF), and an interview with Dark Horse's CEO about their modular data centre strategy.\n\n2. Key facts by company:\n- **AMD**: Freedom Capital Markets initiated coverage with a buy rating and $6.20 price target, projecting ~$90 upside from the current share price.\n- **Bitdeer (BTDR)**: Chairman & CEO Jihan Wu met Malaysia's Prime Minister to discuss Bitdeer's expansion plans in Malaysia; they aim for 350 MW of AI capacity by Q1 2028.\n- **CoreWeave (CRWV)**: Rosenblatt reiterated a buy rating, reducing the price target from $250 to $160, projecting over 220% upside based on the current share price (~$50).\n- **IronNet (IREN)**:\n    - JP Morgan maintained an overweight rating, cutting the price target from $65 to $55; projected upside is ~265%.\n    - H.C. Wainwright reiterated a buy rating with a $56 price target.\n    - Cantor Fitzgerald maintained a buy rating and raised the price target to $79 (from $75), projecting over 265% upside.\n- **TeraWulf (WULF)**: Compass Point maintained a buy rating, lowering the price target from $40 to $30; projected upside is ~155%.\n\n3. Host's view:\nThe host maintains a bullish stance on AI infrastructure stocks despite recent volatility and regulatory challenges. They highlight that companies with secured power and contracts are well-positioned for long-term growth as demand outstrips supply. The host emphasizes the importance of due diligence but sees significant upside potential in stocks like CoreWeave, IronNet, and TeraWulf based on revised price targets.\n\n4. Worth checking:\n- Verify the exact terms of Riot's (RIOT) deal with Anthropic at Corsicana, including PUE assumptions and revenue recognition.\n- Confirm Bitdeer's (BTDR) timeline for achieving 350 MW of AI capacity by Q1 2028.\n- Validate IronNet's (IREN) updated capex guidance ($15 billion for FY27) and the breakdown between secured and unfunded portions.",
+   "brief": "Recent developments in the AI infrastructure sector, including NVIDIA's CEO controversy, regulatory updates affecting data centre construction, earnings reports from companies like Bit Digital (BTBT) and Hive Blockchain (HIVE), price target revisions for stocks such as AMD, CoreWeave (CRWV), IronNet (IREN), and TeraWulf (WULF), and an interview with Dark Horse's CEO about their modular data centre strategy.",
+   "facts": [
+    "**AMD**: Freedom Capital Markets initiated coverage with a buy rating and $6.20 price target, projecting ~$90 upside from the current share price.",
+    "**Bitdeer (BTDR)**: Chairman & CEO Jihan Wu met Malaysia's Prime Minister to discuss Bitdeer's expansion plans in Malaysia; they aim for 350 MW of AI capacity by Q1 2028.",
+    "**CoreWeave (CRWV)**: Rosenblatt reiterated a buy rating, reducing the price target from $250 to $160, projecting over 220% upside based on the current share price (~$50).",
+    "**IronNet (IREN)**:",
+    "JP Morgan maintained an overweight rating, cutting the price target from $65 to $55; projected upside is ~265%.",
+    "H.C. Wainwright reiterated a buy rating with a $56 price target.",
+    "Cantor Fitzgerald maintained a buy rating and raised the price target to $79 (from $75), projecting over 265% upside.",
+    "**TeraWulf (WULF)**: Compass Point maintained a buy rating, lowering the price target from $40 to $30; projected upside is ~155%."
+   ],
+   "view": "The host maintains a bullish stance on AI infrastructure stocks despite recent volatility and regulatory challenges. They highlight that companies with secured power and contracts are well-positioned for long-term growth as demand outstrips supply. The host emphasizes the importance of due diligence but sees significant upside potential in stocks like CoreWeave, IronNet, and TeraWulf based on revised price targets.",
+   "verify": [
+    "Verify the exact terms of Riot's (RIOT) deal with Anthropic at Corsicana, including PUE assumptions and revenue recognition.",
+    "Confirm Bitdeer's (BTDR) timeline for achieving 350 MW of AI capacity by Q1 2028.",
+    "Validate IronNet's (IREN) updated capex guidance ($15 billion for FY27) and the breakdown between secured and unfunded portions."
+   ],
    "signal": [
     {
      "tk": "RIOT",
@@ -92,11 +105,16 @@
     "CLSK"
    ],
    "main": [],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is an interview with Dark Horse Technologies (DRK) CEO Joel Block discussing Q3 earnings and DRK's strategy to pivot from Bitcoin mining to AI/HPC hosting.\n\n2. Key facts by company:\n   - DRK: 50 MW of power capacity currently online; new 50 MW power agreement in TVA region; $5M PIPE round led by CEO/directors in September; sold non-core Iowa site and self-mining Bitcoin machines for cash; BitDeer hosting agreement has profit share component\n   - HUT (Hut 8): Merged with US Bitcoin, now one of largest market cap companies covered\n\n3. Host's view: The host is optimistic about DRK's potential to grow from a small company to a large player in AI/HPC hosting, comparing it to IREN and HUT which grew significantly after pivoting.\n\n4. Worth checking: Details of the new 50 MW power agreement in TVA region; specifics of BitDeer hosting agreement terms; status of pre-development work on sites",
+   "brief": "The video is an interview with Dark Horse Technologies (DRK) CEO Joel Block discussing Q3 earnings and DRK's strategy to pivot from Bitcoin mining to AI/HPC hosting.",
+   "facts": [
+    "DRK: 50 MW of power capacity currently online; new 50 MW power agreement in TVA region; $5M PIPE round led by CEO/directors in September; sold non-core Iowa site and self-mining Bitcoin machines for cash; BitDeer hosting agreement has profit share component",
+    "HUT (Hut 8): Merged with US Bitcoin, now one of largest market cap companies covered"
+   ],
+   "view": "The host is optimistic about DRK's potential to grow from a small company to a large player in AI/HPC hosting, comparing it to IREN and HUT which grew significantly after pivoting.",
+   "verify": [
+    "Details of the new 50 MW power agreement in TVA region; specifics of BitDeer hosting agreement terms; status of pre-development work on sites"
+   ],
    "signal": [],
    "sponsored": []
   },
