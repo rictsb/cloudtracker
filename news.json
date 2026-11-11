@@ -38,11 +38,21 @@
     "HIVE",
     "IREN"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video covers recent earnings reports from BitDeer (BTDR), Hive Blockchain (HIVE) and White Fiber (WYFI); updates on OpenAI financing; Anthropic's IPO details; NVIDIA's market cap changes; permitting bill progress in the U.S.; Goldman Sachs' AI infrastructure outlook; and analyst price targets for Iris Energy (IREN).\n\n2. Key facts by company:\n- **OpenAI**: Raised $11B at a $1.25T valuation, 47% above March’s $852B valuation. IPO planned for 2027.\n- **Anthropic**: To offer 825M shares at $70-$78 each in its Nov 19 NASDAQ debut (ticker: ANT), targeting a ~$1.4T valuation and raising up to $64.35B from the IPO plus $26B privately from AMD, Broadcom, Google, Microsoft, NVIDIA, Micron & TSMC.\n- **BitDeer (BTDR)**: Q3 revenue +40% q/q (+90% y/y) at $320M ($300M mining, $20.4M AI cloud). 332MW secured for AI; $7.6B total contracted AI revenue backlog. Mined 3,855 BTC in Q3 vs 1,109 YoY.\n- **Hive (HIVE)**: Q2 FY2027 revenue -2.7% y/y at $85M ($76M mining +$8.8M HPC). Adjusted EBITDA +29.2% q/q to $24.8M. 24EH hash rate, 16J/T efficiency.\n- **White Fiber (WYFI)**: Q3 revenue +90% y/y at $24M ($5.6M co-location). NC1 fully operational; signed >$700M new cloud contracts targeting ~$365M annualized revenue by mid-2027. Secured $300M financing vs NC1.\n- **IREN**: Goldman Sachs price target $30 (consensus avg implies >200% upside from current ~$19.33).\n- **U.S. permitting bill**: Senate advanced bipartisan American Affordability and Jobs Act 73-25; still needs full passage.\n\n3. Host's view: The hosts are optimistic about the sector’s long-term potential despite recent sell-offs, citing strong demand for AI infrastructure (e.g., OpenAI’s 1.2B weekly ChatGPT users), Goldman Sachs’ bullish outlook, and Anthropic’s IPO as potential catalysts. They note IREN has >50% upside to analyst targets.\n\n4. Worth checking: Verify OpenAI’s $11B raise details & valuation adjustments in filings; confirm Anthropic’s IPO terms (share count, price range) in its S-1/A; check BitDeer’s AI revenue backlog ($7.6B) and Hive’s HPC contract run rate ($185M vs $200M target) against company disclosures.",
+   "brief": "Recent earnings reports from BitDeer (BTDR), Hive Blockchain (HIVE) and White Fiber (WYFI); updates on OpenAI financing; Anthropic's IPO details; NVIDIA's market cap changes; permitting bill progress in the U.S.; Goldman Sachs' AI infrastructure outlook; and analyst price targets for Iris Energy (IREN).",
+   "facts": [
+    "**OpenAI**: Raised $11B at a $1.25T valuation, 47% above March’s $852B valuation. IPO planned for 2027.",
+    "**Anthropic**: To offer 825M shares at $70-$78 each in its Nov 19 NASDAQ debut (ticker: ANT), targeting a ~$1.4T valuation and raising up to $64.35B from the IPO plus $26B privately from AMD, Broadcom, Google, Microsoft, NVIDIA, Micron & TSMC.",
+    "**BitDeer (BTDR)**: Q3 revenue +40% q/q (+90% y/y) at $320M ($300M mining, $20.4M AI cloud). 332MW secured for AI; $7.6B total contracted AI revenue backlog. Mined 3,855 BTC in Q3 vs 1,109 YoY.",
+    "**Hive (HIVE)**: Q2 FY2027 revenue -2.7% y/y at $85M ($76M mining +$8.8M HPC). Adjusted EBITDA +29.2% q/q to $24.8M. 24EH hash rate, 16J/T efficiency.",
+    "**White Fiber (WYFI)**: Q3 revenue +90% y/y at $24M ($5.6M co-location). NC1 fully operational; signed >$700M new cloud contracts targeting ~$365M annualized revenue by mid-2027. Secured $300M financing vs NC1.",
+    "**IREN**: Goldman Sachs price target $30 (consensus avg implies >200% upside from current ~$19.33).",
+    "**U.S. permitting bill**: Senate advanced bipartisan American Affordability and Jobs Act 73-25; still needs full passage."
+   ],
+   "view": "The hosts are optimistic about the sector’s long-term potential despite recent sell-offs, citing strong demand for AI infrastructure (e.g., OpenAI’s 1.2B weekly ChatGPT users), Goldman Sachs’ bullish outlook, and Anthropic’s IPO as potential catalysts. They note IREN has >50% upside to analyst targets.",
+   "verify": [
+    "Verify OpenAI’s $11B raise details & valuation adjustments in filings; confirm Anthropic’s IPO terms (share count, price range) in its S-1/A; check BitDeer’s AI revenue backlog ($7.6B) and Hive’s HPC contract run rate ($185M vs $200M target) against company disclosures."
+   ],
    "signal": [
     {
      "tk": "RIOT",
