@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-10",
+ "asOf": "2026-11-11",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,51 @@
   }
  ],
  "items": [
+  {
+   "id": "TLBUGutVjFc",
+   "src": "mcnallie-money",
+   "d": "2026-11-10",
+   "title": "BTDR, HIVE & WYFI Earnings |  IREN Price Targets | Top AI Stocks | Lambda, Anthropic & OpenAI News",
+   "headline": "BTDR, HIVE & WYFI Earnings",
+   "url": "https://www.youtube.com/watch?v=TLBUGutVjFc",
+   "kind": "news",
+   "minutes": 54,
+   "tickers": [
+    "BTDR",
+    "HIVE",
+    "IREN",
+    "CORZ",
+    "WULF",
+    "CLSK",
+    "BTBT",
+    "SLNH",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "HUT",
+    "APLD"
+   ],
+   "main": [
+    "BTDR",
+    "HIVE",
+    "IREN"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "RIOT",
+     "claim": "Riot has a 910 megawatt deal at the Corsicana site.",
+     "by": "guest",
+     "tag": "notable",
+     "t": 546
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "Ha0g9wvNsOk",
    "src": "mcnallie-money",
@@ -6244,81 +6289,6 @@
      "t": 706
     }
    ],
-   "sponsored": []
-  },
-  {
-   "id": "w6P-8iTk34Q",
-   "src": "mcnallie-money",
-   "d": "2026-07-13",
-   "title": "META Louisiana AI Campus | IREN & Microsoft Delivery | Top AI Stocks to Watch | IREN, HUT & BTBT",
-   "headline": "META Louisiana AI Campus",
-   "url": "https://www.youtube.com/watch?v=w6P-8iTk34Q",
-   "kind": "news",
-   "minutes": 39,
-   "tickers": [
-    "IREN",
-    "HUT",
-    "BTBT",
-    "CORZ",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK"
-   ],
-   "main": [
-    "IREN",
-    "HUT",
-    "BTBT"
-   ],
-   "summary": "1. The video discusses recent developments in AI infrastructure and Bitcoin mining stocks, including Meta's Louisiana data centre expansion, Iron Energy's (IREN) Microsoft deal handover timeline, Hut 8 Mining Corp.'s (HUT) upcoming earnings report, and broader sector trends.\n\n2. Key facts by company:\n   - IREN: Childress facility Phase One handover to Microsoft confirmed for July 19; commissioning starts H2 2024; Microsoft \"extremely happy\" with progress\n   - HUT: Q2 earnings scheduled August 7 (after ABTC); has ~597MW contracted AI/HPC capacity from two deals at Riverbend and Beacon Point sites\n   - MARA: Focused on community involvement, curtailment programs and bring-your-own-power solutions to address local concerns\n   - NBIS: Birmingham \"AI factory\" faces lawsuit from residents over construction noise/water impact; judge allows work to continue pending hearing\n\n3. Host's view:\n   - Stance: Cautiously optimistic on IREN post-Microsoft handover as validation point, expects HUT earnings will be closely watched\n   - Valuations: Notes miners converting Bitcoin sites have $15-24M/MW valuation advantage vs Digital Realty's $27M/MW purchases\n   - Confidence: Sounds measured (\"time will tell\" on Microsoft expanding IREN deal), notes sector volatility but sees long-term value\n\n4. Worth checking:\n   - Verify Meta Louisiana tax exemption details (claimed 20-year sales tax holiday for data centres built before 2029)\n   - Confirm Iron Energy's claimed $3.5M/MW conversion cost vs industry benchmarks\n   - Check Hut 8's actual contracted MW vs \"massive pipeline\" claims",
-   "brief": "Recent developments in AI infrastructure and Bitcoin mining stocks, including Meta's Louisiana data centre expansion, Iron Energy's (IREN) Microsoft deal handover timeline, Hut 8 Mining Corp.'s (HUT) upcoming earnings report, and broader sector trends.",
-   "facts": [
-    "IREN: Childress facility Phase One handover to Microsoft confirmed for July 19; commissioning starts H2 2024; Microsoft \"extremely happy\" with progress",
-    "HUT: Q2 earnings scheduled August 7 (after ABTC); has ~597MW contracted AI/HPC capacity from two deals at Riverbend and Beacon Point sites",
-    "MARA: Focused on community involvement, curtailment programs and bring-your-own-power solutions to address local concerns",
-    "NBIS: Birmingham \"AI factory\" faces lawsuit from residents over construction noise/water impact; judge allows work to continue pending hearing"
-   ],
-   "view": "Stance: Cautiously optimistic on IREN post-Microsoft handover as validation point, expects HUT earnings will be closely watched Valuations: Notes miners converting Bitcoin sites have $15-24M/MW valuation advantage vs Digital Realty's $27M/MW purchases Confidence: Sounds measured (\"time will tell\" on Microsoft expanding IREN deal), notes sector volatility but sees long-term value",
-   "verify": [
-    "Verify Meta Louisiana tax exemption details (claimed 20-year sales tax holiday for data centres built before 2029)",
-    "Confirm Iron Energy's claimed $3.5M/MW conversion cost vs industry benchmarks",
-    "Check Hut 8's actual contracted MW vs \"massive pipeline\" claims"
-   ],
-   "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "i2kWPR4BfD4",
-   "src": "mcnallie-money",
-   "d": "2026-07-13",
-   "title": "Latest Mineral Exploration Stock To Watch | First Phosphate | Top Mining Stock News 2026 | PHOS",
-   "headline": "Latest Mineral Exploration Stock To Watch",
-   "url": "https://www.youtube.com/watch?v=i2kWPR4BfD4",
-   "kind": "news",
-   "minutes": 15,
-   "tickers": [],
-   "main": [],
-   "summary": "1. The video discusses First Phosphate (PHOS), an exploration company developing North American LFP battery supply chains, highlighting its recent $15.4M financing and $275M investment agreements.\n\n2. Key facts:\n   - PHOS: Raised ~$15.4M in oversubscribed private placement; total raised since 2022 is ~$78M across 11 placements.\n   - PHOS: Signed LOI for up to C$275M from Denmark's export fund and other international partners at G7 summit.\n   - PHOS: Received non-repayable C$16.7M contribution from Canadian government.\n   - PHOS: Produced commercial-grade LFP battery cells using North American minerals; cells met specs with stable performance.\n\n3. Host's view:\n   - The host is bullish on PHOS, emphasizing its strategic position in the LFP supply chain and strong government backing. They highlight the stock's 416% gain over 12 months and recent catalysts as reasons for investor excitement but do not give specific price targets or valuations.\n\n4. Worth checking:\n   - Verify the C$275M investment agreements from Denmark, Italy and other partners.\n   - Confirm the terms of the Canadian government's C$16.7M non-repayable contribution.\n   - Check if PHOS has filed updates on its mining feasibility study at Bégin-Lamarche.",
-   "brief": "First Phosphate (PHOS), an exploration company developing North American LFP battery supply chains, highlighting its recent $15.4M financing and $275M investment agreements.",
-   "facts": [
-    "PHOS: Raised ~$15.4M in oversubscribed private placement; total raised since 2022 is ~$78M across 11 placements.",
-    "PHOS: Signed LOI for up to C$275M from Denmark's export fund and other international partners at G7 summit.",
-    "PHOS: Received non-repayable C$16.7M contribution from Canadian government.",
-    "PHOS: Produced commercial-grade LFP battery cells using North American minerals; cells met specs with stable performance."
-   ],
-   "view": "The host is bullish on PHOS, emphasizing its strategic position in the LFP supply chain and strong government backing. They highlight the stock's 416% gain over 12 months and recent catalysts as reasons for investor excitement but do not give specific price targets or valuations.",
-   "verify": [
-    "Verify the C$275M investment agreements from Denmark, Italy and other partners.",
-    "Confirm the terms of the Canadian government's C$16.7M non-repayable contribution.",
-    "Check if PHOS has filed updates on its mining feasibility study at Bégin-Lamarche."
-   ],
-   "signal": [],
    "sponsored": []
   }
  ]
