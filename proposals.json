@@ -856,6 +856,37 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "fp": "c3879fb0b9625e10",
+   "tk": "CRWV",
+   "kind": "log",
+   "site": null,
+   "title": "log: CoreWeave has 10 times as much qualified demand as available capacity through the end of 2",
+   "current": null,
+   "proposed": {
+    "d": "2026-11-11",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — CoreWeave Earnings & Demand | Latest AI Stock News Now | KEEL, WYFI, HIVE, DRK, , 2026-11-11",
+    "x": "CoreWeave has 10 times as much qualified demand as available capacity through the end of 2027. — \"He said, we have 10 times as much qualified demand as available capacity through to the end of 2027.\" (executive: Michael Trader)"
+   },
+   "evidence": [
+    {
+     "d": "2026-11-11",
+     "quote": "He said, we have 10 times as much qualified demand as available capacity through to the end of 2027.",
+     "claim": "CoreWeave has 10 times as much qualified demand as available capacity through the end of 2027.",
+     "by": "executive",
+     "url": "https://www.youtube.com/watch?v=IhNXSxSimDs&t=1187s",
+     "title": "CoreWeave Earnings & Demand | Latest AI Stock News Now | KEEL, WYFI, HIVE, DRK, GLXY & CORZ News"
+    }
+   ],
+   "id": "p-2026-11-12-CRWV-001",
+   "created": "2026-11-12",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
@@ -863,7 +894,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-11-11",
+ "asOf": "2026-11-12",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",

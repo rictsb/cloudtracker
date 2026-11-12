@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-11",
+ "asOf": "2026-11-12",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,59 @@
   }
  ],
  "items": [
+  {
+   "id": "IhNXSxSimDs",
+   "src": "mcnallie-money",
+   "d": "2026-11-11",
+   "title": "CoreWeave Earnings & Demand | Latest AI Stock News Now | KEEL, WYFI, HIVE, DRK, GLXY & CORZ News",
+   "headline": "CoreWeave Earnings & Demand",
+   "url": "https://www.youtube.com/watch?v=IhNXSxSimDs",
+   "kind": "news",
+   "minutes": 47,
+   "tickers": [
+    "CRWV",
+    "CORZ",
+    "IREN",
+    "WULF",
+    "HIVE",
+    "NBIS",
+    "BTDR",
+    "SLNH",
+    "GLXY",
+    "APLD",
+    "RIOT",
+    "CLSK"
+   ],
+   "main": [
+    "CRWV",
+    "CORZ",
+    "IREN",
+    "WULF",
+    "HIVE"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "CRWV",
+     "claim": "CoreWeave has 10 times as much qualified demand as available capacity through the end of 2027.",
+     "by": "executive",
+     "tag": "big",
+     "t": 1187
+    },
+    {
+     "tk": "CORZ",
+     "claim": "Core Scientific is providing one third of CoreWeave's 2026 contracted power.",
+     "by": "host",
+     "tag": "notable",
+     "t": 1966
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "TLBUGutVjFc",
    "src": "mcnallie-money",
@@ -6230,73 +6283,6 @@
      "by": "host",
      "tag": "notable",
      "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "YSrzG4W-5i8",
-   "src": "mcnallie-money",
-   "d": "2026-07-14",
-   "title": "CLSK Lands AI Deal | Latest SLNH Stock News | AI Stocks to Watch in 2026 | Top KEEL & GLXY News",
-   "headline": "CLSK Lands AI Deal — Latest SLNH Stock News",
-   "url": "https://www.youtube.com/watch?v=YSrzG4W-5i8",
-   "kind": "news",
-   "minutes": 30,
-   "tickers": [
-    "CLSK",
-    "SLNH",
-    "KEEL",
-    "GLXY",
-    "IREN",
-    "HUT",
-    "WULF",
-    "BTBT",
-    "HIVE",
-    "BTDR",
-    "CORZ",
-    "APLD",
-    "MARA"
-   ],
-   "main": [
-    "CLSK",
-    "SLNH",
-    "KEEL",
-    "GLXY"
-   ],
-   "summary": "1. The video discusses recent developments in AI infrastructure stocks including CleanSpark's new co-location deal at their Sandersville site, Saluna Holdings' monthly update featuring an LOI signed for CATI 2 and operational metrics, Kiel Infrastructure receiving initial municipal approval for their Sherbrooke data centre, and Galaxy Digital appointing a former Xerox CEO to lead their Helios campus expansion.\n\n2. Key facts by company:\n- CleanSpark (CLSK): Signed a 20-year triple net lease with a high investment grade global technology company for 170 MW of compute power at Sandersville site; deal expected to generate $6.6 billion in contracted revenue and up to $11.6 billion with extensions; entire Texas portfolio under LOI with one client.\n- Saluna Holdings (SLNH): Signed an LOI for CATI 2 with a single tenant; Bitcoin mined decreased 19% month-over-month due to reduced operational hash rate from 591 to 540 PH/s and increased curtailments; Briscoe Power plant undergoing repairs, impacting power availability.\n- Kiel Infrastructure (KEEL): Received initial municipal approval for Sherbrooke data centre; site is part of 2.2 GW North American development pipeline alongside Moses Lake, Panther Creek, and Sharon sites.\n- Galaxy Digital (GLXY): Appointed Stephen Bandrozak as independent director to lead Helios campus expansion in West Texas.\n\n3. Host's view: The hosts maintain a positive long-term outlook on the AI infrastructure sector despite recent pullbacks of 20%-30% from June highs. They highlight CleanSpark's Sandersville deal could add significant value, potentially increasing share price by ~$8.62 per MW signed. Cantor Fitzgerald's $17 price target for CLSK is noted as validation.\n\n4. Worth checking: Verify Saluna Holdings' reported operational hash rate reduction and its correlation to stated power curtailments; confirm Kiel Infrastructure's Sherbrooke site approval details against municipal records; validate CleanSpark's Texas portfolio LOI status and projected capex costs of $10-12 million per MW for their AI data centres.",
-   "brief": "Recent developments in AI infrastructure stocks including CleanSpark's new co-location deal at their Sandersville site, Saluna Holdings' monthly update featuring an LOI signed for CATI 2 and operational metrics, Kiel Infrastructure receiving initial municipal approval for their Sherbrooke data centre, and Galaxy Digital appointing a former Xerox CEO to lead their Helios campus expansion.",
-   "facts": [
-    "CleanSpark (CLSK): Signed a 20-year triple net lease with a high investment grade global technology company for 170 MW of compute power at Sandersville site; deal expected to generate $6.6 billion in contracted revenue and up to $11.6 billion with extensions; entire Texas portfolio under LOI with one client.",
-    "Saluna Holdings (SLNH): Signed an LOI for CATI 2 with a single tenant; Bitcoin mined decreased 19% month-over-month due to reduced operational hash rate from 591 to 540 PH/s and increased curtailments; Briscoe Power plant undergoing repairs, impacting power availability.",
-    "Kiel Infrastructure (KEEL): Received initial municipal approval for Sherbrooke data centre; site is part of 2.2 GW North American development pipeline alongside Moses Lake, Panther Creek, and Sharon sites.",
-    "Galaxy Digital (GLXY): Appointed Stephen Bandrozak as independent director to lead Helios campus expansion in West Texas."
-   ],
-   "view": "The hosts maintain a positive long-term outlook on the AI infrastructure sector despite recent pullbacks of 20%-30% from June highs. They highlight CleanSpark's Sandersville deal could add significant value, potentially increasing share price by ~$8.62 per MW signed. Cantor Fitzgerald's $17 price target for CLSK is noted as validation.",
-   "verify": [
-    "Verify Saluna Holdings' reported operational hash rate reduction and its correlation to stated power curtailments; confirm Kiel Infrastructure's Sherbrooke site approval details against municipal records; validate CleanSpark's Texas portfolio LOI status and projected capex costs of $10-12 million per MW for their AI data centres."
-   ],
-   "signal": [
-    {
-     "tk": "CLSK",
-     "claim": "CleanSpark signed a 20-year triple net lease at its Sandersville site for 170 MW of compute power.",
-     "by": "executive",
-     "tag": "notable",
-     "t": 1176
-    },
-    {
-     "tk": "SLNH",
-     "claim": "Soluna signed an LOI for the CATI 2 project with a single tenant.",
-     "by": "executive",
-     "tag": "notable",
-     "t": 963
-    },
-    {
-     "tk": "KEEL",
-     "claim": "Keel Infrastructure received initial municipal approval for its Sherbrooke data centre in Quebec.",
-     "by": "guest",
-     "tag": "scoop",
-     "t": 706
     }
    ],
    "sponsored": []
