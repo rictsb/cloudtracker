@@ -293,7 +293,7 @@
     "quoteHash": "7058c4fa29e9d227701876270f5db5b91842dee2d029261c380ed066443694d3",
     "quoteTolerance": {
      "economicMetricRelative": 0.005,
-     "economicMetricAbsolute": 1e-06
+     "economicMetricAbsolute": 0.000001
     },
     "impactHash": "4cf05c64ab0384b315d372224048a3ed2136418a425721e3f6b77d8a4b9f479d"
    },
@@ -887,6 +887,691 @@
    "applied": null,
    "sourceId": "mcnallie-money",
    "sourceName": "McNallie Money (YouTube)"
+  },
+  {
+   "id": "assumption-38579d55cbcc6719",
+   "fp": "38579d55cbcc67196b06cdc134f192b5caaebb2ef61bc641db15e4bb4eab1d2e",
+   "kind": "assumption",
+   "tk": "ALL",
+   "title": "Shared new-business price curve +$2m per IT MW-yr, to the low end of CoreWeave’s quoted $20–25m",
+   "created": "2026-11-12",
+   "sourceName": "Assumption Review",
+   "status": "pending",
+   "changes": [
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2026",
+      "1"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2026",
+      "2"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2026",
+      "3"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2026",
+      "5"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2026",
+      "6"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2027",
+      "1"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2027",
+      "2"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2027",
+      "3"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2027",
+      "5"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2027",
+      "6"
+     ],
+     "current": 18,
+     "proposed": 20,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2028",
+      "1"
+     ],
+     "current": 19,
+     "proposed": 21,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2028",
+      "2"
+     ],
+     "current": 19,
+     "proposed": 21,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2028",
+      "3"
+     ],
+     "current": 19,
+     "proposed": 21,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2028",
+      "5"
+     ],
+     "current": 19,
+     "proposed": 21,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2028",
+      "6"
+     ],
+     "current": 19,
+     "proposed": 21,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2029",
+      "1"
+     ],
+     "current": 20,
+     "proposed": 22,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2029",
+      "2"
+     ],
+     "current": 20,
+     "proposed": 22,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2029",
+      "3"
+     ],
+     "current": 20,
+     "proposed": 22,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2029",
+      "5"
+     ],
+     "current": 20,
+     "proposed": 22,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2029",
+      "6"
+     ],
+     "current": 20,
+     "proposed": 22,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2030",
+      "1"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2030",
+      "2"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2030",
+      "3"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2030",
+      "5"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2030",
+      "6"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2031",
+      "1"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2031",
+      "2"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2031",
+      "3"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2031",
+      "5"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    },
+    {
+     "scope": "global",
+     "path": [
+      "researchPricing",
+      "curve",
+      "2031",
+      "6"
+     ],
+     "current": 21,
+     "proposed": 23,
+     "unit": "USD million/IT MW/year"
+    }
+   ],
+   "basis": "CoreWeave’s Q3-26 call (10 Nov 2026) says pricing for new infrastructure on four- and five-year contracts is moving to $20–25m per MW, with short-dated contracts above $40m, after list-price rises of ~25% in July and ~10% later in Q3. The shared curve sits below that range at $18m for 2026–27 starts, rising to $21m by 2030. This proposal moves every tenor up $2m: $20m (2026–27), $21m (2028), $22m (2029), $23m (2030–31). That is the bottom of CoreWeave’s quoted range, not its midpoint, because (a) the quote is for 4–5 year contracts on new infrastructure while the curve also prices three-year renewals of new business, (b) the company’s per-MW basis is critical-IT power, matching the curve, but individual deals are not disclosed, and (c) SemiAnalysis’s GB300 NVL72 five-year survey ($5.00–5.50 per GPU-hour in October 2026, roughly $21–23m per MW-yr at ~2.1 kW per GPU all-in) and Nebius’s new ACV above $20m/MW support the low end without independently confirming the top. Generation factors stay 1 and no software premium is added. Existing-book rates, renewals and spot are unchanged. The curve is shared, so IREN, NBIS and SHAZ move with CoreWeave; the impact preview shows each.",
+   "evidence": [
+    {
+     "url": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+     "date": "2026-11-10",
+     "sourceName": "CoreWeave Q3-26 earnings call (proofread transcript)",
+     "quote": "moving to $20 million to $25 million per megawatt",
+     "claim": "New infrastructure on four- and five-year contracts; short-term capacity sells above $40m per MW annually."
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+     "date": "2026-08-12",
+     "sourceName": "Nebius Q2-26 shareholder letter",
+     "claim": "New annual contract values above $20m per MW."
+    },
+    {
+     "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+     "date": "2026-08-27",
+     "sourceName": "IREN FY26 results",
+     "claim": "Stronger recent contract pricing; supports the direction, not a common future price."
+    }
+   ],
+   "review": {
+    "sourceHash": "55da2fcf08d8a7b26c861c2d68beb3e6fd11e7d40e9bc7975ea11258d20fd981",
+    "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
+    "ruleVersion": "assumption-approvals-v2",
+    "impact": [
+     {
+      "ticker": "CRWV",
+      "modelBasis": "Canonical quarterly research waterfall",
+      "unit": "USD/share",
+      "base": 133.7862143128866,
+      "proposed": 165.53777341510454,
+      "delta": 31.751559102217925,
+      "pct": 23.73305744937245,
+      "baseMetrics": {
+       "revenueRunRateBn": 96.6304,
+       "enterpriseValueBn": 278.0023319621254,
+       "cashBn": 3,
+       "netDebtExConvertsBn": 35.29193285591549,
+       "dilutedSharesM": 1007.5545510517165,
+       "financingEquityBn": 16.455000000000002,
+       "convertibleSharesM": 53.87755536117696,
+       "prepaymentLiabilityBn": 38.91247079032803
+      },
+      "proposedMetrics": {
+       "revenueRunRateBn": 104.0532,
+       "enterpriseValueBn": 319.08974731117297,
+       "cashBn": 2.999999999999999,
+       "netDebtExConvertsBn": 26.962341776830446,
+       "dilutedSharesM": 1011.4882027262305,
+       "financingEquityBn": 16.455000000000002,
+       "convertibleSharesM": 57.811207035690906,
+       "prepaymentLiabilityBn": 38.97750433859605
+      },
+      "quoteBasis": {
+       "price": 48.73,
+       "date": "2026-11-10T21:00:00.000Z",
+       "source": "Finnhub",
+       "financingPriceBase": 48.73,
+       "financingPriceProposed": 48.73,
+       "financingMethod": "Dated research issuance assumption; market refresh does not overwrite it"
+      },
+      "assetAlternative": {
+       "label": "Supplemental asset model; not the displayed research value",
+       "base": 167.81027886190878,
+       "proposed": 167.81027886190878,
+       "delta": 0
+      }
+     },
+     {
+      "ticker": "IREN",
+      "modelBasis": "Canonical quarterly research waterfall",
+      "unit": "USD/share",
+      "base": 88.25977920727385,
+      "proposed": 105.27565756116897,
+      "delta": 17.01587835389512,
+      "pct": 19.27931216996832,
+      "baseMetrics": {
+       "revenueRunRateBn": 56.7532,
+       "enterpriseValueBn": 244.70403967903482,
+       "cashBn": 3,
+       "netDebtExConvertsBn": 42.212556619557574,
+       "dilutedSharesM": 1280.6394776595746,
+       "financingEquityBn": 14.570199999999998,
+       "convertibleSharesM": 100.56000477564145,
+       "prepaymentLiabilityBn": 31.604275475699502
+      },
+      "proposedMetrics": {
+       "revenueRunRateBn": 61.3016,
+       "enterpriseValueBn": 274.1630342670198,
+       "cashBn": 2.9999999999999996,
+       "netDebtExConvertsBn": 37.784764940908794,
+       "dilutedSharesM": 1284.9413687790957,
+       "financingEquityBn": 14.570199999999998,
+       "convertibleSharesM": 104.86189589516248,
+       "prepaymentLiabilityBn": 31.86047268658986
+      },
+      "quoteBasis": {
+       "price": 19.73,
+       "date": "2026-11-10T21:00:00.000Z",
+       "source": "Finnhub",
+       "financingPriceBase": 19.73,
+       "financingPriceProposed": 19.73,
+       "financingMethod": "Dated research issuance assumption; market refresh does not overwrite it"
+      },
+      "assetAlternative": {
+       "label": "Supplemental asset model; not the displayed research value",
+       "base": 195.6212768668901,
+       "proposed": 195.6212768668901,
+       "delta": 0
+      }
+     },
+     {
+      "ticker": "NBIS",
+      "modelBasis": "Canonical quarterly research waterfall",
+      "unit": "USD/share",
+      "base": 227.35228735118474,
+      "proposed": 271.76277956540764,
+      "delta": 44.4104922142229,
+      "pct": 19.533778494879734,
+      "baseMetrics": {
+       "revenueRunRateBn": 80.5656,
+       "enterpriseValueBn": 261.488385398675,
+       "cashBn": 2.9999999999999973,
+       "netDebtExConvertsBn": 69.16657743834328,
+       "dilutedSharesM": 526.700828356981,
+       "financingEquityBn": 18.343,
+       "convertibleSharesM": 68.1127686554885,
+       "prepaymentLiabilityBn": 17.07821485450202
+      },
+      "proposedMetrics": {
+       "revenueRunRateBn": 86.5856,
+       "enterpriseValueBn": 291.85614430323733,
+       "cashBn": 2.9999999999999996,
+       "netDebtExConvertsBn": 63.95840313331628,
+       "dilutedSharesM": 526.700828356981,
+       "financingEquityBn": 18.343,
+       "convertibleSharesM": 68.1127686554885,
+       "prepaymentLiabilityBn": 17.289493607627247
+      },
+      "quoteBasis": {
+       "price": 134,
+       "date": "2026-11-10T21:00:00.000Z",
+       "source": "Finnhub",
+       "financingPriceBase": 134,
+       "financingPriceProposed": 134,
+       "financingMethod": "Dated research issuance assumption; market refresh does not overwrite it"
+      },
+      "assetAlternative": {
+       "label": "Supplemental asset model; not the displayed research value",
+       "base": 414.0434251097662,
+       "proposed": 414.0434251097662,
+       "delta": 0
+      }
+     },
+     {
+      "ticker": "SHAZ",
+      "modelBasis": "Canonical quarterly research waterfall",
+      "unit": "USD/share",
+      "base": 23.049051026096635,
+      "proposed": 31.157750813216655,
+      "delta": 8.10869978712002,
+      "pct": 35.18018931859353,
+      "baseMetrics": {
+       "revenueRunRateBn": 3.7251999999999996,
+       "enterpriseValueBn": 6.499612403421967,
+       "cashBn": 0.15000000000000002,
+       "netDebtExConvertsBn": 1.8906990671140376,
+       "dilutedSharesM": 100.58726168897407,
+       "financingEquityBn": 1.4245549425868755,
+       "convertibleSharesM": 0,
+       "prepaymentLiabilityBn": 0.05368861673774117
+      },
+      "proposedMetrics": {
+       "revenueRunRateBn": 3.9112,
+       "enterpriseValueBn": 7.394361495755532,
+       "cashBn": 0.15000000000000002,
+       "netDebtExConvertsBn": 1.5781392775289897,
+       "dilutedSharesM": 107.46869817645755,
+       "financingEquityBn": 1.3820002660962685,
+       "convertibleSharesM": 8.706251088281386,
+       "prepaymentLiabilityBn": 0.05368861673774117
+      },
+      "quoteBasis": {
+       "price": 23.32,
+       "date": "2026-11-10T21:00:00.000Z",
+       "source": "Finnhub",
+       "financingPriceBase": 23.32,
+       "financingPriceProposed": 23.32,
+       "financingMethod": "Dated research issuance assumption; market refresh does not overwrite it"
+      },
+      "assetAlternative": {
+       "label": "Supplemental asset model; not the displayed research value",
+       "base": 70.93429974120984,
+       "proposed": 70.93429974120984,
+       "delta": 0
+      }
+     }
+    ],
+    "quoteBasis": {
+     "prices": {
+      "CRWV": 48.73,
+      "NBIS": 134,
+      "RIOT": 18.08,
+      "BTDR": 6.41,
+      "IREN": 19.73,
+      "SLNH": 0.5225,
+      "GLXY": 14.11,
+      "HUT": 56.77,
+      "CIFR": 6.53,
+      "MARA": 7.34,
+      "CORZ": 13.13,
+      "WULF": 12.56,
+      "FRMI": 1.54,
+      "WYFI": 9.21,
+      "HIVE": 1.72,
+      "APLD": 16.68,
+      "ABTC": 5.13,
+      "CLSK": 6.57,
+      "BTBT": 0.7307,
+      "NUAI": 2.07,
+      "KEEL": 1.91,
+      "SHAZ": 23.32
+     },
+     "priceDates": {
+      "CRWV": "2026-11-10T21:00:00.000Z",
+      "NBIS": "2026-11-10T21:00:00.000Z",
+      "RIOT": "2026-11-10T21:00:00.000Z",
+      "BTDR": "2026-11-10T21:00:00.000Z",
+      "IREN": "2026-11-10T21:00:00.000Z",
+      "SLNH": "2026-11-10T21:00:00.000Z",
+      "GLXY": "2026-11-10T21:00:00.000Z",
+      "HUT": "2026-11-10T21:00:00.000Z",
+      "CIFR": "2026-11-10T21:00:00.000Z",
+      "MARA": "2026-11-10T21:00:00.000Z",
+      "CORZ": "2026-11-10T21:00:00.000Z",
+      "WULF": "2026-11-10T21:00:00.000Z",
+      "FRMI": "2026-11-10T21:00:00.000Z",
+      "WYFI": "2026-11-10T21:00:00.000Z",
+      "HIVE": "2026-11-10T21:00:00.000Z",
+      "APLD": "2026-11-10T21:00:00.000Z",
+      "ABTC": "2026-11-10T21:00:00.000Z",
+      "CLSK": "2026-11-10T21:00:00.000Z",
+      "BTBT": "2026-11-10T21:00:00.000Z",
+      "NUAI": "2026-11-10T21:00:00.000Z",
+      "KEEL": "2026-11-10T21:00:00.000Z",
+      "SHAZ": "2026-11-10T21:00:00.000Z"
+     },
+     "priceFetchedAt": {
+      "CRWV": "2026-11-10T21:13:26.486Z",
+      "NBIS": "2026-11-10T21:13:26.485Z",
+      "RIOT": "2026-11-10T21:13:26.482Z",
+      "BTDR": "2026-11-10T21:13:26.484Z",
+      "IREN": "2026-11-10T21:13:26.613Z",
+      "SLNH": "2026-11-10T21:13:26.617Z",
+      "GLXY": "2026-11-10T21:13:26.625Z",
+      "HUT": "2026-11-10T21:13:26.621Z",
+      "CIFR": "2026-11-10T21:13:26.740Z",
+      "MARA": "2026-11-10T21:13:26.747Z",
+      "CORZ": "2026-11-10T21:13:26.741Z",
+      "WULF": "2026-11-10T21:13:26.742Z",
+      "FRMI": "2026-11-10T21:13:26.860Z",
+      "WYFI": "2026-11-10T21:13:26.867Z",
+      "HIVE": "2026-11-10T21:13:26.858Z",
+      "APLD": "2026-11-10T21:13:26.873Z",
+      "ABTC": "2026-11-10T21:13:26.992Z",
+      "CLSK": "2026-11-10T21:13:26.983Z",
+      "BTBT": "2026-11-10T21:13:26.984Z",
+      "NUAI": "2026-11-10T21:13:26.994Z",
+      "KEEL": "2026-11-10T21:13:27.105Z",
+      "SHAZ": "2026-11-10T21:13:27.100Z"
+     },
+     "priceSources": {
+      "CRWV": "Finnhub",
+      "NBIS": "Finnhub",
+      "RIOT": "Finnhub",
+      "BTDR": "Finnhub",
+      "IREN": "Finnhub",
+      "SLNH": "Finnhub",
+      "GLXY": "Finnhub",
+      "HUT": "Finnhub",
+      "CIFR": "Finnhub",
+      "MARA": "Finnhub",
+      "CORZ": "Finnhub",
+      "WULF": "Finnhub",
+      "FRMI": "Finnhub",
+      "WYFI": "Finnhub",
+      "HIVE": "Finnhub",
+      "APLD": "Finnhub",
+      "ABTC": "Finnhub",
+      "CLSK": "Finnhub",
+      "BTBT": "Finnhub",
+      "NUAI": "Finnhub",
+      "KEEL": "Finnhub",
+      "SHAZ": "Finnhub"
+     },
+     "btc": 73875.285,
+     "eth": 2058.745,
+     "cryptoDates": {
+      "btc": "2026-11-10T21:13:27.046Z",
+      "eth": "2026-11-10T21:13:27.044Z"
+     },
+     "asOf": "2026-11-10T21:13:27.105Z",
+     "fetchedAt": "2026-11-10T21:13:27.105Z"
+    },
+    "quoteHash": "c936a5073b32cf0dcdfb6807576a3da6742b126eb214a7694ab3e582ea71f230",
+    "quoteTolerance": {
+     "economicMetricRelative": 0.005,
+     "economicMetricAbsolute": 0.000001
+    },
+    "impactHash": "687d29bfa3f4b08b9f77863236f9d88684f0e7b9ee7843b930a8f4827c780ef0"
+   }
   }
  ],
  "seen": [
