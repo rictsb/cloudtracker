@@ -39,26 +39,26 @@
         "siteEconomicMW": 8126,
         "siteCapacityBasis": "Economic MW in the asset register, including future pipeline; not an earning-capacity denominator.",
         "horizonQuarter": "2030Q4",
-        "grossEnergizedMW": 9104,
-        "energizedITMW": 7000,
-        "earningITMW": 6837.5,
-        "contractedEarningITMW": 6573.75,
-        "earningGPUCount": 2198500,
-        "annualizedQuarterRevenueBn": 120.818184651,
-        "annualizedContractRevenueBn": 111.58783199999999,
-        "revenuePerEarningITMWM": 17.669935597952467,
-        "revenuePerEnergizedITMWM": 17.25974066442857,
-        "contractRevenuePerEarningITMWM": 16.974760524814602,
-        "modeledGPUHourPrice": 6.2733819473738315,
-        "valuePerShare": 196.35544190318885,
-        "dilutedSharesM": 1094.3836888391354,
-        "fundingEquityBn": 20.169,
-        "horizonNetDebtBn": 34.828443196997966,
-        "futureCustomerCreditsPVBn": 53.532553180271286,
-        "renewalRevenueShare": 0.2399185361353638,
+        "grossEnergizedMW": 7640,
+        "energizedITMW": 5875,
+        "earningITMW": 5712.5,
+        "contractedEarningITMW": 5561.25,
+        "earningGPUCount": 1917250,
+        "annualizedQuarterRevenueBn": 96.630570126,
+        "annualizedContractRevenueBn": 91.33783199999999,
+        "revenuePerEarningITMWM": 16.915635908271334,
+        "revenuePerEnergizedITMWM": 16.447756617191487,
+        "contractRevenuePerEarningITMWM": 16.423975185434927,
+        "modeledGPUHourPrice": 5.75349432817052,
+        "valuePerShare": 133.7862143128866,
+        "dilutedSharesM": 1007.5545510517165,
+        "fundingEquityBn": 16.455000000000002,
+        "horizonNetDebtBn": 35.29193285591549,
+        "futureCustomerCreditsPVBn": 38.91247079032803,
+        "renewalRevenueShare": 0.2999725859239313,
         "annualizedQuarterBasis": "Annualized quarter revenue = quarter revenue × 4. Earning IT MW is the model-effective billable capacity used for that quarter; it is not a separately observed December exit capacity. Ramp fractions are quarter-step approximations.",
-        "normalizedCashPerEarningITMWM": 3.8009244734294683,
-        "maintenanceReservePerITMWM": 5.527500000000001
+        "normalizedCashPerEarningITMWM": 2.473011420520612,
+        "maintenanceReservePerITMWM": 6.7
       }
     },
     {
@@ -855,6 +855,43 @@
   ],
   "findings": [
     {
+      "id": "CRWV:economics:terminal-price-growth",
+      "ticker": "CRWV",
+      "family": "economics",
+      "severity": "review",
+      "title": "Post-horizon price growth lifts the terminal multiple",
+      "explanation": "Forward growth after the explicit forecast is a house assumption. It needs support from generation productivity, replacement cost and realized pricing; consistent application alone does not validate it.",
+      "calculation": "6% annual market price growth for 5 years; DCF/house multiple 2.88× annualized quarter revenue.",
+      "evidence": [
+        {
+          "label": "Model terminal economics: Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
+        }
+      ],
+      "impact": {
+        "base": 133.7862143128866,
+        "alternative": 63.02907090785813,
+        "delta": -70.75714340502849,
+        "pct": -52.88821704719765,
+        "pctUnit": "percent",
+        "label": "Flat post-horizon prices, existing refresh assumptions",
+        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
+      },
+      "nextAction": "Review flat post-horizon pricing alongside equipment refresh and margin assumptions.",
+      "scenario": {
+        "kind": "waterfall",
+        "options": {
+          "mult": 1.820033762925046
+        },
+        "label": "Flat post-horizon prices, existing refresh assumptions"
+      },
+      "alternativeMetrics": {
+        "debtBn": 35.29193285591549,
+        "sharesM": 953.6769956905396,
+        "equityRaisedBn": 16.455000000000002
+      },
+      "fingerprint": "2206360829f04b5e39711f03dc4ea2956c0a76c231ea7354af3e5f60cc957daf"
+    },
+    {
       "id": "NBIS:economics:terminal-price-growth",
       "ticker": "NBIS",
       "family": "economics",
@@ -890,43 +927,6 @@
         "equityRaisedBn": 18.343
       },
       "fingerprint": "36b2442b01ba8fd5e503c4205cf52b11915d34605abe681fd940f1fcfc917b0f"
-    },
-    {
-      "id": "CRWV:economics:terminal-price-growth",
-      "ticker": "CRWV",
-      "family": "economics",
-      "severity": "review",
-      "title": "Post-horizon price growth lifts the terminal multiple",
-      "explanation": "Forward growth after the explicit forecast is a house assumption. It needs support from generation productivity, replacement cost and realized pricing; consistent application alone does not validate it.",
-      "calculation": "6% annual market price growth for 5 years; DCF/house multiple 3.42× annualized quarter revenue.",
-      "evidence": [
-        {
-          "label": "Model terminal economics: Horizon revenue per earning IT MW and the actual modeled contract/spot revenue mix feed the shared steady-state DCF. Company running-cost margins and maintenance assumptions are retained. A 55% refresh reserve every four years plus 3% annual spares is a long-run house allowance, not compulsory retirement at a contract expiry. Post-horizon market growth of 6% for five years is a separate house assumption; new/renewed contracts reprice every three years in that terminal regime."
-        }
-      ],
-      "impact": {
-        "base": 196.35544190318885,
-        "alternative": 119.87504771561731,
-        "delta": -76.48039418757153,
-        "pct": -38.94997431508899,
-        "pctUnit": "percent",
-        "label": "Flat post-horizon prices, existing refresh assumptions",
-        "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
-      },
-      "nextAction": "Review flat post-horizon pricing alongside equipment refresh and margin assumptions.",
-      "scenario": {
-        "kind": "waterfall",
-        "options": {
-          "mult": 2.365574237708702
-        },
-        "label": "Flat post-horizon prices, existing refresh assumptions"
-      },
-      "alternativeMetrics": {
-        "debtBn": 34.828443196997966,
-        "sharesM": 1089.4141485171858,
-        "equityRaisedBn": 20.169
-      },
-      "fingerprint": "bed0dfe5be23e2cafb0fb9724645e59baeac95c423111fc4c07fb32c25d3683a"
     },
     {
       "id": "IREN:economics:terminal-price-growth",
@@ -2375,6 +2375,97 @@
       "fingerprint": "ab86e7a4eb12f27a4f18ce94a6ff6027fadc0f1d50f6b0513f775bcc215a9950"
     },
     {
+      "id": "CRWV:economics:renewal-spot-substitution",
+      "ticker": "CRWV",
+      "family": "economics",
+      "severity": "review",
+      "title": "Losing renewals increases modeled value through spot resale",
+      "explanation": "The canonical model moves non-renewed capacity into spot with the contracted ramp fraction. High assumed spot rates and the resulting revenue mix can offset lost renewals. This is a commercial re-leasing assumption, not a guaranteed downside cushion.",
+      "calculation": "80% retention and 20% lower renewed prices move value from $133.79 to $139.85 per share (4.53%). Retention is never increased for any modeled cohort.",
+      "evidence": [
+        {
+          "label": "Shared spot assumption: Shared realized spot assumptions inherited from the CoreWeave/Nebius model, not executable rate cards. Physical GPU density remains tranche-specific."
+        },
+        {
+          "label": "Canonical ramp rule: displaced renewal share enters spot at contracted ramp fraction"
+        }
+      ],
+      "impact": {
+        "base": 133.7862143128866,
+        "alternative": 139.85191470367394,
+        "delta": 6.0657003907873275,
+        "pct": 4.533875498264297,
+        "pctUnit": "percent",
+        "label": "Renewal retention capped at 80%; renewed prices 20% lower",
+        "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
+      },
+      "nextAction": "Source achievable spot rates on the same aging equipment and model vacancy/re-leasing delay before crediting instant spot resale.",
+      "scenario": {
+        "kind": "ramp",
+        "delta": {
+          "renewalRetention": 0.8,
+          "renewalRateMult": 0.8
+        },
+        "label": "Renewal retention capped at 80%; renewed prices 20% lower"
+      },
+      "alternativeMetrics": {
+        "annualizedRevenueBn": 98.99719999999999,
+        "debtBn": 36.96506788905789,
+        "sharesM": 1007.0794198043744
+      },
+      "fingerprint": "7b50f531b88d34263738b1a0f6e7476f498ab77b5e98b0673082e4d933a85e32"
+    },
+    {
+      "id": "CRWV:economics:same-hardware-renewal",
+      "ticker": "CRWV",
+      "family": "economics",
+      "severity": "review",
+      "title": "Same-hardware renewals materially support future revenue",
+      "explanation": "The model allows renewal without purchasing a replacement fleet at each expiry. The common policy assumes full retention and original rates when both multipliers are 1; company or contract overrides must also be examined. The terminal refresh reserve is a separate assumption.",
+      "calculation": "2030Q4 annualized renewal revenue $28.99bn (30% of total); common retention 100%, rate multiplier 1.",
+      "evidence": [
+        {
+          "label": "Model renewal policy: Base assumes the same hardware keeps earning at the original all-in rate and 100% contracted capacity renews. These are house assumptions, not commitments. Price and retention downside cases are shown."
+        },
+        {
+          "label": "Nebius Q2 letter: New annual contract values above $20m/MW; term mix and improved older-generation pricing. MW definition and exact future prices are not established by this source.",
+          "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm"
+        },
+        {
+          "label": "CoreWeave Q2 call: Improved new pricing and contribution margins; renewal examples, not a fleet expiry ladder.",
+          "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf"
+        },
+        {
+          "label": "IREN FY26 results: Stronger recent three-year contract pricing and financing; not a future common-price guarantee.",
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+        }
+      ],
+      "impact": {
+        "base": 133.7862143128866,
+        "alternative": 139.85191470367394,
+        "delta": 6.0657003907873275,
+        "pct": 4.533875498264297,
+        "pctUnit": "percent",
+        "label": "Renewal retention capped at 80%; renewed prices 20% lower",
+        "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
+      },
+      "nextAction": "Review customer retention, equipment-age pricing and maintenance cost together. The stress sets retention to 80% of the lowest effective cohort assumption (100% → 80%) and reduces renewed prices by 20%.",
+      "scenario": {
+        "kind": "ramp",
+        "delta": {
+          "renewalRetention": 0.8,
+          "renewalRateMult": 0.8
+        },
+        "label": "Renewal retention capped at 80%; renewed prices 20% lower"
+      },
+      "alternativeMetrics": {
+        "annualizedRevenueBn": 98.99719999999999,
+        "debtBn": 36.96506788905789,
+        "sharesM": 1007.0794198043744
+      },
+      "fingerprint": "47db1ee34c43dcdfe4cba4e74e6da0b2869ff951fe2cb216d994f7b39ade8ee1"
+    },
+    {
       "id": "BTBT:funding:shares-below-reported",
       "ticker": "BTBT",
       "family": "funding",
@@ -2526,10 +2617,10 @@
         }
       ],
       "impact": {
-        "base": 196.35544190318885,
-        "alternative": 190.38818218762663,
-        "delta": -5.967259715562221,
-        "pct": -3.039009083590523,
+        "base": 133.7862143128866,
+        "alternative": 129.78139800302077,
+        "delta": -4.004816309865845,
+        "pct": -2.993444676220345,
         "pctUnit": "percent",
         "label": "20% lower spot pricing",
         "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
@@ -2543,11 +2634,11 @@
         "label": "20% lower spot pricing"
       },
       "alternativeMetrics": {
-        "annualizedRevenueBn": 118.972,
-        "debtBn": 35.31717372462971,
-        "sharesM": 1093.2591281106809
+        "annualizedRevenueBn": 95.572,
+        "debtBn": 35.52693226555511,
+        "sharesM": 1008.6549441306464
       },
-      "fingerprint": "1cbe9b351ee364987bbca010b8b603c00b6b7f7d5ed27e8416bb0870abcc976a"
+      "fingerprint": "27360efcddfd9d072b2b3dfb9ee55cd2e3af18b6e11d37ef37a53a53b065793f"
     },
     {
       "id": "NBIS:economics:renewal-spot-substitution",
@@ -2678,97 +2769,6 @@
       "fingerprint": "1405df9956e91d63ef4ed7cd9c62313185b7fe10e395b0cc847dcf5e42877f09"
     },
     {
-      "id": "CRWV:economics:renewal-spot-substitution",
-      "ticker": "CRWV",
-      "family": "economics",
-      "severity": "review",
-      "title": "Losing renewals increases modeled value through spot resale",
-      "explanation": "The canonical model moves non-renewed capacity into spot with the contracted ramp fraction. High assumed spot rates and the resulting revenue mix can offset lost renewals. This is a commercial re-leasing assumption, not a guaranteed downside cushion.",
-      "calculation": "80% retention and 20% lower renewed prices move value from $196.36 to $198.2 per share (0.94%). Retention is never increased for any modeled cohort.",
-      "evidence": [
-        {
-          "label": "Shared spot assumption: Shared realized spot assumptions inherited from the CoreWeave/Nebius model, not executable rate cards. Physical GPU density remains tranche-specific."
-        },
-        {
-          "label": "Canonical ramp rule: displaced renewal share enters spot at contracted ramp fraction"
-        }
-      ],
-      "impact": {
-        "base": 196.35544190318885,
-        "alternative": 198.19636727002685,
-        "delta": 1.8409253668380074,
-        "pct": 0.9375474135041584,
-        "pctUnit": "percent",
-        "label": "Renewal retention capped at 80%; renewed prices 20% lower",
-        "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
-      },
-      "nextAction": "Source achievable spot rates on the same aging equipment and model vacancy/re-leasing delay before crediting instant spot resale.",
-      "scenario": {
-        "kind": "ramp",
-        "delta": {
-          "renewalRetention": 0.8,
-          "renewalRateMult": 0.8
-        },
-        "label": "Renewal retention capped at 80%; renewed prices 20% lower"
-      },
-      "alternativeMetrics": {
-        "annualizedRevenueBn": 122.512,
-        "debtBn": 36.41943864325682,
-        "sharesM": 1094.7169528771717
-      },
-      "fingerprint": "6691da6455bd5a2b1783c4f3319159046e7fd641c4a020fd2dff82e67840a17a"
-    },
-    {
-      "id": "CRWV:economics:same-hardware-renewal",
-      "ticker": "CRWV",
-      "family": "economics",
-      "severity": "review",
-      "title": "Same-hardware renewals materially support future revenue",
-      "explanation": "The model allows renewal without purchasing a replacement fleet at each expiry. The common policy assumes full retention and original rates when both multipliers are 1; company or contract overrides must also be examined. The terminal refresh reserve is a separate assumption.",
-      "calculation": "2030Q4 annualized renewal revenue $28.99bn (23.99% of total); common retention 100%, rate multiplier 1.",
-      "evidence": [
-        {
-          "label": "Model renewal policy: Base assumes the same hardware keeps earning at the original all-in rate and 100% contracted capacity renews. These are house assumptions, not commitments. Price and retention downside cases are shown."
-        },
-        {
-          "label": "Nebius Q2 letter: New annual contract values above $20m/MW; term mix and improved older-generation pricing. MW definition and exact future prices are not established by this source.",
-          "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm"
-        },
-        {
-          "label": "CoreWeave Q2 call: Improved new pricing and contribution margins; renewal examples, not a fleet expiry ladder.",
-          "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf"
-        },
-        {
-          "label": "IREN FY26 results: Stronger recent three-year contract pricing and financing; not a future common-price guarantee.",
-          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
-        }
-      ],
-      "impact": {
-        "base": 196.35544190318885,
-        "alternative": 198.19636727002685,
-        "delta": 1.8409253668380074,
-        "pct": 0.9375474135041584,
-        "pctUnit": "percent",
-        "label": "Renewal retention capped at 80%; renewed prices 20% lower",
-        "basis": "USD per share; canonical research ramp, funding waterfall and steady-state DCF recalculated."
-      },
-      "nextAction": "Review customer retention, equipment-age pricing and maintenance cost together. The stress sets retention to 80% of the lowest effective cohort assumption (100% → 80%) and reduces renewed prices by 20%.",
-      "scenario": {
-        "kind": "ramp",
-        "delta": {
-          "renewalRetention": 0.8,
-          "renewalRateMult": 0.8
-        },
-        "label": "Renewal retention capped at 80%; renewed prices 20% lower"
-      },
-      "alternativeMetrics": {
-        "annualizedRevenueBn": 122.512,
-        "debtBn": 36.41943864325682,
-        "sharesM": 1094.7169528771717
-      },
-      "fingerprint": "da97af41d89f5dd110b50cebd8322a05a31321fd2b856b4047b0f9aebac23442"
-    },
-    {
       "id": "CRWV:funding:restricted-cash",
       "ticker": "CRWV",
       "family": "funding",
@@ -2782,10 +2782,10 @@
         }
       ],
       "impact": {
-        "base": 196.35544190318885,
-        "alternative": 194.6393224614131,
-        "delta": -1.71611944177576,
-        "pct": -0.8739861880792059,
+        "base": 133.7862143128866,
+        "alternative": 131.8288349229772,
+        "delta": -1.9573793899094198,
+        "pct": -1.4630650848163511,
         "pctUnit": "percent",
         "label": "Restricted cash excluded from funding",
         "basis": "USD per share; canonical research funding waterfall, operating forecast unchanged."
@@ -2799,11 +2799,11 @@
         "label": "Restricted cash excluded from funding"
       },
       "alternativeMetrics": {
-        "debtBn": 37.76100366593127,
-        "sharesM": 1094.0673409889478,
-        "equityRaisedBn": 20.169
+        "debtBn": 38.224493324848794,
+        "sharesM": 1007.8010802435424,
+        "equityRaisedBn": 16.455000000000002
       },
-      "fingerprint": "9169cab65aca846bc033522784a294327dd6607ae987524f3fe76b5ecbce0f6b"
+      "fingerprint": "8dff8ee9db1a6e587eb376af33148e657785c172e07584ae69afef7fef335014"
     },
     {
       "id": "NBIS:funding:restricted-cash",
@@ -3336,15 +3336,15 @@
       "severity": "gap",
       "title": "Physical capacity is not fully mapped to disclosed customer commitments",
       "explanation": "An aggregate backlog or power lease does not independently establish the acceptance, commercial share and expiry of each physical compute tranche.",
-      "calculation": "12 of 28 tranches have assumed commitments or estimated expiries.",
+      "calculation": "12 of 25 tranches have assumed commitments or estimated expiries.",
       "evidence": [
         {
-          "label": "2023 fleet (H100, Microsoft): Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping.",
-          "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf"
+          "label": "2023 fleet (H100, Microsoft): Aggregate physical tranche: commercial coverage and price are model inferences. Expiry fitted to management’s Q3-26 count (>130k GPUs off contract in 2027, ~170k in 2028): 2027 = tranches 01, 05, 07 (139k GPUs), 2028 = 02, 08 (167k), Hopper/Blackwell mix per SemiAnalysis (~60/40 in 2027, mostly Blackwell in 2028). The tranche-to-expiry mapping is ours, not disclosed.",
+          "url": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf"
         },
         {
-          "label": "2024 adds Q2: Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping.",
-          "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf"
+          "label": "2024 adds Q2: Aggregate physical tranche: commercial coverage and price are model inferences. Expiry fitted to management’s Q3-26 count (>130k GPUs off contract in 2027, ~170k in 2028): 2027 = tranches 01, 05, 07 (139k GPUs), 2028 = 02, 08 (167k), Hopper/Blackwell mix per SemiAnalysis (~60/40 in 2027, mostly Blackwell in 2028). The tranche-to-expiry mapping is ours, not disclosed.",
+          "url": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf"
         },
         {
           "label": "2024 adds Q3: Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping.",
@@ -3353,7 +3353,7 @@
       ],
       "impact": null,
       "nextAction": "Source a contract-to-tranche schedule and keep inferred customer coverage explicitly labeled.",
-      "fingerprint": "cac293f49abf1fed678e74d6d707e8922cdd3dc47fee52ef6b638178c1141e69"
+      "fingerprint": "30755ada30501fa5c8bedd06d4f16ec395562489a358386ea4882d816b45a946"
     },
     {
       "id": "CRWV:economics:independent-gpu-evidence",
@@ -3362,7 +3362,7 @@
       "severity": "gap",
       "title": "MW pricing is not an independent GPU-hour validation",
       "explanation": "Future contract GPU-hour rates are algebraically derived from the shared MW curve. Multiplying them back by the same fleet quantity is an identity, not corroboration. Fleet power, billable hours, ancillary revenue and realized prices need separately sourced evidence.",
-      "calculation": "2030Q4: 2,198,500 modeled earning GPUs × 2,190 hours × $6.2734/hour = $30,204.55m quarter revenue. Tranche densities span 200–700 GPUs/IT MW.",
+      "calculation": "2030Q4: 1,917,250 modeled earning GPUs × 2,190 hours × $5.7535/hour = $24,157.64m quarter revenue. Tranche densities span 200–700 GPUs/IT MW.",
       "evidence": [
         {
           "label": "Model assumptions: ramp tranches; shared researchPricing curve and generation factors"
@@ -3382,7 +3382,7 @@
       ],
       "impact": null,
       "nextAction": "Build an independent fleet-generation, power, utilization and realized-price evidence table; do not derive all inputs from the same MW revenue anchor.",
-      "fingerprint": "af7221af050086caec11e60f2fcd6b8b83c9cd7b9b1decb501cc7bfb31b69df5"
+      "fingerprint": "616349cfbb2627b68b8c00781b67fcc415f74eec591e4daa78a326b835df8537"
     },
     {
       "id": "CRWV:funding:committed-financing-evidence",
@@ -3391,18 +3391,18 @@
       "severity": "gap",
       "title": "An automatically funded forecast does not establish financing availability",
       "explanation": "The waterfall fills residual funding needs with assumed borrowing and equity. Aggregate advance rates and prepayment ratios do not verify committed facilities, collateral eligibility, maturity dates, covenants or project cash restrictions.",
-      "calculation": "Forecast gross draws $37.53bn + customer cash receipts $84.13bn + equity $20.17bn; diluted shares 1,094.38m; ending net debt $34.83bn.",
+      "calculation": "Forecast gross draws $44.13bn + customer cash receipts $70.27bn + equity $16.46bn; diluted shares 1,007.55m; ending net debt $35.29bn.",
       "evidence": [
         {
           "label": "Model funding: debt 8% (senior notes 9.0-9.75%, DDTL 4.0 SOFR+225/5.9% fixed, DDTL 5.0/5.5 SOFR+450/550, OEM financing; converts 1.75% and 2.875%; Q3-26 net interest $846m on ~$41bn of average debt; unsecured notes traded at mid-teens yields in the mid-October sell-off, per press reports), 16%/yr pool amortisation (DDTLs amortise over 5 yrs, notes bullet), $3bn cash floor; lenders advance 90% of GPU cost on contracted capacity (DDTL 4.0 90% LTC), 50% on spot; the shell is leased (rent inside EBITDA, no shell capex, lease liabilities not double-counted as debt); 10% of capex from 2027 as policy equity at $48.73 (the 10 Nov 2026 close; a 35m-share ATM has been open since mid-October) plus the residual; converts (2031 $2.59bn at $107.80 cap $215.60; 2032 $4.0bn at $119.60 cap $230; 2033 $4.2bn at $97.85 cap $199.70, issued 22 Sep 2026) convert only where the model 2030 price clears the strike; balance sheet at 30 Sep 2026 (Q3 release): debt $46.9bn at carrying value (recourse $41.6bn, non-recourse $5.3bn), cash $4.1bn, restricted cash $2.3bn counted; fully diluted count before converts 616m = 559m weighted-average basic shares in Q3-26 (the 10-Q cover count is pending) + 24m options at $1.84 + 4m warrants at $1.55 + 29m RSUs; discounted 4.14 years from 10 Nov 2026 to end-2030"
         },
         {
-          "label": "Customer credits: weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $10.0bn at 30-Sep-26 (Q3 release) is the opening balance; the company expects ~$9bn of customer prepayments and deposits in the three months from 10 Nov 2026, which the modeled receipts on the Q4-26 and Q1-27 tranches (~$6bn) do not exceed, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips."
+          "label": "Customer credits: weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; 42% of the $40m GPU cost is $16.8m per MW: 20% of TCV on a 5-yr contract at $16.8m per MW-yr, below the $20-25m management quotes for new 4-5 yr contracts (Q3-26 call) and the top of SemiAnalysis’s $10-16.8m per MW range; deferred revenue $10.0bn at 30-Sep-26 (Q3 release) is the opening balance; the company expects ~$9bn of customer prepayments and deposits in the three months from 10 Nov 2026, which the modeled receipts on the Q4-26 and Q1-27 tranches (~$6bn) do not exceed, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips."
         }
       ],
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
-      "fingerprint": "bce709461ad498f665fb82440492ba58b70d12e5968fc87966c9af112fe83662"
+      "fingerprint": "8ea6da5bea39246371bbd7e34194974cc13686cf00e8395e4e856bcc93416987"
     },
     {
       "id": "FRMI:capacity:quarterly-bridge-missing",
@@ -4222,16 +4222,16 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-11-12T11:05:07.753Z",
-  "attemptedAt": "2026-11-12T11:05:07.753Z",
-  "lastSuccessAt": "2026-11-12T11:05:07.753Z",
-  "sourceHash": "7aa26fe866e34b6596a476504fec4f1ae5618b1cc390c6c305cb8628fec9b0e3",
+  "checkedAt": "2026-11-12T15:43:21.455Z",
+  "attemptedAt": "2026-11-12T15:43:21.455Z",
+  "lastSuccessAt": "2026-11-12T15:43:21.455Z",
+  "sourceHash": "55da2fcf08d8a7b26c861c2d68beb3e6fd11e7d40e9bc7975ea11258d20fd981",
   "quoteHash": "c936a5073b32cf0dcdfb6807576a3da6742b126eb214a7694ab3e582ea71f230",
   "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
   "provenance": {
     "data": {
       "file": "data.json",
-      "hash": "7aa26fe866e34b6596a476504fec4f1ae5618b1cc390c6c305cb8628fec9b0e3",
+      "hash": "55da2fcf08d8a7b26c861c2d68beb3e6fd11e7d40e9bc7975ea11258d20fd981",
       "asOf": null
     },
     "quotes": {
@@ -4258,8 +4258,8 @@
       ]
     },
     "run": {
-      "trigger": "schedule",
-      "commit": "cc392239dc0cca3129108b1c896dbde3aa2735ae"
+      "trigger": "push",
+      "commit": "0aad1620ca9b96f93fb2e894c576d395bac56e69"
     }
   },
   "cadence": {
