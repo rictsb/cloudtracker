@@ -841,13 +841,13 @@
       "signed": 1,
       "id": "crwv-ramp-01",
       "contract": {
-       "termYears": 5,
-       "endQ": "2029Q1",
+       "termYears": 3,
+       "endQ": "2027Q1",
        "expiryBasis": "estimated",
        "priceBasis": "inferred",
        "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+       "source": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences. Expiry fitted to management’s Q3-26 count (>130k GPUs off contract in 2027, ~170k in 2028): 2027 = tranches 01, 05, 07 (139k GPUs), 2028 = 02, 08 (167k), Hopper/Blackwell mix per SemiAnalysis (~60/40 in 2027, mostly Blackwell in 2028). The tranche-to-expiry mapping is ours, not disclosed."
       },
       "newBusiness": {
        "termYears": 3,
@@ -871,13 +871,13 @@
       "signed": 1,
       "id": "crwv-ramp-02",
       "contract": {
-       "termYears": 5,
-       "endQ": "2029Q2",
+       "termYears": 4,
+       "endQ": "2028Q2",
        "expiryBasis": "estimated",
        "priceBasis": "inferred",
        "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+       "source": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences. Expiry fitted to management’s Q3-26 count (>130k GPUs off contract in 2027, ~170k in 2028): 2027 = tranches 01, 05, 07 (139k GPUs), 2028 = 02, 08 (167k), Hopper/Blackwell mix per SemiAnalysis (~60/40 in 2027, mostly Blackwell in 2028). The tranche-to-expiry mapping is ours, not disclosed."
       },
       "newBusiness": {
        "termYears": 3,
@@ -961,13 +961,13 @@
       "signed": 1,
       "id": "crwv-ramp-05",
       "contract": {
-       "termYears": 5,
-       "endQ": "2030Q1",
+       "termYears": 2,
+       "endQ": "2027Q1",
        "expiryBasis": "estimated",
        "priceBasis": "inferred",
        "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+       "source": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences. Expiry fitted to management’s Q3-26 count (>130k GPUs off contract in 2027, ~170k in 2028): 2027 = tranches 01, 05, 07 (139k GPUs), 2028 = 02, 08 (167k), Hopper/Blackwell mix per SemiAnalysis (~60/40 in 2027, mostly Blackwell in 2028). The tranche-to-expiry mapping is ours, not disclosed."
       },
       "newBusiness": {
        "termYears": 3,
@@ -1021,13 +1021,13 @@
       "signed": 1,
       "id": "crwv-ramp-07",
       "contract": {
-       "termYears": 5,
-       "endQ": "2030Q3",
+       "termYears": 2,
+       "endQ": "2027Q3",
        "expiryBasis": "estimated",
        "priceBasis": "inferred",
        "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+       "source": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences. Expiry fitted to management’s Q3-26 count (>130k GPUs off contract in 2027, ~170k in 2028): 2027 = tranches 01, 05, 07 (139k GPUs), 2028 = 02, 08 (167k), Hopper/Blackwell mix per SemiAnalysis (~60/40 in 2027, mostly Blackwell in 2028). The tranche-to-expiry mapping is ours, not disclosed."
       },
       "newBusiness": {
        "termYears": 3,
@@ -1051,13 +1051,13 @@
       "signed": 1,
       "id": "crwv-ramp-08",
       "contract": {
-       "termYears": 5,
-       "endQ": "2030Q4",
+       "termYears": 3,
+       "endQ": "2028Q4",
        "expiryBasis": "estimated",
        "priceBasis": "inferred",
        "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
+       "source": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+       "note": "Aggregate physical tranche: commercial coverage and price are model inferences. Expiry fitted to management’s Q3-26 count (>130k GPUs off contract in 2027, ~170k in 2028): 2027 = tranches 01, 05, 07 (139k GPUs), 2028 = 02, 08 (167k), Hopper/Blackwell mix per SemiAnalysis (~60/40 in 2027, mostly Blackwell in 2028). The tranche-to-expiry mapping is ours, not disclosed."
       },
       "newBusiness": {
        "termYears": 3,
@@ -1443,8 +1443,8 @@
       }
      },
      {
-      "n": "2029 Q1 (options / LOIs)",
-      "campus": "Options + LOIs — 2029",
+      "n": "2029 Q1 (contracted power above 4.2 GW, customer unmapped)",
+      "campus": "Contracted power — 2029",
       "grossMW": 488,
       "itMW": 375,
       "gpus": 93750,
@@ -1459,96 +1459,6 @@
       "contract": {
        "termYears": 5,
        "endQ": "2034Q1",
-       "expiryBasis": "estimated",
-       "priceBasis": "inferred",
-       "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
-      },
-      "newBusiness": {
-       "termYears": 3,
-       "priceBasis": "assumed",
-       "source": "data.researchPricing",
-       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
-      }
-     },
-     {
-      "n": "2029 Q2 (options / LOIs)",
-      "campus": "Options + LOIs — 2029",
-      "grossMW": 488,
-      "itMW": 375,
-      "gpus": 93750,
-      "gen": "rubin",
-      "energize": "2029Q2",
-      "rev": "2029Q2",
-      "rampQtrs": 2,
-      "ctr": 0.9,
-      "rate": 6.62,
-      "signed": 0,
-      "id": "crwv-ramp-22",
-      "contract": {
-       "termYears": 5,
-       "endQ": "2034Q2",
-       "expiryBasis": "estimated",
-       "priceBasis": "inferred",
-       "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
-      },
-      "newBusiness": {
-       "termYears": 3,
-       "priceBasis": "assumed",
-       "source": "data.researchPricing",
-       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
-      }
-     },
-     {
-      "n": "2029 Q3 (options / LOIs)",
-      "campus": "Options + LOIs — 2029",
-      "grossMW": 488,
-      "itMW": 375,
-      "gpus": 93750,
-      "gen": "rubin",
-      "energize": "2029Q3",
-      "rev": "2029Q3",
-      "rampQtrs": 2,
-      "ctr": 0.9,
-      "rate": 6.62,
-      "signed": 0,
-      "id": "crwv-ramp-23",
-      "contract": {
-       "termYears": 5,
-       "endQ": "2034Q3",
-       "expiryBasis": "estimated",
-       "priceBasis": "inferred",
-       "commitmentBasis": "assumed",
-       "source": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
-       "note": "Aggregate physical tranche: commercial coverage and price are model inferences; there is no sourced contract-to-tranche expiry mapping."
-      },
-      "newBusiness": {
-       "termYears": 3,
-       "priceBasis": "assumed",
-       "source": "data.researchPricing",
-       "note": "Shared new-capacity price curve; no company premium; same hardware and rate retained at subsequent renewal."
-      }
-     },
-     {
-      "n": "2029 Q4 (options / LOIs)",
-      "campus": "Options + LOIs — 2029",
-      "grossMW": 488,
-      "itMW": 375,
-      "gpus": 93750,
-      "gen": "rubin",
-      "energize": "2029Q4",
-      "rev": "2029Q4",
-      "rampQtrs": 2,
-      "ctr": 0.9,
-      "rate": 6.62,
-      "signed": 0,
-      "id": "crwv-ramp-24",
-      "contract": {
-       "termYears": 5,
-       "endQ": "2034Q4",
        "expiryBasis": "estimated",
        "priceBasis": "inferred",
        "commitmentBasis": "assumed",
@@ -1759,16 +1669,16 @@
       "id": "secured",
       "link": "contracted power → monetised in-window",
       "fn": "Σ tranche itMW (active) · gross = active × 1.3",
-      "value": "4.2 GW contracted + >1.5 GW options/LOIs + 1.3 GW rumored pipeline → 7.0 GW active modelled by 2030Q4 (9.1 GW gross)",
-      "assumption": "CoreWeave reports active and contracted power only; both are critical IT MW (lessor tie-outs and the company's own 'contracted IT power' wording; parity research 10 Sep 2026) and gross is derived at 1.3x as a display assumption (Core Scientific 1.36-1.43x, Galaxy 1.5x on their own filings). The company objective is >=8 GW by 2030; the last ~1 GW is not modelled.",
-      "range": "6-8 GW active by 2030; gross/active 1.2-1.4",
+      "value": "4.6 GW contracted (to 2029Q1) + 1.3 GW rumored pipeline → 5.9 GW active modelled by 2030Q4 (7.6 GW gross)",
+      "assumption": "CoreWeave reports active and contracted power only; both are critical IT MW (lessor tie-outs and the company's own 'contracted IT power' wording; parity research 10 Sep 2026) and gross is derived at 1.3x as a display assumption (Core Scientific 1.36-1.43x, Galaxy 1.5x on their own filings). The company objective is >=8 GW by 2030. Options and LOIs above contracted power are not modelled: SemiAnalysis’s datacenter model has ~4.7 GW by end-2029, 0.9 GW short of the ~5.6 GW consensus revenue needs (12 Nov 2026).",
+      "range": "5-8 GW active by 2030; gross/active 1.2-1.4",
       "moves": "run-rate and capex in proportion"
      },
      {
       "id": "energise",
       "link": "monetised MW → active MW by quarter",
       "fn": "step function on each tranche energize quarter",
-      "value": ">1.85 GW YE26 (GUIDED 11 Aug 2026), ~3.0 GW YE27 (Intrator 7 May 2026: the substantial majority of >3.5 GW online by end-2027), 3.9 GW YE28 and 4.2 GW by 2029Q1 (contracted footprint; 10-Q: leases commence 2026-2029), 5.7 GW YE29 (options), 7.0 GW YE30 (pipeline)",
+      "value": ">1.85 GW YE26 (GUIDED 10 Nov 2026), ~3.0 GW YE27 (Intrator 7 May 2026: the substantial majority of >3.5 GW online by end-2027), 3.9 GW YE28 and 4.6 GW by 2029Q1 (contracted power; 10-Q: leases commence 2026-2029), 4.6 GW YE29 (SemiAnalysis datacenter model ~4.7 GW), 5.9 GW YE30 (pipeline)",
       "assumption": "2027 onward follows management framing and lessor schedules (Helios 393 MW undelivered for 2026/2028, Applied Digital 225 MW, Lancaster, Kenilworth, Core Scientific Dalton/Marble/Muskogee). The 2025 target slipped 50 MW on one lessor; powered shell is the binding constraint.",
       "range": "±2 quarters on every tranche after 2026",
       "moves": "one quarter of slip on 2027-28 tranches ≈ -$2bn of 2028 revenue"
@@ -2000,19 +1910,19 @@
      ]
     ],
     "fund": {
-     "cost": 33,
+     "cost": 40,
      "max": 45,
      "rows": [
       [
        "Contracted MW",
        [
         [
-         14,
+         16.8,
          "var(--s1)",
          "customer prepayment — 20% of TCV (filed 15–25%), ~42% of the GPU cost"
         ],
         [
-         19,
+         23.2,
          "var(--s2)",
          "GPU financing to 100% of cost (DDTL 4.0 advances 90% LTC)"
         ]
@@ -2022,19 +1932,19 @@
        "Unsigned MW",
        [
         [
-         16.5,
+         20,
          "var(--s2)",
          "GPU financing at 50%"
         ],
         [
-         16.5,
+         20,
          "var(--s4)",
-         "equity — the gap to $33m"
+         "equity — the gap to $40m"
         ]
        ]
       ]
      ],
-     "cap": "how ONE active megawatt of new build is paid for · $m per MW, against $33m of GPU cost (2027 vintage) · the shell is leased from Core Scientific, Applied Digital, Galaxy and others, rent inside EBITDA"
+     "cap": "how ONE active megawatt of new build is paid for · $m per MW, against $40m of GPU cost (2027 vintage) · the shell is leased from Core Scientific, Applied Digital, Galaxy and others, rent inside EBITDA"
     },
     "bridge": {
      "label": "2026 capex guide",
@@ -2118,7 +2028,7 @@
         "amt": 5
        }
       ],
-      "basis": "weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; at the 20% midpoint on a 5-yr contract at $14m per MW-yr that is $14m per MW, ~42% of the $33m GPU cost; deferred revenue $10.0bn at 30-Sep-26 (Q3 release) is the opening balance; the company expects ~$9bn of customer prepayments and deposits in the three months from 10 Nov 2026, which the modeled receipts on the Q4-26 and Q1-27 tranches (~$6bn) do not exceed, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
+      "basis": "weighted-average prepayment 15-25% of TCV at signing (424B4/10-K), credited against billings in the final months of the contract; 42% of the $40m GPU cost is $16.8m per MW: 20% of TCV on a 5-yr contract at $16.8m per MW-yr, below the $20-25m management quotes for new 4-5 yr contracts (Q3-26 call) and the top of SemiAnalysis’s $10-16.8m per MW range; deferred revenue $10.0bn at 30-Sep-26 (Q3 release) is the opening balance; the company expects ~$9bn of customer prepayments and deposits in the three months from 10 Nov 2026, which the modeled receipts on the Q4-26 and Q1-27 tranches (~$6bn) do not exceed, credited half in-window (2028-30) and half after 2030 (OpenAI to May-31, Meta to Dec-32) Modeled future receipts retain the capex-based funding assumption; they are not secured financing. Inferred credits use modeled service start and contract expiry: final four quarters. Explicit opening-balance credits and special receipts retain their own dated schedules. Mixed future tranches allocate inferred credits by contractual IT MW; purchase capex remains scheduled if delivery slips.",
       "creditTiming": {
        "mode": "final-quarters",
        "quarters": 4
@@ -2137,7 +2047,7 @@
     "capexRules": {
      "gpu": {
       "hopper": 25,
-      "blackwell": 30,
+      "blackwell": 36,
       "rubin": 38,
       "next": 45
      },
@@ -2149,7 +2059,7 @@
       "air": 0
      }
     },
-    "capexBasis": "GPUs + ancillaries per active MW by vintage: $30m Blackwell (derived $25-37m from management capex ÷ active MW added, FY25 and H1-26), +10% on 2027 orders, Rubin ~$38m, next-gen ~$45m; no shell capex — every data centre is leased (10-K: “we lease all of our existing data centers”; $35.5bn of signed-not-commenced leases at 30-Jun-26)",
+    "capexBasis": "GPUs + ancillaries per active MW by vintage: $36m Blackwell, +10% on 2027 orders ($39.6m), Rubin ~$38m, next-gen ~$45m; long-run replacement $40m. Blackwell follows SemiAnalysis’s ~$40m/MW IT capex for current AI clusters (GB300 NVL72 at ~$83k per GPU, 12 Nov 2026), above the $25-37m derived from management capex ÷ active MW added (FY25, H1-26); no shell capex — every data centre is leased (10-K: “we lease all of our existing data centers”; $35.5bn of signed-not-commenced leases at 30-Jun-26)",
     "labels": {
      "shell": "lease",
      "shellRow": "Capex — shell (leased; rent inside EBITDA)",
@@ -2161,11 +2071,11 @@
      [
       "<b>4.6 GW contracted, 1.7 GW active.</b> More than 200 MW was added in the September quarter and more than 900 MW contracted; over 1.3 GW of contracted power is now outside the US. Every site is rented — Core Scientific (590 MW), Applied Digital (400 MW), Galaxy Helios (525 MW), Chirisa, TierPoint, Flexential. SemiAnalysis’s site work has year-end at ~1.96 GW against the company’s “more than 1.85 GW”, and ~3.1 GW at end-2027 — in line with the page.<span class=\"src\">Q3-26 release · SemiAnalysis 3Q26 update</span>",
       "<b>The bottleneck is powered shell, not GPUs or grid.</b> One lessor running late cost the 2025 active-power target 50 MW and cut FY25 capex from $20–23bn to $12–14bn; the delayed sites landed in Q1-26.<span class=\"src\">Q3-25 and Q4-25 calls</span>",
-      "<b>2030: “at least 8 GW”.</b> Contracted 4.2 GW plus >1.5 GW of powered land, options and LOIs is ~6 GW; the model carries 7 GW by end-2030 and leaves the rest unmodelled.<span class=\"src\">Q2-26 call · tracker pipeline</span>"
+      "<b>2030: “at least 8 GW”.</b> The model carries the 4.6 GW of contracted power by end-2029 — SemiAnalysis’s datacenter model has ~4.7 GW, against ~5.6 GW for consensus revenue — and 5.9 GW by end-2030 with the rumored pipeline; options, LOIs and the rest of the 8 GW are unmodelled.<span class=\"src\">Q3-26 call · SemiAnalysis 12 Nov 2026 · tracker pipeline</span>"
      ],
      [
       "<b>~850k GPUs by Dec 2026</b> on 1.85 GW active. The company reported >250k GPUs at end-2024 on 360 MW; density per MW falls as Blackwell and Rubin racks replace Hopper.<span class=\"src\">10-K FY25 · model densities</span>",
-      "<b>Six-year book life.</b> Technology equipment is depreciated over six years (five before 2023); management points to A100s re-contracted into 2029 and H100 pricing within 10% of a year earlier.<span class=\"src\">10-K Note 2 · Q4-25 and Q2-26 calls</span>",
+      "<b>Six-year book life.</b> Technology equipment is depreciated over six years (five before 2023). Ampere and Hopper pricing rose 30–50% in Q3-26, above the original contracts; more than 130k GPUs come off contract in 2027 and ~170k in 2028, which management puts at nearly $4bn (2027) and nearly $10bn (with 2028) of extra annualized revenue at current prices. The model renews them at their original rates.<span class=\"src\">10-K Note 2 · Q3-26 call</span>",
       "<b>Vera Rubin is in production.</b> Multi-rack Vera Rubin NVL72 deployments are online with Cognition’s first production workloads — about a year ahead of the page’s first Rubin tranche, at undisclosed scale; Meta’s $21bn order and Jane Street’s $6bn commitment remain the first large deployments.<span class=\"src\">Q3-26 release · 8-Ks 9 and 15 Apr 2026</span>"
      ],
      [
@@ -2194,7 +2104,7 @@
     "modelAsOf": "2026-09-15",
     "steadyInputs": {
      "M": 0.6,
-     "gpu": 33,
+     "gpu": 40,
      "shell": 0,
      "shellLife": 25,
      "swap": 0.55,
