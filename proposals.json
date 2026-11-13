@@ -293,7 +293,7 @@
     "quoteHash": "7058c4fa29e9d227701876270f5db5b91842dee2d029261c380ed066443694d3",
     "quoteTolerance": {
      "economicMetricRelative": 0.005,
-     "economicMetricAbsolute": 0.000001
+     "economicMetricAbsolute": 1e-06
     },
     "impactHash": "4cf05c64ab0384b315d372224048a3ed2136418a425721e3f6b77d8a4b9f479d"
    },
@@ -1568,7 +1568,7 @@
     "quoteHash": "c936a5073b32cf0dcdfb6807576a3da6742b126eb214a7694ab3e582ea71f230",
     "quoteTolerance": {
      "economicMetricRelative": 0.005,
-     "economicMetricAbsolute": 0.000001
+     "economicMetricAbsolute": 1e-06
     },
     "impactHash": "687d29bfa3f4b08b9f77863236f9d88684f0e7b9ee7843b930a8f4827c780ef0"
    }
@@ -1579,7 +1579,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-11-12",
+ "asOf": "2026-11-13",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
