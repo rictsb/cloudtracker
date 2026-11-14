@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-13",
+ "asOf": "2026-11-14",
  "windowDays": 120,
  "sources": [
   {
@@ -35,6 +35,94 @@
     "Verify insider share structure details including escrow terms for 19.25M shares and resale restrictions on ~49M shares."
    ],
    "signal": [],
+   "sponsored": []
+  },
+  {
+   "id": "FB_LFvi_6wU",
+   "src": "mcnallie-money",
+   "d": "2026-11-13",
+   "title": "MSFT, SPCX, SLNH, DMGI, GRDX, GLXY, NVDA & NBIS News | Top AI Stocks to Watch | AI Price Targets",
+   "headline": "MSFT, SPCX, SLNH, DMGI, GRDX, GLXY, NVDA & NBIS News",
+   "url": "https://www.youtube.com/watch?v=FB_LFvi_6wU",
+   "kind": "news",
+   "minutes": 69,
+   "tickers": [
+    "NBIS",
+    "GLXY",
+    "HIVE",
+    "CORZ",
+    "CRWV",
+    "IREN",
+    "WULF",
+    "BTDR",
+    "RIOT",
+    "HUT",
+    "BTBT",
+    "SLNH"
+   ],
+   "main": [
+    "NBIS",
+    "GLXY",
+    "HIVE"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "NBIS",
+     "claim": "Nebius expects revenue to grow from approximately $3 billion in 2026 to $12-13 billion in 2027.",
+     "by": "host",
+     "tag": "notable",
+     "t": 3688
+    },
+    {
+     "tk": "HIVE",
+     "claim": "Hive's contract with Bell involves 2,304 NVIDIA GB200 GPUs for a total contract value of $225 million over three years.",
+     "by": "host",
+     "tag": "notable",
+     "t": null
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "7rhEtEjwpM8",
+   "src": "mcnallie-money",
+   "d": "2026-11-13",
+   "title": "HIVE Digital Technologies Q2 Earnings | Executive Chairman Q&A | Top AI Stock News 2026 | HIVE",
+   "headline": "HIVE Digital Technologies Q2 Earnings",
+   "url": "https://www.youtube.com/watch?v=7rhEtEjwpM8",
+   "kind": "interview",
+   "minutes": 58,
+   "tickers": [
+    "HIVE",
+    "BTDR",
+    "CORZ",
+    "APLD",
+    "SLNH",
+    "BTBT",
+    "RIOT"
+   ],
+   "main": [
+    "HIVE"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "HIVE",
+     "claim": "The host believes the current market volatility in the crypto/AI sector may find a bottom over the next six months.",
+     "by": "host",
+     "tag": "call",
+     "t": null
+    }
+   ],
    "sponsored": []
   },
   {
@@ -6353,64 +6441,6 @@
     {
      "tk": "SLNH",
      "claim": "Soluna Holdings has hired Ryan Carver, formerly of Microsoft, as Director of AI Construction and Site Development.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "P99GrgfC3jE",
-   "src": "mcnallie-money",
-   "d": "2026-07-16",
-   "title": "New York Data Center Moratorium | Top KEEL, WULF, SLNH, IREN & CLSK News | Latest AI Stock News",
-   "headline": "New York Data Center Moratorium",
-   "url": "https://www.youtube.com/watch?v=P99GrgfC3jE",
-   "kind": "news",
-   "minutes": 38,
-   "tickers": [
-    "WULF",
-    "IREN",
-    "CLSK",
-    "SLNH",
-    "KEEL",
-    "BTDR",
-    "GLXY",
-    "CORZ",
-    "HUT",
-    "CIFR",
-    "NBIS"
-   ],
-   "main": [
-    "WULF",
-    "IREN",
-    "CLSK",
-    "SLNH",
-    "KEEL"
-   ],
-   "summary": "1. This video discusses recent developments in the AI infrastructure and Bitcoin mining sectors, including New York's moratorium on new data centers, company updates from Kiel (KEEL), TerraWolf (WULF), Iron Energy (IREN) and CleanSpark (CLSK), as well as price targets for these companies.\n\n2. Key facts by company:\n   - KEEL: Announced plans to consolidate three Bitcoin mining sites into a 96 MW AI/HPC data center in Sherbrooke, Quebec; land purchase agreement signed with closing expected Q1 2027.\n   - WULF: CEO Paul Prager stated New York's moratorium does not impact operations as Lake Mariner is already permitted and Lake Hawkeye development is scheduled for late 2027; Cantor raised target to $37 (current share price $17.91).\n   - IREN: Hired Eric Housley as Chief Information Security Officer, bringing over 20 years of cybersecurity experience from roles at New Relic, NVIDIA and the US defense sector.\n   - CLSK: Signed a 175 MW compute deal with an option for another 885 MW in Texas; Cantor initiated coverage with overweight rating and $26 target (current share price below $13).\n   - SLNH: Hired Ryan Carver as Chief Development Officer, who previously managed multi-billion dollar AI data center developments at Microsoft.\n   - Shaz AI: Received a $116 price target from Cantor based on existing deals representing ~80% of IREN's Microsoft contract in terms of GPUs.\n\n3. Host's view:\nThe host maintains a bullish stance on the sector despite recent sell-offs, emphasizing that fundamentals remain strong with companies signing major contracts and making key hires. They highlight the mismatch between current share prices and company valuations, suggesting this presents a buying opportunity. The host sounds confident about the long-term prospects of AI infrastructure.\n\n4. Worth checking:\n- Verify KEEL's land purchase agreement for Sherbrooke site and expected closing in Q1 2027.\n- Confirm WULF's development timeline for Lake Hawkeye (late 2027) and impact of New York moratorium.\n- Check details of CLSK's 175 MW compute deal in Texas, including client identity and terms.\n- Validate SLNH's LOI with a client for Catty2 site (300-350 MW).\n- Investigate Shaz AI's existing deals and compare to IREN's Microsoft contract as claimed.",
-   "brief": "Recent developments in the AI infrastructure and Bitcoin mining sectors, including New York's moratorium on new data centers, company updates from Kiel (KEEL), TerraWolf (WULF), Iron Energy (IREN) and CleanSpark (CLSK), as well as price targets for these companies.",
-   "facts": [
-    "KEEL: Announced plans to consolidate three Bitcoin mining sites into a 96 MW AI/HPC data center in Sherbrooke, Quebec; land purchase agreement signed with closing expected Q1 2027.",
-    "WULF: CEO Paul Prager stated New York's moratorium does not impact operations as Lake Mariner is already permitted and Lake Hawkeye development is scheduled for late 2027; Cantor raised target to $37 (current share price $17.91).",
-    "IREN: Hired Eric Housley as Chief Information Security Officer, bringing over 20 years of cybersecurity experience from roles at New Relic, NVIDIA and the US defense sector.",
-    "CLSK: Signed a 175 MW compute deal with an option for another 885 MW in Texas; Cantor initiated coverage with overweight rating and $26 target (current share price below $13).",
-    "SLNH: Hired Ryan Carver as Chief Development Officer, who previously managed multi-billion dollar AI data center developments at Microsoft.",
-    "Shaz AI: Received a $116 price target from Cantor based on existing deals representing ~80% of IREN's Microsoft contract in terms of GPUs."
-   ],
-   "view": "The host maintains a bullish stance on the sector despite recent sell-offs, emphasizing that fundamentals remain strong with companies signing major contracts and making key hires. They highlight the mismatch between current share prices and company valuations, suggesting this presents a buying opportunity. The host sounds confident about the long-term prospects of AI infrastructure.",
-   "verify": [
-    "Verify KEEL's land purchase agreement for Sherbrooke site and expected closing in Q1 2027.",
-    "Confirm WULF's development timeline for Lake Hawkeye (late 2027) and impact of New York moratorium.",
-    "Check details of CLSK's 175 MW compute deal in Texas, including client identity and terms.",
-    "Validate SLNH's LOI with a client for Catty2 site (300-350 MW).",
-    "Investigate Shaz AI's existing deals and compare to IREN's Microsoft contract as claimed."
-   ],
-   "signal": [
-    {
-     "tk": "WULF",
-     "claim": "TeraWulf signed a deal with Anthropic for 401 compute megawatts at $2.37 million per megawatt.",
      "by": "host",
      "tag": "notable",
      "t": null
