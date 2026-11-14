@@ -65,11 +65,22 @@
     "GLXY",
     "HIVE"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent developments and price targets for AI infrastructure stocks, focusing on Microsoft's impact on neoclouds, SpaceX's new AI campuses, Grid AI's Wyoming acquisition, DMG Blockchain's potential, Galaxy Digital's partnership with CoreWeave, Hive Blockchain's GPU deal, and updated price targets for Nebius and NVIDIA.\n\n2. Key facts by company:\n- **Microsoft (MSFT)**: Cutting contracts with neocloud partners; prioritizing in-house data centers; $45.2 billion CapEx guidance.\n- **SpaceX**: Announced $74 billion AI supercomputing campuses in Texas ($24B) and Arizona ($50B); targeting 300 MW of power by 2027.\n- **Grid AI (GRDX)**: Acquired Pronghorn for gas-powered data centers; deal includes 3,200 gas wells, 450+ miles of pipelines, 1M acres; aims to generate electricity behind the meter.\n- **DMG Blockchain (DMGI)**: Potential $110M annual revenue from 50 MW compute at Christina Lake site; EBITDA margin ~85%; potential share price increase of $1.12 if deal is signed.\n- **Galaxy Digital (GLXY)**: CoreWeave partnership for 526 MW compute capacity; phase one (133 MW) completed; phases two and three to add 260 MW and 133 MW by 2028; total pipeline of 5.7 GW power.\n- **Hive Blockchain (HIVE)**: Signed $225M, 3-year deal with Bell Canada for 2,304 NVIDIA GB200 GPUs; $165M cost ($129M loan at 9% interest); projected payback in under three years.\n\n3. Host's view:\nThe host maintains a positive stance on the sector despite recent pullbacks, emphasizing strong fundamentals and growth potential. They highlight that price targets from analysts (e.g., Nebius: $182–$304; NVIDIA: $200–$300) suggest significant upside. The host expresses confidence in companies with owned assets and power, viewing current prices as opportunities to buy low.\n\n4. Worth checking:\n- Verify Microsoft's contract renewals with neocloud partners against official filings.\n- Confirm SpaceX's AI campus plans (Texas/AZ) and Grid AI's Pronghorn acquisition details through company announcements or regulatory documents.\n- Check DMG Blockchain's potential revenue/EBITDA calculations for the Christina Lake site against their financial disclosures.",
+   "brief": "Recent developments and price targets for AI infrastructure stocks, focusing on Microsoft's impact on neoclouds, SpaceX's new AI campuses, Grid AI's Wyoming acquisition, DMG Blockchain's potential, Galaxy Digital's partnership with CoreWeave, Hive Blockchain's GPU deal, and updated price targets for Nebius and NVIDIA.",
+   "facts": [
+    "**Microsoft (MSFT)**: Cutting contracts with neocloud partners; prioritizing in-house data centers; $45.2 billion CapEx guidance.",
+    "**SpaceX**: Announced $74 billion AI supercomputing campuses in Texas ($24B) and Arizona ($50B); targeting 300 MW of power by 2027.",
+    "**Grid AI (GRDX)**: Acquired Pronghorn for gas-powered data centers; deal includes 3,200 gas wells, 450+ miles of pipelines, 1M acres; aims to generate electricity behind the meter.",
+    "**DMG Blockchain (DMGI)**: Potential $110M annual revenue from 50 MW compute at Christina Lake site; EBITDA margin ~85%; potential share price increase of $1.12 if deal is signed.",
+    "**Galaxy Digital (GLXY)**: CoreWeave partnership for 526 MW compute capacity; phase one (133 MW) completed; phases two and three to add 260 MW and 133 MW by 2028; total pipeline of 5.7 GW power.",
+    "**Hive Blockchain (HIVE)**: Signed $225M, 3-year deal with Bell Canada for 2,304 NVIDIA GB200 GPUs; $165M cost ($129M loan at 9% interest); projected payback in under three years."
+   ],
+   "view": "The host maintains a positive stance on the sector despite recent pullbacks, emphasizing strong fundamentals and growth potential. They highlight that price targets from analysts (e.g., Nebius: $182–$304; NVIDIA: $200–$300) suggest significant upside. The host expresses confidence in companies with owned assets and power, viewing current prices as opportunities to buy low.",
+   "verify": [
+    "Verify Microsoft's contract renewals with neocloud partners against official filings.",
+    "Confirm SpaceX's AI campus plans (Texas/AZ) and Grid AI's Pronghorn acquisition details through company announcements or regulatory documents.",
+    "Check DMG Blockchain's potential revenue/EBITDA calculations for the Christina Lake site against their financial disclosures."
+   ],
    "signal": [
     {
      "tk": "NBIS",
@@ -109,11 +120,30 @@
    "main": [
     "HIVE"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses Hive Digital Technologies' Q2 2027 results, its dual-engine strategy (Bitcoin mining and AI/HPC hosting), and broader macro trends affecting the AI infrastructure sector.\n\n2. Key facts by company:\n   - HIVE: \n     • Achieved $90 million in revenue and close to $30 million operating income for Q2 2027.\n     • Grew hash rate from 6 exahash to 25 exahash, providing economies of scale.\n     • AI business grew ~70% during the quarter; this segment generates ~$10 million per employee.\n     • Owns land and buildings in Bowdoin (320 MW electricity capacity) and is expanding real estate holdings in Canada/Paraguay for future growth.\n     • Signed 185 MW in HPC contracts, targeting 200 MW by year-end.\n   - Applied Digital: \n     • Considering becoming a REIT to leverage real estate assets.\n   - Bitdeer: \n     • Tether (a major investor) aims to scale operations up to 100 exahash.\n   - CoreWeave: \n     • Speculation that hyperscalers may acquire it due to debt issues and scale benefits.\n   - Riot Platforms:\n     • Secured a deal with Anthropic at a ~12% hurdle rate, providing a backstop for funding.\n\n3. Host's view:\n   - The host (McNally Money) maintains a bullish stance on Hive and the AI infrastructure sector despite short-term volatility. They emphasize that demand is strong and share prices will eventually reflect fundamentals.\n   - No specific price targets or valuations are given, but confidence in long-term growth prospects for HIVE and peers is high.\n\n4. Worth checking:\n   - Verify Hive's Q2 2027 financial results (revenue: $90 million, operating income: ~$30 million) against official filings.\n   - Confirm the status of Hive’s 100 MW HPC project in Paraguay (mentioned as pending final agreement).\n   - Check if Applied Digital is formally pursuing a REIT structure.",
+   "brief": "Hive Digital Technologies' Q2 2027 results, its dual-engine strategy (Bitcoin mining and AI/HPC hosting), and broader macro trends affecting the AI infrastructure sector.",
+   "facts": [
+    "HIVE:",
+    "Achieved $90 million in revenue and close to $30 million operating income for Q2 2027.",
+    "Grew hash rate from 6 exahash to 25 exahash, providing economies of scale.",
+    "AI business grew ~70% during the quarter; this segment generates ~$10 million per employee.",
+    "Owns land and buildings in Bowdoin (320 MW electricity capacity) and is expanding real estate holdings in Canada/Paraguay for future growth.",
+    "Signed 185 MW in HPC contracts, targeting 200 MW by year-end.",
+    "Applied Digital:",
+    "Considering becoming a REIT to leverage real estate assets.",
+    "Bitdeer:",
+    "Tether (a major investor) aims to scale operations up to 100 exahash.",
+    "CoreWeave:",
+    "Speculation that hyperscalers may acquire it due to debt issues and scale benefits.",
+    "Riot Platforms:",
+    "Secured a deal with Anthropic at a ~12% hurdle rate, providing a backstop for funding."
+   ],
+   "view": "The host (McNally Money) maintains a bullish stance on Hive and the AI infrastructure sector despite short-term volatility. They emphasize that demand is strong and share prices will eventually reflect fundamentals. No specific price targets or valuations are given, but confidence in long-term growth prospects for HIVE and peers is high.",
+   "verify": [
+    "Verify Hive's Q2 2027 financial results (revenue: $90 million, operating income: ~$30 million) against official filings.",
+    "Confirm the status of Hive’s 100 MW HPC project in Paraguay (mentioned as pending final agreement).",
+    "Check if Applied Digital is formally pursuing a REIT structure."
+   ],
    "signal": [
     {
      "tk": "HIVE",
