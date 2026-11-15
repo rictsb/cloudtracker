@@ -178,11 +178,21 @@
     "WULF",
     "RIOT"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is about two retail investors discussing their recent trades in AI infrastructure stocks during a market downturn, including selling AMD to buy shares of companies like IREN (Iron Wolf), WULF (TerraWolf), RIOT and NVDA.\n\n2. Key facts by company:\n- AMD: Sold 12 shares at $587 each (up 149% from cost basis)\n- IREN (Iron): Bought shares at ~$18-$22; host is long-term bullish\n- NVDA: Host bought 42 shares at $165 each, noting the stock is down 55% in three months and trading at a P/E of 10-11\n- RIOT: Host's largest position at 32.2% of portfolio; recently announced big Corsicana deal\n- WULF (TerraWolf): Bought call options with January 2029 $30 strike price\n\n3. Host's view:\nThe hosts express strong conviction in their AI infrastructure picks despite significant portfolio drawdowns (~17% from cost basis). They see the recent sell-off as a buying opportunity and are holding long-term. One host specifically mentions being \"not scared\" and willing to potentially go down with the sector.\n\n4. Worth checking:\n- Verify RIOT's Corsicana deal details in company filings\n- Check if NVDA's P/E ratio is indeed 10-11 as stated\n- Confirm IREN's current share price relative to the $18-$22 range mentioned",
+   "brief": "Two retail investors discussing their recent trades in AI infrastructure stocks during a market downturn, including selling AMD to buy shares of companies like IREN (Iron Wolf), WULF (TerraWolf), RIOT and NVDA.",
+   "facts": [
+    "AMD: Sold 12 shares at $587 each (up 149% from cost basis)",
+    "IREN (Iron): Bought shares at ~$18-$22; host is long-term bullish",
+    "NVDA: Host bought 42 shares at $165 each, noting the stock is down 55% in three months and trading at a P/E of 10-11",
+    "RIOT: Host's largest position at 32.2% of portfolio; recently announced big Corsicana deal",
+    "WULF (TerraWolf): Bought call options with January 2029 $30 strike price"
+   ],
+   "view": "The hosts express strong conviction in their AI infrastructure picks despite significant portfolio drawdowns (~17% from cost basis). They see the recent sell-off as a buying opportunity and are holding long-term. One host specifically mentions being \"not scared\" and willing to potentially go down with the sector.",
+   "verify": [
+    "Verify RIOT's Corsicana deal details in company filings",
+    "Check if NVDA's P/E ratio is indeed 10-11 as stated",
+    "Confirm IREN's current share price relative to the $18-$22 range mentioned"
+   ],
    "signal": [
     {
      "tk": "IREN",
