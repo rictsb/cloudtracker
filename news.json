@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-14",
+ "asOf": "2026-11-15",
  "windowDays": 120,
  "sources": [
   {
@@ -151,6 +151,45 @@
      "by": "host",
      "tag": "call",
      "t": null
+    }
+   ],
+   "sponsored": []
+  },
+  {
+   "id": "Hn6f5l0V1EU",
+   "src": "mcnallie-money",
+   "d": "2026-11-13",
+   "title": "PA Power Play | Channel Members Only | Week of November 13",
+   "headline": "PA Power Play — Channel Members Only",
+   "url": "https://www.youtube.com/watch?v=Hn6f5l0V1EU",
+   "kind": "members",
+   "minutes": 15,
+   "tickers": [
+    "IREN",
+    "WULF",
+    "RIOT",
+    "CORZ",
+    "BTDR",
+    "SLNH",
+    "NBIS"
+   ],
+   "main": [
+    "IREN",
+    "WULF",
+    "RIOT"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "The host expects IREN to see significant revenue growth by the start of 2028.",
+     "by": "host",
+     "tag": "call",
+     "t": 148
     }
    ],
    "sponsored": []
@@ -6424,55 +6463,6 @@
      "claim": "The host expects TeraWulf's share price to reach between 30 and 40 USD by year end 2026.",
      "by": "host",
      "tag": "call",
-     "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "kmiof2aRh0s",
-   "src": "mcnallie-money",
-   "d": "2026-07-17",
-   "title": "Soluna CEO Q&A | Kati 2 LOI Signed | Microsoft Hyperscale Executive Hire | SLNH Stock",
-   "headline": "Soluna CEO Q&A — Kati 2 LOI Signed",
-   "url": "https://www.youtube.com/watch?v=kmiof2aRh0s",
-   "kind": "interview",
-   "minutes": 59,
-   "tickers": [
-    "SLNH",
-    "IREN",
-    "HUT",
-    "BTDR",
-    "GLXY",
-    "WULF",
-    "CLSK",
-    "CORZ"
-   ],
-   "main": [
-    "SLNH"
-   ],
-   "summary": "1. The video is a YouTube interview with Soluna Holdings CEO John Belazare discussing recent company developments including an LOI signed for Cottey 2 and the hiring of Brian Carver from Microsoft.\n\n2. Key facts by company:\n   - SLNH (Soluna): Signed an LOI for Cottey 2, targeting 100 MW in phase one; completed 50% design package two weeks ago; actively pursuing more power acquisitions like Brisco wind farm; planning first earnings call next quarter with IR platform and new IR firm.\n   \n3. Host's view: The host is bullish on Soluna, noting increased retail investor interest and comparing the company favorably to peers like IREN (IronNet) and HUT (Hut 8). They highlight Soluna's growing social media traction and competitive advantages in power costs.\n\n4. Worth checking: Investors should verify against SEC filings that Soluna actually signed an LOI for Cottey 2 as described, and confirm the specifics of Brian Carver's role and employment terms. The claim that Soluna is \"actively pursuing\" more power acquisitions like Brisco also requires verification through company disclosures or announcements.",
-   "brief": "The video is a YouTube interview with Soluna Holdings CEO John Belazare discussing recent company developments including an LOI signed for Cottey 2 and the hiring of Brian Carver from Microsoft.",
-   "facts": [
-    "SLNH (Soluna): Signed an LOI for Cottey 2, targeting 100 MW in phase one; completed 50% design package two weeks ago; actively pursuing more power acquisitions like Brisco wind farm; planning first earnings call next quarter with IR platform and new IR firm."
-   ],
-   "view": "The host is bullish on Soluna, noting increased retail investor interest and comparing the company favorably to peers like IREN (IronNet) and HUT (Hut 8). They highlight Soluna's growing social media traction and competitive advantages in power costs.",
-   "verify": [
-    "Investors should verify against SEC filings that Soluna actually signed an LOI for Cottey 2 as described, and confirm the specifics of Brian Carver's role and employment terms. The claim that Soluna is \"actively pursuing\" more power acquisitions like Brisco also requires verification through company disclosures or announcements."
-   ],
-   "signal": [
-    {
-     "tk": "SLNH",
-     "claim": "Soluna Holdings is implementing an exit right in its mining contracts to allow for power reallocation to AI projects if needed.",
-     "by": "executive",
-     "tag": "big",
-     "t": null
-    },
-    {
-     "tk": "SLNH",
-     "claim": "Soluna Holdings has hired Ryan Carver, formerly of Microsoft, as Director of AI Construction and Site Development.",
-     "by": "host",
-     "tag": "notable",
      "t": null
     }
    ],
