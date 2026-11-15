@@ -1,12 +1,12 @@
 {
   "ruleVersion": "1.1.1",
-  "asOf": "2026-11-14",
+  "asOf": "2026-11-15",
   "summary": {
     "companies": 22,
-    "findings": 114,
+    "findings": 117,
     "errors": 0,
     "reviews": 52,
-    "gaps": 62
+    "gaps": 65
   },
   "companies": [
     {
@@ -25,7 +25,7 @@
         },
         "funding": {
           "status": "review",
-          "summary": "0 errors, 1 reviews, 1 coverage gaps."
+          "summary": "0 errors, 1 reviews, 2 coverage gaps."
         }
       },
       "metrics": {
@@ -77,7 +77,7 @@
         },
         "funding": {
           "status": "review",
-          "summary": "0 errors, 2 reviews, 1 coverage gaps."
+          "summary": "0 errors, 2 reviews, 2 coverage gaps."
         }
       },
       "metrics": {
@@ -203,7 +203,7 @@
         },
         "funding": {
           "status": "review",
-          "summary": "0 errors, 1 reviews, 1 coverage gaps."
+          "summary": "0 errors, 1 reviews, 2 coverage gaps."
         }
       },
       "metrics": {
@@ -3405,6 +3405,23 @@
       "fingerprint": "8ea6da5bea39246371bbd7e34194974cc13686cf00e8395e4e856bcc93416987"
     },
     {
+      "id": "CRWV:funding:reference-price-evidence",
+      "ticker": "CRWV",
+      "family": "funding",
+      "severity": "gap",
+      "title": "Issuance sensitivity lacks a current dated market reference",
+      "explanation": "The model can calculate from a fallback price, but an undated, stale or future-dated reference cannot support a current funding-price comparison. The four-calendar-day band is a review convention, not a trading-calendar service.",
+      "calculation": "Price $48.73; provider date 2026-11-10T21:00:00.000Z; Supplied market snapshot.",
+      "evidence": [
+        {
+          "label": "Supplied market snapshot and fallback data.json price"
+        }
+      ],
+      "impact": null,
+      "nextAction": "Refresh the shared market snapshot and retain the provider timestamp for this company.",
+      "fingerprint": "2bd841756fd4d80d9f851df4459c808c0573377be6b09cc6260922be2dba54cd"
+    },
+    {
       "id": "FRMI:capacity:quarterly-bridge-missing",
       "ticker": "FRMI",
       "family": "capacity",
@@ -3690,6 +3707,23 @@
       "fingerprint": "71c4c684bf47e00c2df130710dc91c00d7f0ce9edd3cdc5c5bf15f33bee49970"
     },
     {
+      "id": "IREN:funding:reference-price-evidence",
+      "ticker": "IREN",
+      "family": "funding",
+      "severity": "gap",
+      "title": "Issuance sensitivity lacks a current dated market reference",
+      "explanation": "The model can calculate from a fallback price, but an undated, stale or future-dated reference cannot support a current funding-price comparison. The four-calendar-day band is a review convention, not a trading-calendar service.",
+      "calculation": "Price $19.73; provider date 2026-11-10T21:00:00.000Z; Supplied market snapshot.",
+      "evidence": [
+        {
+          "label": "Supplied market snapshot and fallback data.json price"
+        }
+      ],
+      "impact": null,
+      "nextAction": "Refresh the shared market snapshot and retain the provider timestamp for this company.",
+      "fingerprint": "e1526be1d45460931d338a71bbbda9ef29bc0150a080befd84ae8304513283cd"
+    },
+    {
       "id": "KEEL:capacity:quarterly-bridge-missing",
       "ticker": "KEEL",
       "family": "capacity",
@@ -3865,6 +3899,23 @@
       "impact": null,
       "nextAction": "Map draws to facility commitments and maturity schedules; identify residual financing that is still assumed.",
       "fingerprint": "090efa6748742be6f9deb34ef0198003cd929aece09ef8c0bc38aee3112ca63e"
+    },
+    {
+      "id": "NBIS:funding:reference-price-evidence",
+      "ticker": "NBIS",
+      "family": "funding",
+      "severity": "gap",
+      "title": "Issuance sensitivity lacks a current dated market reference",
+      "explanation": "The model can calculate from a fallback price, but an undated, stale or future-dated reference cannot support a current funding-price comparison. The four-calendar-day band is a review convention, not a trading-calendar service.",
+      "calculation": "Price $134; provider date 2026-11-10T21:00:00.000Z; Supplied market snapshot.",
+      "evidence": [
+        {
+          "label": "Supplied market snapshot and fallback data.json price"
+        }
+      ],
+      "impact": null,
+      "nextAction": "Refresh the shared market snapshot and retain the provider timestamp for this company.",
+      "fingerprint": "f8ee58a946fa5890cc94e011b0572a3b51057c4dc0cabed865cb7b926a85612f"
     },
     {
       "id": "NUAI:capacity:quarterly-bridge-missing",
@@ -4222,9 +4273,9 @@
   },
   "schemaVersion": 1,
   "status": "ready",
-  "checkedAt": "2026-11-14T10:23:58.980Z",
-  "attemptedAt": "2026-11-14T10:23:58.980Z",
-  "lastSuccessAt": "2026-11-14T10:23:58.980Z",
+  "checkedAt": "2026-11-15T05:03:08.281Z",
+  "attemptedAt": "2026-11-15T05:03:08.281Z",
+  "lastSuccessAt": "2026-11-15T05:03:08.281Z",
   "sourceHash": "55da2fcf08d8a7b26c861c2d68beb3e6fd11e7d40e9bc7975ea11258d20fd981",
   "quoteHash": "c936a5073b32cf0dcdfb6807576a3da6742b126eb214a7694ab3e582ea71f230",
   "modelHash": "7371b84b6ff18c6ab038bafe40dcc29748091fc3fab06ab74087858897ea847a",
@@ -4258,8 +4309,8 @@
       ]
     },
     "run": {
-      "trigger": "schedule",
-      "commit": "63365cd912b915b4b5724c2968c8211ce91b681f"
+      "trigger": "workflow_run",
+      "commit": "45c60933d1c217d5153e63db4cab3c6359d92c9c"
     }
   },
   "cadence": {
