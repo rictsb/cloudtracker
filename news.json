@@ -41,8 +41,8 @@
     "BTDR",
     "HUT"
    ],
-   "summary": null,
-   "brief": null,
+   "summary": "The video discusses recent co-location deals in the AI infrastructure sector, focusing on Riot Platforms' (RIOT) deal with Anthropic at its Corsicana site and comparing it to other deals by Hut 8 Mining Corp (HUT), Bitdeer Technologies Holding Company (BTDR), and TeraWulf Inc. (WULF). The host provides an analysis of the deals based on revenue per megawatt, capital expenditure, net operating income (NOI) multiples, and payback periods.\n\nKey facts by company:\n- **RIOT**: Signed a 15-year deal with Anthropic for 910 MW at Corsicana; total contract value is $28 billion ($1.86B/year); Riot's capex is ~$2M/MW, while Anthropic covers an additional $4M/MW via modular units; PUE of 1.1 due to optimized auxiliary power usage.\n- **HUT**: Signed a deal for 704 MW with total contract value of $3.6B over 10 years ($360M/year); capex is ~$10M/MW.\n- **BTDR**: Signed a deal for 150 MW with total contract value of $1.2B over 5 years ($240M/year); capex is ~$9.7M/MW.\n- **WULF**: Signed a deal for 100 MW with total contract value of $600M over 10 years ($60M/year); capex is ~$11.4M/MW.\n\nHost's view:\nThe host views Riot's deal as exceptionally strong due to its low capital intensity (~$6M/compute MW) and high NOI/capex multiple (5.08x), which outperforms peers like TeraWulf (3.98x). They note that KBW initiated a hold rating on RIOT with a $23 price target, representing ~35-40% upside from the current share price of ~$16.90.\n\nWorth checking:\nInvestors should verify Riot's stated PUE of 1.1 and capex figures against SEC filings or company disclosures to confirm accuracy.",
+   "brief": "The video discusses recent co-location deals in the AI infrastructure sector, focusing on Riot Platforms' (RIOT) deal with Anthropic at its Corsicana site and comparing it to other deals by Hut 8 Mining Corp (HUT), Bitdeer Technologies Holding Company (BTDR), and TeraWulf Inc. (WULF).",
    "facts": [],
    "view": null,
    "verify": [],
@@ -86,11 +86,16 @@
    "main": [
     "SLNH"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is an interview with Soluna Holdings CEO John Belazare discussing Q3 earnings, AI transition projects and the company's strategy.\n\n2. Key facts by company:\n   - SLNH: Revenue increased 80% YoY; sixth straight quarter of sequential growth. Partnering with Applied Digital (APLD) on a joint venture at Dorothy 3 1A where APLD will be a 50/49 partner. Signed an LOI with Kronoscale (subsidiary of APLD) to become tenant at the data center; finishing final elements of JV. Moved forward with new tenant for Catty2 after previous LOI didn't have needed credit package; selected best credit package from multiple offers. Started construction on some projects, invested in building out pads and ordering long-lead equipment. Ended Q3 with $109 million cash and $297 million total assets; liabilities $67 million (shareholder equity ~$230 million). Market cap < $100 million. Dorothy 3 and Catty2 are high-profile AI flagship sites. Catty2 has new LOI for 118 MW.\n   - BTDR: Partnership with SLNH proven very good and profitable.\n\n3. Host's view: The host thinks SLNH is undervalued, trading below asset value (shareholders get ~$2.40 of assets per $1 invested). They note HC Wainwright has a $3 price target on the stock but sound uncertain about when the valuation might correct, stating \"we're hoping this week might be... there might be some catalysts coming out this week with earnings and with a new IPO about to be announced.\"\n\n4. Worth checking: Verify SLNH's Q3 financial results (revenue growth, cash balance, total assets/liabilities) against SEC filings. Check if/how the company received NASDAQ notice regarding minimum $1 bid price requirement. Confirm details of LOIs for Dorothy 3 and Catty2, including tenant names and MW capacity.",
+   "brief": "The video is an interview with Soluna Holdings CEO John Belazare discussing Q3 earnings, AI transition projects and the company's strategy.",
+   "facts": [
+    "SLNH: Revenue increased 80% YoY; sixth straight quarter of sequential growth. Partnering with Applied Digital (APLD) on a joint venture at Dorothy 3 1A where APLD will be a 50/49 partner. Signed an LOI with Kronoscale (subsidiary of APLD) to become tenant at the data center; finishing final elements of JV. Moved forward with new tenant for Catty2 after previous LOI didn't have needed credit package; selected best credit package from multiple offers. Started construction on some projects, invested in building out pads and ordering long-lead equipment. Ended Q3 with $109 million cash and $297 million total assets; liabilities $67 million (shareholder equity ~$230 million). Market cap < $100 million. Dorothy 3 and Catty2 are high-profile AI flagship sites. Catty2 has new LOI for 118 MW.",
+    "BTDR: Partnership with SLNH proven very good and profitable."
+   ],
+   "view": "The host thinks SLNH is undervalued, trading below asset value (shareholders get ~$2.40 of assets per $1 invested). They note HC Wainwright has a $3 price target on the stock but sound uncertain about when the valuation might correct, stating \"we're hoping this week might be... there might be some catalysts coming out this week with earnings and with a new IPO about to be announced.\"",
+   "verify": [
+    "Verify SLNH's Q3 financial results (revenue growth, cash balance, total assets/liabilities) against SEC filings. Check if/how the company received NASDAQ notice regarding minimum $1 bid price requirement. Confirm details of LOIs for Dorothy 3 and Catty2, including tenant names and MW capacity."
+   ],
    "signal": [
     {
      "tk": "SLNH",
