@@ -1572,6 +1572,37 @@
     },
     "impactHash": "687d29bfa3f4b08b9f77863236f9d88684f0e7b9ee7843b930a8f4827c780ef0"
    }
+  },
+  {
+   "fp": "e28f2f519cbdbf1f",
+   "tk": "SLNH",
+   "kind": "log",
+   "site": null,
+   "title": "log: Soluna Holdings has two projects with Batch Zero classification.",
+   "current": null,
+   "proposed": {
+    "d": "2026-11-17",
+    "t": "note",
+    "s": "[secondary] McNallie Money (YouTube) — Soluna Holdings CEO Q&A | Q3 Earnings & Kati LOI News | ChronoScale JV Updates |, 2026-11-17",
+    "x": "Soluna Holdings has two projects with Batch Zero classification. (executive: John Belazare)"
+   },
+   "evidence": [
+    {
+     "d": "2026-11-17",
+     "quote": null,
+     "claim": "Soluna Holdings has two projects with Batch Zero classification.",
+     "by": "executive",
+     "url": "https://www.youtube.com/watch?v=sh8hN3jlfvQ",
+     "title": "Soluna Holdings CEO Q&A | Q3 Earnings & Kati LOI News | ChronoScale JV Updates | SLNH"
+    }
+   ],
+   "id": "p-2026-11-18-SLNH-001",
+   "created": "2026-11-18",
+   "status": "pending",
+   "decided": null,
+   "applied": null,
+   "sourceId": "mcnallie-money",
+   "sourceName": "McNallie Money (YouTube)"
   }
  ],
  "seen": [
@@ -1579,7 +1610,7 @@
   "b63cb9eceac96641",
   "ca72db58e18ba29b"
  ],
- "asOf": "2026-11-17",
+ "asOf": "2026-11-18",
  "assumptionReviews": {
   "SHAZ:economics:signed-rate-region": {
    "fingerprint": "f5291f2cb83f3cb9a0bbfe462d4b8075d6f22572b4004b5ae160019314261fab",
