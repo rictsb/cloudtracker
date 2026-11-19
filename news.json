@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-18",
+ "asOf": "2026-11-19",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,38 @@
   }
  ],
  "items": [
+  {
+   "id": "u9wicy_wj90",
+   "src": "mcnallie-money",
+   "d": "2026-11-18",
+   "title": "NVDA Earnings Impress | Latest BTBT, ANT, CORZ & GLXY Stock News | Top AI Stocks to Watch Now",
+   "headline": "NVDA Earnings Impress — Latest BTBT, ANT, CORZ & GLXY Stock News",
+   "url": "https://www.youtube.com/watch?v=u9wicy_wj90",
+   "kind": "news",
+   "minutes": 52,
+   "tickers": [
+    "BTBT",
+    "CORZ",
+    "GLXY",
+    "WULF",
+    "APLD",
+    "SLNH",
+    "HIVE",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [],
+   "sponsored": []
+  },
   {
    "id": "rWjNKzFpC_M",
    "src": "mcnallie-money",
@@ -6482,57 +6514,6 @@
      "by": "thirdparty",
      "tag": "notable",
      "t": 1134
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "np44yQHq0GQ",
-   "src": "mcnallie-money",
-   "d": "2026-07-21",
-   "title": "IREN Horizon 1 Updates | Latest NVDA, NBIS, CRWV & BTDR News | Top AI Stocks to Watch Right Now",
-   "headline": "IREN Horizon 1 Updates — Latest NVDA, NBIS, CRWV & BTDR News",
-   "url": "https://www.youtube.com/watch?v=np44yQHq0GQ",
-   "kind": "news",
-   "minutes": 36,
-   "tickers": [
-    "IREN",
-    "BTDR",
-    "NBIS",
-    "CRWV",
-    "CORZ",
-    "WULF",
-    "CLSK",
-    "HIVE",
-    "APLD",
-    "SLNH",
-    "BTBT"
-   ],
-   "main": [
-    "IREN",
-    "BTDR",
-    "NBIS",
-    "CRWV"
-   ],
-   "summary": "1. The video discusses recent developments in AI infrastructure companies, including updates from hyperscalers like Google and Microsoft, NVIDIA's investments in Nebius, CoreWeave's analyst downgrade, progress on Iron Energy's Horizon 1 project, and Bitdeer's June production report.\n\n2. Key facts by company:\n   - IREN: Facebook post indicates completion of electrical works at Horizon 1 site; handover to Microsoft expected Q3.\n   - NBIS: NVIDIA has taken a stake in Nebius (share price up 250% in past year).\n   - CRWV: Analyst downgraded CoreWeave from $120 to $90 price target; current share price ~$79; market cap ~$44 billion.\n   - BTDR: June production update shows 990 Bitcoin mined, 1,012 sold, HODL reduced from 171 to 150 (valued at $8.8 million); energized hash rate increased significantly with 12,000 more rigs added; GPU utilisation up to 95%, ARR now $76 million; signed 10-year lease for 21.7MW in Malaysia (handover Q1 2027), and executed deal for 225MW at Tidal (completion end-2026).\n\n3. Host's view: The hosts are generally positive on the sector, noting improved stock performance recently and strong demand signals from hyperscalers. They highlight Bitdeer as particularly noteworthy due to its large scale and growth in both mining and AI hosting.\n\n4. Worth checking: Verify details of NVIDIA's investment in Nebius via SEC filings; confirm specifics of CoreWeave's analyst downgrade and rationale; check Iron Energy's official communications for precise Horizon 1 handover timeline and Microsoft contract terms; review Bitdeer's actual Q1 ARR growth figures against current $76 million claim.",
-   "brief": "Recent developments in AI infrastructure companies, including updates from hyperscalers like Google and Microsoft, NVIDIA's investments in Nebius, CoreWeave's analyst downgrade, progress on Iron Energy's Horizon 1 project, and Bitdeer's June production report.",
-   "facts": [
-    "IREN: Facebook post indicates completion of electrical works at Horizon 1 site; handover to Microsoft expected Q3.",
-    "NBIS: NVIDIA has taken a stake in Nebius (share price up 250% in past year).",
-    "CRWV: Analyst downgraded CoreWeave from $120 to $90 price target; current share price ~$79; market cap ~$44 billion.",
-    "BTDR: June production update shows 990 Bitcoin mined, 1,012 sold, HODL reduced from 171 to 150 (valued at $8.8 million); energized hash rate increased significantly with 12,000 more rigs added; GPU utilisation up to 95%, ARR now $76 million; signed 10-year lease for 21.7MW in Malaysia (handover Q1 2027), and executed deal for 225MW at Tidal (completion end-2026)."
-   ],
-   "view": "The hosts are generally positive on the sector, noting improved stock performance recently and strong demand signals from hyperscalers. They highlight Bitdeer as particularly noteworthy due to its large scale and growth in both mining and AI hosting.",
-   "verify": [
-    "Verify details of NVIDIA's investment in Nebius via SEC filings; confirm specifics of CoreWeave's analyst downgrade and rationale; check Iron Energy's official communications for precise Horizon 1 handover timeline and Microsoft contract terms; review Bitdeer's actual Q1 ARR growth figures against current $76 million claim."
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN expects a handover of Horizon 1 to Microsoft in Q3 2026.",
-     "by": "host",
-     "tag": "call",
-     "t": null
     }
    ],
    "sponsored": []
