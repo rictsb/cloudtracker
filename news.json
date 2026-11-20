@@ -37,11 +37,18 @@
     "WULF",
     "SLNH"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses Anthropics' IPO, its impact on AI infrastructure stocks like BTDR, IREN, WULF, SLNH, and broader market trends.\n\n2. Key facts by company:\n   - Anthropic: IPO price $110/share (market cap >$2T), 980M shares traded; raised ~$250B cash; expects $100B revenue in 2027 (70-80% margins); co-founders left OpenAI for safety focus.\n   - BitDeer (BTDR): Shares down 44% due to export restrictions on NVIDIA GPUs to Malaysia/Singapore; Stonex cut price target to $15, lowered 2027 revenue estimate by $230M to $1.77B.\n   - IronNet (IREN): Delayed Microsoft contract change request may push $4B annualized revenue target from Dec 2026 to Jan/Feb 2027; owns 30K acres with 5GW secured power and 35GW development pipeline.\n   - TeraWulf (WULF): Started construction at Hawesville, KY site for Anthropic Compute; driven >50% of foundation piles, pile cap work progressing ahead of plan.\n\n3. Host's view: The host is bullish on AI infrastructure long-term despite current stock volatility and corrections. They highlight strong fundamentals like contracts with Anthropics, high margins, and large development pipelines as reasons to be optimistic about a rebound in 2027.\n\n4. Worth checking: Verify Anthropic's IPO details (e.g., $250B cash raised, $100B revenue projection for 2027) against SEC filings; confirm BitDeer's export restriction impact on Malaysia/Singapore GPU rollout timelines and Stonex' revised financial estimates; check IronNet's updated guidance for the Microsoft contract change request and resulting revenue delay.",
+   "brief": "Anthropics' IPO, its impact on AI infrastructure stocks like BTDR, IREN, WULF, SLNH, and broader market trends.",
+   "facts": [
+    "Anthropic: IPO price $110/share (market cap >$2T), 980M shares traded; raised ~$250B cash; expects $100B revenue in 2027 (70-80% margins); co-founders left OpenAI for safety focus.",
+    "BitDeer (BTDR): Shares down 44% due to export restrictions on NVIDIA GPUs to Malaysia/Singapore; Stonex cut price target to $15, lowered 2027 revenue estimate by $230M to $1.77B.",
+    "IronNet (IREN): Delayed Microsoft contract change request may push $4B annualized revenue target from Dec 2026 to Jan/Feb 2027; owns 30K acres with 5GW secured power and 35GW development pipeline.",
+    "TeraWulf (WULF): Started construction at Hawesville, KY site for Anthropic Compute; driven >50% of foundation piles, pile cap work progressing ahead of plan."
+   ],
+   "view": "The host is bullish on AI infrastructure long-term despite current stock volatility and corrections. They highlight strong fundamentals like contracts with Anthropics, high margins, and large development pipelines as reasons to be optimistic about a rebound in 2027.",
+   "verify": [
+    "Verify Anthropic's IPO details (e.g., $250B cash raised, $100B revenue projection for 2027) against SEC filings; confirm BitDeer's export restriction impact on Malaysia/Singapore GPU rollout timelines and Stonex' revised financial estimates; check IronNet's updated guidance for the Microsoft contract change request and resulting revenue delay."
+   ],
    "signal": [
     {
      "tk": "IREN",
