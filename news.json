@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-19",
+ "asOf": "2026-11-20",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,50 @@
   }
  ],
  "items": [
+  {
+   "id": "K_aGB85LPu8",
+   "src": "mcnallie-money",
+   "d": "2026-11-19",
+   "title": "Top Anthropic IPO News | Latest ANT, NVDA, BTDR, IREN, MOVE, WULF, SLNH & DRK Stock News | AI News",
+   "headline": "Top Anthropic IPO News — Latest ANT, NVDA, BTDR, IREN, MOVE, WULF, SLNH & DRK Stock News",
+   "url": "https://www.youtube.com/watch?v=K_aGB85LPu8",
+   "kind": "news",
+   "minutes": 51,
+   "tickers": [
+    "BTDR",
+    "IREN",
+    "WULF",
+    "SLNH",
+    "CORZ",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "MARA",
+    "CLSK",
+    "APLD"
+   ],
+   "main": [
+    "BTDR",
+    "IREN",
+    "WULF",
+    "SLNH"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN has a development pipeline of 35 GW.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 2202
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "u9wicy_wj90",
    "src": "mcnallie-money",
@@ -6466,63 +6510,6 @@
      "by": "host",
      "tag": "notable",
      "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "V6MylAadtio",
-   "src": "mcnallie-money",
-   "d": "2026-07-22",
-   "title": "Top KEEL Stock News | IREN Price Targets | Latest AI Stocks to Watch Now | GLXY, WULF & CIFR News",
-   "headline": "Top KEEL Stock News — IREN Price Targets",
-   "url": "https://www.youtube.com/watch?v=V6MylAadtio",
-   "kind": "news",
-   "minutes": 30,
-   "tickers": [
-    "IREN",
-    "CORZ",
-    "WULF",
-    "CIFR",
-    "KEEL",
-    "HUT",
-    "GLXY",
-    "BTDR",
-    "ABTC",
-    "RIOT",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "CRWV",
-    "NBIS"
-   ],
-   "main": [
-    "IREN",
-    "CORZ",
-    "WULF",
-    "CIFR",
-    "KEEL",
-    "HUT"
-   ],
-   "summary": "1. The video covers recent developments in the AI infrastructure sector including financing moves by Galaxy Digital (GLXY), contract progress at IronNet (IREN) and Kiel (KEEL), and broader market trends like talent migration and regulatory updates.\n\n2. Key facts:\n- GLXY: Filed an 8K to raise $3.5B of senior secured notes due 2031 for a new AI data center campus in Texas with eight data halls, 400MW power capacity and 260MW IT capacity.\n- IREN: HC Wainwright maintains $90 price target citing $2.8B of new multi-year AI cloud contracts raising annualized revenue from $3.7B to $4B; 85% of updated ARR target ($3.4B) is contracted at ~$3.40/hr implying price is wrong.\n- KEEL: Scrubgrass Township passed a data centre ordinance unanimously covering utilities, water usage, noise, environmental impact, facility appearance, vegetation buffers and violation penalties; Kiel outlined conceptual plans for the site (currently used for Bitcoin mining) with timelines unchanged targeting 2028-29 at earliest for first building commissioning.\n\n3. Host's view: The host is bullish on the sector overall, highlighting significant upside potential in companies like Hut 8 based on analyst price targets (~82% upside to $184 target). They express confidence in IREN's ability to meet targets and appreciate KEEL's transparent updates through permitting processes. While noting Jim Cramer's mention of KEEL as a future Nebius (NBIS) is good for visibility, they caution against relying on his analysis without personal due diligence.\n\n4. Worth checking: Investors should verify the specifics of GLXY's $3.5B senior secured notes offering in SEC filings, IREN's contracted ARR figures and pricing per hour from official disclosures, and KEEL's Scrubgrass Township ordinance details through local government records or company updates.",
-   "brief": "Recent developments in the AI infrastructure sector including financing moves by Galaxy Digital (GLXY), contract progress at IronNet (IREN) and Kiel (KEEL), and broader market trends like talent migration and regulatory updates.",
-   "facts": [
-    "GLXY: Filed an 8K to raise $3.5B of senior secured notes due 2031 for a new AI data center campus in Texas with eight data halls, 400MW power capacity and 260MW IT capacity.",
-    "IREN: HC Wainwright maintains $90 price target citing $2.8B of new multi-year AI cloud contracts raising annualized revenue from $3.7B to $4B; 85% of updated ARR target ($3.4B) is contracted at ~$3.40/hr implying price is wrong.",
-    "KEEL: Scrubgrass Township passed a data centre ordinance unanimously covering utilities, water usage, noise, environmental impact, facility appearance, vegetation buffers and violation penalties; Kiel outlined conceptual plans for the site (currently used for Bitcoin mining) with timelines unchanged targeting 2028-29 at earliest for first building commissioning."
-   ],
-   "view": "The host is bullish on the sector overall, highlighting significant upside potential in companies like Hut 8 based on analyst price targets (~82% upside to $184 target). They express confidence in IREN's ability to meet targets and appreciate KEEL's transparent updates through permitting processes. While noting Jim Cramer's mention of KEEL as a future Nebius (NBIS) is good for visibility, they caution against relying on his analysis without personal due diligence.",
-   "verify": [
-    "Investors should verify the specifics of GLXY's $3.5B senior secured notes offering in SEC filings, IREN's contracted ARR figures and pricing per hour from official disclosures, and KEEL's Scrubgrass Township ordinance details through local government records or company updates."
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN announced new multi-year AI cloud contracts worth 2.8 USDbn, raising annualized revenue targets.",
-     "by": "thirdparty",
-     "tag": "notable",
-     "t": 1134
     }
    ],
    "sponsored": []
