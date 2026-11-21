@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-20",
+ "asOf": "2026-11-21",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,53 @@
   }
  ],
  "items": [
+  {
+   "id": "fji97EMKt08",
+   "src": "mcnallie-money",
+   "d": "2026-11-20",
+   "title": "AI Market Bloodbath | Latest IREN, DRK, HIVE, BTDR, ANT, GLXY, WULF, RIOT & GRDX Stock News",
+   "headline": "AI Market Bloodbath — Latest IREN, DRK, HIVE, BTDR, ANT, GLXY, WULF, RIOT & GRDX Stock News",
+   "url": "https://www.youtube.com/watch?v=fji97EMKt08",
+   "kind": "news",
+   "minutes": 45,
+   "tickers": [
+    "IREN",
+    "RIOT",
+    "WULF",
+    "HIVE",
+    "BTDR",
+    "CORZ",
+    "HUT",
+    "CRWV",
+    "NBIS",
+    "SLNH",
+    "BTBT"
+   ],
+   "main": [
+    "IREN",
+    "RIOT",
+    "WULF",
+    "HIVE",
+    "BTDR",
+    "CORZ",
+    "HUT"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "RIOT",
+     "claim": "Riot has a 910 MW deal at Corsicana using a modular strategy to save approximately $6 million per megawatt.",
+     "by": "guest",
+     "tag": "notable",
+     "t": 381
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "K_aGB85LPu8",
    "src": "mcnallie-money",
