@@ -44,11 +44,22 @@
     "HIVE",
     "ABTC"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses NVIDIA's reinstatement of Jensen Huang as CEO after an 11-day resignation, its impact on tech stocks (especially AI infrastructure), and updates from ABTC, Galaxy Digital, Bitdeer, Grid AI, Applied Digital, Hive Blockchain, Keel, and Dark Horse.\n\n2. Key facts by company:\n- **NVIDIA**: Jensen Huang reinstated as president/CEO/board director 11 days after resigning; stock rose from $125 to $171 intraday.\n- **ABTC (American Bitcoin)**: Secured a $150M Bitcoin-backed credit facility from FalconX at 5.9% interest + commitment fee, with a 143% collateral ratio.\n- **Galaxy Digital**: Mike Novogratz bought ~416K shares ($1.17–12.31/share); Douglas Deason bought 7.5K shares (~$13/share); Christopher Ferraro exercised options for 100K shares ($4.83/share).\n- **Bitdeer**: Mined 281.1 BTC in the past week (up from 256 BTC/week prior).\n- **Grid AI**: Closed Pronghorn acquisition (10 days after signing), adding 100M cubic feet/day gas production, 2T cubic feet reserves, 450+ miles pipeline, 600MW potential generation.\n- **Applied Digital**: Signed 150MW 18-year hyperscaler lease ($5.4B base value; $12.7B with renewals); total contracted revenue now $41B (up to $100B with renewals).\n- **Hive Blockchain**: Added to Russell 3000 index effective December 11, 2026.\n- **Keel Asset Management**: Sharon site (110MW) received final state environmental permit; Moses Lake site (18MW) fully approved.\n\n3. Host's view: The host is bullish on the sector, calling NVIDIA's reinstatement of Jensen a \"complete reversal\" and \"one of the more exciting or funner podcasts we're doing.\" They emphasize that demand for power/AI infrastructure remains strong despite recent volatility, with CEOs buying shares signaling confidence. They sound highly confident in the long-term thesis.\n\n4. Worth checking: Verify Grid AI's statement that Pronghorn reserves are not SEC-proved; confirm Applied Digital's claim that 75% of base term revenues come from investment-grade tenants; check if Bitdeer's mining increase correlates with Bitcoin difficulty adjustments.",
+   "brief": "NVIDIA's reinstatement of Jensen Huang as CEO after an 11-day resignation, its impact on tech stocks (especially AI infrastructure), and updates from ABTC, Galaxy Digital, Bitdeer, Grid AI, Applied Digital, Hive Blockchain, Keel, and Dark Horse.",
+   "facts": [
+    "**NVIDIA**: Jensen Huang reinstated as president/CEO/board director 11 days after resigning; stock rose from $125 to $171 intraday.",
+    "**ABTC (American Bitcoin)**: Secured a $150M Bitcoin-backed credit facility from FalconX at 5.9% interest + commitment fee, with a 143% collateral ratio.",
+    "**Galaxy Digital**: Mike Novogratz bought ~416K shares ($1.17–12.31/share); Douglas Deason bought 7.5K shares (~$13/share); Christopher Ferraro exercised options for 100K shares ($4.83/share).",
+    "**Bitdeer**: Mined 281.1 BTC in the past week (up from 256 BTC/week prior).",
+    "**Grid AI**: Closed Pronghorn acquisition (10 days after signing), adding 100M cubic feet/day gas production, 2T cubic feet reserves, 450+ miles pipeline, 600MW potential generation.",
+    "**Applied Digital**: Signed 150MW 18-year hyperscaler lease ($5.4B base value; $12.7B with renewals); total contracted revenue now $41B (up to $100B with renewals).",
+    "**Hive Blockchain**: Added to Russell 3000 index effective December 11, 2026.",
+    "**Keel Asset Management**: Sharon site (110MW) received final state environmental permit; Moses Lake site (18MW) fully approved."
+   ],
+   "view": "The host is bullish on the sector, calling NVIDIA's reinstatement of Jensen a \"complete reversal\" and \"one of the more exciting or funner podcasts we're doing.\" They emphasize that demand for power/AI infrastructure remains strong despite recent volatility, with CEOs buying shares signaling confidence. They sound highly confident in the long-term thesis.",
+   "verify": [
+    "Verify Grid AI's statement that Pronghorn reserves are not SEC-proved; confirm Applied Digital's claim that 75% of base term revenues come from investment-grade tenants; check if Bitdeer's mining increase correlates with Bitcoin difficulty adjustments."
+   ],
    "signal": [
     {
      "tk": "APLD",
@@ -82,11 +93,17 @@
     "HIVE"
    ],
    "main": [],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video is an interview with Grid AI (GRDX) CEO Jason Sawyer discussing their recent acquisition of Pronghorn Resources and its strategic importance for developing power infrastructure to support AI data centers.\n\n2. Key facts by company:\n- GRDX: Acquired Pronghorn Resources; owns 3,200 producing gas wells capable of generating 600 MW of power today; has 1 million acres of mineral rights with over 7,000 wells drilled historically in the Powder River Basin; plans to develop multi-gigawatt hyperscale AI data center campuses.\n- GRDX: Partnered with First American Nuclear (FANCO) for advanced nuclear development strategy in Wyoming; FANCO team has worked on every fast reactor built in North America over last 30 years.\n\n3. Host's view:\nThe host views the Pronghorn acquisition and vertical integration strategy very favorably, calling it a \"big deal\" that provides Grid AI with significant advantages in terms of power certainty and cost efficiency compared to peers. They sound confident about GRDX's potential based on its assets and strategic positioning.\n\n4. Worth checking:\n- Verify GRDX's claim of owning 3,200 producing gas wells capable of generating 600 MW of power today.\n- Confirm the details of GRDX's partnership with First American Nuclear for nuclear development in Wyoming.",
+   "brief": "The video is an interview with Grid AI (GRDX) CEO Jason Sawyer discussing their recent acquisition of Pronghorn Resources and its strategic importance for developing power infrastructure to support AI data centers.",
+   "facts": [
+    "GRDX: Acquired Pronghorn Resources; owns 3,200 producing gas wells capable of generating 600 MW of power today; has 1 million acres of mineral rights with over 7,000 wells drilled historically in the Powder River Basin; plans to develop multi-gigawatt hyperscale AI data center campuses.",
+    "GRDX: Partnered with First American Nuclear (FANCO) for advanced nuclear development strategy in Wyoming; FANCO team has worked on every fast reactor built in North America over last 30 years."
+   ],
+   "view": "The host views the Pronghorn acquisition and vertical integration strategy very favorably, calling it a \"big deal\" that provides Grid AI with significant advantages in terms of power certainty and cost efficiency compared to peers. They sound confident about GRDX's potential based on its assets and strategic positioning.",
+   "verify": [
+    "Verify GRDX's claim of owning 3,200 producing gas wells capable of generating 600 MW of power today.",
+    "Confirm the details of GRDX's partnership with First American Nuclear for nuclear development in Wyoming."
+   ],
    "signal": [],
    "sponsored": []
   },
