@@ -40,11 +40,23 @@
     "WULF",
     "HIVE"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses recent volatility in the AI infrastructure sector, covering stock performance, company updates (Applied Digital, Bitdeer, GridX, IREN, Saluna), and broader industry trends.\n\n2. Key facts by company:\n   - APLD: Delivered an additional 25 MW at Polaris Forge 2; 1,600 MW of compute power contracted ($41B total value); Lucid Capital cut price target from $83 to $40 (still a buy).\n   - BTDR: Targeting 350 MW capacity across locations (only ~20 MW short); active at conferences.\n   - GRDX: Name changed to Grid AI Power Corp; targeting 300 MW initial gas-fired power delivery in 2027.\n   - IREN: Purchased former primary school in South Australia for worker housing near Bundy site; Freedom Capital maintains $58 price target (nearly 300% upside).\n   - SLNH: Caudi 2 site development ongoing (land control, power interconnection complete); Dorothy 3 JV with APLD progressing.\n\n3. Host's view:\n   - The host expresses frustration at the sector's volatility and stock declines despite company progress (\"not worth 50% less in a quarter\").\n   - They highlight Applied Digital as undervalued given its $41B backlog vs. $3.6B valuation.\n   - Price targets mentioned: APLD ($40, 200% upside), IREN ($58, nearly 300% upside).\n   - Confidence is mixed: acknowledges sector uncertainty but emphasizes long-term potential and NVIDIA's role.\n\n4. Worth checking:\n   - Verify Applied Digital's $41B contract value vs. current valuation.\n   - Confirm Bitdeer's actual capacity progress towards 350 MW target.\n   - Check GridX's new name (Grid AI Power Corp) and ticker (GRDX).\n   - Validate IREN's Bundy site plans and school purchase details.\n   - Review Saluna's Caudi 2/Dorothy 3 development timelines.",
+   "brief": "Recent volatility in the AI infrastructure sector, covering stock performance, company updates (Applied Digital, Bitdeer, GridX, IREN, Saluna), and broader industry trends.",
+   "facts": [
+    "APLD: Delivered an additional 25 MW at Polaris Forge 2; 1,600 MW of compute power contracted ($41B total value); Lucid Capital cut price target from $83 to $40 (still a buy).",
+    "BTDR: Targeting 350 MW capacity across locations (only ~20 MW short); active at conferences.",
+    "GRDX: Name changed to Grid AI Power Corp; targeting 300 MW initial gas-fired power delivery in 2027.",
+    "IREN: Purchased former primary school in South Australia for worker housing near Bundy site; Freedom Capital maintains $58 price target (nearly 300% upside).",
+    "SLNH: Caudi 2 site development ongoing (land control, power interconnection complete); Dorothy 3 JV with APLD progressing."
+   ],
+   "view": "The host expresses frustration at the sector's volatility and stock declines despite company progress (\"not worth 50% less in a quarter\"). They highlight Applied Digital as undervalued given its $41B backlog vs. $3.6B valuation. Price targets mentioned: APLD ($40, 200% upside), IREN ($58, nearly 300% upside). Confidence is mixed: acknowledges sector uncertainty but emphasizes long-term potential and NVIDIA's role.",
+   "verify": [
+    "Verify Applied Digital's $41B contract value vs. current valuation.",
+    "Confirm Bitdeer's actual capacity progress towards 350 MW target.",
+    "Check GridX's new name (Grid AI Power Corp) and ticker (GRDX).",
+    "Validate IREN's Bundy site plans and school purchase details.",
+    "Review Saluna's Caudi 2/Dorothy 3 development timelines."
+   ],
    "signal": [
     {
      "tk": "IREN",
