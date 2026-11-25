@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-24",
+ "asOf": "2026-11-25",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,60 @@
   }
  ],
  "items": [
+  {
+   "id": "2dVOw5J7DB8",
+   "src": "mcnallie-money",
+   "d": "2026-11-24",
+   "title": "AI Sector Volatility | Top APLD, HUT, BTDR, IREN, KEEL, SLNH, GRDX, WULF & HIVE Stock News Now",
+   "headline": "AI Sector Volatility — Top APLD, HUT, BTDR, IREN, KEEL, SLNH, GRDX, WULF & HIVE Stock News Now",
+   "url": "https://www.youtube.com/watch?v=2dVOw5J7DB8",
+   "kind": "news",
+   "minutes": 41,
+   "tickers": [
+    "APLD",
+    "IREN",
+    "BTDR",
+    "SLNH",
+    "WULF",
+    "HIVE",
+    "CORZ",
+    "CRWV",
+    "NBIS",
+    "RIOT",
+    "CLSK",
+    "HUT"
+   ],
+   "main": [
+    "APLD",
+    "IREN",
+    "BTDR",
+    "SLNH",
+    "WULF",
+    "HIVE"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "NVIDIA and IREN signed a $3.4 billion cloud services contract over five years.",
+     "by": "host",
+     "tag": "big",
+     "t": 1923
+    },
+    {
+     "tk": "APLD",
+     "claim": "Lucid Capital cut its Applied Digital price target from $83 to $40.",
+     "by": "host",
+     "tag": "notable",
+     "t": 1013
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "byxMks2a-yA",
    "src": "mcnallie-money",
@@ -6553,54 +6607,6 @@
      "t": 2702
     }
    ],
-   "sponsored": []
-  },
-  {
-   "id": "iDQcu0Uscpw",
-   "src": "mcnallie-money",
-   "d": "2026-07-27",
-   "title": "Latest IREN & KEEL News | CORZ Stock Analysis | WYFI NC 1 Update | MARA CEO on AI Strategy",
-   "headline": "Latest IREN & KEEL News — CORZ Stock Analysis",
-   "url": "https://www.youtube.com/watch?v=iDQcu0Uscpw",
-   "kind": "news",
-   "minutes": 62,
-   "tickers": [
-    "IREN",
-    "CORZ",
-    "WULF",
-    "MARA",
-    "BTDR",
-    "KEEL",
-    "HIVE",
-    "CLSK",
-    "BTBT"
-   ],
-   "main": [
-    "IREN",
-    "CORZ",
-    "WULF",
-    "MARA",
-    "BTDR",
-    "KEEL"
-   ],
-   "summary": "1. The video discusses recent developments and news from various companies in the AI infrastructure sector, including Kiel (KEEL), White Fiber (WYFI), Core Scientific (CORZ), Marathon Digital Holdings (MARA) and Iris Energy (IREN).\n\n2. Key facts by company:\n- KEEL: Announced Q2 results; three deals expected by year-end; pipeline includes Panther Creek (350 MW), Sharon (110 MW), Moses Lake (18 MW); Scrubgrass site has potential for 1.3 GW.\n- WYFI: Delivered NC1, a 40 MW IT load facility with $865M contract value ($2.1M/MW) for N-Scale; retrofit strategy enables fast deployment and lower costs.\n- CORZ: On track to deliver 590 MW for CoreWeave by early 2027; expects ~400-450 MW handed over by end of June/July, generating ~$50-60M/month revenue; financing mostly from client.\n- MARA: Fred Thiel stated power is more valuable for AI than Bitcoin mining; pivoting to AI while maintaining Bitcoin operations; using behind-the-meter power and wind farm.\n- IREN: Mike Alfred (director) believes owning GPUs offers upside despite risks; full vertical integration strategy includes land, data centers, compute layer and software.\n\n3. Host's view:\nThe host is optimistic about the long-term demand for AI infrastructure, comparing it to early internet adoption. They highlight that while there are short-term market pullbacks, the sector fundamentals remain strong with exponential growth potential. The host expresses confidence in companies securing deals and delivering facilities, noting that earnings reports will provide further clarity on revenue streams.\n\n4. Worth checking:\n- Verify KEEL's deal timelines and pipeline capacity against official filings.\n- Confirm WYFI's contract value ($865M) and IT load (40 MW) for the N-Scale facility.\n- Validate CORZ's delivery timeline (400-450 MW by end of June/July) and associated revenue projections.\n- Check MARA's power pipeline size and behind-the-meter capacity claims.\n- Review IREN's site capacities (e.g. 2 GW at Sweetwater, 750 MW at Childress) and Microsoft contract details ($2.91/MW average).",
-   "brief": "Recent developments and news from various companies in the AI infrastructure sector, including Kiel (KEEL), White Fiber (WYFI), Core Scientific (CORZ), Marathon Digital Holdings (MARA) and Iris Energy (IREN).",
-   "facts": [
-    "KEEL: Announced Q2 results; three deals expected by year-end; pipeline includes Panther Creek (350 MW), Sharon (110 MW), Moses Lake (18 MW); Scrubgrass site has potential for 1.3 GW.",
-    "WYFI: Delivered NC1, a 40 MW IT load facility with $865M contract value ($2.1M/MW) for N-Scale; retrofit strategy enables fast deployment and lower costs.",
-    "CORZ: On track to deliver 590 MW for CoreWeave by early 2027; expects ~400-450 MW handed over by end of June/July, generating ~$50-60M/month revenue; financing mostly from client.",
-    "MARA: Fred Thiel stated power is more valuable for AI than Bitcoin mining; pivoting to AI while maintaining Bitcoin operations; using behind-the-meter power and wind farm.",
-    "IREN: Mike Alfred (director) believes owning GPUs offers upside despite risks; full vertical integration strategy includes land, data centers, compute layer and software."
-   ],
-   "view": "The host is optimistic about the long-term demand for AI infrastructure, comparing it to early internet adoption. They highlight that while there are short-term market pullbacks, the sector fundamentals remain strong with exponential growth potential. The host expresses confidence in companies securing deals and delivering facilities, noting that earnings reports will provide further clarity on revenue streams.",
-   "verify": [
-    "Verify KEEL's deal timelines and pipeline capacity against official filings.",
-    "Confirm WYFI's contract value ($865M) and IT load (40 MW) for the N-Scale facility.",
-    "Validate CORZ's delivery timeline (400-450 MW by end of June/July) and associated revenue projections.",
-    "Check MARA's power pipeline size and behind-the-meter capacity claims.",
-    "Review IREN's site capacities (e.g. 2 GW at Sweetwater, 750 MW at Childress) and Microsoft contract details ($2.91/MW average)."
-   ],
-   "signal": [],
    "sponsored": []
   }
  ]
