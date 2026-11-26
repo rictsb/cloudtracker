@@ -36,11 +36,23 @@
     "BTDR",
     "APLD"
    ],
-   "summary": null,
-   "brief": null,
-   "facts": [],
-   "view": null,
-   "verify": [],
+   "summary": "1. The video discusses the latest news in AI infrastructure stocks amidst market volatility driven by inflation concerns and interest rate hikes; it covers earnings from Dell (DELL), financing updates from Bit Digital (BTDT) and White Fiber, AGM results for IronNet (IREN), TerraWulf's (WULF) CNBC interview and a Grid AI (GRDX) podcast.\n\n2. Key facts by company:\n- DELL: Q3 revenue $54.9B (+103% YoY), server revenue $22B (+300%), ISG income $7.1B (+308%), diluted EPS $8.82 (+300%), backlog $132B, FY27 guidance $202B revenue and $28.24 EPS.\n- BTDT: Repaid 50% of Galaxy debt ($50M principal) by selling 29,825 Ethereum at avg price $1,676; retains $134,532 ETH (including $36,811 staked), remaining $50M loan secured against $69,089 ETH.\n- IREN: AGM approved buyback of up to 164.4M shares from banks (14.5M already paid for by IRON, 149.9M from cap call counterparties).\n- WULF: CNBC interview emphasized focus on long-term contracts with investment-grade clients; 438MW online by Q1 2027 (102MW at Lake Mariner + 336MW expansion), ~1GW total signed contracts.\n- GRDX: Podcast highlighted natural gas sourcing in Powder River Basin, 6T cubic feet historical production, plans for 300MW online next year.\n\n3. Host's view:\nThe host is cautiously optimistic on the sector long-term due to strong fundamentals (e.g., Dell's record earnings) but acknowledges current market headwinds from inflation and interest rates make near-term recovery uncertain. They note most stocks are down ~70% from June highs but see potential for reversal if capital constraints ease.\n\n4. Worth checking:\n- Verify DELL's Q3 financials and FY27 guidance in SEC filings.\n- Confirm BTDT's Ethereum sales, remaining holdings and loan terms in their latest 6-K or press release.\n- Check IREN's AGM results filing for exact share buyback authorization details.\n- Look up WULF's CNBC interview transcript for full contract and expansion timelines.\n- Review GRDX's natural gas reserves and development plans in their investor materials.",
+   "brief": "The latest news in AI infrastructure stocks amidst market volatility driven by inflation concerns and interest rate hikes; it covers earnings from Dell (DELL), financing updates from Bit Digital (BTDT) and White Fiber, AGM results for IronNet (IREN), TerraWulf's (WULF) CNBC interview and a Grid AI (GRDX) podcast.",
+   "facts": [
+    "DELL: Q3 revenue $54.9B (+103% YoY), server revenue $22B (+300%), ISG income $7.1B (+308%), diluted EPS $8.82 (+300%), backlog $132B, FY27 guidance $202B revenue and $28.24 EPS.",
+    "BTDT: Repaid 50% of Galaxy debt ($50M principal) by selling 29,825 Ethereum at avg price $1,676; retains $134,532 ETH (including $36,811 staked), remaining $50M loan secured against $69,089 ETH.",
+    "IREN: AGM approved buyback of up to 164.4M shares from banks (14.5M already paid for by IRON, 149.9M from cap call counterparties).",
+    "WULF: CNBC interview emphasized focus on long-term contracts with investment-grade clients; 438MW online by Q1 2027 (102MW at Lake Mariner + 336MW expansion), ~1GW total signed contracts.",
+    "GRDX: Podcast highlighted natural gas sourcing in Powder River Basin, 6T cubic feet historical production, plans for 300MW online next year."
+   ],
+   "view": "The host is cautiously optimistic on the sector long-term due to strong fundamentals (e.g., Dell's record earnings) but acknowledges current market headwinds from inflation and interest rates make near-term recovery uncertain. They note most stocks are down ~70% from June highs but see potential for reversal if capital constraints ease.",
+   "verify": [
+    "Verify DELL's Q3 financials and FY27 guidance in SEC filings.",
+    "Confirm BTDT's Ethereum sales, remaining holdings and loan terms in their latest 6-K or press release.",
+    "Check IREN's AGM results filing for exact share buyback authorization details.",
+    "Look up WULF's CNBC interview transcript for full contract and expansion timelines.",
+    "Review GRDX's natural gas reserves and development plans in their investor materials."
+   ],
    "signal": [
     {
      "tk": "IREN",
