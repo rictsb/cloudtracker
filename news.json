@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-26",
+ "asOf": "2026-11-27",
  "windowDays": 120,
  "sources": [
   {
@@ -9,6 +9,51 @@
   }
  ],
  "items": [
+  {
+   "id": "VKAAlNB58nE",
+   "src": "mcnallie-money",
+   "d": "2026-11-26",
+   "title": "Where Does AI Go From Here? | Top AI Stocks to Watch Right Now | Is The AI Trade Dead?",
+   "headline": "Where Does AI Go From Here?",
+   "url": "https://www.youtube.com/watch?v=VKAAlNB58nE",
+   "kind": "news",
+   "minutes": 59,
+   "tickers": [
+    "IREN",
+    "WULF",
+    "CORZ",
+    "GLXY",
+    "NBIS",
+    "APLD",
+    "BTDR",
+    "HUT",
+    "SLNH",
+    "CRWV",
+    "MARA",
+    "CLSK"
+   ],
+   "main": [
+    "IREN",
+    "WULF",
+    "CORZ",
+    "GLXY"
+   ],
+   "summary": null,
+   "brief": null,
+   "facts": [],
+   "view": null,
+   "verify": [],
+   "signal": [
+    {
+     "tk": "IREN",
+     "claim": "IREN is delivering 200 MW to Microsoft in the early part of 2027.",
+     "by": "executive",
+     "tag": "notable",
+     "t": 481
+    }
+   ],
+   "sponsored": []
+  },
   {
    "id": "2zCCV51kikY",
    "src": "mcnallie-money",
@@ -6536,60 +6581,6 @@
      "by": "host",
      "tag": "scoop",
      "t": null
-    }
-   ],
-   "sponsored": []
-  },
-  {
-   "id": "pEIflwOY7N4",
-   "src": "mcnallie-money",
-   "d": "2026-07-29",
-   "title": "Latest IREN & KEEL News | HUT NOI Valuation | AI Stocks Selling Off | CORZ News | Top AI News Now",
-   "headline": "Latest IREN & KEEL News — HUT NOI Valuation",
-   "url": "https://www.youtube.com/watch?v=pEIflwOY7N4",
-   "kind": "news",
-   "minutes": 45,
-   "tickers": [
-    "IREN",
-    "HUT",
-    "CORZ",
-    "KEEL",
-    "WULF",
-    "CLSK",
-    "BTDR",
-    "GLXY",
-    "NBIS",
-    "RIOT",
-    "MARA"
-   ],
-   "main": [
-    "IREN",
-    "HUT",
-    "CORZ",
-    "KEEL",
-    "WULF",
-    "CLSK"
-   ],
-   "summary": "1. The video discusses recent developments in the AI infrastructure sector, including Fed rate decisions impacting company valuations, key hires at companies like Core Scientific (CORZ) and Iron Energy (IREN), and valuation analyses of HUT 8's (HUT) deals.\n\n2. Key facts by company:\n- CORZ: Mark Adams joins as a director; previously president/CEO of Penguin Solutions (2020-26); also spent 10 years at Micron (MU).\n- IREN: Bob Chen joins from JP Morgan after seven years heading TMT research in Sydney.\n- HUT: NOI valuation based on $1.75B annual NOI and cap rates gives implied values between $28B-$41B; total pipeline over 9GW of power.\n\n3. Host's view:\nThe hosts are optimistic about the sector long-term despite recent sell-offs, seeing current prices as buying opportunities. They highlight that fundamentals remain strong with increasing contracts and hyperscaler deals. They sound confident in their valuation analyses and encourage viewers to do their own research.\n\n4. Worth checking: \n- Verify HUT 8's NOI multiples (16-23.5) against industry benchmarks.\n- Confirm if NVIDIA is a co-signer on HUT 8's deals as suggested by Matt Siegel/VanEck.\n- Check BlackRock's actual stake in Keel (KEEL) via SEC filings to confirm the reported 8.4% holding of over 50M shares.",
-   "brief": "Recent developments in the AI infrastructure sector, including Fed rate decisions impacting company valuations, key hires at companies like Core Scientific (CORZ) and Iron Energy (IREN), and valuation analyses of HUT 8's (HUT) deals.",
-   "facts": [
-    "CORZ: Mark Adams joins as a director; previously president/CEO of Penguin Solutions (2020-26); also spent 10 years at Micron (MU).",
-    "IREN: Bob Chen joins from JP Morgan after seven years heading TMT research in Sydney.",
-    "HUT: NOI valuation based on $1.75B annual NOI and cap rates gives implied values between $28B-$41B; total pipeline over 9GW of power."
-   ],
-   "view": "The hosts are optimistic about the sector long-term despite recent sell-offs, seeing current prices as buying opportunities. They highlight that fundamentals remain strong with increasing contracts and hyperscaler deals. They sound confident in their valuation analyses and encourage viewers to do their own research.",
-   "verify": [
-    "Verify HUT 8's NOI multiples (16-23.5) against industry benchmarks.",
-    "Confirm if NVIDIA is a co-signer on HUT 8's deals as suggested by Matt Siegel/VanEck.",
-    "Check BlackRock's actual stake in Keel (KEEL) via SEC filings to confirm the reported 8.4% holding of over 50M shares."
-   ],
-   "signal": [
-    {
-     "tk": "KEEL",
-     "claim": "BlackRock holds an 8.4% stake in Keel, representing over 50 million shares.",
-     "by": "guest",
-     "tag": "notable",
-     "t": 2493
     }
    ],
    "sponsored": []
