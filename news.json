@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-27",
+ "asOf": "2026-11-28",
  "windowDays": 120,
  "sources": [
   {
@@ -6531,74 +6531,6 @@
     "Confirm WULF's compute power pipeline (915 MW mentioned)."
    ],
    "signal": [],
-   "sponsored": []
-  },
-  {
-   "id": "nr3eCpbGNw8",
-   "src": "mcnallie-money",
-   "d": "2026-07-30",
-   "title": "Massive Day for AI Stocks | MSFT & META Earnings & AI Outlook | Latest IREN & SLNH Stock News Now",
-   "headline": "Massive Day for AI Stocks",
-   "url": "https://www.youtube.com/watch?v=nr3eCpbGNw8",
-   "kind": "news",
-   "minutes": 46,
-   "tickers": [
-    "IREN",
-    "HUT",
-    "BTDR",
-    "GLXY",
-    "WULF",
-    "CIFR",
-    "APLD",
-    "SLNH",
-    "BTBT",
-    "HIVE",
-    "CRWV",
-    "NBIS",
-    "RIOT",
-    "MARA",
-    "CLSK"
-   ],
-   "main": [
-    "IREN"
-   ],
-   "summary": "1. The video covers extreme volatility in AI infrastructure stocks following Meta and Microsoft earnings, with significant rallies after prior drawdowns; it also discusses updates from Iron Energy (IREN) and Bit Digital's acquisition of nScale.\n\n2. Key facts by company:\n- IREN: 85% of $4B ARR target signed/locked up; Childress site has ~1k employees; 27 Bitcoin mining buildings being repurposed for GPU facilities; original Microsoft contract included a $16M/megawatt accelerator bonus\n- BTDR: Mining >900 BTC/day (vs IREN's ~4/day); hash rate likely 10x that required to mine 4 BTC/day\n- WULF: BlackRock holds 22.3M shares (~4.5% stake)\n- HUT: YTD return +132%; market cap approaching IREN's despite IREN having signed contracts\n\n3. Host's view:\nThe hosts are highly confident in AI infrastructure demand, citing hyperscaler earnings and on-site visits as validation. They see current volatility as a buying opportunity, with Anthony deploying >$50k during the dip.\n\n4. Worth checking:\n- Senator Saloon's claim that clarity app approval could be 1 week away\n- Bit Digital's acquisition of nScale and associated expansion potential to 80MW\n- BlackRock's exact stakes in WULF and other companies via SEC filings",
-   "brief": "Extreme volatility in AI infrastructure stocks following Meta and Microsoft earnings, with significant rallies after prior drawdowns; it also discusses updates from Iron Energy (IREN) and Bit Digital's acquisition of nScale.",
-   "facts": [
-    "IREN: 85% of $4B ARR target signed/locked up; Childress site has ~1k employees; 27 Bitcoin mining buildings being repurposed for GPU facilities; original Microsoft contract included a $16M/megawatt accelerator bonus",
-    "BTDR: Mining >900 BTC/day (vs IREN's ~4/day); hash rate likely 10x that required to mine 4 BTC/day",
-    "WULF: BlackRock holds 22.3M shares (~4.5% stake)",
-    "HUT: YTD return +132%; market cap approaching IREN's despite IREN having signed contracts"
-   ],
-   "view": "The hosts are highly confident in AI infrastructure demand, citing hyperscaler earnings and on-site visits as validation. They see current volatility as a buying opportunity, with Anthony deploying >$50k during the dip.",
-   "verify": [
-    "Senator Saloon's claim that clarity app approval could be 1 week away",
-    "Bit Digital's acquisition of nScale and associated expansion potential to 80MW",
-    "BlackRock's exact stakes in WULF and other companies via SEC filings"
-   ],
-   "signal": [
-    {
-     "tk": "IREN",
-     "claim": "IREN is delivering 200 megawatts of compute to Microsoft at the Childress site.",
-     "by": "host",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "WULF",
-     "claim": "BlackRock holds 22.3 million shares of TerraWulf, representing approximately 4.5% of the volume.",
-     "by": "guest",
-     "tag": "notable",
-     "t": null
-    },
-    {
-     "tk": "IREN",
-     "claim": "IREN is building out the Childress site with Horizon 1 and 2 nearing completion.",
-     "by": "host",
-     "tag": "scoop",
-     "t": null
-    }
-   ],
    "sponsored": []
   }
  ]
